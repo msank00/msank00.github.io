@@ -1,3 +1,13 @@
+---
+layout: archive
+title: "TA"
+permalink: /teaching/
+author_profile: true
+---
+
+
+Below are details for Teaching Assistanceship (TA)
+
 | **ID**  | **Subject**                           | **Professor**                                  | **Semester**     |
 |---------|---------------------------------------|------------------------------------------------|------------------|
 | CS10001 | Programming and Data Structure Theory | Sourangshu Bhattacharya                        | 2016-2017 Spring |
