@@ -7,7 +7,7 @@ author_profile: true
 
 
 ### Main
-1. **Link Travel Time Prediction and Route Recommendation from Large Scale Endpoint Data** - _**Sankarshan Mridha**_, Niloy Ganguly and Sourangshu Bhattacharya, accepted as Short Paper in the 25th ACM SIGSPATIAL International Conference on Advances in Geographic Information Systems (ACM SIGSPATIAL) Redondo Beach, California, USA. August 2017.
+1. \"Link Travel Time Prediction and Route Recommendation from Large Scale Endpoint Data\" - _**Sankarshan Mridha**_, Niloy Ganguly and Sourangshu Bhattacharya, accepted as Short Paper in the 25th ACM SIGSPATIAL International Conference on Advances in Geographic Information Systems (ACM SIGSPATIAL) Redondo Beach, California, USA. August 2017.
 
 2. **Mining Twitter and Taxi Data for Predicting Taxi Pickup Hotspots** - _**Sankarshan Mridha**_, Sayan Ghosh, Robin Singh, Sourangshu Bhattacharya and Niloy Ganguly, accepted as Short Paper in the 9th IEEE/ACM International Conference on Advances in Social Networks Analysis and Mining (ASONAM), Sydney, Australia. May 2017.
 
