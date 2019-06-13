@@ -14,21 +14,21 @@
             "header header header"
             "nav article ads"
             "footer footer footer";
-            grid-template-rows: 100px 1fr 20px;
+            grid-template-rows: 120px 1fr 20px;
             grid-template-columns: 20% 1fr 5%;
             grid-gap: 5px;
             margin: 0;
          }
          /* Stack the layout on small devices/viewports. */
-         @media all and (max-width: 575px) {
+         @media all and (max-width: 800px) {
            body { 
              grid-template-areas: 
                "header"
+               "nav"
                "article"
                "ads"
-               "nav"
                "footer";
-             grid-template-rows: 80px 1fr 70px 1fr 70px;  
+             grid-template-rows: 120px 1fr 70px 1fr 70px;  
              grid-template-columns: 1fr;
           }
          }
@@ -45,7 +45,7 @@
             grid-area: ads; 
          }
          header, article, nav, div {
-            padding: 20px;
+            padding: 5px;
             background: white;
          }
          /* Use a media query to add a breakpoint at 600px: */
@@ -55,7 +55,7 @@
    <body>
       <header id="pageHeader">
          <h1>Quick Refresher</h1>
-         <p><a href="https://msank00.github.io/blog/">Back to Blog Content</a></p>
+         <a href="https://msank00.github.io/blog/">Back to Blog Content</a>
       </header>
       <article id="mainArticle">
          <h2 id="linearregression">Linear Regression</h2>
@@ -220,8 +220,10 @@
                <p>Book<a href="https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.7-Eigendecomposition/">(Book_IMPORTANT link)</a></p>
             </li>
          </ul>
-         <hr>
+         
          <a href="#top">Back to top of page</a>
+         <hr>
+         
       </article>
 
       <nav id="mainNav">
