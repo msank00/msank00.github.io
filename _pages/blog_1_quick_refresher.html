@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width">
+      <title>Doubt Clearing</title>
+      <script type="text/javascript" async
+         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" async></script>
+      <style>
+         body { 
+         display: grid;
+         grid-template-areas: 
+         "header header header"
+         "nav article ads"
+         "footer footer footer";
+         grid-template-rows: 100px 1fr 20px;
+         grid-template-columns: 20% 1fr 5%;
+         grid-gap: 5px;
+         margin: 0;
+         }
+         #pageHeader {
+         grid-area: header;
+         }
+         #mainArticle { 
+         grid-area: article;      
+         }
+         #mainNav { 
+         grid-area: nav; 
+         }
+         #siteAds { 
+         grid-area: ads; 
+         }
+         header, article, nav, div {
+         padding: 20px;
+         background: white;
+         }
+         #myBtn {
+         display: none;
+         position: fixed;
+         bottom: 20px;
+         right: 30px;
+         z-index: 99;
+         font-size: 18px;
+         border: none;
+         outline: none;
+         background-color: orange;
+         color: black;
+         cursor: pointer;
+         padding: 15px;
+         border-radius: 4px;
+         }
+         #myBtn:hover {
+         background-color: #555;
+         }
+         .highlightme { background-color:#fef9e7; font-family: Courier;} 
+      </style>
+   <body>
+      <header id="pageHeader">
+         <h1>Quick Refresher</h1>
+      </header>
+      <article id="mainArticle">
+         <h2 id="linearregression">Linear Regression</h2>
+         <ul>
+            <li>It's linear with respect to weight <span class="highlightme"><span class="highlightme"><code>w</code></span></span>, but not with respect to 
+               input <span class="highlightme"><span class="highlightme"><code>x</code></span></span>
+            </li>
+            <li><span class="highlightme"><span class="highlightme"><code>posterior ~ liekelihood * prior</code></span></span></li>
+            <li>Ordinary Least Square (OLS) approach to find the model parameters is a special case of maximum likelihood estimation and the overfitting 
+               problem is a general property of the MLE. But by adopting the Bayesian approach, the overfitting problem can be avoided. 
+               <span class="highlightme"><code>[p9, Bishop]</code></span>
+            </li>
+            <li>Also from Bayesian perspective we can use model for which number of parameters can exceed the number of training 
+               data. In Bayesian learning, the effective number of parameters adapts automatically to the size of the data.
+            </li>
+         </ul>
+         <p><strong>Point Estimate of W vs W Distribution</strong></p>
+         <p>Consider D is our dataset and w is the parameter set. Now in both Bayesian and frequentist paradigm, 
+            the likelihood function <span class="highlightme"><code>p(D|w)</code></span> plays a central role. In frequentist approach, w is considered to be
+            fixed parameter, whose value is determined by some form of estimator and the error bars on the estimator are obtained by considering the distribution 
+            of possible data sets D. </p>
+         <p>However, in Bayesian setting we have only one sigle datasets D (the observed datasets), and the uncertainty in parameters is expressed through a 
+            probability distribution over <span class="highlightme"><code>w</code></span>. <span class="highlightme"><code>[p22-p23]</code></span></p>
+         <p>A widely used frequentist estimator is the maximul likelihood, in which w is set to the value that maximizes <span class="highlightme"><code>p(D|w)</code></span>. 
+            In the ML literature, the negative log of the likelihood is considered as _error function_. As the negative log is a monotonically decreasing function, 
+            so maximizing the likelihood is equivalent to minimizing the error.</p>
+         <p>However Bayesian approach has a very common criticism, i.e. the inclusion of prior belief. Therefore, people try to use _noninformative prior_ to 
+            get rid of the prior dependences. <span class="highlightme"><code>[p23]</code></span>.</p>
+         <p><strong>Criticism for MLE</strong></p>
+         <ul>
+            <li>MLE suffers from <span class="highlightme"><code>overfitting</code></span> problem. In general overfitting means the model fitted to the training 
+                data so perfectly that if we slightly change the data and get prediction, test error will be very high. 
+                That means the model is sensitive to the variance of data. The theoretical reason is MLE systematically undermines the variance of the 
+                distribution. See proof <span class="highlightme"><code>[[p27], [figure 1.15,p26, p28]]</code></span>.  
+                Because here <span class="highlightme"><code>sample variance</code></span> is measured using the <span class="highlightme"><code>sample mean</code></span>, 
+                instead of the population mean.</li>
+            <li>Sample mean is an unbiased estimator of the population mean, but sample variance is a biased estimator of the population variance. 
+                <span class="highlightme"><code>[p27], [figure 1.15,p26]</code></span></li>
+            <li>If you see the image <span class="highlightme"><code>p28</code></span>, the 3 red curve shows 3 different dataset and the 
+                green curve shows the true dataset. And the mean of the 3 red curves coincide with the mean of the green curve, 
+                but their variances are different. </li>
+         </ul>
+         <p>In Bayesian curve fitting setting, the sum of squared error function has arisen as a consequence of maximizing the likelihood under the assumption of Gaussian noise distribution.</p>
+         <p>Regularization allows complex models to be trained on the datasets of limited size without severe overfitting, essentially by limiting the model complexity. <span class="highlightme"><code>[p145, bishop]</code></span></p>
+         <p><strong>Bias Variance Trade-off from Frequentist viewpoint</strong></p>
+         <p>In frequentist viewpoint, <span class="highlightme"><code>w</code></span> is fixed and error bars on the estimators are obtained by considering the distribution over the data D. <span class="highlightme"><code>[p22-23; Bishop]</code></span>.</p>
+         <p>Suppose we have large number of <strong>data sets</strong>, <span class="highlightme"><code>[D1,...,Dn]</code></span>, each of size N and each drawn independently from distribution of <span class="highlightme"><code>p(t,x)</code></span>. For any given data set <span class="highlightme"><code>Di</code></span> we can run our learning algorithm and get a prediction function <span class="highlightme"><code>y(x;Di)</code></span>. Different datasets from the ensemble will give different prediction functions and consequently different values of squared loss. The performance of a particular learning algorithm is then assessed by averaging over this ensemble of datasets. <span class="highlightme"><code>[p148; Bishop]</code></span>. </p>
+         <p>Our original regression function is <span class="highlightme"><code>Y</code></span> and say for <span class="highlightme"><code>Di</code></span> 
+         we got our predictive function \(\hat{Y_i}\).</p>
+         <p><strong>Bias</strong> = \((E[\hat{Y_i}(x;D_i)] - Y)^2\), where \(E[\hat{Y_i}(x;D_i)]\) is average (expected) performance over all the datasets. 
+            So, Bias represents the extent to which the average prediction over all the datasets \(D_i\) differ from the desired regression function \(Y\).</p>
+         <p><strong>Variance</strong> = \(E[(\hat{Y_i}(x;D_i) - E[\hat{Y_i}(x;D_i)])^2]\), where \(\hat{Y_i}(x;D_i)\) is the predictive 
+            function over data set \(D_i\) and \(E[\hat{Y_i}(x;D_i)]\) is the average performance over all the datasets. 
+            So variance represents, the extent to which the individual predictive functions \(\hat{Y_i}\) for dataset 
+            \(D_i\) varies around their average. And thus we measure the extent by which the function \(Y(x;D)\) is sensitive to the particular 
+            choice of the data sets. <span class="highlightme"><code>[p149; Bishop]</code></span></p>
+         
+         <a href="#top">Back to top of page</a>
+         <hr />
+
+         <h2 id="linearmodels">Linear Models</h2>
+         <h3 id="generallinearmodel">General Linear Model</h3>
+         <p>Indeed, the general linear model can be seen as an extension of linear multiple regression for a single dependent variable. 
+              Understanding the multiple regression model is fundamental to understand the general linear model.</p>
+         <h4 id="singleregression">Single Regression</h4>
+         <p>One independent variable and one dependent variable</p>
+         <p>$$y=\theta_0+\theta x_1$$</p>
+         <h4 id="multipleregression">Multiple Regression</h4>
+         <p>Multiple regression is an extension of simple linear regression. It is used when we want to predict the value of a variable based on the value of two or more other variables. The variable we want to predict is called the dependent variable (or sometimes, the outcome, target or criterion variable).</p>
+         <p><strong>TL;DR:</strong> Multiple linear regression is the most common form of linear regression analysis.  As a predictive analysis, the multiple linear regression is used to explain the relationship between one continuous dependent variable and two or more independent variables</p>
+         <p>$$y=\theta_0+\theta x_1+\theta x_2+...+\theta x_n$$</p>
+
+         <h4 id="additivemodel">Additive Model:</h4>
+         <p>$$y=\theta_0+\theta f_1(x_1)+\theta f_2(x_2)+...+\theta f_n(x_n)$$</p>
+         <p>A generalization of the multiple regression model would be to maintain the additive nature of the model, but to replace the simple terms of the linear 
+            equation \(\theta_i * x_i\) with \(f_i(x_i)\) where \(f_i()\) is a non-parametric function of the predictor \(x_i\).  
+            In other words, instead of a single coefficient for each variable (additive term) in the model, 
+            in additive models an unspecified (non-parametric) function is estimated for each predictor, to achieve the best prediction of the dependent variable values.</p>
+         <p><strong>General Linear Model - Revisited</strong></p>
+         <p>One way in which the <span class="highlightme"><code>general linear model</code></span> differs from the 
+            <span class="highlightme"><code>multiple regression model</code></span> is in terms of the number of dependent variables that can be analyzed. 
+            The \(Y\) vector of $n$ observations of a single $Y$ variable can be replaced by a \(Y\) matrix of \(n\) observations of \(m\) different \(Y\) variables. 
+            Similarly, the \(w\) vector of regression coefficients for a single $Y$ variable can be replaced by a \(W\) matrix of regression coefficients, 
+            with one vector of \(w\) coefficients for each of the m dependent variables. These substitutions yield what is sometimes called the multivariate regression model,</p>
+         <p>$${Y}={XW}+{E}$$</p>
+         <p>where $Y$ is a matrix with series of multivariate measurements (each column being a set of measurements on one of the 
+            dependent variables), \(X\) is a matrix of observations on independent variables that might be a 
+            design matrix (each column being a set of observations on one of the independent variables), 
+            \(W\) is a matrix containing parameters that are usually to be estimated and \(E\) is a matrix containing errors (noise). 
+            The errors are usually assumed to be uncorrelated across measurements, and follow a multivariate normal distribution. 
+            If the errors do not follow a multivariate normal distribution, generalized linear models may be used to relax assumptions about \(Y\) and \(W\).</p>
+         <h3 id="generalizedlinearmodel">Generalized Linear Model</h3>
+         <p>To summarize the basic idea, the <span class="highlightme"><code>generalized linear model</code></span> differs from 
+            the <span class="highlightme"><code>general linear model</code></span> (of which multiple regression is a special case) in two major respects: </p>
+         <ol>
+            <li>The distribution of the dependent or response variable _can be (explicitly) non-normal_, and does not have to be continuous, e.g., it can be binomial; </li>
+            <li>The dependent variable values are predicted from a linear combination of predictor variables, 
+                which are "connected" to the dependent variable via a <span class="highlightme"><code>link function</code></span>.</li>
+         </ol>
+         <ul>
+            <li>General Linear Model</li>
+         </ul>
+         <p>$$y=\theta_0+\theta x_1+\theta x_2+...+\theta x_n$$</p>
+         <ul>
+            <li>Generalized Linear Model</li>
+         </ul>
+         <p>$$y=g(\theta_0+\theta x_1+\theta x_2+...+\theta x_n)$$
+            $$gi(y)=\theta_0+\theta x_1+\theta x_2+...+\theta x_n$$
+         </p>
+         <p>where \(gi()\) is the inverse of \(g()\)</p>
+         <p><strong>Link Function:</strong>
+            Now inverse of \(g()\), say \(gi()\) is the link function.
+         </p>
+         <h3 id="generalizedadditivemodel">Generalized Additive Model:</h3>
+         <p>We can combine the notion of <span class="highlightme"><code>additive models</code></span> with <span class="highlightme"><code>generalized linear models</code></span>, 
+            to derive the notion of <span class="highlightme"><code>generalized additive models</code></span>, as:</p>
+         <p>$$gi(y)=\theta_0+\theta f_1(x_1)+\theta f_2(x_2)+...+\theta f_n(x_n)$$</p>
+         <p><a href="http://www.statsoft.com/Textbook/Generalized-Additive-Models">(link)</a></p>
+         
+         <a href="#top">Back to top of page</a>
+         <hr />
+
+         <h2 id="eigendecomposition">Eigen Decomposition</h2>
+         <p>Matrices acts as linear transformations. Some matrices will rotate your space, 
+            others will rescale it etc. So when we apply a matrix to a vector, 
+            we end up with a transformed version of the vector. When we say that we ‘apply’ the matrix to the vector it means that we calculate the dot product of the matrix with the vector. 
+         </p>
+         <p><strong>Eigenvector:</strong> Now imagine that the transformation of the initial 
+            vector gives us a new vector that has the exact same direction. 
+            The scale can be different but the direction is the same. 
+            Applying the matrix didn’t change the direction of the vector. 
+            Thefere this type of initial vector is special and called an eigenvector of 
+            the matrix.
+         </p>
+         <p>We can decompose the matrix \(A\) with eigenvectors and eigenvalues. 
+            It is done with: $$A=V*\Sigma*V^{-1}$$, where \(\Sigma = diag(\lambda)\) and 
+            each column of \(V\) is the eigenvector of \(A\).
+         </p>
+         <h3 id="realsymmetricmatrix">Real symmetric matrix</h3>
+         <p>In the case of real symmetric matrices, the eigendecomposition 
+            can be expressed as
+            $$A=Q*\Sigma*Q^T$$
+         </p>
+         <p>where Q is the matrix with eigenvectors as columns and Λ is diag(λ).</p>
+         <h3 id="whyeigenvalueandeigenvectorsaresoimportant">Why Eigenvalue and Eigenvectors are so important?</h3>
+         <ul>
+            <li>They are quite helpful for optimization algorithm or more clearly in
+               constrained optimization problem. In optimization problem we are solving a 
+               system of linear euaqtion. Typical <span class="highlightme"><span class="highlightme"><code>Gaussian Elemination 
+               Technique</code></span></span> has 
+               time complexity \(O(n^3)\) but this can be solved with Eigenvalue 
+               Decomposition which needs \(O(n^2)\). So they are more efficient. [for more explanation follow the deeep learning lecture \(6\) of prof. Mitesh from IIT Madrass] 
+            </li>
+         </ul>
+         <p>References:</p>
+         <ul>
+            <li>
+               <p>Follow lecture 6 of <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015.html">Prof.Mitesh_IITM</a></p>
+            </li>
+            <li><a href="https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.7-Eigendecomposition/">Book</a></li>
+            <li>
+               <p>Book<a href="https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.7-Eigendecomposition/">(Book_IMPORTANT link)</a></p>
+            </li>
+         </ul>
+         <hr>
+         <a href="#top">Back to top of page</a>
+      </article>
+
+      <nav id="mainNav">
+         <div class="nav-wrapper">
+            <a href="#" class="brand-logo right">Content</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+               <li><a href="#linearregression">Linear Regression</a></li>
+               <li><a href="#linearmodels">Linear Models</a></li>
+               <li><a href="#eigendecomposition">Eigen Decomposition</a></li>
+            </ul>
+         </div>
+      </nav>
+   
+   </body>
+</html>
+
