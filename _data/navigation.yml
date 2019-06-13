@@ -7,8 +7,8 @@ main:
   - title: "TA"
     url: /teaching/    
          
-#  - title: "Blog Posts"
-#    url: /year-archive/
+  - title: "Blog"
+    url: /blog/
     
 #  - title: "CV"
 #    url: /cv/
