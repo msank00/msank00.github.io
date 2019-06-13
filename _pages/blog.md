@@ -5,5 +5,5 @@ permalink: /blog/
 author_profile: true
 ---
 
-- [blog 1](blog_1_quick_refresher.html)
+- [Quick Refresher - ML Basic](blog_0_quick_refresher.html)
 - [blog 2](https://en.wikipedia.org/wiki/Saurav_Ganguly)
