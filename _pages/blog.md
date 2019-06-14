@@ -5,5 +5,5 @@ permalink: /blog/
 author_profile: true
 ---
 
-- [Quick Refresher - ML Basic](blog_0_quick_refresher.html)
-- [More coming soon...](blog_2.html)
+- [<span style="color:blue">Quick Refresher - ML Basic</span>](blog_0_quick_refresher_1.html)
+- [More coming soon...]()
