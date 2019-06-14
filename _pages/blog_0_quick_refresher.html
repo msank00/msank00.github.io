@@ -768,7 +768,7 @@
             $$
          </p>
          <p>This yields a <code>properly normalized probabilistic</code> model for language modeling. However this is very expensive, because we need to compute and normalize each probability using the score for all other $V$ words $w'$ in the current context $h$ , at every training step.</p>
-         <p><img src="https://www.tensorflow.org/images/softmax-nplm.png" alt="image" /></p>
+         <p><img src="https://www.tensorflow.org/images/softmax-nplm.png" alt="image" height="400" width="200"/></p>
          <p><a href="https://www.tensorflow.org/tutorials/representation/word2vec">source_1</a></p>
          <h2 id="word2vecimplementation">Word2vec = Implementation</h2>
          <p>Word2vec is a particularly computationally-efficient predictive model for learning word embeddings from raw text. It comes in two flavors:</p>
@@ -779,8 +779,8 @@
          <p>Algorithmically, these models are similar, except that CBOW predicts target words (e.g. 'mat') from a sliding window of a source context words ('the cat sits on the'), while the skip-gram does the inverse and predicts source context-words from the target words. This inversion might seem like an arbitrary choice, but statistically it has the effect that CBOW smoothes over a lot of the distributional information (by treating an entire context as one observation). For the most part, this turns out to be a useful thing for smaller datasets. However, skip-gram treats each context-target pair as a new observation, and this tends to do better when we have larger datasets. We will focus on the skip-gram model in the rest of this tutorial.</p>
          <p>For feature learning in word2vec we do not need a full probabilistic model. The CBOW and skip-gram models are instead trained using a binary classification objective (logistic regression) to discriminate the real target words $w_t$ from $k$ imaginary (noise) words $\tilde w$, in the same context. We illustrate this below for a CBOW model. For skip-gram the direction is simply inverted.</p>
          <p>Google's word2vec is one of the most widely used implementations due to its training speed and performance. Word2vec is a predictive model, which means that instead of utilizing word counts à la  latent Dirichlet allocation (LDA), it is trained to predict a target word from the context of its neighboring words. The model first encodes each word using one-hot-encoding, then feeds it into a hidden layer using a matrix of weights; the output of this process is the target word. The word embedding vectors are are actually the weights of this fitted model. To illustrate, here's a simple visual: </p>
-         <p><img src="https://www.datascience.com/hs-fs/hubfs/Resources/Articles/nn_embed.png?t=1532623979827&amp;width=1414&amp;height=694&amp;name=nn_embed.png" alt="image" /></p>
-         <p><img src="https://www.tensorflow.org/images/nce-nplm.png" alt="image" /></p>
+         <p><img src="https://www.datascience.com/hs-fs/hubfs/Resources/Articles/nn_embed.png?t=1532623979827&amp;width=1414&amp;height=694&amp;name=nn_embed.png" alt="image" height="400" width="800"/></p>
+         <p><img src="https://www.tensorflow.org/images/nce-nplm.png" alt="image" height="400" width="200"/></p>
          <p><a href="https://www.tensorflow.org/tutorials/representation/word2vec">source_1</a></p>
          <p><a href="https://www.datascience.com/resources/notebooks/word-embeddings-in-python">source_2</a></p>
          <p><a href="https://towardsdatascience.com/word-embeddings-exploration-explanation-and-exploitation-with-code-in-python-5dac99d5d795">source_3</a></p>
@@ -817,23 +817,23 @@
          <p><strong>Core Idea:</strong>
             The key to LSTMs is the cell state, the horizontal line running through the top of the diagram. The cell state is kind of like a conveyor belt. It runs straight down the entire chain, with only some minor linear interactions. It’s very easy for information to just flow along it unchanged.
          </p>
-         <p><img src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-C-line.png" alt="image" /></p>
+         <p><img src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-C-line.png" alt="image" height="400" width="800" /></p>
          <p>The LSTM does have the ability to remove or add information to the cell state, carefully regulated by structures called gates. It has <code>forget gate</code>, <code>input gate</code> and <code>output gate</code>.</p>
          <p><strong>Forget Gate:</strong></p>
-         <p><img src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-f.png" alt="image" /></p>
+         <p><img src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-f.png" alt="image" height="400" width="800"/></p>
          <p>It controls how much old information (or old memory or state) you want to retain or not. $f_t\in(0,1)$ and thus it maintains a proportion of old memory.</p>
          <p><strong>Input Gate:</strong></p>
-         <p><img src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-i.png" alt="image" /></p>
+         <p><img src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-i.png" alt="image" height="400" width="800"/></p>
          <p>The next step is to decide what new information we’re going to store in the cell state. This has two parts. </p>
          <ul>
             <li>First, a sigmoid layer called the “input gate layer” decides which values we’ll update. </li>
             <li>Second, a tanh layer creates a vector of new candidate values, $\tilde{C}_t$, that could be added to the state. In the next step, we’ll combine these two to create an update to the state.</li>
          </ul>
          <p><strong>Cell Update:</strong></p>
-         <p><img src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-C.png" alt="image" /></p>
+         <p><img src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-C.png" alt="image" height="400" width="800"/></p>
          <p>We multiply the old state by ft, forgetting the things we decided to forget earlier. Then we add $i<em>t*\tilde{C}</em>t$. This is the new candidate values, scaled by how much we decided to update each state value.</p>
          <p><strong>Output Gate:</strong></p>
-         <p><img src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-o.png" alt="image" /></p>
+         <p><img src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-o.png" alt="image" height="400" width="800"/></p>
          <p>Finally, we need to decide what we’re going to output. This output will be based on our cell state, but will be a filtered version. </p>
          <ul>
             <li>First, we run a sigmoid layer which decides what parts of the cell state we’re going to output. </li>
@@ -853,7 +853,7 @@
          <p>$$h<em>t = tanh(W</em>Ix<em>t + W</em>Rh<em>{t-1})$$
             $$y</em>t = W<em>Oh</em>t$$
          </p>
-         <p><img src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-SimpleRNN.png" alt="image" /></p>
+         <p><img src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-SimpleRNN.png" alt="image" height="400" width="800"/></p>
          <p>To do backpropagation through time to train the RNN, we need to compute the gradient of $E$ with respect to $W_R$. The overall error gradient is equal to the sum of the error gradients at each time step. For step $t$, we can use the multivariate chain rule to derive the error gradient as:</p>
          <p>$$
             \frac{\partial E<em>t}{\partial W</em>R} = \sum^{t}<em>{i=0} \frac{\partial E</em>t}{\partial y<em>t}\frac{\partial y</em>t}{\partial h<em>t}\frac{\partial h</em>t}{\partial h<em>i}\frac{\partial h</em>i}{\partial W_R}
@@ -893,7 +893,7 @@
             <li>$C<em>t=f</em>tC<em>{t-1} + i</em>t\widetilde{C}_t$</li>
             <li>$h<em>t=o</em>ttanh(C_t)$</li>
          </ul>
-         <p><img src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-chain.png" alt="image" /></p>
+         <p><img src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-chain.png" alt="image" height="400" width="800"/></p>
          <p>As we can see above (previous question), the biggest culprit in causing our gradients to vanish is that dastardly recursive derivative we need to compute: 
             $\frac{\partial h<em>t}{\partial h</em>i}$. If only this derivative was ‘well behaved’ (that is, it doesn’t go to 0 or infinity as we backpropagate through layers) then we could learn long term dependencies!
          </p>
