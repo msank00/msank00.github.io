@@ -11740,6 +11740,7 @@ div#notebook {
     page-break-inside: avoid; 
   }
 }
+.highlightme { background-color:#f9e79f}
 </style>
 
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
@@ -11799,30 +11800,30 @@ $( document ).ready(function(){
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Concepts-Clearing">Concepts Clearing<a class="anchor-link" href="#Concepts-Clearing">&#182;</a></h1><p>[[TOC]]</p>
 <h2 id="Linear-Regression">Linear Regression<a class="anchor-link" href="#Linear-Regression">&#182;</a></h2><ul>
-<li>It's linear with respect to weight <code>w</code>, but not with respect to input <code>x</code>....</li>
-<li><code>posterior ~ liekelihood * prior</code></li>
-<li>Ordinary Least Square (OLS) approach to find the model parameters is a special case of maximum likelihood estimation and the overfitting problem is a general property of the MLE. But by adopting the Bayesian approach, the overfitting problem can be avoided. <code>[p9, Bishop]</code></li>
+<li>It's linear with respect to weight <span class="highlightme"><code>w</code></span>, but not with respect to input <span class="highlightme"><code>x</code></span>....</li>
+<li><span class="highlightme"><code>posterior ~ liekelihood * prior</code></span></li>
+<li>Ordinary Least Square (OLS) approach to find the model parameters is a special case of maximum likelihood estimation and the overfitting problem is a general property of the MLE. But by adopting the Bayesian approach, the overfitting problem can be avoided. <span class="highlightme"><code>[p9, Bishop]</code></span></li>
 <li>Also from Bayesian perspective we can use model for which number of parameters can exceed the number of training data. In Bayesian learning, the effective number of parameters adapts automatically to the size of the data.</li>
 </ul>
 <p><strong>Point Estimate of W vs W Distribution</strong></p>
-<p>Consider D is our dataset and w is the parameter set. Now in both Bayesian and frequentist paradigm, the likelihood function <code>p(D|w)</code> plays a central role. In frequentist approach, w is considered to be fixed parameter, whose value is determined by some form of estimator and the error bars on the estimator are obtained by considering the distribution of possible data sets D.</p>
-<p>However, in Bayesian setting we have only one sigle datasets D (the observed datasets), and the uncertainty in parameters is expressed through a probability distribution over <code>w</code>. <code>[p22-p23]</code></p>
-<p>A widely used frequentist estimator is the maximul likelihood, in which w is set to the value that maximizes <code>p(D|w)</code>. In the ML literature, the negative log of the likelihood is considered as <em>error function</em>. As the negative log is a monotonically decreasing function, so maximizing the likelihood is equivalent to minimizing the error.</p>
-<p>However Bayesian approach has a very common criticism, i.e. the inclusion of prior belief. Therefore, people try to use <em>noninformative prior</em> to get rid of the prior dependences. <code>[p23]</code>.</p>
+<p>Consider D is our dataset and w is the parameter set. Now in both Bayesian and frequentist paradigm, the likelihood function <span class="highlightme"><code>p(D|w)</code></span> plays a central role. In frequentist approach, w is considered to be fixed parameter, whose value is determined by some form of estimator and the error bars on the estimator are obtained by considering the distribution of possible data sets D.</p>
+<p>However, in Bayesian setting we have only one sigle datasets D (the observed datasets), and the uncertainty in parameters is expressed through a probability distribution over <span class="highlightme"><code>w</code></span>. <span class="highlightme"><code>[p22-p23]</code></span></p>
+<p>A widely used frequentist estimator is the maximul likelihood, in which w is set to the value that maximizes <span class="highlightme"><code>p(D|w)</code></span>. In the ML literature, the negative log of the likelihood is considered as <em>error function</em>. As the negative log is a monotonically decreasing function, so maximizing the likelihood is equivalent to minimizing the error.</p>
+<p>However Bayesian approach has a very common criticism, i.e. the inclusion of prior belief. Therefore, people try to use <em>noninformative prior</em> to get rid of the prior dependences. <span class="highlightme"><code>[p23]</code></span>.</p>
 <p><strong>Criticism for MLE</strong></p>
 <ul>
-<li>MLE suffers from <code>overfitting</code> problem. In general overfitting means the model fitted to the training data so perfectly that if we slightly change the data and get prediction, test error will be very high. That means the model is sensitive to the variance of data. The theoretical reason is MLE systematically undermines the variance of the distribution. See proof <code>[[p27], [figure 1.15,p26, p28]]</code>.  Because here <code>sample variance</code> is measured using the <code>sample mean</code>, instead of the population mean.</li>
-<li>Sample mean is an unbiased estimator of the population mean, but sample variance is a biased estimator of the population variance. <code>[p27], [figure 1.15,p26]</code></li>
-<li>If you see the image <code>p28</code>, the 3 red curve shows 3 different dataset and the green curve shows the true dataset. And the mean of the 3 red curves coincide with the mean of the green curve, but their variances are different. </li>
+<li>MLE suffers from <span class="highlightme"><code>overfitting</code></span> problem. In general overfitting means the model fitted to the training data so perfectly that if we slightly change the data and get prediction, test error will be very high. That means the model is sensitive to the variance of data. The theoretical reason is MLE systematically undermines the variance of the distribution. See proof <span class="highlightme"><code>[[p27], [figure 1.15,p26, p28]]</code></span>.  Because here <span class="highlightme"><code>sample variance</code></span> is measured using the <span class="highlightme"><code>sample mean</code></span>, instead of the population mean.</li>
+<li>Sample mean is an unbiased estimator of the population mean, but sample variance is a biased estimator of the population variance. <span class="highlightme"><code>[p27], [figure 1.15,p26]</code></span></li>
+<li>If you see the image <span class="highlightme"><code>p28</code></span>, the 3 red curve shows 3 different dataset and the green curve shows the true dataset. And the mean of the 3 red curves coincide with the mean of the green curve, but their variances are different. </li>
 </ul>
 <p>In Bayesian curve fitting setting, the sum of squared error function has arisen as a consequence of maximizing the likelihood under the assumption of Gaussian noise distribution.</p>
-<p>Regularization allows complex models to be trained on the datasets of limited size without severe overfitting, essentially by limiting the model complexity. <code>[p145, bishop]</code></p>
+<p>Regularization allows complex models to be trained on the datasets of limited size without severe overfitting, essentially by limiting the model complexity. <span class="highlightme"><code>[p145, bishop]</code></span></p>
 <p><strong>Bias Variance Trade-off from Frequentist viewpoint</strong></p>
-<p>In frequentist viewpoint, <code>w</code> is fixed and error bars on the estimators are obtained by considering the distribution over the data D. <code>[p22-23; Bishop]</code>.</p>
-<p>Suppose we have large number of <strong>data sets</strong>, <code>[D1,...,Dn]</code>, each of size N and each drawn independently from distribution of <code>p(t,x)</code>. For any given data set <code>Di</code> we can run our learning algorithm and get a prediction function <code>y(x;Di)</code>. Different datasets from the ensemble will give different prediction functions and consequently different values of squared loss. The performance of a particular learning algorithm is then assessed by averaging over this ensemble of datasets. <code>[p148; Bishop]</code>.</p>
-<p>Our original regression function is <code>Y</code> and say for <code>Di</code> we got our predictive function $\hat{Y_i}$.</p>
+<p>In frequentist viewpoint, <span class="highlightme"><code>w</code></span> is fixed and error bars on the estimators are obtained by considering the distribution over the data D. <span class="highlightme"><code>[p22-23; Bishop]</code></span>.</p>
+<p>Suppose we have large number of <strong>data sets</strong>, <span class="highlightme"><code>[D1,...,Dn]</code></span>, each of size N and each drawn independently from distribution of <span class="highlightme"><code>p(t,x)</code></span>. For any given data set <span class="highlightme"><code>Di</code></span> we can run our learning algorithm and get a prediction function <span class="highlightme"><code>y(x;Di)</code></span>. Different datasets from the ensemble will give different prediction functions and consequently different values of squared loss. The performance of a particular learning algorithm is then assessed by averaging over this ensemble of datasets. <span class="highlightme"><code>[p148; Bishop]</code></span>.</p>
+<p>Our original regression function is <span class="highlightme"><code>Y</code></span> and say for <span class="highlightme"><code>Di</code></span> we got our predictive function $\hat{Y_i}$.</p>
 <p><strong>Bias</strong> = $(E[\hat{Y_i}(x;D_i)] - Y)^2$, where $E[\hat{Y_i}(x;D_i)]$ is average (expected) performance over all the datasets. So, Bias represents the extent to which the average prediction over all the datasets $D_i$ differ from the desired regression function $Y$.</p>
-<p><strong>Variance</strong> = $E[(\hat{Y_i}(x;D_i) - E[\hat{Y_i}(x;D_i)])^2]$, where $(\hat{Y_i}(x;D_i)$ is the predictive function over data set $D_i$ and $E[\hat{Y_i}(x;D_i)])$ is the average performance over all the datasets. So variance represents, the extent to which the individual predictive functions $\hat{Y_i}$ for dataset $D_i$ varies around their average. And thus we measure the extent by which the function $Y(x;D)$ is sensitive to the particular choice of the data sets. <code>[p149; Bishop]</code></p>
+<p><strong>Variance</strong> = $E[(\hat{Y_i}(x;D_i) - E[\hat{Y_i}(x;D_i)])^2]$, where $(\hat{Y_i}(x;D_i)$ is the predictive function over data set $D_i$ and $E[\hat{Y_i}(x;D_i)])$ is the average performance over all the datasets. So variance represents, the extent to which the individual predictive functions $\hat{Y_i}$ for dataset $D_i$ varies around their average. And thus we measure the extent by which the function $Y(x;D)$ is sensitive to the particular choice of the data sets. <span class="highlightme"><code>[p149; Bishop]</code></span></p>
 <hr>
 <h2 id="Linear-Models">Linear Models<a class="anchor-link" href="#Linear-Models">&#182;</a></h2><h3 id="General-Linear-Model">General Linear Model<a class="anchor-link" href="#General-Linear-Model">&#182;</a></h3><p>Indeed, the general linear model can be seen as an extension of linear multiple regression for a single dependent variable. Understanding the multiple regression model is fundamental to understand the general linear model.</p>
 <h4 id="Single-Regression">Single Regression<a class="anchor-link" href="#Single-Regression">&#182;</a></h4><p>One independent variable and one dependent variable</p>
@@ -11833,13 +11834,13 @@ $( document ).ready(function(){
 <h4 id="Additive-Model:">Additive Model:<a class="anchor-link" href="#Additive-Model:">&#182;</a></h4><p>$$y=\theta_0+\theta f_1(x_1)+\theta f_2(x_2)+...+\theta f_n(x_n)$$</p>
 <p>A generalization of the multiple regression model would be to maintain the additive nature of the model, but to replace the simple terms of the linear equation $\theta_i * x_i$ with $f_i(x_i)$ where $f_i()$ is a non-parametric function of the predictor $x_i$.  In other words, instead of a single coefficient for each variable (additive term) in the model, in additive models an unspecified (non-parametric) function is estimated for each predictor, to achieve the best prediction of the dependent variable values.</p>
 <p><strong>General Linear Model - Revisited</strong></p>
-<p>One way in which the <code>general linear model</code> differs from the <code>multiple regression model</code> is in terms of the number of dependent variables that can be analyzed. The $Y$ vector of $n$ observations of a single $Y$ variable can be replaced by a $Y$ matrix of $n$ observations of $m$ different $Y$ variables. Similarly, the $w$ vector of regression coefficients for a single $Y$ variable can be replaced by a $W$ matrix of regression coefficients, with one vector of $w$ coefficients for each of the m dependent variables. These substitutions yield what is sometimes called the multivariate regression model,</p>
+<p>One way in which the <span class="highlightme"><code>general linear model</code></span> differs from the <span class="highlightme"><code>multiple regression model</code></span> is in terms of the number of dependent variables that can be analyzed. The $Y$ vector of $n$ observations of a single $Y$ variable can be replaced by a $Y$ matrix of $n$ observations of $m$ different $Y$ variables. Similarly, the $w$ vector of regression coefficients for a single $Y$ variable can be replaced by a $W$ matrix of regression coefficients, with one vector of $w$ coefficients for each of the m dependent variables. These substitutions yield what is sometimes called the multivariate regression model,</p>
 <p>$${Y}={XW}+{E}$$</p>
 <p>where $Y$ is a matrix with series of multivariate measurements (each column being a set of measurements on one of the dependent variables), $X$ is a matrix of observations on independent variables that might be a design matrix (each column being a set of observations on one of the independent variables), $W$ is a matrix containing parameters that are usually to be estimated and $E$ is a matrix containing errors (noise). The errors are usually assumed to be uncorrelated across measurements, and follow a multivariate normal distribution. If the errors do not follow a multivariate normal distribution, generalized linear models may be used to relax assumptions about $Y$ and $W$.</p>
-<h3 id="Generalized-Linear-Model">Generalized Linear Model<a class="anchor-link" href="#Generalized-Linear-Model">&#182;</a></h3><p>To summarize the basic idea, the <code>generalized linear model</code> differs from the <code>general linear model</code> (of which multiple regression is a special case) in two major respects:</p>
+<h3 id="Generalized-Linear-Model">Generalized Linear Model<a class="anchor-link" href="#Generalized-Linear-Model">&#182;</a></h3><p>To summarize the basic idea, the <span class="highlightme"><code>generalized linear model</code></span> differs from the <span class="highlightme"><code>general linear model</code></span> (of which multiple regression is a special case) in two major respects:</p>
 <ol>
 <li>The distribution of the dependent or response variable <em>can be (explicitly) non-normal</em>, and does not have to be continuous, e.g., it can be binomial; </li>
-<li><p>The dependent variable values are predicted from a linear combination of predictor variables, which are "connected" to the dependent variable via a <code>link function</code>.</p>
+<li><p>The dependent variable values are predicted from a linear combination of predictor variables, which are "connected" to the dependent variable via a <span class="highlightme"><code>link function</code></span>.</p>
 </li>
 <li><p>General Linear Model</p>
 </li>
@@ -11853,7 +11854,7 @@ $$gi(y)=\theta_0+\theta x_1+\theta x_2+...+\theta x_n$$</p>
 <p>where $gi()$ is the inverse of $g()$</p>
 <p><strong>Link Function:</strong>
 Now inverse of $g()$, say $gi()$ is the link function.</p>
-<h3 id="Generalized-Additive-Model:">Generalized Additive Model:<a class="anchor-link" href="#Generalized-Additive-Model:">&#182;</a></h3><p>We can combine the notion of <code>additive models</code> with <code>generalized linear models</code>, to derive the notion of <code>generalized additive models</code>, as:</p>
+<h3 id="Generalized-Additive-Model:">Generalized Additive Model:<a class="anchor-link" href="#Generalized-Additive-Model:">&#182;</a></h3><p>We can combine the notion of <span class="highlightme"><code>additive models</code></span> with <span class="highlightme"><code>generalized linear models</code></span>, to derive the notion of <span class="highlightme"><code>generalized additive models</code></span>, as:</p>
 <p>$$gi(y)=\theta_0+\theta f_1(x_1)+\theta f_2(x_2)+...+\theta f_n(x_n)$$</p>
 <p><a href="http://www.statsoft.com/Textbook/Generalized-Additive-Models">(link)</a></p>
 <hr>
@@ -11864,7 +11865,7 @@ Now inverse of $g()$, say $gi()$ is the link function.</p>
 $A=Q*\Sigma*Q^T$</p>
 <p>where Q is the matrix with eigenvectors as columns and Λ is diag(λ).</p>
 <h3 id="Why-Eigenvalue-and-Eigenvectors-are-so-important?">Why Eigenvalue and Eigenvectors are so important?<a class="anchor-link" href="#Why-Eigenvalue-and-Eigenvectors-are-so-important?">&#182;</a></h3><ul>
-<li>They are quite helpful for optimization algorithm or more clearly in constrained optimization problem. In optimization problem we are solving a system of linear euaqtion. Typical <code>Gaussian Elemination Technique</code> has time complexity $O(n^3)$ but this can be solved with Eigenvalue Decomposition which needs $O(n^2)$. So they are more efficient. [for more explanation follow the deeep learning lecture 6 of prof. Mitesh from IIT Madrass] </li>
+<li>They are quite helpful for optimization algorithm or more clearly in constrained optimization problem. In optimization problem we are solving a system of linear euaqtion. Typical <span class="highlightme"><code>Gaussian Elemination Technique</code></span> has time complexity $O(n^3)$ but this can be solved with Eigenvalue Decomposition which needs $O(n^2)$. So they are more efficient. [for more explanation follow the deeep learning lecture 6 of prof. Mitesh from IIT Madrass] </li>
 </ul>
 <p>References:</p>
 <ul>
@@ -11879,21 +11880,21 @@ $A=Q*\Sigma*Q^T$</p>
 <li>Eigenvectors can only be found for Square matrix. But, not ever square matrix has eigen vectors. </li>
 <li>All eigen vectors are perpendicular, i.e orthogonal.</li>
 <li>orthonormal vectors are orthogonal and they have unit length.</li>
-<li>If <code>V</code> is an orthonormal matrix then, <code>V'V=I</code></li>
+<li>If <span class="highlightme"><code>V</code></span> is an orthonormal matrix then, <span class="highlightme"><code>V'V=I</code></span></li>
 </ul>
 <p><strong>PCA</strong></p>
 <ul>
-<li>PCA decomposes a <strong>real, symmetric matrix $A$</strong> into <code>eigenvectors</code> and <code>eigenvalues</code>. </li>
-<li>Every <strong>real, symmetric matrix $A$</strong> can be decomposed into the following expression: <code>A=VSV'</code>. Where <code>V</code> is an orthogonal matrix. <code>S</code> is a diagonal matrix with all the eigen values.</li>
+<li>PCA decomposes a <strong>real, symmetric matrix $A$</strong> into <span class="highlightme"><code>eigenvectors</code></span> and <span class="highlightme"><code>eigenvalues</code></span>. </li>
+<li>Every <strong>real, symmetric matrix $A$</strong> can be decomposed into the following expression: <span class="highlightme"><code>A=VSV'</code></span>. Where <span class="highlightme"><code>V</code></span> is an orthogonal matrix. <span class="highlightme"><code>S</code></span> is a diagonal matrix with all the eigen values.</li>
 <li>Though, any real symmetric matrix is <strong>guranteed</strong> to have an <strong>eigen decomposition</strong>, the decomposition may not be unique. </li>
 <li>If a matrix is not square, then it's eigen decomposition is not defined.</li>
 <li>A matrix is singular <strong>if and only if</strong>, any of the eigenvalue is zero.</li>
 <li>Consider A as real, symmetric matrix and $\lambda_i$ are the eigen values.<ul>
-<li>if all $\lambda_i&gt;0$, then A is called <code>positive definite</code> matrix.</li>
-<li>if all $\lambda_i&gt;=0$, then A is called <code>positive semidefinite</code> (PSD) matrix.</li>
+<li>if all $\lambda_i&gt;0$, then A is called <span class="highlightme"><code>positive definite</code></span> matrix.</li>
+<li>if all $\lambda_i&gt;=0$, then A is called <span class="highlightme"><code>positive semidefinite</code></span> (PSD) matrix.</li>
 </ul>
 </li>
-<li>PSD matricies are interesting because the gurantee that <code>for all x</code>, $x'Ax&gt;=0$. </li>
+<li>PSD matricies are interesting because the gurantee that <span class="highlightme"><code>for all x</code></span>, $x'Ax&gt;=0$. </li>
 <li>PSD additionally gurantees that if $x'Ax=0$ then $x=0$. <a href="https://medium.com/@SeoJaeDuk/principal-component-analysis-pooling-in-tensorflow-with-interactive-code-pcap-43aa2cee9bb">[source]</a>, <a href="https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.12-Example-Principal-Components-Analysis/">[IMP_link]</a></li>
 </ul>
 <p><strong>SVD</strong></p>
@@ -11911,23 +11912,23 @@ $A=Q*\Sigma*Q^T$</p>
 <ul>
 <li>The SVD can be seen as the decomposition of one complex transformation in 3 simpler transformations (a rotation, a scaling and another rotation).</li>
 <li>SVD is more generic.</li>
-<li>SVD provides another way for factorizing a matrix, into <code>singular values</code> and <code>singular vectors</code>.</li>
+<li>SVD provides another way for factorizing a matrix, into <span class="highlightme"><code>singular values</code></span> and <span class="highlightme"><code>singular vectors</code></span>.</li>
 <li>Every real matrix has SVD but same is not true for PCA.</li>
 <li>If a matrix is not square then PCA not applicable.</li>
-<li>During PCA we write <code>A=VSV'</code>. However, for SVD we write <code>A=UDV'</code>, where A is <code>m x n</code>, U is <code>m x m</code>, D is <code>m x n</code> and V is <code>n x n</code>. <ul>
+<li>During PCA we write <span class="highlightme"><code>A=VSV'</code></span>. However, for SVD we write <span class="highlightme"><code>A=UDV'</code></span>, where A is <span class="highlightme"><code>m x n</code></span>, U is <span class="highlightme"><code>m x m</code></span>, D is <span class="highlightme"><code>m x n</code></span> and V is <span class="highlightme"><code>n x n</code></span>. <ul>
 <li>U, V orthogonal matricies.</li>
 <li>D is diagonal matrix and not necessarily a square</li>
-<li><code>diag(D)</code> are the <code>singular values</code> of the matrix A</li>
-<li>Columns of <code>U</code> (<code>V</code>) are <code>left (right) singular vectors</code>.</li>
+<li><span class="highlightme"><code>diag(D)</code></span> are the <span class="highlightme"><code>singular values</code></span> of the matrix A</li>
+<li>Columns of <span class="highlightme"><code>U</code></span> (<span class="highlightme"><code>V</code></span>) are <span class="highlightme"><code>left (right) singular vectors</code></span>.</li>
 </ul>
 </li>
 </ul>
 <p><strong>Relation between SVD and PCA</strong></p>
 <blockquote><blockquote><p>The matrices U, D and V can be found by transforming A in a square matrix and by computing the eigenvectors of this square matrix. The square matrix can be obtain by multiplying the matrix A by its transpose in one way or the other.</p>
 <ul>
-<li>The <code>left singular vectors</code> i.e. <code>U</code> are the eigen vectors of <code>AA'</code>. Similarly, the <code>right singular vectors</code> i.e. <code>V</code> are the eigen vectors of <code>A'A</code>. Note that A might not be a square matrix but <code>A'A</code> or <code>AA'</code> are both square.<ul>
-<li><code>A'A = VDV'</code> and <code>AA' = UDU'</code></li>
-<li><code>D</code>  corresponds to the eigenvalues <code>AA'</code> or <code>A'A</code> which are the same.</li>
+<li>The <span class="highlightme"><code>left singular vectors</code></span> i.e. <span class="highlightme"><code>U</code></span> are the eigen vectors of <span class="highlightme"><code>AA'</code></span>. Similarly, the <span class="highlightme"><code>right singular vectors</code></span> i.e. <span class="highlightme"><code>V</code></span> are the eigen vectors of <span class="highlightme"><code>A'A</code></span>. Note that A might not be a square matrix but <span class="highlightme"><code>A'A</code></span> or <span class="highlightme"><code>AA'</code></span> are both square.<ul>
+<li><span class="highlightme"><code>A'A = VDV'</code></span> and <span class="highlightme"><code>AA' = UDU'</code></span></li>
+<li><span class="highlightme"><code>D</code></span>  corresponds to the eigenvalues <span class="highlightme"><code>AA'</code></span> or <span class="highlightme"><code>A'A</code></span> which are the same.</li>
 </ul>
 </li>
 </ul>
@@ -11945,16 +11946,16 @@ $A=Q*\Sigma*Q^T$</p>
 <p><a href="https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.11-The-determinant/">(Important_link)</a></p>
 <hr>
 <h2 id="Constrained-optimization-(Lagrangian)">Constrained optimization (Lagrangian)<a class="anchor-link" href="#Constrained-optimization-(Lagrangian)">&#182;</a></h2><ul>
-<li><strong>minimize</strong> $f(x)$ such that <strong><code>g(x)&lt;=0</code></strong> and $h(x)=0$. <ul>
+<li><strong>minimize</strong> $f(x)$ such that <strong><span class="highlightme"><code>g(x)&lt;=0</code></span></strong> and $h(x)=0$. <ul>
 <li>Our target is to bring a new equation where we will combine $f(x), g(x), h(x)$ in a single equation. We will do this by introducing Lagrange Multiplier $\lambda$ and $\mu$. The new equation looks like: $L(x,\lambda,\mu)=f(x)+\lambda g(x)+ \mu h(x)$.</li>
 </ul>
 </li>
-<li><strong>maximize</strong> $f(x)$ such that <strong><code>g(x)&gt;=0</code></strong> and $h(x)=0$. <ul>
+<li><strong>maximize</strong> $f(x)$ such that <strong><span class="highlightme"><code>g(x)&gt;=0</code></span></strong> and $h(x)=0$. <ul>
 <li>Our target is to bring a new equation where we will combine $f(x), g(x), h(x)$ in a single equation. We will do this by introducing Lagrange Multiplier $\lambda$ and $\mu$. The new equation looks like: $L(x,\lambda,\mu)=f(x)+\lambda g(x)+ \mu h(x)$.</li>
 </ul>
 </li>
 </ul>
-<p><strong>NOTE:</strong> In the above formulation, pay special attention to the <code>minimize</code> and <code>maximize</code> kewords and the change in inequality constrains. So given any minimization or maximization problem, convert its constraints to $g(x)&lt;=0$ or $g(x)&gt;=0$ accordingly and then formulate the Lagrangian form. The $h(x)=0$ may or may not be there. Finally apply KKT conditions for finding the solution.</p>
+<p><strong>NOTE:</strong> In the above formulation, pay special attention to the <span class="highlightme"><code>minimize</code></span> and <span class="highlightme"><code>maximize</code></span> kewords and the change in inequality constrains. So given any minimization or maximization problem, convert its constraints to $g(x)&lt;=0$ or $g(x)&gt;=0$ accordingly and then formulate the Lagrangian form. The $h(x)=0$ may or may not be there. Finally apply KKT conditions for finding the solution.</p>
 <p><strong>KKT Conditions:</strong></p>
 <ul>
 <li>Stationarity $\nabla_x L(x,\lambda,\mu)=0$</li>
@@ -12042,7 +12043,7 @@ $$\theta = \theta - v_t$$</p>
 <p>$$f(x) = \frac{1}{b-a}$$</p>
 <p>where $-\infty&lt;a&lt;=x&lt;=b&lt;\infty$</p>
 <h3 id="Bernoulli-Distribution">Bernoulli Distribution<a class="anchor-link" href="#Bernoulli-Distribution">&#182;</a></h3><p><strong>Story:</strong> All you cricket junkies out there! At the beginning of any cricket match, how do you decide who is going to bat or ball? A toss! It all depends on whether you win or lose the toss, right? Let’s say if the toss results in a head, you win. Else, you lose. There’s no midway.</p>
-<p><strong>Formulation:</strong> A Bernoulli distribution has only two possible outcomes, namely <code>1 (success)</code> and <code>0 (failure)</code>, and a <code>single trial</code>. So the random variable $X$ which has a Bernoulli distribution can take value 1 with the probability of <em>success</em>, say <code>p</code>, and the value 0 with the probability of <em>failure</em>, say <code>q</code> or <code>1-p</code>.</p>
+<p><strong>Formulation:</strong> A Bernoulli distribution has only two possible outcomes, namely <span class="highlightme"><code>1 (success)</code></span> and <span class="highlightme"><code>0 (failure)</code></span>, and a <span class="highlightme"><code>single trial</code></span>. So the random variable $X$ which has a Bernoulli distribution can take value 1 with the probability of <em>success</em>, say <span class="highlightme"><code>p</code></span>, and the value 0 with the probability of <em>failure</em>, say <span class="highlightme"><code>q</code></span> or <span class="highlightme"><code>1-p</code></span>.</p>
 <p>The probability mass function is given by:</p>
 <p>$$p^x(1-p)^{1-x}$$<br>
 where $x \in (0, 1)$.</p>
@@ -12051,7 +12052,7 @@ where $x \in (0, 1)$.</p>
 <p>The variance of a random variable from a bernoulli distribution is:</p>
 <p>$$V(X) = E(X^2)- [E(X)]^2 = p - p^2 = p(1-p)$$</p>
 <h3 id="Binomial-Distribution">Binomial Distribution<a class="anchor-link" href="#Binomial-Distribution">&#182;</a></h3><p><strong>Story:</strong> Let’s get back to cricket.  Suppose that you won the toss today and this indicates a successful event. You toss again but you lost this time. If you win a toss today, this does not necessitate that you will win the toss tomorrow. Let’s assign a random variable, say X, to the number of times you won the toss. What can be the possible value of X? It can be any number depending on the number of times you tossed a coin.</p>
-<p><strong>Formulation:</strong> An experiment with only two possible outcomes repeated n number of times is called binomial. The parameters of a binomial distribution are n and p where n is the total number of trials and p is the probability of success in each trial. If <code>x</code> is the total number fof success, we can write:</p>
+<p><strong>Formulation:</strong> An experiment with only two possible outcomes repeated n number of times is called binomial. The parameters of a binomial distribution are n and p where n is the total number of trials and p is the probability of success in each trial. If <span class="highlightme"><code>x</code></span> is the total number fof success, we can write:</p>
 <p>$$P(x) = \binom{n}{x} p^x (1-p)^{n-x}$$</p>
 <p>On the basis of the above explanation, the properties of a Binomial Distribution are:</p>
 <ul>
@@ -12070,7 +12071,7 @@ where $x \in (0, 1)$.</p>
 <ul>
 <li><strong>The mean, median and mode of the distribution coincide.</strong></li>
 <li>The curve of the distribution is bell-shaped and symmetrical about the line $x=\mu$.</li>
-<li>The total area under the curve is <code>1</code>.</li>
+<li>The total area under the curve is <span class="highlightme"><code>1</code></span>.</li>
 <li>Exactly half of the values are to the left of the center and the other half to the right.</li>
 </ul>
 <p>A normal distribution is highly different from Binomial Distribution. However, if the number of trials approaches infinity then the shapes will be quite similar.</p>
@@ -12194,8 +12195,8 @@ Suppose that $[X_1, X_2 ,...,X_n]$ are i.i.d. random variables with expected val
 <hr>
 <h2 id="What-is-p-values?">What is p-values?<a class="anchor-link" href="#What-is-p-values?">&#182;</a></h2><p><strong>How it is decided for rejecting null hypothesis? Why it's called null hypothesis?</strong></p>
 <ul>
-<li><code>Null hypothesis</code> means the hypothesis which you want to nullify. So there is an <code>alternate hypothesis</code>, which will be accepted if the null hypothesis is rejected.</li>
-<li>A <code>p-value</code> is the probability of finding some sample outcome or a more extreme one if the null hypothesis is true.</li>
+<li><span class="highlightme"><code>Null hypothesis</code></span> means the hypothesis which you want to nullify. So there is an <span class="highlightme"><code>alternate hypothesis</code></span>, which will be accepted if the null hypothesis is rejected.</li>
+<li>A <span class="highlightme"><code>p-value</code></span> is the probability of finding some sample outcome or a more extreme one if the null hypothesis is true.</li>
 <li><strong>Example:</strong> I want to know if happiness is related to wealth among Dutch people. One approach to find this out is to formulate a null hypothesis. Since “related to” is not precise, we choose the opposite statement as our null hypothesis:<blockquote><p>The correlation between wealth and happiness is zero among all Dutch people.</p>
 <ul>
 <li>We'll now try to refute this hypothesis in order to demonstrate that happiness and wealth are related all right.</li>
@@ -12209,8 +12210,8 @@ Suppose that $[X_1, X_2 ,...,X_n]$ are i.i.d. random variables with expected val
 </blockquote>
 </li>
 </ul>
-<h2 id="Recommendation-System:">Recommendation System:<a class="anchor-link" href="#Recommendation-System:">&#182;</a></h2><h3 id="Content-based-recommendation:">Content based recommendation:<a class="anchor-link" href="#Content-based-recommendation:">&#182;</a></h3><h4 id="Using-Feature-vector-and-regression-based-analysis">Using Feature vector and regression based analysis<a class="anchor-link" href="#Using-Feature-vector-and-regression-based-analysis">&#182;</a></h4><p>Here the assumption is that for each of the <code>item</code> you have the corresponding features available.</p>
-<p><strong>Story:</strong> Below are a table, of movie-user rating. 5 users and 4 movies. And the ratings are also provided (1-5) for some of them. We want to predict the rating for all the <code>?</code> unknown. It means that user $u_j$ has not seen that movie $m_i$ and if we can predict the rating for cell (i,j) then it will help us to decide whether or not to recommend the movie to the user $u_j$. For example, cell (3,4) is unknown. If by some algorithm, we can predict the rating for that cell, say the predicted rating is 4, it means if the user <strong>would have seen this movie, then he would have rated the movie 4</strong>. So we must definitely recommend this movie to the user.</p>
+<h2 id="Recommendation-System:">Recommendation System:<a class="anchor-link" href="#Recommendation-System:">&#182;</a></h2><h3 id="Content-based-recommendation:">Content based recommendation:<a class="anchor-link" href="#Content-based-recommendation:">&#182;</a></h3><h4 id="Using-Feature-vector-and-regression-based-analysis">Using Feature vector and regression based analysis<a class="anchor-link" href="#Using-Feature-vector-and-regression-based-analysis">&#182;</a></h4><p>Here the assumption is that for each of the <span class="highlightme"><code>item</code></span> you have the corresponding features available.</p>
+<p><strong>Story:</strong> Below are a table, of movie-user rating. 5 users and 4 movies. And the ratings are also provided (1-5) for some of them. We want to predict the rating for all the <span class="highlightme"><code>?</code></span> unknown. It means that user $u_j$ has not seen that movie $m_i$ and if we can predict the rating for cell (i,j) then it will help us to decide whether or not to recommend the movie to the user $u_j$. For example, cell (3,4) is unknown. If by some algorithm, we can predict the rating for that cell, say the predicted rating is 4, it means if the user <strong>would have seen this movie, then he would have rated the movie 4</strong>. So we must definitely recommend this movie to the user.</p>
 <table>
 <thead><tr>
 <th style="text-align:center"></th>
@@ -12363,7 +12364,7 @@ Suppose that $[X_1, X_2 ,...,X_n]$ are i.i.d. random variables with expected val
 is the feature matrix and we need to learn the $\theta_j$ for user $j$ such that $A \theta_j = u_j$. Create the loss function and solve the optimization problem.</p>
 <p><a href="https://www.youtube.com/watch?v=c0ZPDKbYzx0&amp;list=PLnnr1O8OWc6ZYcnoNWQignIiP5RRtu3aS&amp;index=2">(Content Based Recom -A.Ng)</a>,
 <a href="https://www.youtube.com/watch?v=2uxXPzm-7FY&amp;index=42&amp;list=PLLssT5z_DsK9JDLcT8T62VtzwyW9LNepV">(MMD - Stanford )</a></p>
-<h3 id="Colaborative-FIltering">Colaborative FIltering<a class="anchor-link" href="#Colaborative-FIltering">&#182;</a></h3><p><strong>Story:</strong> Unlike the <code>content based recommendation</code>, where the feature columns ($T_1$, $T_2$) were already given, here the features are not present. Rather they are being learnt by the algorithm. Here we assume $\theta_j$ is given i.e we know the users liking for $T_1$ and $T_2$ movies and almost similarly we formulate the regression problem but now we try to estimate the feature columns $T_k$. Then using the learnt feature we estimate the unknown ratings and then recommend those movies. Here knowing $\theta_j$
+<h3 id="Colaborative-FIltering">Colaborative FIltering<a class="anchor-link" href="#Colaborative-FIltering">&#182;</a></h3><p><strong>Story:</strong> Unlike the <span class="highlightme"><code>content based recommendation</code></span>, where the feature columns ($T_1$, $T_2$) were already given, here the features are not present. Rather they are being learnt by the algorithm. Here we assume $\theta_j$ is given i.e we know the users liking for $T_1$ and $T_2$ movies and almost similarly we formulate the regression problem but now we try to estimate the feature columns $T_k$. Then using the learnt feature we estimate the unknown ratings and then recommend those movies. Here knowing $\theta_j$
  means that each user has given inofrmation regarding his/her preferences based on subset of movies and thus all the users are colaboratively helping to learn the features.</p>
 <p>Naive Algorithm:</p>
 <ol>
@@ -12417,10 +12418,10 @@ is the feature matrix and we need to learn the $\theta_j$ for user $j$ such that
 <p>[watch MMD Youtube]</p>
 <h2 id="Word-embedding---Implementation">Word embedding - Implementation<a class="anchor-link" href="#Word-embedding---Implementation">&#182;</a></h2><p>Natural language processing systems traditionally treat words as discrete atomic symbols, and therefore 'cat' may be represented as Id537 and 'dog' as Id143. These encodings are arbitrary, and provide no useful information to the system regarding the relationships that may exist between the individual symbols. This means that the model can leverage very little of what it has learned about 'cats' when it is processing data about 'dogs'.</p>
 <p>Word embeddings transform sparse vector representations of words into a dense, continuous vector space, enabling you to identify similarities between words and phrases — on a large scale — based on their context.</p>
-<p><code>Vector space models</code> (VSMs) represent (<code>embed</code>) words in a continuous vector space where semantically similar words are mapped to nearby points (<code>'are embedded nearby each other'</code>). VSMs have a long, rich history in NLP, but all methods depend in some way or another on the <code>Distributional Hypothesis</code>, which states that words that appear in the same contexts share semantic meaning. The different approaches that leverage this principle can be divided into two categories:</p>
+<p><span class="highlightme"><code>Vector space models</code></span> (VSMs) represent (<span class="highlightme"><code>embed</code></span>) words in a continuous vector space where semantically similar words are mapped to nearby points (<span class="highlightme"><code>'are embedded nearby each other'</code></span>). VSMs have a long, rich history in NLP, but all methods depend in some way or another on the <span class="highlightme"><code>Distributional Hypothesis</code></span>, which states that words that appear in the same contexts share semantic meaning. The different approaches that leverage this principle can be divided into two categories:</p>
 <ul>
-<li><code>count-based methods</code> (e.g. Latent Semantic Analysis)</li>
-<li><code>predictive methods</code> (e.g. neural probabilistic language models).</li>
+<li><span class="highlightme"><code>count-based methods</code></span> (e.g. Latent Semantic Analysis)</li>
+<li><span class="highlightme"><code>predictive methods</code></span> (e.g. neural probabilistic language models).</li>
 </ul>
 <p>This distinction is elaborated in much more detail by Baroni et al., but in a nutshell:</p>
 <ul>
@@ -12440,7 +12441,7 @@ $$</p>
 $$= \text{score} (w_t, h) -
      \log \left( \sum_\text{Word w' in Vocab} \exp \{ \text{score} (w', h) \} \right).
 $$</p>
-<p>This yields a <code>properly normalized probabilistic</code> model for language modeling. However this is very expensive, because we need to compute and normalize each probability using the score for all other $V$ words $w'$ in the current context $h$ , at every training step.</p>
+<p>This yields a <span class="highlightme"><code>properly normalized probabilistic</code></span> model for language modeling. However this is very expensive, because we need to compute and normalize each probability using the score for all other $V$ words $w'$ in the current context $h$ , at every training step.</p>
 <p><img src="https://www.tensorflow.org/images/softmax-nplm.png" alt="image"></p>
 <p><a href="https://www.tensorflow.org/tutorials/representation/word2vec">source_1</a></p>
 <h2 id="Word2vec-=-Implementation">Word2vec = Implementation<a class="anchor-link" href="#Word2vec-=-Implementation">&#182;</a></h2><p>Word2vec is a particularly computationally-efficient predictive model for learning word embeddings from raw text. It comes in two flavors:</p>
@@ -12470,7 +12471,7 @@ $$</p>
 <p>LDA assumes documents are produced from a mixture of topics. Those topics then generate words based on their probability distribution. Given a dataset of documents, LDA backtracks and tries to figure out what topics would create those documents in the first place.</p>
 <p>LDA is a matrix factorization technique. In vector space, any corpus (collection of documents) can be represented as a document-term matrix. LDA converts this Document-Term Matrix into two lower dimensional matrices – M1 and M2.
 M1 is a document-topics matrix and M2 is a topic – terms matrix with dimensions ($N$,  $K$) and ($K$, $M$) respectively, where $N$ is the number of documents, $K$ is the number of topics and $M$ is the vocabulary size.</p>
-<p>It Iterates through each word <code>w</code> for each document <code>d</code> and tries to adjust the current topic – word assignment with a new assignment. A new topic <code>k</code> is assigned to word <code>w</code> with a probability P which is a product of two probabilities p1 and p2.</p>
+<p>It Iterates through each word <span class="highlightme"><code>w</code></span> for each document <span class="highlightme"><code>d</code></span> and tries to adjust the current topic – word assignment with a new assignment. A new topic <span class="highlightme"><code>k</code></span> is assigned to word <span class="highlightme"><code>w</code></span> with a probability P which is a product of two probabilities p1 and p2.</p>
 <p>For every topic, two probabilities p1 and p2 are calculated.</p>
 <ul>
 <li>P1: $p(topic_t | doc_d)$ = the proportion of words in document d that are currently assigned to topic t.</li>
@@ -12485,7 +12486,7 @@ M1 is a document-topics matrix and M2 is a topic – terms matrix with dimension
 <p><strong>Core Idea:</strong>
 The key to LSTMs is the cell state, the horizontal line running through the top of the diagram. The cell state is kind of like a conveyor belt. It runs straight down the entire chain, with only some minor linear interactions. It’s very easy for information to just flow along it unchanged.</p>
 <p><img src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-C-line.png" alt="image"></p>
-<p>The LSTM does have the ability to remove or add information to the cell state, carefully regulated by structures called gates. It has <code>forget gate</code>, <code>input gate</code> and <code>output gate</code>.</p>
+<p>The LSTM does have the ability to remove or add information to the cell state, carefully regulated by structures called gates. It has <span class="highlightme"><code>forget gate</code></span>, <span class="highlightme"><code>input gate</code></span> and <span class="highlightme"><code>output gate</code></span>.</p>
 <p><strong>Forget Gate:</strong></p>
 <p><img src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-f.png" alt="image"></p>
 <p>It controls how much old information (or old memory or state) you want to retain or not. $f_t\in(0,1)$ and thus it maintains a proportion of old memory.</p>
@@ -12579,14 +12580,14 @@ The latter has a greater success rate, however I have had some success with the 
 <p>You may see that the state-of-the-art deep neural network for computer vision problem (like the ImageNet winners) have used convolutional layers as the first few layers of the their network, but it is not the key for solving the vanishing gradient. The key is usually training the network greedily layer by layer. Using convolutional layers have several other important benefits of course. Especially in vision problems when the input size is large (the pixels of an image), using convolutional layers for the first layers are recommended because they have fewer parameters than fully-connected layers and you don't end up with billions of parameters for the first layer (which will make your network prone to overfitting).</p>
 <p>However, it has been shown (like this paper) for several tasks that using Rectified linear units alleviates the problem of vanishing gradients (as oppose to conventional sigmoid functions).</p>
 <p><a href="https://stackoverflow.com/questions/28953622/do-convolutional-neural-networks-suffer-from-the-vanishing-gradient">source_1</a></p>
-<h2 id="How-autoencoder-works?">How autoencoder works?<a class="anchor-link" href="#How-autoencoder-works?">&#182;</a></h2><h2 id="How-to-implement-regularization-in-decision-tree,-random-forest?">How to implement regularization in decision tree, random forest?<a class="anchor-link" href="#How-to-implement-regularization-in-decision-tree,-random-forest?">&#182;</a></h2><h2 id="Why-random-column-selection-helps-random-forest?">Why random column selection helps random forest?<a class="anchor-link" href="#Why-random-column-selection-helps-random-forest?">&#182;</a></h2><p>Random forest algorithm comes under the <code>Bootstrap Algorithm</code> a.k.a <code>Bagging</code> category whose primary objective is to <code>reduce the variance</code> of an estimate by averaging many estimates.</p>
+<h2 id="How-autoencoder-works?">How autoencoder works?<a class="anchor-link" href="#How-autoencoder-works?">&#182;</a></h2><h2 id="How-to-implement-regularization-in-decision-tree,-random-forest?">How to implement regularization in decision tree, random forest?<a class="anchor-link" href="#How-to-implement-regularization-in-decision-tree,-random-forest?">&#182;</a></h2><h2 id="Why-random-column-selection-helps-random-forest?">Why random column selection helps random forest?<a class="anchor-link" href="#Why-random-column-selection-helps-random-forest?">&#182;</a></h2><p>Random forest algorithm comes under the <span class="highlightme"><code>Bootstrap Algorithm</code></span> a.k.a <span class="highlightme"><code>Bagging</code></span> category whose primary objective is to <span class="highlightme"><code>reduce the variance</code></span> of an estimate by averaging many estimates.</p>
 <ul>
 <li>sample datasets without replacement<ul>
-<li>In bootstarp algorithm <code>M</code> decision trees are trained on <code>M</code> datasets which are sampled <code>without replacement</code> from the original datasets. Hence each of the sampled data will have duplicate data as well as some missing data, which are present in the original data, as all the sampled datasets have same length. Thuse these bootstrap samples will have diversity among themselves, resulting the model to be diverse as well. </li>
+<li>In bootstarp algorithm <span class="highlightme"><code>M</code></span> decision trees are trained on <span class="highlightme"><code>M</code></span> datasets which are sampled <span class="highlightme"><code>without replacement</code></span> from the original datasets. Hence each of the sampled data will have duplicate data as well as some missing data, which are present in the original data, as all the sampled datasets have same length. Thuse these bootstrap samples will have diversity among themselves, resulting the model to be diverse as well. </li>
 </ul>
 </li>
 </ul>
-<p>Along with the above methods <code>Random Forest</code> also does the following:</p>
+<p>Along with the above methods <span class="highlightme"><code>Random Forest</code></span> also does the following:</p>
 <ul>
 <li>Random subset of feature selection for building the tree<ul>
 <li>This is known as subspace sampling</li>
@@ -12623,10 +12624,10 @@ The latter has a greater success rate, however I have had some success with the 
 <li>Decrease the amount of regularizations</li>
 </ul>
 <p><a href="https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html">ref 1</a></p>
-<h2 id="Expectation-Maximization-(EM),-Gaussian-Mixture-Model">Expectation Maximization (EM), Gaussian Mixture Model<a class="anchor-link" href="#Expectation-Maximization-(EM),-Gaussian-Mixture-Model">&#182;</a></h2><p>Gaussian mixture models are a probabilistic model for representing normally distributed subpopulations within an overall population. Mixture models in general don't require knowing which subpopulation a data point belongs to, allowing the model to learn the subpopulations automatically. Since subpopulation assignment is not known, this constitutes a form of <code>unsupervised learning</code>.</p>
+<h2 id="Expectation-Maximization-(EM),-Gaussian-Mixture-Model">Expectation Maximization (EM), Gaussian Mixture Model<a class="anchor-link" href="#Expectation-Maximization-(EM),-Gaussian-Mixture-Model">&#182;</a></h2><p>Gaussian mixture models are a probabilistic model for representing normally distributed subpopulations within an overall population. Mixture models in general don't require knowing which subpopulation a data point belongs to, allowing the model to learn the subpopulations automatically. Since subpopulation assignment is not known, this constitutes a form of <span class="highlightme"><code>unsupervised learning</code></span>.</p>
 <p>For example, in modeling human height data, height is typically modeled as a normal distribution for each gender with a mean of approximately 5'10" for males and 5'5" for females. Given only the height data and not the gender assignments for each data point, the distribution of all heights would follow the sum of two scaled (different variance) and shifted (different mean) normal distributions. A model making this assumption is an example of a Gaussian mixture model (GMM), though in general a GMM may have more than two components. Estimating the parameters of the individual normal distribution components is a canonical problem in modeling data with GMMs.</p>
 <p><img src="https://ds055uzetaobb.cloudfront.net/image_optimizer/d47c612ae8c3dc7f5aef1fc66458456f4eea4145.png" alt="image"></p>
-<p>A Gaussian mixture model is parameterized by two types of values, the mixture component weights and the component means and variances/covariances. For a Gaussian mixture model with $K$ components, the $k^{\text{th}}$ component has a mean of $\mu_k$ and variance of $\sigma_k$ for the <code>univariate case</code> and a mean of $\vec{\mu}_k$ and covariance matrix of $\vec{\sigma}_k$ for the <code>multivariate case</code>. The mixture component weights are defined as $\phi_k$ for component $C_k$, with the constraint that $\sum_{i=1}^k \phi_i = 1$, so that the total probability distribution normalizes to $1$. If the component weights aren't learned, they can be viewed as an <code>a-priori</code> distribution over components such that . If they are instead learned, they are the <code>a-posteriori</code> estimates of the component probabilities given the data.</p>
+<p>A Gaussian mixture model is parameterized by two types of values, the mixture component weights and the component means and variances/covariances. For a Gaussian mixture model with $K$ components, the $k^{\text{th}}$ component has a mean of $\mu_k$ and variance of $\sigma_k$ for the <span class="highlightme"><code>univariate case</code></span> and a mean of $\vec{\mu}_k$ and covariance matrix of $\vec{\sigma}_k$ for the <span class="highlightme"><code>multivariate case</code></span>. The mixture component weights are defined as $\phi_k$ for component $C_k$, with the constraint that $\sum_{i=1}^k \phi_i = 1$, so that the total probability distribution normalizes to $1$. If the component weights aren't learned, they can be viewed as an <span class="highlightme"><code>a-priori</code></span> distribution over components such that . If they are instead learned, they are the <span class="highlightme"><code>a-posteriori</code></span> estimates of the component probabilities given the data.</p>
 <p><strong>One-dimensional Model:</strong></p>
 <p>$$
 p(x) = \sum_{i=1}^K\phi_i \mathcal{N}(x \;|\; \mu_i, \sigma_i)$$
@@ -12644,13 +12645,13 @@ $$
 $$\sum_{i=1}^K\phi_i = 1$$</p>
 <h3 id="Learning-the-Model">Learning the Model<a class="anchor-link" href="#Learning-the-Model">&#182;</a></h3><p>If the number of components $K$ is known, expectation maximization is the technique most commonly used to estimate the mixture model's parameters. In frequentist probability theory, models are typically learned by using maximum likelihood estimation techniques, which seek to maximize the probability, or likelihood, of the observed data given the model parameters. Unfortunately, finding the maximum likelihood solution for mixture models by differentiating the log likelihood and solving for 0 is usually analytically impossible.</p>
 <p>Expectation maximization (EM) is a numerical technique for maximum likelihood estimation, and is usually used when closed form expressions for updating the model parameters can be calculated (which will be shown below). Expectation maximization is an iterative algorithm and has the convenient property that the maximum likelihood of the data strictly increases with each subsequent iteration, meaning it is guaranteed to approach a local maximum or saddle point.</p>
-<p><strong>Note:</strong> Read section <code>8.5.1</code> from book <code>Element of Statistical Learning</code> for an easy understanding.</p>
-<h4 id="Two-Component-Mixture-Model:">Two Component Mixture Model:<a class="anchor-link" href="#Two-Component-Mixture-Model:">&#182;</a></h4><p>Say we have $|Y|$ number of data-_points coming from 2 normal distribution, i.e. <code>mixture of 2 gaussian distribution</code>. Where $Y_1 \sim N(\mu_1, \sigma_1)$ and $Y_2 \sim N(\mu_2, \sigma_2)$ and $|Y| = |Y_1| + |Y_2|$. Our task is to figure out those 2 distribution. More formally we want to estimate $\hat\mu_1, \hat\sigma_1$ and $\hat\mu_2, \hat\sigma_2$. We want to model $Y$ as follows</p>
+<p><strong>Note:</strong> Read section <span class="highlightme"><code>8.5.1</code></span> from book <span class="highlightme"><code>Element of Statistical Learning</code></span> for an easy understanding.</p>
+<h4 id="Two-Component-Mixture-Model:">Two Component Mixture Model:<a class="anchor-link" href="#Two-Component-Mixture-Model:">&#182;</a></h4><p>Say we have $|Y|$ number of data-_points coming from 2 normal distribution, i.e. <span class="highlightme"><code>mixture of 2 gaussian distribution</code></span>. Where $Y_1 \sim N(\mu_1, \sigma_1)$ and $Y_2 \sim N(\mu_2, \sigma_2)$ and $|Y| = |Y_1| + |Y_2|$. Our task is to figure out those 2 distribution. More formally we want to estimate $\hat\mu_1, \hat\sigma_1$ and $\hat\mu_2, \hat\sigma_2$. We want to model $Y$ as follows</p>
 <p>$$Y = (1-\Delta)Y_1 + \Delta Y_2$$</p>
 <p>where $\Delta \in \{0,1\}$ with $P(\Delta=1)=\pi$.</p>
-<blockquote><p>For simplicity we can think that $|Y|$ number of blue and yellow balls are there, where number of blue balls $|Y_1|$ and number of yellow balls $|Y_2|$. Blue balls come from 1 normal distribution and yellow balls come from another normal distribution. Now given a ball we need to figure out whether the balls come from 1st Normal distribution (blue) or 2nd normal distribution. We can easily solve this using <code>K-Means</code> clustering. But K-Means is a <code>Hard-Clustering</code> problem. Where assignment probability is 0 or 1. But Mixture model is a <code>Soft Clustering</code> problem and an iterative process and the assignment probability is $\in [0,1]$.</p>
+<blockquote><p>For simplicity we can think that $|Y|$ number of blue and yellow balls are there, where number of blue balls $|Y_1|$ and number of yellow balls $|Y_2|$. Blue balls come from 1 normal distribution and yellow balls come from another normal distribution. Now given a ball we need to figure out whether the balls come from 1st Normal distribution (blue) or 2nd normal distribution. We can easily solve this using <span class="highlightme"><code>K-Means</code></span> clustering. But K-Means is a <span class="highlightme"><code>Hard-Clustering</code></span> problem. Where assignment probability is 0 or 1. But Mixture model is a <span class="highlightme"><code>Soft Clustering</code></span> problem and an iterative process and the assignment probability is $\in [0,1]$.</p>
 </blockquote>
-<p>In the above notation we can think of $\pi$ as the mixing coefficient. We can think it as a <code>prior probability</code>.</p>
+<p>In the above notation we can think of $\pi$ as the mixing coefficient. We can think it as a <span class="highlightme"><code>prior probability</code></span>.</p>
 <p>Let $\phi_\theta(x)$ denotes the normal density with parameters $\theta = (\mu, \sigma^2)$. Then the density of $Y$ is</p>
 <p>$$g_Y=(1-\pi)\phi_\theta^1(y) + \pi\phi_\theta^2(y)$$</p>
 <p>Now we wish to fit this model to data by maximum likelihood estimation. The parameters are $\theta = (\pi, \theta^1, \theta^2) = (\pi, \mu_1, \sigma_1^2, \mu_2, \sigma_2^2)$.</p>
@@ -12662,7 +12663,7 @@ $$\sum_{i=1}^K\phi_i = 1$$</p>
 <li>s1: guess: $\pi, \theta_1, \theta_2$</li>
 <li><p>s2: While $(oldLogLikelihood - Likelihood) &gt; tolerance$</p>
 <ul>
-<li><p>s3: <strong>Expectaton Step:</strong> Find Posterior Probability (<code>Responsibility</code>)</p>
+<li><p>s3: <strong>Expectaton Step:</strong> Find Posterior Probability (<span class="highlightme"><code>Responsibility</code></span>)</p>
 <p>$$\hat\gamma_i = p(\theta_2|y_i) = \frac{p(y_i | \theta_2)p(\theta_2)}{p(y_i | \theta_1)p(\theta_1) + p(y_i |\theta_2)p(\theta_2)}$$</p>
 <ul>
 <li>Where $p(\theta_2) = \pi$, $p(\theta_1) = 1-\pi$</li>
@@ -12686,7 +12687,7 @@ $$\hat\pi = \Sigma \frac{\hat\gamma_i}{N}$$</p>
 <p>So we are trying to maximize the loglikelihood through this iterative approach. The above algorithm is a simple version for 1D data. If the data is 2D then instead of variance $\sigma^2$, we will have covariance matrix $\Sigma$ because of Multivariate Gaussian. But the basic procedure is like this.</p>
 <p>For more details, read the following references.</p>
 <p><a href="https://www.youtube.com/watch?v=REypj2sy_5U">YouTube</a>, 
-[Elements of Statistical Learning, section <code>8.5.1</code>], 
+[Elements of Statistical Learning, section <span class="highlightme"><code>8.5.1</code></span>], 
 <a href="http://www.blackarbs.com/blog/intro-to-expectation-maximization-k-means-gaussian-mixture-models-with-python-sklearn/3/20/2017">code_implementation</a>,
 <a href="https://people.duke.edu/~ccc14/sta-663/EMAlgorithm.html">EM_algo_python_code</a>,
 <a href="http://emmanuel-klinger.net/expectation-maximization-in-python.html">code_other</a>,
