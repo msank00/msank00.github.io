@@ -11797,7 +11797,7 @@ $( document ).ready(function(){
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Neural-Network">Neural Network<a class="anchor-link" href="#Neural-Network">&#182;</a></h1><h2 id="Deep-Feed-Forward-Network">Deep Feed Forward Network<a class="anchor-link" href="#Deep-Feed-Forward-Network">&#182;</a></h2><ul>
+<h1 id="Quick-Refresher:-Neural-Network">Quick Refresher: Neural Network<a class="anchor-link" href="#Quick-Refresher:-Neural-Network">&#182;</a></h1><h2 id="Deep-Feed-Forward-Network">Deep Feed Forward Network<a class="anchor-link" href="#Deep-Feed-Forward-Network">&#182;</a></h2><ul>
 <li>These models are called Feed Forward Network because the information flows from $x$, through the intermediate computations used to define $f$ and finally to the output $y$.</li>
 <li>When FFN are extended to include feedback loops, they are called recurrent neural network.</li>
 <li>The dimensionality of the hidden layer decides the width of the model.</li>
@@ -11854,10 +11854,11 @@ $( document ).ready(function(){
 </li>
 <li><p>Use Gradient Clipping</p>
 </li>
-<li><p>Exploding gradients can still occur in very deep Multilayer Perceptron networks with a large batch size and LSTMs with very long input sequence lengths.</p>
-</li>
-<li>If exploding gradients are still occurring, you can check for and limit the size of gradients during the training of your network. This is called <code>gradient clipping</code>.</li>
 </ol>
+<ul>
+<li>Exploding gradients can still occur in very deep Multilayer Perceptron networks with a large batch size and LSTMs with very long input sequence lengths.</li>
+<li>If exploding gradients are still occurring, you can check for and limit the size of gradients during the training of your network. This is called <code>gradient clipping</code>.</li>
+</ul>
 <p><code>clipping gradients if their norm exceeds a given threshold</code></p>
 <ol>
 <li>Use Weight Regularization</li>
@@ -11893,7 +11894,150 @@ So that's why LSTM is so good at learning long range dependencies.</p>
 <p>In LSTM, gating decides how much cell state information, from previous step, to flow in the next step or not. Thus gating function is different from the Activation function and helps in case of Vanishing Gradient problem.</p>
 <p><a href="https://towardsdatascience.com/gating-and-depth-in-neural-networks-b2c66ae74c45">Gating and Depth in the Neural Network</a></p>
 <h3 id="Why-using-sigmoid-and-tanh-as-the-activation-functions-in-LSTM-or-RNN-is-not-problematic-but-this-is-not-the-case-in-other-neural-nets?">Why using sigmoid and tanh as the activation functions in LSTM or RNN is not problematic but this is not the case in other neural nets?<a class="anchor-link" href="#Why-using-sigmoid-and-tanh-as-the-activation-functions-in-LSTM-or-RNN-is-not-problematic-but-this-is-not-the-case-in-other-neural-nets?">&#182;</a></h3><p>Commonly, $sigmoid$ and $tanh$ activation functions are problematic (gradient vanishing) in RNN especially when the training algorithm $BPTT$ is utilized. In LSTM, sigmoid and tanh are used to build the $gates$. Because of these gates, the gradient vanishing problem does not exist.</p>
+<h2 id="What's-the-difference-between-&#8220;hidden&#8221;-and-&#8220;output&#8221;-in-PyTorch-LSTM?">What's the difference between &#8220;hidden&#8221; and &#8220;output&#8221; in PyTorch LSTM?<a class="anchor-link" href="#What's-the-difference-between-&#8220;hidden&#8221;-and-&#8220;output&#8221;-in-PyTorch-LSTM?">&#182;</a></h2><p>According to Pytorch documentation</p>
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Outputs: output, (h_n, c_n)</span>
 
+<span class="sd">- output (seq_len, batch, hidden_size * num_directions): tensor containing the output features (h_t) from the last layer of the RNN, for each t. If a torch.nn.utils.rnn.PackedSequence has been given as the input, the output will also be a packed sequence.</span>
+<span class="sd">- h_n (num_layers * num_directions, batch, hidden_size): tensor containing the hidden state for t=seq_len</span>
+<span class="sd">- c_n (num_layers * num_directions, batch, hidden_size): tensor containing the cell state for t=seq_len</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+<p>How to interpret it ?</p>
+<p>output comprises all the hidden states in the last layer ("last" depth-wise, not time-wise). (h_n, c_n) comprises the hidden states after the last timestep, t = n, so you could potentially feed them into another LSTM.</p>
+<p><img src="https://i.stack.imgur.com/SjnTl.png" alt="image"></p>
+<p>The batch dimension is not included.</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/48302810/whats-the-difference-between-hidden-and-output-in-pytorch-lstm">source_stackOverflow</a></li>
+</ul>
+<h2 id="Understand-forward-and-backward-with-simple-Perceptron">Understand forward and backward with simple Perceptron<a class="anchor-link" href="#Understand-forward-and-backward-with-simple-Perceptron">&#182;</a></h2><ul>
+<li>Check the [<a href="https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/">blog</a>] and it's implementation and result in the following [<a href="https://github.com/subhendukhatuya/deeplearning_postmortem/blob/master/Unfolding_Perceptron_Forward_backward.ipynb">notebook</a>]</li>
+<li>Give attention to the intermediate values in the blog and in the code side by side and check they are equal.</li>
+</ul>
+<h2 id="Tell-about-different-loss-function,-when-to-use-them?">Tell about different loss function, when to use them?<a class="anchor-link" href="#Tell-about-different-loss-function,-when-to-use-them?">&#182;</a></h2><blockquote><blockquote><p>Importantly, the choice of loss function is directly related to the activation function used in the output layer of your neural network. These two design elements are connected.</p>
+<p>The choice of cost function is tightly coupled with the choice of output unit. Most of the time, we simply use the cross-entropy between the data distribution and the model distribution. The choice of how to represent the output then determines the form of the cross-entropy function.</p>
+</blockquote>
+</blockquote>
+<p><strong>Regression Problem</strong></p>
+<p>A problem where you predict a real-value quantity.</p>
+<p>Case 1:</p>
+<ul>
+<li><code>Output Layer Configuration:</code> One node with a linear activation unit.</li>
+<li><code>Loss Function:</code> Mean Squared Error (MSE).</li>
+</ul>
+<p>$$\boldsymbol{\mathcal{L}}=\frac{1}{n}\sum_{i=1}^{n}(y^{(i)}-\hat{y}^{(i)})^{2}$$</p>
+<p>Case 2:</p>
+<ul>
+<li><code>Output Layer Configuration:</code> One node with a linear activation unit.</li>
+<li><code>Loss Function:</code> Mean Squared Logarithmic Error (MSLE)</li>
+</ul>
+<p>$$\boldsymbol{\mathcal{L}}=\frac{1}{n}\sum_{i=1}^{n}\big(\log(y^{(i)}+1)-\log(\hat{y}^{(i)}+1)\big)^{2}$$</p>
+<h3 id="When-to-use-case-2-?">When to use case 2 ?<a class="anchor-link" href="#When-to-use-case-2-?">&#182;</a></h3><p>Mean Squared Logarithmic Error (MSLE) loss function is a variant of MSE, which is defined as above.</p>
+<ul>
+<li><p>It is usually used when the <code>true values</code> and the <code>predicted values</code> are very big. And therefore, their difference are also very big. In that situation, you generally don't want to penalizes huge difference between true and predicted die to their high value range.</p>
+</li>
+<li><p>One use case say <code>sales price</code> prediction. Here the true value range can be very <code>skewed</code> which affects the prediction as well. Here regular <code>MSE</code> will heavily penalizes the big differences. But in this scenario it's wrong because here by default the value ranges are very big i.e. skewed. In this scenario one good approach is take the <code>log(true_value)</code> and predict that, and by default you have to use the <code>MSLE</code>.</p>
+</li>
+<li>Another usefulness of applying <code>log</code> is it fixes the skeness and brings it more close to normal distribution. </li>
+</ul>
+<p><strong>Binary Classification Problem</strong></p>
+<ul>
+<li><code>Output Layer Configuration:</code> One node with a sigmoid activation unit.</li>
+<li><code>Loss Function:</code> Cross-Entropy, also referred to as Logarithmic loss.</li>
+</ul>
+<p><strong>Multi-Class Classification Problem</strong></p>
+<ul>
+<li><code>Output Layer Configuration:</code> One node for each class using the softmax activation function.</li>
+<li><code>Loss Function:</code> Cross-Entropy, also referred to as Logarithmic loss.</li>
+</ul>
+<p>In binary classification, where the number of classes <code>M</code> equals 2, cross-entropy can be calculated as:</p>
+<p>$$-{(y\log(p) + (1 - y)\log(1 - p))}$$</p>
+<p>If $M\gt2$ (i.e. multiclass classification), we calculate a separate loss for each class label per observation and sum the result.</p>
+<p>$$-\sum_{c=1}^My_{o,c}\log(p_{o,c})$$</p>
+<p><strong>Summary:</strong></p>
+<p><img src="loss_function.png" alt="image"></p>
+<p><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015.html">Image Source: From Prof. Mitesh Khapra, Lecture 4, [slide page 95]</a></p>
+<p>References:</p>
+<ul>
+<li><a href="https://machinelearningmastery.com/loss-and-loss-functions-for-training-deep-learning-neural-networks/">Source MachineLearningMastery</a></li>
+<li><a href="https://www.kaggle.com/lavanyashukla01/how-i-made-top-0-3-on-a-kaggle-competition">Source: How_to_be_on_top_0p3_percent_kaggle_competiion</a></li>
+<li><a href="https://isaacchanghau.github.io/post/loss_functions/">Blog</a></li>
+<li><a href="(https://www.cse.iitm.ac.in/~miteshk/CS7015.html">Deep Learning Lecture 4 by Prof. Mitesh khapra</a>)</li>
+</ul>
+<h2 id="What-is-BPTT-and-it's-issues-with-sequence-learning-?">What is BPTT and it's issues with sequence learning ?<a class="anchor-link" href="#What-is-BPTT-and-it's-issues-with-sequence-learning-?">&#182;</a></h2><h2 id="How-does-Attention-Works-?">How does Attention Works ?<a class="anchor-link" href="#How-does-Attention-Works-?">&#182;</a></h2><blockquote><blockquote><p>The attention-mechanism looks at an input sequence and decides at each step which other parts of the sequence are important.</p>
+</blockquote>
+</blockquote>
+<p>When reading a text, you always focus on the word you read but at the same time your mind still holds the important keywords of the text in memory in order to provide context.</p>
+<p>An attention-mechanism works similarly for a given sequence. For our example with the human Encoder and Decoder, imagine that instead of only writing down the translation of the sentence in the imaginary language, the Encoder also writes down keywords that are important to the semantics of the sentence, and gives them to the Decoder in addition to the regular translation. Those new keywords make the translation much easier for the Decoder because it knows what parts of the sentence are important and which key terms give the sentence context.</p>
+<p>References:</p>
+<ul>
+<li><a href="https://nlp.stanford.edu/pubs/emnlp15_attn.pdf">Paper: Effective Approaches to Attention-based Neural Machine Translation</a></li>
+<li><a href="https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/">Visualizing A Neural Machine Translation Model by Jay Alammar</a></li>
+<li><a href="https://medium.com/inside-machine-learning/what-is-a-transformer-d07dd1fbec04">Important Blog</a></li>
+<li><a href="https://medium.com/@joealato/attention-in-nlp-734c6fa9d983">Imp: Attention in NLP</a></li>
+<li><a href="http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/">Imp: Attention and Memory in NLP</a></li>
+</ul>
+<h2 id="What-is-Transformer-and-it's-pros-and-cons?">What is Transformer and it's pros and cons?<a class="anchor-link" href="#What-is-Transformer-and-it's-pros-and-cons?">&#182;</a></h2><p>From the Author:</p>
+
+<pre><code>In paper “Attention Is All You Need”, we introduce the Transformer, a novel neural network architecture based on a self-attention mechanism that we believe to be particularly well suited for language understanding.  
+
+</code></pre>
+<p>Natural Language Understanding (NLU):  language modeling, machine translation and question answering</p>
+<ul>
+<li>Transformer outperforms both recurrent and convolutional models on academic English to German and English to French translation benchmarks. </li>
+<li>On top of higher translation quality, the Transformer requires less computation to train and is a much better fit for modern machine learning hardware, speeding up training by up to an order of magnitude.</li>
+</ul>
+<p>The paper ‘Attention Is All You Need’ describes transformers and what is called a sequence-to-sequence architecture. Sequence-to-Sequence (or Seq2Seq) is a neural net that transforms a given sequence of elements, such as the sequence of words in a sentence, into another sequence.</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*BHzGVskWGS_3jEcYYi6miQ.png" alt="transformer"></p>
+<ul>
+<li>One interesting point is, even if it's used for seq2seq generation, but there is no <code>recurrence</code> part inside the model like the  <code>vanila rnn</code> or <code>lstm</code>.</li>
+<li>So one slight but important part of the model is the positional encoding of the different words. Since we have no recurrent networks that can remember how sequences are fed into a model, we need to somehow give every word/part in our sequence a relative position since a sequence depends on the order of its elements. These positions are added to the embedded representation (n-dimensional vector) of each word. </li>
+</ul>
+<p>Pros:</p>
+<ul>
+<li>Faster learning. More GPU efficient unlike the <code>vanila rnn</code></li>
+</ul>
+<p>References:</p>
+<ul>
+<li><a href="https://arxiv.org/abs/1706.03762">Paper: Attention is all you need</a></li>
+<li><a href="https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html">Google AI Blog</a></li>
+<li><a href="https://medium.com/inside-machine-learning/what-is-a-transformer-d07dd1fbec04">Important Blog</a></li>
+<li><a href="https://jalammar.github.io/illustrated-transformer/">Important: The Illustrated Transformer by Jay Alammar</a> </li>
+</ul>
+<h2 id="What-is-LSTM,-give-it's-equation,-pros-and-cons?">What is LSTM, give it's equation, pros and cons?<a class="anchor-link" href="#What-is-LSTM,-give-it's-equation,-pros-and-cons?">&#182;</a></h2><h2 id="How-does-word2vec-work?">How does <code>word2vec</code> work?<a class="anchor-link" href="#How-does-word2vec-work?">&#182;</a></h2><p>Reference:</p>
+<ul>
+<li><a href="https://jalammar.github.io/illustrated-word2vec/">The Illustrated Word2vec by Jay Alammar</a></li>
+<li><a href="https://www.infoq.com/presentations/nlp-word-embedding/">Intuition &amp; Use-Cases of Embeddings in NLP &amp; beyond, ,talk by Jay Alammar</a></li>
+</ul>
+<h2 id="What-is-Transfer-Learning,-BERT,-Elmo,-UmlFit-?">What is Transfer Learning, BERT, Elmo, UmlFit ?<a class="anchor-link" href="#What-is-Transfer-Learning,-BERT,-Elmo,-UmlFit-?">&#182;</a></h2><p>Reference:</p>
+<ul>
+<li><a href="https://jalammar.github.io/illustrated-bert/">The Illustrated BERT, ELMo, and co. by Jay Alammar</a></li>
+</ul>
+<h2 id="What-is-model-Perplexity?">What is model Perplexity?<a class="anchor-link" href="#What-is-model-Perplexity?">&#182;</a></h2><ul>
+<li><p>In information theory, perplexity is a measurement of how well a probability distribution or probability model predicts a sample. It may be used to compare probability models. A low perplexity indicates the probability distribution is good at predicting the sample.  [<a href="https://en.wikipedia.org/wiki/Perplexity">wiki</a>]</p>
+</li>
+<li><p>In natural language processing, perplexity is a way of evaluating language models. A language model is a probability distribution over entire sentences or texts.</p>
+</li>
+</ul>
+<p>Reference:</p>
+<ul>
+<li><a href="https://towardsdatascience.com/perplexity-intuition-and-derivation-105dd481c8f3">Blog: Towardsdatascience</a></li>
+</ul>
+<h2 id="What-is-BLEU-score?">What is BLEU score?<a class="anchor-link" href="#What-is-BLEU-score?">&#182;</a></h2><ul>
+<li>BLEU, or the Bilingual Evaluation Understudy, is a score for comparing a candidate translation of text to one or more reference translations.</li>
+<li>Although developed for translation, it can be used to evaluate text generated for a suite of natural language processing tasks.</li>
+<li>BLEU uses a modified form of precision to compare a candidate translation against multiple reference translations. The metric modifies simple precision since machine translation systems have been known to generate more words than are in a reference text. </li>
+<li><blockquote><blockquote><p>The primary programming task for a BLEU implementor is to compare n-grams of the candidate with the n-grams of the reference translation and count the number of matches. These matches are position-independent. The more the matches, the better the candidate translation is.</p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<p>Reference:</p>
+<ul>
+<li><a href="https://machinelearningmastery.com/calculate-bleu-score-for-text-python/">Blog by machinelearningmastery</a></li>
+<li><a href="https://www.aclweb.org/anthology/P02-1040.pdf">Paper: BLEU: a Method for Automatic Evaluation of Machine Translation</a></li>
+</ul>
+<h2 id="Tell-about-different-optimizer-Adam,-Rmsprop-and-their-pros-and-cons?">Tell about different optimizer Adam, Rmsprop and their pros and cons?<a class="anchor-link" href="#Tell-about-different-optimizer-Adam,-Rmsprop-and-their-pros-and-cons?">&#182;</a></h2>
 </div>
 </div>
 </div>
