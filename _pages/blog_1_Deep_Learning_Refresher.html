@@ -3,7 +3,6 @@
 <head><meta charset="utf-8" />
 <title>blog_1_Deep_Learning_Refresher</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
 <style type="text/css">
     /*!
 *
@@ -11841,24 +11840,24 @@ $$h_t = o_t \odot \sigma(C_t)$$</p>
 <p>Combining all together:</p>
 <p>$$
  \begin{bmatrix} 
-  i_t \ 
-  f_t \
-  o_t \
-  \tilde{C_t}</p>
-<h1 id="\end{bmatrix}_{4x1}">\end{bmatrix}_{4x1}<a class="anchor-link" href="#\end{bmatrix}_{4x1}">&#182;</a></h1><p>\begin{bmatrix}
+  i_t \\ 
+  f_t \\
+  o_t \\
+  \tilde{C_t}
+  \end{bmatrix}
+=
+\begin{bmatrix}
    \sigma  \\
    \sigma  \\
    \sigma  \\
    \sigma  
-   \end{bmatrix}<em>{4x1} \odot (W</em>{4x2}
+   \end{bmatrix}_{4x1} \odot (W
 \begin{bmatrix}
    h_{t-1}  \\
    x_t  
-   \end{bmatrix}_{2x1}</p>
-<ul>
-<li>B_{4x1})
-$$</li>
-</ul>
+   \end{bmatrix} + B)$$
+</p>
+where 
 <p>$$
 W = \begin{bmatrix} 
   W_i &amp; U_i \\ 
@@ -11874,13 +11873,13 @@ B = \begin{bmatrix}
 \end{bmatrix}_{4x1}
 $$</p>
 <p>Where $\tilde{C_t}$ is the new input or content which will be used to update the current cell state $C_t$ by forgetting a fraction $f_t$ of old cell state $C_{t-1}$ (<code>selective forget</code>) + adding fraction $i_t$ of new cell input $\tilde{C_t}$ (<code>selective read</code>). Finally $h_t$ is obtained by doing a <code>selective write</code> with the fraction $o_t$ and cell state $C_t$. Note $\odot$ is called the <code>pointwise product</code> or the <code>hadamard</code> product.</p>
-<p><img src="lstm.png" alt="lstm">
+<p><img src="images/lstm.png" alt="lstm">
 <a href="http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture10.pdf">image source, cs231n, lecture 10 page 96</a></p>
 <ul>
 <li>For reference check the blog of Chris Olah and the lecture of Prof. Mitesh K. However, in Chris Olah's blog, he has concatenated $h_{t-1}$ and $x_t$, which leads to learning of fewer parameter.</li>
 <li>In Prof.Mitesh K's lecture, he has used notation $s_t$ for cell state. </li>
 </ul>
-<h4 id="Quick-Summary">Quick Summary<a class="anchor-link" href="#Quick-Summary">&#182;</a></h4><p><img src="rnn_gru_lstm.png" alt="image"></p>
+<h4 id="Quick-Summary">Quick Summary<a class="anchor-link" href="#Quick-Summary">&#182;</a></h4><p><img src="images/rnn_gru_lstm.png" alt="image"></p>
 <p>Reference:</p>
 <ul>
 <li><a href="http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture10.pdf">IMP, Lecture 10, Standford cs231 page-96 </a></li>
@@ -11896,7 +11895,7 @@ $$</p>
 </ul>
 <p>So total loss for sequence learning is</p>
 <p>$$L(\theta) = \sum\limits‎_{t=1}^{T} L_t(\theta) $$</p>
-<p><img src="bptt.png" alt="image"></p>
+<p><img src="images/bptt.png" alt="image"></p>
 <p>In the above image is a simple vanila RNN, where $t$ is from $1$ to $4$.  For back propagation we need to compute the graident w.r.t $W$, $U$, $V$.</p>
 <p>Now taking derivative w.r.t $V$ is straight forward.</p>
 <p>$$\frac{\delta L(\theta)}{\delta V} = \sum\limits_{t=1}^{T} \frac{\delta L_t(\theta)}{\delta V}$$</p>
@@ -11908,8 +11907,8 @@ $$</p>
 <li><strong>Explicit:</strong> Treating all other input as constant</li>
 <li><strong>Implicit:</strong> Summing over all indirect paths from $s_4$ to $W$.</li>
 </ul>
-<p><img src="bptt_1.png" alt="image"></p>
-<p><img src="bptt_2.png" alt="image"></p>
+<p><img src="images/bptt_1.png" alt="image"></p>
+<p><img src="images/bptt_2.png" alt="image"></p>
 <p>Resource:</p>
 <ul>
 <li><a href="http://www.cse.iitm.ac.in/~miteshk/CS7015.html">Lecture 14 by Prof.Mitesh K</a></li>
@@ -12069,7 +12068,7 @@ So that's why LSTM is so good at learning long range dependencies.</p>
 <p>If $M\gt2$ (i.e. multiclass classification), we calculate a separate loss for each class label per observation and sum the result.</p>
 <p>$$-\sum_{c=1}^My_{o,c}\log(p_{o,c})$$</p>
 <p>Summary</p>
-<p><img src="loss_function.png" alt="image"></p>
+<p><img src="images/loss_function.png" alt="image"></p>
 <p><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015.html">Image Source: From Prof. Mitesh Khapra, Lecture 4, [slide page 95]</a></p>
 <p>References:</p>
 <ul>
