@@ -11781,7 +11781,7 @@ div#notebook {
 <script>
 $( document ).ready(function(){
 
-            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": false, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {}, "toc_section_display": true, "toc_window_display": true};
+            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": false, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {"height": "calc(100% - 180px)", "left": "10px", "top": "150px", "width": "280.2px"}, "toc_section_display": true, "toc_window_display": true};
 
             // fire the main function with these parameters
             require(['nbextensions/toc2/toc2'], function (toc2) {
@@ -11810,6 +11810,111 @@ $( document ).ready(function(){
 <li>Neural network models are trained by using iterative, gradient based optimizers, that merely drive the cost function to a very low value.</li>
 <li>Where as linear equation solvers used to train linear regression models or the convex optimization algorithms, with <strong>global convergence guarantees</strong> used to train logistic regression or SVMs.</li>
 <li>SGD applied to non-convex loss function has <strong>no convergence guarantees</strong>, and is sensitive to the initial parameter values.</li>
+</ul>
+<h2 id="Short-Summary-of-RNN,-LSTM,-GRU.">Short Summary of RNN, LSTM, GRU.<a class="anchor-link" href="#Short-Summary-of-RNN,-LSTM,-GRU.">&#182;</a></h2><ul>
+<li>RNN reads the document left to right and after every word updates the state. By the time it reaches the end of the word, the information obtained from the <code>first few</code> words, are completely lost. So we need some mechanism to retain these information.</li>
+<li>Now the most famous rchitecture is <code>LSTM</code> to address the above issues of RNN. The general idea is to implement 3 primary operations <code>selective read</code>, <code>selective write</code> and <code>selective forget</code>. i.e forget some old information, create new information and update the current information.</li>
+<li>All the variations of <code>LSTM</code> implemented these 3 operations with some tweak, like merging 2 operations into 1 and many more.</li>
+</ul>
+<h3 id="LSTM:">LSTM:<a class="anchor-link" href="#LSTM:">&#182;</a></h3><ul>
+<li><p>In the most popular version of LSTM, in each LSTM cell these 3 operations are implemented as 3 <code>Gate</code></p>
+<ul>
+<li><code>selective forget</code> implemented by <code>forget gate</code> $f_t$ </li>
+<li><code>selective read</code> implemented by <code>input gate</code> $i_t$</li>
+<li><code>selective write</code> implemented by <code>output gate</code> $o_t$</li>
+</ul>
+</li>
+<li><p>Each LSTM cell also has 2 states</p>
+<ul>
+<li>$h_t$: output/hidden state (similar to hidden state of RNN)</li>
+<li>$C_t$: Cell state or <code>running state</code> that acts as a memory containing a fraction of information from all the previous timestamps $t$</li>
+</ul>
+</li>
+</ul>
+<h4 id="Gates">Gates<a class="anchor-link" href="#Gates">&#182;</a></h4><p>$$f_t = \sigma (W_f  h_{t-1} + U_f x_t + b_f)$$
+$$i_t = \sigma (W_i  h_{t-1} + U_i x_t + b_i)$$
+$$i_t = \sigma (W_o  h_{t-1} + U_o x_t + b_o)$$</p>
+<p>$f_t$, $i_t$, $o_t$ decides the fraction of {$\in [0,1]$} forget, read and write respectively.</p>
+<h4 id="States">States<a class="anchor-link" href="#States">&#182;</a></h4><p>$$\tilde{C_t} = \sigma(WH_{t-1} + Ux_t + b)$$
+$$C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C_t}$$
+$$h_t = o_t \odot \sigma(C_t)$$</p>
+<p>Combining all together:</p>
+<p>$$
+ \begin{bmatrix} 
+  i_t \ 
+  f_t \
+  o_t \
+  \tilde{C_t}</p>
+<h1 id="\end{bmatrix}_{4x1}">\end{bmatrix}_{4x1}<a class="anchor-link" href="#\end{bmatrix}_{4x1}">&#182;</a></h1><p>\begin{bmatrix}
+   \sigma  \\
+   \sigma  \\
+   \sigma  \\
+   \sigma  
+   \end{bmatrix}<em>{4x1} \odot (W</em>{4x2}
+\begin{bmatrix}
+   h_{t-1}  \\
+   x_t  
+   \end{bmatrix}_{2x1}</p>
+<ul>
+<li>B_{4x1})
+$$</li>
+</ul>
+<p>$$
+W = \begin{bmatrix} 
+  W_i &amp; U_i \\ 
+  W_f &amp; U_f\\
+  W_o &amp; U_o \\
+  W_{\tilde{C_t}} &amp; U_{\tilde{C_t}} 
+\end{bmatrix}_{4x2},
+B = \begin{bmatrix} 
+  b_{ih} + b_{ix} \\ 
+  b_{fh} + b_{fx}\\
+  b_{oh} + b_{ox} \\
+  b_{\tilde{C_t}h} + b_{\tilde{C_t}i} 
+\end{bmatrix}_{4x1}
+$$</p>
+<p>Where $\tilde{C_t}$ is the new input or content which will be used to update the current cell state $C_t$ by forgetting a fraction $f_t$ of old cell state $C_{t-1}$ (<code>selective forget</code>) + adding fraction $i_t$ of new cell input $\tilde{C_t}$ (<code>selective read</code>). Finally $h_t$ is obtained by doing a <code>selective write</code> with the fraction $o_t$ and cell state $C_t$. Note $\odot$ is called the <code>pointwise product</code> or the <code>hadamard</code> product.</p>
+<p><img src="lstm.png" alt="lstm">
+<a href="http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture10.pdf">image source, cs231n, lecture 10 page 96</a></p>
+<ul>
+<li>For reference check the blog of Chris Olah and the lecture of Prof. Mitesh K. However, in Chris Olah's blog, he has concatenated $h_{t-1}$ and $x_t$, which leads to learning of fewer parameter.</li>
+<li>In Prof.Mitesh K's lecture, he has used notation $s_t$ for cell state. </li>
+</ul>
+<h4 id="Quick-Summary">Quick Summary<a class="anchor-link" href="#Quick-Summary">&#182;</a></h4><p><img src="rnn_gru_lstm.png" alt="image"></p>
+<p>Reference:</p>
+<ul>
+<li><a href="http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture10.pdf">IMP, Lecture 10, Standford cs231 page-96 </a></li>
+<li><a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">Chrish Olah LSTM</a></li>
+<li><a href="https://www.youtube.com/watch?v=9TFnjJkfqmA&amp;feature=youtu.be">Lecture 15 by Prof. Mitesh K</a></li>
+<li><a href="http://blog.echen.me/2017/05/30/exploring-lstms/">Edward Chen</a></li>
+</ul>
+<h2 id="What-is-BPTT-and-it's-issues-with-sequence-learning-?">What is BPTT and it's issues with sequence learning ?<a class="anchor-link" href="#What-is-BPTT-and-it's-issues-with-sequence-learning-?">&#182;</a></h2><p><strong>Total Loss:</strong> In sequence learning (RNN, LSTM, GRU etc.) the total loss is simply the sum of the loss over all the time steps.</p>
+<ul>
+<li>Take a pause and think that for non sequence learning, there is no concept of each time step and they have only single loss function.</li>
+<li>In normal backpropagation, you need to get the gradient w.r.t weight and bias using chain rule and done. </li>
+<li>Whereas, in sequence learning due to the presence of time step, you need to get the <code>loss gradient</code> for each time step and then aggregate them.</li>
+</ul>
+<p>So total loss for sequence learning is</p>
+<p>$$L(\theta) = \sum\limits‎_{t=1}^{T} L_t(\theta) $$</p>
+<p><img src="bptt.png" alt="image"></p>
+<p>In the above image is a simple vanila RNN, where $t$ is from $1$ to $4$.  For back propagation we need to compute the graident w.r.t $W$, $U$, $V$.</p>
+<p>Now taking derivative w.r.t $V$ is straight forward.</p>
+<p>$$\frac{\delta L(\theta)}{\delta V} = \sum\limits_{t=1}^{T} \frac{\delta L_t(\theta)}{\delta V}$$</p>
+<p>Probelm arrives now while taking derivative w.r.t $W$.</p>
+<p>$$\frac{\delta L(\theta)}{\delta W} = \sum\limits_{t=1}^{T} \frac{\delta L_t(\theta)}{\delta W}$$</p>
+<p>However, while applying chain rule $L_4(\theta)$ is dependent on $s_4$, $s_4$ is dependent on $W$ and $s_3$, $s_3$ is dependent on $s_2$ and so on. So while taking derivative of $s_i$ w.r.t $W$, we can't take $s_{i-1}$ as constant. That's the problem in such <code>ordered network</code></p>
+<p>Therefore, in such network the total derivative $\frac{\delta s_4}{\delta W}$ has 2 parts.</p>
+<ul>
+<li><strong>Explicit:</strong> Treating all other input as constant</li>
+<li><strong>Implicit:</strong> Summing over all indirect paths from $s_4$ to $W$.</li>
+</ul>
+<p><img src="bptt_1.png" alt="image"></p>
+<p><img src="bptt_2.png" alt="image"></p>
+<p>Resource:</p>
+<ul>
+<li><a href="http://www.cse.iitm.ac.in/~miteshk/CS7015.html">Lecture 14 by Prof.Mitesh K</a></li>
+<li><a href="https://www.youtube.com/watch?v=Xeb6OjnVn8g&amp;feature=youtu.be">Youtube lecture by Prof. Mitesh K</a></li>
+<li><a href="http://www.wildml.com/2015/10/recurrent-neural-networks-tutorial-part-3-backpropagation-through-time-and-vanishing-gradients/">Blog by Danny Britz from WINDML</a></li>
 </ul>
 <h2 id="Vanishing-Gradient-in-CNN-and-RNN:">Vanishing Gradient in CNN and RNN:<a class="anchor-link" href="#Vanishing-Gradient-in-CNN-and-RNN:">&#182;</a></h2><ul>
 <li>When talking about RNN, the vanishing gradient problem refers to the <code>change of gradient in one RNN layer over different time steps</code> (because the repeated use of the recurrent weight matrix). </li>
@@ -11841,6 +11946,15 @@ $( document ).ready(function(){
 - The error gradient values are consistently above 1.0 for each node and layer during training.
 
 </code></pre>
+<h3 id="how-to-fix-Exploding-or-Vanisihng-Gradient-in-sequence-model?">how to fix Exploding or Vanisihng Gradient in sequence model?<a class="anchor-link" href="#how-to-fix-Exploding-or-Vanisihng-Gradient-in-sequence-model?">&#182;</a></h3><ul>
+<li>Tranucated BPTT, i.e, you will not look back more than $k$ timesteps where $k \lt t$</li>
+<li>Gradient Clipping</li>
+</ul>
+<p>Resource:</p>
+<ul>
+<li><a href="http://www.cse.iitm.ac.in/~miteshk/CS7015.html">Lecture 14 by Prof.Mitesh Khapra</a></li>
+<li><a href="https://www.youtube.com/watch?v=EB1SoyivHFU&amp;feature=youtu.be">Youtube video of the above lecture</a></li>
+</ul>
 <h3 id="How-to-Fix-Exploding-Gradients?">How to Fix Exploding Gradients?<a class="anchor-link" href="#How-to-Fix-Exploding-Gradients?">&#182;</a></h3><ol>
 <li><p>Re-Design the Network Model</p>
 <ul>
@@ -11954,7 +12068,7 @@ So that's why LSTM is so good at learning long range dependencies.</p>
 <p>$$-{(y\log(p) + (1 - y)\log(1 - p))}$$</p>
 <p>If $M\gt2$ (i.e. multiclass classification), we calculate a separate loss for each class label per observation and sum the result.</p>
 <p>$$-\sum_{c=1}^My_{o,c}\log(p_{o,c})$$</p>
-<p><strong>Summary:</strong></p>
+<p>Summary</p>
 <p><img src="loss_function.png" alt="image"></p>
 <p><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015.html">Image Source: From Prof. Mitesh Khapra, Lecture 4, [slide page 95]</a></p>
 <p>References:</p>
@@ -11964,7 +12078,7 @@ So that's why LSTM is so good at learning long range dependencies.</p>
 <li><a href="https://isaacchanghau.github.io/post/loss_functions/">Blog</a></li>
 <li><a href="(https://www.cse.iitm.ac.in/~miteshk/CS7015.html">Deep Learning Lecture 4 by Prof. Mitesh khapra</a>)</li>
 </ul>
-<h2 id="What-is-BPTT-and-it's-issues-with-sequence-learning-?">What is BPTT and it's issues with sequence learning ?<a class="anchor-link" href="#What-is-BPTT-and-it's-issues-with-sequence-learning-?">&#182;</a></h2><h2 id="How-does-Attention-Works-?">How does Attention Works ?<a class="anchor-link" href="#How-does-Attention-Works-?">&#182;</a></h2><blockquote><blockquote><p>The attention-mechanism looks at an input sequence and decides at each step which other parts of the sequence are important.</p>
+<h2 id="How-does-Attention-Works-?">How does Attention Works ?<a class="anchor-link" href="#How-does-Attention-Works-?">&#182;</a></h2><blockquote><blockquote><p>The attention-mechanism looks at an input sequence and decides at each step which other parts of the sequence are important.</p>
 </blockquote>
 </blockquote>
 <p>When reading a text, you always focus on the word you read but at the same time your mind still holds the important keywords of the text in memory in order to provide context.</p>
