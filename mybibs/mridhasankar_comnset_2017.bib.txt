@@ -1,4 +1,0 @@
-@article{sharmacommbox,
-  title={CommBox: Utilizing Sensors for Real-Time Cricket Shot Identification and Commentary Generation},
-  author={Sharma, Ashish and Arora, Jatin and Khan, Pritam and Satapathy, Sidhartha and Agarwal, Sumit and Sengupta, Satadal and Mridha, Sankarshan and Ganguly, Niloy}
-}
