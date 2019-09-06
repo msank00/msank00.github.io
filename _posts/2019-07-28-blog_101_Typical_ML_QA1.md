@@ -341,8 +341,10 @@ In the higher dimension, they are separated linearly.
 
 ## **Explain PCA? Tell me the mathematical steps to implement PCA?**
 + In PCA, we are interested to find the directions (components) that maximize the variance in our dataset)
-  + maximizes the variance
-  + minimizes the reconstruction error
++ PCA can be seen as:
+  + Learning the projection direction that captures `maximum variance` in data.
+  + Learning the projection direction that results in `smallest reconstruction error`
+  + Changing the basis in which the data is represented and transforming the features such that new features become `de-correlated` (Orthogonal Principal Component)
 + Let’s assume that our goal is to reduce the dimensions of a d-dimensional 
 dataset by projecting it onto a `k`-dimensional subspace (where `k<d`). So, 
 how do we know what size we should choose for `k`, and how do we know if we 
@@ -362,14 +364,16 @@ have a feature space that represents our data **well**?
 + the corresponding `kth` Eigenvalue determines the variance along `kth` Eigenvector
 
 ### Tl;DR: Steps 
-  + Let $X$ is the original dataset (`n x d`) [$n$: data points, $d$: dimension]
-  + Centered the data w.r.t mean and get the centered data: $M$ 
-  + Compute covariance matrix: $C=(MM^T)/(n-1)$
-  + Diagonalize it: $C = VDV^T$. $V$ is an `orthogonal` matrix so $V^T = V^{-1}$ [[proof](https://math.stackexchange.com/questions/1936020/why-is-the-inverse-of-an-orthogonal-matrix-equal-to-its-transpose)]
-  + Compute `principal component`: $P = V\sqrt{D}$.
+  + Let $X$ is the original dataset ($n$ x $d$) [$n$: data points, $d$: dimension]
+  + Centered the data w.r.t mean and get the centered data: $M$ [dim: $n$ x $d$]
+  + Compute covariance matrix: $C=(MM^T)/(n-1)$ [$d$ x $d$]
+  + Diagonalize it i.e do `eigen decompositoin`: $C = VDV^T$. $V$ is an `orthogonal` matrix so $V^T = V^{-1}$ [[proof](https://math.stackexchange.com/questions/1936020/why-is-the-inverse-of-an-orthogonal-matrix-equal-to-its-transpose)]
+    + $V$: [dim: $d$ x $k$]
+    + $D$: [dim: $k$ x $k$]
+  + Compute `principal component`: $P = V\sqrt{D}$. Or you can also take the first $k$ leading `eigen vectors` from $V$ and the corresponding `eigen values` from $D$ and calculate $P$. [$P$ dim: $d$ x $k$]  
   + Combining all:
   $$C=(MM^T)/(n-1)=VDV^T= = V\sqrt{D}\sqrt{D}V^T =  PP^T$$
-  + Apply principle component matrix $P$ on the centered data $M$ to get the tranformed data projected on the principle component and thus doing `dimensionality reduction`: $M* = M^T P$, [M*: new dataset after the PCA]
+  + Apply principle component matrix $P$ on the centered data $M$ to get the tranformed data projected on the principle component and thus doing `dimensionality reduction`: $M^* = M P$, [$M^*$: new dataset after the PCA, dim: $n$ x $k$]. $k \lt d$, i.e. `dimension reduced` using `PCA`.
 
 **Resource:**
 + [pdf](http://www.math.ucsd.edu/~gptesler/283/slides/pca_15-handout.pdf)
