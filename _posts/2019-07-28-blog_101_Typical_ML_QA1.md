@@ -341,15 +341,16 @@ In the higher dimension, they are separated linearly.
 
 ## **Explain PCA? Tell me the mathematical steps to implement PCA?**
 + In PCA, we are interested to find the directions (components) that maximize the variance in our dataset)
+  + maximizes the variance
+  + minimizes the reconstruction error
 + Let’s assume that our goal is to reduce the dimensions of a d-dimensional 
 dataset by projecting it onto a `k`-dimensional subspace (where `k<d`). So, 
 how do we know what size we should choose for `k`, and how do we know if we 
 have a feature space that represents our data **well**?
-  + We will compute eigenvectors (the components) from our data set and 
+  + We will compute `eigenvectors` (the components) from our data set and 
   collect them in a so-called scatter-matrix (or alternatively calculate 
-  them from the **covariance matrix**). Each of those eigenvectors is associated 
-  with an eigenvalue, which tell us about the `length` or `magnitude` of the 
-  eigenvectors. If we observe that all the eigenvalues are of very similar 
+  them from the **covariance matrix**). 
+  + Each of those eigenvectors is associated with an eigenvalue, which tell us about the `length` or `magnitude` of the eigenvectors. If we observe that all the eigenvalues are of very similar 
   magnitude, this is a good indicator that our data is already in a "good" 
   subspace. Or if some of the eigenvalues are much much higher than others, 
   we might be interested in keeping only those eigenvectors with the much 
@@ -359,14 +360,22 @@ have a feature space that represents our data **well**?
   the new feature subspace.
 + `kth` Eigenvector determines the `kth` direction that maximizes the variance in that direction.
 + the corresponding `kth` Eigenvalue determines the variance along `kth` Eigenvector
+
+### Tl;DR: Steps 
+  + Let $X$ is the original dataset (`n x d`) [$n$: data points, $d$: dimension]
+  + Centered the data w.r.t mean and get the centered data: $M$ 
+  + Compute covariance matrix: $C=(MM^T)/(n-1)$
+  + Diagonalize it: $C = VDV^T$. $V$ is an `orthogonal` matrix so $V^T = V^{-1}$ [[proof](https://math.stackexchange.com/questions/1936020/why-is-the-inverse-of-an-orthogonal-matrix-equal-to-its-transpose)]
+  + Compute `principal component`: $P = V\sqrt{D}$.
+  + Combining all:
+  $$C=(MM^T)/(n-1)=VDV^T= = V\sqrt{D}\sqrt{D}V^T =  PP^T$$
+  + Apply principle component matrix $P$ on the centered data $M$ to get the tranformed data projected on the principle component and thus doing `dimensionality reduction`: $M* = M^T P$, [M*: new dataset after the PCA]
+
+**Resource:**
 + [pdf](http://www.math.ucsd.edu/~gptesler/283/slides/pca_15-handout.pdf)
-+ [link1](https://towardsdatascience.com/a-one-stop-shop-for-principal-component-analysis-5582fb7e0a9c)
-+ [link2](https://rstudio-pubs-static.s3.amazonaws.com/249839_48d65d85396a465986f2d7df6db73c3d.html)
-+ **Tl;DR**: 
-  + let $X$ is the original dataset (`n x d`), and $M$ is the centered data wrt mean. 
-  + Now compute covariance matrix, diagonalize it, compute principal component P.
-  + `C=(MM')/(n-1)=VDV'=PP'` where `P=Vsqrt(D)`. [C: Cov Matrix]
-  + `M* = M'P`, [M*: new dataset after the PCA]
++ [Link1](https://towardsdatascience.com/a-one-stop-shop-for-principal-component-analysis-5582fb7e0a9c)
++ [Link2](https://rstudio-pubs-static.s3.amazonaws.com/249839_48d65d85396a465986f2d7df6db73c3d.html)
++ [PPT: Prof. Piyush Rai IIT Kanpur](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec11_slides.pdf)
 
 ### **What is disadvantage of using PCA?**
 
