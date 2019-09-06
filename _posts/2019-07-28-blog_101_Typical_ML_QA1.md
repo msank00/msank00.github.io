@@ -366,7 +366,7 @@ have a feature space that represents our data **well**?
 ### Tl;DR: Steps 
   + Let $X$ is the original dataset ($n$ x $d$) [$n$: data points, $d$: dimension]
   + Centered the data w.r.t mean and get the centered data: $M$ [dim: $n$ x $d$]
-  + Compute covariance matrix: $C=(MM^T)/(n-1)$ [$d$ x $d$]
+  + Compute covariance matrix: $C=(MM^T)/(n-1)$ [dim: $d$ x $d$]
   + Diagonalize it i.e do `eigen decompositoin`: $C = VDV^T$. $V$ is an `orthogonal` matrix so $V^T = V^{-1}$ [[proof](https://math.stackexchange.com/questions/1936020/why-is-the-inverse-of-an-orthogonal-matrix-equal-to-its-transpose)]
     + $V$: [dim: $d$ x $k$]
     + $D$: [dim: $k$ x $k$]
