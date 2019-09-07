@@ -5,7 +5,7 @@ date:   2019-07-28 00:11:31 +0530
 categories: jekyll update
 mathjax: true
 ---
-# Machine Learning Concepts Clearing
+
 
 ## Linear Regression
 
@@ -539,7 +539,29 @@ Steps to void overfitting:
 [ref 1](https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html)
 
 
+------
 
+## Gaussian Processing
+
+![image](/assets/images/image_11_GP_1.png)
+![image](/assets/images/image_11_GP_2.png)
+![image](/assets/images/image_11_GP_3.png)
+![image](/assets/images/image_11_GP_4.png)
+![image](/assets/images/image_11_GP_5.png)
+
+
+- GP: Collection of random variables, any finite number of which are Gaussian Distributed
+- Easy to use: Predictions correspond to models with infinite parameters
+- Problem: $N^3$ complexity
+   
+
+### Resource
+
+- [Slide: Prof. Richard Turner](http://gpss.cc/gpss13/assets/Sheffield-GPSS2013-Turner.pdf)
+- [Lecture Video: Prof. Richard Turner](https://www.youtube.com/watch?v=92-98SYOdlY)
+- [Gaussian Process](http://www.gaussianprocess.org/)
+
+----
 
 ## Bayesian Machine Learning
 
