@@ -562,7 +562,106 @@ Steps to void overfitting:
 - [Gaussian Process](http://www.gaussianprocess.org/)
 
 ----
+## K-Means Clustering (Unsupervised Learning)
 
+![image](/assets/images/image_13_KMeans_1.png)
+![image](/assets/images/image_13_KMeans_2.png)
+![image](/assets/images/image_13_KMeans_3.png)
+![image](/assets/images/image_13_KMeans_4.png)
+![image](/assets/images/image_13_KMeans_5.png)
+![image](/assets/images/image_13_KMeans_6.png)
+
+
+### Resource:
+- [Prof. Piyush Rai, Lecture 10](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec10_slides.pdf)
+
+----
+
+## PCA and Kernel PCA
+
+
+### Resource:
+- [Prof. Piyush Rai, Lecture 11](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec11_slides.pdf)
+
+
+----
+## Generative Model (Unsupervised Learning)
+
+
+![image](/assets/images/image_12_GenModel_1.png)
+![image](/assets/images/image_12_GenModel_2.png)
+![image](/assets/images/image_12_GenModel_3.png)
+![image](/assets/images/image_12_GenModel_4.png)
+![image](/assets/images/image_12_GenModel_5.png)
+![image](/assets/images/image_12_GenModel_6.png)
+
+
+### Resource:
+
+- [Prof. Piyush Rai, Lecture 15](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec15_slides.pdf)
+
+---- 
+## Ensemble Method (Bagging and Boosting)
+
+![image](/assets/images/image_15_Ensemble_1.png)
+![image](/assets/images/image_15_Ensemble_2.png)
+![image](/assets/images/image_15_Ensemble_3.png)
+![image](/assets/images/image_15_Ensemble_4.png)
+![image](/assets/images/image_15_Ensemble_5.png)
+![image](/assets/images/image_15_Ensemble_6.png)
+![image](/assets/images/image_15_Ensemble_7.png)
+
+### Resource:
+
+- [Prof. Piyush Rai, Lecture 21](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec21_slides.pdf)
+
+
+----
+## Online Learning
+
+![image](/assets/images/image_14_OnlineLearning_1.png)
+![image](/assets/images/image_14_OnlineLearning_2.png)
+![image](/assets/images/image_14_OnlineLearning_3.png)
+![image](/assets/images/image_14_OnlineLearning_4.png)
+
+### Resource:
+
+- [Prof. Piyush Rai, Lecture 26](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec26_slides.pdf)
+
+----
+## Model/ Feature Selection and Model Debugging
+
+![image](/assets/images/image_16_ModelSelection_1.png)
+
+**Different strategies:**
+
+- Hold-out/ Validation data
+  - Problem: Wastes training time
+- K-Fold Cross Validation (CV)
+- Leave One Out (LOO) CV
+  - Problem: Expensive for large $N$.
+  - But very efficient when used for selecting the number of neighbors to consider in nearest neighbor methods. (reason:  NN methods require no training)
+- Random Subsampling based Cross-Validation
+- Bootstrap Method
+  
+![image](/assets/images/image_16_ModelSelection_2.png)
+
+- Information Criteria based methods
+  
+![image](/assets/images/image_16_ModelSelection_3.png)
+
+### Debugging Learning Algorithm
+
+![image](/assets/images/image_16_ModelSelection_4.png)
+![image](/assets/images/image_16_ModelSelection_5.png)
+![image](/assets/images/image_16_ModelSelection_6.png)
+![image](/assets/images/image_16_ModelSelection_7.png)
+
+### Resource:
+
+- [Prof. Piyush Rai, Lecture 19](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec19_slides.pdf)
+
+----
 ## Bayesian Machine Learning
 
 Coursera - Bayesian Methods for Machine Learning
