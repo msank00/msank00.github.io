@@ -9,17 +9,55 @@ mathjax: true
 ## **How do you find the similar documents related to some query sentence/search?**
 
 + Simplest apporach is to do tf-idf of both documents and query, and then measure cosine distance (i.e., dot product)
-+ On top of that, if you use SVD/PCA/LSA on the tfidf matrix, it should further improve results. 
++ On top of that, if you use `SVD/PCA/LSA` on the tfidf matrix, it should further improve results. 
 
-Source:
+#### Source:
 
 - [Blog1](https://www.r-bloggers.com/build-a-search-engine-in-20-minutes-or-less/)
 - [Imp Blog2](http://searchivarius.org/blog/brief-overview-querysentence-similarity-functions)
 
-## **Latent Semantic Analysis (LSA) for Text Classification Tutorial**
+## What is POS tagger? 
+
+ > A Part-Of-Speech Tagger (POS Tagger) is a piece of software that reads text in some language and assigns parts of speech to each word (and other token), such as noun, verb, adjective, etc.
+
+PoS taggers use an algorithm to label terms in text bodies. These taggers make more complex categories than those defined as basic PoS, with tags such as “noun-plural” or even more complex labels.
+
+### How to build a POS simple tagger?
+
+**Simple Idea:** 
+
+- First collect tagged sentences
+
+```py
+import nltk
+tagged_sentences = nltk.corpus.treebank.tagged_sents()
+```
+
+- Preprocess the sentences and create `[(word_1, tag_1), ... (word_n, tag_n)]`. This becomes your $X$ and $Y$.
+
+- Train a multiclass classification algorithm like RandomForest and build your model
+
+- Give test sentence, split into words, feed to the model and get corresponding tags.
+
+**Resource:**
+- [Build your own POS tagger](https://nlpforhackers.io/training-pos-tagger/)
+
+- [Build more complex POS tagger with Keras](https://nlpforhackers.io/lstm-pos-tagger-keras/)
+- [NLP for Hackers](https://nlpforhackers.io)
+
+---
+## **Latent Semantic Analysis (LSA) for Text Classification Tutorial**?
+
+### What is Latent Semantic Indexing?
+
+Latent semantic indexing is a mathematical technique to extract information from unstructured data. It is based on the principle that words used in the same context carry the same meaning.
+
+In order to identify relevant (concept) components, or in other words, aims to group words into classes that represent concepts or semantic fields, this method applies `Singular Value Decomposition` to the `Term-Document matrix` **tf-idf**. As the name suggests this matrix consists of words as rows and document as columns. 
+
 
 - [Blog](https://mccormickml.com/2016/03/25/lsa-for-text-classification-tutorial/)
 
+----
 ## **Explain TF-IDF ? What is the drawback of Tf-Idf ? How do you overcome it ?**
 
 ### **Advantages:**
@@ -42,8 +80,13 @@ Source:
 + [AVB-Different word counting technique](https://www.analyticsvidhya.com/blog/2017/06/word-embeddings-count-word2veec/)
 
 ## So As per my experience, Tf-Idf fails in document classification/clustering ? How can you improve further ?
+---
 
 ## **What are word2vec vectors?**
+
+`Word2Vec`  embeds words in a lower-dimensional vector space using a shallow neural network. The result is a set of word-vectors where vectors close together in vector space have similar meanings based on context, and word-vectors distant to each other have differing meanings. For example, `apple` and `orange` would be close together and apple and gravity would be relatively far. There are two versions of this model based on skip-grams (SG) and continuous-bag-of-words (CBOW).
+
+---
 
 ## **How can I design a chatbot ? (I had little idea but I tried answering it with intent and response tf-idf based similarity)**
 + [Adit Deshpande](https://adeshpande3.github.io/adeshpande3.github.io/How-I-Used-Deep-Learning-to-Train-a-Chatbot-to-Talk-Like-Me)
@@ -90,6 +133,27 @@ Okay that is the baseline people start with ? What can you do more with machine 
 8. How would you build a system that automatically groups news articles by subject?
 9. What are stop words? Describe an application in which stop words should be removed.
 10. How would you design a model to predict whether a movie review was positive or negative?
+11. Do you know about latent semantic indexing? Where can you apply it?
+12. Is it possible to find all the occurrences of quoted text in an article? If yes, explain how?
+13. What is a POS tagger? Explain the simplest approach to build a POS tagger?
+14. Which is a better algorithm for POS tagging – SVM or hidden Markov models?
+15. What is the difference between shallow parsing and dependency parsing?
+16. What package are you aware of in python which is used in NLP and ML?
+17. Explain one application in which stop words should be removed.
+18. How will you train a model to identify whether the word “Raymond” in a sentence represents a person’s name or a company?
+19. Which is better to use while extracting features character n-grams or word n-grams? Why?
+20. What is a POS tagger? How can you built one?
+21. What is dimensionality reduction?
+22. Explain the working of SVM/NN/Maxent algorithms
+23. Which is a better algorithm for POS tagging - SVM or hidden markov models ? why?
+24. What packages are you aware of in python which are used in NLP and ML?
+25. What are conditional random fields ?
+26. When can you use Naive Bayes algorithm for training, what are its advantages and disadvantages?
+27. How would you build a POS tagger from scratch given a corpus of annotated sentences? How would you deal with unknown words?
+28. What is part of speech (POS) tagging? What is the simplest approach to building a POS tagger that you can imagine?
+
+
+
 
 **Related fields such as information theory, linguistics and information retrieval**
 
@@ -99,6 +163,18 @@ Okay that is the baseline people start with ? What can you do more with machine 
 4. How does the PageRank algorithm work?
 5. What is dependency parsing?
 6. What are the difficulties in building and using an annotated corpus of text such as the Brown Corpus and what can be done to mitigate them?
+7. Differentiate regular grammar and regular expression.
+8. How will you estimate the entropy of the English language?
+9. Describe dependency parsing?
+10. What do you mean by Information rate?
+11. Explain Discrete Memoryless Channel (DMC).
+12. How does correlation work in text mining?
+13. How to calculate TF*IDF for a single new document to be classified?
+14. How to build ontologies?
+15. What is an N-gram in the context of text mining?
+16. What do you know about linguistic resources such as WordNet?
+17. Explain the tools you have used for training NLP models?
+
 
 **Tools and languages**
 
