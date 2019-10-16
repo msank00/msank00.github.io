@@ -15,6 +15,7 @@ mathjax: true
 
 - [Blog1](https://www.r-bloggers.com/build-a-search-engine-in-20-minutes-or-less/)
 - [Imp Blog2](http://searchivarius.org/blog/brief-overview-querysentence-similarity-functions)
+----
 
 ## What is POS tagger? 
 
@@ -22,7 +23,7 @@ mathjax: true
 
 PoS taggers use an algorithm to label terms in text bodies. These taggers make more complex categories than those defined as basic PoS, with tags such as “noun-plural” or even more complex labels.
 
-### How to build a POS simple tagger?
+### How to build a POS simple tagger? How to account for the new word?
 
 **Simple Idea:** 
 
@@ -44,6 +45,35 @@ tagged_sentences = nltk.corpus.treebank.tagged_sents()
 
 - [Build more complex POS tagger with Keras](https://nlpforhackers.io/lstm-pos-tagger-keras/)
 - [NLP for Hackers](https://nlpforhackers.io)
+
+----
+## How would you train a model that identifies whether the word “Apple” in a sentence belongs to the fruit or the company?
+
+- This is a classic example of `Named Entity Recognition`. It is a statistical technique that (most commonly) uses `Conditional Random Fields` to find named entities, based on having been trained to learn things about named entities. Essentially, it looks at the content and context of the word, (looking back and forward a few words), to estimate the probability that the word is a named entity. 
+
+
+### How to build your own NER model?
+
+- It's a supervised learning problem. So first you need to get labelled data, i.e `words` and `entity_tag`  pair. For example (`London`,`GEO`), (`Apple Corp.`, `ORG`) and then train some model.
+- As a novice model, apply scikit learn multiclass classification algorithm.
+- For a more mature model use scikit learn `conditional random field` technique for creating a better model.
+
+#### Resource:
+
+- [named-entity-recognition-and-classification-with-scikit-learn](https://towardsdatascience.com/named-entity-recognition-and-classification-with-scikit-learn-f05372f07ba2)
+- [training ner with sklearn](https://nlpforhackers.io/training-ner-large-dataset/)
+- [deep learning based NER](https://appliedmachinelearning.blog/2019/04/01/training-deep-learning-based-named-entity-recognition-from-scratch-disease-extraction-hackathon/)
+- [Named Entity Recognition (NER) with keras and tensorflow](https://towardsdatascience.com/named-entity-recognition-ner-meeting-industrys-requirement-by-applying-state-of-the-art-deep-698d2b3b4ede)
+
+### What is LBFGS algorithm?
+
+- In numerical optimization, the `Broyden–Fletcher–Goldfarb–Shanno` (BFGS) algorithm is an `iterative method` for solving `unconstrained nonlinear optimization` problems.
+- The BFGS method belongs to quasi-Newton methods, a class of hill-climbing optimization techniques that seek a stationary point of a (preferably twice continuously differentiable) function. For such problems, a necessary condition for optimality is that the gradient be zero. Newton's method and the BFGS methods are not guaranteed to converge unless the function has a quadratic Taylor expansion near an optimum. However, BFGS can have acceptable performance even for non-smooth optimization instances.
+
+**Resource:**
+
+- [Wikipedia](https://www.google.com/search?q=BFGS+algorithm&ie=utf-8&oe=utf-8&client=firefox-b-e&safe=strict)
+
 
 ---
 ## **Latent Semantic Analysis (LSA) for Text Classification Tutorial**?
