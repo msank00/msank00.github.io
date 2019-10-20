@@ -87,10 +87,67 @@ These are pure gold.
 - [Blog](https://towardsdatascience.com/9-tips-for-training-lightning-fast-neural-networks-in-pytorch-8e63a502f565)
 ---
 
-## **How to write training loop in PyTorch?**
+## How to write training loop in PyTorch?
 
 - [notebook](https://nbviewer.jupyter.org/github/msank00/deeplearning_4m_scratch/blob/master/03_minibatch_training.ipynb)
 
+## How to use `checkpoint` in your code?
+
+### What is checkpoint?
+
+
+- The architecture of the model, allowing you to re-create the model
+- The weights of the model
+- The training configuration (loss, optimizer, epochs, and other meta-information)
+- The state of the optimizer, allowing to resume training exactly where you left off.
+
+> Again, a checkpoint contains the information you need to save your current experiment state so that you can resume training from this point.
+
+### How to save and load checkpoint in Pytorch?
+
+```py
+#Saving a checkpoint
+torch.save(checkpoint, ‘checkpoint.pth’)#Loading a checkpoint
+checkpoint = torch.load( ‘checkpoint.pth’)
+```
+
+> A checkpoint is a python dictionary that typically includes the following:
+
+1. **Network structure:** input and output sizes and Hidden layers to be able to reconstruct the model at loading time.
+2. **Model state dict:** includes parameters of the network layers that is learned during training, you get it by calling this method on your model instance.
+`model.state_dict()`
+3. **Optimizer state dict:** In case you are saving the latest checkpoint to continue training later, you need to save the optimizer’s state as well.
+you get it by calling this method on an optimizer’s instance `optimizer.state_dict()`
+4. Additional info: You may need to store additional info, like number of epochs and your class to index mapping in your checkpoint.
+
+```py
+#Example for saving a checkpoint assuming the network class named #Classifier
+checkpoint = {'model': Classifier(),
+              'state_dict': model.state_dict(),
+              'optimizer' : optimizer.state_dict()}
+
+torch.save(checkpoint, 'checkpoint.pth')
+```
+
+```py
+def load_checkpoint(filepath):
+    checkpoint = torch.load(filepath)
+    model = checkpoint['model']
+    model.load_state_dict(checkpoint['state_dict'])
+    for parameter in model.parameters():
+        parameter.requires_grad = False
+
+    model.eval()
+    return model
+
+model = load_checkpoint('checkpoint.pth')
+```
+
+
+**Resource:**
+- [saving-loading-your-model-in-pytorch](https://medium.com/udacity-pytorch-challengers/saving-loading-your-model-in-pytorch-741b80daf3c)
+- [checkpointing-tutorial-for-tensorflow-keras-and-pytorch](https://blog.floydhub.com/checkpointing-tutorial-for-tensorflow-keras-and-pytorch/)
+- [Notebook-Github](https://github.com/msank00/nlproc/blob/master/text_classification_pytorch_v1.ipynb)
 ---
 
 ## **Dive into Deep Learning with PyTroch**
