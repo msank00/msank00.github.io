@@ -148,6 +148,15 @@ model = load_checkpoint('checkpoint.pth')
 - [saving-loading-your-model-in-pytorch](https://medium.com/udacity-pytorch-challengers/saving-loading-your-model-in-pytorch-741b80daf3c)
 - [checkpointing-tutorial-for-tensorflow-keras-and-pytorch](https://blog.floydhub.com/checkpointing-tutorial-for-tensorflow-keras-and-pytorch/)
 - [Notebook-Github](https://github.com/msank00/nlproc/blob/master/text_classification_pytorch_v1.ipynb)
+
+---
+## Text Classification in Pytorch
+
+PyTorchNLPBook by Delip Rao, Chapter 3
+
+- [Classifying_Yelp_Review_Sentiment](https://nbviewer.jupyter.org/github/joosthub/PyTorchNLPBook/blob/master/chapters/chapter_3/3_5_Classifying_Yelp_Review_Sentiment.ipynb)
+
+
 ---
 
 ## **Dive into Deep Learning with PyTroch**
