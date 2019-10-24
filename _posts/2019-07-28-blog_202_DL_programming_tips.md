@@ -235,3 +235,7 @@ Source:
 - [Youtube: Full Stack Deep Learning](https://www.youtube.com/channel/UCVchfoB65aVtQiDITbGq2LQ/videos)
 
 ----
+
+## Some useful blogs:
+
+- [Understanding binary cross-entropy / log loss: a visual explanation](https://towardsdatascience.com/understanding-binary-cross-entropy-log-loss-a-visual-explanation-a3ac6025181a)
