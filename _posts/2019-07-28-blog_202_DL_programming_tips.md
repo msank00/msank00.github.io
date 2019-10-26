@@ -80,6 +80,14 @@ These are pure gold.
 
 ---
 
+## Pytorch Learning
+
+- [JovianML: Pytorch Basics](https://jovian.ml/aakashns/01-pytorch-basics)
+- [IMP Pytorch-tutorial](https://github.com/yunjey/pytorch-tutorial)
+- [JovianML: Linear Regression in Pytorch](https://jovian.ml/aakashns/02-linear-regression)
+
+___
+
 ## Difference of `Conv1D` and `Conv2D` in deep learning.
 
 **Conv2D**
