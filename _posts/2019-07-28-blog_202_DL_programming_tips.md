@@ -80,8 +80,71 @@ These are pure gold.
 
 ---
 
+## Difference of `Conv1D` and `Conv2D` in deep learning.
+
+**Conv2D**
+In simple terms, images have shape `(height, width)`. So a filter can move in 2 direction, so `conv2D` is used.
+
+![image](https://miro.medium.com/max/700/1*VVvdh-BUKFh2pwDD0kPeRA@2x.gif)
+
+In the above image, the green matrix is the `kernel` convolving on `2 direction` over the image and creating the red `feature map` in the right
+
+**Conv1D**
+But in case of text, initially the text are converted to some fixed dimension vectors `one-hot-encoded` or `dense embedding` of fixed dimension. Where the filters can move in one direction only, i.e in the direction of the words or characters, but not in the corresponsing embedding dimension because it's fixed.   
+
+![image](https://debajyotidatta.github.io/assets/images/conv.001.png)
+
+- So the green boxes represent the words or the characters depending on your approach. 
+- And the corresponding blue rows shows the vector representation (one-hot-encoding or embedding) of the words or the characters.
+
+Here is a corresponding kernel whose `height=kernel size` but it's `widht=embedding_dim` which is fixed. 
+
+![kernel](https://debajyotidatta.github.io/assets/images/conv.002.png)
+
+So the above kernel can move along the direction of the words or characters, i.e, along the green boxes in the previous image.
+
+> **Convolve is a fancy term for multiplication with corresponding cells and adding up the sum.** 
+
+It varies based on things like 1. `stride` (How much the filter moves every stage?) and the 2. `length` of the filter. The output of the convolution operation is directly dependent on these two aspects. 
+
+_first convolution_
+
+![image](https://debajyotidatta.github.io/assets/images/conv.003.png)
+
+_last convolution_
+
+![image](https://debajyotidatta.github.io/assets/images/conv.006.png)
+
+See after each `stride` a single cell is generated at the right and after the full pass, a 1D vector is generated.
+
+Now if multiple convolution filters are used, then multiple such `1D vectors` will be generated. Then you do `maxpooling` to get the `max element` from each such `1D` vector and then soncatenate and finally apply `softmax`.
+
+_multiple feature maps due to multiple kernels_
+
+![image](https://debajyotidatta.github.io/assets/images/conv2.006.png)
+
+_max pooling and concatenation_
+
+![image](https://debajyotidatta.github.io/assets/images/conv2.007.png)
+
+The entire process was very nicely illustrated by Zhang et al, in the paper “A Sensitivity Analysis of (and Practitioners’ Guide to) Convolutional Neural Networks for Sentence Classification”, for words.
 
 
+![image](https://debajyotidatta.github.io/assets/images/Zhang.png)
+
+
+
+
+
+
+
+**Resource:**
+
+- [Understanding Convolutions in Text](https://debajyotidatta.github.io/nlp/deep/learning/word-embeddings/2016/11/27/Understanding-Convolutions-In-Text/)
+
+
+
+---
 ## **9 Tips For Training Lightning-Fast Neural Networks In Pytorch**
 
 - [Blog](https://towardsdatascience.com/9-tips-for-training-lightning-fast-neural-networks-in-pytorch-8e63a502f565)
@@ -154,7 +217,7 @@ model = load_checkpoint('checkpoint.pth')
 
 PyTorchNLPBook by Delip Rao, Chapter 3
 
-- [Classifying_Yelp_Review_Sentiment](https://nbviewer.jupyter.org/github/joosthub/PyTorchNLPBook/blob/master/chapters/chapter_3/3_5_Classifying_Yelp_Review_Sentiment.ipynb)
+- [Classifying_Yelp_Review_Sentiment](https://nbviewer.jupyter.org/github/msank00/nlproc/blob/master/Classifying_Yelp_Reviews.ipynb)
 
 
 ---
