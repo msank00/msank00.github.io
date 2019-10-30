@@ -1,11 +1,17 @@
 ---
 layout: post
-title:  "Blog 202: Deep Learning Programming Tips"
+title:  "Blog 202: Deep Learning Programming Tips, Best Practices System Design "
 date:   2019-07-28 00:11:31 +0530
 categories: jekyll update
 mathjax: true
 ---
 
+## To learn how to design machine learning systems
+
+> I find it really helpful to read case studies to see how great teams deal with different deployment requirements and constraints.
+
+- [Tweet: Chip Huyen](https://twitter.com/chipro/status/1188653180902445056)
+---
 ## **Deep Learning Best Practices - Mistakes and Tips**
 
 The purpose of this repo is to consolidate all the **Best Practicies** for building neural network model curated over the internet
@@ -79,7 +85,15 @@ These are pure gold.
 - [ICLR2019_Workshop_on_Debug_ML](https://github.com/debug-ml-iclr2019/debug-ml-iclr2019.github.io)
 
 ---
+## Software Engineering Skills for Data Science
 
+> Because our day-to-day involves writing code, I am convinced that we data scientists need to be equipped with basic software engineering skills. Being equipped with these skills will help us write code that is, in the long-run, easy to recap, remember, reference, review, and rewrite. In this collection of short essays, I will highlight the basic software skills that, if we master, will increase our efficiency and effectiveness in the long-run.
+
+**Reference:**
+
+- [Essays on Data Science](https://ericmjl.github.io/essays-on-data-science/software-skills/)
+
+---
 ## Pytorch Learning
 
 - [JovianML: Pytorch Basics](https://jovian.ml/aakashns/01-pytorch-basics)
