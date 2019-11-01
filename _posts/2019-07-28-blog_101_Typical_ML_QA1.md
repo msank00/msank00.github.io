@@ -18,7 +18,7 @@ mathjax: true
 
 - [source](http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)
 
-## **What is the philosophy behind Decision Tree?**
+## What is the philosophy behind Decision Tree?
 
 > Tree based methods involve stratifying or segmenting the Predictor space into number of region. 
 
@@ -42,7 +42,7 @@ mathjax: true
 - [SO](https://stackoverflow.com/questions/1859554/what-is-entropy-and-information-gain)
 - [Medium](https://medium.com/deep-math-machine-learning-ai/chapter-4-decision-trees-algorithms-b93975f7a1f1)
 
-## **How to build decision tree?**
+## How to build decision tree?
    + There are couple of algorithms there to build a decision tree. Some of the important ones are
       + CART (Classification and Regression Trees) → uses Gini Index(Classification) as metric. Lower the Gini Index, higher the purity of the split.
       + ID3 (Iterative Dichotomiser 3) → uses Entropy function and Information gain as metrics. Higher the Information Gain, better the split is.
@@ -65,36 +65,50 @@ mathjax: true
    * [source](https://clearpredictions.com/Home/DecisionTree)
 ---
 
-## **What is the formula of Gini index criteria?**
+## What is the formula of Gini index criteria?
 
 ![image](/assets/images/image_22_Tree_1.png)
+![image](/assets/images/image_22_Tree_2.png)
 
    * [link](http://dni-institute.in/blogs/cart-decision-tree-gini-index-explained/)
 
-## **What is the formula for Entropy criteria?**
+## What is the formula for Entropy criteria?
    + Entropy = $-\Sigma_i C_i * \log(C_i)$, where `i=1,...,N`
+
+
+## Pros and Cons of Decision Trees:
+
+![image](/assets/images/image_22_Tree_3.png)
+![image](/assets/images/image_22_Tree_4.png)
+
+- Decision Tree also suffers from `high variance`.
+
+## Philosophy behind Bagging?
+
+- Say we have N independent observations $Z_1, \dots Z_N$, each with variance $\sigma^2$. Then the variance of the mean $\bar{Z}$ of the observation is given by $\sigma^2/n$. That is, averaging a set of observations reduce variance. 
+- Hence a natural way to reduce the variance and hence increase the prediction accuracy of a statistical learning method is to take many training sets from the population, build a separate prediction model using each training set, and average the resulting predictions.
 
 -----
 
-## **What is KL Divergence?**
+## What is KL Divergence?
    + KL Divergence is the measure of **relative entropy**. It is a measure of the “distance” between two distributions. In statistics, it arises as an expected logarithm of the likelihood ratio. The relative entropy 
    ${KL}(p\sim||\sim q)$ 
    is a measure of the inefficiency of assuming that the distribution is q, when the true distribution is p. The KL divergence from p to q is simply the difference between cross entropy and entropy:
    $${KL}(y~||~\hat{y}) = \sum_i y_i \log \frac{1}{\hat{y}_i} - \sum_i y_i \log \frac{1}{y_i} = \sum_i y_i \log \frac{y_i}{\hat{y}_i}$$. 
    Where $y_i \sim p$ and $\hat{y}_i \sim q$, i.e. they come from two different probability distribution.
 
-### **How is it decided that on which features it has to split?**
+### How is it decided that on which features it has to split?
    + Based on for which feature the information gain is maximum.
 
-### **How do you calculate information gain mathematically?** 
+### How do you calculate information gain mathematically? 
    + [clear explanation, slides](https://www3.nd.edu/~rjohns15/cse40647.sp14/www/content/lectures/23%20-%20Decision%20Trees%202.pdf)
    + If `H` is the entropy of the original data D and it has undergone `N` splits for feature `f`, then Information Gain: $IG(D,f) = H - \Sigma \frac{S_i}{S}H_i$ , where `i=1,...,N` and $S$ is the size of total datasets and $S_i$ is the size of the $i_{th}$ split data.  
 
 ----
-## **What is the advantage with random forest ?**
+## What is the advantage with random forest ?
    + [link](https://www.quora.com/What-are-some-advantages-of-using-a-random-forest-over-a-decision-tree-given-that-a-decision-tree-is-simpler)
 ----
-## **Why ensemble is good?**
+## Why ensemble is good?
 
 Suppose we have 10 independent classifiers, each with error rate of $0.3$ i.e $\epsilon=0.3$, 
 
@@ -105,7 +119,7 @@ $$\epsilon_{ensemble}=\Sigma_{i=6}^{i=10} {10 \choose i}\epsilon^i(1-\epsilon)^{
 
 + [link](https://www.quora.com/What-are-some-advantages-of-using-a-random-forest-over-a-decision-tree-given-that-a-decision-tree-is-simpler)
 
-## **Ensemble Learning algorithm**
+## Ensemble Learning algorithm
    + [link1](https://www.analyticsvidhya.com/blog/2017/02/introduction-to-ensembling-along-with-implementation-in-r/)
    + [link2](https://www.analyticsvidhya.com/blog/2015/08/introduction-ensemble-learning/)
 
@@ -122,7 +136,7 @@ MARS: Multivariate Adaptive Regression Splines
 - [Book: ESL C10 P351]()
 
 ----
-## **Boosting algorithms**
+## Boosting algorithms
 
 The term `Boosting` refers to a family of algorithms which converts weak learner to strong learners.
 
@@ -138,7 +152,7 @@ The term `Boosting` refers to a family of algorithms which converts weak learner
 - [link1](https://www.analyticsvidhya.com/blog/2015/11/quick-introduction-boosting-algorithms-machine-learning/)
 
 ---
-### **Do you know about Adaboost algorithm ? How and why does it work ?**
+### Do you know about Adaboost algorithm ? How and why does it work ?
 
 ![image](/assets/images/image_21_AdaBoost_1.png)
 ![image](/assets/images/image_21_AdaBoost_2.png)
@@ -153,7 +167,7 @@ The term `Boosting` refers to a family of algorithms which converts weak learner
 - [Book: ESL, Chapter 10, Page 339]()
 
 ---
-### **How does gradient boosting works ?**
+### How does gradient boosting works ?
    + [link](https://www.analyticsvidhya.com/blog/2015/09/complete-guide-boosting-methods/)
 1.  **NOTE:** Bagging and Boosting both are ensemble learning algorithm, 
 	+ where a collection of weak learner build the strong learner. While Bagging 
@@ -178,23 +192,23 @@ The term `Boosting` refers to a family of algorithms which converts weak learner
 
 ---
 
-### **Difference of adaboost and gradiant boosting:**
+### Difference of adaboost and gradiant boosting:
 
 - [link](https://www.quora.com/What-is-the-difference-between-gradient-boosting-and-adaboost) 
 - Mathemetical Explanation [[Imp_link](http://www.ccs.neu.edu/home/vip/teach/MLcourse/4_boosting/slides/gradient_boosting.pdf)]
 
 
-### **Bagging boosting difference:**
+### Bagging boosting difference:
 
 - [link](https://medium.com/mlreview/gradient-boosting-from-scratch-1e317ae4587d)
 
 ----
 
-## **SVM Summary:**
+## SVM Summary:
 
 A Support Vector Machine (SVM) performs classification by finding the hyperplane that maximizes the margin between the two classes. The vectors (cases) that define the hyperplane are the support vectors.
 
-### **Algorithm** 		
+### Algorithm 		
 
 ```py
 1. Define an optimal hyperplane: maximize margin
@@ -208,13 +222,13 @@ A Support Vector Machine (SVM) performs classification by finding the hyperplane
 
 We find w and b by solving the following objective function using Quadratic Programming.
 
-### **Hard Margin**
+### Hard Margin
 
 $$min \frac{1}{2}w^Tw$$ 
 
 s.t $y_i(w.x_i+b)\ge 1, \forall x_i$ 
 
-### **Soft Margin**
+### Soft Margin
 
 The beauty of SVM is that if the data is linearly separable, there is a unique global minimum value. An ideal SVM analysis should produce a hyperplane that completely separates the vectors (cases) into two non-overlapping classes. However, perfect separation may not be possible, or it may result in a model with so many cases that the model does not classify correctly. In this situation SVM finds the hyperplane that maximizes the margin and minimizes the misclassifications. 		
 
@@ -228,9 +242,9 @@ The simplest way to separate two groups of data is with a straight line (1 dimen
 
 - [Blog](https://saedsayad.com/support_vector_machine.htm)
 
-### **How do you adjust the cost parameter for the SVM regularizer?**
+### How do you adjust the cost parameter for the SVM regularizer?
 
-Regularization problems are typically formulated as optimization problems involving the desired objective(classification lo  ss in our case)and a regularization penalty.The regularization penalty is used to help stabilize the minimization of the ob­jective or infuse prior knowledge we might have about desirable solutions.Many machine learning methods can be viewed as regularization methods in this manner.For later utility we will cast SVM optimization problem as a 
+Regularization problems are typically formulated as optimization problems involving the desired objective(classification loss in our case)and a regularization penalty.The regularization penalty is used to help stabilize the minimization of the ob­jective or infuse prior knowledge we might have about desirable solutions.Many machine learning methods can be viewed as regularization methods in this manner.For later utility we will cast SVM optimization problem as a 
 regularization problem.
 
 
@@ -242,11 +256,11 @@ Here $\frac{1}{2}\vert \vert w \vert \vert^2$, the `inverse squared` **geometric
 
 - [MOT OCW Notes](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-867-machine-learning-fall-2006/lecture-notes/lec4.pdf)
 
-### **What sort of optimization problem would you be solving to train a support vector machine?**
+### What sort of optimization problem would you be solving to train a support vector machine?
 
   + `Maximize Margin` (best answer), quadratic program, quadratic with linear constraints, reference to solving the primal or dual form.
 
-### **What are the kernels used in SVM ?**
+### What are the kernels used in SVM ?
 
 Kernel $K(X_i, X_j)$ are:
 - Linear Kernel: $X_i.X_j$
@@ -265,16 +279,16 @@ The RBF is by far the most popular choice of kernel types used in Support Vector
 
 - [Blog](http://www.statsoft.com/Textbook/Support-Vector-Machines)
 
-### **What is the optimization technique of SVM?**
+### What is the optimization technique of SVM?
 
 - [Imp_link](https://drona.csa.iisc.ac.in/~shivani/Teaching/E0370/Aug-2011/Lectures/2.pdf)
 
-### **How does SVM learns the hyperplane ? Talk more about mathematical details?**
+### How does SVM learns the hyperplane ? Talk more about mathematical details?
 
 - [Imp_link](https://drona.csa.iisc.ac.in/~shivani/Teaching/E0370/Aug-2011/Lectures/2.pdf)
 
 
-### **Why bring Lagrange Multiplier for solving the SVM problem?**
+### Why bring Lagrange Multiplier for solving the SVM problem?
 
 - Constrained Optimization Problem easier to solve with Lagrange Multiplier
 - The existing constraints will be replaced by the constraints of the Lagrange Multiplier, which are easier to handle
@@ -282,17 +296,17 @@ The RBF is by far the most popular choice of kernel types used in Support Vector
 
 - [Youtube:Lagrange Multiplier Intuition](https://www.youtube.com/watch?v=yuqB-d5MjZA&list=PLg9_rXni6UXmjc7Cxw8HpYWRlFg72v15a&index=7)
 
-### **KKT Condition for SVM?**
+### KKT Condition for SVM?
 
 - [SB course](http://cse.iitkgp.ac.in/~sourangshu/coursefiles/ML15A/svm.pdf), [link2](http://www.csc.kth.se/utbildning/kth/kurser/DD3364/Lectures/KKT.pdf)
 
 
-### **Geometric analysis of Lagrangian, KKT, Dual**
+### Geometric analysis of Lagrangian, KKT, Dual
 
 - [link](http://anie.me/Lagrangian-And-Dual-Problem/)
 
 
-### **How does SVM learns non-linear boundaries ? Explain.**
+### How does SVM learns non-linear boundaries ? Explain.
 + using `kernel trick`, it maps the examples from `input space` to `feature space`. 
 In the higher dimension, they are separated linearly.
 
@@ -384,7 +398,7 @@ In the higher dimension, they are separated linearly.
 - [code](http://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html)
 
 
-## **Explain PCA? Tell me the mathematical steps to implement PCA?**
+## Explain PCA? Tell me the mathematical steps to implement PCA?
 + In PCA, we are interested to find the directions (components) that maximize the variance in our dataset)
 + PCA can be seen as:
   + Learning the projection direction that captures `maximum variance` in data.
@@ -426,18 +440,18 @@ have a feature space that represents our data **well**?
 + [Link2](https://rstudio-pubs-static.s3.amazonaws.com/249839_48d65d85396a465986f2d7df6db73c3d.html)
 + [PPT: Prof. Piyush Rai IIT Kanpur](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec11_slides.pdf)
 
-### **What is disadvantage of using PCA?**
+### What is disadvantage of using PCA?
 
 + one disadvantage of PCA lies in interpreting the results of dimension reduction analysis. This challenge will become particularly telling when the data needs to be normalized.
 + PCA assumaes approximate normality of the input space distribution. [link](http://www.stat.columbia.edu/~fwood/Teaching/w4315/Fall2009/pca.pdf)
 + for more reading [link](https://www.quora.com/What-are-some-of-the-limitations-of-principal-component-analysis)
 
-### **Why PCA needs normalization?**
+### Why PCA needs normalization?
 + A reason why we need to normalize before applying PCA is to mitigate the effects of scale. For example, if one of the attributes is orders of magnitude higher than others, PCA tends to ascribe the highest amount of variance to this attribute and thus skews the results of the analysis. By normalizing, we can get rid of this effect. However normalizing results in spreading the influence across many more principal components. In others words, more PCs are required to explain the same amount of variance in data. The interpretation of analysis gets muddied. 
 [source](http://www.simafore.com/blog/bid/105347/Feature-selection-with-mutual-information-Part-2-PCA-disadvantages)
 
 
-## **How do you deploy Machine Learning models ?**
+## How do you deploy Machine Learning models ?
 
 - Microservice
 - Docker
@@ -446,7 +460,7 @@ have a feature space that represents our data **well**?
 ### **Lot of times, we may have to write ML models from scratch in C++ ? Will you be able to do that?**
 + [quora](https://www.quora.com/I-want-to-use-C++-to-learn-Machine-Learning-instead-of-Python-or-R-is-it-fine)
 
-## **How Stochastic Gradient Decent with momentum works?**
+## How Stochastic Gradient Decent with momentum works?
 + An SGD can be thought of as a ball rolling down the hill where the velocity of the ball is influenced by the gradient of the 
 curve. However, in this approach, the ball has a chance to get stuck in any ravine. So if the ball can have enough momentum to get past
 get past the ravine would have been better. based on this idea, SGD with Momentum works. Where the ball has been given 
@@ -458,34 +472,34 @@ some added momentum which is based on the previous velocity and gradient.
 + book: deep learning in Python - by Cholet, page 51, but the equation looks suspicious 
 + [through explanation, distill pub](https://distill.pub/2017/momentum/)
 
-## **How the model varies in KNN for K=1 and K=N?**
+## How the model varies in KNN for K=1 and K=N?
 
 - When K equals 1 or other small number the model is prone to overfitting (high variance), while when K equals number of data points or other large number the model is prone to underfitting (high bias)
 
-## **Generative model vs Discriminative model.**
+## Generative model vs Discriminative model.
 
 - Discriminative algorithms model `P(y|x; w)`, that is, given the dataset and learned parameter, what is the probability of y belonging to a specific class. A discriminative algorithm doesn't care about how the data was generated, it simply categorizes a given example.
 - Generative algorithms try to model `P(x|y)`, that is, the distribution of features given that it belongs to a certain class. A generative algorithm models how the data was generated. [source](https://github.com/ShuaiW/data-science-question-answer#knn)
 
 ------
 
-## **Scenario based Question**
+## Scenario based Question
 
 Let’s say, you are given a scenario where you have terabytes of data files consisting of pdfs, text files, images, scanned pdfs etc. What approach will you take in understanding or classifying them ?
 
-###  **How will you read the content of scanned pdfs or written documents in image formats?**
+###  How will you read the content of scanned pdfs or written documents in image formats?
 
-### **Why is naive bayes called “naive”? Tell me about naive bayes classifier?**
+### Why is naive bayes called “naive”? Tell me about naive bayes classifier?
 
 - Because it's assumed that all the features are independent of each other. This is a very _naive_ assumption.
 
 ----
 
-## **Logistic Regression loss function?**
+## Logistic Regression loss function?
 + [ml-cheatsheet quick summary](http://ml-cheatsheet.readthedocs.io/en/latest/logistic_regression.html)
 + [CMU ML slides](https://www.cs.cmu.edu/~mgormley/courses/10701-f16/slides/lecture5.pdf)
 
-## **What do you mean by mutable and immutable objects in python ?**
+## What do you mean by mutable and immutable objects in python ?
 + [Everything in Python is an object](https://medium.com/@meghamohan/mutable-and-immutable-side-of-python-c2145cf72747). 
 Since everything in Python is an Object, every variable holds 
 an object instance. When an object is initiated, it is assigned a unique object id. Its type is 
@@ -515,7 +529,7 @@ built-in types like (`list, set, dict,byte array`) are mutable. Custom classes a
 ----
 
 
-## **How do you select between 2 models (Model Selection techniques)?**
+## How do you select between 2 models (Model Selection techniques)?
 
 To choose between 2 model generally `AIC` or `BIC` are used.
 Generally, the most commonly used metrics, for measuring regression model quality and for comparing models, are: `Adjusted R2`, `AIC`, `BIC` and `Cp`.
@@ -535,7 +549,7 @@ Generally, the most commonly used metrics, for measuring regression model qualit
 - [ppt-Stanford](https://statweb.stanford.edu/~jtaylo/courses/stats203/notes/selection.pdf)
 
 
-### **Okay great BIC & AIC !! How does it work mathematically?Explain the intuition behind BIC or AIC ?**
+### Okay great BIC & AIC !! How does it work mathematically?Explain the intuition behind BIC or AIC ?
 
 In general, it might be best to use AIC and BIC together in model selection. 
 - For example, in selecting the number of latent classes in a model, if BIC points to a three-class model and AIC points to a five-class model, it makes sense to select from models with 3, 4 and 5 latent classes. 
@@ -564,9 +578,9 @@ $$BIC=-2\log L(\hat \theta) + k \log n$$
 
 
 -----
-## **What is precision and recall ? Which one of this do you think is important in medical diagnosis?**
+## What is precision and recall ? Which one of this do you think is important in medical diagnosis?
 
-## **Type I and Type II Errors**
+## Type I and Type II Errors
 
 >> One fine morning, Jack got a phone call. It was a stranger on the line. Jack, still sipping his freshly brewed morning coffee, was barely in a position to understand what was coming for him. The stranger said, “Congratulations Jack! You have won a lottery of $10 Million! I just need you to provide me your bank account details, and the money will be deposited in your bank account right way…”
 
@@ -583,11 +597,11 @@ What are the odds of that happening? What should Jack do? What would you have do
 
 ----
 
-## **What does AUC-ROC curve signify ?**
+## What does AUC-ROC curve signify ?
 
 AUC - ROC curve is a performance measurement for classification problem `at various thresholds settings`. ROC is a **probability curve** and AUC represents **degree or measure of separability**. It tells how much model is capable of distinguishing between classes. Higher the AUC, better the model is at predicting 0s as 0s and 1s as 1s. By analogy, Higher the AUC, better the model is at distinguishing between patients with disease and no disease.
 
-### **How do you draw AUC-ROC curve ?**
+### How do you draw AUC-ROC curve ?
 
 <img src="https://miro.medium.com/max/700/1*k65OKy7TOhBWRIfx0u6JqA.png" alt="image" width="600"/>
 
@@ -618,7 +632,7 @@ $$\frac{TN}{TN+FP}$$
 
 $$\frac{FP}{TN+FP}$$
 
-### **How will you draw ROC for multi class classification problem**
+### How will you draw ROC for multi class classification problem
 
 In multi-class model, we can plot N number of AUC ROC Curves for N number classes using One vs ALL methodology. So for Example, If you have three classes named X, Y and Z, you will have one ROC for X classified against Y and Z, another ROC for Y classified against X and Z, and a third one of Z classified against Y and X.
 
