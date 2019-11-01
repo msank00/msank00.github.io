@@ -5,18 +5,26 @@ date:   2019-07-28 00:11:31 +0530
 categories: jekyll update
 mathjax: true
 ---
-# Q source: 
 
-- [link_1](https://appliedmachinelearning.wordpress.com/2018/04/13/my-data-science-machine-learning-job-interview-experience-list-of-ds-ml-dl-questions/) 
 
-## **What are the parameters in training a decision tree?**
-   * [source](http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)
+## What are the parameters in training a decision tree?
+
+- `max_depth`: How deep the tree can be
+- `min_samples_split`: Min number of samples needed to split a node
+- `min_samples_leaf`: Min number of samples needed to be at the leaf node.
+- `max_features`: Max number of features to consider when looking for the best split.
+
+**Reference:**
+
+- [source](http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)
 
 ## **What is the philosophy behind Decision Tree?**
 
-- A decision tree is a tree where each node represents a feature(attribute), each link(branch) represents a decision(rule) and each leaf represents an outcome(categorical or continues value)... [source](https://medium.com/deep-math-machine-learning-ai/chapter-4-decision-trees-algorithms-b93975f7a1f1)
+> Tree based methods involve stratifying or segmenting the Predictor space into number of region. 
+
+- A decision tree is a tree where each `node` represents a feature(attribute), each `link`(branch) represents a decision(rule) and each `leaf` represents an outcome(categorical or continues value)
 - Find the feature that best splits the target class into the `purest possible` children nodes (ie: nodes that don't contain a mix of both classes, rather pure nodes with only one class).
-- `Entropy` on the other hand is a measure of impurity. It is defined for a classification problem with N classes as:
+- `Entropy` on the other hand it is a measure of impurity. It is defined for a classification problem with N classes as:
 - Entropy = $-\Sigma_i C_i * \log(C_i)$, where `i=1,...,N`
   - Say we have a dataset `D` and we are looking for a potential feature `f`, on which we will split the dataset w.r.t `f` into 2 parts `Dl` and `Dr` for left and right dataset respectively, such that those two datasets are at their purest form. Finally we use information gain to decide how good that feature is i.e how much pure the split is w.r.t `f` using `Information Gain`. 
     ```py
@@ -28,7 +36,11 @@ mathjax: true
     `EntropyBefore_f = Entropy(Df)` and entropy after is 
     `EntropyAfter_f = Entropy(Dl)+Entropy(Dr)` and finaly 
     `InformationGain_f = EntropyBefore_f - EntropyAfter_f`.
-      + [source](https://stackoverflow.com/questions/1859554/what-is-entropy-and-information-gain)
+
+**Reference:**
+
+- [SO](https://stackoverflow.com/questions/1859554/what-is-entropy-and-information-gain)
+- [Medium](https://medium.com/deep-math-machine-learning-ai/chapter-4-decision-trees-algorithms-b93975f7a1f1)
 
 ## **How to build decision tree?**
    + There are couple of algorithms there to build a decision tree. Some of the important ones are
@@ -51,8 +63,12 @@ mathjax: true
      + [link_2](https://medium.com/greyatom/decision-trees-a-simple-way-to-visualize-a-decision-dc506a403aeb)
    * Reduction of Variance
    * [source](https://clearpredictions.com/Home/DecisionTree)
+---
 
 ## **What is the formula of Gini index criteria?**
+
+![image](/assets/images/image_22_Tree_1.png)
+
    * [link](http://dni-institute.in/blogs/cart-decision-tree-gini-index-explained/)
 
 ## **What is the formula for Entropy criteria?**
@@ -74,10 +90,10 @@ mathjax: true
    + [clear explanation, slides](https://www3.nd.edu/~rjohns15/cse40647.sp14/www/content/lectures/23%20-%20Decision%20Trees%202.pdf)
    + If `H` is the entropy of the original data D and it has undergone `N` splits for feature `f`, then Information Gain: $IG(D,f) = H - \Sigma \frac{S_i}{S}H_i$ , where `i=1,...,N` and $S$ is the size of total datasets and $S_i$ is the size of the $i_{th}$ split data.  
 
-
+----
 ## **What is the advantage with random forest ?**
    + [link](https://www.quora.com/What-are-some-advantages-of-using-a-random-forest-over-a-decision-tree-given-that-a-decision-tree-is-simpler)
-
+----
 ## **Why ensemble is good?**
 
 Suppose we have 10 independent classifiers, each with error rate of $0.3$ i.e $\epsilon=0.3$, 
@@ -93,19 +109,50 @@ $$\epsilon_{ensemble}=\Sigma_{i=6}^{i=10} {10 \choose i}\epsilon^i(1-\epsilon)^{
    + [link1](https://www.analyticsvidhya.com/blog/2017/02/introduction-to-ensembling-along-with-implementation-in-r/)
    + [link2](https://www.analyticsvidhya.com/blog/2015/08/introduction-ensemble-learning/)
 
+----
 
+## Characteristics of Different Learning Methods
+
+![image](/assets/images/image_22_Algorithms_1.png)
+
+MARS: Multivariate Adaptive Regression Splines 
+
+**Reference:**
+
+- [Book: ESL C10 P351]()
+
+----
 ## **Boosting algorithms**
 
-The term ‘Boosting’ refers to a family of algorithms which converts weak learner to strong learners.
+The term `Boosting` refers to a family of algorithms which converts weak learner to strong learners.
 
 1. AdaBoost (Adaptive Boosting)
 2. Gradient Tree Boosting
 3. XGBoost
 
+- The motivation behind the `Boosting` algorithm is, there are `n weak classifiers`. Combining together gives a `powerful committee` who decides the final verdict of the classifier.
+- A week classifier is one whose error rate is slightly better than `random guessing` 
 
-   + [link1](https://www.analyticsvidhya.com/blog/2015/11/quick-introduction-boosting-algorithms-machine-learning/)
+**Resource:**
 
+- [link1](https://www.analyticsvidhya.com/blog/2015/11/quick-introduction-boosting-algorithms-machine-learning/)
 
+---
+### **Do you know about Adaboost algorithm ? How and why does it work ?**
+
+![image](/assets/images/image_21_AdaBoost_1.png)
+![image](/assets/images/image_21_AdaBoost_2.png)
+![image](/assets/images/image_21_AdaBoost_3.png)
+
+- In AdaBoost you need to define a `base classifier`.
+- `Classification Tree` acts as the best off the shelf base classifier for Adaboost.
+
+**Resource:**
+
+- [Pdf: link](http://math.mit.edu/~rothvoss/18.304.3PM/Presentations/1-Eric-Boosting304FinalRpdf.pdf)
+- [Book: ESL, Chapter 10, Page 339]()
+
+---
 ### **How does gradient boosting works ?**
    + [link](https://www.analyticsvidhya.com/blog/2015/09/complete-guide-boosting-methods/)
 1.  **NOTE:** Bagging and Boosting both are ensemble learning algorithm, 
@@ -129,9 +176,7 @@ The term ‘Boosting’ refers to a family of algorithms which converts weak lea
 	it builds another weak learner `H(x)+error2` and so on... Thus it becomes 
 	`F(x)+H(x)+G(x)+....+noise`.
 
-### **Do you know about Adaboost algorithm ? How and why does it work ?**
-
-- mathematical explanation [[link](http://math.mit.edu/~rothvoss/18.304.3PM/Presentations/1-Eric-Boosting304FinalRpdf.pdf)]
+---
 
 ### **Difference of adaboost and gradiant boosting:**
 
@@ -636,3 +681,24 @@ What is sensitivity and specificity ?
 1. What is Gaussian Mixture model ? How does it perform clustering ?
 2. How is Expectation Maximization performed ? Explain both the steps ?
 3. How is likelihood calculated in GMM ?
+
+----
+
+## How to prepare?
+
+> In general, for an interview that you think will be machine learning focused, I would make sure you knew the following techniques, and an approach you would use for each, and how they are different from each other:
+
+- Regression
+- Classification
+- Ranking
+- Recommendation
+- Clustering
+- Unsupervised Learning
+
+## Q source: 
+
+- [link_1](https://appliedmachinelearning.wordpress.com/2018/04/13/my-data-science-machine-learning-job-interview-experience-list-of-ds-ml-dl-questions/) 
+
+----
+
+
