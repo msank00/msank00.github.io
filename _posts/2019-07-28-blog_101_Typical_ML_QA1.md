@@ -450,14 +450,45 @@ have a feature space that represents our data **well**?
 + A reason why we need to normalize before applying PCA is to mitigate the effects of scale. For example, if one of the attributes is orders of magnitude higher than others, PCA tends to ascribe the highest amount of variance to this attribute and thus skews the results of the analysis. By normalizing, we can get rid of this effect. However normalizing results in spreading the influence across many more principal components. In others words, more PCs are required to explain the same amount of variance in data. The interpretation of analysis gets muddied. 
 [source](http://www.simafore.com/blog/bid/105347/Feature-selection-with-mutual-information-Part-2-PCA-disadvantages)
 
+---
 
+## The Inductive Biases of Various Machine Learning Algorithms
+
+That is, there is some fundamental assumption or set of assumptions that the learner makes about the target function that enables it to generalize beyond the training data
+
+**Linear Regression**
+- The relationship between the attributes x and the output y is linear. The goal is to minimize the sum of squared errors.
+
+**Decision Trees**
+- Shorter trees are preferred over longer trees. Trees that place high information gain attributes close to the root are preferred over those that do not.
+
+**Single-Unit Perceptron:**
+- Each input votes independently toward the final classification (interactions between inputs are not possible).
+
+**Neural Networks with Backpropagation:**
+- Smooth interpolation between data points.
+
+**K-Nearest Neighbors:**
+- The classification of an instance x will be most similar to the classification of other instances that are nearby in Euclidean distance.
+
+**Support Vector Machines:**
+- Distinct classes tend to be separated by wide margins.
+
+**Naive Bayes:**
+- Each input depends only on the output class or label; the inputs are independent from each other.
+
+**Reference:**
+
+- [Blog](http://www.lauradhamilton.com/inductive-biases-various-machine-learning-algorithms)
+
+---
 ## How do you deploy Machine Learning models ?
 
 - Microservice
 - Docker
 - Kubernetes
 
-### **Lot of times, we may have to write ML models from scratch in C++ ? Will you be able to do that?**
+### Lot of times, we may have to write ML models from scratch in C++ ? Will you be able to do that?
 + [quora](https://www.quora.com/I-want-to-use-C++-to-learn-Machine-Learning-instead-of-Python-or-R-is-it-fine)
 
 ## How Stochastic Gradient Decent with momentum works?
