@@ -126,6 +126,31 @@ Now GLM in `non-linear` due to the presence of $g()$ but it can be transformed i
 
 - [Stackexchange](https://stats.stackexchange.com/questions/120047/nonlinear-vs-generalized-linear-model-how-do-you-refer-to-logistic-poisson-e)
 ------
+## Logistic Regression
+
+### What is the loss function for logistic regression?
+
+This is a very tricky question. 
+
+**Case 1:**
+
+When $y \in ({0,1})$
+
+$$NLL(w) = - \Sigma_{i=1}^{N}[y_i log (\hat{y_i}) + (1-y_i)log (1-\hat{y_i})] $$
+
+This is also called `cross entropy` error function.
+
+**Case 2:**
+
+When $y \in ({-1,+1})$
+
+$$NLL(w)= \Sigma_{i=1}^{N}log(1+\exp(-y_iw^Tx))$$
+
+### Resource:
+
+- Probabilistic Perspective:  Murphy - Chapter 8.3.1
+- [ML Course: Prof. Piyush Rai](https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec9_print.pdf) 
+----
 ## Eigen Decomposition
 
 Matrices acts as linear transformations. Some matrices will rotate your space, others will rescale it etc. So when we apply a matrix to a vector, we end up with a transformed version of the vector. When we say that we ‘apply’ the matrix to the vector it means that we calculate the dot product of the matrix with the vector. 
@@ -666,7 +691,9 @@ Steps to void overfitting:
 
 Coursera - Bayesian Methods for Machine Learning
 
-## 1st order optimization, 2nd order optimization
+## 1st order optimization 
+
+## 2nd order optimization
 
 ## Underfitting, Overfitting, Bias, Variance
 
