@@ -6,12 +6,12 @@ categories: jekyll update
 mathjax: true
 ---
 
-## Understand Heap
+# Understand Heap
 
 - A heap is one common implementation of a priority queue.
 - A heap is one of the tree structures and represented as a binary tree.
 
-### Representation:
+## Representation:
 
 ![image](https://miro.medium.com/max/835/1*ds0JXOw3lLqNo6hw__NtZw.png)
 
@@ -30,7 +30,7 @@ mathjax: true
 
 ![image](https://miro.medium.com/max/818/1*ysSV1xV0OMm-1amWBpFb0A.png)
 
-### How to ubild heap
+## How to ubild heap
 
 - `min_heapify`: make some node and its `descendant nodes meet the heap property`.
 
@@ -95,6 +95,100 @@ c) Merge K Sorted Arrays.
 
 - [TDS: heap data Structure](https://towardsdatascience.com/data-structure-heap-23d4c78a6962)
 - [G4G: Binary Heap](https://www.geeksforgeeks.org/binary-heap/)
+
+
+----
+
+# Difference between `bounded` and `unbounded` 0/1 knapsack
+
+The only difference between the 0/1 Knapsack `bounded` and `unbounded` problem is that, after including the item
+
+- `unbounded`: We recursively call to process `all the items` (including the current item)
+ - `currentIndex` is not increased while calling the recursive function
+  
+```py
+profit1 = 0
+if weights[currentIndex] <= capacity:
+    profit1 = profits[currentIndex] + solve_knapsack_recursive(
+      profits, weights, capacity - weights[currentIndex], currentIndex)
+```
+
+ 
+
+- `bounded`: We recursively call to process all the `remaining items` (excluding the current item)
+  - `currentIndex+1` is introduced while calling the recursive function
+  
+```py
+profit1 = 0
+if weights[currentIndex] <= capacity:
+    profit1 = profits[currentIndex] + solve_knapsack_recursive(
+      profits, weights, capacity - weights[currentIndex], currentIndex+1)
+```
+
+----
+
+# Difference between Longest Palindromic `Substring` and Longest Palindromic `Subsequence`
+
+A `subsequence` is a sequence that can be derived from another sequence by `deleting some` or `no elements` without changing the order of the remaining elements.
+
+A `substring` is a continuous sequence.
+
+## Longest Palindromic `Subsequence`
+
+**Example 1:**
+
+```py
+Input: "abdbca"
+Output: 5
+Explanation: LPS is "abdba".
+```
+
+**Example 2:**
+
+```py
+Input: = "cddpd"
+Output: 3
+Explanation: LPS is "ddd".
+```
+
+The `abdba` from example 1, is not continuous (not a substring) as the problem was to find Longest Palindromic `Subsequence`. So while implementing, then it's `NOT NECESSARY`, if `str[start] == str[end]` then remaining elements in between `str[strat+1:end-1]` is also a palindrome.  
+
+
+```py
+if st[endIndex] == st[startIndex] 
+  dp[startIndex][endIndex] = 2 + dp[startIndex + 1][endIndex - 1]
+else 
+  dp[startIndex][endIndex] = Math.max(dp[startIndex + 1][endIndex], dp[startIndex][endIndex - 1])
+```
+
+## Longest Palindromic `Substring`
+
+**Example 1:**
+
+```py
+Input: "abdbca"
+Output: 3
+Explanation: LPS is "bdb".
+```
+
+**Example 2:**
+
+```py
+Input: = "cddpd"
+Output: 3
+Explanation: LPS is "dpd".
+```
+
+```py
+if st[startIndex] == st[endIndex], and 
+    remaining_length = endIndex - startIndex - 2
+    if remaining_length <=1 or dp[startIndex+1][endIndex-1] == True:
+        dp[startIndex][endIndex] = True
+```
+
+Here the problem is to find Longest Palindromic `Substring`, then it's `NECESSARY` if `str[start] == str[end]` then remaining elements in between `str[strat+1:end-1]` is a palindrome.
+
+`dp[startIndex+1][endIndex-1] == True` denotes if remaining in between elements are also palindrome.
 
 
 ----
