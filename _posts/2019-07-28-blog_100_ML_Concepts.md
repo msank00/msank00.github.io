@@ -108,7 +108,7 @@ $$g^{-i}(y)=\theta_0+\theta f_1(x_1)+\theta f_2(x_2)+...+\theta f_n(x_n)$$
 
 [(link)](http://www.statsoft.com/Textbook/Generalized-Additive-Models)
 
-### **Why do we call it GLM when it's clearly non-linear?**
+### Why do we call it GLM when it's clearly non-linear?
 
 
 
@@ -125,7 +125,9 @@ $$g^{-i}(y)=\theta_0+\theta f_1(x_1)+\theta f_2(x_2)+...+\theta f_n(x_n)$$
 Now GLM in `non-linear` due to the presence of $g()$ but it can be transformed into `linears in parameters` using `link function` $g^{-i}()$.
 
 - [Stackexchange](https://stats.stackexchange.com/questions/120047/nonlinear-vs-generalized-linear-model-how-do-you-refer-to-logistic-poisson-e)
-------
+  
+----
+
 ## Logistic Regression
 
 ### What is the loss function for logistic regression?
@@ -150,7 +152,9 @@ $$NLL(w)= \Sigma_{i=1}^{N}log(1+\exp(-y_iw^Tx))$$
 
 - Probabilistic Perspective:  Murphy - Chapter 8.3.1
 - [ML Course: Prof. Piyush Rai](https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec9_print.pdf) 
+  
 ----
+
 ## Eigen Decomposition
 
 Matrices acts as linear transformations. Some matrices will rotate your space, others will rescale it etc. So when we apply a matrix to a vector, we end up with a transformed version of the vector. When we say that we ‘apply’ the matrix to the vector it means that we calculate the dot product of the matrix with the vector. 
@@ -179,7 +183,7 @@ References:
 
 - [(Book_IMPORTANT_link)](https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.7-Eigendecomposition/)
 
-------
+----
 ## PCA and SVD
 
 Follow lecture 6 of [Prof.Mitesh_IITM](https://www.cse.iitm.ac.in/~miteshk/CS7015.html)
