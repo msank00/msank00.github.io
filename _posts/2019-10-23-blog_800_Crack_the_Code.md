@@ -6,6 +6,19 @@ categories: jekyll update
 mathjax: true
 ---
 
+
+# Practice followup questions for each coding questions
+
+1. How do you test your solution? Testing is also an important area in interview and you can treat the interview question as a real life project and how can you guarantee the system works as intended?
+2. What if the input size is too large to put in memory?
+3. How do you refine your solution and analyze the efficiency?
+4. What if the input size is too large to put in disk? How do you solve the scalability issue?
+5. What if you have infinite amount of memory? Any way to make the solution faster?
+6. You can also try to change some restriction of the question, like what if it’s a normal tree instead of binary tree? What if you can store the dictionary in any data structure you like?
+
+
+----
+
 # Understand Heap
 
 - A heap is one common implementation of a priority queue.
@@ -155,9 +168,9 @@ The `abdba` from example 1, is not continuous (not a substring) as the problem w
 
 
 ```py
-if st[endIndex] == st[startIndex] 
+if st[endIndex] == st[startIndex]: 
   dp[startIndex][endIndex] = 2 + dp[startIndex + 1][endIndex - 1]
-else 
+else: 
   dp[startIndex][endIndex] = Math.max(dp[startIndex + 1][endIndex], dp[startIndex][endIndex - 1])
 ```
 
@@ -180,7 +193,7 @@ Explanation: LPS is "dpd".
 ```
 
 ```py
-if st[startIndex] == st[endIndex], and 
+if st[startIndex] == st[endIndex]:
     remaining_length = endIndex - startIndex - 2
     if remaining_length <=1 or dp[startIndex+1][endIndex-1] == True:
         dp[startIndex][endIndex] = True
