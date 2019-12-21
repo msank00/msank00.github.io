@@ -192,4 +192,98 @@ Features for the algorithm:
 ## Important resources to follow:
 
 - [How to succeed in a system design interview?](https://blog.pramp.com/how-to-succeed-in-a-system-design-interview-27b35de0df26)
+
+
+----
+
+## Recommendation system for Duolingo [@chiphuyen]
+
+**Question:** Duolingo is a platform for language learning. When a student is learning a new language, Duolingo wants to recommend increasingly difficult stories to read. 
+
+- How would you measure the difficulty level of a story? 
+- Given a story, how would you edit it to make it easier or more difficult?
+
+
+**Answer:**
+
+
+
+
+**Prologue:** This problem can be mapped to predict `Text Readability`.
+
+The RAND Reading Study Group (2002:25), a 14-member panel funded by the United States Department of Education’s Office of Educational Research and Improvement, propose the _following categories and dimensions_ that vary among texts and create varying challenges for readers:
+
+
+- discourse genre, such as narration, description, exposition, and persuasion;
+- discourse structure, including rhetorical composition and coherence;
+- media forms, such as textbooks, multimedia, advertisements, and the Internet;
+- Sentence difficulty, including vocabulary, syntax, and the propositional text base;
+- content, such as age-appropriate selection of subject matter;
+- texts with varying degrees of engagement for particular classes of readers.
+
+
+A text can introduce different level of complexity
+
+### Lexical and syntactic complexity
+
+The best estimate of a text’s difficulty involved the use of eight elements:
+
+- Number of different hard words 
+- Number of easy words 
+- Percentage of monosyllables
+- Number of personal pronouns 
+- Average sentence length in words 
+- Percentage of different words 
+- Number of prepositional phrases
+- Percentage of simple sentences
+
+These are all structural elements in the style group, as they “lend themselves most readily to quantitative enumeration and statistical treatment
+
+### Content and subject matter
+
+In terms of content and subject matter, it is commonly believed that abstract texts (e.g., philosophical texts) will be harder to understand than concrete texts describing real objects, events or activities (e.g., stories), and texts on everyday topics are likely to be easier to process than those that are not (Alderson 2000:62).
+
+
+### How to measure Text Readability?
+
+To measure text difficulty, reading researchers have tended to focus on developing `readability formulas` since the early 1920s. A readability formula is an equation which combines the statistically measurable text features that best predict text difficulty, such as: 
+
+- average sentence length in words or in syllables,
+- average word length in characters
+- percentage of difficult words (i.e., words with more than two syllables, or words not on a particular wordlist)
+
+Until the 1980s, more than 200 readability formulas had been published (Klare 1984). Among them, the `Flesch Reading Ease Formula`, the `Dale–Chall Formula`, `Gunning Fog Index`, the `SMOG Formula`, the `Flesch–Kincaid Readability test`, and the `Fry Readability Formula` are the most popular and influential (DuBay 2004). These formulas use one to three factors with a view to easy manual application.
+
+
+Among these factors, vocabulary difficulty (or semantic factors) and sentence length (or syntactic factors) are the strongest indexes of readability (Chall and Dale 1995). The following is the `Flesch Reading Ease` Formula.
+
+$$206.835-1.015\frac{N_{words}}{N_{sents}} - 84.6 \frac{N_{syllables}}{N_{words}}$$
+
+
+The resulting score ranges from 0 to 100; the lower the score, the more difficult to read the material.
+
+
+**Final Solution:**
+
+Q1. How would you measure the difficulty level of a story?
+
+- Given a story, process it to get all the features related to Syntactic or Structural complexities as mentioned above.
+- Then for all the sotries $S_i$ we have such feature vector $f_i$.
+- Apply clustering technique on all the data points over the feature space.
+- Now for each data point inside the cluster, measure their `readability score` as per the formula mentioned above and rank the stories inside each cluster by sorting. 
+-  Also calculate the `mean readability score` for each cluster and rank the clusters (via sorting) as well.
+-  now pick the cluster with minimum mean readability score and randomly pick $k$ stories and recommend the user one after another. After the user finishes the $k$ stories from the cluster $C_i$, pick the next tougher cluster $C_{i+1}$ and pick $K$ stories again. 
+-  Also keep a liked/disliked or easy/medium/hard check box for each story to get user feedback after he finished the story. These feedbacks can be passed as feedback loop and can be combined with the existing recommendation system.
+
+Q2. Given a story, how would you edit it to make it easier or more difficult?
+
+- Modify the structural complexities.
+- Refactor the content to introduce more simple sentence, Easy synonyms, inject more words with mono syllables etc.
 - 
+
+### Resource
+
+- [Link 1](http://www.sanjun.org/html/publication01.html)
+
+
+----
