@@ -136,6 +136,7 @@ Some factors/features:
 - [system-design-interview-question-how-to-design-twitter-part-1](http://blog.gainlo.co/index.php/2016/02/17/system-design-interview-question-how-to-design-twitter-part-1/)
 - [Infinite Scrolling](https://eviltrout.com/2013/02/16/infinite-scrolling-that-works.html.html)
 - [Relevance Ranking](https://www.lextek.com/manuals/onix/ranking.html)
+  
 ----
 
 ## How to design a Search Engine ?
@@ -279,11 +280,59 @@ Q2. Given a story, how would you edit it to make it easier or more difficult?
 
 - Modify the structural complexities.
 - Refactor the content to introduce more simple sentence, Easy synonyms, inject more words with mono syllables etc.
-- 
+  
 
 ### Resource
 
 - [Link 1](http://www.sanjun.org/html/publication01.html)
+
+
+----
+
+## Fraud Detection [@chiphuyen]
+
+Given a dataset of credit card purchases information, each record is labelled as fraudulent or safe, how would you build a fraud detection algorithm?
+
+
+Decision Tree based approach: 
+
+![image](https://intellipaat.com/blog/wp-content/uploads/2019/09/Fraud-Detection-05-01.jpg)
+
+First, in the decision tree, we will check whether the transaction is greater than ₹50,000. If it is ‘yes,’ then we will check the location where the transaction is made.
+
+And if it is ‘no,’ then we will check the frequency of the transaction.
+
+After that, as per the probabilities calculated for these conditions, we will predict the transaction as ‘fraud’ or ‘non-fraud.’
+
+Here, if the amount is greater than ₹50,000 and location is equal to the IP address of the customer, then there is only a 25 percent chance of ‘fraud’ and a 75 percent chance of ‘non-fraud.’
+
+Similarly, if the amount is greater than ₹50,000 and the number of locations is greater than 1, then there is a 75 percent chance of ‘fraud’ and a 25 percent chance of ‘non-fraud.’
+
+Main challenges involved in credit card fraud detection are:
+
+- **Enormous Data** is processed every day and the model build must be fast enough to respond to the scam in time.
+- **Imbalanced Data** i.e most of the transactions(99.8%) are not fraudulent which makes it really hard for detecting the fraudulent ones
+- **Data availability** as the data is mostly private.
+- **Misclassified** Data can be another major issue, as not every fraudulent transaction is caught and reported.
+- **Adaptive techniques** used against the model by the scammers.
+
+
+### Resource
+
+- [Class Imbalance Python](https://towardsdatascience.com/methods-for-dealing-with-imbalanced-data-5b761be45a18)
+- [Credit-Card-Fraud-Detection-in-python-using-scikit-learn](https://medium.com/analytics-vidhya/credit-card-fraud-detection-in-python-using-scikit-learn-f9046a030f50)
+- [practical-guide-deal-imbalanced-classification-problems](https://www.analyticsvidhya.com/blog/2016/03/practical-guide-deal-imbalanced-classification-problems/)
+- [fraud-detection-machine-learning-algorithms](https://intellipaat.com/blog/fraud-detection-machine-learning-algorithms/)
+- [Check location of an IP address](https://iplocation.com/)
+
+
+----
+
+## Build a recommendation system to suggest replacement items [@chiphuyen]
+
+**Question:** You run an e-commerce website. Sometimes, users want to buy an item that is no longer available. Build a recommendation system to suggest replacement items.
+
+
 
 
 ----
