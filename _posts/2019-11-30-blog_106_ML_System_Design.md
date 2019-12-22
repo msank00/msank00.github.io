@@ -333,6 +333,20 @@ Main challenges involved in credit card fraud detection are:
 **Question:** You run an e-commerce website. Sometimes, users want to buy an item that is no longer available. Build a recommendation system to suggest replacement items.
 
 
+- do a Nearest Neighbor Search for all the items those are similar to the original item and recommend those as replacement.
 
+----
+
+## 
+
+**Question:** For any user on Twitter, how would you suggest who they should follow? What do you do when that user is new? What are some of the limitations of data-driven recommender systems?
+
+----
+
+## How would you design an algorithm to match pool riders for Lyft or Uber?
+
+### Resource
+
+- [matchmaking-in-lyft-line](https://eng.lyft.com/matchmaking-in-lyft-line-9c2635fe62c4)
 
 ----
