@@ -347,6 +347,104 @@ Main challenges involved in credit card fraud detection are:
 
 ## How would you design an algorithm to match pool riders for Lyft or Uber?
 
+
+
+### Design Decisions
+
+In the initial design of Line, 
+- passengers would enter in their origin and destination,
+- receive a fare for the ride
+- be put in the matching pool for 1 minute before being assigned a driver. 
+- If we didn’t find a good match at the end of that minute, we’d still dispatch a driver to the passenger
+
+
+### Naive Matching
+
+![](https://miro.medium.com/max/863/0*tWx-kgCgyncmfgFC.)
+
+- [Haversine](https://en.wikipedia.org/wiki/Haversine_formula) matchmaking system: 
+
+- Haversine distances $d_{hvrsn}(A,B)$ are straight-line distances between two points A, B and are multiplied by the region’s (pink box, $region(A,B)$) average speed $\mu_v$ to get a time estimate $t_{AB}$
+- A greedy system is one in which we take the first match we find that satisfies our constraints, as opposed to the best one for the entire system.
+
+$$t_{AB} = d_{hvrsn}(A,B)*\mu_v^{region(A,B)}$$
+
+- We denoted passengers as letters of the alphabet and every passenger has two stops — a pickup and drop-off — A and A’, B and B’, etc. So when comparing passenger A and B, we looked at 24 potential orderings: ABB’A’, ABA’B’, B’A’BA, B’AA’B, B’ABA’, BAA’B’, AA’B’B, B’BAA’, etc. We were able to reduce the number of permutations down to only 4 given that there would never be a drop-off before a pickup, and an ordering such as AA’BB’ had no overlap and thus wasn’t worth considering. We would look at all four permutations and eliminate ones that didn’t satisfy all of our constraints. We would then choose the most optimal ordering.
+- **Optimal Ordering:** The most optimal ordering is the one in which the `total matched distance is minimized`. For example if an ABBA route had a total distance of 3.5 miles, but an ABAB route had a total distance of 3.2 miles, we would select the ABAB route.
+
+
+```py
+def make_matches(all_rides):
+  for r1 in all_rides:
+    for r2 in all_rides: 
+      orderings = []
+        for ordering in get_permutations(r1, r2):
+          if is_good_match(r1, r2, ordering):
+            orderings.append(ordering)
+        
+        best_ordering = get_best_ordering(r1, r2, orderings)
+        if best_ordering:
+            make_match(r1, r2, best_ordering)
+        
+        # etc ...
+```
+
+### Improvement
+
+- We needed to get away from using haversine estimates as they were just too inaccurate:
+  - Haversine algorithm would probably be matching passengers on opposite sides of the mountain.
+- We considered `building a routing graph` and using the [A* algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm), similar to [Open Source Routing Machine - OSRM](https://en.wikipedia.org/wiki/Open_Source_Routing_Machine) and something we had done for our pricing estimates, but we knew it wouldn’t scale in our $O(n^2)$ algorithm without an investment in offline computational techniques like [contraction hierarchies](https://en.wikipedia.org/wiki/Contraction_hierarchies) and a lot of work on building a scalable system
+
+### GeoHash based model
+
+Geohash is a public domain geocode system invented, which 
+
+- Encodes a geographic location into a short string of letters and digits. 
+- Geohashing is a technique for bucketing latitude and longitude coordinates
+- It is a hierarchical spatial data structure which subdivides space into buckets of grid shape
+- Geohashes offer properties like arbitrary precision and the possibility of gradually removing characters from the end of the code to reduce its size (and gradually lose precision). As a consequence of the gradual precision degradation, nearby places will often (but not always) present similar prefixes. The longer a shared prefix is, the closer the two places are.
+
+
+Using historical data from past Lyft rides, we could record the average speed $\mu_v$ of our rides from one geohash $h_{geo}(A)$ to another $h_{geo}(B)$ and store that in a simple hash-table lookup. Then, when calculating estimates, we would multiply the haversine distance $d_{hvrsn}(A,B)$ between those two points with this speed to figure out a time estimate $t_{AB}$
+
+$$t_{AB} = d_{hvrsn}(A,B)*\mu_v^{(h_{geo}(A),h_{geo}(B))}$$
+
+- Added another nested hash table for `each hour` of the week between origin and destination which reduced our inaccuracies around rush hour.
+- This approach also became more accurate as we collected more data as we could break our model down into smaller geohash sizes.
+
+### Efficiency and Efficiency improvements
+
+Triple matching ABCBCA or even ABACBDCD, adding up to a total of 1,776 permutations. This meant we had to quickly scale the efficiency of our system to handle this load
+
+- **Longitudinal Sorting**: When considering pairing A and B together, there was some maximum distance they could be apart from each other. So we sorted the outer and inner loops by longitude, we could short circuit out of that loop when we’ve passed this maximum distance.
+
+
+### The Road to Becoming Less Greedy
+
+- Our greedy algorithm was built to find `a match`, and we made the first match that came along. We instead had to find the `best possible match`. This included considering all riders in our system in addition to predicting future demand.
+
+
+<img src="https://miro.medium.com/max/270/1*sICSglgYVz7V-W36QJhfAw.png" alt="Simply Easy Learning" align="right">
+
+- For those interested in Algorithms, this became something of a [maximum matching](https://en.wikipedia.org/wiki/Matching_(graph_theory)) problem for a `weighted graph` combined with elements of a [Secretary Problem](https://en.wikipedia.org/wiki/Secretary_problem). The optimal solution would combine an accurate prediction of future demand with an algorithm that optimized for all possible matches before making any one.
+
+
+### Constraints
+
+- For a match to be made, the total detour that match added for each passenger would have to be below an absolute threshold, but would also have to be below a proportional threshold.
+  - This makes sense as one can imagine a 5 minute detour is much more tolerable on a 30 minute ride than on a 5 minute ride
+- We had similar constraints for additional time until passengers were picked up.
+- We started learning that passengers didn’t want to go backwards, and in fact the angle of the lines they saw on the map would affect their satisfaction with the match. 
+  - Users would often rather have a 10 min detour that had no backtracking then a 5 minute detour with backtracking. 
+- We also learned that people would rather have a short pick up time and long detour than vice versa
+- Triple matching ABCBCA or even ABACBDCD, adding up to a total of 1,776 permutations. This meant we had to quickly scale the efficiency of our system to handle this load
+- One of our constraints for making a good match was the time it took for a passenger to be picked up. If it took 15 minutes to get picked up, it didn’t matter how fast the rest of the route was — passengers wouldn’t consider that an acceptable route. This meant that when considering pairing A and B together, there was some maximum distance they could be apart from each other.
+
+### Challenges
+
+- Finding drivers for all of our passengers at the same time would add a supply shock to our system as we’d need to have a pool of drivers available on the ten minute mark
+- The initial implementation compared every passenger with every other passenger in the system $O(n^2)$, in all possible orderings.
+
 ### Resource
 
 - [matchmaking-in-lyft-line](https://eng.lyft.com/matchmaking-in-lyft-line-9c2635fe62c4)
