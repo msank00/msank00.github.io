@@ -445,8 +445,57 @@ Triple matching ABCBCA or even ABACBDCD, adding up to a total of 1,776 permutati
 - Finding drivers for all of our passengers at the same time would add a supply shock to our system as we’d need to have a pool of drivers available on the ten minute mark
 - The initial implementation compared every passenger with every other passenger in the system $O(n^2)$, in all possible orderings.
 
+
 ### Resource
 
 - [matchmaking-in-lyft-line](https://eng.lyft.com/matchmaking-in-lyft-line-9c2635fe62c4)
 
+## Meta-knowledge
+
+### Maximum Matching
+
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Maximum-matching-labels.svg/300px-Maximum-matching-labels.svg.png" alt="Simply Easy Learning" align="right">
+
+In the mathematical discipline of graph theory, a matching or independent edge set in a graph is a set of edges without common vertices. Finding a matching in a bipartite graph can be treated as a network flow problem. A maximum matching (also known as maximum-cardinality matching) is a matching that contains the largest possible number of edges. There may be many maximum matchings. 
+
+
+### Secretary Problem 
+
+The secretary problem is a problem that demonstrates a scenario involving optimal stopping theory.
+
+The basic form of the problem is the following: imagine an administrator who wants to hire the best secretary out of  $n$ rankable applicants for a position. The applicants are interviewed one by one in random order. A decision about each particular applicant is to be made immediately after the interview. Once rejected, an applicant cannot be recalled. During the interview, the administrator gains information sufficient to rank the applicant among all applicants interviewed so far, but is unaware of the quality of yet unseen applicants. The question is about the optimal strategy (stopping rule) to maximize the probability of selecting the best applicant. If the decision can be deferred to the end, this can be solved by the simple maximum selection algorithm of tracking the running maximum (and who achieved it), and selecting the overall maximum at the end. The difficulty is that the decision must be made immediately. 
+
+### A* Algorithm
+
+A* is an `informed search algorithm`, or a `best-first search`, meaning that it is formulated in terms of weighted graphs: starting from a specific starting node of a graph, it aims to `find a path to the given goal node having the smallest cost` (least distance travelled, shortest time, etc.). 
+
+It does this by maintaining a tree of paths originating at the start node and extending those paths one edge at a time until its termination criterion is satisfied.
+
+At each iteration of its main loop, A* needs to determine which of its paths to extend. It does so based on the cost of the path and an estimate of the cost required to extend the path all the way to the goal. Specifically, A* selects the path that minimizes
+
+$$    f ( n ) = g ( n ) + h ( n ) $$ 
+
+where 
+
+- $n$ is the next node on the path
+- $g(n)$ is the cost of the path from the start node to $n$
+- $h(n)$ is a heuristic function that estimates the cost of the cheapest path from n to the goal
+
+### Contraction Hierarchies
+
+In computer science, the method of contraction hierarchies is a speed-up technique for finding the shortest-path in a graph. The most intuitive applications are car-navigation systems: A user wants to drive from A to B using the quickest possible route. The metric optimized here is the travel time. Intersections are represented by vertices, the street sections connecting them by edges. The edge weights represent the time it takes to drive along this segment of the street. 
+
+A path from  A to B is a sequence of edges (streets); the shortest path is the one with the minimal sum of edge weights among all possible paths. The shortest path in a graph can be computed using Dijkstra's algorithm; but given that road networks consist of tens of millions of vertices, this is impractical. 
+
+Contraction hierarchies is a speed-up method optimized to exploit properties of graphs representing road networks. The speed-up is achieved by creating shortcuts in a preprocessing phase which are then used during a shortest-path query to `skip over unimportant vertices`. This is based on the observation that road networks are highly hierarchical. Some intersections, for example highway junctions, are "more important" and higher up in the hierarchy than for example a junction leading into a dead end. Shortcuts can be used to save the precomputed distance between two important junctions such that the algorithm doesn't have to consider the full path between these junctions at query time. Contraction hierarchies do not know about which roads humans consider "important" (e.g. highways), but they are provided with the graph as input and are able to assign importance to vertices using heuristics.
+
 ----
+
+## Trigger/Wake word detection, e.g, 'ok, google' [@chiphuyen] 
+
+**Question:** How would you build a trigger word detection algorithm to spot the word "activate" in a 10 second long audio clip?
+
+
+- [getting-started-with-trigger-word-detection](https://medium.com/@holy_38376/getting-started-with-trigger-word-detection-19f31fa00a86)
+- [detecting-wake-words-in-speech](https://mc.ai/detecting-wake-words-in-speech/)
