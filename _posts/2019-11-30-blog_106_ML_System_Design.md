@@ -337,9 +337,11 @@ Main challenges involved in credit card fraud detection are:
 
 ----
 
-## 
+## Twitter follower recommendation
 
 **Question:** For any user on Twitter, how would you suggest who they should follow? What do you do when that user is new? What are some of the limitations of data-driven recommender systems?
+
+- search for Similar bio of the twitter handle and suggest them.
 
 ----
 
