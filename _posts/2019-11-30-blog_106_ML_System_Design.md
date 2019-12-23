@@ -360,7 +360,8 @@ In the initial design of Line,
 
 ### Naive Matching
 
-![](https://miro.medium.com/max/863/0*tWx-kgCgyncmfgFC.)
+
+<img src="https://miro.medium.com/max/863/0*tWx-kgCgyncmfgFC." alt="Simply Easy Learning" align="left" height=200>
 
 - [Haversine](https://en.wikipedia.org/wiki/Haversine_formula) matchmaking system: 
 
@@ -492,7 +493,7 @@ Contraction hierarchies is a speed-up method optimized to exploit properties of 
 
 ----
 
-## Trigger/Wake word detection, e.g, 'ok, google' [@chiphuyen] 
+## Trigger/Wake word detection, e.g, 'ok, google!' [@chiphuyen] 
 
 **Question:** How would you build a trigger word detection algorithm to spot the word "activate" in a 10 second long audio clip?
 
