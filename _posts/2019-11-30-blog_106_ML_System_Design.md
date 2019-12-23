@@ -361,7 +361,8 @@ In the initial design of Line,
 ### Naive Matching
 
 
-<img src="https://miro.medium.com/max/863/0*tWx-kgCgyncmfgFC." alt="Simply Easy Learning" align="left" height=200>
+
+![image](https://miro.medium.com/max/863/0*tWx-kgCgyncmfgFC.)
 
 - [Haversine](https://en.wikipedia.org/wiki/Haversine_formula) matchmaking system: 
 
@@ -500,3 +501,4 @@ Contraction hierarchies is a speed-up method optimized to exploit properties of 
 
 - [getting-started-with-trigger-word-detection](https://medium.com/@holy_38376/getting-started-with-trigger-word-detection-19f31fa00a86)
 - [detecting-wake-words-in-speech](https://mc.ai/detecting-wake-words-in-speech/)
+- [Code: Keras-Trigger-Word](https://github.com/Tony607/Keras-Trigger-Word)
