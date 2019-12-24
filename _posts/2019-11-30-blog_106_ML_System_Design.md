@@ -502,3 +502,54 @@ Contraction hierarchies is a speed-up method optimized to exploit properties of 
 - [getting-started-with-trigger-word-detection](https://medium.com/@holy_38376/getting-started-with-trigger-word-detection-19f31fa00a86)
 - [detecting-wake-words-in-speech](https://mc.ai/detecting-wake-words-in-speech/)
 - [Code: Keras-Trigger-Word](https://github.com/Tony607/Keras-Trigger-Word)
+
+----
+
+## Click Through Rate (CTR) Prediction
+
+- [Mobile Ads Click-Through Rate (CTR) Prediction](https://towardsdatascience.com/mobile-ads-click-through-rate-ctr-prediction-44fdac40c6ff)
+- [Don’t be tricked by the Hashing Trick](https://booking.ai/dont-be-tricked-by-the-hashing-trick-192a6aae3087)
+- [Code](https://nbviewer.jupyter.org/github/susanli2016/Machine-Learning-with-Python/blob/master/Click-Through%20Rate%20Prediction.ipynb)
+
+----
+
+## Design dynamic pricing 
+
+-  Traditional price management methods almost never achieve optimal pricing because they are designed for traditional environments, where the frequency of price changes is inherently limited (e.g., brick-and-mortar stores), and the complexity of pricing models is constrained by the capabilities of off-the-shelf tools and manual processes.
+- Dynamic pricing algorithms help to increase the quality of pricing decisions in e-commerce environments by leveraging the ability to change prices frequently and collect the feedback data in real time. 
+
+### Overview
+
+Traditional price optimization requires knowing or estimating the dependency between the `price` and `demand`. Assuming that this dependency is known (at least at a certain time interval), the `revenue-optimal price` can be found by employing the following equation:
+
+$$p^* = \underset{p}{\text{argmax}}\ \ p \times d(p)$$
+
+
+where $p$ is the price and $d(p)$ is a demand function.
+
+The traditional price management process assumes that the demand function is estimated from the historical sales data, that is, by doing some sort of regression analysis for observed pairs of prices and corresponding demands $(p_i,d_i)$. 
+- Since the price-demand relationship changes over time, the traditional process typically re-estimates the demand function on a regular basis.
+
+### Challenge
+
+The fundamental limitation of this approach is that it passively learns the demand function without actively exploring the dependency between the price and demand. This may or may not be a problem depending on how `dynamic the environment` is:
+
+- If the product life cycle is relatively long and the demand function changes relatively slowly, the passive learning approach combined with organic price changes can be efficient, as the price it sets will be close to the true optimal price most of the time.
+- If the product life cycle is relatively short or the demand function changes rapidly, the difference between the price produced by the algorithm and the true optimal price can become significant, and so will the lost revenue. In practice, this difference is substantial for many online retailers, and critical for retailers and sellers that extensively rely on short-time offers or flash sales (Groupon, Rue La La, etc.).
+
+### Constraints
+
+Classical `exploration-exploitation` problem:
+- **Minimize** the time spent on testing different price levels and collecting the corresponding demand points to accurately estimate the demand curve
+- **Maximize** the time used to sell at the optimal price calculated based on the estimate
+- Optimize the exploration-exploitation trade-off given that the seller does not know the demand function in advance 
+- Provide the ability to limit the number of price changes during the product life cycle.
+- Provide the ability to specify valid price levels and price combinations. Most retailers restrict themselves to a certain set of price points (e.g., $25.90, $29.90, ..., $55.90), and the optimization process has to support this constraint.
+- Enable the optimization of prices under inventory constraints, or given dependencies between products.
+
+### Resource
+
+- [A guide to dynamic pricing algorithms](https://blog.griddynamics.com/dynamic-pricing-algorithms/)
+- [Code-Github](https://github.com/ikatsov/algorithmic-examples)
+
+----
