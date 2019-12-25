@@ -112,7 +112,7 @@ In simple terms, images have shape `(height, width)`. So a filter can move in 2 
 In the above image, the green matrix is the `kernel` convolving on `2 direction` over the image and creating the red `feature map` in the right
 
 **Conv1D**
-But in case of text, initially the text are converted to some fixed dimension vectors `one-hot-encoded` or `dense embedding` of fixed dimension. Where the filters can move in one direction only, i.e in the direction of the words or characters, but not in the corresponsing embedding dimension because it's fixed.   
+But in case of text, initially the text are converted to some fixed dimension vectors `one-hot-encoded` or `dense embedding` of fixed dimension. Where the filters can move in one direction only, i.e in the direction of the words or characters, but not in the corresponding embedding dimension because it's fixed.   
 
 ![image](https://debajyotidatta.github.io/assets/images/conv.001.png)
 
