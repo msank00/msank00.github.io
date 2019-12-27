@@ -251,6 +251,135 @@ PyTorchNLPBook by Delip Rao, Chapter 3
 
 ---
 
+## Programming Tips for RNN, LSTM, GRU in Pytorch
+
+
+### LSTM
+
+
+![image](../assets/images/image_24_lstm_1.png)
+
+**Problem definition:** Given family name, identify nationality
+
+```py
+class LSTM_net(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super(LSTM_net, self).__init__()
+        self.hidden_size = hidden_size
+        self.lstm_cell = nn.LSTM(input_size, hidden_size)
+        self.h2o = nn.Linear(hidden_size, output_size)
+        self.softmax = nn.LogSoftmax(dim=2)
+    
+    def forward(self, input_, hidden):
+        """
+        input_.view(ni, nb, -1): 
+            ni: Number of inputs given simultaneously
+                (this helps in vectorization)
+            nb: number of batches
+            -1: rest, here number of characters 
+        """
+        
+        out, hidden = self.lstm_cell(input_.view(1, 1, -1), hidden)
+        output = self.h2o(hidden[0])
+        output = self.softmax(output)
+        return output.view(1, -1), hidden
+    
+    def init_hidden(self):
+        """
+        Return:
+            Tuple of size 2
+            - initializing hidden state
+            - initializing cell state
+        """
+        # dim: n_layers x n_batches x hid_dim
+        init_hidden_state = torch.zeros(1, 1, self.hidden_size)
+
+        # dim: n_layers x n_batches x hid_dim
+        init_cell_state = torch.zeros(1, 1, self.hidden_size) 
+        return (init_hidden_state, init_cell_state)
+
+n_hidden = 128
+net = LSTM_net(n_letters, n_hidden, n_languages)
+```
+
+- one parameter update per batch
+
+**code source**: Deep Learning course from PadhAI, IIT M, Module: Sequence Model, Lecture: Sequence model in Pytorch
+
+From PyTorch `nn.LSTM` [documentation](https://pytorch.org/docs/stable/nn.html)
+
+```py
+torch.nn.LSTM(*args, **kwargs)
+```
+
+Applies a **multi-layer** `long short-term memory` (LSTM) RNN to an input sequence.
+
+$$i_t​=\sigma(W_{ii}​x_t​+b_{ii}​+W_{hi}​h_{(t−1)}​+b_{hi}​)$$
+$$f_t​=\sigma(W_{if}​x_t​+b_{if}​+W_{hf}​h_{(t−1)}​+b_{hf}​)$$
+$$g_t​=\tanh(W_{ig}​x_t​+b_{ig}​+W_{hg}​h_{(t−1)}​+b_{hg}​)$$
+$$o_t​=\sigma(W_{io}​x_t​+b_{io}​+W_{ho}​h_{(t−1)}​+b_{ho}​)$$
+$$c_t​=f_t​∗c_{(t−1)​}+i_t​∗g_t$$
+$$h_t = o_t*\tanh(c_t)$$
+
+**Parameters:**
+
+- `input_size` – The number of expected features in the input `x`
+- `hidden_size` – The number of `features/neurones` in the hidden state `h`
+- `num_layers` – Number of recurrent layers. E.g., setting `num_layers=2` would mean **stacking two LSTMs** together to form a `stacked LSTM`, with the second LSTM taking in outputs of the first LSTM and computing the final results. `Default: 1`
+
+
+### What's the difference between “hidden” and “output” in PyTorch LSTM?
+
+According to Pytorch documentation 
+
+```py
+"""
+Outputs: output, (h_n, c_n)
+
+- output (seq_len, batch, hidden_size * num_directions): tensor containing the output features (h_t) from the last layer of the RNN, for each t. If a torch.nn.utils.rnn.PackedSequence has been given as the input, the output will also be a packed sequence.
+- h_n (num_layers * num_directions, batch, hidden_size): tensor containing the hidden state for t=seq_len
+- c_n (num_layers * num_directions, batch, hidden_size): tensor containing the cell state for t=seq_len
+"""
+```
+
+**How to interpret it?**
+
+output comprises all the hidden states in the last layer ("last" depth-wise, not time-wise). $(h_n, c_n)$ comprises the hidden states after the last time step, $t = n$, so you could potentially feed them into another LSTM.
+
+![image](https://i.stack.imgur.com/SjnTl.png)
+
+The batch dimension is not included.
+
+- [source_stackOverflow](https://stackoverflow.com/questions/48302810/whats-the-difference-between-hidden-and-output-in-pytorch-lstm)
+
+
+### Remember
+
+For each element in the input sequence, each layer computes the following function:
+
+
+
+- The `RNN_Net` and the `LSTM_Net` should be equivalent from outside, i.e their `function signature` should be equivalent meaning their input and output signature are equivalent even if their internal mechanism is different
+
+```py
+"""
+input_dim:int = size of the input vectors depending on problem definition. It can be number of words or number of characters etc.
+hid_dim:int = size of the hidden dimension, i.e number of neurons in the hidden layer, you SHOULD NOT interpret this as number of hidden layer
+output_dim:int = size of the output, it's mostly size of the multi-class vector, e.g: number of language, number of sentiments etc.
+"""
+net_rnn = RNN_net(input_dim, hidden_dim, output_dim)
+net_lstm = RNN_net(input_dim, hidden_dim, output_dim)
+```
+
+- Both should return `output` and `hidden` state
+- 
+
+### Resource
+
+- Deep Learning course from PadhAI, IIT M, Module: Sequence Model, Lecture: Sequence model in Pytorch
+
+----
+
 ## **How to design and debug deep learning models?**
 
 ```py
