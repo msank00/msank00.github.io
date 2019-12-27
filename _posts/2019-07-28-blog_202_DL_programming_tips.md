@@ -257,7 +257,7 @@ PyTorchNLPBook by Delip Rao, Chapter 3
 ### LSTM
 
 
-![image](../assets/images/image_24_lstm_1.png)
+![image](/assets/images/image_24_lstm_1.png)
 
 **Problem definition:** Given family name, identify nationality
 
