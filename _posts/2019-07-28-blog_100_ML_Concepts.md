@@ -126,55 +126,6 @@ Now GLM in `non-linear` due to the presence of $g()$ but it can be transformed i
 
 - [Stackexchange](https://stats.stackexchange.com/questions/120047/nonlinear-vs-generalized-linear-model-how-do-you-refer-to-logistic-poisson-e)
   
-----
-
-## Logistic Regression
-
-### What is the loss function for logistic regression?
-
-This is a very tricky question. 
-
-**Case 1:**
-
-When $y \in ({0,1})$
-
-$$NLL(w) = - \Sigma_{i=1}^{N}[y_i log (\hat{y_i}) + (1-y_i)log (1-\hat{y_i})] $$
-
-This is also called `cross entropy` error function.
-
-**Case 2:**
-
-When $y \in ({-1,+1})$
-
-$$NLL(w)= \Sigma_{i=1}^{N}log(1+\exp(-y_iw^Tx))$$
-
-#### Resource:
-
-- Probabilistic Perspective:  Murphy - Chapter 8.3.1
-- [ML Course: Prof. Piyush Rai](https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec9_print.pdf) 
-  
-### Why is logistic regression considered a linear model? Is it always necessary the decision boundary is linear / plane always?
-
-The short answer is: Logistic regression is considered a generalized linear model because the outcome always depends on the sum of the inputs and parameters. Or in other words, the output cannot depend on the product (or quotient, etc.) of its parameters! $z = \Sigma_i w_ix_i$
-
-$$f(x) = \frac{1}{1+e^{-\Sigma_i w_ix_i}}$$
-
-The key is that our model is `additive`.  Our outcome z depends on the additivity of the weight parameter values, e.g., : $z = w_1x_1 + w_2x_2$
-
-There’s no interaction between the weight parameter values,nothing like $w_1x_1 * w_2x_2$ or so, which would make our model non-linear!
-
-However we can use non-linear feature s.t $z = \Sigma_i w_if(x_i)$ where $f()$ is a non linear function of $x$. But still z is linear in terms of parameter $w_i$
-
-- In general the decision boundary is linear in `x`. To be more specific, the decision boundary in this case is given by $w^Tx=0$ (a hyperplane). But then you go on to say `but we can generate non-linear decision boundaries as well`.
-- Well, of course you can, but then that'll be called a `non-linear instance` of logistic regression (the exact same way we have linear SVMs and non-linear SVMs). In other words, you can start with your original data x and see/decide that it's not linearly separable. What you can do next is introduce a feature transformation h(x) and use that in place of x. 
-- For example, if you decide to apply a quadratic feature transformation on say for simplicity, your 2-dimensional data then h(x) in this case is simply given by
-$h(x) = [x_1, x_2, x_1^2, x_2^2, x_1x_2]$
-and your logistic model is now $y=f(w^Th(x))$ with the decision boundary given by $w^Th(x)=0$ (which is now a `non-linear quadratic curve` in the **original data space**).
-
-#### Resource
-
-- [logistic_regression_linear](https://sebastianraschka.com/faq/docs/logistic_regression_linear.html)
-- [Quora](https://www.quora.com/Why-is-logistic-regression-considered-a-linear-model)
 
 ----
 
@@ -269,25 +220,6 @@ $$A = U D V^T$$
 
 [(Important_link)](https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.11-The-determinant/)
 
-
----
-
-## Constrained optimization (Lagrangian)
-
-+ **minimize** $f(x)$ such that **`g(x)<=0`** and $h(x)=0$. 
-  + Our target is to bring a new equation where we will combine $f(x), g(x), h(x)$ in a single equation. We will do this by introducing Lagrange Multiplier $\lambda$ and $\mu$. The new equation looks like: $L(x,\lambda,\mu)=f(x)+\lambda g(x)+ \mu h(x)$.
-+ **maximize** $f(x)$ such that **`g(x)>=0`** and $h(x)=0$. 
-  + Our target is to bring a new equation where we will combine $f(x), g(x), h(x)$ in a single equation. We will do this by introducing Lagrange Multiplier $\lambda$ and $\mu$. The new equation looks like: $L(x,\lambda,\mu)=f(x)+\lambda g(x)+ \mu h(x)$.
-
-**NOTE:** In the above formulation, pay special attention to the `minimize` and `maximize` kewords and the change in inequality constrains. So given any minimization or maximization problem, convert its constraints to $g(x)<=0$ or $g(x)>=0$ accordingly and then formulate the Lagrangian form. The $h(x)=0$ may or may not be there. Finally apply KKT conditions for finding the solution. 
-
-**KKT Conditions:**
-- Stationarity $\nabla_x L(x,\lambda,\mu)=0$
-- Primal feasibility, $g(x)<=0$ (for minimization problem)
-- Dual feasibility, $\lambda>=0, \mu>=0$
-- Complementary slackness, $\lambda g(x) = 0$ and $\mu h(x)=0$
-
-[notes](http://mat.gsia.cmu.edu/classes/QUANT/NOTES/chap4.pdf), [sb slides](http://cse.iitkgp.ac.in/~sourangshu/coursefiles/ML15A/svm.pdfz), [iitK_notes](https://www.cse.iitk.ac.in/users/rmittal/prev_course/s14/notes/lec11.pdf), [Khan Academy - Constrained Optimization](https://www.youtube.com/watch?v=vwUV2IDLP8Q&list=PLSQl0a2vh4HC5feHa6Rc5c0wbRTx56nF7&index=92)
 
 ---
 ## Solve Linear Programming
