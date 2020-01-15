@@ -496,10 +496,13 @@ Now for content based recommendation this types are available and then the datas
 where $T_1$ and $T_2$ columns are already known. Then for each of the user we can learn a regression problem with the known rating as the target vector $u_j$ and $A = [T_1,T_2]$
 is the feature matrix and we need to learn the $\theta_j$ for user $j$ such that $A \theta_j = u_j$. Create the loss function and solve the optimization problem.
 
+### Resource
 
+- [(Content Based Recom -A.Ng)](https://www.youtube.com/watch?v=c0ZPDKbYzx0&list=PLnnr1O8OWc6ZYcnoNWQignIiP5RRtu3aS&index=2),
+- [(MMD - Stanford )](https://www.youtube.com/watch?v=2uxXPzm-7FY&index=42&list=PLLssT5z_DsK9JDLcT8T62VtzwyW9LNepV)
 
-[(Content Based Recom -A.Ng)](https://www.youtube.com/watch?v=c0ZPDKbYzx0&list=PLnnr1O8OWc6ZYcnoNWQignIiP5RRtu3aS&index=2),
-[(MMD - Stanford )](https://www.youtube.com/watch?v=2uxXPzm-7FY&index=42&list=PLLssT5z_DsK9JDLcT8T62VtzwyW9LNepV)
+----
+
 ### Colaborative FIltering
 
 **Story:** Unlike the `content based recommendation`, where the feature columns ($T_1$, $T_2$) were already given, here the features are not present. Rather they are being learnt by the algorithm. Here we assume $\theta_j$ is given i.e we know the users liking for $T_1$ and $T_2$ movies and almost similarly we formulate the regression problem but now we try to estimate the feature columns $T_k$. Then using the learnt feature we estimate the unknown ratings and then recommend those movies. Here knowing $\theta_j$
@@ -540,7 +543,10 @@ Cons:
 - Sparsiry
 - Popularity bias
 
-[(Collaborative Filtering-A.Ng)](https://www.youtube.com/watch?v=-Fptv3NZtmE&index=4&list=PLnnr1O8OWc6ZYcnoNWQignIiP5RRtu3aS), [(MMD - Stanford )](https://www.youtube.com/watch?v=2uxXPzm-7FY&index=42&list=PLLssT5z_DsK9JDLcT8T62VtzwyW9LNepV)
+### Resource
+
+- [(Collaborative Filtering-A.Ng)](https://www.youtube.com/watch?v=-Fptv3NZtmE&index=4&list=PLnnr1O8OWc6ZYcnoNWQignIiP5RRtu3aS)
+- [(MMD - Stanford )](https://www.youtube.com/watch?v=2uxXPzm-7FY&index=42&list=PLLssT5z_DsK9JDLcT8T62VtzwyW9LNepV)
 
 
 ### Colaborative Filtering - Low Rank Matrix Factorization (SVD)
@@ -550,6 +556,8 @@ Cons:
 RMSE: Root Mean Square Error. However it doesn't distinguish between high rating and low rating. 
 
 - Alternative: Precision $@k$ i.e. get the precision for top k items.
+
+---- 
 
 ## Clustering Algorithm
 
@@ -567,6 +575,20 @@ Assumption:
 ----
 
 ## How to implement regularization in decision tree, random forest?
+
+In Narrow sense, Regularization (commonly defined as adding Ridge or Lasso Penalty) is difficult to implement for Trees. Tree is a heuristic algorithm.
+
+In broader sense, Regularization (as any means to prevent overfit) for Trees is done by:
+
+- limit max. depth of trees
+- ensembles / bag more than just 1 tree
+- set stricter stopping criterion on when to split a node further (e.g. min gain, number of samples etc.)
+
+### Resource
+
+- [Quora](https://www.quora.com/How-is-regularization-performed-on-simple-decision-trees)
+
+----
 
 ## Why random column selection helps random forest?
 
