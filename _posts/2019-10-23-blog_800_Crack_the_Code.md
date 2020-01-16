@@ -52,7 +52,8 @@ def min_heapify(array, i):
     left = 2 * i + 1
     right = 2 * i + 2
     length = len(array) - 1
-    smallest = i    if left <= length and array[i] > array[left]:
+    smallest = i    
+    if left <= length and array[i] > array[left]:
         smallest = left
     if right <= length and array[smallest] > array[right]:
         smallest = right
@@ -114,6 +115,8 @@ c) Merge K Sorted Arrays.
 
 # Difference between `bounded` and `unbounded` 0/1 knapsack
 
+## In Recursive Approach
+
 The only difference between the 0/1 Knapsack `bounded` and `unbounded` problem is that, after including the item
 
 - `unbounded`: We recursively call to process `all the items` (including the current item)
@@ -138,6 +141,31 @@ if weights[currentIndex] <= capacity:
       profits, weights, capacity - weights[currentIndex], currentIndex+1)
 ```
 
+## In Bottom-Up Approach
+
+**0/1 Bounded:** for each item at index `i` ($0 \leq i \lt items.length$) and capacity `c` ($0 \leq c \leq capacity$), we have two options:
+
+1. Exclude the item at index `i`. In this case, we will take whatever profit we get from the sub-array excluding this item => `profit_exclude = dp[i-1][c]`
+2. Include the item at index `i` if its weight is not more than the capacity. In this case, we include its profit 
+`profit_include = profit[i] + dp[i-1][c-weight[i]]`
+   - plus the state `c-weight[i]` for rest of the item (excluding) 
+3. `dp[index][c] = max(profit_include, profit_exclude)`
+
+
+**Un-Bounded:** for each item at index `i` ($0 \leq i \lt items.length$) and capacity `c` ($0 \leq c \leq capacity$), we have two options:
+
+1. Exclude the item at index `i`. In this case, we will take whatever profit we get from the sub-array excluding this item => `profit_exclude = dp[i-1][c]`
+2. Include the item at index `i` if its weight is not more than the capacity. In this case, we include its profit 
+`profit_include = profit[i] + dp[i][c-weight[i]]`
+   - plus the state `c-weight[i]` for the item (including)
+3. `dp[index][c] = max(profit_include, profit_exclude)`
+
+for both the approach, the subtle difference is at step 2, after adding the profit.
+
+- **Bounded:** `dp[i-1][c-weight[i]]`
+- **Unbounded:** `dp[i][c-weight[i]]`
+
+Rest same. 
 ----
 
 # Difference between Longest Palindromic `Substring` and Longest Palindromic `Subsequence`
