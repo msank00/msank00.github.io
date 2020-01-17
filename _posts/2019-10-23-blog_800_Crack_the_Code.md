@@ -6,6 +6,8 @@ categories: jekyll update
 mathjax: true
 ---
 
+1. TOC
+{:toc}
 
 # Practice followup questions for each coding questions
 
