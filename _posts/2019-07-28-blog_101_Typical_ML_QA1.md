@@ -418,17 +418,10 @@ In the higher dimension, they are separated linearly.
 ![image](/assets/images/image_13_KMeans_6.png)
 
 
-<object data="https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec13_print.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec13_print.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec13_print.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+**Resource:**
 
-<object data="https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec14_print.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec14_print.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec14_print.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+- [Prof. Piyush Rai, Lecture 13](https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec13_print.pdf)
+- [Prof. Piyush Rai, Lecture 13](https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec14_print.pdf)
 
 
 **Algorithm:**
