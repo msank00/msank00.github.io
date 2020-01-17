@@ -21,12 +21,12 @@ mathjax: true
 
 ----
 
-## Understand Heap
+# Understand Heap
 
 - A heap is one common implementation of a priority queue.
 - A heap is one of the tree structures and represented as a binary tree.
 
-### Representation:
+## Representation:
 
 ![image](https://miro.medium.com/max/835/1*ds0JXOw3lLqNo6hw__NtZw.png)
 
@@ -45,7 +45,7 @@ mathjax: true
 
 ![image](https://miro.medium.com/max/818/1*ysSV1xV0OMm-1amWBpFb0A.png)
 
-### How to build heap
+## How to build heap
 
 - `min_heapify`: make some node and its `descendant nodes meet the heap property`.
 
@@ -92,7 +92,7 @@ This function iterates the nodes except the leaf nodes with the for-loop and app
 
 
 
-### Application of Heap (Priority Queue)
+## Application of Heap (Priority Queue)
 
 Applications of Heaps:
 1) `Heap Sort:` Heap Sort uses Binary Heap to sort an array in `O(nLogn)` time.
@@ -107,7 +107,7 @@ b) Sort an almost sorted array/
 c) Merge K Sorted Arrays.
 
 
-#### Reference:
+### Reference:
 
 - [TDS: heap data Structure](https://towardsdatascience.com/data-structure-heap-23d4c78a6962)
 - [G4G: Binary Heap](https://www.geeksforgeeks.org/binary-heap/)
@@ -115,9 +115,9 @@ c) Merge K Sorted Arrays.
 
 ----
 
-## Difference between `bounded` and `unbounded` 0/1 knapsack
+# Difference between `bounded` and `unbounded` 0/1 knapsack
 
-### In Recursive Approach
+## In Recursive Approach
 
 The only difference between the 0/1 Knapsack `bounded` and `unbounded` problem is that, after including the item
 
@@ -143,7 +143,7 @@ if weights[currentIndex] <= capacity:
       profits, weights, capacity - weights[currentIndex], currentIndex+1)
 ```
 
-### In Bottom-Up Approach
+## In Bottom-Up Approach
 
 **0/1 Bounded:** for each item at index `i` ($0 \leq i \lt items.length$) and capacity `c` ($0 \leq c \leq capacity$), we have two options:
 
@@ -170,7 +170,7 @@ for both the approach, the subtle difference is at step 2, after adding the prof
 Rest same. 
 ----
 
-## Difference between Longest Palindromic `Substring` and Longest Palindromic `Subsequence`
+# Difference between Longest Palindromic `Substring` and Longest Palindromic `Subsequence`
 
 A `subsequence` is a sequence that can be derived from another sequence by `deleting some` or `no elements` without changing the order of the remaining elements.
 
