@@ -405,12 +405,31 @@ In the higher dimension, they are separated linearly.
 
 ----
 
-## Talking about unsupervised learning ? What are the algorithms ?
+## Talking about unsupervised learning? What are the algorithms ?
 
 - Clustering
 - [K Means](http://www.saedsayad.com/clustering_kmeans.htm)
   - K-Means clustering intends to partition n objects into k clusters in which each object belongs to the cluster with the nearest mean. This method produces exactly k different clusters of greatest possible distinction. The best number of clusters k leading to the greatest separation (distance) is not known as a priori and must be computed from the data. The objective of K-Means clustering is to minimize total intra-cluster variance, or, the squared error function:
   - $J = \Sigma_j \Sigma_i \vert\vert x_i - c_j \vert\vert^2$ where `j=1,...,K` and `i=1,...,N`. `N` total number of observations and `K` total number of classes
+
+![image](/assets/images/image_13_KMeans_1.png)
+![image](/assets/images/image_13_KMeans_2.png)
+![image](/assets/images/image_13_KMeans_3.png)
+![image](/assets/images/image_13_KMeans_6.png)
+
+
+<object data="https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec13_print.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec13_print.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec13_print.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
+
+<object data="https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec14_print.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec14_print.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec14_print.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
+
 
 **Algorithm:**
 ```py    		
@@ -456,6 +475,10 @@ In the higher dimension, they are separated linearly.
 
 ### When K-means will fail?
 - When data is **non linearly separable**. It works best when data clusters are discrete.  
+
+
+
+----
 
 ## What other clustering algorithms do you know?
 
