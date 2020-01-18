@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Machine Learning Question and Answer (Part 1)"
+title:  "Blog 101: Machine Learning Question and Answer (Part 1)"
 date:   2019-07-28 00:11:31 +0530
 categories: jekyll update
 mathjax: true
@@ -8,6 +8,8 @@ mathjax: true
 
 1. TOC
 {:toc}
+---
+
 
 # What are the parameters in training a decision tree?
 
