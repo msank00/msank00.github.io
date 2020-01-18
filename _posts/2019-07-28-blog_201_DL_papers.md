@@ -1,13 +1,19 @@
 ---
 layout: post
-title:  "Blog 201: DL Papers"
+title:  "Blog 201: Deep Learning Papers"
 date:   2019-07-28 00:11:31 +0530
 categories: jekyll update
 mathjax: true
 ---
-# List of papers - you must read
 
-### Dropout: A Simple Way to Prevent Neural Networks from Overfitting
+1. TOC
+{:toc}
+---
+
+List of papers - you must read
+
+# Dropout: A Simple Way to Prevent Neural Networks from Overfitting
+
 **Summary:** Deep neural nets with a large number of parameters are very powerful machine learning
 systems. However, overfitting is a serious problem in such networks. Large networks are also
 slow to use, making it difficult to deal with overfitting by combining the predictions of many
@@ -26,7 +32,10 @@ JMLR 2014
 
 [paper](http://jmlr.org/papers/volume15/srivastava14a/srivastava14a.pdf)
 
-### Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift
+----
+
+# Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift
+
 **Summary:** Training Deep Neural Networks is complicated
 by the fact that the distribution of each layer’s
 inputs changes during training, as the parameters
@@ -57,7 +66,10 @@ ICML 2015
 
 [paper](http://proceedings.mlr.press/v37/ioffe15.pdf)
 
-### Generative Adversarial Nets
+----
+
+# Generative Adversarial Nets
+
 **Summary:** We propose a new framework for estimating generative models via an adversarial
 process, in which we simultaneously train two models: a generative model G
 that captures the data distribution, and a discriminative model D that estimates
@@ -76,8 +88,10 @@ NIPS 2014
 
 [paper](http://datascienceassn.org/sites/default/files/Generative%20Adversarial%20Nets.pdf)
 
+----
 
-### Attention Is All You Need
+# Attention Is All You Need
+
 **Summary:**The dominant sequence transduction models are based on complex recurrent or
 convolutional neural networks that include an encoder and a decoder. The best
 performing models also connect the encoder and decoder through an attention
@@ -95,7 +109,10 @@ best models from the literature.
 NIPS 2017
 [paper](http://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf)
 
-### How transferable are features in deep neural networks?
+----
+
+# How transferable are features in deep neural networks?
+
 **Summary:**Many deep neural networks trained on natural images exhibit a curious phenomenon
 in common: on the first layer they learn features similar to Gabor filters
 and color blobs. Such first-layer features appear not to be specific to a particular
@@ -121,8 +138,10 @@ that lingers even after fine-tuning to the target dataset.
 NIPS 2014
 [paper](http://papers.nips.cc/paper/5347-how-transferable-are-features-in-deep-neural-networks.pdf)
 
+----
 
-### k-means++: The Advantages of Careful Seeding
+# k-means++: The Advantages of Careful Seeding
+
 **Summary**: The k-means method is a widely used clustering technique that seeks to minimize the average
 squared distance between points in the same cluster. Although it offers no accuracy guarantees,
 its simplicity and speed are very appealing in practice. By augmenting k-means with a simple,
@@ -133,8 +152,9 @@ accuracy of k-means, often quite dramatically.
 [paper](http://ilpubs.stanford.edu:8090/778/1/2006-13.pdf)
 
 
-------
-#### References
+
+# References
+
 1. [Awsome deep learning papers](https://github.com/terryum/awesome-deep-learning-papers#understanding--generalization--transfer)
 2. [Papers from NIPS 2016](https://github.com/solaris33/awesome-machine-learning-papers)
 3. [Detailed list of papers, datasets, etc.](https://github.com/ChristosChristofidis/awesome-deep-learning)

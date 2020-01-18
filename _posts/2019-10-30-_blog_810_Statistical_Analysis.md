@@ -6,13 +6,17 @@ categories: jekyll update
 mathjax: true
 ---
 
-## When we should accept an Algorithm and when we shouldn't?
+1. TOC
+{:toc}
+---
+
+# When we should accept an Algorithm and when we shouldn't?
 
 Each algorithm is based on some assumption which is applicable to some scenario. Now if the assumption fails in some scenario, then the ALgorithm will fail there. 
 
 **Example:**
 
-### K-Means:
+## K-Means:
 
 **Assumptions:**
 
@@ -32,7 +36,7 @@ Each algorithm is based on some assumption which is applicable to some scenario.
 
 - [kmeans-free-lunch](http://varianceexplained.org/r/kmeans-free-lunch/) 
 
-### Hierarchical Clustering
+## Hierarchical Clustering
 
 > Hierarchical clustering is the hierarchical decomposition of the data based on group similarities
 
@@ -58,7 +62,8 @@ Each algorithm is based on some assumption which is applicable to some scenario.
 - [Book: ISL Chapter 10, Page 394]()
 
 ---
-## Bayesian Analysis
+
+# Bayesian Analysis
 
 $$P(Hyp\vert Data) = \frac{P(Data \vert Hyp) P(Hyp)}{P(Data)}$$
 
@@ -72,7 +77,9 @@ $$posterior \propto Likelihood \times prior$$
 
 - however, the prior starts to lose weight when we add more data
 
-## How to interpret $R^2$ ?
+----
+
+# How to interpret $R^2$ ?
 
 > Specifically, this linear regression is used to determine how well a line fits’ to a data set of observations, especially when comparing models. Also, it is the fraction of the total variation in y that is captured by a model.
 
@@ -92,7 +99,9 @@ where $\hat{y_i} = f(x_i)$
 
 - [Wiki](https://en.wikipedia.org/wiki/Coefficient_of_determination)
 
-## Linear and Bayesian modeling in R: Predicting movie popularity
+----
+
+# Linear and Bayesian modeling in R: Predicting movie popularity
 
 
 **Reference**

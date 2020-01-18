@@ -5,13 +5,18 @@ date:   2019-07-28 00:11:31 +0530
 categories: jekyll update
 mathjax: true
 ---
-# 5th Elephant Conference
+
+1. TOC
+{:toc}
+---
+
+5th Elephant Conference
 
 - [Website](https://fifthelephant.in/2019/)
 
-## Day 1
+# Day 1
 
-### Talk 1: Vehicle Routing Problem for Solving the Shipment Delivery
+## Talk 1: Vehicle Routing Problem for Solving the Shipment Delivery
 
 - **Speaker:** Venkateshan (Flipkart)
 
@@ -19,7 +24,7 @@ mathjax: true
 - NP Complete
 - Formulate as a cost problem: assign a cost `W` to every routing configuration. Find routing with minimum cost.
 
-#### Algo:
+**Algo:**
 
 - Integer Linear Algo
 - Dynamic Programming
@@ -30,14 +35,14 @@ Exact algorithm is costly, use approximation algorithm.
 - Neighboring customer shrinkage in time window.
 - Find minimum insertion cost. 
 
-#### Different Cost Associated with route
+### Different Cost Associated with route
 
 - Total travel time cost
 - Fairness cost
 - Outlier cost
 - Compactness cost
 
-#### Reference:
+**Reference:**
 
 - [Paper:Vehicle Routing with Time Windows: Two Optimization Algorithms ](https://www.jstor.org/stable/172024?seq=1#page_scan_tab_contents)
 - [Paper:Algorithms for the Vehicle Routing and Scheduling Problems with Time Window Constraints](https://dl.acm.org/citation.cfm?id=2778358)
@@ -53,18 +58,18 @@ Exact algorithm is costly, use approximation algorithm.
 
 ----
 
-### Talk 2: Optimizing Debt Collection with Survival Model
+## Talk 2: Optimizing Debt Collection with Survival Model
 
 - **Speaker:** Fasih Khativ (Simpl)
 
 Broader Probelem Statement:  Skip paying again & again Pay one bill instead get all your online purchases added up.
 and pay the total in one go.
 
-#### Algorithm
+Algorithm
 
 - Mainly using Survival Model
 
-#### Reference:
+**Reference::**
 
 - [Blog: Survival Analysis: Intuition & Implementation in Python](https://towardsdatascience.com/survival-analysis-intuition-implementation-in-python-504fde4fcf8e)
 - [Blog: Survival Analysis — Part A](https://towardsdatascience.com/survival-analysis-part-a-70213df21c2e)
@@ -73,7 +78,7 @@ and pay the total in one go.
 - [AV: Survival Analysis, Comprehensive Guide](https://www.analyticsvidhya.com/blog/2015/05/comprehensive-guide-parametric-survival-analysis/)
 
 ----
-### Talk 3: Tutorial: Deeplearning in Production using RedisAI
+## Talk 3: Tutorial: Deeplearning in Production using RedisAI
 
 - **Speaker:** Sherin Thomas (Tensorwerk)
 
@@ -82,10 +87,10 @@ and pay the total in one go.
 
 ----
 
-### Talk 4: The Anaconda Journey
+## Talk 4: The Anaconda Journey
 
 - **Speaker:** Peter Wang (Anaconda, Inc)
 
-
+----
 
 

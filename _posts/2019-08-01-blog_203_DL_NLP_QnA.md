@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Blog 203: Deep Learning: Natural Language Processing QnA"
+title:  "Blog 203: Deep Learning: Natural Language Processing Question and Answer"
 date:   2019-07-28 00:11:31 +0530
 categories: jekyll update
 mathjax: true
