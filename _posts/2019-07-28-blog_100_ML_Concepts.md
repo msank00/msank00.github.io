@@ -17,7 +17,7 @@ mathjax: true
 - Ordinary Least Square (OLS) approach to find the model parameters is a special case of maximum likelihood estimation and the overfitting problem is a general property of the MLE. But by adopting the Bayesian approach, the overfitting problem can be avoided. `[p9, Bishop]`
 - Also from Bayesian perspective we can use model for which number of parameters can exceed the number of training data. In Bayesian learning, the effective number of parameters adapts automatically to the size of the data.
 
-## Point Estimate of W vs W Distribution**
+## Point Estimate of W vs W Distribution
 
 Consider D is our dataset and w is the parameter set. Now in both Bayesian and frequentist paradigm, the likelihood function `p(D|w)` plays a central role. In frequentist approach, w is considered to be fixed parameter, whose value is determined by some form of estimator and the error bars on the estimator are obtained by considering the distribution of possible data sets D. 
 
