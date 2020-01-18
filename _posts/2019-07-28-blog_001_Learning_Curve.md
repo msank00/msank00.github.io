@@ -6,10 +6,13 @@ categories: jekyll update
 mathjax: true
 ---
 
+1. TOC
+{:toc}
+---
 
 # Learning Curve
 
-With the tremendous accelaration in the Artificial Intelligence domain, it's difficult to cover everything. Depending on my personal interest, below image shows my target to achieve. It's like tuning different hyperparameter to create a desiarable profile in Data Science field. 
+With the tremendous acceleration in the Artificial Intelligence domain, it's difficult to cover everything. Depending on my personal interest, below image shows my target to achieve. It's like tuning different hyperparameter to create a desirable profile in Data Science field. 
 
 ![image](/assets/images/ML_DL_LEARNING_CURVE.jpg)
 

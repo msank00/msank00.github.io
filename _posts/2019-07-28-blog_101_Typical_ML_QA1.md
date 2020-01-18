@@ -227,6 +227,7 @@ The term `Boosting` refers to a family of algorithms which **boosts** (i.e conve
 - [Pdf: link](http://math.mit.edu/~rothvoss/18.304.3PM/Presentations/1-Eric-Boosting304FinalRpdf.pdf)
 - [Book: ESL, Chapter 10, Page 339]()
 
+## TODO: Adaboost objective function
 
 ## How does gradient boosting works ?
    
@@ -485,6 +486,7 @@ In the higher dimension, they are separated linearly.
   + Our target is to bring a new equation where we will combine $f(x), g(x), h(x)$ in a single equation. We will do this by introducing Lagrange Multiplier $\lambda$ and $\mu$. The new equation looks like: $L(x,\lambda,\mu)=f(x)+\lambda g(x)+ \mu h(x)$.
 
 **NOTE:** In the above formulation, pay special attention to the `minimize` and `maximize` kewords and the change in inequality constrains. So given any minimization or maximization problem, convert its constraints to $g(x)<=0$ or $g(x)>=0$ accordingly and then formulate the Lagrangian form. The $h(x)=0$ may or may not be there. Finally apply KKT conditions for finding the solution. 
+
 
 ![image](/assets/images/image_25_svm_lagrange_1.png)
 ![image](/assets/images/image_25_svm_lagrange_2.png)

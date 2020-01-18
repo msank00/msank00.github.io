@@ -6,9 +6,14 @@ categories: jekyll update
 mathjax: true
 ---
 
-# Interesting ML Puzzle (curated over internet)
+1. TOC
+{:toc}
+---
 
-## **[ML Questions] Overfitting**: 
+Interesting ML Puzzle (curated over internet)
+
+# [ML Questions] Overfitting: 
+
 I am training a Random Forest on 1 million ($10^6$) points having 10000 ($10^4$) dimensions. I have already trained 5000 trees and want to train another 10000. Should I go ahead and train 15000 trees or do I have danger of overfitting? [[Qlink](https://www.linkedin.com/feed/update/urn:li:activity:6498386172857933824/)]
 
 - **[Ans]**: In his 1999 seminal paper (Theorem 1.2), Breiman already mathematically proved that Random Forest does not overfit on the number of trees. This is due to the `law of large numbers`. The error will always converge with more number of trees. [[paper link](https://www.stat.berkeley.edu/~breiman/random-forests.pdf)]
@@ -17,7 +22,9 @@ I am training a Random Forest on 1 million ($10^6$) points having 10000 ($10^4$)
 - **[Observation]**: With more trees the training and prediction time will be higher. Why?
   - Prediction time is usually a big factor. Just increasing the number of trees will  soon become prohibitive. In my case, assume every tree was balanced, then I will need ($\log_2(10^6)$) 20 iteration on average to reach to leaf. With 10000 trees, I am doing 20 X 10000 threshold evaluations at prediction time. Very expensive.
 
-## **[ML Questions] Bias and Variance**: 
+----
+
+# [ML Questions] Bias and Variance: 
 
 Assume that I am training a random forest, where each tree is grown fully. The training data consists of N samples. To train a tree I create a subset of size N by sampling with replacement from training data.
 The original training data is composed of F features, and for determining the split at any node in a tree, I am using $\log_e(F)$ features as candidates.
@@ -31,7 +38,7 @@ When we combine the trees, are we trying to correct the variance or the bias or 
 
 ----
 
-## [ML Question] Search Engine
+# [ML Question] Search Engine
 
 Assume that we have a corpus of `1 billion` images. I also have a black box function `F()` that can calculate the similarity between two images in `1 millisecond`. We are `not allowed` to extract any features based on the images nor we can reverse engineer the function F().
 
@@ -58,3 +65,5 @@ Then compare each "mean" image with input image to find the most similar cluster
   - If $N$ (number of clusters) = $10^5$.
 Each cluster with have approximately $10^4$ images.
 Worst case time = $(10^5 + 10^4) * 10^{-3} = 110$ sec. 
+
+----

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Blog 102: ML QnA2"
+title:  "Blog 102: Machine Learning Question and Answer (Part 2)"
 date:   2019-07-28 00:11:31 +0530
 categories: jekyll update
 mathjax: true
