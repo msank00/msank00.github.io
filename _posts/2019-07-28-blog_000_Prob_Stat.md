@@ -7,7 +7,11 @@ mathjax: true
 comments: true
 ---
 
-## What is P Value?
+1. TOC
+{:toc}
+---
+
+# What is P Value?
 >> In statistical hypothesis testing, the p-value or probability value is, for a given statistical model, the probability that, when the null hypothesis is true, the statistical summary (such as the absolute value of the sample mean difference between two compared groups) would be greater than or equal to the actual observed results.
 
 - Hypothesis Testing
@@ -19,16 +23,16 @@ comments: true
 
 Before we talk about what p-value means, let’s begin by understanding hypothesis testing where p-value is used to determine the statistical significance of our results.
 
-- Hypothesis testing is used to test the validity of a claim (null hypothesis) that is made about a population using sample data. The alternative hypothesis is the one you would believe if the null hypothesis is concluded to be untrue.
+- `Hypothesis testing` is used to test the validity of a claim (null hypothesis) that is made about a population using sample data. The alternative hypothesis is the one you would believe if the null hypothesis is concluded to be untrue.
 
 
-`The lower the p-value, the more surprising the evidence is, the more ridiculous our null hypothesis looks.`
+>> The lower the p-value, the more surprising the evidence is, the more ridiculous our null hypothesis looks.
 
 If the p-value is lower than a predetermined significance level (people call it alpha, I call it the threshold of being ridiculous — don’t ask my why, I just find it easier for me to understand), then we reject the null hypothesis.
 
-- In my opinion, p-values are used as a tool to challenge our initial belief (null hypothesis) when the result is statistically significant. The moment we feel ridiculous with our own belief (provided the p-value shows the result is statistically significant), we discard our initial belief (reject the null hypothesis) and make a reasonable decision.
+- In my opinion, `p-values` are used as a tool to challenge our initial belief (null hypothesis) when the result is statistically significant. The moment we feel ridiculous with our own belief (provided the p-value shows the result is statistically significant), we discard our initial belief (reject the null hypothesis) and make a reasonable decision.
 
-### Statistical Significance
+## Statistical Significance
 
 Finally, this is the final stage where we put everything together and test if the result is statistically significant.
 
@@ -37,68 +41,79 @@ Having just the p-value is not enough, we need to set a threshold (aka significa
 The rule of thumb is to set alpha to be either 0.05 or 0.01 (again, the value depends on your problems at hand).
 
 **Reference:**
+
 - [Very Very IMP TDS](https://towardsdatascience.com/p-values-explained-by-data-scientist-f40a746cfc8)
   
 
 ## What is p-values? 
 
 **How it is decided for rejecting null hypothesis? Why it's called null hypothesis?**
-   + `Null hypothesis` means the hypothesis which you want to nullify. So there is an `alternate hypothesis`, which will be accepted if the null hypothesis is rejected.
-   + A `p-value` is the probability of finding some sample outcome or a more extreme one if the null hypothesis is true.
-   + **Example:** I want to know if happiness is related to wealth among Dutch people. One approach to find this out is to formulate a null hypothesis. Since “related to” is not precise, we choose the opposite statement as our null hypothesis:
-        >   The correlation between wealth and happiness is zero among all Dutch people.
-     + We'll now try to refute this hypothesis in order to demonstrate that happiness and wealth are related all right.
-     + Now, we can't reasonably ask all 17,142,066 Dutch people how happy they generally feel. So we'll ask a sample (say, 100 people) about their wealth and their happiness. The correlation between happiness and wealth turns out to be 0.25 in our sample. Now we've one problem: sample outcomes tend to differ somewhat from population outcomes. 
-     + **How we can ever say anything about our population if we only have a tiny sample from it.** 
-     + So how does that work? Well, basically, some sample outcomes are highly unlikely given our null hypothesis.
-     + If our population correlation really is zero, then we can find a sample correlation of 0.25 in a sample of N = 100. The probability of this happening is only 0.012. So it's very unlikely. A reasonable conclusion is that our population correlation wasn't zero after all. 
-     + **Conclusion:** we reject the null hypothesis. Given our sample outcome, we no longer believe that happiness and wealth are unrelated. However, we still can't state this with certainty.
-     + [source](https://www.spss-tutorials.com/null-hypothesis/), [link2](https://onlinecourses.science.psu.edu/statprogram/node/138/)
+
++ `Null hypothesis` means the hypothesis which you want to nullify. So there is an `alternate hypothesis`, which will be accepted if the null hypothesis is rejected.
++ A `p-value` is the probability of finding some sample outcome or a more extreme one if the null hypothesis is true.
++ **Example:** I want to know if happiness is related to wealth among Dutch people. One approach to find this out is to formulate a null hypothesis. Since “related to” is not precise, we choose the opposite statement as our null hypothesis:
+  >   The correlation between wealth and happiness is zero among all Dutch people.
++ We'll now try to refute this hypothesis in order to demonstrate that happiness and wealth are related all right.
++ Now, we can't reasonably ask all 17,142,066 Dutch people how happy they generally feel. So we'll ask a sample (say, 100 people) about their wealth and their happiness. The correlation between happiness and wealth turns out to be 0.25 in our sample. Now we've one problem: sample outcomes tend to differ somewhat from population outcomes. 
++ **How we can ever say anything about our population if we only have a tiny sample from it.** 
++ So how does that work? Well, basically, some sample outcomes are highly unlikely given our null hypothesis.
++ If our population correlation really is zero, then we can find a sample correlation of 0.25 in a sample of N = 100. The probability of this happening is only 0.012. So it's very unlikely. A reasonable conclusion is that our population correlation wasn't zero after all. 
++ **Conclusion:** we reject the null hypothesis. Given our sample outcome, we no longer believe that happiness and wealth are unrelated. However, we still can't state this with certainty.
+
+**Reference:**
+
++ [source](https://www.spss-tutorials.com/null-hypothesis/)
++ [link2](https://onlinecourses.science.psu.edu/statprogram/node/138/)
 
 
 
 ----
-## Why bayesian inference can be difficult?
 
-Determining the `posterior distribution` directly from the Byes' rule involes coputing the evidence i.e `marginal likelihood`. For continutios parameters, the integral can be impossible to solve analytically.
+# Why bayesian inference can be difficult?
 
-Historically the difficulty of the integration was bypassed by restricting the models to relitevely simple likelihood functions with corresponding formulas for prior distribution - `conjugate prior`, that played nice with the likelihood functions to give us a tractable solution.
+Determining the `posterior distribution` directly from the Byes' rule involves computing the evidence i.e `marginal likelihood`. For continuous parameters, the integral can be impossible to solve analytically.
+
+Historically the difficulty of the integration was bypassed by restricting the models to relatively simple likelihood functions with corresponding formulas for prior distribution - `conjugate prior`, that played nice with the likelihood functions to give us a tractable solution.
 
 When the conjugate prior approach doesn't work, another approach is the
 
-- approximate the original functions with other functions, which are easier to work with and then show that the approximate is reasonably good under typical conditions. This is known as `Variational Approximation`.
+- Approximate the original functions with other functions, which are easier to work with and then show that the approximate is reasonably good under typical conditions. This is known as `Variational Approximation`.
 
 Another kind of approximation involves,
 
-- randomly sampling large number of representative combinations of parameter values from the posterior distribution. These types of algorithms are known as MCMC algorithm. These methods help to calculate the posterior distribution without calculating the integral.
+- Randomly sampling large number of representative combinations of parameter values from the posterior distribution. These types of algorithms are known as `MCMC` algorithm. These methods help to calculate the posterior distribution without calculating the integral.
 
-### How does Gibbs Sampling work?
+----
+
+# How does Gibbs Sampling work?
 
 Gibbs Sampling is a MCMC method to draw samples from a potentially really really complicated, high dimensional distribution, where analytically, it’s hard to draw samples from it. The usual suspect would be those nasty integrals when computing the normalizing constant of the distribution, especially in Bayesian inference. Now Gibbs Sampler can draw samples from any distribution, provided
-- you can provide all of the **conditional distributions of the joint distribution analitically**.
+- You can provide all of the **conditional distributions of the joint distribution analitically**.
 
-
+**Reference:**
 
 - [Github](https://wiseodd.github.io/techblog/2015/10/09/gibbs-sampling/)
 - [Video Lecture](http://videolectures.net/mlss09uk_murray_mcmc/)
 
+----
 
-## Importance Sampling and Monte Carlo
+# Importance Sampling and Monte Carlo
 
 
 - [Shakir Blog](https://shakirm.com/?section=2)
 - [Shakir Md - MLSS 2019 London](https://www.facebook.com/uclcsml/videos/3027632833943878/)
 - [Note](https://www.math.arizona.edu/~tgk/mc/book_chap6.pdf)
 
+----
 
-
-## Distribution
+# Distribution
 
 While the concept of probability gives us the mathematical calculations, distributions help us actually visualize what’s happening underneath.
 
-[(AVB)](https://www.analyticsvidhya.com/blog/2017/09/6-probability-distributions-data-science/)
+- [(AVB)](https://www.analyticsvidhya.com/blog/2017/09/6-probability-distributions-data-science/)
 
-### Uniform Distribution
+## Uniform Distribution
+
 A variable X is said to be uniformly distributed if the density function is:
 
 $$f(x) = \frac{1}{b-a}$$ 
@@ -106,7 +121,7 @@ $$f(x) = \frac{1}{b-a}$$
 where $-\infty<a<=x<=b<\infty$
  
 
-### Bernoulli Distribution
+## Bernoulli Distribution
 
 **Story:** All you cricket junkies out there! At the beginning of any cricket match, how do you decide who is going to bat or ball? A toss! It all depends on whether you win or lose the toss, right? Let’s say if the toss results in a head, you win. Else, you lose. There’s no midway.
 
@@ -126,7 +141,8 @@ The variance of a random variable from a bernoulli distribution is:
 $$V(X) = E(X^2)- [E(X)]^2 = p - p^2 = p(1-p)$$
 
 
-### Binomial Distribution
+## Binomial Distribution
+
 **Story:** Let’s get back to cricket.  Suppose that you won the toss today and this indicates a successful event. You toss again but you lost this time. If you win a toss today, this does not necessitate that you will win the toss tomorrow. Let’s assign a random variable, say X, to the number of times you won the toss. What can be the possible value of X? It can be any number depending on the number of times you tossed a coin.
 
 **Formulation:** An experiment with only two possible outcomes repeated n number of times is called binomial. The parameters of a binomial distribution are n and p where n is the total number of trials and p is the probability of success in each trial. If `x` is the total number fof success, we can write:
@@ -143,10 +159,11 @@ On the basis of the above explanation, the properties of a Binomial Distribution
   $$Var(X) = n*p*(1-p)$$
 
 
-### Normal Distribution:
+## Normal Distribution:
+
 Normal distribution represents the behavior of most of the situations in the universe (That is why it’s called a “normal” distribution. I guess!). 
 
->> The large sum of (small) random variables often turns out to be normally distributed, contributing to its widespread application ~ Central Limit Theoram
+>> The large sum of (small) random variables often turns out to be normally distributed, contributing to its widespread application ~ Central Limit Theorem
 
 Any distribution is known as Normal distribution if it has the following characteristics:
 + **The mean, median and mode of the distribution coincide.**
@@ -167,7 +184,7 @@ A **standard normal distribution looks as follows:**
 $$P(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$$
 
 
-### Poisson Distribution
+## Poisson Distribution
 
 **Story:** Suppose you work at a call center, approximately how many calls do you get in a day? It can be any number. Now, the entire number of calls at a call center in a day is modeled by Poisson distribution. Some more examples are
 
@@ -202,11 +219,12 @@ where $x=0,1,2,3,...$
 - Mean: $E(X) = \mu$
 - Variance: $Var(X) = \mu$
 
-### Exponential Distribution
+## Exponential Distribution
+
 **Story:** Let’s consider the call center example one more time. **What about the interval of time between the calls?** Here, exponential distribution comes to our rescue. Exponential distribution models the interval of time between the calls.
 
 Other examples are:
-1. Length of time beteeen metro arrivals,
+1. Length of time between metro arrivals,
 2. Length of time between arrivals at a gas station
 3. The life of an Air Conditioner
 
@@ -225,7 +243,8 @@ Mean and Variance of a random variable X following an exponential distribution:
 - Mean: $E(X) = \frac{1}{\lambda}$
 - Variance: $Var(X) = \frac{1}{\lambda^2}$
 
-### Gamma Distribution:
+## Gamma Distribution:
+
 We now define the gamma distribution by providing its PDF: 
 A continuous random variable $X$ is said to have a gamma distribution with parameters $\alpha>0$ and $\lambda>0$, shown as $X \sim Gamma(\alpha,\lambda)$, if its PDF is given by:
 
@@ -249,9 +268,9 @@ $$
 
 Thus, we conclude $Gamma(1,\lambda)=Exponential(\lambda)$. More generally, if you sum n independent $Exponential(\lambda)$ random variables, then you will get a $Gamma(n,\lambda)$ random variable.
 
-[(gamma)](https://www.probabilitycourse.com/chapter4/4_2_4_Gamma_distribution.php)
+- [(gamma)](https://www.probabilitycourse.com/chapter4/4_2_4_Gamma_distribution.php)
 
-#### How all the distributions are related?
+## How all the distributions are related?
 
 ![distribution](/assets/images/distribution.png)
 [(blog)](https://blog.cloudera.com/blog/2015/12/common-probability-distributions-the-data-scientists-crib-sheet/)
@@ -260,7 +279,8 @@ Thus, we conclude $Gamma(1,\lambda)=Exponential(\lambda)$. More generally, if yo
 > If the times between random events follow exponential distribution with rate $\lambda$, then the total number of events in a time period of length t follows the Poisson distribution with parameter $\lambda t$.
 
 ------
-## Moments - Shape of You !!
+
+# Moments - Shape of You !!
 
 Moments try to measure the **shape of the probability distribution function**. 
 - The zeroth moment is the total probability of the distribution which is **1**. 
@@ -269,12 +289,17 @@ Moments try to measure the **shape of the probability distribution function**.
 - The third moment is the **skew** which measures how lopsided the distribution is. 
 - The fourth moment is **kurtosis** which is the measure of **how sharp is the peak of the graph**.
 
-[(medium)](https://medium.com/technology-nineleaps/basics-of-statistics-for-machine-learning-engineers-ii-d25c5a5dac67)
 
 Moments are important because, under some assumptions, moments are a good estimate of how the population probability distribution is based on the sample distribution. We can even have a good feel of how far off the population moments are from our sample moments under some realistic assumptions. And once the population moments are known that means the shape of the population probability distribution is known as well.
 
+
+**Reference:**
+
+- [(medium)](https://medium.com/technology-nineleaps/basics-of-statistics-for-machine-learning-engineers-ii-d25c5a5dac67)
+
+
 -----
-## Central Limit Theoram
+# Central Limit Theorem
 
 >> In probability theory, the central limit theorem (CLT) establishes that, in some situations, when independent random variables are added, their properly normalized sum tends toward a normal distribution (informally a "bell curve") even if the original variables themselves are not normally distributed. 
 
@@ -295,13 +320,16 @@ Let's say $X$ follows Binomial distribution. Then as ${n \rightarrow \infty}$, t
 
 ![CLT](/assets/images/CLT.png)
 
+
+**Reference:**
+
 - [(source)](https://www.probabilitycourse.com/chapter7/7_1_2_central_limit_theorem.php)
 - [Khan Academy](https://www.youtube.com/watch?v=JNm3M9cqWyc)
 - [Khan Academy: Sampling Ditbn of Sample Mean](https://www.youtube.com/watch?v=FXZ2O1Lv-KE)
 
 -----
 
-## Law of Large Number
+# Law of Large Number
 
 
 ## Variational Inference: 
@@ -312,7 +340,7 @@ Let's say $X$ follows Binomial distribution. Then as ${n \rightarrow \infty}$, t
 
 ---
 
-## Expectation Maximization (EM), Gaussian Mixture Model
+# Expectation Maximization (EM), Gaussian Mixture Model
 
 Gaussian mixture models are a probabilistic model for representing normally distributed subpopulations within an overall population. Mixture models in general don't require knowing which subpopulation a data point belongs to, allowing the model to learn the subpopulations automatically. Since subpopulation assignment is not known, this constitutes a form of `unsupervised learning`.
 
@@ -323,7 +351,7 @@ For example, in modeling human height data, height is typically modeled as a nor
 
 A Gaussian mixture model is parameterized by two types of values, the mixture component weights and the component means and variances/covariances. For a Gaussian mixture model with $K$ components, the $k^{\text{th}}$ component has a mean of $\mu_k$ and variance of $\sigma_k$ for the `univariate case` and a mean of $\vec{\mu}_k$ and covariance matrix of $\vec{\sigma}_k$ for the `multivariate case`. The mixture component weights are defined as $\phi_k$ for component $C_k$, with the constraint that $\sum_{i=1}^k \phi_i = 1$, so that the total probability distribution normalizes to $1$. If the component weights aren't learned, they can be viewed as an `a-priori` distribution over components such that . If they are instead learned, they are the `a-posteriori` estimates of the component probabilities given the data.
 
-**One-dimensional Model:**
+## One-dimensional Model:
 
 $$
 p(x) = \sum_{i=1}^K\phi_i \mathcal{N}(x \;|\; \mu_i, \sigma_i)$$
@@ -334,7 +362,7 @@ $$
 
 $$\sum_{i=1}^K\phi_i = 1$$
 
-**Multi-dimensional Model**
+## Multi-dimensional Model
 
 $$
 p(\vec{x}) = \sum_{i=1}^K\phi_i \mathcal{N}(\vec{x} \;|\; \vec{\mu}_i, \Sigma_i)
@@ -346,7 +374,7 @@ $$
 
 $$\sum_{i=1}^K\phi_i = 1$$
 
-### Learning the Model
+## Learning the Model
 
 If the number of components $K$ is known, expectation maximization is the technique most commonly used to estimate the mixture model's parameters. In frequentist probability theory, models are typically learned by using maximum likelihood estimation techniques, which seek to maximize the probability, or likelihood, of the observed data given the model parameters. Unfortunately, finding the maximum likelihood solution for mixture models by differentiating the log likelihood and solving for 0 is usually analytically impossible.
 
@@ -354,7 +382,7 @@ Expectation maximization (EM) is a numerical technique for maximum likelihood es
 
 **Note:** Read section `8.5.1` from book `Element of Statistical Learning` for an easy understanding.
 
-**Two Component Mixture Model:**
+## Two Component Mixture Model:
 
 Say we have $\mid Y \mid$ number of data-_points coming from 2 normal distribution, i.e. `mixture of 2 gaussian distribution`. Where $Y_1 \sim N(\mu_1, \sigma_1)$ and $Y_2 \sim N(\mu_2, \sigma_2)$ and $\mid Y \mid = \mid Y_1 \mid + \mid Y_2 \mid$. Our task is to figure out those 2 distribution. More formally we want to estimate $\hat\mu_1, \hat\sigma_1$ and $\hat\mu_2, \hat\sigma_2$. We want to model $Y$ as follows 
 
@@ -406,7 +434,7 @@ So we apply Expectation Maximization (EM) algorithm.
     
     $$l(\theta; Z) = \sum_{i=1}^{N}log[(1-\hat\pi)\hat\phi_\theta^1(y_i) + \hat\pi\hat\phi_\theta^2(y_i)]$$
 
-So we are trying to maximize the loglikelihood through this iterative approach. The above algorithm is a simple version for 1D data. If the data is 2D then instead of variance $\sigma^2$, we will have covariance matrix $\Sigma$ because of Multivariate Gaussian. But the basic procedure is like this.
+So we are trying to maximize the log-likelihood through this iterative approach. The above algorithm is a simple version for 1D data. If the data is 2D then instead of variance $\sigma^2$, we will have covariance matrix $\Sigma$ because of Multivariate Gaussian. But the basic procedure is like this.
 
 For more details, read the following references.
 
@@ -421,7 +449,7 @@ For more details, read the following references.
 
 ----
 
-## **Monte carlo Gradient Estimate**
+# Monte carlo Gradient Estimate
 
 Comprehensive Survey
 
