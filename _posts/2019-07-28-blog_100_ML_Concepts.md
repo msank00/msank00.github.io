@@ -49,6 +49,8 @@ Our original regression function is `Y` and say for `Di` we got our predictive f
 
 **Variance** = $E[(\hat{Y_i}(x;D_i) - E[\hat{Y_i}(x;D_i)])^2]$, where $(\hat{Y_i}(x;D_i)$ is the predictive function over data set $D_i$ and $E[\hat{Y_i}(x;D_i)])$ is the average performance over all the datasets. So variance represents, the extent to which the individual predictive functions $\hat{Y_i}$ for dataset $D_i$ varies around their average. And thus we measure the extent by which the function $Y(x;D)$ is sensitive to the particular choice of the data sets. `[p149; Bishop]`
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ------
 
 # Linear Models
@@ -137,6 +139,7 @@ Now GLM in `non-linear` due to the presence of $g()$ but it can be transformed i
 
 - [Stackexchange](https://stats.stackexchange.com/questions/120047/nonlinear-vs-generalized-linear-model-how-do-you-refer-to-logistic-poisson-e)
   
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -167,6 +170,8 @@ where Q is the matrix with eigenvectors as columns and $\Sigma$ is $diag(\lambda
 
 - [Lecture 6: Prof.Mitesh_IIT-M](https://www.cse.iitm.ac.in/~miteshk/CS7015.html)
 - [(Book_IMPORTANT_link)](https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.7-Eigendecomposition/)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -244,6 +249,8 @@ $$A = U D V^T$$
 
 - [link](https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.8-Singular-Value-Decomposition/)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # Determinant
@@ -256,6 +263,7 @@ $$A = U D V^T$$
 
 - [(Important_link)](https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.11-The-determinant/)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ---
 
@@ -332,6 +340,7 @@ much better time: $O(n^{3.5}L^2)$ [Kar84].
 - [iitK_notes](https://www.cse.iitk.ac.in/users/rmittal/prev_course/s14/notes/lec11.pdf)
 - [Khan Academy - Constrained Optimization](https://www.youtube.com/watch?v=vwUV2IDLP8Q&list=PLSQl0a2vh4HC5feHa6Rc5c0wbRTx56nF7&index=92)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -402,6 +411,8 @@ Essentially, when using momentum, we push a ball down a hill. The ball accumulat
 
 - [(more details, see Sebastian Ruder blog)](http://ruder.io/optimizing-gradient-descent/)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ------
 
 # Second-Order Methods:  Newton’s Method
@@ -432,6 +443,8 @@ On the `graph of a function`, the second derivative corresponds to the curvature
 ### Resource:
 
 - [Prof Piyush Rai, IIT Kanpur](https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec9_print.pdf)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 -----
 
@@ -541,6 +554,8 @@ RMSE: Root Mean Square Error. However it doesn't distinguish between high rating
 
 - Alternative: Precision $@k$ i.e. get the precision for top k items.
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ---- 
 
 # Clustering Algorithm
@@ -560,6 +575,8 @@ The BFR algorithm, named after its inventors Bradley, Fayyad and Reina, is a var
 
 - [MMD Youtube](https://www.youtube.com/watch?v=NP1Zk8MY08k)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # How to implement regularization in decision tree, random forest?
@@ -575,6 +592,8 @@ In broader sense, Regularization (as any means to prevent overfit) for Trees is 
 **Resource:**
 
 - [Quora](https://www.quora.com/How-is-regularization-performed-on-simple-decision-trees)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -610,6 +629,8 @@ Along with the above methods `Random Forest` also does the following:
 - [Ref 1](https://stackoverflow.com/questions/34997134/random-forest-tuning-tree-depth-and-number-of-trees/35012011#35012011)
 - [Ref 2](https://stats.stackexchange.com/questions/111968/random-forest-how-to-handle-overfitting)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # How to avoid Overfitting?
@@ -636,6 +657,8 @@ Steps to void overfitting:
 [ref 1](https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html)
 
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ------
 
 # Gaussian Processing
@@ -658,6 +681,8 @@ Steps to void overfitting:
 - [Lecture Video: Prof. Richard Turner](https://www.youtube.com/watch?v=92-98SYOdlY)
 - [Gaussian Process](http://www.gaussianprocess.org/)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # K-Means Clustering (Unsupervised Learning)
@@ -670,8 +695,11 @@ Steps to void overfitting:
 ![image](/assets/images/image_13_KMeans_6.png)
 
 
-### Resource:
+**Resource:**
+
 - [Prof. Piyush Rai, Lecture 10](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec10_slides.pdf)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -681,6 +709,7 @@ Steps to void overfitting:
 - [Prof. Piyush Rai, Lecture 11](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec11_slides.pdf)
 
 ----
+
 # Generative Model (Unsupervised Learning)
 
 
@@ -695,6 +724,8 @@ Steps to void overfitting:
 **Resource:**
 
 - [Prof. Piyush Rai, Lecture 15](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec15_slides.pdf)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ---- 
 
@@ -713,6 +744,7 @@ Steps to void overfitting:
 
 - [Prof. Piyush Rai, Lecture 21](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec21_slides.pdf)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -727,7 +759,10 @@ Steps to void overfitting:
 
 - [Prof. Piyush Rai, Lecture 26](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec26_slides.pdf)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
+
 # Model/ Feature Selection and Model Debugging
 
 ![image](/assets/images/image_16_ModelSelection_1.png)
@@ -761,6 +796,8 @@ Steps to void overfitting:
 
 - [Prof. Piyush Rai, Lecture 19](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec19_slides.pdf)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # Bias Variance Decomposition
@@ -772,8 +809,10 @@ Steps to void overfitting:
 
 - [Prof. Piyush Rai, Lecture 19](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec19_slides.pdf)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
+
 # Bayesian Machine Learning
 
 Coursera - Bayesian Methods for Machine Learning
@@ -792,9 +831,10 @@ Lecture 12, 13, 14 of below playlist
 
 - [Mining Massive Datasets - Stanford University [FULL COURSE]](https://www.youtube.com/playlist?list=PLLssT5z_DsK9JDLcT8T62VtzwyW9LNepV)
 
+
 ----
 
-
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Back to Top</a>
 
 
 
