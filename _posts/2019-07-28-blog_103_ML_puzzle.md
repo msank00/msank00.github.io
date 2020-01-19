@@ -22,6 +22,8 @@ I am training a Random Forest on 1 million ($10^6$) points having 10000 ($10^4$)
 - **[Observation]**: With more trees the training and prediction time will be higher. Why?
   - Prediction time is usually a big factor. Just increasing the number of trees will  soon become prohibitive. In my case, assume every tree was balanced, then I will need ($\log_2(10^6)$) 20 iteration on average to reach to leaf. With 10000 trees, I am doing 20 X 10000 threshold evaluations at prediction time. Very expensive.
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # [ML Questions] Bias and Variance: 
@@ -36,7 +38,10 @@ When we combine the trees, are we trying to correct the variance or the bias or 
 -  A single decision tree if fully grown that means you are increasing the complexity of the tree. This implies the bias is reduced but variance increased.
 - **[My Ans]**: here even if each tree is grown fully, they are grown over a dataset of same size of original data, but sampled with replacement. So they haven't seen the full data, so they shouldn't overfit i.e variance will be low. But w.r.t each sampled dataset each tree is fully grown, so they have high variance and low bias (fully grown). By combining the trees we are correcting the variance. 
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
+
 
 # [ML Question] Search Engine
 
@@ -67,3 +72,5 @@ Each cluster with have approximately $10^4$ images.
 Worst case time = $(10^5 + 10^4) * 10^{-3} = 110$ sec. 
 
 ----
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Back to Top</a>
