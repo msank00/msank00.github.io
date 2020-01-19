@@ -344,6 +344,17 @@ much better time: $O(n^{3.5}L^2)$ [Kar84].
 
 ----
 
+# What is LBFGS algorithm?
+
+- In numerical optimization, the `Broyden–Fletcher–Goldfarb–Shanno` (BFGS) algorithm is an `iterative method` for solving `unconstrained nonlinear optimization` problems.
+- The BFGS method belongs to quasi-Newton methods, a class of hill-climbing optimization techniques that seek a stationary point of a (preferably twice continuously differentiable) function. For such problems, a necessary condition for optimality is that the gradient be zero. Newton's method and the BFGS methods are not guaranteed to converge unless the function has a quadratic Taylor expansion near an optimum. However, BFGS can have acceptable performance even for non-smooth optimization instances.
+
+**Resource:**
+
+- [Wikipedia](https://www.google.com/search?q=BFGS+algorithm&ie=utf-8&oe=utf-8&client=firefox-b-e&safe=strict)
+
+----
+
 # Gradient Decent
 
 >> The main idea is that the sign of the derivative of the function at a specific value of x tells you if you need to increase (if negative slope) or decrease (if positive slope) x to reach the minimum. When the slope is near 0, the minimum should have been reached. 
@@ -834,7 +845,6 @@ Lecture 12, 13, 14 of below playlist
 
 ----
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Back to Top</a>
-
+<a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>
 
 

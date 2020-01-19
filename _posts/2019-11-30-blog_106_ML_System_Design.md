@@ -1,12 +1,27 @@
 ---
 layout: post
-title:  "Blog 106: ML System Design"
+title:  "Blog 106: Machine Learning System Design"
 date:   2019-11-30 00:11:31 +0530
 categories: jekyll update
 mathjax: true
 ---
 
-## System design interview question strategy?
+# Content
+
+1. TOC
+{:toc}
+
+# Introduction 
+
+To learn how to design machine learning systems
+
+> I find it really helpful to read case studies to see how great teams deal with different deployment requirements and constraints.
+
+- [Tweet: Chip Huyen](https://twitter.com/chipro/status/1188653180902445056)
+
+----
+
+# System design interview question strategy?
 
 - Define the problem
 - High level design only
@@ -18,7 +33,7 @@ mathjax: true
   - ...
 
 
-Formal Way:
+**Formal Way:**
 
 - Step 1 — Understand the Goals
   - What is the goal of the system?
@@ -47,16 +62,14 @@ Formal Way:
   - What type of database would you use and why?
   - What caching solutions are out there? Which would you choose and why?
   - What frameworks can we use as infrastructure in your ecosystem of choice?
-  - 
+  
 
-
-
-### Technology to focus
+## Technology to focus
 
 - Horizontal Scaling
 - Vertical Scaling
 - Intelligent Caching
-- Datadase:
+- Database:
   - [NoSQL](https://www.guru99.com/nosql-tutorial.html)
     - **Key Value Pair Based**: Key value stores help the developer to store schema-less data. They work best for `shopping cart contents`. Redis, `Dynamo`, `Riak` are some examples of key-value store DataBases. They are all based on Amazon's Dynamo paper. 
     - **Column-based**: Column-based NoSQL databases are widely used to manage `data warehouses`, business intelligence, CRM, Library card catalogs. HBase, `Cassandra`, HBase, Hypertable
@@ -64,7 +77,7 @@ Formal Way:
     - **Graph-Based**: Graph base database mostly used for `social networks`, logistics, `spatial data`. Neo4J, Infinite Graph, `OrientDB`, FlockDB.
 
 
-### Algorithm to Focus:
+## Algorithm to Focus:
 
 - Ranking Algorithm
 - Searching Algorithm
@@ -75,18 +88,22 @@ Formal Way:
 
 - [how-to-succeed-in-a-system-design-interview](https://blog.pramp.com/how-to-succeed-in-a-system-design-interview-27b35de0df26)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----    
 
-## Design a movie recommendation system like Netflix?
+# Design a movie recommendation system like Netflix?
 
 - [system-design-interview-questions](http://blog.gainlo.co/index.php/category/system-design-interview-questions/)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
-## How to design Twitter?
+# How to design Twitter?
 
 
-### Define Problem:
+## Define Problem:
 
 1. Data modeling. 
    1. Data modeling – If we want to use a **relational database** like `MySQL`, we can define `user object` and `feed object`. Two relations are also necessary. One is user can follow each other, the other is each feed has a user owner.
@@ -94,7 +111,7 @@ Formal Way:
    1. The most straightforward way is to fetch feeds from all the people you follow and render them by time.
 
 
-### Follow Up question
+## Follow Up question
 
 1. When users followed a lot of people, fetching and rendering all their feeds can be costly. How to improve this?
 
@@ -107,7 +124,7 @@ Formal Way:
 - This can be related to machine learning. One way to do it is to identify several related features like `registration date`, the `number of followers`, the `number of feeds` etc. and build a machine learning system to detect if a user is fake.
 - Check for pattern like how for a reglar user their number of followers and number of feeds grow over time. For a regular user the growth is monotonic but generally Fake user gains lots of followers and contents in a short span [excluding true celibrity, who if joined, on day 1 will get million followers]
 
-### Can we order feed by other algorithms? Relevency and Recency algorithm
+## Can we order feed by other algorithms? Relevency and Recency algorithm
 
 
 There are a lot of debate about this topic over the past few weeks. If we want to order based on users interests, how to design the algorithm?
@@ -136,22 +153,23 @@ Some factors/features:
 - [system-design-interview-question-how-to-design-twitter-part-1](http://blog.gainlo.co/index.php/2016/02/17/system-design-interview-question-how-to-design-twitter-part-1/)
 - [Infinite Scrolling](https://eviltrout.com/2013/02/16/infinite-scrolling-that-works.html.html)
 - [Relevance Ranking](https://www.lextek.com/manuals/onix/ranking.html)
-  
-----
-
-## How to design a Search Engine ?
 
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
+# TODO: How to design a Search Engine ?
 
-## How the Instagram algorithm works in 2019?
+----
+
+
+# How the Instagram algorithm works in 2019?
 
 >> Instagram’s primary goal is to maximize the time users spend on the platform. Because the longer users linger, the more ads they see. So directly or indirectly, accounts that help Instagram achieve that goal are rewarded.
 
 
-### How the algorithm uses `ranking signals` to decide how to arrange each individual user’s feed.
+## How the algorithm uses `ranking signals` to decide how to arrange each individual user’s feed.
 
 - Relationship
   - Instagram’s algorithm prioritizes content from accounts that users interact with a lot, (commenting each other, DM each other, tag each others post)
@@ -164,10 +182,11 @@ Some factors/features:
 
 - [instagram-algorithm](https://blog.hootsuite.com/instagram-algorithm/)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
-## How Does the YouTube Algorithm Work? A Guide to Getting More Views
+# How Does the YouTube Algorithm Work? A Guide to Getting More Views
 
 
 Features for the algorithm:
@@ -187,17 +206,19 @@ Features for the algorithm:
 - [Paper: Deep Neural Networks for YouTube Recommendations](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45530.pdf)
 
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ---- 
 
-## Important resources to follow:
+# How to succeed in a system design interview?
 
 - [How to succeed in a system design interview?](https://blog.pramp.com/how-to-succeed-in-a-system-design-interview-27b35de0df26)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
-## Recommendation system for Duolingo [@chiphuyen]
+# Recommendation system for Duolingo [@chiphuyen]
 
 **Question:** Duolingo is a platform for language learning. When a student is learning a new language, Duolingo wants to recommend increasingly difficult stories to read. 
 
@@ -206,9 +227,6 @@ Features for the algorithm:
 
 
 **Answer:**
-
-
-
 
 **Prologue:** This problem can be mapped to predict `Text Readability`.
 
@@ -225,7 +243,7 @@ The RAND Reading Study Group (2002:25), a 14-member panel funded by the United S
 
 A text can introduce different level of complexity
 
-### Lexical and syntactic complexity
+## Lexical and syntactic complexity
 
 The best estimate of a text’s difficulty involved the use of eight elements:
 
@@ -240,12 +258,12 @@ The best estimate of a text’s difficulty involved the use of eight elements:
 
 These are all structural elements in the style group, as they “lend themselves most readily to quantitative enumeration and statistical treatment
 
-### Content and subject matter
+## Content and subject matter
 
 In terms of content and subject matter, it is commonly believed that abstract texts (e.g., philosophical texts) will be harder to understand than concrete texts describing real objects, events or activities (e.g., stories), and texts on everyday topics are likely to be easier to process than those that are not (Alderson 2000:62).
 
 
-### How to measure Text Readability?
+## How to measure Text Readability?
 
 To measure text difficulty, reading researchers have tended to focus on developing `readability formulas` since the early 1920s. A readability formula is an equation which combines the statistically measurable text features that best predict text difficulty, such as: 
 
@@ -282,17 +300,18 @@ Q2. Given a story, how would you edit it to make it easier or more difficult?
 - Refactor the content to introduce more simple sentence, Easy synonyms, inject more words with mono syllables etc.
   
 
-### Resource
+**Resource:**
 
 - [Link 1](http://www.sanjun.org/html/publication01.html)
 
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
-## Fraud Detection [@chiphuyen]
+# Fraud Detection [@chiphuyen]
 
 Given a dataset of credit card purchases information, each record is labelled as fraudulent or safe, how would you build a fraud detection algorithm?
-
 
 Decision Tree based approach: 
 
@@ -317,7 +336,7 @@ Main challenges involved in credit card fraud detection are:
 - **Adaptive techniques** used against the model by the scammers.
 
 
-### Resource
+**Reference:**
 
 - [Class Imbalance Python](https://towardsdatascience.com/methods-for-dealing-with-imbalanced-data-5b761be45a18)
 - [Credit-Card-Fraud-Detection-in-python-using-scikit-learn](https://medium.com/analytics-vidhya/credit-card-fraud-detection-in-python-using-scikit-learn-f9046a030f50)
@@ -325,31 +344,35 @@ Main challenges involved in credit card fraud detection are:
 - [fraud-detection-machine-learning-algorithms](https://intellipaat.com/blog/fraud-detection-machine-learning-algorithms/)
 - [Check location of an IP address](https://iplocation.com/)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
-## Build a recommendation system to suggest replacement items [@chiphuyen]
+# Build a recommendation system to suggest replacement items [@chiphuyen]
 
 **Question:** You run an e-commerce website. Sometimes, users want to buy an item that is no longer available. Build a recommendation system to suggest replacement items.
 
 
-- do a Nearest Neighbor Search for all the items those are similar to the original item and recommend those as replacement.
+- Do a Nearest Neighbor Search for all the items those are similar to the original item and recommend those as replacement.
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
-## Twitter follower recommendation
+# Twitter follower recommendation
 
 **Question:** For any user on Twitter, how would you suggest who they should follow? What do you do when that user is new? What are some of the limitations of data-driven recommender systems?
 
 - search for Similar bio of the twitter handle and suggest them.
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
-## How would you design an algorithm to match pool riders for Lyft or Uber?
+# How would you design an algorithm to match pool riders for Lyft or Uber?
 
-
-
-### Design Decisions
+## Design Decisions
 
 In the initial design of Line, 
 - passengers would enter in their origin and destination,
@@ -358,9 +381,7 @@ In the initial design of Line,
 - If we didn’t find a good match at the end of that minute, we’d still dispatch a driver to the passenger
 
 
-### Naive Matching
-
-
+## Naive Matching
 
 ![image](https://miro.medium.com/max/863/0*tWx-kgCgyncmfgFC.)
 
@@ -391,13 +412,13 @@ def make_matches(all_rides):
         # etc ...
 ```
 
-### Improvement
+## Improvement
 
 - We needed to get away from using haversine estimates as they were just too inaccurate:
   - Haversine algorithm would probably be matching passengers on opposite sides of the mountain.
 - We considered `building a routing graph` and using the [A* algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm), similar to [Open Source Routing Machine - OSRM](https://en.wikipedia.org/wiki/Open_Source_Routing_Machine) and something we had done for our pricing estimates, but we knew it wouldn’t scale in our $O(n^2)$ algorithm without an investment in offline computational techniques like [contraction hierarchies](https://en.wikipedia.org/wiki/Contraction_hierarchies) and a lot of work on building a scalable system
 
-### GeoHash based model
+## GeoHash based model
 
 Geohash is a public domain geocode system invented, which 
 
@@ -414,14 +435,14 @@ $$t_{AB} = d_{hvrsn}(A,B)*\mu_v^{(h_{geo}(A),h_{geo}(B))}$$
 - Added another nested hash table for `each hour` of the week between origin and destination which reduced our inaccuracies around rush hour.
 - This approach also became more accurate as we collected more data as we could break our model down into smaller geohash sizes.
 
-### Efficiency and Efficiency improvements
+## Efficiency and Efficiency improvements
 
 Triple matching ABCBCA or even ABACBDCD, adding up to a total of 1,776 permutations. This meant we had to quickly scale the efficiency of our system to handle this load
 
 - **Longitudinal Sorting**: When considering pairing A and B together, there was some maximum distance they could be apart from each other. So we sorted the outer and inner loops by longitude, we could short circuit out of that loop when we’ve passed this maximum distance.
 
 
-### The Road to Becoming Less Greedy
+## The Road to Becoming Less Greedy
 
 - Our greedy algorithm was built to find `a match`, and we made the first match that came along. We instead had to find the `best possible match`. This included considering all riders in our system in addition to predicting future demand.
 
@@ -431,7 +452,7 @@ Triple matching ABCBCA or even ABACBDCD, adding up to a total of 1,776 permutati
 - For those interested in Algorithms, this became something of a [maximum matching](https://en.wikipedia.org/wiki/Matching_(graph_theory)) problem for a `weighted graph` combined with elements of a [Secretary Problem](https://en.wikipedia.org/wiki/Secretary_problem). The optimal solution would combine an accurate prediction of future demand with an algorithm that optimized for all possible matches before making any one.
 
 
-### Constraints
+## Constraints
 
 - For a match to be made, the total detour that match added for each passenger would have to be below an absolute threshold, but would also have to be below a proportional threshold.
   - This makes sense as one can imagine a 5 minute detour is much more tolerable on a 30 minute ride than on a 5 minute ride
@@ -442,13 +463,13 @@ Triple matching ABCBCA or even ABACBDCD, adding up to a total of 1,776 permutati
 - Triple matching ABCBCA or even ABACBDCD, adding up to a total of 1,776 permutations. This meant we had to quickly scale the efficiency of our system to handle this load
 - One of our constraints for making a good match was the time it took for a passenger to be picked up. If it took 15 minutes to get picked up, it didn’t matter how fast the rest of the route was — passengers wouldn’t consider that an acceptable route. This meant that when considering pairing A and B together, there was some maximum distance they could be apart from each other.
 
-### Challenges
+## Challenges
 
 - Finding drivers for all of our passengers at the same time would add a supply shock to our system as we’d need to have a pool of drivers available on the ten minute mark
 - The initial implementation compared every passenger with every other passenger in the system $O(n^2)$, in all possible orderings.
 
 
-### Resource
+## Resource
 
 - [matchmaking-in-lyft-line](https://eng.lyft.com/matchmaking-in-lyft-line-9c2635fe62c4)
 
@@ -464,7 +485,7 @@ In the mathematical discipline of graph theory, a matching or independent edge s
 
 ### Secretary Problem 
 
-The secretary problem is a problem that demonstrates a scenario involving optimal stopping theory.
+The secretary problem is a problem that demonstrates a scenario involving `optimal stopping theory`.
 
 The basic form of the problem is the following: imagine an administrator who wants to hire the best secretary out of  $n$ rankable applicants for a position. The applicants are interviewed one by one in random order. A decision about each particular applicant is to be made immediately after the interview. Once rejected, an applicant cannot be recalled. During the interview, the administrator gains information sufficient to rank the applicant among all applicants interviewed so far, but is unaware of the quality of yet unseen applicants. The question is about the optimal strategy (stopping rule) to maximize the probability of selecting the best applicant. If the decision can be deferred to the end, this can be solved by the simple maximum selection algorithm of tracking the running maximum (and who achieved it), and selecting the overall maximum at the end. The difficulty is that the decision must be made immediately. 
 
@@ -492,9 +513,11 @@ A path from  A to B is a sequence of edges (streets); the shortest path is the o
 
 Contraction hierarchies is a speed-up method optimized to exploit properties of graphs representing road networks. The speed-up is achieved by creating shortcuts in a preprocessing phase which are then used during a shortest-path query to `skip over unimportant vertices`. This is based on the observation that road networks are highly hierarchical. Some intersections, for example highway junctions, are "more important" and higher up in the hierarchy than for example a junction leading into a dead end. Shortcuts can be used to save the precomputed distance between two important junctions such that the algorithm doesn't have to consider the full path between these junctions at query time. Contraction hierarchies do not know about which roads humans consider "important" (e.g. highways), but they are provided with the graph as input and are able to assign importance to vertices using heuristics.
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
-## Trigger/Wake word detection, e.g, 'ok, google!' [@chiphuyen] 
+# Trigger/Wake word detection, e.g, 'ok, google!' [@chiphuyen] 
 
 **Question:** How would you build a trigger word detection algorithm to spot the word "activate" in a 10 second long audio clip?
 
@@ -503,22 +526,27 @@ Contraction hierarchies is a speed-up method optimized to exploit properties of 
 - [detecting-wake-words-in-speech](https://mc.ai/detecting-wake-words-in-speech/)
 - [Code: Keras-Trigger-Word](https://github.com/Tony607/Keras-Trigger-Word)
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
-## Click Through Rate (CTR) Prediction
+# Click Through Rate (CTR) Prediction
 
 - [Mobile Ads Click-Through Rate (CTR) Prediction](https://towardsdatascience.com/mobile-ads-click-through-rate-ctr-prediction-44fdac40c6ff)
 - [Don’t be tricked by the Hashing Trick](https://booking.ai/dont-be-tricked-by-the-hashing-trick-192a6aae3087)
 - [Code](https://nbviewer.jupyter.org/github/susanli2016/Machine-Learning-with-Python/blob/master/Click-Through%20Rate%20Prediction.ipynb)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
-## Design dynamic pricing 
+# Design dynamic pricing 
 
 -  Traditional price management methods almost never achieve optimal pricing because they are designed for traditional environments, where the frequency of price changes is inherently limited (e.g., brick-and-mortar stores), and the complexity of pricing models is constrained by the capabilities of off-the-shelf tools and manual processes.
 - Dynamic pricing algorithms help to increase the quality of pricing decisions in e-commerce environments by leveraging the ability to change prices frequently and collect the feedback data in real time. 
 
-### Overview
+## Overview
 
 Traditional price optimization requires knowing or estimating the dependency between the `price` and `demand`. Assuming that this dependency is known (at least at a certain time interval), the `revenue-optimal price` can be found by employing the following equation:
 
@@ -530,14 +558,14 @@ where $p$ is the price and $d(p)$ is a demand function.
 The traditional price management process assumes that the demand function is estimated from the historical sales data, that is, by doing some sort of regression analysis for observed pairs of prices and corresponding demands $(p_i,d_i)$. 
 - Since the price-demand relationship changes over time, the traditional process typically re-estimates the demand function on a regular basis.
 
-### Challenge
+## Challenge
 
 The fundamental limitation of this approach is that it passively learns the demand function without actively exploring the dependency between the price and demand. This may or may not be a problem depending on how `dynamic the environment` is:
 
 - If the product life cycle is relatively long and the demand function changes relatively slowly, the passive learning approach combined with organic price changes can be efficient, as the price it sets will be close to the true optimal price most of the time.
 - If the product life cycle is relatively short or the demand function changes rapidly, the difference between the price produced by the algorithm and the true optimal price can become significant, and so will the lost revenue. In practice, this difference is substantial for many online retailers, and critical for retailers and sellers that extensively rely on short-time offers or flash sales (Groupon, Rue La La, etc.).
 
-### Constraints
+## Constraints
 
 Classical `exploration-exploitation` problem:
 - **Minimize** the time spent on testing different price levels and collecting the corresponding demand points to accurately estimate the demand curve
@@ -547,15 +575,12 @@ Classical `exploration-exploitation` problem:
 - Provide the ability to specify valid price levels and price combinations. Most retailers restrict themselves to a certain set of price points (e.g., $25.90, $29.90, ..., $55.90), and the optimization process has to support this constraint.
 - Enable the optimization of prices under inventory constraints, or given dependencies between products.
 
-### Resource
+**Reference*:*
 
 - [A guide to dynamic pricing algorithms](https://blog.griddynamics.com/dynamic-pricing-algorithms/)
 - [Code-Github](https://github.com/ikatsov/algorithmic-examples)
 
+
 ----
 
-## To learn how to design machine learning systems
-
-> I find it really helpful to read case studies to see how great teams deal with different deployment requirements and constraints.
-
-- [Tweet: Chip Huyen](https://twitter.com/chipro/status/1188653180902445056)
+<a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>

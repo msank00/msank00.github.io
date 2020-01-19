@@ -172,7 +172,5 @@ accuracy of k-means, often quite dramatically.
 
 ----
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Back to Top</a>
-
-
+<a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>
 

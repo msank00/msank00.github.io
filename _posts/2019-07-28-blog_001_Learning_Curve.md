@@ -16,3 +16,7 @@ With the tremendous acceleration in the Artificial Intelligence domain, it's dif
 
 ![image](/assets/images/ML_DL_LEARNING_CURVE.jpg)
 
+----
+
+<a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>
+

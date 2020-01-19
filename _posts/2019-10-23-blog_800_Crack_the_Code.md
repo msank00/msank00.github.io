@@ -6,6 +6,8 @@ categories: jekyll update
 mathjax: true
 ---
 
+# Content
+
 1. TOC
 {:toc}
 
@@ -18,6 +20,7 @@ mathjax: true
 5. What if you have infinite amount of memory? Any way to make the solution faster?
 6. You can also try to change some restriction of the question, like what if it’s a normal tree instead of binary tree? What if you can store the dictionary in any data structure you like?
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -95,23 +98,24 @@ This function iterates the nodes except the leaf nodes with the for-loop and app
 ## Application of Heap (Priority Queue)
 
 Applications of Heaps:
-1) `Heap Sort:` Heap Sort uses Binary Heap to sort an array in `O(nLogn)` time.
+1. `Heap Sort:` Heap Sort uses Binary Heap to sort an array in `O(nLogn)` time.
 
-2) `Priority Queue:` Priority queues can be efficiently implemented using Binary Heap because it supports `insert()`, `delete()` and `extractmax()`, `decreaseKey()` operations in `O(logn)` time. Binomoial Heap and Fibonacci Heap are variations of Binary Heap. These variations perform union also efficiently.
+2. `Priority Queue:` Priority queues can be efficiently implemented using Binary Heap because it supports `insert()`, `delete()` and `extractmax()`, `decreaseKey()` operations in `O(logn)` time. Binomoial Heap and Fibonacci Heap are variations of Binary Heap. These variations perform union also efficiently.
 
-3) Graph Algorithms: The priority queues are especially used in Graph Algorithms like `Dijkstra’s Shortest Path` and `Prim’s Minimum Spanning Tree`.
+3. Graph Algorithms: The priority queues are especially used in Graph Algorithms like `Dijkstra’s Shortest Path` and `Prim’s Minimum Spanning Tree`.
 
-4) Many problems can be efficiently solved using Heaps. See following for example.
-a) K’th Largest Element in an array.
-b) Sort an almost sorted array/
-c) Merge K Sorted Arrays.
+4. Many problems can be efficiently solved using Heaps. See following for example.
+   1. K’th Largest Element in an array.
+   2. Sort an almost sorted array/
+   3. Merge K Sorted Arrays.
 
 
-### Reference:
+**Reference:**
 
 - [TDS: heap data Structure](https://towardsdatascience.com/data-structure-heap-23d4c78a6962)
 - [G4G: Binary Heap](https://www.geeksforgeeks.org/binary-heap/)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -168,6 +172,10 @@ for both the approach, the subtle difference is at step 2, after adding the prof
 - **Unbounded:** `dp[i][c-weight[i]]`
 
 Rest same. 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ----
 
 # Difference between Longest Palindromic `Substring` and Longest Palindromic `Subsequence`
@@ -229,9 +237,12 @@ if st[startIndex] == st[endIndex]:
         dp[startIndex][endIndex] = True
 ```
 
-Here the problem is to find Longest Palindromic `Substring`, then it's `NECESSARY` if `str[start] == str[end]` then remaining elements in between `str[strat+1:end-1]` is a palindrome.
+- Here the problem is to find Longest Palindromic `Substring`, then it's `NECESSARY` if `str[start] == str[end]` then remaining elements in between `str[strat+1:end-1]` is a palindrome.
 
-`dp[startIndex+1][endIndex-1] == True` denotes if remaining in between elements are also palindrome.
+- `dp[startIndex+1][endIndex-1] == True` denotes if remaining in between elements are also palindrome.
 
 
 ----
+
+
+<a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>

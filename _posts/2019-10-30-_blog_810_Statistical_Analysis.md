@@ -6,8 +6,11 @@ categories: jekyll update
 mathjax: true
 ---
 
+# Content
+
 1. TOC
 {:toc}
+
 ---
 
 # When we should accept an Algorithm and when we shouldn't?
@@ -61,6 +64,8 @@ Each algorithm is based on some assumption which is applicable to some scenario.
 
 - [Book: ISL Chapter 10, Page 394]()
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ---
 
 # Bayesian Analysis
@@ -76,6 +81,8 @@ $$posterior \propto Likelihood \times prior$$
 > There is an element which is key when we want to build a model under Bayesian approach: the Bayes factor. The Bayes factor is the ratio of the likelihood probability of two competing hypotheses (usually null and alternative hypothesis) and it helps us to quantify the support of a model over another one.
 
 - however, the prior starts to lose weight when we add more data
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -93,11 +100,11 @@ where $\hat{y_i} = f(x_i)$
 
 - If the adjusted $R^2$ of our final model is only $0.3595$, so this means that $35.95$% of the variability is explained by the model.
 
-
-
 **Reference:**
 
 - [Wiki](https://en.wikipedia.org/wiki/Coefficient_of_determination)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -109,3 +116,6 @@ where $\hat{y_i} = f(x_i)$
 - [TDS Blog](https://towardsdatascience.com/linear-and-bayesian-modelling-in-r-predicting-movie-popularity-6c8ef0a44184)
 
 ---
+
+
+<a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>
