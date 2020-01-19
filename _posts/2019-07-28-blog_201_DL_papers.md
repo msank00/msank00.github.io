@@ -32,6 +32,8 @@ JMLR 2014
 
 [paper](http://jmlr.org/papers/volume15/srivastava14a/srivastava14a.pdf)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift
@@ -66,6 +68,8 @@ ICML 2015
 
 [paper](http://proceedings.mlr.press/v37/ioffe15.pdf)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # Generative Adversarial Nets
@@ -87,6 +91,8 @@ the generated samples.
 NIPS 2014 
 
 [paper](http://datascienceassn.org/sites/default/files/Generative%20Adversarial%20Nets.pdf)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -138,6 +144,8 @@ that lingers even after fine-tuning to the target dataset.
 NIPS 2014
 [paper](http://papers.nips.cc/paper/5347-how-transferable-are-features-in-deep-neural-networks.pdf)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # k-means++: The Advantages of Careful Seeding
@@ -160,7 +168,9 @@ accuracy of k-means, often quite dramatically.
 3. [Detailed list of papers, datasets, etc.](https://github.com/ChristosChristofidis/awesome-deep-learning)
 4. [Concise List](http://www.xn--vjq503akpco3w.top/literature/awesome-free-deep-learning-papers.html)
 
+----
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Back to Top</a>
 
 
 

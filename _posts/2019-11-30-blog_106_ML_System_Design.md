@@ -553,3 +553,9 @@ Classical `exploration-exploitation` problem:
 - [Code-Github](https://github.com/ikatsov/algorithmic-examples)
 
 ----
+
+## To learn how to design machine learning systems
+
+> I find it really helpful to read case studies to see how great teams deal with different deployment requirements and constraints.
+
+- [Tweet: Chip Huyen](https://twitter.com/chipro/status/1188653180902445056)

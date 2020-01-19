@@ -1,20 +1,21 @@
 ---
 layout: post
-title:  "Blog 202: Deep Learning Programming Tips, Best Practices System Design "
+title:  "Blog 202: Deep Learning Programming Tips, Best Practices"
 date:   2019-07-28 00:11:31 +0530
 categories: jekyll update
 mathjax: true
 ---
 
-## To learn how to design machine learning systems
+# Content
 
-> I find it really helpful to read case studies to see how great teams deal with different deployment requirements and constraints.
-
-- [Tweet: Chip Huyen](https://twitter.com/chipro/status/1188653180902445056)
+1. TOC
+{:toc}
 ---
-## **Deep Learning Best Practices - Mistakes and Tips**
 
-The purpose of this repo is to consolidate all the **Best Practicies** for building neural network model curated over the internet
+
+# Deep Learning Best Practices - Mistakes and Tips:
+
+The purpose of this repo is to consolidate all the **Best Practices** for building neural network model curated over the internet
 
 - Try to overfit a single batch first
   - It's a very quick sanity test of your wiring; i.e. if you can't overfit a small amount of data you've got a simple bug somewhere 
@@ -29,26 +30,21 @@ The purpose of this repo is to consolidate all the **Best Practicies** for build
   - I like to start with the simplest possible sanity checks - e.g. also training on all zero data first to see what loss I get with the base output distribution, then gradually include more inputs and scale up the net, making sure I beat the previous thing each time.
 - ...
 
- Source:
-
- - [Github](https://github.com/msank00/datascience_bestpractices/blob/master/dl_mistakes_tips.md)
-
-------
-
-**Read the below references**
+ **Reference**
 
 These are pure gold.
 
-#### Reference
-
-- [tweet_andrej_karpathy](https://twitter.com/karpathy/status/1013244313327681536)
+- [Tweet_andrej_karpathy](https://twitter.com/karpathy/status/1013244313327681536)
 - [Recipe for training neural network](https://karpathy.github.io/2019/04/25/recipe/)
 - [What should I do when my neural network doesn't learn?](https://stats.stackexchange.com/questions/352036/what-should-i-do-when-my-neural-network-doesnt-learn)
 - [Practical Advice for Building Deep Neural Networks](https://pcc.cs.byu.edu/2017/10/02/practical-advice-for-building-deep-neural-networks/) 
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ---
 
-## **Techinical Mistakes while Model Building**
+# Technical Mistakes while Model Building**
 
 - Create a `non-reproducible` data preparation steps
 - Evaluate a model based on performance of training set
@@ -80,12 +76,18 @@ These are pure gold.
 - Failed to create calculated variables from raw data
 - Building model on the wrong population
 
-#### Reference
-- [tweet_Caitlin_Hudon](https://twitter.com/beeonaposy/status/1122964504910938121)
+**Reference:**
+
+- [Tweet_Caitlin_Hudon](https://twitter.com/beeonaposy/status/1122964504910938121)
 - [ICLR2019_Workshop_on_Debug_ML](https://github.com/debug-ml-iclr2019/debug-ml-iclr2019.github.io)
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ---
-## Software Engineering Skills for Data Science
+
+# Software Engineering Skills for Data Science
 
 > Because our day-to-day involves writing code, I am convinced that we data scientists need to be equipped with basic software engineering skills. Being equipped with these skills will help us write code that is, in the long-run, easy to recap, remember, reference, review, and rewrite. In this collection of short essays, I will highlight the basic software skills that, if we master, will increase our efficiency and effectiveness in the long-run.
 
@@ -93,18 +95,28 @@ These are pure gold.
 
 - [Essays on Data Science](https://ericmjl.github.io/essays-on-data-science/software-skills/)
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ---
-## Pytorch Learning
+
+# Pytorch Learning
 
 - [JovianML: Pytorch Basics](https://jovian.ml/aakashns/01-pytorch-basics)
 - [IMP Pytorch-tutorial](https://github.com/yunjey/pytorch-tutorial)
 - [JovianML: Linear Regression in Pytorch](https://jovian.ml/aakashns/02-linear-regression)
 
-___
 
-## Difference of `Conv1D` and `Conv2D` in deep learning.
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
+# Difference of `Conv1D` and `Conv2D` in deep learning.
 
 **Conv2D**
+
 In simple terms, images have shape `(height, width)`. So a filter can move in 2 direction, so `conv2D` is used.
 
 ![image](https://miro.medium.com/max/700/1*VVvdh-BUKFh2pwDD0kPeRA@2x.gif)
@@ -155,30 +167,38 @@ The entire process was very nicely illustrated by Zhang et al, in the paper “A
 ![image](https://debajyotidatta.github.io/assets/images/Zhang.png)
 
 
-
-
-
-
-
-**Resource:**
+**Reference:**
 
 - [Understanding Convolutions in Text](https://debajyotidatta.github.io/nlp/deep/learning/word-embeddings/2016/11/27/Understanding-Convolutions-In-Text/)
 
 
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ---
-## **9 Tips For Training Lightning-Fast Neural Networks In Pytorch**
+
+# 9 Tips For Training Lightning-Fast Neural Networks In Pytorch
 
 - [Blog](https://towardsdatascience.com/9-tips-for-training-lightning-fast-neural-networks-in-pytorch-8e63a502f565)
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ---
 
-## How to write training loop in PyTorch?
+# How to write training loop in PyTorch?
 
 - [notebook](https://nbviewer.jupyter.org/github/msank00/deeplearning_4m_scratch/blob/master/03_minibatch_training.ipynb)
 
-## How to use `checkpoint` in your code?
 
-### What is checkpoint?
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# How to use `checkpoint` in your code?
+
+## What is checkpoint?
 
 
 - The architecture of the model, allowing you to re-create the model
@@ -188,7 +208,7 @@ The entire process was very nicely illustrated by Zhang et al, in the paper “A
 
 > Again, a checkpoint contains the information you need to save your current experiment state so that you can resume training from this point.
 
-### How to save and load checkpoint in Pytorch?
+## How to save and load checkpoint in Pytorch?
 
 ```py
 #Saving a checkpoint
@@ -229,32 +249,43 @@ model = load_checkpoint('checkpoint.pth')
 ```
 
 
-**Resource:**
+**Reference:**
 - [saving-loading-your-model-in-pytorch](https://medium.com/udacity-pytorch-challengers/saving-loading-your-model-in-pytorch-741b80daf3c)
 - [checkpointing-tutorial-for-tensorflow-keras-and-pytorch](https://blog.floydhub.com/checkpointing-tutorial-for-tensorflow-keras-and-pytorch/)
 - [Notebook-Github](https://github.com/msank00/nlproc/blob/master/text_classification_pytorch_v1.ipynb)
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ---
-## Text Classification in Pytorch
+
+# Text Classification in Pytorch
 
 PyTorchNLPBook by Delip Rao, Chapter 3
 
 - [Classifying_Yelp_Review_Sentiment](https://nbviewer.jupyter.org/github/msank00/nlproc/blob/master/Classifying_Yelp_Reviews.ipynb)
 
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ---
 
-## **Dive into Deep Learning with PyTroch**
+# Dive into Deep Learning with PyTroch
 
 - [Original Book using mxnet](https://www.d2l.ai/)
 - [PyTorch Version](https://github.com/dsgiitr/d2l-pytorch)
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ---
 
-## Programming Tips for RNN, LSTM, GRU in Pytorch
+# Programming Tips for RNN, LSTM, GRU in Pytorch
 
 
-### LSTM
+## LSTM
 
 
 ![image](/assets/images/image_24_lstm_1.png)
@@ -330,21 +361,27 @@ Applies a **multi-layer** `long short-term memory` (LSTM) RNN to an input sequen
 - `num_layers` – Number of recurrent layers. E.g., setting `num_layers=2` would mean **stacking two LSTMs** together to form a `stacked LSTM`, with the second LSTM taking in outputs of the first LSTM and computing the final results. `Default: 1`
 
 
-### What's the difference between “hidden” and “output” in PyTorch LSTM?
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
+# What's the difference between `hidden` and `output` in PyTorch LSTM?
 
 According to Pytorch documentation 
 
 ```py
 """
 Outputs: output, (h_n, c_n)
-
-- output (seq_len, batch, hidden_size * num_directions): tensor containing the output features (h_t) from the last layer of the RNN, for each t. If a torch.nn.utils.rnn.PackedSequence has been given as the input, the output will also be a packed sequence.
-- h_n (num_layers * num_directions, batch, hidden_size): tensor containing the hidden state for t=seq_len
-- c_n (num_layers * num_directions, batch, hidden_size): tensor containing the cell state for t=seq_len
 """
 ```
 
-**How to interpret it?**
+- `output (seq_len, batch, hidden_size * num_directions)`: Tensor containing the output features (h_t) from the last layer of the RNN, for each t. If a torch.nn.utils.rnn.PackedSequence has been given as the input, the output will also be a packed sequence.
+- `h_n (num_layers * num_directions, batch, hidden_size)`: tensor containing the hidden state for t=seq_len
+- `c_n (num_layers * num_directions, batch, hidden_size)`: tensor containing the cell state for t=seq_len
+
+
+## How to interpret it?
 
 output comprises all the hidden states in the last layer ("last" depth-wise, not time-wise). $(h_n, c_n)$ comprises the hidden states after the last time step, $t = n$, so you could potentially feed them into another LSTM.
 
@@ -355,7 +392,7 @@ The batch dimension is not included.
 - [source_stackOverflow](https://stackoverflow.com/questions/48302810/whats-the-difference-between-hidden-and-output-in-pytorch-lstm)
 
 
-### Remember
+**Remember**
 
 For each element in the input sequence, each layer computes the following function:
 
@@ -374,84 +411,101 @@ net_lstm = RNN_net(input_dim, hidden_dim, output_dim)
 ```
 
 - Both should return `output` and `hidden` state
-- 
 
-### Resource
+
+**Reference:**
 
 - Deep Learning course from PadhAI, IIT M, Module: Sequence Model, Lecture: Sequence model in Pytorch
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ----
 
-## **How to design and debug deep learning models?**
+# How to design and debug deep learning models?
 
-```py
-(1/4) Learning ML engineering is a long slog even for legendary hackers like @gdb
-. 
+
+**[1/4]** Learning ML engineering is a long slog even for legendary hackers like @gdb 
 
 IMO, the two hardest parts of ML eng are:
 
-1) Feedback loops are measured in minutes or days in ML (compared to seconds in normal eng)
-2) Errors are often silent in ML
-```
+1. Feedback loops are measured in minutes or days in ML (compared to seconds in normal eng)
+2. Errors are often silent in ML
 
-```py
-(2/4) Most ML people deal with silent errors and slow feedback loops via the "ratchet" approach:
 
-1) Start with known working model
-2) Record learning curves on small task (~1min to train)
-3) Make a tiny code change
-4) Inspect curves
-5) Run full training after ~5 tiny changes
-```
 
-```py
-(3/4) Downside of ratchet approach is some designs cant be reached via small incremental changes. Also hard to know *which* tiny code changes to make.
-```
+**[2/4]** Most ML people deal with silent errors and slow feedback loops via the `ratchet` approach:
 
-```py
-(4/4) Within the ratchet approach, I want more tools and best practices for making feedback loops shorter and for making errors louder.
+1. Start with known working model
+2. Record learning curves on small task (~1min to train)
+3. Make a tiny code change
+4. Inspect curves
+5. Run full training after ~5 tiny changes
+
+
+
+**[3/4]** Downside of ratchet approach is some designs cant be reached via small incremental changes. Also hard to know **which** tiny code changes to make.
+
+
+
+**[4/4]** Within the ratchet approach, I want more tools and best practices for making feedback loops shorter and for making errors louder.
 
 Below is a short list of development speed hacks that I have found useful.
-```
 
-### **ML dev speed hack #0 - Overfit a single batch**
+
+## ML dev speed hack #0 - Overfit a single batch
+
 - Before doing anything else, verify that your model can memorize the labels for a single batch and quickly bring the loss to zero
 - This is fast to run, and if the model can't do this, then you know it is broken
 
-### **ML dev speed hack #1 - PyTorch over TF**
+## ML dev speed hack #1 - PyTorch over TF
+
 - Time to first step is faster b/c no static graph compilation
 - Easier to get loud errors via assertions within the code
 - Easier to drop into debugger and inspect tensors
 - (TF2.0 may solve some of these problems but is still raw)
 
-### **ML dev speed hack #2 - Assert tensor shapes**
+## ML dev speed hack #2 - Assert tensor shapes
+
 - Wrong shapes due to silent broadcasting or reduction is an extreme hot spot for silent errors, asserting on shapes (in torch or TF) makes them loud
 - If you're ever tempted to write shapes in a comment, make an assert instead
 
-### **ML dev speed hack #3 - Add ML test to CI**
-- If more than one entrypoint or more than one person working on the codebase, then add a test that runs for N steps and then checks loss
-- If you only have one person and entrypoint then an ML test in CI is probably overkill
+## ML dev speed hack #3 - Add ML test to CI
+
+- If more than one entry point or more than one person working on the codebase, then add a test that runs for N steps and then checks loss
+- If you only have one person and entry point then an ML test in CI is probably overkill
 
 
-### **ML dev speed hack #4 - Use `ipdb.set_trace()`**
+##  ML dev speed hack #4 - Use `ipdb.set_trace()`
+
 - It's hard to make an ML job take less than 10 seconds to start, which is too slow to maintain flow
 - Using the ipdb workflow lets you zero in on a bug and play with tensors with a fast feedback loop
 
-### **ML dev speed hack #5 - Use `nvvp` to debug throughput**
+## ML dev speed hack #5 - Use `nvvp` to debug throughput
+
 - ML throughput (step time) is one place where we have the tools to make errors loud and feedback fast
 - You can use `torch.cuda.nvtx.range_push` to annotate the nvvp timeline to be more readable
 
 
 
-Source:
+**Reference:**
 
 - [Twitter Thread](https://twitter.com/nottombrown/status/1156350020351713281)
 - [how-i-became-a-machine-learning-practitioner](https://blog.gregbrockman.com/how-i-became-a-machine-learning-practitioner)
 - [Youtube: Troubleshooting Deep Neural Networks - Full Stack Deep Learning](https://www.youtube.com/watch?time_continue=8&v=GwGTwPcG0YM)
 - [Youtube: Full Stack Deep Learning](https://www.youtube.com/channel/UCVchfoB65aVtQiDITbGq2LQ/videos)
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ----
 
-## Some useful blogs:
+# Some useful blogs:
 
 - [Understanding binary cross-entropy / log loss: a visual explanation](https://towardsdatascience.com/understanding-binary-cross-entropy-log-loss-a-visual-explanation-a3ac6025181a)
+
+----
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Back to Top</a>
