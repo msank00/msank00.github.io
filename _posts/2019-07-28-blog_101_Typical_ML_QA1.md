@@ -75,6 +75,7 @@ mathjax: true
 - [Link 2](https://medium.com/greyatom/decision-trees-a-simple-way-to-visualize-a-decision-dc506a403aeb)
 - [Link 3](https://clearpredictions.com/Home/DecisionTree)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ## What is the formula of Gini index criteria?
 
@@ -98,7 +99,7 @@ In entropy, $g(x)$ is $\log (p(x))$, and combining with the negative sign (which
 
 $$H[x] = -\Sigma p(x) \log (p(x))$$
 
-
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ## How do you calculate information gain mathematically? 
 
@@ -120,12 +121,16 @@ where `i=1,...,N` and $S$ is the size of total datasets and $S_i$ is the size of
 
 - Decision Tree also suffers from `high variance`.
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # Philosophy behind Bagging?
 
 - Say we have N independent observations $Z_1, \dots Z_N$, each with variance $\sigma^2$. Then the variance of the mean $\bar{Z}$ of the observation is given by $\sigma^2/n$. That is, averaging a set of observations reduce variance. 
 - Hence a natural way to reduce the variance and hence increase the prediction accuracy of a statistical learning method is to take many training sets from the population, build a separate prediction model using each training set, and average the resulting predictions.
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 -----
 
@@ -143,6 +148,7 @@ $${KL}(y~||~\hat{y}) = \sum_i y_i \log \frac{1}{\hat{y}_i} - \sum_i y_i \log \fr
 
 Where $y_i \sim p$ and $\hat{y}_i \sim q$, i.e. they come from two different probability distribution.
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 # What is the advantage with random forest ?
@@ -184,6 +190,8 @@ However in practice it is not possible to guarantee such classifier independence
 - [link1](https://www.analyticsvidhya.com/blog/2017/02/introduction-to-ensembling-along-with-implementation-in-r/)
 - [link2](https://www.analyticsvidhya.com/blog/2015/08/introduction-ensemble-learning/)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # Characteristics of Different Learning Methods
@@ -195,6 +203,8 @@ MARS: Multivariate Adaptive Regression Splines
 **Reference:**
 
 - [Book: ESL C10 P351]()
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -262,6 +272,8 @@ it builds another weak learner $H(x)+\epsilon_2$ and so on. Thus it becomes $F(x
 - [Difference of Gradient Boosting and XGBoost](https://medium.com/hackernoon/gradient-boosting-and-xgboost-90862daa6c77)
 - [Jeremy Howard: How to explain gradient boosting](https://explained.ai/gradient-boosting/index.html)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ## Difference of AdaBoost, Gradient Boost and XGBoost
 
 Both AdaBoost and Gradient Boosting build weak learners in a sequential fashion. Originally, AdaBoost was designed in such a way that at every step the sample distribution was adapted to put more weight on misclassified samples and less weight on correctly classified samples. The final prediction is a weighted average of all the weak learners, where more weight is placed on stronger learners. 
@@ -286,6 +298,8 @@ Second, AdaBoost can be interepted from a much more intuitive perspective and ca
 ### Bagging boosting difference:
 
 - [link](https://medium.com/mlreview/gradient-boosting-from-scratch-1e317ae4587d)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -344,6 +358,7 @@ and your logistic model is now $y=f(w^Th(x))$ with the decision boundary given b
 - [logistic_regression_linear](https://sebastianraschka.com/faq/docs/logistic_regression_linear.html)
 - [Quora](https://www.quora.com/Why-is-logistic-regression-considered-a-linear-model)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -454,6 +469,7 @@ The RBF is by far the most popular choice of kernel types used in Support Vector
 
 - [link](http://anie.me/Lagrangian-And-Dual-Problem/)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ### How does SVM learns non-linear boundaries ? Explain.
 
@@ -475,6 +491,8 @@ In the higher dimension, they are separated linearly.
 **Resource:**
 
 - [Prof. Piyush Rai, IIT K](https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec11_print.pdf)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -506,6 +524,7 @@ In the higher dimension, they are separated linearly.
 - [iitK_notes](https://www.cse.iitk.ac.in/users/rmittal/prev_course/s14/notes/lec11.pdf)
 - [Khan Academy - Constrained Optimization](https://www.youtube.com/watch?v=vwUV2IDLP8Q&list=PLSQl0a2vh4HC5feHa6Rc5c0wbRTx56nF7&index=92)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -582,6 +601,8 @@ In the higher dimension, they are separated linearly.
 ## When K-means will fail?
 - When data is **non linearly separable**. It works best when data clusters are discrete and spherically distributed.  
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # What other clustering algorithms do you know?
@@ -603,6 +624,8 @@ In the higher dimension, they are separated linearly.
 - **[DBSCAN](https://en.wikipedia.org/wiki/DBSCAN)**
 - [code](https://plot.ly/scikit-learn/plot-dbscan/)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # What is DB-SCAN algorithm ?
@@ -613,6 +636,8 @@ In the higher dimension, they are separated linearly.
 - A point q is `reachable` from p if there is a path `p1, ..., pn` with `p1 = p` and `pn = q`, where each `pi+1` is directly reachable from `pi` (all the points on the path must be core points, with the possible exception of q).
 - All points not reachable from any other point are outliers. 
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # How does HAC (Hierarchical Agglomerative clustering) work ?
@@ -620,6 +645,8 @@ In the higher dimension, they are separated linearly.
 - [link1](https://newonlinecourses.science.psu.edu/stat505/node/143/)
 - [link2](https://nlp.stanford.edu/IR-book/html/htmledition/hierarchical-agglomerative-clustering-1.html)
 - [code](http://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -673,6 +700,9 @@ how do we know what size we should choose for `k`, and how do we know if we have
 
 [Reference](http://www.simafore.com/blog/bid/105347/Feature-selection-with-mutual-information-Part-2-PCA-disadvantages)
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ---
 
 # The Inductive Biases of Various Machine Learning Algorithms
@@ -704,6 +734,8 @@ That is, there is some fundamental assumption or set of assumptions that the lea
 
 - [Blog](http://www.lauradhamilton.com/inductive-biases-various-machine-learning-algorithms)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ---
 
 # How do you deploy Machine Learning models ?
@@ -715,6 +747,8 @@ That is, there is some fundamental assumption or set of assumptions that the lea
 Lot of times, we may have to write ML models from scratch in C++ ? Will you be able to do that?
 
 + [quora](https://www.quora.com/I-want-to-use-C++-to-learn-Machine-Learning-instead-of-Python-or-R-is-it-fine)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -731,16 +765,22 @@ some added momentum which is based on the previous velocity and gradient.
 + book: deep learning in Python - by Cholet, page 51, but the equation looks suspicious 
 + [through explanation, distill pub](https://distill.pub/2017/momentum/)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # How the model varies in KNN for K=1 and K=N?
 
 - When K equals 1 or other small number the model is prone to `overfitting (high variance)`, while when K equals number of data points or other large number the model is prone to `underfitting (high bias)`.
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 # Generative model vs Discriminative model.
 
 - Discriminative algorithms model `P(y|x; w)`, that is, given the dataset and learned parameter, what is the probability of y belonging to a specific class. A discriminative algorithm doesn't care about how the data was generated, it simply categorizes a given example.
 - Generative algorithms try to model `P(x|y)`, that is, the distribution of features given that it belongs to a certain class. A generative algorithm models how the data was generated. [source](https://github.com/ShuaiW/data-science-question-answer#knn)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ------
 
@@ -750,18 +790,25 @@ Let’s say, you are given a scenario where you have terabytes of data files con
 
 **Q.** How will you read the content of scanned pdfs or written documents in image formats?
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # Why is naive bayes called “naive”? Tell me about naive bayes classifier?
 
 - Because it's assumed that all the features are independent of each other. This is a very _naive_ assumption.
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
+
 
 # Logistic Regression loss function?
 
 + [ml-cheatsheet quick summary](http://ml-cheatsheet.readthedocs.io/en/latest/logistic_regression.html)
 + [CMU ML slides](https://www.cs.cmu.edu/~mgormley/courses/10701-f16/slides/lecture5.pdf)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -781,6 +828,8 @@ built-in types like (`list, set, dict,byte array`) are mutable. Custom classes a
 + set,list,tuple,dictionary, string, frozen set. [link1](https://docs.python.org/3/tutorial/datastructures.html),
 [link2](http://thomas-cokelaer.info/tutorials/python/data_structures.html) 
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ------
 
 # How do you handle multi-class classification with unbalanced dataset ?
@@ -795,6 +844,8 @@ built-in types like (`list, set, dict,byte array`) are mutable. Custom classes a
    + Bagging based
    + Boosting based: AdaBoost, Gradient Boost, XGBoost
 + [imp source](https://www.analyticsvidhya.com/blog/2017/03/imbalanced-classification-problem/)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -849,6 +900,7 @@ $$BIC=-2\log L(\hat \theta) + k \log n$$
 - [Blog](https://www.methodology.psu.edu/resources/aic-vs-bic/)
 - [Paper](https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781118856406.app5)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 -----
 
@@ -868,6 +920,8 @@ What are the odds of that happening? What should Jack do? What would you have do
 <img src="https://miro.medium.com/max/700/1*pOtBHai4jFd-ujaNXPilRg.png" alt="image" width="600"/>
 
 - [blog](https://towardsdatascience.com/precision-vs-recall-386cf9f89488)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -939,11 +993,15 @@ In multi-class model, we can plot N number of AUC ROC Curves for N number classe
 - [Blog](https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5)
 - [ICML 2004: Tutorial on Many Faces of ROC Analysis in Machine Learning](http://people.cs.bris.ac.uk/~flach/ICML04tutorial//)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # What is random about Random Forest?
 
 + For different `tree`, a different datasets (build from original using _random resampling with replacement_) are given as input.
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -969,6 +1027,8 @@ We can generalize all the binary performance metrics such as precision, recall, 
 
 - [Sebastian Rachka](https://sebastianraschka.com/faq/docs/multiclass-metric.html)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # How is using a logistic regression different from using a random forest ?
@@ -988,6 +1048,8 @@ In such scenarios, Decision trees would be a better fit as DT essentially is a n
 - [Quora](https://www.quora.com/When-should-random-forest-be-used-over-logistic-regression-for-classification-and-vice-versa)
 
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 
@@ -996,6 +1058,8 @@ In such scenarios, Decision trees would be a better fit as DT essentially is a n
 + Gradient boosting is also a good choice here. You can use the gradient boosting classifier in sci-kit learn for example. Gradient boosting is a principled method of dealing with class imbalance by constructing successive training sets based on incorrectly classified examples.
 + [link1](https://www.analyticsvidhya.com/blog/2017/03/imbalanced-classification-problem/)
 + An alternative could be a cost-sensitive algorithm like C5.0 that doesn't need balanced data. You could also think about applying Markov chains to your problem.
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -1013,6 +1077,8 @@ In such scenarios, Decision trees would be a better fit as DT essentially is a n
 # Question source: 
 
 - [link_1](https://appliedmachinelearning.wordpress.com/2018/04/13/my-data-science-machine-learning-job-interview-experience-list-of-ds-ml-dl-questions/) 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -1055,5 +1121,5 @@ result = pd.concat(frames)
 
 ----
 
-
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Back to Top</a>
 

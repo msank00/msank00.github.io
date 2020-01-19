@@ -440,7 +440,7 @@ On the `graph of a function`, the second derivative corresponds to the curvature
 
 > A plot of $f( x ) = sin ⁡ ( 2 x )$  from $-\pi/4$ to $5\pi/4$ . The tangent line is blue where the curve is `concave up`, green where the curve is `concave down`, and red at the inflection points (0, $\pi/2$, and $\pi$).
 
-### Resource:
+**Reference:**
 
 - [Prof Piyush Rai, IIT Kanpur](https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec9_print.pdf)
 
