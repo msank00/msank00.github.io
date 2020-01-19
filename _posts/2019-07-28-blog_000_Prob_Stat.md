@@ -65,7 +65,7 @@ The rule of thumb is to set alpha to be either 0.05 or 0.01 (again, the value de
 + [source](https://www.spss-tutorials.com/null-hypothesis/)
 + [link2](https://onlinecourses.science.psu.edu/statprogram/node/138/)
 
-
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -83,6 +83,8 @@ Another kind of approximation involves,
 
 - Randomly sampling large number of representative combinations of parameter values from the posterior distribution. These types of algorithms are known as `MCMC` algorithm. These methods help to calculate the posterior distribution without calculating the integral.
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # How does Gibbs Sampling work?
@@ -95,6 +97,8 @@ Gibbs Sampling is a MCMC method to draw samples from a potentially really really
 - [Github](https://wiseodd.github.io/techblog/2015/10/09/gibbs-sampling/)
 - [Video Lecture](http://videolectures.net/mlss09uk_murray_mcmc/)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # Importance Sampling and Monte Carlo
@@ -103,6 +107,8 @@ Gibbs Sampling is a MCMC method to draw samples from a potentially really really
 - [Shakir Blog](https://shakirm.com/?section=2)
 - [Shakir Md - MLSS 2019 London](https://www.facebook.com/uclcsml/videos/3027632833943878/)
 - [Note](https://www.math.arizona.edu/~tgk/mc/book_chap6.pdf)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -278,7 +284,9 @@ Thus, we conclude $Gamma(1,\lambda)=Exponential(\lambda)$. More generally, if yo
 **Relation between Exponential and Poisson Distribution:**
 > If the times between random events follow exponential distribution with rate $\lambda$, then the total number of events in a time period of length t follows the Poisson distribution with parameter $\lambda t$.
 
-------
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
 
 # Moments - Shape of You !!
 
@@ -297,8 +305,10 @@ Moments are important because, under some assumptions, moments are a good estima
 
 - [(medium)](https://medium.com/technology-nineleaps/basics-of-statistics-for-machine-learning-engineers-ii-d25c5a5dac67)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 -----
+
 # Central Limit Theorem
 
 >> In probability theory, the central limit theorem (CLT) establishes that, in some situations, when independent random variables are added, their properly normalized sum tends toward a normal distribution (informally a "bell curve") even if the original variables themselves are not normally distributed. 
@@ -327,6 +337,8 @@ Let's say $X$ follows Binomial distribution. Then as ${n \rightarrow \infty}$, t
 - [Khan Academy](https://www.youtube.com/watch?v=JNm3M9cqWyc)
 - [Khan Academy: Sampling Ditbn of Sample Mean](https://www.youtube.com/watch?v=FXZ2O1Lv-KE)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 -----
 
 # Law of Large Number
@@ -337,6 +349,7 @@ Let's say $X$ follows Binomial distribution. Then as ${n \rightarrow \infty}$, t
 - [Nips 2016 Tutorial](https://channel9.msdn.com/Events/Neural-Information-Processing-Systems-Conference/Neural-Information-Processing-Systems-Conference-NIPS-2016/Variational-Inference-Foundations-and-Modern-Methods)
 - [Building Machines that Imagine and Reason Principles and Applications of Deep Generative Models Shak](https://www.youtube.com/watch?v=iQNaAoXfKZ4)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a> 
 
 ---
 
@@ -454,3 +467,8 @@ For more details, read the following references.
 Comprehensive Survey
 
 - [ArXiv: Shakir](https://arxiv.org/pdf/1906.10652.pdf)
+
+----
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Back to Top</a> 
+
