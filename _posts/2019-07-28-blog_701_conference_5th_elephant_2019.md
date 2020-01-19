@@ -6,6 +6,8 @@ categories: jekyll update
 mathjax: true
 ---
 
+# Content
+
 1. TOC
 {:toc}
 ---
@@ -55,6 +57,7 @@ Exact algorithm is costly, use approximation algorithm.
 - [Youtube: Matching and Dynamic Pricing in Ride-Hailing Platforms](https://www.youtube.com/watch?v=cddFAgRyxQ0)
 - [Youtube: Map Matching @ Uber: Markov Process](https://www.youtube.com/watch?v=ChtumoDfZXI)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -77,13 +80,18 @@ Algorithm
 - [Notes](https://data.princeton.edu/wws509/notes/c7.pdf)
 - [AV: Survival Analysis, Comprehensive Guide](https://www.analyticsvidhya.com/blog/2015/05/comprehensive-guide-parametric-survival-analysis/)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
+
 ## Talk 3: Tutorial: Deeplearning in Production using RedisAI
 
 - **Speaker:** Sherin Thomas (Tensorwerk)
 
 - `Hanger` - Git for tensor [Github](https://github.com/tensorwerk/hangar-py)
 - [Tutorial Material: Deeplearning in Production using RedisAI](https://github.com/konferenz/fifthel19)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -92,5 +100,7 @@ Algorithm
 - **Speaker:** Peter Wang (Anaconda, Inc)
 
 ----
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Back to Top</a>
 
 

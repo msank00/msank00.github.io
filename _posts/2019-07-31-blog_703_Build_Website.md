@@ -6,6 +6,8 @@ categories: jekyll update
 mathjax: true
 ---
 
+# Content
+
 1. TOC
 {:toc}
 ---
@@ -18,11 +20,18 @@ But it's easier said than done. First of all Github doesn't render latex math eq
 
 So set up Jekyll, write content in markdown, push to Github and done. But only flaw is latex math equation rendering. So we need to configure the Jekyll with [MathJax](https://www.mathjax.org/). So below are the resources that will help you to set up a simple system like this. 
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
 
 # Create Sample Jekyll Blog and Host on Github
 
 - [Youtube: Hosting Jekyll website on Github](https://www.youtube.com/watch?v=fqFjuX4VZmU)
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+---
 
 # Configuring Jekyll
 
@@ -33,6 +42,10 @@ _includes/mathjax.html
 assets/js/MathJaxLocal.js
 _layouts/posts.html
 ```
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
 
 # mathjax.html
 
@@ -63,11 +76,18 @@ Copy the below snippet and put it in the above mentioned location.
 {% endif %}
 ```
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
 # MathJaxLocal.js
 
 Copy the below file and put it in the above mentioned repo.
 - [MathJaxLocal.js](https://github.com/idcrook/idcrook.github.io/blob/master/assets/js/MathJaxLocal.js)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
 
 # posts.html
 
@@ -75,6 +95,9 @@ Put the below content in the above mentioned repo.
 
 ![image](/assets/images/post_html.png)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
 
 # Final Repo Structure
 
@@ -103,3 +126,5 @@ Put the below content in the above mentioned repo.
 <img src="https://images.squarespace-cdn.com/content/550c6978e4b0c1da40fd1208/1541615714652-2BCR3Y3BU5X4U7KYMT5R/that%27s+it+done+logo-01.png?format=1500w&content-type=image%2Fpng" alt="image" width="400"/>
 
 ----
+
+<a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>
