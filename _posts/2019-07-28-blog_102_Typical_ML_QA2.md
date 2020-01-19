@@ -6,55 +6,109 @@ categories: jekyll update
 mathjax: true
 ---
 
-# **Question Source**
+# Content
 
-- [link](https://www.quora.com/What-are-some-common-machine-learning-interview-questions)
+1. TOC
+{:toc}
 
-## **What is inductive bias, selection bias, statistical bias?**
-   + **Inductive bias** is the set of assumptions a learner uses to predict results given inputs it has not yet encountered. 
-     + Generally speaking, the closer your assumptions are to reality the better your results will be.  Additionally, more and stronger assumptions tend to make solving problems easier. If an assumption is correct then it’s always helpful to use it. However, it’s also common to assume things that obviously aren’t true because they’re practical.  Every machine learning algorithm has some sort of inductive bias, and it’s those underlying assumptions you may not even realize you’re making that determine how well your algorithms are going to work in practice.
-     + Let’s suppose you don’t know anything about swans. You decide to visit Swan River in Australia. You see a swan for the first time, and that swan is black.  What color will the next Swan you see be? Black seems like a pretty good guess. It’s not a logical guess, but given what we know, black is a better guess than anything else.
-   + **Selection bias** is the bias introduced by the selection of individuals, groups or data for analysis in such a way that proper randomization is not achieved, thereby ensuring that the sample obtained is not representative of the population intended to be analyzed.[1] It is sometimes referred to as the selection effect. The phrase "selection bias" most often refers to the distortion of a statistical analysis, resulting from the method of collecting samples. If the selection bias is not taken into account, then some conclusions of the study may not be accurate. Example: Sampling Bias
-     + **Sampling Bias** is systematic error due to a non-random sample of a population,causing some members of the population to be less likely to be included than others, resulting in a biased sample, defined as a statistical sample of a population (or non-human factors) in which all participants are not equally balanced or objectively represented. It is mostly classified as a subtype of selection bias.
-  + **Statistical**l Bias: For a point estimator, statistical bias is defined as the difference between the parameter to be estimated and the mathematical expectation of the estimator.
+---
 
-**Source**
+# What is inductive bias, selection bias, statistical bias?
+
+**Inductive bias** is the set of assumptions a learner uses to predict results given inputs it has not yet encountered. 
+  + Generally speaking, the closer your assumptions are to reality the better your results will be.  Additionally, more and stronger assumptions tend to make solving problems easier. If an assumption is correct then it’s always helpful to use it. However, it’s also common to assume things that obviously aren’t true because they’re practical.  Every machine learning algorithm has some sort of inductive bias, and it’s those underlying assumptions you may not even realize you’re making that determine how well your algorithms are going to work in practice.
++ Let’s suppose you don’t know anything about swans. You decide to visit Swan River in Australia. You see a swan for the first time, and that swan is black.  What color will the next Swan you see be? Black seems like a pretty good guess. It’s not a logical guess, but given what we know, black is a better guess than anything else.
+
+**Selection bias** is the bias introduced by the selection of individuals, groups or data for analysis in such a way that proper randomization is not achieved, thereby ensuring that the sample obtained is not representative of the population intended to be analyzed.[1] It is sometimes referred to as the selection effect. The phrase "selection bias" most often refers to the distortion of a statistical analysis, resulting from the method of collecting samples. If the selection bias is not taken into account, then some conclusions of the study may not be accurate. Example: Sampling Bias
+
+**Sampling Bias:** It is systematic error due to a non-random sample of a population,causing some members of the population to be less likely to be included than others, resulting in a biased sample, defined as a statistical sample of a population (or non-human factors) in which all participants are not equally balanced or objectively represented. It is mostly classified as a subtype of selection bias.
+
+**Statistical Bias:** For a point estimator, statistical bias is defined as the difference between the parameter to be estimated and the mathematical expectation of the estimator.
+
+
+**Reference**
 
 
 - [source](https://data36.com/statistical-bias-types-explained/). 
 - [source2](https://newonlinecourses.science.psu.edu/stat509/node/28/)
 
-## **What is the difference between inductive machine learning and deductive machine learning?**
-   
-   + **Inductive Learning:** We are given input samples (x) and output samples (f(x)) and the problem is to estimate the function (f). Specifically, the problem is to generalize from the samples and the mapping to be useful to estimate the output for new samples in the future. [source](https://machinelearningmastery.com/basic-concepts-in-machine-learning/)
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
-## **How will you know which machine learning algorithm to choose for your classification problem?**
+----
+
+# What is the difference between inductive machine learning and deductive machine learning?
+   
+**Inductive Learning:** We are given input samples (x) and output samples (f(x)) and the problem is to estimate the function (f). Specifically, the problem is to generalize from the samples and the mapping to be useful to estimate the output for new samples in the future. [source](https://machinelearningmastery.com/basic-concepts-in-machine-learning/)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# How will you know which machine learning algorithm to choose for your classification problem?
+
 
 If your training set is small, `high bias/low variance classifiers` (e.g., Naive Bayes) have an advantage over `low bias/high variance classifiers` (e.g., kNN), since the latter will overfit. But low bias/high variance classifiers start to win out as your training set grows (they have lower asymptotic error), since high bias classifiers aren’t powerful enough to provide accurate models.
 
-### **Advantages of some particular algorithms**
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Advantages of some particular algorithms
+
+## Naive Bayes
 
 **Advantages of Naive Bayes:** Super simple, you’re just doing a bunch of counts. If the NB `conditional independence` assumption actually holds, a Naive Bayes classifier will converge quicker than `discriminative models` like logistic regression, so you need less training data. And even if the NB assumption doesn’t hold, a NB classifier still often does a great job in practice. A good bet if want something fast and easy that performs pretty well.
 - **Main Disadvantage** is that it can’t learn `interactions between features` (e.g., it can’t learn that although you love movies with Brad Pitt and Tom Cruise, you hate movies where they’re together).
 
-**Advantages of Logistic Regression:** 
+## Logistic Regression
+
+**Advantages:** 
 - Lots of ways to regularize your model, and you don’t have to worry as much about your features being correlated, like you do in Naive Bayes. 
-- You also have a nice probabilistic interpretation, unlike decision trees or SVMs, and you can easily update your model to take in new data (using an online gradient descent method), again unlike decision trees or SVMs. Use it if you want a probabilistic framework (e.g., to easily adjust `classification thresholds`, to say when you’re unsure, or to get confidence intervals) or if you expect to receive more training data in the future that you want to be able to quickly incorporate into your model.
+- You also have a nice probabilistic interpretation, unlike decision trees or SVMs, and you can easily update your model to take in new data (using an online gradient descent method). 
+- Use it if you want a probabilistic framework (e.g., to easily adjust `classification thresholds`, to say when you’re unsure, or to get confidence intervals) or if you expect to receive more training data in the future that you want to be able to quickly incorporate into your model.
 
-**Advantages of Decision Trees:** 
+**Disadvantages:**
+
+1. Main limitation of Logistic Regression is the assumption of linearity between the dependent variable and the independent variables. In the real world, the data is rarely linearly separable. Most of the time data would be a jumbled mess.
+
+2. If the number of observations are lesser than the number of features, Logistic Regression should not be used, otherwise it may lead to overfit.
+
+3. Logistic Regression can only be used to predict discrete functions. Therefore, the dependent variable of Logistic Regression is restricted to the discrete number set. This restriction itself is problematic, as it is prohibitive to the prediction of continuous data.
+
+- [Source](http://theprofessionalspoint.blogspot.com/2019/03/advantages-and-disadvantages-of.html)
+
+## Decision Tree
+
+**Advantages:** 
 - Easy to interpret and explain (for some people – I’m not sure I fall into this camp). They easily handle feature interactions and they’re **non-parametric**, so you don’t have to worry about outliers or whether the data is linearly separable (e.g., decision trees easily take care of cases where you have class A at the low end of some feature x, class B in the mid-range of feature x, and A again at the high end). 
-  - **Disadvantage** is that they don’t support online learning, so you have to rebuild your tree when new examples come on. 
-  - Another **disadvantage** is that they `easily overfit`, but that’s where ensemble methods like random forests (or boosted trees) come in. Plus, random forests are often the winner for lots of problems in classification (usually slightly ahead of SVMs, I believe), they’re fast and scalable, and you don’t have to worry about tuning a bunch of parameters like you do with SVMs, so they seem to be quite popular these days.
 
-**Advantages of SVMs:** 
-- High accuracy, nice theoretical guarantees regarding overfitting, and with an appropriate kernel they can work well even if you’re data isn’t linearly separable in the base feature space. Especially popular in text classification problems where very high-dimensional spaces are the norm. 
-  - **Disadvantage:** Memory-intensive, hard to interpret, and kind of annoying to run and tune, though, so I think random forests are starting to steal the crown.
+**Disadvantages:** 
 
-  + [must read](http://blog.echen.me/2011/04/27/choosing-a-machine-learning-classifier/)
-  + [cheat sheet](https://docs.microsoft.com/en-us/azure/machine-learning/studio/algorithm-choice)
+- They don’t support online learning, so you have to rebuild your tree when new examples come on. 
+- Another disadvantage is that they `easily overfit`, but that’s where ensemble methods like random forests (or boosted trees) come in. Plus, random forests are often the winner for lots of problems in classification (usually slightly ahead of SVMs, I believe), they’re fast and scalable, and you don’t have to worry about tuning a bunch of parameters like you do with SVMs, so they seem to be quite popular these days.
+
+## SVM
+
+**Advantages:** 
+
+- High accuracy, nice theoretical guarantees regarding overfitting, and with an appropriate kernel they can work well even if you’re data isn’t linearly separable in the base feature space. Especially popular in text classification problems where very high-dimensional spaces are the norm.
+- Using Kernel trick can be applied to Non-Linear data 
+
+**Disadvantages:** 
+
+Memory-intensive, hard to interpret, and kind of annoying to run and tune, though, so I think random forests are starting to steal the crown.
 
 
-## **Bias and Variance Tradeoff**
+**Refrence:**
+
++ [must read](http://blog.echen.me/2011/04/27/choosing-a-machine-learning-classifier/)
++ [cheat sheet](https://docs.microsoft.com/en-us/azure/machine-learning/studio/algorithm-choice)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Bias and Variance Tradeoff
 
 **Bias:** Bias is the difference between the average prediction of our model and the correct value which we are trying to predict.
 
@@ -90,22 +144,29 @@ In **supervised learning**, `overfitting` happens when our model `captures the n
 
 <img src="https://miro.medium.com/max/562/1*RQ6ICt_FBSx6mkAsGVwx8g.png" alt="image" width="400" />
 
-Source
+**Reference:**
+
 - [TDS: Blog](https://towardsdatascience.com/understanding-the-bias-variance-tradeoff-165e6942b229)
 
-### **Different types of Bias in ML?**
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
-Source
+## Different types of Bias in ML?
+
 - [Tweet Thread: Rachel Thomas](https://twitter.com/math_rachel/status/1121224794823806976)
 
-### **Why do we need/want the bias term?**
+## Why do we need/want the bias term?
 
-In linear regression, without the bias term your solution has to go through the origin. That is, when all of your features are zero, your predicted value would also have to be zero. However, that may not be the answer the training data suggests. Adding a bias weight that does not depend on any of the features allows the hyperplane desbribed by your learned weights to more easily fit data that doesn't pass through the origin. 
+In linear regression, without the bias term your solution has to go through the origin. That is, when all of your features are zero, your predicted value would also have to be zero. However, that may not be the answer the training data suggests. Adding a bias weight that does not depend on any of the features allows the hyperplane described by your learned weights to more easily fit data that doesn't pass through the origin. 
+
+**Reference:**
 
 - [Quora](https://www.quora.com/Why-do-we-need-the-bias-term-in-ML-algorithms-such-as-linear-regression-and-neural-networks)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
-## **How are kernel methods different from Neural Network?**
+----
+
+# How are kernel methods different from Neural Network?
 
 >> they are more than simply related, they are duals of each other ~Shakir M
 
@@ -113,19 +174,26 @@ One way to think about an `NN` with `L` layers is that the first `L - 1` layers 
 
 It can be shown that some class of NN models is mathematically equivalent to a `kernelized ridge-regression` model. Further steps in the `back-propagation` adjust the parameters $\theta$ of the `non-linear transformation` $\phi$, which has the effect of adjusting the equivalent kernel matrix at the $t$ step of the next iteration of back-propagation. So it could be said that this class of NNs is mathematically equivalent to a kernelized ridge-regression that learns its own kernel from the data. Of course, these NNs are only able to learn kernels in finite-dimensional spaces, unlike the kernel based-methods which can use kernels in infinite-dimensional spaces. For full math details check the below blogs.
 
+**Reference:**
+
 - [Blog by Shakir](http://blog.shakirm.com/2015/04/a-statistical-view-of-deep-learning-iii-memory-and-kernels/)
 - [Quora](https://www.quora.com/What-are-the-mathematical-relationship-between-kernel-methods-and-Neural-Networks-NN)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
-## **Statistical view of Deep Learning**
+# Statistical view of Deep Learning
 
 >> In deep learning, the link function is referred to as the activation function
 
 - [Blog: Shakir M](http://blog.shakirm.com/2015/01/a-statistical-view-of-deep-learning-i-recursive-glms/)
 
----
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
-## **Different types of models and their example**
+----
+
+# Different types of models and their example
 
 - **Parametric Model:** A parametric modelis one that can be parametrized by a finite number of parameters
 - **Non-Parametric Model:** A nonparametric modelis one which cannot be parametrized by a fixed number of parameters.
@@ -133,75 +201,127 @@ It can be shown that some class of NN models is mathematically equivalent to a `
 - High-Biad Low-Variance Model
 
 
-Source:
+**Reference:**
 
 - [Note](http://pages.cs.wisc.edu/~jerryzhu/cs731/stat.pdf)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
-## **How are neural nets related to Fourier transforms? What are Fourier transforms, for that matter?**
+# How are neural nets related to Fourier transforms? 
+
+What are Fourier transforms, for that matter?
 
 - [Quora](https://www.quora.com/How-are-neural-networks-related-to-Fourier-transforms)
 
 
 ------
 
-## **How to `seed` K-means clustering algorithm?**
-  + **Important:** `seed`ing meens, how to initialize the first `k` centres? Use the algorithm `K-Means++`. [link](https://en.wikipedia.org/wiki/K-means%2B%2B)
+# How to `seed` K-means clustering algorithm?
+
++ **Important:** `seed`ing means, how to initialize the first `k` centres? Use the algorithm `K-Means++`. [[link](https://en.wikipedia.org/wiki/K-means%2B%2B)]
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ---
-## **The `BLAS` library and how does it work? what are the other option?**
+
+# The `BLAS` library and how does it work? what are the other option?
 
 Basic Linear Algebra Subprograms (BLAS) is a specification that prescribes a set of low-level routines for performing common linear algebra operations such as vector addition, scalar multiplication, dot products, linear combinations, and matrix multiplication. They are the de facto standard low-level routines for linear algebra libraries; the routines have bindings for both C and Fortran. Although the BLAS specification is general, BLAS implementations are often optimized for speed on a particular machine, so using them can bring substantial performance benefits. BLAS implementations will take advantage of special floating point hardware such as vector registers or SIMD instructions. ([wiki](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms)) 
 
 Alternative to BLAS is `LAPACK` or `ATLAS`.
 
-Source:
+**Reference:**
 
 - [SO1](https://stackoverflow.com/questions/1303182/how-does-blas-get-such-extreme-performance)
 - [SO2](https://stackoverflow.com/questions/17858104/what-is-the-relation-between-blas-lapack-and-atlas)
 
 ----
-## **Compare stochastic gradient descent to interior point methods**
+
+# Compare stochastic gradient descent to interior point methods
 
 - [mlss tuebingen slide](http://mlss.tuebingen.mpg.de/2013/wright_slides.pdf)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 -------
-## **What areas of machine learning are you most familiar with?**
+
+# What areas of machine learning are you most familiar with?
 
 Very generic Qusestion. Prepare well.
 
-  + Supervised learning
-  + Unsupervised learning
-  + Anomaly Detection
-  + Active Learning
-  + Bandits:
-    + In the multi-armed bandit problem, at each stage, an agent (or decision maker) chooses one action (or arm), and receives a reward from it. The agent aims at maximizing his rewards. Since he does not know the process generating the rewards, he needs to explore (try) the different actions and yet, exploit (concentrate its draws on) the seemingly most rewarding arms. The bandit problem has been increasingly popular in the machine learning community. 
-    + It can be a central building block of larger systems, like in `evolutionary programming` and `reinforcement learning`, in particular in large state space Markovian Decision Problems. ((ICML Tutorial)[https://sites.google.com/site/banditstutorial/])
++ Supervised learning
++ Unsupervised learning
++ Anomaly Detection
++ Active Learning
++ Bandits:
+  + In the multi-armed bandit problem, at each stage, an agent (or decision maker) chooses one action (or arm), and receives a reward from it. The agent aims at maximizing his rewards. Since he does not know the process generating the rewards, he needs to explore (try) the different actions and yet, exploit (concentrate its draws on) the seemingly most rewarding arms. The bandit problem has been increasingly popular in the machine learning community. 
+  + It can be a central building block of larger systems, like in `evolutionary programming` and `reinforcement learning`, in particular in large state space Markovian Decision Problems. ((ICML Tutorial)[https://sites.google.com/site/banditstutorial/])
 
-  + Gaussian Processes
-  + Kernel Methods
-  + Deep Networks 
++ Gaussian Processes
++ Kernel Methods
++ Deep Networks 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ---
 
-## **Tell about positives and negatives of using Gaussian processes / general kernel methods approach to learning.**
-  + Positives - non-linear, non-parametric. Negatives - bad scaling with instances, need to do hyper-parameter tuning
+# Tell about positives and negatives of using Gaussian processes / general kernel methods approach to learning.
 
-### **How does a kernel method scale with the number of instances (e.g. with a Gaussian rbf kernel)?**
-  + Quadratic (referring to construction of the gram (kernel) matrix), cubic (referring to the matrix inversion)
++ Positives - non-linear, non-parametric. Negatives - bad scaling with instances, need to do hyper-parameter tuning
 
-### **Describe ways to overcome scaling issues.**
+## How does a kernel method scale with the number of instances (e.g. with a Gaussian rbf kernel)?
+  
++ Quadratic (referring to construction of the gram (kernel) matrix), cubic (referring to the matrix inversion)
+
+## Describe ways to overcome scaling issues.
   + nystrom methods/low-rank kernel matrix approximations, random features, local by query/near neighbors
 
-### **What are some tools for parallelizing machine learning algorithms?**
+----
+
+# What are some tools for parallelizing machine learning algorithms?
+
   + GPUs, Matlab parfor, write your own using low level primitives/RPC/MPI, mapreduce, spark, vowpal, graphlab, giraph, petuum, parameterserver
 
 ---
-### **In Python, do you have a favorite/least favorite PEP?**
-  + Peps are **python enhancement proposal**. If you have a favorite or least favorite, it means they have knowledge of Python. Follow PEP8
+
+# In Python, do you have a favorite/least favorite PEP?
+
++ Peps are **python enhancement proposal**. If you have a favorite or least favorite, it means they have knowledge of Python. Follow PEP8
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 -------
+
+# Explain the tradeoff between bias and variance in a   regression problem.
+
+In regression, the expected mean squared error of an estimator can be decomposed in terms of bias, variance and noise. 
+
+- On average over datasets of the regression problem, the bias term measures the average amount by which the predictions of the estimator `differ from` the predictions of the `best possible estimator for the problem` (i.e., the Bayes model). 
+- The variance term measures the variability of the predictions of the estimator when fit over different instances LS of the problem. Finally, the noise measures the irreducible part of the error which is due the variability in the data. 
+  
++ **Bias:** It represents the extent to which the average prediction over all the datasets differs from the desired regression function.
++  **Variance:** It measures the extent to which the solution to the particular datasets vary around their average, and hence it measures the extent to which the learnt function is sensitive to the particular choice of data. [_source, Bishop book, p149_]
+
+$$Err(x) = E\left[(Y-\hat{f}(x))^2\right]$$
+ 
+Then we can write 
+
+$$Err(x) = \left(E[\hat{f}(x)]-f(x)\right)^2 + E\left[\left(\hat{f}(x)-E[\hat{f}(x)]\right)^2\right] +\sigma_e^2$$$
+
+$$Err(x) = \mathrm{Bias}^2 + \mathrm{Variance} + \mathrm{Irreducible\ Error}$$
+
+**Reference:**
+
++ [Source 1](http://scott.fortmann-roe.com/docs/BiasVariance.html)
++ [Source 2](http://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html#sphx-glr-auto-examples-ensemble-plot-bias-variance-py)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Exercise
 
 1. Mention the difference between Data Mining and Machine learning?
 2. **Is rotation necessary in PCA? If yes, Why? What will happen if you dont rotate the components?**
@@ -229,43 +349,34 @@ Very generic Qusestion. Prepare well.
 27. **Explain what is the function of �Unsupervised Learning�?**
 28. When will you use classification over regression?
 29. How will you differentiate between supervised and unsupervised learning? Give few examples of algorithms for supervised learning?
-30. **Explain the tradeoff between bias and variance in a   regression problem.**
-     + In regression, the expected mean squared error of an estimator can be decomposed in terms of bias, variance and noise. On average over datasets of the regression problem, the bias term measures the average amount by which the predictions of the estimator differ from the predictions of the best possible estimator for the problem (i.e., the Bayes model). The variance term measures the variability of the predictions of the estimator when fit over different instances LS of the problem. Finally, the noise measures the irreducible part of the error which is due the variability in the data. [source](http://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html#sphx-glr-auto-examples-ensemble-plot-bias-variance-py)
-     + **Bias:** It represents the extent to which the average pridiction over all the datasets differs from the desired regression function.
-     +  **Variance:** It measures the extent to which the solution to the particular datasets vary around their average, and hence it measures the extent to which the learnt function is sensitive to the particular choice of data. [source, bisop book, p149]
-     + $Err(x) = E\left[(Y-\hat{f}(x))^2\right]$, then we can write $Err(x) = \left(E[\hat{f}(x)]-f(x)\right)^2 + E\left[\left(\hat{f}(x)-E[\hat{f}(x)]\right)^2\right] +\sigma_e^2$, i.e. $Err(x) = \mathrm{Bias}^2 + \mathrm{Variance} + \mathrm{Irreducible\ Error}$ 
-     + [source](http://scott.fortmann-roe.com/docs/BiasVariance.html)
-31. What is linear regression? Why is it called linear?
-32. **How does the variance of the error term change with the number of predictors, in OLS?**
-33. **Do we always need the intercept term? When do we need it and when do we not?**
-34. **How interpretable is the given machine learning model?**
-35. What will you do if training results in very low accuracy?
-36. Does the developed machine learning model have convergence problems?
-37. Which tools and environments have you used to train and assess machine learning models?
-38. How will you apply machine learning to images?
-39. **What is collinearity and what to do with it?**
-40. **How to remove multicollinearity?**
-41. What is overfitting a regression model? What are ways to avoid it?
-42. **What is loss function in a Neural Network?**
-43. **Explain the difference between MLE and MAP inference.**
-44. What is boosting?
-45. **If the gradient descent does not converge, what could be the problem?**
-46. **How will you check for a valid binary search tree?**
-47. **How to check if the regression model fits the data well?**
-48. **Describe some of the different splitting rules used by different decision tree algorithms.**
-----------
+30. What is linear regression? Why is it called linear?
+31. **How does the variance of the error term change with the number of predictors, in OLS?**
+32. **Do we always need the intercept term? When do we need it and when do we not?**
+33. **How interpretable is the given machine learning model?**
+34. What will you do if training results in very low accuracy?
+35. Does the developed machine learning model have convergence problems?
+36. Which tools and environments have you used to train and assess machine learning models?
+37. How will you apply machine learning to images?
+38. **What is collinearity and what to do with it?**
+39. **How to remove multicollinearity?**
+40. What is overfitting a regression model? What are ways to avoid it?
+41. **What is loss function in a Neural Network?**
+42. **Explain the difference between MLE and MAP inference.**
+43. What is boosting?
+44. **If the gradient descent does not converge, what could be the problem?**
+45. **How will you check for a valid binary search tree?**
+46. **How to check if the regression model fits the data well?**
+47. **Describe some of the different splitting rules used by different decision tree algorithms.**
 
 
-## **Distributed systems**
+## Distributed systems
 
 1. Discuss MapReduce (or your favorite parallelization abstraction). Why is MapReduce referred to as a "shared-nothing" architecture (clearly the nodes have to share something, no?) What are the advantages/disadvantages of "shared-nothing"?
 2. Pick an algorithm. Write the pseudo-code for its parallel version.
 3. What are the trade-offs between closed-form and iterative implementations of an algorithm, in the context of distributed systems?
 
-----
 
-
-## **Experiance based question (hands-on experience, past accomplishments, etc.):**
+## Experience based question (hands-on experience, past accomplishments, etc.):
 
 1. Do you have experience with R (or Weka, Scikit-learn, SAS, Spark, etc.)? Tell me what you've done with that. Write some example data pipelines in that environment.
 2. Tell me about a time when you ... { worked on a project involving ML ; optimized an algorithm for performance/accuracy/etc. }
@@ -273,19 +384,22 @@ Very generic Qusestion. Prepare well.
 
 ----
 
-## QnA
+#  Question and Answer
+
 1. [link1](https://www.analyticsvidhya.com/blog/2016/09/40-interview-questions-asked-at-startups-in-machine-learning-data-science/)
 2. [link2](https://elitedatascience.com/machine-learning-interview-questions-answers)
 3. [link3](https://www.educba.com/machine-learning-interview-questions/)
 
 
-## QnA on R 
+# Question and Answer on R
+
 1. [link1](https://www.educba.com/r-interview-questions/)
 2. [link2](https://intellipaat.com/interview-question/r-interview-questions/)
 3. [link3](https://www.edureka.co/blog/interview-questions/r-interview-questions/)
 
 
-## QnA on Python
+# Question and Answer on Python
+
 1. [link1](https://www.edureka.co/blog/interview-questions/python-interview-questions/)
 2. [link2](https://intellipaat.com/interview-question/python-interview-questions/)
 3. [link3](https://career.guru99.com/top-25-python-interview-questions/)
@@ -295,3 +409,11 @@ Very generic Qusestion. Prepare well.
 
 ---
 
+
+# Question Source
+
+- [link](https://www.quora.com/What-are-some-common-machine-learning-interview-questions)
+
+----
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Back to Top</a>
