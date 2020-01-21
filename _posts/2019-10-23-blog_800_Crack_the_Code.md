@@ -178,6 +178,25 @@ Rest same.
 
 ----
 
+# How to Visualize DP Bototm Up for Longest Palindromic Substring or Subsequence 
+
+The below example is to find `Longest Palindromic Substring` for string `cddpd`
+
+![image](/assets/images/image_26_DP_sol_1.jpg)
+![image](/assets/images/image_26_DP_sol_2.jpg)
+
+
+
+- `si = 2` and `ei = 4`: means we are checking substring `dpd`. 
+- Now `st[si] == st[ei]` as both are `d`
+- So check if `(si+1:ei-1)` is sub string or not ?
+- `si+1 = 3`, `ei-1 = 3` i.e from `st[3:3]`, which is the char `p` and from the `dp[][]` we see `dp[3][3] = T` , so overall `dp[2][4] = T`
+
+
+This is the overall thought processing, how the 2 things are related in High Dimension i.e DP 2D matrix with Low Dimension i.e 1D string.
+
+----
+
 # Difference between Longest Palindromic `Substring` and Longest Palindromic `Subsequence`
 
 A `subsequence` is a sequence that can be derived from another sequence by `deleting some` or `no elements` without changing the order of the remaining elements.
