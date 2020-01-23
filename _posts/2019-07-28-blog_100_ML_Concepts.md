@@ -1,14 +1,44 @@
 ---
 layout: post
-title:  "Blog 100: Machine Learning Concepts"
+title:  "Blog 100: Machine Learning: Some Concepts"
 date:   2019-07-28 00:11:31 +0530
 categories: jekyll update
 mathjax: true
 ---
 
+# Content
+
 1. TOC
 {:toc}
 ---
+
+# Difference between Parametric and Non-Parametric model?
+
+**Parametric Model:** We have a finite number of parameters.
+
+Linear models such:
+
+- Linear regression
+- Logistic regression
+- Linear Support Vector Machines 
+
+These are typical examples of a `parametric learners`.
+
+**Nonparametric Model:** The number of parameters is (potentially) infinite. Here number of parameters are function of number of training data.
+
+- K-nearest neighbor
+- Decision trees
+- RBF kernel SVMs 
+
+These are considered as `non-parametric`
+
+- In the field of statistics, the term parametric is also associated with a specified probability distribution that you **assume** your data follows, and this distribution comes with the finite number of parameters (for example, the mean and standard deviation of a normal distribution).
+- You don’t make/have these assumptions in non-parametric models. So, in intuitive terms, we can think of a non-parametric model as a `“distribution” or (quasi) assumption-free model`.
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
 
 # Linear Regression
 
@@ -37,7 +67,13 @@ In Bayesian curve fitting setting, the sum of squared error function has arisen 
 
 Regularization allows complex models to be trained on the datasets of limited size without severe overfitting, essentially by limiting the model complexity. `[p145, bishop]`
 
-## Bias Variance Trade-off from Frequentist viewpoint
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
+# Bias Variance Trade-off from Frequentist viewpoint
 
 In frequentist viewpoint, `w` is fixed and error bars on the estimators are obtained by considering the distribution over the data D. `[p22-23; Bishop]`.
 
@@ -49,9 +85,19 @@ Our original regression function is `Y` and say for `Di` we got our predictive f
 
 **Variance** = $E[(\hat{Y_i}(x;D_i) - E[\hat{Y_i}(x;D_i)])^2]$, where $(\hat{Y_i}(x;D_i)$ is the predictive function over data set $D_i$ and $E[\hat{Y_i}(x;D_i)])$ is the average performance over all the datasets. So variance represents, the extent to which the individual predictive functions $\hat{Y_i}$ for dataset $D_i$ varies around their average. And thus we measure the extent by which the function $Y(x;D)$ is sensitive to the particular choice of the data sets. `[p149; Bishop]`
 
+
+## Bias Variance Decomposition
+
+![image](/assets/images/image_16_ModelSelection_4.png)
+
+
+**Resource:**
+
+- [Prof. Piyush Rai, Lecture 19](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec19_slides.pdf)
+
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
-------
+----
 
 # Linear Models
 
@@ -250,6 +296,62 @@ $$A = U D V^T$$
 - [link](https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.8-Singular-Value-Decomposition/)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Explain PCA? Tell me the mathematical steps to implement PCA?
+
++ In PCA, we are interested to find the directions (components) that maximize the variance in our dataset)
++ PCA can be seen as:
+  + Learning the projection direction that captures `maximum variance` in data.
+  + Learning the projection direction that results in `smallest reconstruction error`
+  + Changing the basis in which the data is represented and transforming the features such that new features become `de-correlated` (Orthogonal Principal Component)
++ Let’s assume that our goal is to reduce the dimensions of a d-dimensional dataset by projecting it onto a `k`-dimensional subspace (where `k<d`). So, 
+how do we know what size we should choose for `k`, and how do we know if we have a feature space that represents our data **well**?
+  + We will compute `eigenvectors` (the components) from our data set and 
+  collect them in a so-called scatter-matrix (or alternatively calculate 
+  them from the **covariance matrix**). 
+  + Each of those eigenvectors is associated with an eigenvalue, which tell us about the `length` or `magnitude` of the eigenvectors. If we observe that all the eigenvalues are of very similar magnitude, this is a good indicator that our data is already in a `good` 
+  subspace. Or if some of the eigenvalues are much much higher than others, we might be interested in keeping only those eigenvectors with the much larger eigenvalues, since they contain more information about our data distribution. Vice versa, eigenvalues that are close to 0 are less informative and we might consider in dropping those when we construct 
+  the new feature subspace.
++ `kth` Eigenvector determines the `kth` direction that maximizes the variance in that direction.
++ the corresponding `kth` Eigenvalue determines the variance along `kth` Eigenvector
+
+### Tl;DR: Steps 
+  + Let $X$ is the original dataset ($n$ x $d$) [$n$: data points, $d$: dimension]
+  + Centered the data w.r.t mean and get the centered data: $M$ [dim: $n$ x $d$]
+  + Compute covariance matrix: $C=(MM^T)/(n-1)$ [dim: $d$ x $d$]
+  + Diagonalize it i.e do `eigen decompositoin`: $C = VDV^T$. $V$ is an `orthogonal` matrix so $V^T = V^{-1}$ [[proof](https://math.stackexchange.com/questions/1936020/why-is-the-inverse-of-an-orthogonal-matrix-equal-to-its-transpose)]
+    + $V$: [dim: $d$ x $k$]
+    + $D$: [dim: $k$ x $k$]
+  + Compute `principal component`: $P = V\sqrt{D}$. Or you can also take the first $k$ leading `eigen vectors` from $V$ and the corresponding `eigen values` from $D$ and calculate $P$. [$P$ dim: $d$ x $k$]  
+  + Combining all:
+  $$C=(MM^T)/(n-1)=VDV^T= = V\sqrt{D}\sqrt{D}V^T =  PP^T$$
+  + Apply principle component matrix $P$ on the centered data $M$ to get the tranformed data projected on the principle component and thus doing `dimensionality reduction`: $M^* = M P$, [$M^*$: new dataset after the PCA, dim: $n$ x $k$]. $k \lt d$, i.e. `dimension reduced` using `PCA`.
+
+**Resource:**
+
++ [pdf](http://www.math.ucsd.edu/~gptesler/283/slides/pca_15-handout.pdf)
++ [Link1](https://towardsdatascience.com/a-one-stop-shop-for-principal-component-analysis-5582fb7e0a9c)
++ [Link2](https://rstudio-pubs-static.s3.amazonaws.com/249839_48d65d85396a465986f2d7df6db73c3d.html)
++ [PPT: Prof. Piyush Rai IIT Kanpur](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec11_slides.pdf)
+
+## What is disadvantage of using PCA?
+
++ one disadvantage of PCA lies in interpreting the results of dimension reduction analysis. This challenge will become particularly telling when the data needs to be normalized.
++ PCA assumes approximate normality of the input space distribution. [link](http://www.stat.columbia.edu/~fwood/Teaching/w4315/Fall2009/pca.pdf)
++ For more reading [link](https://www.quora.com/What-are-some-of-the-limitations-of-principal-component-analysis)
+
+## Why PCA needs normalization?
+
++ A reason why we need to normalize before applying PCA is to mitigate the effects of scale. For example, if one of the attributes is orders of magnitude higher than others, PCA tends to ascribe the highest amount of variance to this attribute and thus skews the results of the analysis. By normalizing, we can get rid of this effect. However normalizing results in spreading the influence across many more principal components. In others words, more PCs are required to explain the same amount of variance in data. The interpretation of analysis gets muddied. 
+
+
+[Reference](http://www.simafore.com/blog/bid/105347/Feature-selection-with-mutual-information-Part-2-PCA-disadvantages)
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 
 ----
 
@@ -801,19 +903,6 @@ Steps to void overfitting:
 ![image](/assets/images/image_16_ModelSelection_5.png)
 ![image](/assets/images/image_16_ModelSelection_6.png)
 ![image](/assets/images/image_16_ModelSelection_7.png)
-
-
-**Resource:**
-
-- [Prof. Piyush Rai, Lecture 19](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec19_slides.pdf)
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
-----
-
-# Bias Variance Decomposition
-
-![image](/assets/images/image_16_ModelSelection_4.png)
 
 
 **Resource:**
