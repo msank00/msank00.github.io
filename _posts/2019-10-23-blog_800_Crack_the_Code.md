@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Blog 800: Crack the Code"
+title:  "Crack the Code"
 date:   2019-10-23 00:11:31 +0530
 categories: jekyll update
 mathjax: true

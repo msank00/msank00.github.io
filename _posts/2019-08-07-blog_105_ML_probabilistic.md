@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Blog 105: Probabilistic and Bayesian Machine Learning"
+title:  "Probabilistic and Bayesian Machine Learning"
 date:   2019-08-07 00:11:31 +0530
 categories: jekyll update
 mathjax: true

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Blog 500: Domain Knowledge: Insurance"
+title:  "Domain Knowledge: Insurance"
 date:   2020-01-19 00:11:31 +0530
 categories: jekyll update
 mathjax: true

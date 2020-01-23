@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Blog 106: Machine Learning System Design"
+title:  "Machine Learning System Design"
 date:   2019-11-30 00:11:31 +0530
 categories: jekyll update
 mathjax: true

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Blog 810: Statistical Analysis"
+title:  "Statistical Analysis"
 date:   2019-10-30 00:11:31 +0530
 categories: jekyll update
 mathjax: true
