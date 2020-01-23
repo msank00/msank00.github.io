@@ -581,9 +581,6 @@ Classical `exploration-exploitation` problem:
 - [Code-Github](https://github.com/ikatsov/algorithmic-examples)
 
 
-![image](/assets/images/word2vec.svg)
-![image](/assets/images/word2vec_2.svg)
-
 
 ----
 

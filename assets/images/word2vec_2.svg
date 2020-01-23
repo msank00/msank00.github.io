@@ -201,14 +201,14 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       x="748.57141"
-       y="485.71429"
+       x="1491.4286"
+       y="651.42859"
        id="text4898"><tspan
          sodipodi:role="line"
          id="tspan4896"
-         x="748.57141"
-         y="485.71429"
-         style="-inkscape-font-specification:'Ubuntu, Normal';font-family:Ubuntu;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:40px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal">TABLE</tspan></text>
+         x="1491.4286"
+         y="651.42859"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start">TABLE</tspan></text>
     <flowRoot
        xml:space="preserve"
        id="flowRoot4900"
@@ -219,5 +219,115 @@
            height="80"
            x="840"
            y="240" /></flowRegion><flowPara
-         id="flowPara4906"></flowPara></flowRoot>  </g>
+         id="flowPara4906"></flowPara></flowRoot>    <rect
+       style="opacity:1;fill:#b9ff00;fill-opacity:0.75;stroke:#73ff2d;stroke-width:9.60000038;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.04268296;paint-order:markers fill stroke;font-variant-east_asian:normal;vector-effect:none;stroke-linejoin:miter;stroke-dashoffset:0"
+       id="rect9614"
+       width="80"
+       height="80"
+       x="1280"
+       y="360" />
+    <rect
+       style="opacity:1;fill:#b9ff00;fill-opacity:0.75;stroke:#73ff2d;stroke-width:9.60000038;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.04268296;paint-order:markers fill stroke;font-variant-east_asian:normal;vector-effect:none;stroke-linejoin:miter;stroke-dashoffset:0"
+       id="rect9614-1"
+       width="80"
+       height="80"
+       x="1370"
+       y="360" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="1491.4286"
+       y="411.42859"
+       id="text4890-2"><tspan
+         sodipodi:role="line"
+         id="tspan4888-5"
+         x="1491.4286"
+         y="411.42859"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start">DOG</tspan></text>
+    <rect
+       style="opacity:1;vector-effect:none;fill:#e6d430;fill-opacity:1;stroke:#e3d800;stroke-width:9.60000038;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0;paint-order:markers fill stroke;font-variant-east_asian:normal"
+       id="rect9614-19"
+       width="80"
+       height="80"
+       x="1280"
+       y="480" />
+    <rect
+       style="opacity:1;vector-effect:none;fill:#e6d430;fill-opacity:1;stroke:#e3d800;stroke-width:9.60000038;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0;paint-order:markers fill stroke;font-variant-east_asian:normal"
+       id="rect9614-1-7"
+       width="80"
+       height="80"
+       x="1370"
+       y="480" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="1497.1428"
+       y="517.14288"
+       id="text4886-3"><tspan
+         sodipodi:role="line"
+         id="tspan4884-1"
+         x="1497.1428"
+         y="517.14288"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start">CAT</tspan></text>
+    <rect
+       style="opacity:1;vector-effect:none;fill:#cc0069;fill-opacity:0.35975611;stroke:#c1005f;stroke-width:9.60000038;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.02439025;paint-order:markers fill stroke;font-variant-east_asian:normal"
+       id="rect9614-19-2"
+       width="80"
+       height="80"
+       x="1280"
+       y="600" />
+    <rect
+       style="opacity:1;vector-effect:none;fill:#cc0069;fill-opacity:0.35975611;stroke:#c1005f;stroke-width:9.60000038;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.02439025;paint-order:markers fill stroke;font-variant-east_asian:normal"
+       id="rect9614-1-7-0"
+       width="80"
+       height="80"
+       x="1370"
+       y="600" />
+    <rect
+       style="opacity:1;vector-effect:none;fill:#dc89de;fill-opacity:0.73170734;stroke:#21c100;stroke-width:9.60000038;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0;paint-order:markers stroke fill;font-variant-east_asian:normal"
+       id="rect9614-19-2-8"
+       width="80"
+       height="80"
+       x="1280"
+       y="720" />
+    <rect
+       style="opacity:1;vector-effect:none;fill:#dc89de;fill-opacity:0.73170734;stroke:#21c100;stroke-width:9.60000038;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0;paint-order:markers stroke fill;font-variant-east_asian:normal"
+       id="rect9614-1-7-0-7"
+       width="80"
+       height="80"
+       x="1370"
+       y="720" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="708.57141"
+       y="485.71429"
+       id="text4898-9"><tspan
+         sodipodi:role="line"
+         id="tspan4896-2"
+         x="708.57141"
+         y="485.71429"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start">TABLE</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="1488.5714"
+       y="765.71429"
+       id="text4894-4"><tspan
+         sodipodi:role="line"
+         id="tspan4892-4"
+         x="1488.5714"
+         y="765.71429"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start">CHAIR</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="1245.7142"
+       y="342.85715"
+       id="text9815"><tspan
+         sodipodi:role="line"
+         id="tspan9813"
+         x="1245.7142"
+         y="342.85715">Dense Vector</tspan></text>
+  </g>
 </svg>
