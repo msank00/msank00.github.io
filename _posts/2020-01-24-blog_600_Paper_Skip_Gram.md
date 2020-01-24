@@ -30,6 +30,10 @@ We are going to summarize 2 papers
 - Earlier there were label encoding, binarization or one-hot-encoding. Those were `sparse vector representation`. But the Skip-gram model helps to represent the words as `continuous dense vector`.
 - The problem with label encoding, one-hot-encoding type vector representation is that, they don't capture the correlation (very loosely speaking) with each other. The correlation groups the words in terms of their hidden or latent meaning.
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
 # Example
 
 Let's say we have 4 words: `dog`, `cat`, `chair` and `table`.
@@ -72,6 +76,9 @@ The train objective is to learn word vector representation that are good at pred
 
 ![image](/assets/images/word2vec_3.png)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
 
 # The Skip-gram model
 
@@ -86,6 +93,11 @@ The basic Skip-gram formulation defines $p(w_{t+j} \vert w_t)$ using the softmax
 - A computationally `efficient approximation` of the full softmax is the **hierarchical softmax**. The main advantage is that instead of evaluating $W$ output nodes in the neural network to obtain the probability distribution, it is needed to evaluate only about $\log_2(W)$ nodes.
 - The hierarchical softmax uses a binary tree representation of the output layer with the W words as its leaves and, for each node, explicitly represents the relative probabilities of its child nodes. These define a random walk that assigns probabilities to words.
 - Such representation makes the learning faster using distributed technique.
+
+**Resource:**
+
+- [On word embeddings - Part 1: Sebastian Ruder](https://ruder.io/word-embeddings-1/index.html)
+- [Language Model: CS124](https://web.stanford.edu/class/cs124/lec/languagemodeling.pdf)
 
 ----
 
