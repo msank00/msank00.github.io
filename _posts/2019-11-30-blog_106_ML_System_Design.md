@@ -10,6 +10,7 @@ mathjax: true
 
 1. TOC
 {:toc}
+----
 
 # Introduction 
 
@@ -18,6 +19,33 @@ To learn how to design machine learning systems
 > I find it really helpful to read case studies to see how great teams deal with different deployment requirements and constraints.
 
 - [Tweet: Chip Huyen](https://twitter.com/chipro/status/1188653180902445056)
+
+----
+# Practical Deep Learning Systems - Full Stack Deep Learning
+
+**Play the video:** :arrow_heading_down: 
+
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=5ygO8FxNB8c"><img src="https://img.youtube.com/vi/5ygO8FxNB8c/0.jpg" alt="IMAGE ALT TEXT"></a>
+</div>
+
+>> The average elapsed time between key algorithm proposal and corresponding advances was about 18 years, whereas the average elapsed time between key dataset availabilities and corresponding advances was less than 3 years, i.e. about 6 times faster. 
+
+- More Data or Better data?
+- Simple model >> Complex Model
+- ... but sometime you do need complex model
+- We should care about feature engineering
+- Deep Learning: <del>Feature</del> **Architecture** Engineering
+- Supervised/Unsupervised => Self-Supervised learning
+- Everything is ensemble
+- There is bias in your data
+- Curse of presentation bias
+- Bias and Fairness
+- Right Evaluation: Offline and Online Experimentation
+- ML beyond DL
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 

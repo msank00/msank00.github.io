@@ -75,6 +75,16 @@ Regularization allows complex models to be trained on the datasets of limited si
 
 # Bias Variance Trade-off from Frequentist viewpoint
 
+The goal to minimize a model's generalization error gives rise to two desiderata:
+
+1. Minimize the training error; 
+2. Minimize the gap between training and test error.
+
+This dichotomy is also known as bias-variance trade-off. If the model is not able to obtain a low error on the training set, it is said to have `high bias`. This is typically the result of `erroneous assumptions in the learning algorithm` that cause it to miss relevant relations in the data. 
+
+On the other hand, if the gap between the training error and test error is too large, the model has high variance. It is sensitive to small fluctuations and models random noise in the training data rather than the true underlying distribution.
+
+
 In frequentist viewpoint, `w` is fixed and error bars on the estimators are obtained by considering the distribution over the data D. `[p22-23; Bishop]`.
 
 Suppose we have large number of **data sets**, `[D1,...,Dn]`, each of size N and each drawn independently from distribution of `p(t,x)`. For any given data set `Di` we can run our learning algorithm and get a prediction function `y(x;Di)`. Different datasets from the ensemble will give different prediction functions and consequently different values of squared loss. The performance of a particular learning algorithm is then assessed by averaging over this ensemble of datasets. `[p148; Bishop]`. 
