@@ -151,9 +151,9 @@ The beauty of the above equation is, in the log-space it's computing the predict
 
 **How to train the model?**
 
-How can we learn the probabilities $P(c)$ and $P(f_i|c)$? Let’s first consider the maximum likelihood estimate. We’ll simply use the frequencies in the data.
+How can we learn the probabilities $P(c)$ and $P(f_i \vert c)$? Let’s first consider the maximum likelihood estimate. We’ll simply use the frequencies in the data.
 
-To learn the probability P( fi|c), we’ll assume a feature is just the existence of a word in the document’s `bag of words`, and so we’ll want $P(w_i|c)$.
+To learn the probability P( fi|c), we’ll assume a feature is just the existence of a word in the document’s `bag of words`, and so we’ll want $P(w_i \vert c)$.
 
 We will use smoothing technique to avoid any zero-count problem.
 
