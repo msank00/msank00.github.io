@@ -266,6 +266,7 @@ However with count based approach we may face the situation of **Zero Count** pr
 
 - [Sebastian Raschka](https://sebastianraschka.com/Articles/2014_python_lda.html)
 - Book: ISL, Chapter 4
+- [Lecture 9: Stat202](https://web.stanford.edu/class/stats202/content/lectures.html)
 
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
@@ -311,9 +312,37 @@ The `generative story` begins with begins with only Dirichlet Prior over the top
 
 ----
 
+# What is LSI: Latent Semantic Indexing?
+
+- It's SVD used in information retrieval.
+
+>> The term document matrix is the basis for computing the similarity between document and query. Can we transform this matrix so that we can get better measure of similarity between document and query?
+
+
+![image](/assets/images/image_29_lsi_1.png)
+![image](/assets/images/image_29_lsi_2.png)
+![image](/assets/images/image_29_lsi_3.png)
+![image](/assets/images/image_29_lsi_4.png)
+![image](/assets/images/image_29_lsi_5.png)
+
+- The "boat" and "ship" are similar in meaning. The `reduced similarity measure` reflects this.
+
+![image](/assets/images/image_29_lsi_6.png)
+
+
+**Reference:**
+
+- Book: Introduction to Information Retrieval by Manning, Ch 18
+- [Slide](https://nlp.stanford.edu/IR-book/essir2011/pdf/18lsi.pdf)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
 # Exercise:
 
-1. What is LSI, NMF in nlp?
+1. NMF in nlp?
 2. Using traditional ML, how to learn context?
 
 
