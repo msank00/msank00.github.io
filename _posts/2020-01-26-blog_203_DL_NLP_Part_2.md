@@ -239,7 +239,7 @@ However with count based approach we may face the situation of **Zero Count** pr
 
 1. What is LSI, LDA, NMF in nlp?
 2. Using traditional ML, how to learn context?
-3. What is Bloom Filter?
+
 
 
 ----

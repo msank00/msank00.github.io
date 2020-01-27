@@ -116,7 +116,24 @@ To learn how to design machine learning systems
 
 - [how-to-succeed-in-a-system-design-interview](https://blog.pramp.com/how-to-succeed-in-a-system-design-interview-27b35de0df26)
 
+
+----
+
+# What is Bloom Filter?
+
+A Bloom filter is a `space-efficient probabilistic data structure`, conceived by Burton Howard Bloom in 1970, that is used to test whether an element is a member of a set. 
+- False positive matches are possible
+- False negatives are not 
+
+A query returns either `possibly in set` or `definitely not in set`. Elements can be added to the set, but not removed (though this can be addressed with the counting Bloom filter variant); the more items added, the larger the probability of false positives. 
+
+**Reference:**
+
+- [Geeks4geeks](https://www.geeksforgeeks.org/bloom-filters-introduction-and-python-implementation/)
+
+
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 
 ----    
 
