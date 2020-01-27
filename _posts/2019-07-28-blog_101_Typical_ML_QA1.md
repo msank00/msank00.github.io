@@ -339,6 +339,8 @@ So if we substitute this in case 1, then we will find case 2. So they are same.
 
 ![image](/assets/images/image_25_loss_2.png)
 
+The above image shows, that how we approximate `0-1 loss` in SVM and in Logistic regression.
+
 **Resource:**
 
 - Probabilistic Perspective:  Murphy - Chapter 8.3.1
