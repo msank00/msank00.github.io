@@ -235,10 +235,49 @@ However with count based approach we may face the situation of **Zero Count** pr
 
 ----
 
+# What is Latent Dirichlet Allocation?
+
+- Generative model for topic modelling. It's an unsupervised learning.
+- LDA is one of the early versions of a ’topic model’ which was first presented by David Blei, Andrew Ng, and Michael I. Jordan in 2003.
+- In essence, LDA is a `generative model` that allows observations about data to be explained by unobserved latent variables that explain why some parts of the data are similar, or potentially belong to groups of similar "topics"
+
+![image](/assets/images/image_28_lda_3.png)
+![image](/assets/images/image_28_lda_4.png)
+![image](/assets/images/image_28_lda_5.png)
+
+- Originally presented in a graphical model and using Variational Inference
+- Builds on latent semantic analysis
+- It is a mixed-­‐membership model.
+- It relates to PCA and matrix factorization 
+
+The `generative story` begins with begins with only Dirichlet Prior over the topics.
+
+## Dirichlet Distribution
+
+- In probability and statistics, the Dirichlet distribution (after Peter Gustav Lejeune Dirichlet), often denoted $Dir( \alpha )$, is a family of `continuous multivariate probability distributions` parameterized by a vector $\alpha$ of positive reals. 
+- It is a `multivariate generalization of the beta distribution`, hence its alternative name of multivariate beta distribution (MBD).
+- Dirichlet distributions are commonly used as prior distributions in Bayesian statistics, and in fact the Dirichlet distribution is the conjugate prior of the categorical distribution and multinomial distribution. 
+
+![image](/assets/images/image_28_lda_1.png)
+![image](/assets/images/image_28_lda_2.png)
+
+
+**Resource:**
+
+- [IMP: Topic Model: CMU](https://www.cs.cmu.edu/~mgormley/courses/10701-f16/slides/lecture20-topic-models.pdf)
+- [Lecture 10: LDA](http://www.cs.columbia.edu/~verma/classes/uml/lec/uml_lec9_lda.pdf)
+- [Dirichlet_distribution](https://en.wikipedia.org/wiki/Dirichlet_distribution)
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
 # Exercise:
 
 1. What is LSI, LDA, NMF in nlp?
-2. Using traditional ML, how to learn context?
+2. What is Linear Discriminant Analysis?
+3. Using traditional ML, how to learn context?
 
 
 
