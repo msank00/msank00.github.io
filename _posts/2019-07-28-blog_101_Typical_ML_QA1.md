@@ -324,16 +324,36 @@ This is also called `cross entropy` error function.
 
 When $y \in ({-1,+1})$
 
-$$NLL(w)= \Sigma_{i=1}^{N}log(1+\exp(-y_iw^Tx))$$
+$$NLL(w)= \Sigma_{i=1}^{N}log(1+\exp(-y_iw^Tx_i))$$
 
+Though these 2 equations look different. But if you pay attention for case 1, it's written in terms of $\hat{y_i}$ but for case 2 there is no such term. Now what is $\hat{y_i}$ ??
+
+$$
+\hat{y_i} = \frac{exp(w^Tx_i)}{1+exp(w^Tx_i)}
+$$
+
+So if we substitute this in case 1, then we will find case 2. So they are same. 
+
+![image](/assets/images/image_27_LR_loss_1.png)
+![image](/assets/images/image_27_LR_loss_2.png)
 
 ![image](/assets/images/image_25_loss_2.png)
 
 **Resource:**
 
 - Probabilistic Perspective:  Murphy - Chapter 8.3.1
-- [Very IMP, ML Course: Prof. Piyush Rai](https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec9_print.pdf) 
+- [Very IMP, ML Course: Prof. Piyush Rai](https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec9_print.pdf)
+- [Very IMP, ML Course: Prof. Piyush Rai, slide 13](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec6_slides.pdf) 
  
+
+## Comparison of SVM and Logistic Loss?
+
+![image](/assets/images/image_27_LR_loss_3.png)
+
+**Resource:**
+
+- [Slide 15](https://www.robots.ox.ac.uk/~az/lectures/ml/2011/lect4.pdf)
+
 
 ## Why is logistic regression considered as a linear model? 
 
