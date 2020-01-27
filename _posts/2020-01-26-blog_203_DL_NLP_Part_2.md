@@ -271,8 +271,8 @@ However with count based approach we may face the situation of **Zero Count** pr
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
-
 ----
+
 
 # What is Latent Dirichlet Allocation?
 
@@ -337,6 +337,55 @@ The `generative story` begins with begins with only Dirichlet Prior over the top
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+----
+
+# What is Nonnegative Matrix Factorization (NMF) ?
+
+
+> With the rise of complex models like deep learning, we often forget simpler, yet powerful machine learning methods that can be equally powerful. NMF (Nonnegative Matrix Factorization) is one effective machine learning technique that I feel does not receive enough attention. NMF has a wide range of uses, from topic modeling to signal processing.
+
+## When do we use NMF?
+
+**Example: Computer Vision**
+
+- A different, commonly used factorization method is PCA (Principle Components Analysis). But PCA creates factors that can be both positive and negative.
+
+Let’s see what happens when we try decomposing various faces. In the following image, we show the components (bases) we calculated with PCA on the left and the weights corresponding to a single image on the right. Red represents negative values.
+
+![image](https://keitakurita.files.wordpress.com/2017/11/pca_faces.png?resize=293%2C137)
+
+If you look at the components, you see that they don’t make much sense. It’s also difficult to interpret what it means for a face to have a “negative” component.
+
+Now, let’s see what happens when we use NMF.
+
+![image](https://keitakurita.files.wordpress.com/2017/11/nmf_faces.png?resize=299%2C155)
+
+Now, the components seem to have some meaning. Some of them look like parts of a nose or parts of an eye. We can consider each face to be an overlay of several components. This means we can interpret the decomposition of a face as having a certain weight of a certain nose type, a certain amount of some eye type, etc.
+
+
+**Example 2: Topic Modeling**
+
+Imagine if you wanted to decompose a term-document matrix, where each column represented a document, and each element in the document represented the weight of a certain word (the weight might be the raw count or the tf-idf weighted count or some other encoding scheme; those details are not important here).
+
+NMF decomposition of the term-document matrix would yield components that could be considered “topics”, and decompose each document into a weighted sum of topics. This is called topic modeling and is an important application of NMF.
+
+NMF ensures that after decomposition the values are non-negative, which brings lots of meaningful insight which wouldn't have been possible in other decomposition. 
+
+**Example 2: Recommendation System**
+
+- [NMF in Recommendation System](https://medium.com/logicai/non-negative-matrix-factorization-for-recommendation-systems-985ca8d5c16c)
+
+![image](/assets/images/image_30_nmf_1.png)
+![image](/assets/images/image_30_nmf_2.png)
+![image](/assets/images/image_30_nmf_3.png)
+
+
+**Reference:**
+
+- [mlexplained: nmf](https://mlexplained.com/2017/12/28/a-practical-introduction-to-nmf-nonnegative-matrix-factorization/)
+- [IMP NMF-tutorial](https://www.cs.rochester.edu/u/jliu/CSC-576/NMF-tutorial.pdf)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
