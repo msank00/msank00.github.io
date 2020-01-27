@@ -233,6 +233,44 @@ However with count based approach we may face the situation of **Zero Count** pr
 
 - Book: Speech and Language Processing, Jurafski, ch 3,  
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+---
+
+# What is Linear Discriminant Analysis
+
+- Logistic regression involves directly modeling $P(Y = k \vert X = x)$ using the logistic function. But in LDA we take indirect approach. In this alternative approach, we model the distribution of the predictors $X$ separately in each of the response classes (i.e. given $$), and then use Bayes’ theorem to flip these around into estimates for $Pr(Y = k \vert X = x)$. 
+- When these distributions are assumed to be normal, it turns out that the model is very similar in form to logistic regression.
+
+## Why we need LDA when we have Logistic Regression?
+
+- When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable. Linear discriminant analysis does not suffer from this problem.
+- If $n$ is small and the distribution of the predictors $X$ is approximately normal in each of the classes, the linear discriminant model is again more stable than the logistic regression model.
+- linear discriminant analysis is popular when we have more than two response classes.
+
+## How LDA is related to PCA?
+
+-  The goal of an LDA is to project a feature space (a dataset $n$-dimensional samples) onto a smaller subspace $k$ (where $k \leq n−1$) while maintaining the `class-discriminatory` information. 
+- It's a classification algorithm.
+- Linear Discriminant Analysis (LDA) is most commonly used as dimensionality reduction technique in the pre-processing step for pattern-classification and machine learning applications. The goal is to project a dataset onto a lower-dimensional space with good class-separability in order avoid overfitting (“curse of dimensionality”) and also reduce computational costs.
+- The general LDA approach is very similar to a Principal Component Analysis, but in addition to finding the component axes that maximize the variance of our data (PCA), we are additionally interested in the axes that maximize the separation between multiple classes (LDA).
+
+![image](https://sebastianraschka.com/images/blog/2014/linear-discriminant-analysis/lda_1.png)
+
+- Both Linear Discriminant Analysis (LDA) and Principal Component Analysis (PCA) are linear transformation techniques that are commonly used for dimensionality reduction.
+- PCA is unsupervised where as LDA is supervised and LDA computes the `directions ("linear discriminants")` that will represent the axes that that maximize the separation between multiple classes
+
+
+**Reference:**
+
+- [Sebastian Raschka](https://sebastianraschka.com/Articles/2014_python_lda.html)
+- Book: ISL, Chapter 4
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ----
 
 # What is Latent Dirichlet Allocation?
@@ -246,8 +284,8 @@ However with count based approach we may face the situation of **Zero Count** pr
 ![image](/assets/images/image_28_lda_5.png)
 
 - Originally presented in a graphical model and using Variational Inference
-- Builds on latent semantic analysis
-- It is a mixed-­‐membership model.
+- Builds on `latent semantic analysis`
+- It is a mixed-­membership model.
 - It relates to PCA and matrix factorization 
 
 The `generative story` begins with begins with only Dirichlet Prior over the topics.
@@ -275,9 +313,8 @@ The `generative story` begins with begins with only Dirichlet Prior over the top
 
 # Exercise:
 
-1. What is LSI, LDA, NMF in nlp?
-2. What is Linear Discriminant Analysis?
-3. Using traditional ML, how to learn context?
+1. What is LSI, NMF in nlp?
+2. Using traditional ML, how to learn context?
 
 
 
