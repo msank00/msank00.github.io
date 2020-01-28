@@ -70,7 +70,7 @@ Each algorithm is based on some assumption which is applicable to some scenario.
 
 # Bayesian Analysis
 
-$$P(Hyp\vert Data) = \frac{P(Data \vert Hyp) P(Hyp)}{P(Data)}$$
+$$P(Hyp \vert Data) = \frac{P(Data \vert Hyp) P(Hyp)}{P(Data)}$$
 
 $$posterior \propto Likelihood \times prior$$
 
@@ -114,6 +114,83 @@ where $\hat{y_i} = f(x_i)$
 **Reference**
 
 - [TDS Blog](https://towardsdatascience.com/linear-and-bayesian-modelling-in-r-predicting-movie-popularity-6c8ef0a44184)
+
+----
+
+# What is Sampling methods?
+
+These are approximation methods to solve complex probabilistic model, which are difficult to solve in polinomial time with simpler methods. 
+
+There exist two main families of approximate algorithms: 
+
+- **Variational methods:** Formulate inference as an optimization problem
+- **Sampling methods:**  Which produce answers by repeatedly generating random numbers from a distribution of interest.
+
+## Sampling from a probability distribution
+
+**Q:** How we might sample from a multinomial distribution with $k$ possible outcomes and associated probabilities $\theta_1, \dots , \theta_k$.
+
+Reduce sampling from a multinomial variable to sampling a single uniform variable by subdividing a `unit interval` into $k$ regions with region $i$ having size $\theta_i$. We then sample uniformly from $[0,1]$ and return the value of the region in which our sample falls.
+
+![image](https://ermongroup.github.io/cs228-notes/assets/img/multinomial-sampling.png)
+
+_Reducing sampling from a multinomial distribution to sampling a uniform distribution in [0,1]._
+
+
+- Sampling from a distribution lets us perform many useful tasks, including marginal and MAP inference, as well as computing integrals of the form
+
+$$\E_{x \sim p}[f(x)] = \sum_x f(x) p(x)$$
+
+>> Algorithms that construct solutions based on a large number of samples from a given distribution are referred to as Monte Carlo (MC) methods.
+
+For different type of sampling technique check [here](https://ermongroup.github.io/cs228-notes/inference/sampling/).
+
+
+
+
+**Reference**
+
+- [Sampling Methods CS228](https://ermongroup.github.io/cs228-notes/inference/sampling/)
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
+# What is Varietional Inference?
+
+- Variational inference methods take their name from the `calculus of variations`, which deals with optimizing functions that take other functions as arguments.
+
+
+> Inference in probabilistic models is often `intractable`, and we learned about algorithms that provide approximate solutions to the inference problem (e.g. marginal inference) by using subroutines that involve sampling random variables.
+
+Unfortunately, these sampling-based methods have several important shortcomings.
+
+So an alternative approach to approximate inference is by using the variational family of algorithms.
+
+The **main idea** of variational methods is to cast `inference as an optimization problem`.
+
+**Inference as Optimization:** Suppose we are given an `intractable probability distribution` $p$. Variational techniques will try to solve an optimization problem over a class of tractable distributions $Q$ in order to find a $q∈\in Q$ that is most similar to $p$. We will then query $q$ (rather than $p$) in order to get an approximate solution.
+
+
+- Variational inference methods often scale better and are more amenable to techniques like stochastic gradient optimization, parallelization over multiple processors, and acceleration using GPUs.
+
+To formulate inference as an optimization problem, we need to choose an approximating family $Q$ and an optimization objective $J(q)$. This objective needs to capture the similarity between $q$ and $p$; the field of information theory provides us with a tool for this called the _Kullback-Leibler (KL)_ divergence.
+
+$$
+KL(q\|p) = \sum_x q(x) \log \frac{q(x)}{p(x)} = E_{x \sim q}[f(x)]
+$$
+
+where $f(x)$ is $\log \frac{q(x)}{p(x)}$
+
+
+**Reference**
+
+- [High Level Understanding](https://www.cs.jhu.edu/~jason/tutorials/variational.html)
+- [Important CS228](https://ermongroup.github.io/cs228-notes/)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ---
 
