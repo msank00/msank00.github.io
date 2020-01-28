@@ -25,7 +25,7 @@ Each algorithm is based on some assumption which is applicable to some scenario.
 
 - k-means assume the variance of the distribution of each attribute (variable) is spherical;
 
-![image](https://upload.wikimedia.org/wikipedia/commons/6/6e/Uniform_Spherical_Distribution_8.png)
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Uniform_Spherical_Distribution_8.png" height="200">
 
 - All variables have the same variance;
 - The prior probability for all k clusters are the same, i.e. each cluster has roughly equal number of observations; 
@@ -139,7 +139,7 @@ _Reducing sampling from a multinomial distribution to sampling a uniform distrib
 
 - Sampling from a distribution lets us perform many useful tasks, including marginal and MAP inference, as well as computing integrals of the form
 
-$$\E_{x \sim p}[f(x)] = \sum_x f(x) p(x)$$
+$$E_{x \sim p}[f(x)] = \sum_x f(x) p(x)$$
 
 >> Algorithms that construct solutions based on a large number of samples from a given distribution are referred to as Monte Carlo (MC) methods.
 
@@ -171,7 +171,7 @@ So an alternative approach to approximate inference is by using the variational 
 
 The **main idea** of variational methods is to cast `inference as an optimization problem`.
 
-**Inference as Optimization:** Suppose we are given an `intractable probability distribution` $p$. Variational techniques will try to solve an optimization problem over a class of tractable distributions $Q$ in order to find a $q∈\in Q$ that is most similar to $p$. We will then query $q$ (rather than $p$) in order to get an approximate solution.
+**Inference as Optimization:** Suppose we are given an `intractable probability distribution` $p$. Variational techniques will try to solve an optimization problem over a class of tractable distributions $Q$ in order to find a $q\in Q$ that is most similar to $p$. We will then query $q$ (rather than $p$) in order to get an approximate solution.
 
 
 - Variational inference methods often scale better and are more amenable to techniques like stochastic gradient optimization, parallelization over multiple processors, and acceleration using GPUs.
@@ -190,7 +190,7 @@ where $f(x)$ is $\log \frac{q(x)}{p(x)}$
 - [High Level Understanding](https://www.cs.jhu.edu/~jason/tutorials/variational.html)
 - [Important CS228](https://ermongroup.github.io/cs228-notes/)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 
 ---
 
