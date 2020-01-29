@@ -167,7 +167,7 @@ $$\frac{d}{p} * 10^n$$
 
 where $d$ represents the deaths occurring within a given time period, $p$ represents the size of the population in which the deaths occur and $10^n$ is a conversion factor from fraction to some other unit (such as multiplying by $10^3$ to get mortality rate per 1,000 individuals). 
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Death_rate_world_map.PNG/375px-Death_rate_world_map.PNG" height="700">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Death_rate_world_map.PNG/375px-Death_rate_world_map.PNG" height="200">
 
 
 **Reference:**
