@@ -274,7 +274,51 @@ However with count based approach we may face the situation of **Zero Count** pr
 ----
 
 
-# What is Latent Dirichlet Allocation?
+# LDA, Topic Modelling
+
+Topic Modelling is different from rule-based text mining approaches that use regular expressions or dictionary based keyword searching techniques. It is an unsupervised approach used for finding and observing the bunch of words (called “topics”) in large clusters of texts.
+
+Topics can be defined as “a repeating pattern of co-occurring terms in a corpus”. A good topic model should result in – “health”, “doctor”, “patient”, “hospital” for a topic – Healthcare, and “farm”, “crops”, “wheat” for a topic – “Farming”.
+
+Topic Models are very useful for the purpose for document clustering, organizing large blocks of textual data, information retrieval from unstructured text and feature selection. For Example – New York Times are using topic models to boost their user – article recommendation engines. Various professionals are using topic models for recruitment industries where they aim to extract latent features of job descriptions and map them to right candidates. They are being used to organize large datasets of emails, customer reviews, and user social media profiles.
+
+<img src="https://www.analyticsvidhya.com/wp-content/uploads/2016/08/Modeling1.png" alt="image" width="400"/>
+
+You can try doing topic modelling using the following methods.
+
+- Term Frequency and Inverse Document Frequency. 
+- Do Non negative Matrix Factorization (NMF)
+- LDA. 
+
+NMF is supposed to be a lot faster than LDA, but LDAs supposed to be more accurate. Problem is LDA takes a long time, unless you’re using distributed computing.
+
+LDA assumes documents are produced from a mixture of topics. Those topics then generate words based on their probability distribution. Given a dataset of documents, LDA backtracks and tries to figure out what topics would create those documents in the first place.
+
+LDA is a matrix factorization technique. In vector space, any corpus (collection of documents) can be represented as a document-term matrix. LDA converts this Document-Term Matrix into two lower dimensional matrices – M1 and M2.
+M1 is a document-topics matrix and M2 is a topic – terms matrix with dimensions ($N$,  $K$) and ($K$, $M$) respectively, where $N$ is the number of documents, $K$ is the number of topics and $M$ is the vocabulary size.
+
+It Iterates through each word `w` for each document `d` and tries to adjust the current topic – word assignment with a new assignment. A new topic `k` is assigned to word `w` with a probability P which is a product of two probabilities p1 and p2.
+
+For every topic, two probabilities p1 and p2 are calculated. 
+
+- P1: $p(topic_t \vert doc_d)$ = the proportion of words in document d that are currently assigned to topic t.
+- P2: $p(word_w \vert topic_t)$ = the proportion of assignments to topic t over all documents that come from this word w.
+
+The current topic – word assignment is updated with a new topic with the probability, product of p1 and p2 . In this step, the model assumes that all the existing word – topic assignments except the current word are correct. This is essentially the probability that topic t generated word w, so it makes sense to adjust the current word’s topic with new probability.
+
+After a number of iterations, a steady state is achieved where the document topic and topic term distributions are fairly good. This is the convergence point of LDA.
+
+**Resource:**
+
+- [AVB](https://www.analyticsvidhya.com/blog/2016/08/beginners-guide-to-topic-modeling-in-python/)
+- [EdwinChen](http://blog.echen.me/2011/08/22/introduction-to-latent-dirichlet-allocation/)
+- [medium-PySparkImplementation](https://medium.com/@connectwithghosh/topic-modelling-with-latent-dirichlet-allocation-lda-in-pyspark-2cb3ebd5678e)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+## More on LDA: Latent Dirichlet Allocation
 
 - Generative model for topic modelling. It's an unsupervised learning.
 - LDA is one of the early versions of a ’topic model’ which was first presented by David Blei, Andrew Ng, and Michael I. Jordan in 2003.
