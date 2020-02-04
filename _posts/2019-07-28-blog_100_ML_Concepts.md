@@ -58,22 +58,25 @@ These are considered as `non-parametric`
 
 - It's linear with respect to weight `w`, but not with respect to input `x`.
 - `posterior ~ likelihood * prior`
-- Ordinary Least Square (OLS) approach to find the model parameters is a special case of maximum likelihood estimation and the overfitting problem is a general property of the MLE. But by adopting the Bayesian approach, the overfitting problem can be avoided. `[p9, Bishop]`
+- Ordinary Least Square (OLS) approach to find the model parameters is a 
+  - **special case of maximum likelihood estimation** 
+  - The overfitting problem is a general property of the MLE. But by adopting the Bayesian approach, the overfitting problem can be avoided. `[p9, Bishop]`
 - Also from Bayesian perspective we can use model for which number of parameters can exceed the number of training data. In Bayesian learning, the effective number of parameters adapts automatically to the size of the data.
 
 ## Point Estimate of W vs W Distribution
 
-Consider D is our dataset and w is the parameter set. Now in both Bayesian and frequentist paradigm, the likelihood function `p(D|w)` plays a central role. In frequentist approach, w is considered to be fixed parameter, whose value is determined by some form of estimator and the error bars on the estimator are obtained by considering the distribution of possible data sets D. 
+Consider $D$ is our dataset and $w$ is the parameter set. Now in both Bayesian and frequentist paradigm, the likelihood function $P(D \vert w)$ plays a central role. In **frequentist approach**, $w$ is considered to be `fixed parameter`, whose value is determined by some form of estimator and the error bars on the estimator are obtained by considering the distribution of possible data sets $D$. 
 
-However, in Bayesian setting we have only one single datasets D (the observed datasets), and the uncertainty in parameters is expressed through a probability distribution over `w`. `[p22-p23]`
+However, in **Bayesian setting** we have only one single datasets $D$ (the observed datasets), and the uncertainty in parameters is expressed through a probability distribution over $w$. `[p22-p23]`
 
-A widely used frequentist estimator is the maximum likelihood, in which w is set to the value that maximizes `p(D|w)`. In the ML literature, the negative log of the likelihood is considered as _error function_. As the negative log is a monotonically decreasing function, so maximizing the likelihood is equivalent to minimizing the error.
+`A widely used frequentist estimator is the maximum likelihood`, in which $w$ is set to the value that maximizes $P(D \vert w)$. In the ML literature, the `negative log of the likelihood` is considered as _error function_. As the negative log is a monotonically decreasing function, so `maximizing the likelihood is equivalent to minimizing the error`.
 
 However Bayesian approach has a very common criticism, i.e. the inclusion of prior belief. Therefore, people try to use _noninformative prior_ to get rid of the prior dependencies. `[p23]`.
 
 ## Criticism for MLE
 
-- MLE suffers from `overfitting` problem. In general overfitting means the model fitted to the training data so perfectly that if we slightly change the data and get prediction, test error will be very high. That means the model is sensitive to the variance of data. The theoretical reason is MLE systematically undermines the variance of the distribution. See proof `[[p27], [figure 1.15,p26, p28]]`.  Because here `sample variance` is measured using the `sample mean`, instead of the population mean.
+- MLE suffers from `overfitting` problem. In general overfitting means the model fitted to the training data so perfectly that if we slightly change the data and get prediction, test error will be very high. That means the model is **sensitive to the variance of data**. 
+- The theoretical reason is MLE systematically undermines the variance of the distribution. See proof `[[p27], [figure 1.15,p26, p28]]`.  Because here `sample variance` is measured using the `sample mean`, instead of the population mean.
 - Sample mean is an unbiased estimator of the population mean, but sample variance is a biased estimator of the population variance. `[p27], [figure 1.15,p26]`
 - If you see the image `p28`, the 3 red curve shows 3 different dataset and the green curve shows the true dataset. And the mean of the 3 red curves coincide with the mean of the green curve, but their variances are different. 
 
@@ -81,6 +84,7 @@ In Bayesian curve fitting setting, the sum of squared error function has arisen 
 
 Regularization allows complex models to be trained on the datasets of limited size without severe overfitting, essentially by limiting the model complexity. `[p145, bishop]`
 
+- In bayesian setting, the prior works as the Regularizer.
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
