@@ -14,26 +14,40 @@ mathjax: true
 
 # Difference between Parametric and Non-Parametric model?
 
-**Parametric Model:** We have a finite number of parameters.
+**Parametric Model:** We have a finite number of parameters. 
 
 Linear models such:
 
 - Linear regression
 - Logistic regression
 - Linear Support Vector Machines 
+- Mixture Models, K-Means
+- HMM
+- Factor Analysis
 
 These are typical examples of a `parametric learners`.
 
 **Nonparametric Model:** The number of parameters is (potentially) infinite. Here number of parameters are function of number of training data.
 
+> Non-parametric  models assume  that  the  data  distribution  cannot  be  defined  interms  of  such  a  finite  set  of  parameters.
+
 - K-nearest neighbor
 - Decision trees
 - RBF kernel SVMs 
+- Gaussian Process
+- Dirichlet Process Mixture
+- infinite HMMs
+- Infinite Latent Factor Model
 
 These are considered as `non-parametric`
 
 - In the field of statistics, the term parametric is also associated with a specified probability distribution that you **assume** your data follows, and this distribution comes with the finite number of parameters (for example, the mean and standard deviation of a normal distribution).
 - You don’t make/have these assumptions in non-parametric models. So, in intuitive terms, we can think of a non-parametric model as a `“distribution” or (quasi) assumption-free model`.
+
+
+**Reference:**
+
+- [MLSS2015 Tuebingen, slide](http://mlss.tuebingen.mpg.de/2015/slides/ghahramani/gp-neural-nets15.pdf)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
