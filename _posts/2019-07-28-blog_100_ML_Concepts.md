@@ -69,7 +69,7 @@ Consider $D$ is our dataset and $w$ is the parameter set. Now in both Bayesian a
 
 However, in **Bayesian setting** we have only one single datasets $D$ (the observed datasets), and the uncertainty in parameters is expressed through a probability distribution over $w$. `[p22-p23]`
 
-`A widely used frequentist estimator is the maximum likelihood`, in which $w$ is set to the value that maximizes $P(D \vert w)$. In the ML literature, the `negative log of the likelihood` is considered as _error function_. As the negative log is a monotonically decreasing function, so `maximizing the likelihood is equivalent to minimizing the error`.
+**A widely used frequentist estimator is the maximum likelihood**, in which $w$ is set to the value that maximizes $P(D \vert w)$. In the ML literature, the `negative log of the likelihood` is considered as _error function_. As the negative log is a monotonically decreasing function, so `maximizing the likelihood is equivalent to minimizing the error`.
 
 However Bayesian approach has a very common criticism, i.e. the inclusion of prior belief. Therefore, people try to use _noninformative prior_ to get rid of the prior dependencies. `[p23]`.
 
@@ -98,14 +98,16 @@ The goal to minimize a model's generalization error gives rise to two desiderata
 1. Minimize the training error; 
 2. Minimize the gap between training and test error.
 
+- **Minimize the training error - Reducing Bias:**
 This dichotomy is also known as bias-variance trade-off. If the model is not able to obtain a low error on the training set, it is said to have `high bias`. This is typically the result of `erroneous assumptions in the learning algorithm` that cause it to miss relevant relations in the data. 
 
+- **Minimize the gap between training and test error - Reducing Variance:**
 On the other hand, if the gap between the training error and test error is too large, the model has high variance. It is sensitive to small fluctuations and models random noise in the training data rather than the true underlying distribution.
 
 
-In frequentist viewpoint, `w` is fixed and error bars on the estimators are obtained by considering the distribution over the data D. `[p22-23; Bishop]`.
+In frequentist viewpoint, `w` is fixed and error bars on the estimators are obtained by considering the distribution over the data $D$. `[p22-23; Bishop]`.
 
-Suppose we have large number of **data sets**, `[D1,...,Dn]`, each of size N and each drawn independently from distribution of `p(t,x)`. For any given data set `Di` we can run our learning algorithm and get a prediction function `y(x;Di)`. Different datasets from the ensemble will give different prediction functions and consequently different values of squared loss. The performance of a particular learning algorithm is then assessed by averaging over this ensemble of datasets. `[p148; Bishop]`. 
+Suppose we have large number of **data sets**, `[D1,...,Dn]`, each of size N and each drawn independently from distribution of `P(t,x)`. For any given data set `Di` we can run our learning algorithm and get a prediction function `y(x;Di)`. Different datasets from the ensemble will give different prediction functions and consequently different values of squared loss. The performance of a particular learning algorithm is then assessed by averaging over this ensemble of datasets. `[p148; Bishop]`. 
 
 Our original regression function is `Y` and say for `Di` we got our predictive function $\hat{Y_i}$.
 
@@ -131,7 +133,7 @@ Our original regression function is `Y` and say for `Di` we got our predictive f
 
 ## General Linear Model
 
-Indeed, the general linear model can be seen as an extension of linear multiple regression for a single dependent variable. Understanding the multiple regression model is fundamental to understand the general linear model.
+Indeed, the general linear model can be seen as an **extension of linear multiple regression for a single dependent variable**. Understanding the multiple regression model is fundamental to understand the general linear model.
 
 ## Single Regression
 One independent variable and one dependent variable
@@ -140,41 +142,53 @@ $$y=\theta_0+\theta x_1$$
 
 ## Multiple Regression
 
-Multiple regression is an extension of simple linear regression. It is used when we want to predict the value of a variable based on the value of two or more other variables. The variable we want to predict is called the dependent variable (or sometimes, the outcome, target or criterion variable).
+Multiple regression is an extension of simple linear regression. It is used when we want to predict the value of a variable based on the value of two or more other variables. The variable we want to predict is called the dependent variable (or sometimes, the outcome, target, response or criterion variable).
 
-**TL;DR:** Multiple linear regression is the most common form of linear regression analysis.  As a predictive analysis, the multiple linear regression is used to explain the relationship between one continuous dependent variable and two or more independent variables
+**TL;DR:** Single dependent/target/response variable and multiple ($\gt 1$) predictors/independent variables.
+
+Multiple linear regression is the most common form of linear regression analysis.  As a predictive analysis, the multiple linear regression is used to explain the relationship between one continuous dependent variable and two or more independent variables
 
 $$y=\theta_0+\theta x_1+\theta x_2+...+\theta x_n$$
+
+
 
 ## Additive Model:
 
 $$y=\theta_0+\theta f_1(x_1)+\theta f_2(x_2)+...+\theta f_n(x_n)$$
 
-A generalization of the multiple regression model would be to maintain the additive nature of the model, but to replace the simple terms of the linear equation $\theta_i * x_i$ with $f_i(x_i)$ where $f_i()$ is a non-parametric function of the predictor $x_i$.  In other words, instead of a single coefficient for each variable (additive term) in the model, in additive models an unspecified (non-parametric) function is estimated for each predictor, to achieve the best prediction of the dependent variable values.
+A generalization of the multiple regression model would be to maintain the additive nature of the model, but to replace the simple terms of the linear equation $\theta_i * x_i$ with $f_i(x_i)$ where $f_i()$ is a **non-parametric function** of the predictor $x_i$.  
+
+In other words, instead of a single coefficient for each variable (additive term) in the model, in additive models an unspecified (non-parametric) function is estimated for each predictor, to achieve the best prediction of the dependent variable values.
 
 
 ## General Linear Model - Revisited
 
-One way in which the `general linear model` differs from the `multiple regression model` is in terms of the number of dependent variables that can be analyzed. The $Y$ vector of $n$ observations of a single $Y$ variable can be replaced by a $Y$ matrix of $n$ observations of $m$ different $Y$ variables. Similarly, the $w$ vector of regression coefficients for a single $Y$ variable can be replaced by a $W$ matrix of regression coefficients, with one vector of $w$ coefficients for each of the m dependent variables. These substitutions yield what is sometimes called the multivariate regression model,
+One way in which the `general linear model` differs from the `multiple regression model` is in terms of the number of dependent variables that can be analyzed. The $Y$ vector of $n$ observations of a single $Y$ variable can be replaced by a $\mathbf{Y}$ matrix of $n$ observations of $m$ different $Y$ variables. Similarly, the $w$ vector of regression coefficients for a single $Y$ variable can be replaced by a $\mathbf{W}$ matrix of regression coefficients, with one vector of $w$ coefficients for each of the m dependent variables. These substitutions yield what is sometimes called the multivariate regression model,
 
-$${Y}={XW}+{E}$$
+$${\mathbf{Y}}=\mathbf{XW}+{E}$$
 
-where $Y$ is a matrix with series of multivariate measurements (each column being a set of measurements on one of the dependent variables), $X$ is a matrix of observations on independent variables that might be a design matrix (each column being a set of observations on one of the independent variables), $W$ is a matrix containing parameters that are usually to be estimated and $E$ is a matrix containing errors (noise). The errors are usually assumed to be uncorrelated across measurements, and follow a multivariate normal distribution. If the errors do not follow a multivariate normal distribution, generalized linear models may be used to relax assumptions about $Y$ and $W$.
+where 
+
+- $\mathbf{Y}$ is a matrix with series of **multivariate measurements** (each column being a set of measurements on one of the dependent variables)
+- $\mathbf{X}$ is a matrix of observations on independent variables that might be a **design matrix** (each column being a set of observations on one of the independent variables).
+- $\mathbf{W}$ is a matrix containing **parameters** that are usually to be estimated and $E$ is a matrix containing errors (noise). 
+
+The errors are usually assumed to be uncorrelated across measurements, and follow a multivariate normal distribution. If the errors do not follow a multivariate normal distribution, generalized linear models may be used to relax assumptions about $\mathbf{Y}$ and $\mathbf{W}$.
 
 ## Generalized Linear Model
 
 To summarize the basic idea, the `generalized linear model` differs from the `general linear model` (of which multiple regression is a special case) in two major respects: 
 1. The distribution of the dependent or response variable _can be (explicitly) non-normal_, and does not have to be continuous, e.g., it can be binomial; 
-2. The dependent variable values are predicted from a linear combination of predictor variables, which are "connected" to the dependent variable via a `link function`.
+2. The dependent (target or response) variable values are predicted from a linear combination of predictor variables, which are "connected" to the dependent variable via a `link function`.
 
 - General Linear Model
 
-$$y=\theta_0+\theta x_1+\theta x_2+...+\theta x_n$$
+$$y=\theta_0+\theta_1 x_1+\theta_2 x_2+...+\theta_n x_n=\theta_0 + \Sigma_i \theta_i x_i$$
 
 - Generalized Linear Model
 
-$$y=g(\theta_0+\theta x_1+\theta x_2+...+\theta x_n)$$
-$$g^{-i}(y)=\theta_0+\theta x_1+\theta x_2+...+\theta x_n$$
+$$y=g(\theta_0+\theta_1 x_1+\theta_2 x_2+...+\theta_n x_n)= g(\theta_0 + \Sigma_i \theta_i x_i)$$
+$$g^{-i}(y)=\theta_0 + \Sigma_i \theta_i x_i$$
 
 where $g^{-i}()$ is the inverse of $g()$
 
@@ -186,12 +200,12 @@ Inverse of $g()$, say $g^{-i}()$ is the link function.
 
 We can combine the notion of `additive models` with `generalized linear models`, to derive the notion of `generalized additive models`, as:
 
-$$g^{-i}(y)=\theta_0+\theta f_1(x_1)+\theta f_2(x_2)+...+\theta f_n(x_n)$$
+$$g^{-i}(y)=\theta_0+\theta_! f_1(x_1)+\theta_2 f_2(x_2)+...+\theta_n f_n(x_n)= \theta_0 + \Sigma_i \theta_{i=1}^n f_i(x_i)$$
 
 
 **Reference:**
 
-- [(link)](http://www.statsoft.com/Textbook/Generalized-Additive-Models)
+- [Link](http://www.statsoft.com/Textbook/Generalized-Additive-Models)
 
 
 ## Why do we call it GLM when it's clearly non-linear?
