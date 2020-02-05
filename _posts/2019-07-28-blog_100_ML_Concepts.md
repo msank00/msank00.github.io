@@ -138,7 +138,7 @@ Indeed, the general linear model can be seen as an **extension of linear multipl
 ## Single Regression
 One independent variable and one dependent variable
 
-$$y=\theta_0+\theta x_1$$
+$$y=\theta_0+\theta_1 x_1$$
 
 ## Multiple Regression
 
@@ -148,13 +148,13 @@ Multiple regression is an extension of simple linear regression. It is used when
 
 Multiple linear regression is the most common form of linear regression analysis.  As a predictive analysis, the multiple linear regression is used to explain the relationship between one continuous dependent variable and two or more independent variables
 
-$$y=\theta_0+\theta x_1+\theta x_2+...+\theta x_n$$
+$$y=\theta_0+\theta_1 x_1+\theta_2 x_2+\dots+\theta_n x_n$$
 
 
 
 ## Additive Model:
 
-$$y=\theta_0+\theta f_1(x_1)+\theta f_2(x_2)+...+\theta f_n(x_n)$$
+$$y=\theta_0+\theta_1 f_1(x_1)+\theta_2 f_2(x_2)+\dots+\theta_n f_n(x_n)$$
 
 A generalization of the multiple regression model would be to maintain the additive nature of the model, but to replace the simple terms of the linear equation $\theta_i * x_i$ with $f_i(x_i)$ where $f_i()$ is a **non-parametric function** of the predictor $x_i$.  
 
@@ -233,10 +233,10 @@ Now GLM in `non-linear` due to the presence of $g()$ but it can be transformed i
 
 # Eigen Decomposition
 
-Matrices acts as linear transformations. Some matrices will rotate your space, others will rescale it etc. So when we apply a matrix to a vector, we end up with a transformed version of the vector. When we say that we ‘apply’ the matrix to the vector it means that we calculate the dot product of the matrix with the vector. 
+Matrices acts as **linear transformations**. Some matrices will **rotate** your space, others will **rescale** it etc. So when we apply a matrix to a vector, we end up with a transformed version of the vector. When we say that we ‘apply’ the matrix to the vector it means that we calculate the dot product of the matrix with the vector. 
 
 
-**Eigenvector:** Now imagine that the transformation of the initial vector gives us a new vector that has the exact same direction. The scale can be different but the direction is the same. Applying the matrix didn’t change the direction of the vector. Therefore, this type of initial vector is special and called an eigenvector of the matrix.
+**Eigenvector:** Now imagine that the transformation of the initial vector gives us a new vector that has the exact same direction. **The scale can be different but the direction is the same**. Applying the matrix didn’t change the direction of the vector. Therefore, this type of initial vector is special and called an eigenvector of the matrix.
 
 
 We can decompose the matrix A with eigenvectors and eigenvalues. It is done with: $A=V* \Sigma * V^{−1}$ , where $\Sigma = diag(\lambda)$ and each column of $V$ is the eigenvector of $A$.
@@ -267,7 +267,7 @@ where Q is the matrix with eigenvectors as columns and $\Sigma$ is $diag(\lambda
 
 Follow lecture 6 of [Prof.Mitesh_IITM](https://www.cse.iitm.ac.in/~miteshk/CS7015.html)
 
-+ Eigenvectors can only be found for Square matrix. But, not ever square matrix has eigen vectors. 
++ Eigenvectors can only be found for Square matrix. But, not every square matrix has eigen vectors. 
 + All eigen vectors are perpendicular, i.e orthogonal.
 + orthonormal vectors are orthogonal and they have unit length.
 + If `V` is an orthonormal matrix then, `V'V=I`
@@ -277,10 +277,10 @@ Follow lecture 6 of [Prof.Mitesh_IITM](https://www.cse.iitm.ac.in/~miteshk/CS701
 + Every **real, symmetric matrix $A$** can be decomposed into the following expression: `A=VSV'`. Where `V` is an orthogonal matrix. `S` is a diagonal matrix with all the eigen values.
 + Though, any real symmetric matrix is **guranteed** to have an **eigen decomposition**, the decomposition may not be unique. 
 + If a matrix is not square, then it's eigen decomposition is not defined.
-+ A matrix is singular **if and only if**, any of the eigenvalue is zero.
++ A matrix is `singular` **if and only if**, any of the eigenvalue is zero.
 + Consider A as real, symmetric matrix and $\lambda_i$ are the eigen values.
-  + if all $\lambda_i>0$, then A is called `positive definite` matrix.
-  + if all $\lambda_i>=0$, then A is called `positive semidefinite` (PSD) matrix.
+  + if all $\lambda_i>0$, then $\mathbf{A}$ is called **positive definite** matrix.
+  + if all $\lambda_i>=0$, then $\mathbf{A}$ is called **positive semidefinite definite (PSD)** matrix.
 + PSD matricies are interesting because the gurantee that `for all x`, $x'Ax>=0$. 
 + PSD additionally guarantee that if $x'Ax=0$ then $x=0$. [
 
@@ -295,9 +295,9 @@ Follow lecture 6 of [Prof.Mitesh_IITM](https://www.cse.iitm.ac.in/~miteshk/CS701
 ## SVD 
 
 
->> A  is a matrix that can be seen as a linear transformation. This transformation can be decomposed in three sub-transformations: 1. rotation, 2. re-scaling, 3. rotation. These three steps correspond to the three matrices U, D, and V.
+>> A is a matrix that can be seen as a linear transformation. This transformation can be decomposed in three sub-transformations: 1. **rotation**, 2. **re-scaling**, 3. **rotation**. These three steps correspond to the three matrices U, D, and V.
 
-$$A = U D V^T$$
+$$\mathbf{A} = \mathbf{U D V}^T$$
 
 + Every matrix can be seen as a linear transformation
 
@@ -306,11 +306,12 @@ $$A = U D V^T$$
 + The SVD can be seen as the decomposition of one complex transformation in 3 simpler transformations (a rotation, a scaling and another rotation).
 + SVD is more generic.
 + SVD provides another way for factorizing a matrix, into `singular values` and `singular vectors`.
+  + singular values::eigen values = singular vectors::eigen vectors
 + Every real matrix has SVD but same is not true for PCA.
 + If a matrix is not square then PCA not applicable.
-+ During PCA we write `A=VSV'`. However, for SVD we write `A=UDV'`, where A is `m x n`, U is `m x m`, D is `m x n` and V is `n x n`. 
++ During PCA we write `A=VSV'`. However, for SVD we write `A=UDV'`, where A is `m x n`, U is `m x m`, D is `m x n` and V is `n x n` [**V is square !!**]. 
   + U, V orthogonal matricies.
-  + D is diagonal matrix and not necessarily a square
+  + D is diagonal matrix and **not necessarily a square**
   + `diag(D)` are the `singular values` of the matrix A
   + Columns of `U` (`V`) are `left (right) singular vectors`.
 
@@ -343,18 +344,19 @@ $$A = U D V^T$$
 
 # Explain PCA? Tell me the mathematical steps to implement PCA?
 
-+ In PCA, we are interested to find the directions (components) that maximize the variance in our dataset)
++ In PCA, we are interested to find the directions (components) that maximize the variance in our dataset.
 + PCA can be seen as:
   + Learning the projection direction that captures `maximum variance` in data.
   + Learning the projection direction that results in `smallest reconstruction error`
-  + Changing the basis in which the data is represented and transforming the features such that new features become `de-correlated` (Orthogonal Principal Component)
+  + Changing the basis in which the data is represented and transforming the features such that new features become `de-correlated` (**Orthogonal Principal Component**)
 + Let’s assume that our goal is to reduce the dimensions of a d-dimensional dataset by projecting it onto a `k`-dimensional subspace (where `k<d`). So, 
 how do we know what size we should choose for `k`, and how do we know if we have a feature space that represents our data **well**?
   + We will compute `eigenvectors` (the components) from our data set and 
   collect them in a so-called scatter-matrix (or alternatively calculate 
   them from the **covariance matrix**). 
-  + Each of those eigenvectors is associated with an eigenvalue, which tell us about the `length` or `magnitude` of the eigenvectors. If we observe that all the eigenvalues are of very similar magnitude, this is a good indicator that our data is already in a `good` 
-  subspace. Or if some of the eigenvalues are much much higher than others, we might be interested in keeping only those eigenvectors with the much larger eigenvalues, since they contain more information about our data distribution. Vice versa, eigenvalues that are close to 0 are less informative and we might consider in dropping those when we construct 
+  + Each of those eigenvectors is associated with an eigenvalue, which tell us about the `length` or `magnitude` of the eigenvectors. 
+  + If we observe that all the eigenvalues are of very similar magnitude, this is a good indicator that our data is already in a `good` subspace. 
+  + If some of the eigenvalues are much much higher than others, we might be interested in keeping only those eigenvectors with the much larger eigenvalues, since they contain more information about our data distribution. Vice versa, eigenvalues that are close to 0 are less informative and we might consider in dropping those when we construct 
   the new feature subspace.
 + `kth` Eigenvector determines the `kth` direction that maximizes the variance in that direction.
 + the corresponding `kth` Eigenvalue determines the variance along `kth` Eigenvector
@@ -363,13 +365,13 @@ how do we know what size we should choose for `k`, and how do we know if we have
   + Let $X$ is the original dataset ($n$ x $d$) [$n$: data points, $d$: dimension]
   + Centered the data w.r.t mean and get the centered data: $M$ [dim: $n$ x $d$]
   + Compute covariance matrix: $C=(MM^T)/(n-1)$ [dim: $d$ x $d$]
-  + Diagonalize it i.e do `eigen decompositoin`: $C = VDV^T$. $V$ is an `orthogonal` matrix so $V^T = V^{-1}$ [[proof](https://math.stackexchange.com/questions/1936020/why-is-the-inverse-of-an-orthogonal-matrix-equal-to-its-transpose)]
+  + Diagonalize it i.e do `eigen decomposition`: $C = VDV^T$. $V$ is an `orthogonal` matrix so $V^T = V^{-1}$ [[proof](https://math.stackexchange.com/questions/1936020/why-is-the-inverse-of-an-orthogonal-matrix-equal-to-its-transpose)]
     + $V$: [dim: $d$ x $k$]
     + $D$: [dim: $k$ x $k$]
   + Compute `principal component`: $P = V\sqrt{D}$. Or you can also take the first $k$ leading `eigen vectors` from $V$ and the corresponding `eigen values` from $D$ and calculate $P$. [$P$ dim: $d$ x $k$]  
   + Combining all:
   $$C=(MM^T)/(n-1)=VDV^T= = V\sqrt{D}\sqrt{D}V^T =  PP^T$$
-  + Apply principle component matrix $P$ on the centered data $M$ to get the tranformed data projected on the principle component and thus doing `dimensionality reduction`: $M^* = M P$, [$M^*$: new dataset after the PCA, dim: $n$ x $k$]. $k \lt d$, i.e. `dimension reduced` using `PCA`.
+  + Apply **principle component matrix** $P$ on the centered data $M$ to get the transformed data projected on the principle component and thus doing `dimensionality reduction`: $M^* = M P$, [$M^*$: new dataset after the PCA, dim: $n$ x $k$]. $k \lt d$, i.e. `dimension reduced` using `PCA`.
 
 **Resource:**
 
@@ -380,13 +382,15 @@ how do we know what size we should choose for `k`, and how do we know if we have
 
 ## What is disadvantage of using PCA?
 
-+ one disadvantage of PCA lies in interpreting the results of dimension reduction analysis. This challenge will become particularly telling when the data needs to be normalized.
++ One disadvantage of PCA lies in interpreting the results of dimension reduction analysis. This challenge will become particularly telling when the data needs to be normalized.
 + PCA assumes approximate normality of the input space distribution. [link](http://www.stat.columbia.edu/~fwood/Teaching/w4315/Fall2009/pca.pdf)
 + For more reading [link](https://www.quora.com/What-are-some-of-the-limitations-of-principal-component-analysis)
 
 ## Why PCA needs normalization?
 
-+ A reason why we need to normalize before applying PCA is to mitigate the effects of scale. For example, if one of the attributes is orders of magnitude higher than others, PCA tends to ascribe the highest amount of variance to this attribute and thus skews the results of the analysis. By normalizing, we can get rid of this effect. However normalizing results in spreading the influence across many more principal components. In others words, more PCs are required to explain the same amount of variance in data. The interpretation of analysis gets muddied. 
++ **Mitigate the effects of scale.**
+
+For example, if one of the attributes is orders of magnitude higher than others, PCA tends to ascribe the highest amount of variance to this attribute and thus skews the results of the analysis. By normalizing, we can get rid of this effect. **However normalizing results in spreading the influence across many more principal components**. In others words, *more PCs are required to explain the same amount of variance in data*. The interpretation of analysis gets muddied. 
 
 
 [Reference](http://www.simafore.com/blog/bid/105347/Feature-selection-with-mutual-information-Part-2-PCA-disadvantages)
@@ -399,7 +403,7 @@ how do we know what size we should choose for `k`, and how do we know if we have
 
 # Determinant
 
->> The determinant of a matrix A is a number corresponding to the multiplicative change you get when you transform your space with this matrix.
+>> The determinant of a matrix A is a number corresponding to the **multiplicative change** you get when you transform your space with this matrix.
 
 + A negative determinant means that there is a change in orientation (and not just a rescaling and/or a rotation).
 
@@ -416,7 +420,8 @@ how do we know what size we should choose for `k`, and how do we know if we have
 >> min $c^Tx$ subject to: $Ax = b$, $x ≥ 0$.
 
 The linear programming problem is usually solved through the use of one of two
-algorithms: either simplex, or an algorithm in the family of interior point methods.
+algorithms: either **simplex**, or an algorithm in the family of **interior point methods**.
+
 In this article two representative members of the family of interior point methods are
 introduced and studied. We discuss the design of these interior point methods on a high
 level, and compare them to both the simplex algorithm and the original algorithms in
