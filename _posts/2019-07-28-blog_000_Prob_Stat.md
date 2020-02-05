@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Blog 000: Probability and Statistics"
+title:  "Statistical Analysis (Part 1)"
 date:   2019-07-28 00:11:31 +0530
 categories: jekyll update
 mathjax: true

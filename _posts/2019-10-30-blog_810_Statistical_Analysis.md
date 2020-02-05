@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Statistical Analysis"
+title:  "Statistical Analysis (Part 2)"
 date:   2019-10-30 00:11:31 +0530
 categories: jekyll update
 mathjax: true
@@ -158,7 +158,7 @@ For different type of sampling technique check [here](https://ermongroup.github.
 
 ----
 
-# What is Varietional Inference?
+# What is Variational Inference?
 
 - Variational inference methods take their name from the `calculus of variations`, which deals with optimizing functions that take other functions as arguments.
 
@@ -191,6 +191,153 @@ where $f(x)$ is $\log \frac{q(x)}{p(x)}$
 - [Important CS228](https://ermongroup.github.io/cs228-notes/)
 
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# What is Graphical Model (GM)?
+
+In graphical models, each vertex represents a random variable, and the graph gives a visual way of understanding the joint distribution of the entire set of random variables.
+
+They can be useful for either unsupervised or supervised learning.
+
+- **Undirected graphical models**, also known as **Markov random** fields or **Markov networks**.
+
+- **Directed graphical models** or **Bayesian networks**; these are graphical models in which the edges have directional arrows (but no directed cycles). Directed graphical models represent probability distributions that can be factored into products of conditional distributions, and have the potential for causal interpretations.
+
+- GMs tend to fall into two broad classes – those useful in **modelling**, and those useful in representing **inference algorithms**. 
+  - For modelling, Belief Networks, Markov Networks, Chain Graphs and Influence Diagrams are some of the most popular. 
+  - For inference one typically `compiles` a model into a suitable GM for which an algorithm can be readily applied. Such inference GMs include Factor Graphs, Junction Trees and Region Graphs.
+
+**Reference:**
+
+- [ch 17, elements of statistical learning]
+- [ch 4, Bayesian Reasoning and ML by D. Barber]
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
+# What is Markov Model?
+
+Markov Networks, for example, are particularly suited to modelling **marginal dependence** and **conditional independence**.
+
+![image](/assets/images/image_08_markov_0.png)
+
+Figure 10.3(a) illustrates a **first-order Markov chain** as a DAG. Of course, the assumption that the immediate past, $x_{t−1}$, captures everything we need to know about the entire history, $x_{1:t−2}$,is a bit strong. We can relax it a little by adding a dependence from $x_{t−2}$ to $x_t$ as well; this is called a **second order Markov chain**, and is illustrated in Figure 10.3(b).
+
+The corresponding joint distribution is:
+
+$$
+P(x_{1:T}) = P(x_1, x_2) \prod_{t=3}^T P(x_t \vert x_{t-1}, x_{t-2})
+$$
+
+
+
+- Unfortunately, even the second-order Markov assumption may be inadequate if there are long-range correlations amongst the observations.
+- An alternative approach is to assume that there is an `underlying hidden process`, that can be modeled by a first-order Markov chain, but that the data is a noisy observation of this process. The result is known as a `hidden Markov model` or HMM, and is illustrated in Figure 10.4.
+- Here $z_t$ is known as a **hidden variable** at `time t`, and $x_t$ is the **observed variable**. (_We put “time” in quotation marks, since these models can be applied to any kind of sequence data, such as genomics or language, where t represents location rather than time._) The conditional probability distribution (CPD)  $p(z_t \vert z_{t−1})$ is the `transition model`, and the CPD $p(x_t \vert z_t)$ is the `observation model`.
+
+![image](/assets/images/image_08_markov_1.png)
+
+
+## Application: Language modeling
+
+One important application of Markov models is to make statistical language models, which are
+probability distributions over sequences of words. We define the state space to be all the words in English (or some other language).
+
+- The marginal probabilities $p(X_t = k)$ are called **unigram** statistics. 
+- If we use a **first-order Markov model**, then $p(X_t = k \vert X_{t−1} = j)$ is called a **bigram model**. 
+- If we use a **second-order Markov model**, then $p(X_t = k \vert X_{t−1} = j , X_{t−2} = i)$ is called **trigram** model. 
+
+- **Sentence completion:** A language model can predict the next word given the previous words in a sentence. 
+- **Data compression:** Any density model can be used to define an encoding scheme, by assigning short codewords to more probable strings. The more accurate the predictive model, the fewer the number of bits it requires to store the data.
+- **Text classification:** Any density model can be used as a `class-conditional density` and hence turned into a (**generative**) **classifier**. 
+  - Note that using a **0-gram class-conditional density** (i.e., only unigram statistics) would be equivalent to a naive Bayes classifier.
+- **Automatic essay writing:** One can sample from $p(x_{1:t})$ to generate artificial text (i.e. sample from joint distribution of the text). This is one way of assessing the quality of the model. 
+
+**Example: 4-gram based language model**
+
+`SAYS IT’S NOT IN THE CARDS LEGENDARY RECONNAISSANCE BY ROLLIE DEMOCRACIES UNSUSTAINABLE COULD STRIKE REDLINING VISITS TO PROFIT BOOKING WAIT HERE AT MADISON SQUARE GARDEN COUNTY COURTHOUSE WHERE HE HAD BEEN DONE IN THREE ALREADY IN ANY WAY IN WHICH A TEACHER
+`
+
+_**Example output** from an 4-gram word model, trained using backoff smoothing on the Broadcast News corpus. The first 4 words are specified by hand, the model generates the 5th word, and then the results are fed back into the model._
+
+- Later ((Tomas et al. 2011) describes a much better language model, based on recurrent neural networks, which generates much more semantically plausible text.)
+
+Another application: Google’s PageRank algorithm for web page ranking
+
+Read the chapter for `MLE of Markov Model`.
+
+**Reference:**
+
+- [murphy, sec. 10.2.2 and ch: 17]
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Hidden Markov Model
+
+
+A **hidden Markov model** or HMM consists of a _discrete-time, discrete-state Markov chain_, with hidden states $z_t \in {1, \dots ,K}$, plus an **observation model** $p(x_t \vert z_t)$. 
+
+The corresponding joint distribution has the form
+
+$$
+p(z_{1:T}, x_{1:T})= p(z_{1:T})p(x_{1:T} \vert z_{1:T})=[p(z_1) \prod_{t=2}^T p(z_t \vert z_{t-1})][\prod_{t=1}^T p(x_t \vert z_t)]
+$$
+
+## Application of HMMs
+
+HMMs can be used as black-box density models on sequences. They have the advantage over Markov models in that they can represent long-range dependencies between observations, mediated via the latent variables. In particular, note that they do not assume the Markov property holds for the observations themselves. Such black-box models are useful for time- series prediction (Fraser 2008). They can also be used to define class-conditional densities inside a generative classifier.
+
+- **Automatic speech recognition:** Here $x_t$ represents features extracted from the speech signal, and $z_t$ represents the word that is being spoken. The **transition model** $p(z_t \vert z_{t−1})$ model  represents the language model, and the **observation model** $p(x_t \vert z_t)$ represents the acoustic model.
+See e.g., (Jelinek 1997; Jurafsky and Martin 2008) for details.
+- **Activity recognition:** Here $x_t$ represents features extracted from a video frame, and $z_t$ is the class of activity the person is engaged in (e.g., running, walking, sitting, etc.).
+- **Part of speech tagging:** Here $x_t$ represents a word, and $z_t$ represents its part of speech (noun, verb, adjective, etc.) _[See Section 19.6.2.1 for more information on POS tagging and related tasks.]_
+
+**Reference:**
+
+- [murphy, sec. 10.2.2 and ch: 17]
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Undirected graphical models (Markov random fields)
+
+We discussed directed graphical models (DGMs), commonly known as **Bayes nets**. However, for some domains, being forced to choose a direction for the edges, as required by a DGM, is rather awkward. For example, consider modeling an image.
+
+An alternative is to use an **undirected graphical model (UGM)**, also called a **Markov random field (MRF)** or Markov network. These do not require us to specify edge orientations, and are much more natural for some problems such as `image analysis` and `spatial statistics`.
+
+
+**Advantages:** UGMs over DGMs are:
+1. They are symmetric and therefore more “natural” for certain domains, such as spatial or relational data
+2. Discriminative UGMs (aka **conditional random fields**, or CRFs), which define conditional densities of the
+form $p(y \vert x)$, work better than discriminative DGMs. 
+
+**Disadvantages:** UGMs compared to DGMs are: 
+1. The parameters are less interpretable and less modular.
+2. Parameter estimation is computationally more expensive.
+
+Read chapter 19.6 for Conditional Random Field and it's application in NLP, like POS tagging.
+
+**Reference:**
+
+- [murphy, ch: 19]
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
+# Exercise:
+
+
+2. What is Hidden Markov Model? [murphy, sec. 10.2.2 and ch: 17]
 
 ---
 
