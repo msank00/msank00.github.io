@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Blog 103: ML Puzzle"
+title:  "Machine Learning Puzzles"
 date:   2019-07-28 00:11:31 +0530
 categories: jekyll update
 mathjax: true

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Blog 104: Unsupervised Learning"
+title:  "Unsupervised Learning"
 date:   2019-08-07 00:11:31 +0530
 categories: jekyll update
 mathjax: true

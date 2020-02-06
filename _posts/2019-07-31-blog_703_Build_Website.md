@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Blog 703: Build website using Jekyll and MathJax"
+title:  "Build website using Jekyll and MathJax"
 date:   2019-07-31 00:11:31 +0530
 categories: jekyll update
 mathjax: true

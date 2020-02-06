@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Blog 101: Machine Learning Question and Answer (Part 1)"
+title:  "Machine Learning Concepts (Part 2)"
 date:   2019-07-28 00:11:31 +0530
 categories: jekyll update
 mathjax: true

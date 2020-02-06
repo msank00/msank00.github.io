@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Blog 001: Learning Curve"
+title:  "Learning Curve"
 date:   2019-07-28 00:11:31 +0530
 categories: jekyll update
 mathjax: true

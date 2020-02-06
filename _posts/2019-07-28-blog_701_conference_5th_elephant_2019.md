@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Blog 701: 5th Elephant Conference Summary"
+title:  "5th Elephant Conference Summary"
 date:   2019-07-28 00:11:31 +0530
 categories: jekyll update
 mathjax: true

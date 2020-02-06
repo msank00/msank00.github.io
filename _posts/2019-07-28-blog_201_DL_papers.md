@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Blog 201: Deep Learning Papers"
+title:  "Deep Learning Papers"
 date:   2019-07-28 00:11:31 +0530
 categories: jekyll update
 mathjax: true

@@ -260,6 +260,11 @@ if st[startIndex] == st[endIndex]:
 
 - `dp[startIndex+1][endIndex-1] == True` denotes if remaining in between elements are also palindrome.
 
+----
+
+# Comprehensive Data Structure and Algorithm Study Guide
+
+- [Leetcode: Gold Mine](https://leetcode.com/discuss/general-discussion/494279/comprehensive-data-structure-and-algorithm-study-guide)
 
 ----
 
