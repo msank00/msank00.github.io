@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Statistical Analysis (Part 1)"
-date:   2019-07-28 00:11:31 +0530
+date:   2019-07-28 00:01:31 +0530
 categories: jekyll update
 mathjax: true
 comments: true
