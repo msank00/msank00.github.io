@@ -268,5 +268,10 @@ if st[startIndex] == st[endIndex]:
 
 ----
 
+# Exercise:
+
+1. [DP: bellman-equations-reinforcement-learning](https://int8.io/bellman-equations-reinforcement-learning/)
+
+----
 
 <a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>
