@@ -12,6 +12,221 @@ mathjax: true
 {:toc}
 ---
 
+# How to Choose a Feature Selection Method For Machine Learning?
+
+Feature selection is the process of reducing the number of input variables when developing a predictive model.
+
+Feature-based feature selection methods involve evaluating the relationship between each input variable and the target variable using statistics and selecting those input variables that have the strongest relationship with the target variable. These methods can be fast and effective, although the choice of `statistical measures` depends on the data type of both the input and output variables.
+
+## Feature Selection Algorithms
+
+There are three general classes of feature selection algorithms: filter methods, wrapper methods and embedded methods.
+
+**Filter Methods:** Filter feature selection methods apply a statistical measure to `assign a scoring` to each feature. The features are ranked by the score and either selected to be kept or removed from the dataset. The methods are often **univariate** and `consider the feature independently`, or with regard to the dependent variable. **Example:** Chi squared test, information gain and correlation coefficient scores.
+
+**Wrapper Methods:** Wrapper methods consider the selection of a set of features as a **search problem**, where different combinations are prepared, evaluated and compared to other combinations. A predictive model is used to evaluate a combination of features and assign a score based on model accuracy. **Example:** [sklearn.feature_selection.RFE](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html)
+
+**Main difference** of filter method with wrapper method is that, in filter method, before applying the model we are filtering the feature. This is quite helpful if running the model is a costly affair and also our data set is quite huge. Because in wrapper method to evaluate each combination of feature, we need to build and train the model first and only then we can evaluate.  
+
+**Embedded Methods:** Embedded methods **learn** which **features** best contribute to the accuracy of the model while the model is being created. The most common type of embedded feature selection methods are **regularization** methods. Automatic feature selection. 
+
+## Feature Selection Checklist
+
+
+1. **Do you have domain knowledge?** 
+   1. If yes, construct a better set of **ad hoc** features
+2. **Are your features commensurate** (i.e comparable)?
+   1. If no, consider `normalizing` them.
+3. **Do you suspect interdependence of features?**
+   1. If yes, expand your feature set by constructing `conjunctive features` or `products of features`, as much as your computer resources allow you.
+4. **Do you need to prune the input variables** (e.g. for cost, speed or data understanding reasons)? 
+   1. If no, construct disjunctive features or weighted sums of feature
+5. **Do you need to assess features individually** (e.g. to understand their influence on the system or because their number is **so large that you need to do a first filtering**)? 
+   1. If yes, use a `variable ranking method`; else, do it anyway to get baseline results.
+6. Do you need a predictor? If no, stop
+7. **Do you suspect your data is** `dirty` (has a few meaningless input patterns and/or noisy outputs or wrong class labels)? 
+   1. If yes, `detect the outlier` examples using the top ranking variables obtained in step 5 as representation; check and/or discard them.
+8. **Do you know what to try first ?** 
+   1. If no, use a `linear predictor`. Use a forward selection method with the “probe” method as a stopping criterion or use the 0-norm embedded method for comparison, following the ranking of step 5, construct a sequence of predictors of same nature using increasing subsets of features. Can you match or improve performance with a smaller subset? 
+   2. If yes, try a `non-linear predictor` with that subset.
+9. **Do you have new ideas, time**, computational resources, and enough examples? 
+   1.  If yes, compare several feature selection methods, including your new idea, `correlation coefficients`, `backward selection` and `embedded methods`. Use linear and non-linear predictors. Select the best approach with model selection
+10. **Do you want a stable solution** (to improve performance and/or understanding)? 
+    1.  If yes, subsample your data and redo your analysis for several `bootstrap`.
+
+----
+
+## Filter Method
+
+>> Filter methods evaluate the relevance of the predictors outside of the predictive models and subsequently model only the predictors that pass some criterion.
+
+Statistics for Filter Feature Selection Methods
+
+```r
+## Numerical Input, Numerical Output
+## Numerical Input, Categorical Output
+## Categorical Input, Numerical Output
+## Categorical Input, Categorical Output
+```
+
+Common input variable data types:
+
+1. Numerical Variables
+   1. Integer Variables.
+   2. Floating Point Variables.
+2. Categorical Variables.
+   1. Boolean Variables (dichotomous).
+      1. `TRUE/FALSE` or `0/1` 
+   2. **Ordinal Variables.**
+      1. Example: Economic status ("low income",”middle income”,”high income”)
+   3. **Nominal Variables:** no intrinsic order
+      1. Example:  Types of houses: ("regular", "condos", "co-ops", "bungalows")
+
+## 2. Statistics for Filter-Based Feature Selection Methods
+
+
+- **Numerical Output:** Regression predictive modeling problem.
+- **Categorical Output:** Classification predictive modeling problem.
+
+![image](https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2019/11/How-to-Choose-Feature-Selection-Methods-For-Machine-Learning.png)
+
+- [image_source](https://machinelearningmastery.com/feature-selection-with-real-and-categorical-data/)
+
+1. Numerical Input, Numerical Output
+   1. Pearson’s correlation coefficient (linear)
+   2. Spearman’s rank coefficient (nonlinear)
+
+2. Numerical Input, Categorical Output
+   1. ANOVA correlation coefficient (linear).
+   2. Kendall’s rank coefficient (nonlinear). Kendall does assume that the categorical variable is `ordinal`.
+
+
+3. Categorical Input, Numerical Output
+
+This is a strange example of a regression problem (e.g. you would not encounter it often).
+
+Nevertheless, you can use the same “Numerical Input, Categorical Output” methods (described above), but in reverse.
+
+4. Categorical Input, Categorical Output
+   1. Chi-Squared test (contingency tables).
+   2. Mutual Information.
+
+In fact, mutual information is a powerful method that may prove useful for both categorical and numerical data, e.g. it is **agnostic to the data types**.
+
+## Correlation Statistics
+
+The scikit-learn library provides an implementation of most of the useful statistical measures.
+
+For example:
+
+- Pearson’s Correlation Coefficient: [f_regression()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_regression.html)
+- ANOVA: [f_classif()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_classif.html)
+- Chi-Squared: [chi2()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.chi2.html)
+- Mutual Information: [mutual_info_classif()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_classif.html) and
+[mutual_info_regression()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_regression.html)
+
+Also, the SciPy library provides an implementation of many more statistics, such as Kendall’s tau ([kendalltau](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.kendalltau.html)) and Spearman’s rank correlation ([spearmanr](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.spearmanr.html)).
+
+- For more details check [sklearn feature selection](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectPercentile.html)
+
+
+## Selection Method
+
+Two of the more popular methods include:
+
+- Select the top k variables: [SelectKBest](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html)
+- Select the top percentile variables: [SelectPercentile](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectPercentile.html)
+
+## Other
+
+- **Transform Variables:** 
+  1. transform a categorical variable to ordinal, even if it is not, and see if any interesting results come out.
+  2. make a numerical variable discrete (e.g. bins); try categorical-based measures.
+
+## Assumptions:
+
+- Pearson’s that assumes a Gaussian probability distribution to the observations and a linear relationship
+
+
+## Worked Examples of Feature Selection
+
+**Numerical Input, Numerical Output**
+
+```py
+# pearson's correlation feature selection for numeric input and numeric output
+from sklearn.datasets import make_regression
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import f_regression
+# generate dataset
+X, y = make_regression(n_samples=100, n_features=100, n_informative=10)
+# define feature selection
+fs = SelectKBest(score_func=f_regression, k=10)
+# apply feature selection
+X_selected = fs.fit_transform(X, y)
+print(X_selected.shape)
+# (100, 10)
+```
+
+**Numerical Input, Categorical Output**
+
+```py
+# ANOVA feature selection for numeric input and categorical output
+from sklearn.datasets import make_classification
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import f_classif
+# generate dataset
+X, y = make_classification(n_samples=100, n_features=20, n_informative=2)
+# define feature selection
+fs = SelectKBest(score_func=f_classif, k=2)
+# apply feature selection
+X_selected = fs.fit_transform(X, y)
+print(X_selected.shape)
+# (100, 2)
+```
+
+**Categorical Input, Categorical Output**
+
+- **use of chi-squared test**
+
+```py
+def select_features(X_train, y_train, X_test):
+  """
+  Use chi-squared test
+  """
+  fs = SelectKBest(score_func=chi2, k='all')
+  fs.fit(X_train, y_train)
+  X_train_fs = fs.transform(X_train)
+  X_test_fs = fs.transform(X_test)
+```
+
+- **Mutual Information Feature Selection**
+
+```py
+# feature selection
+def select_features(X_train, y_train, X_test):
+  """
+  Use mutual information based approach
+  """
+  fs = SelectKBest(score_func=mutual_info_classif, k='all')
+  fs.fit(X_train, y_train)
+  X_train_fs = fs.transform(X_train)
+  X_test_fs = fs.transform(X_test)
+  return X_train_fs, X_test_fs, fs
+```
+_for more detailed coding example follow this_ _[link](https://machinelearningmastery.com/feature-selection-with-categorical-data/)_.
+
+**Reference:**
+
+- [feature-selection-with-real-and-categorical-data](https://machinelearningmastery.com/feature-selection-with-real-and-categorical-data/)
+- [an-introduction-to-feature-selection](https://machinelearningmastery.com/an-introduction-to-feature-selection/)
+- [Feature Selection with Categorical Data](https://machinelearningmastery.com/feature-selection-with-categorical-data/)
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+
+----
 
 # What are the parameters in training a decision tree?
 
