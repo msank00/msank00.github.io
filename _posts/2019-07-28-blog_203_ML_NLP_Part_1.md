@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Deep Learning: Natural Language Processing (Part 2)"
+title:  "Machine Learning: Natural Language Processing (Part 1)"
 date:   2020-01-26 00:06:31 +0530
 categories: jekyll update
 mathjax: true
