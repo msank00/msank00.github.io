@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Domain Knowledge: Insurance"
-date:   2020-01-19 00:11:31 +0530
+date:   2020-01-19 00:00:10 -0030
 categories: jekyll update
 mathjax: true
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Machine Learning System Design"
-date:   2019-11-30 00:11:31 +0530
+date:   2019-11-30 00:00:10 -0030
 categories: jekyll update
 mathjax: true
 ---

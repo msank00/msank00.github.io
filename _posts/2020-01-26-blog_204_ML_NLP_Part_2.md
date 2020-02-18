@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Machine Learning: Natural Language Processing (Part 2)"
-date:   2020-01-26 00:06:31 +0530
+date:   2020-01-26 00:00:10 -0030
 categories: jekyll update
 mathjax: true
 ---

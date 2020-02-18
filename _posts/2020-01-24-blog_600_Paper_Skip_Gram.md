@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Paper Summary - Distributed Representation of Words (Part 1)"
-date:   2020-01-24 00:11:31 +0530
+date:   2020-01-24 00:00:10 -0030
 categories: jekyll update
 mathjax: true
 ---
