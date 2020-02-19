@@ -115,12 +115,59 @@ Furthermore, using a Fully Convolutional Network, the process of computing each 
 - [wiki: Siamese network](https://en.wikipedia.org/wiki/Siamese_neural_network)
 - [wiki: triplet loss](https://en.wikipedia.org/wiki/Triplet_loss)
 
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Snorkel: Rapid Training Data Creation with Weak Supervision
+
+
+## What is Weak Supervision
+
+According to this [bolg](https://hazyresearch.github.io/snorkel/blog/ws_blog_post.html)
+
+>  Noisier or higher-level supervision is used as a more expedient and flexible way to get supervision signal, in particular from subject matter experts (SMEs).
+
+![image](https://hazyresearch.github.io/snorkel/blog/figs/WS_mapping.png)
+
+
+- In **active learning**, the goal is to make use of subject matter experts more efficiently by having them **label data points which are estimated to be most valuable to the model**. For example, we might select mammograms that lie close to the current model decision boundary, and ask radiologists to label only these. 
+- In the **semi-supervised learning** setting, we have a small labeled training set and a much larger unlabeled data set. At a high level, we then use **assumptions about the structure of the data** like `smoothness`, `low dimensional structure`, or `distance metrics` to leverage the unlabeled data (either as part of a generative model, as a regularizer for a discriminative model, or to learn a compact data representation). Broadly, rather than soliciting more input from subject matter experts, the idea in semi-supervised learning is to leverage domain- and task-agnostic assumptions to exploit the unlabeled data that is often cheaply available in large quantities.
+- In the standard **transfer learning** setting, our goal is to take one or more models already trained on a different dataset and apply them to our dataset and task. For example, we might have a large training set for tumors in another part of the body, and classifiers trained on this set, and wish to apply these somehow to our mammography task.
+
+_The above paradigms potentially allow us to avoid asking our SME collaborators for additional training labels._
+
+But what if–either in addition, or instead–we could ask SME for various types of higher-level, or otherwise less precise, forms of supervision, which would be faster and easier to provide? For example, what if our radiologists could spend an afternoon specifying a **set of heuristics** or other resources, that–if handled properly–could effectively replace thousands of training labels? This is the key practical motivation for weak supervision approaches,
+
+:rocket: **Heuristic Examples**
+
+```r
+# Return a label of SPAM if "http" link in email text, otherwise ABSTAIN
+
+# Return a label of SPAM if substring like "my channel", "my video" are there in the email text. 
+```
+
+<center>
+<img src="https://hazyresearch.github.io/snorkel/blog/figs/WS_diagram.png" width="600">
+</center>
+
+**Reference:**
+
+- [arXiv Paper](https://arxiv.org/abs/1711.10160)
+- [Snorkel Resources](https://www.snorkel.org/resources/)
+- [Weak Supervision: The New Programming Paradigm for Machine Learning](https://hazyresearch.github.io/snorkel/blog/ws_blog_post.html)
+- [Book: Semi Supervised Learning](http://www.acad.bg/ebook/ml/MITPress-%20SemiSupervised%20Learning.pdf)
+
+**_to be continued_**
+
 ----
 
 # Exercise:
 
-- U-Net
 - UMLFit
+- U-Net
 
 ----
 
