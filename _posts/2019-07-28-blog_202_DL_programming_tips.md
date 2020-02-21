@@ -512,6 +512,15 @@ Always set `batch_first=True` while implementing RNN using PyTorch RNN module.
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+----
+
+# Variable sequence lengths in RNN using Pytorch
+
+Minimal tutorial on packing (pack_padded_sequence) and unpacking (pad_packed_sequence) sequences in pytorch.
+
+
+- [Important Notes](https://gist.github.com/HarshTrivedi/f4e7293e941b17d19058f6fb90ab0fec)
+- [More readable blog](https://github.com/HarshTrivedi/packing-unpacking-pytorch-minimal-tutorial)
 
 ----
 
