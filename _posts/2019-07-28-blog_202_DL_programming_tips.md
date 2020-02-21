@@ -499,6 +499,19 @@ Below is a short list of development speed hacks that I have found useful.
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+----
+
+# Pytorch RNN tips, set `batch_first=True`:
+
+Always set `batch_first=True` while implementing RNN using PyTorch RNN module. 
+
+**Reference:**
+
+- [Beginners guide on RNN](https://blog.floydhub.com/a-beginners-guide-on-recurrent-neural-networks-with-pytorch/)
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 
 ----
 
