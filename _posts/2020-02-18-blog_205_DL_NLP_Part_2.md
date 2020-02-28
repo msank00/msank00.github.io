@@ -153,11 +153,35 @@ But what if–either in addition, or instead–we could ask SME for various type
 <img src="https://www.snorkel.org/doks-theme//assets/images/2017-07-16-weak-supervision/WS_diagram.png" width="600">
 </center>
 
+
+## Data Programming:
+
+Data programming: A paradigm for the `programmatic creation` and `modeling of training datasets`. Data programming provides a simple, unifying framework for weak supervision, in which training labels are noisy and may be from multiple, potentially overlapping sources.
+
+In data programming, users encode this weak supervision in the form of labeling functions, which are user-defined programs that each provide a label for some subset of the data, and collectively generate a large but potentially overlapping set of training examples. 
+
+Many different weak supervision approaches can be expressed as labeling functions.
+
+However `labeling functions` may have widely varying error rates and may conflict on certain data points. To address this, we model the labeling functions as a **generative process**, which lets us automatically de-noise the resulting training set by learning the accuracies of the labeling functions along with their correlation structure.
+
+Think data programming as a paradigm by modeling multiple label sources without access to ground truth, and **generating probabilistic training labels** representing the lineage of the individual labels. 
+
+## Snorkel architecture
+
+From the original Snorkle [paper](https://link.springer.com/article/10.1007/s00778-019-00552-1), the Snorkel architecture is as follows: 
+
+**Writing Labeling Functions:** Rather than hand labeling training data, users of Snorkel write labeling functions, which allow them to express various weak supervision sources such as patterns, heuristics, external knowledge bases, and more. 
+
+**Modeling Accuracies and Correlations:** Snorkel automatically learns a generative model over the labeling functions, which allows it to estimate their `accuracies` and `correlations`. This step uses no ground-truth data, **learning instead from the agreements and disagreements of the labeling functions**.
+
+
+**Training a Discriminative Model:** The output of Snorkel is a set of `probabilistic labels` that can be used to train a wide variety of state-of-the-art machine learning models, such as popular deep learning models. While the generative model is essentially a **re-weighted combination of the user-provided labeling functions**, which tend to be precise but low-coverage.
+
 **Reference:**
 
 - [arXiv Paper](https://arxiv.org/abs/1711.10160)
 - [Snorkel Resources](https://www.snorkel.org/resources/)
-- [Weak Supervision: The New Programming Paradigm for Machine Learning](https://hazyresearch.github.io/snorkel/blog/ws_blog_post.html)
+- [Weak Supervision: The New Programming Paradigm for Machine Learning](http://ai.stanford.edu/blog/weak-supervision/)
 - [Book: Semi Supervised Learning](http://www.acad.bg/ebook/ml/MITPress-%20SemiSupervised%20Learning.pdf)
 
 **_to be continued_**
