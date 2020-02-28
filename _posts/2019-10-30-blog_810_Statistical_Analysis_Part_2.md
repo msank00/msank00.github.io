@@ -117,6 +117,21 @@ where $\hat{y_i} = f(x_i)$
 
 ----
 
+# Bayesian Linear Regression 
+
+Bayesian linear regression allows a fairly natural mechanism to survive insufficient data, or poor distributed data. It allows you to put a prior on the coefficients and on the noise so that in the absence of data, the priors can take over. More importantly, you can ask Bayesian linear regression which parts (if any) of its fit to the data is it confident about, and which parts are very uncertain (perhaps based entirely on the priors). 
+
+**Read this book's chapter 6 thoroughly** [link](https://statswithr.github.io/book/introduction-to-bayesian-regression.html) .
+
+
+
+**Reference:**
+
+- [Bayesian](https://www.cs.cmu.edu/afs/cs.cmu.edu/project/learn-43/lib/photoz/.g/web/glossary/bayesian.html)
+- [Chapter 6: introduction-to-bayesian-regression](https://statswithr.github.io/book/introduction-to-bayesian-regression.html)
+
+----
+
 # What is Sampling methods?
 
 These are approximation methods to solve complex probabilistic model, which are difficult to solve in polinomial time with simpler methods. 

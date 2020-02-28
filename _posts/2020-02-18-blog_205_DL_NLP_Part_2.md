@@ -130,7 +130,7 @@ According to this [bolg](https://hazyresearch.github.io/snorkel/blog/ws_blog_pos
 
 >  Noisier or higher-level supervision is used as a more expedient and flexible way to get supervision signal, in particular from subject matter experts (SMEs).
 
-![image](https://hazyresearch.github.io/snorkel/blog/figs/WS_mapping.png)
+![image](https://www.snorkel.org/doks-theme//assets/images/2017-07-16-weak-supervision/WS_mapping.png)
 
 
 - In **active learning**, the goal is to make use of subject matter experts more efficiently by having them **label data points which are estimated to be most valuable to the model**. For example, we might select mammograms that lie close to the current model decision boundary, and ask radiologists to label only these. 
@@ -150,7 +150,7 @@ But what if–either in addition, or instead–we could ask SME for various type
 ```
 
 <center>
-<img src="https://hazyresearch.github.io/snorkel/blog/figs/WS_diagram.png" width="600">
+<img src="https://www.snorkel.org/doks-theme//assets/images/2017-07-16-weak-supervision/WS_diagram.png" width="600">
 </center>
 
 **Reference:**
