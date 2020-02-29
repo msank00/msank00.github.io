@@ -636,6 +636,58 @@ $$\theta = \theta - v_t$$
 
 Essentially, when using momentum, we push a ball down a hill. The ball accumulates momentum as it rolls downhill, becoming faster and faster on the way (until it reaches its terminal velocity if there is air resistance, i.e. γ<1). The same thing happens to our parameter updates: The momentum term increases for dimensions whose gradients point in the same directions and reduces updates for dimensions whose gradients change directions. As a result, we gain faster convergence and reduced oscillation.
 
+
+## Adam
+
+Adaptive Moment Estimation (Adam) is another method that computes **adaptive learning rates** for each parameter. In stores the below 2 things 
+
+1. **Exponentially decaying average of `past squared gradients`** $v_t$ like `Adadelta` and `RMSprop` ($2^{nd}$ moment of gradient),
+
+
+$$
+v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2 
+$$
+
+2. **Exponentially decaying average of `past gradients`** $m_t$, similar to momentum, ($1^{st}$ moment of gradient). 
+$$ 
+m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t 
+$$
+
+**Physical Intuition:** Momentum can be seen as a ball running down a slope, Adam behaves like a heavy ball with friction, which thus prefers `flat minima` in the error surface.
+
+
+$m_t$ and $v_t$ are estimates of the **first moment** (the mean) and **the second moment** (the un-centered variance) of the gradients respectively, hence the name of the method. 
+
+As $m_t$ and $v_t$ are initialized as vectors of $0$'s, the authors of Adam observe that they are biased towards zero, especially during the initial time steps, and especially when the decay rates are small (i.e. $\beta_1$ and $\beta_2$ are close to 1).
+
+They counteract these biases by computing bias-corrected first and second moment estimates:
+
+$$
+\hat{m}_t = \dfrac{m_t}{1 - \beta^t_1}
+$$
+
+$$
+\hat{v}_t = \dfrac{v_t}{1 - \beta^t_2}
+$$
+
+Finally combining all together here is the param update rule:
+
+$$
+\theta_{t+1} = \theta_{t} - \dfrac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t
+$$
+
+The authors propose default values of $0.9$ for $\beta_1$, $0.999$ for $\beta_2$, and $10^{-8}$ for $\epsilon$. They show empirically that Adam works well in practice and compares favorably to other adaptive learning-method algorithms.
+
+## Batch normalization
+
+To facilitate learning, we typically **normalize the initial values of our parameters** by initializing them with `zero mean` and `unit variance`. As training progresses and we update parameters to different extents, we lose this normalization, which slows down training and amplifies changes as the network becomes deeper.
+
+Batch normalization **reestablishes these normalizations** for every mini-batch and changes are back-propagated through the operation as well. 
+
+By making **normalization part of the model architecture**, we are able to use higher learning rates and pay less attention to the initialization parameters. Batch normalization additionally acts as a regularizer, reducing (and sometimes even eliminating) the need for Dropout.
+
+For more details look [here](https://msank00.github.io/blog/2019/07/27/blog_300_DL_CV#why-layer-normalization-is-required-in-deep-learning).
+
 **Reference:**
 
 - [(more details, see Sebastian Ruder blog)](http://ruder.io/optimizing-gradient-descent/)
