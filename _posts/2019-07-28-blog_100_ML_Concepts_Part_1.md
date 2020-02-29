@@ -612,6 +612,20 @@ for i in range(nb_epochs):
 
 _LEFT: shows a long shallow ravine leading to the optimum and steep walls on the sides. Standard SGD will tend to oscillate across the narrow ravine. RIGHT: Momentum is one method for pushing the objective more quickly along the shallow ravine._
 
+<center>
+<img src="https://qph.fs.quoracdn.net/main-qimg-5ca1b0071aa0bec8ecaf0d2e3c07bd11.webp" height="300">
+</center>
+
+
+<center>
+<img src="https://st4.ning.com/topology/rest/1.0/file/get/3713179836?profile=RESIZE_710x
+" height="300">
+</center>
+
+
+<center>
+<img src="https://blog.paperspace.com/content/images/2018/05/patho.png" height="300">
+</center>
 
 SGD has trouble navigating ravines, i.e. areas where the surface curves much more steeply in one dimension than in another, which are common around local optima. In these scenarios, SGD oscillates across the slopes of the ravine while only making hesitant progress along the bottom towards the local optimum.
 
