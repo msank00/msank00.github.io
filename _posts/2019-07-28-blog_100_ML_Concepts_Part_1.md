@@ -606,6 +606,13 @@ for i in range(nb_epochs):
 
 ## Momentum
 
+<center>
+<img src="https://www.researchgate.net/profile/Giorgio_Roffo/publication/317277576/figure/fig6/AS:500357433434112@1496305916279/6-LEFT-shows-a-long-shallow-ravine-leading-to-the-optimum-and-steep-walls-on-the.png" height="200">
+</center>
+
+_LEFT: shows a long shallow ravine leading to the optimum and steep walls on the sides. Standard SGD will tend to oscillate across the narrow ravine. RIGHT: Momentum is one method for pushing the objective more quickly along the shallow ravine._
+
+
 SGD has trouble navigating ravines, i.e. areas where the surface curves much more steeply in one dimension than in another, which are common around local optima. In these scenarios, SGD oscillates across the slopes of the ravine while only making hesitant progress along the bottom towards the local optimum.
 
 Momentum is a method that helps accelerate SGD in the relevant direction and dampens oscillations. It does this by adding a fraction $\gamma$ of the update vector of the past time step to the current update vector:
