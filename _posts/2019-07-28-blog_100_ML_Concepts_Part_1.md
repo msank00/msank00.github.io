@@ -188,6 +188,7 @@ $$y=\theta_0+\theta_1 x_1+\theta_2 x_2+...+\theta_n x_n=\theta_0 + \Sigma_i \the
 - Generalized Linear Model
 
 $$y=g(\theta_0+\theta_1 x_1+\theta_2 x_2+...+\theta_n x_n)= g(\theta_0 + \Sigma_i \theta_i x_i)$$
+
 $$g^{-i}(y)=\theta_0 + \Sigma_i \theta_i x_i$$
 
 where $g^{-i}()$ is the inverse of $g()$
