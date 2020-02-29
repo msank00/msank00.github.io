@@ -271,6 +271,19 @@ where Q is the matrix with eigenvectors as columns and $\Sigma$ is $diag(\lambda
 
 ----
 
+# Matrix Factorization
+
+**References:**
+
+- [CMU Lecture](https://www.cs.cmu.edu/~mgormley/courses/10601-s17/slides/lecture25-mf.pdf)
+- [Google blog - Matrix Factorization from the pov of recsys](https://developers.google.com/machine-learning/recommendation/collaborative/matrix)
+- [Very good video - Part 1](https://www.youtube.com/watch?v=10qVo3kxAhI)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
 # PCA and SVD
 
 Follow lecture 6 of [Prof.Mitesh_IITM](https://www.cse.iitm.ac.in/~miteshk/CS7015.html)
