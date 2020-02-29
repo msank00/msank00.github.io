@@ -303,7 +303,7 @@ Follow lecture 6 of [Prof.Mitesh_IITM](https://www.cse.iitm.ac.in/~miteshk/CS701
   + if all $\lambda_i>0$, then $\mathbf{A}$ is called **positive definite** matrix.
   + if all $\lambda_i>=0$, then $\mathbf{A}$ is called **positive semidefinite definite (PSD)** matrix.
 + PSD matricies are interesting because the gurantee that `for all x`, $x'Ax>=0$. 
-+ PSD additionally guarantee that if $x'Ax=0$ then $x=0$. [
++ PSD additionally guarantee that if $x'Ax=0$ then $x=0$. 
 
 
 **Reference:**
@@ -415,6 +415,33 @@ For example, if one of the attributes is orders of magnitude higher than others,
 
 
 [Reference](http://www.simafore.com/blog/bid/105347/Feature-selection-with-mutual-information-Part-2-PCA-disadvantages)
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+## What is NMF?
+
+Non-negative matrix factorization (NMF or NNMF), also non-negative matrix approximation is a group of algorithms in multivariate analysis and linear algebra where a matrix $\mathbf{V}$ is factorized into (usually) two matrices $\mathbf{W}$ and $\mathbf{H}$, with the property that all three matrices have `no negative elements`. This non-negativity makes the resulting matrices easier to inspect.
+
+<center>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/NMF.png/400px-NMF.png" height="100">
+</center>
+
+- Like principal components (SVD), but data and components are
+assumed to be non-negative
+
+- Model: $\mathbf{V} \approx \mathbf{W} \mathbf{H}$
+
+- For different application of NMF you can check [this](https://msank00.github.io/blog/2019/07/27/blog_203_ML_NLP_Part_1#what-is-nonnegative-matrix-factorization-nmf-)
+
+
+**Reference:**
+
+- [Wiki](https://en.wikipedia.org/wiki/Non-negative_matrix_factorization)
+- [Stanford Notes](http://statweb.stanford.edu/~tibs/sta306bfiles/nnmf.pdf)
+
 
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
