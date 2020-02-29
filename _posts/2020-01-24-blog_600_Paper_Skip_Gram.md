@@ -48,11 +48,15 @@ If we apply one-hot-encoding then:
 The above is a random order. We can put in any random order that will not be a problem. Because all 4 words are not related in the vector space.
 
 
-![image](/assets/images/word2vec.svg)
+<center>
+<img src="/assets/images/image_33_w2v_1.png" alt="image" height="300">
+</center>
 
 However `cat` and `dog` are from type _animal_ and `chair` and `table` are from type _furniture_. So it would have been very good if in the vector space they were grouped together and their vectors are adjusted accordingly.
 
-![image](/assets/images/word2vec_2.svg)
+<center>
+<img src="/assets/images/image_33_w2v_2.png" alt="image" height="300">
+</center>
 
 Now there are many methods to learn these kind of representation. But at present 2 popular ones are `CBOW: Continuous Bag of Words` and `Skip-gram` model.
 
