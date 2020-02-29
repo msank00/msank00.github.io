@@ -29,7 +29,7 @@ These are typical examples of a `parametric learners`.
 
 **Nonparametric Model:** The number of parameters is (potentially) infinite. Here number of parameters are function of number of training data.
 
-> Non-parametric  models assume  that  the  data  distribution  cannot  be  defined  interms  of  such  a  finite  set  of  parameters.
+> Non-parametric  models assume  that  the  data  distribution  cannot  be  defined  in terms  of  such  a  finite  set  of  parameters.
 
 - K-nearest neighbor
 - Decision trees
@@ -44,6 +44,8 @@ These are considered as `non-parametric`
 - In the field of statistics, the term parametric is also associated with a specified probability distribution that you **assume** your data follows, and this distribution comes with the finite number of parameters (for example, the mean and standard deviation of a normal distribution).
 - You don’t make/have these assumptions in non-parametric models. So, in intuitive terms, we can think of a non-parametric model as a `“distribution” or (quasi) assumption-free model`.
 
+
+![image](/assets/images/image_04_param_non_param_1.png)
 
 **Reference:**
 
