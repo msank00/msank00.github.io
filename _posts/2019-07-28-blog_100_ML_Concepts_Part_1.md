@@ -201,7 +201,9 @@ Inverse of $g()$, say $g^{-i}()$ is the link function.
 
 We can combine the notion of `additive models` with `generalized linear models`, to derive the notion of `generalized additive models`, as:
 
-$$g^{-i}(y)=\theta_0+\theta_! f_1(x_1)+\theta_2 f_2(x_2)+...+\theta_n f_n(x_n)= \theta_0 + \Sigma_i \theta_{i=1}^n f_i(x_i)$$
+$$y = g(\theta_0 + \Sigma_i \theta_{i=1}^n f_i(x_i))$$
+
+$$g^{-i}(y)=\theta_0+\theta_1 f_1(x_1)+\theta_2 f_2(x_2)+...+\theta_n f_n(x_n)= \theta_0 + \Sigma_i \theta_{i=1}^n f_i(x_i)$$
 
 
 **Reference:**
@@ -213,8 +215,11 @@ $$g^{-i}(y)=\theta_0+\theta_! f_1(x_1)+\theta_2 f_2(x_2)+...+\theta_n f_n(x_n)= 
 
 
 - **Linear Model:** They are linear in parameters $\theta$
+
   $$y_i = \theta_0 + \Sigma_{i=1}^{n} \theta_i x_i$$
+
 - **Non Linear Model:** They are non-linear in parameters $\theta$
+
   $$y_i = \theta_0 + \Sigma_{i=1}^{n} g(\theta_i) x_i$$
   where $g()$ is any non linear function.
 
