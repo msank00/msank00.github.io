@@ -13,11 +13,6 @@ permalink: /blog/:year/:month/:day/:title
 theme: minima
 highlighter: rouge
 
-kramdown:
-  input: GFM
-  # https://github.com/jekyll/jekyll/pull/4090
-  syntax_highlighter: rouge
-
 plugins:
   - "disqus-for-jekyll"
   - jekyll-feed
