@@ -555,8 +555,9 @@ pyplot.show()
 ```
 
 <center>
-<img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2018/06/Calibrated-and-Uncalibrated-SVM-Reliability-Diagram.png", height="250">
+<img src="/assets/images/image_35_calibration_plot_1.png", height="250">
 </center>
+
 
 _Blue line: Uncalibrated, Orange line: calibrated. After calibration, the orange line is hugging the diagonal line more closely_
 

@@ -11,6 +11,7 @@ author: Sankarshan Mridha
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title
 theme: minima
+highlighter: rouge
 plugins:
   - "disqus-for-jekyll"
   - jekyll-feed
