@@ -462,6 +462,63 @@ For more details, read the following references.
 
 ----
 
+# What is Calibration Plot?
+
+> When I build a machine learning model for classification problems, one of the questions that I ask myself is why is my model not crap? Sometimes I feel that developing a model is like holding a grenade, and calibration is one of my safety pins.
+
+## Evaluating probabilistic predictions
+
+In machine learning, most classification models produce predictions of class probabilities between 0 and 1, then have an option of turning probabilistic outputs to class predictions. 
+
+A model’s output can be viewed as a statement saying how likely something should happen.
+
+- A probabilistic model is **calibrated** if I binned the test samples based on their predicted probabilities, each bin’s true outcomes has a proportion close to the probabilities in the bin.
+
+>> Predicted probabilities that match the expected distribution of probabilities for each class are referred to as calibrated. 
+
+## Calibration of Predictions
+
+There are two concerns in calibrating probabilities; they are 
+- Diagnosing the calibration of predicted probabilities
+- The calibration process itself.
+
+### Reliability Diagrams (Calibration Curves)
+
+A reliability diagram is a line plot of the relative frequency of what was observed (y-axis) versus the predicted probability frequency (x-axis).
+
+>  They consist of a plot of the observed relative frequency against the predicted probability
+
+**Method:** 
+
+- Specifically, the **predicted probabilities** are divided up into a fixed number of buckets along the x-axis. 
+- The number of events (class=1) are then counted for each bin (e.g. the **relative observed frequency**). 
+- Finally, the counts are normalized. The results are then plotted as a line plot.
+
+These plots are commonly referred to as `reliability` diagrams in forecast literature, although may also be called `calibration` plots or curves as they summarize how well the forecast probabilities are calibrated.
+
+<center>
+<img src="https://scikit-learn.org/stable/_images/sphx_glr_plot_calibration_curve_001.png", height="400">
+</center>
+
+**Interpretation:**
+
+The better calibrated or more reliable a forecast, the **closer the points will appear along the main diagonal** from the bottom left to the top right of the plot.
+
+
+- **Below the diagonal:** The model has over-forecast; the predicted probabilities are too large.
+- **Above the diagonal:** The model has under-forecast; the probabilities are too small.
+
+
+**Reference:**
+
+- [python-calibration-plot](https://changhsinlee.com/python-calibration-plot/)
+- [sklearn calibration plot](https://scikit-learn.org/stable/auto_examples/calibration/plot_calibration_curve.html)
+- [When and how to use](https://machinelearningmastery.com/calibrated-classification-model-in-scikit-learn/)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
 # Monte carlo Gradient Estimate
 
 Comprehensive Survey
