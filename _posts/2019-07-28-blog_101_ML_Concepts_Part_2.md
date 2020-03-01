@@ -738,8 +738,12 @@ The above image shows, that how we approximate `0-1 loss` in SVM and in Logistic
 
 - [Slide 15](https://www.robots.ox.ac.uk/~az/lectures/ml/2011/lect4.pdf)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
-## Why is logistic regression considered as a linear model? 
+
+---
+
+# Why is logistic regression considered as a linear model? 
 
 Q. Is it always necessary the decision boundary is linear / plane always?
 
