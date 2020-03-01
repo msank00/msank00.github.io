@@ -626,8 +626,7 @@ $$
 >> In `Gradient Boosting`, **shortcomings** (of existing weak learners) are identified by gradients a.k.a **residuals**. In `Adaboost`, ‘shortcomings’ are identified by **high-weight data points**.
 
 
-
-The main differences therefore are that Gradient Boosting is a generic algorithm to find approximate solutions to the additive modeling problem, while AdaBoost can be seen as a special case with a particular loss function. Hence, gradient boosting is much more flexible.
+The **main differences** therefore are that Gradient Boosting is a generic algorithm to find approximate solutions to the additive modeling problem, while AdaBoost can be seen as a special case with a particular loss function. Hence, gradient boosting is much more flexible.
 
 Second, AdaBoost can be interepted from a much more intuitive perspective and can be implemented without the reference to gradients by reweighting the training samples based on classifications from previous learners. 
 
@@ -643,6 +642,48 @@ Second, AdaBoost can be interepted from a much more intuitive perspective and ca
 - [link](https://medium.com/mlreview/gradient-boosting-from-scratch-1e317ae4587d)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# XGBoost: Extreme Gradient Boosting 
+
+XGBoost, a scalable machine learning system for tree boosting. The most important factor behind the success of XGBoost is its **scalability** in all scenarios. The system runs more than **ten times faster** than existing popular solutions on a single machine and **scales to billions of examples** in distributed or memory-limited settings. 
+
+The scalability of XGBoost is due to several important systems and algorithmic optimizations. These innovations include: 
+
+- A novel tree learning algorithm is for handling sparse data
+- A theoretically justified weighted quantile sketch procedure enables handling instance weights in approximate tree learning. 
+- Parallel and distributed computing makes learning faster which enables quicker model exploration.
+
+## System design
+
+**Column Block for Parallel Learning:**
+
+The most time consuming part of tree learning is to get
+the data into sorted order. In order to reduce the cost of sorting, we propose to store the data in in-memory units, which we called `block`. Data in each block is stored in the compressed column (`CSC`) format, with each column sorted by the corresponding feature value. This input data layout only needs to be computed once before training, and can be reused in later iterations.
+
+**Cache-aware Access:** 
+
+While the proposed block structure helps optimize the
+computation complexity of split finding, the new algorithm requires indirect fetches of gradient statistics by row index, since these values are accessed in order of feature. This is a non-continuous memory access. A naive implementation of split enumeration introduces immediate read/write de- pendency between the accumulation and the non-continuous memory fetch operation. This slows down split finding when the gradient statistics do not fit into CPU cache and cache miss occur. For the exact greedy algorithm, we can alleviate the problem by a cache-aware prefetching algorithm. Specifically, we allocate an internal buffer in each thread, fetch the gradient statistics into it, and then perform accumulation in a mini-batch manner.
+
+**Blocks for Out-of-core Computation:**
+
+One goal of our system is to fully utilize a machine’s re-
+sources to achieve scalable learning. Besides processors and memory, it is important to utilize disk space to handle data that does not fit into main memory. To enable out-of-core computation, we divide the data into multiple blocks and store each block on disk. During computation, it is important to use an independent thread to pre-fetch the block into a main memory buffer, so computation can happen in concurrence with disk reading.
+
+- **Block Compression:** The first technique we use is block compression. The block is compressed by columns, and decompressed on the fly by an independent thread when loading into main memory. This helps to trade some of the computation in decompression with the disk reading cost.
+
+- **Block Sharding:** The second technique is to shard the data onto multiple disks in an alternative manner. A pre-fetcher thread is assigned to each disk and fetches the data into an in-memory buffer. The training thread then alternatively reads the data from each buffer. This helps to increase the throughput of disk reading when multiple disks are available.
+
+(_**SHARD:** A database shard is a horizontal partition of data in a database or search engine. Each individual partition is referred to as a shard or database shard. Each shard is held on a separate database server instance, to spread load._)
+
+**Reference:**
+
+- [arXiv: XGBoost: A Scalable Tree Boosting System](https://arxiv.org/pdf/1603.02754.pdf)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 
 ----
 
