@@ -156,7 +156,7 @@ Two of the more popular methods include:
 
 **Numerical Input, Numerical Output**
 
-```py
+```python
 # pearson's correlation feature selection for numeric input and numeric output
 from sklearn.datasets import make_regression
 from sklearn.feature_selection import SelectKBest
@@ -173,7 +173,7 @@ print(X_selected.shape)
 
 **Numerical Input, Categorical Output**
 
-```py
+```python
 # ANOVA feature selection for numeric input and categorical output
 from sklearn.datasets import make_classification
 from sklearn.feature_selection import SelectKBest
