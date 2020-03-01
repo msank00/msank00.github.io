@@ -241,7 +241,12 @@ def select_features(X_train, y_train, X_test):
 
 ## ANOVA
 
-## CHI Sqares
+## CHI Square test
+
+The chi-square independence test is a procedure for testing if two categorical variables are related in some population. 
+
+- [blog](https://www.spss-tutorials.com/chi-square-independence-test/#what-is-it)
+
 
 
 ----

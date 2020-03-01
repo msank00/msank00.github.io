@@ -12,7 +12,7 @@ permalink: /blog/:year/:month/:day/:title
 theme: minima
 
 # Conversion
-markdown:    kramdown
+markdown: kramdown
 
 plugins:
   - "disqus-for-jekyll"
