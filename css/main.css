@@ -1,4 +1,4 @@
-@import url(monokai.css);
+@import "../assets/css/monokai.css";
 
 body {
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
