@@ -10,11 +10,11 @@ author: Sankarshan Mridha
 # email: sanakarshan7@gmail.com
 permalink: /blog/:year/:month/:day/:title
 theme: minima
-markdown: kramdown
 
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
+
+markdown: kramdown
+highlighter: rouge
+
 
 plugins:
   - "disqus-for-jekyll"
