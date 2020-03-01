@@ -8,16 +8,18 @@ linkedin_username: sankarshanmridha
 description: On machine learning, deep learning, nlp, computer vision, statistics and other areas of data science
 author: Sankarshan Mridha
 # email: sanakarshan7@gmail.com
-markdown: kramdown
 permalink: /blog/:year/:month/:day/:title
 theme: minima
-highlighter: rouge
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 
 plugins:
   - "disqus-for-jekyll"
   - jekyll-feed
   - jemoji
-  - rouge
 
 header_pages:
   #- resume.md

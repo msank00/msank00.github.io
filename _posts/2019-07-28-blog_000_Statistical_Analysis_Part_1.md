@@ -527,7 +527,7 @@ There are two popular approaches to calibrating probabilities:
 ## Implementation
 
 
-```py
+```python
 # SVM reliability diagram with calibration
 from sklearn.datasets import make_classification
 from sklearn.svm import SVC
