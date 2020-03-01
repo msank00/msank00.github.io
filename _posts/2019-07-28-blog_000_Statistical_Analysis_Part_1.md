@@ -490,15 +490,19 @@ A reliability diagram is a line plot of the relative frequency of what was obser
 
 **Method:** 
 
-- Specifically, the **predicted probabilities** are divided up into a fixed number of buckets along the x-axis. 
-- The number of events (class=1) are then counted for each bin (e.g. the **relative observed frequency**). 
-- Finally, the counts are normalized. The results are then plotted as a line plot.
+- Specifically, the **predicted probabilities** are divided up into a fixed number of buckets ($n$ bins) along the x-axis. 
+- For each bin, find the average probability of `class=1` this gives you `x`.  
+- The number of ground truths, where `class=1` are then counted for each bin (e.g. the **relative observed frequency**), divided by the total events in that bin. This gives `y` for that bin. 
+- Thus for each bin, you get $(x,y)$ and then you plot them.
+- If there are $n$ bins, then there will be $n$ points on the calibration curve.
 
 These plots are commonly referred to as `reliability` diagrams in forecast literature, although may also be called `calibration` plots or curves as they summarize how well the forecast probabilities are calibrated.
 
 <center>
-<img src="https://scikit-learn.org/stable/_images/sphx_glr_plot_calibration_curve_001.png", height="400">
+<img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2018/06/Calibrated-and-Uncalibrated-SVM-Reliability-Diagram.png", height="400">
 </center>
+
+_Blue line: Uncalibrated, Orange line: calibrated. After calibration, the orange line is hugging the diagonal line more closely_
 
 **Interpretation:**
 
@@ -508,6 +512,22 @@ The better calibrated or more reliable a forecast, the **closer the points will 
 - **Below the diagonal:** The model has over-forecast; the predicted probabilities are too large.
 - **Above the diagonal:** The model has under-forecast; the probabilities are too small.
 
+## How predictions are calibrated?
+
+The predictions made by a predictive model can be calibrated. `Calibrated predictions` may (or may not) result in an improved `calibration plot` on a reliability diagram.
+
+Some algorithms are fit in such a way that their predicted probabilities are already calibrated. Without going into details why, **logistic regression** is one such example.
+
+Other algorithms do not directly produce predictions of probabilities, and instead a prediction of probabilities must be approximated. Some examples include neural networks, support vector machines, and decision trees. The predicted probabilities from these methods will likely be uncalibrated and may benefit from being modified via calibration.
+
+>> **Calibration of prediction probabilities is a rescaling operation that is applied after the predictions have been made by a predictive model.**
+
+
+There are two popular approaches to calibrating probabilities:
+- Platt Scaling
+  - Platt Scaling is simpler and is suitable for reliability diagrams with the S-shape.
+- Isotonic Regression
+  - Isotonic Regression is more complex, requires a lot more data (otherwise it may overfit), but can support reliability diagrams with different shapes (is nonparametric).
 
 **Reference:**
 
