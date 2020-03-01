@@ -783,10 +783,13 @@ A Support Vector Machine (SVM) performs classification by finding the hyperplane
 2. Extend the above definition for non-linearly separable problems: have a penalty term for misclassifications.
 3. Map data to high dimensional space where it is easier to classify with linear decision surfaces: reformulate problem so that data is mapped implicitly to this space.
 
-
+<center>
 <img src="https://saedsayad.com/images/SVM_optimize.png" alt="image" width="400"/>
+</center>
 
+<center>
 <img src="https://saedsayad.com/images/SVM_optimize_1.png" alt="image" width="400" />
+</center>
 
 We find w and b by solving the following objective function using Quadratic Programming.
 
@@ -799,10 +802,13 @@ s.t $y_i(w.x_i+b)\ge 1, \forall x_i$
 ## Soft Margin
 
 The beauty of SVM is that if the data is linearly separable, there is a unique global minimum value. An ideal SVM analysis should produce a hyperplane that completely separates the vectors (cases) into two non-overlapping classes. However, perfect separation may not be possible, or it may result in a model with so many cases that the model does not classify correctly. In this situation SVM finds the hyperplane that maximizes the margin and minimizes the misclassifications. 		
-
+<center>
 <img src="https://saedsayad.com/images/SVM_3.png" alt="image" width="400" />
+</center>
 
+<center>
 <img src="https://saedsayad.com/images/SVM_optimize_3.png" alt="image" width="400"/>
+</center>
 
 The simplest way to separate two groups of data is with a straight line (1 dimension), flat plane (2 dimensions) or an N-dimensional hyperplane. However, there are situations where a nonlinear region can separate the groups more efficiently. SVM handles this by using a **kernel function** (nonlinear) to map the data into a different space where a hyperplane (linear) cannot be used to do the separation. 
 
@@ -820,9 +826,9 @@ regularization problem.
 
 Re write the soft margin problem using `hinge loss` $(z)$ defined as the positive part of $1-z$, written as $(1-z)^+$. The relaxed optimization problem (soft margin) can be reformulated as 
 
-$$min \frac{1}{2}\vert \vert w \vert \vert^2 + C \Sigma_{t=1}^{n}(1 - y_t(w^T x_t + w_0))^+ $$
+$$min \frac{1}{2}\vert \vert w \vert \vert^2 + C \sum\limits_{t=1}^{n}(1 - y_t(w^T x_t + w_0))^+ $$
 
-Here $\frac{1}{2}\vert \vert w \vert \vert^2$, the `inverse squared` **geometric margin** is viewed as a regularization penalty that helps stabilizes the objective $C \Sigma_{t=1}^{n}(1 - y_t(w^T x_t + w_0))^+$ . 
+Here $\frac{1}{2}\vert \vert w \vert \vert^2$, the `inverse squared` **geometric margin** is viewed as a regularization penalty that helps stabilizes the objective $C \sum\limits_{t=1}^{n}(1 - y_t(w^T x_t + w_0))^+$ . 
 
 - [MIT OCW Notes](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-867-machine-learning-fall-2006/lecture-notes/lec4.pdf)
 
@@ -841,11 +847,11 @@ Kernel $K(X_i, X_j)$ are:
 where $K(X_i, X_j) = \phi(X_i).\phi(X_j)$
 
 that is, the kernel function, represents a dot product of input data points mapped into the higher dimensional feature
-space by transformation $\phi()$
+space by transformation $\phi(.)$
 
 $\gamma$ is an adjustable parameter of certain kernel functions.
 
-The RBF is by far the most popular choice of kernel types used in Support Vector Machines. This is mainly because of their localized and finite responses across the entire range of the real x-axis.
+The `RBF` is by far the **most popular choice of kernel** types used in Support Vector Machines. This is mainly because of their localized and finite responses across the entire range of the real x-axis.
 
 - [Blog](http://www.statsoft.com/Textbook/Support-Vector-Machines)
 
