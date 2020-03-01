@@ -278,7 +278,11 @@ Thus, we conclude $Gamma(1,\lambda)=Exponential(\lambda)$. More generally, if yo
 
 ## How all the distributions are related?
 
-![distribution](/assets/images/distribution.png)
+
+<center>
+<img src="/assets/images/distribution.png" height="300">
+</center>
+
 [(blog)](https://blog.cloudera.com/blog/2015/12/common-probability-distributions-the-data-scientists-crib-sheet/)
 
 **Relation between Exponential and Poisson Distribution:**
@@ -328,7 +332,9 @@ where $\Phi(x)$ is the standard normal CDF.
 
 Let's say $X$ follows Binomial distribution. Then as ${n \rightarrow \infty}$, the distribution of $Z_n$ looks like this:
 
-![CLT](/assets/images/CLT.png)
+<center>
+<img src="/assets/images/CLT.png" height="400">
+</center>
 
 
 **Reference:**
@@ -359,7 +365,9 @@ Gaussian mixture models are a probabilistic model for representing normally dist
 
 For example, in modeling human height data, height is typically modeled as a normal distribution for each gender with a mean of approximately 5'10" for males and 5'5" for females. Given only the height data and not the gender assignments for each data point, the distribution of all heights would follow the sum of two scaled (different variance) and shifted (different mean) normal distributions. A model making this assumption is an example of a Gaussian mixture model (GMM), though in general a GMM may have more than two components. Estimating the parameters of the individual normal distribution components is a canonical problem in modeling data with GMMs.
 
-![image](https://ds055uzetaobb.cloudfront.net/image_optimizer/d47c612ae8c3dc7f5aef1fc66458456f4eea4145.png)
+<center>
+<img src="https://ds055uzetaobb.cloudfront.net/image_optimizer/d47c612ae8c3dc7f5aef1fc66458456f4eea4145.png" height="200">
+</center>
 
 
 A Gaussian mixture model is parameterized by two types of values, the mixture component weights and the component means and variances/covariances. For a Gaussian mixture model with $K$ components, the $k^{\text{th}}$ component has a mean of $\mu_k$ and variance of $\sigma_k$ for the `univariate case` and a mean of $\vec{\mu}_k$ and covariance matrix of $\vec{\sigma}_k$ for the `multivariate case`. The mixture component weights are defined as $\phi_k$ for component $C_k$, with the constraint that $\sum_{i=1}^k \phi_i = 1$, so that the total probability distribution normalizes to $1$. If the component weights aren't learned, they can be viewed as an `a-priori` distribution over components such that . If they are instead learned, they are the `a-posteriori` estimates of the component probabilities given the data.
