@@ -698,7 +698,7 @@ This is a very tricky question.
 
 When $y \in ({0,1})$
 
-$$NLL(w) = - \Sigma_{i=1}^{N}[y_i log (\hat{y_i}) + (1-y_i)log (1-\hat{y_i})] $$
+$$NLL(w) = - \sum_{i=1}^{N}[y_i log (\hat{y_i}) + (1-y_i)log (1-\hat{y_i})] $$
 
 This is also called `cross entropy` error function.
 
@@ -706,9 +706,9 @@ This is also called `cross entropy` error function.
 
 When $y \in ({-1,+1})$
 
-$$NLL(w)= \Sigma_{i=1}^{N}log(1+\exp(-y_iw^Tx_i))$$
+$$NLL(w)= \sum_{i=1}^{N}log(1+\exp(-y_iw^Tx_i))$$
 
-Though these 2 equations look different. But if you pay attention for case 1, it's written in terms of $\hat{y_i}$ but for case 2 there is no such term. Now what is $\hat{y_i}$ ??
+Though these 2 equations look different. But if you pay attention for **case 1**, it's written in terms of $\hat{y_i}$ but for **case 2** there is no such term. Now what is $\hat{y_i}$ ??
 
 $$
 \hat{y_i} = \frac{exp(w^Tx_i)}{1+exp(w^Tx_i)}
@@ -743,15 +743,15 @@ The above image shows, that how we approximate `0-1 loss` in SVM and in Logistic
 
 Q. Is it always necessary the decision boundary is linear / plane always?
 
-The short answer is: Logistic regression is considered a generalized linear model because the outcome always depends on the sum of the inputs and parameters. Or in other words, the output cannot depend on the product (or quotient, etc.) of its parameters! $z = \Sigma_i w_ix_i$
+The short answer is: Logistic regression is considered a generalized linear model because the outcome always depends on the sum of the inputs and parameters. Or in other words, the output cannot depend on the product (or quotient, etc.) of its parameters! $z = \sum_i w_ix_i$
 
-$$f(x) = \frac{1}{1+e^{-\Sigma_i w_ix_i}}$$
+$$f(x) = \frac{1}{1+e^{-\sum_i w_ix_i}}$$
 
 The key is that our model is `additive`.  Our outcome z depends on the additivity of the weight parameter values, e.g., : $z = w_1x_1 + w_2x_2$
 
 There’s no interaction between the weight parameter values,nothing like $w_1x_1 * w_2x_2$ or so, which would make our model non-linear!
 
-However we can use non-linear feature s.t $z = \Sigma_i w_if(x_i)$ where $f()$ is a non linear function of $x$. But still z is linear in terms of parameter $w_i$
+However we can use non-linear feature s.t $z = \sum_i w_if(x_i)$ where $f()$ is a non linear function of $x$. But still z is linear in terms of parameter $w_i$
 
 - In general the decision boundary is linear in `x`. To be more specific, the decision boundary in this case is given by $w^Tx=0$ (a hyperplane). But then you go on to say `but we can generate non-linear decision boundaries as well`.
 - Well, of course you can, but then that'll be called a `non-linear instance` of logistic regression (the exact same way we have linear SVMs and non-linear SVMs). In other words, you can start with your original data x and see/decide that it's not linearly separable. What you can do next is introduce a feature transformation h(x) and use that in place of x. 
