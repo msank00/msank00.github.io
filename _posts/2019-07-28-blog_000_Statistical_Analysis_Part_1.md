@@ -555,7 +555,7 @@ pyplot.show()
 ```
 
 <center>
-<img src="/assets/images/image_35_calibration_plot_1.png", height="250">
+<img src="../assets/images/image_35_calibration_plot_1.png", height="250">
 </center>
 
 
