@@ -11,9 +11,15 @@ author: Sankarshan Mridha
 permalink: /blog/:year/:month/:day/:title
 theme: minima
 
-
-markdown: kramdown
+# Conversion
+markdown:    kramdown
 highlighter: rouge
+
+# Markdown Processors
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
 
 
 plugins:
