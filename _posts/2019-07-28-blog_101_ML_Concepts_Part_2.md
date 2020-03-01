@@ -235,6 +235,13 @@ def select_features(X_train, y_train, X_test):
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+----
+
+# Different Statistical tests for feature selection
+
+## ANOVA
+
+## CHI Sqares
 
 
 ----
