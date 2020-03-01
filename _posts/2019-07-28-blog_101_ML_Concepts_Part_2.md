@@ -247,8 +247,6 @@ The chi-square independence test is a procedure for testing if two categorical v
 
 - [blog](https://www.spss-tutorials.com/chi-square-independence-test/#what-is-it)
 
-
-
 ----
 
 # What are the parameters in training a decision tree?
@@ -271,75 +269,124 @@ The chi-square independence test is a procedure for testing if two categorical v
 - A decision tree is a tree where each `node` represents a feature(attribute), each `link`(branch) represents a decision(rule) and each `leaf` represents an outcome(categorical or continues value)
 - Find the feature that best splits the target class into the `purest possible` children nodes (ie: nodes that don't contain a mix of both classes, rather pure nodes with only one class).
 - `Entropy` on the other hand it is a measure of impurity. It is defined for a classification problem with N classes as:
-- Entropy = $-\Sigma_i C_i * \log(C_i)$, where `i=1,...,N`
-  - Say we have a dataset `D` and we are looking for a potential feature `f`, on which we will split the dataset w.r.t `f` into 2 parts `Dl` and `Dr` for left and right dataset respectively, such that those two datasets are at their purest form. Finally we use information gain to decide how good that feature is i.e how much pure the split is w.r.t `f` using `Information Gain`. 
-    ```py
-     Df
-    / \
-    Dl Dr
-    ```
-    + Information Gain: It is the difference of entropy before the split and after the split.
-    `EntropyBefore_f = Entropy(Df)` and entropy after is 
-    `EntropyAfter_f = Entropy(Dl)+Entropy(Dr)` and finaly 
-    `InformationGain_f = EntropyBefore_f - EntropyAfter_f`.
+- **Entropy:** $-\sum_i c_i * \log(c_i)$, where `i=1,...,N`
+
+Say we have a dataset `D` and we are looking for a potential feature `f`, on which we will split the dataset w.r.t `f` into 2 parts `Dl` and `Dr` for left and right dataset respectively, such that those two datasets are at their purest form. Finally we use information gain to decide how good that feature is i.e how much pure the split is w.r.t `f` using `Information Gain`. 
+    
+```py
+   Df
+ /    \
+Dl     Dr
+```
+- **Information Gain:** It is the difference of entropy before the split and after the split.
+`EntropyBefore_f = Entropy(Df)` and entropy after is 
+`EntropyAfter_f = Entropy(Dl)+Entropy(Dr)` and finaly 
+`InformationGain_f = EntropyBefore_f - EntropyAfter_f`.
 
 **Reference:**
 
 - [SO](https://stackoverflow.com/questions/1859554/what-is-entropy-and-information-gain)
 - [Medium](https://medium.com/deep-math-machine-learning-ai/chapter-4-decision-trees-algorithms-b93975f7a1f1)
 
-## How to build decision tree?
-+ There are couple of algorithms there to build a decision tree. Some of the important ones are
-  + CART (Classification and Regression Trees) → uses Gini Index(Classification) as metric. Lower the Gini Index, higher the purity of the split.
-  + ID3 (Iterative Dichotomiser 3) → uses Entropy function and Information gain as metrics. Higher the Information Gain, better the split is.
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
+# How to build decision tree?
+
+There are couple of algorithms there to build a decision tree. Some of the important ones are
+
++ **CART (Classification and Regression Trees)** → uses Gini Index(Classification) as metric. Lower the Gini Index, higher the purity of the split.
++ **ID3 (Iterative Dichotomiser 3)** → uses Entropy function and Information gain as metrics. Higher the Information Gain, better the split is.
 
 ## What are the criteria for splitting at a node in decision trees ?
 
-* Gini Index [[link](https://dni-institute.in/blogs/cart-decision-tree-gini-index-explained/)]
+**Gini Index** [[link](https://dni-institute.in/blogs/cart-decision-tree-gini-index-explained/)]
   + CART uses Gini index as a split metric. For `N` classes, the Gini Index is defined as: 
-  $1-\Sigma_i P_i^2$, where `i=1,...,N` and $P_i=P(target=i)$ [[source](https://medium.com/deep-math-machine-learning-ai/chapter-4-decision-trees-algorithms-b93975f7a1f1)]
-* Information Gain
-* Cross Entropy
-  + Cross-entropy loss, or log loss, measures the performance of a classification model whose output is a probability value between 0 and 1.
-  + In binary classification, where the number of classes M equals 2, cross-entropy can be calculated as:
-  $-{(y\log(p) + (1 - y)\log(1 - p))}$
-  + If M>2 (i.e. multiclass classification), we calculate a separate loss for each class label per observation and sum the result.
-  $H(y, \hat{y}) = \sum_i y_i \log \frac{1}{\hat{y}_i} = -\sum_i y_i \log \hat{y}_i$
-* Entropy
-* **CHI Square:** It is an algorithm to find out the statistical significance between the differences between sub-nodes and parent node.
-* Reduction of Variance
+  $1-\sum_i p_i^2$, where `i=1,...,N` and $p_i=p(target=i)$ [[source](https://medium.com/deep-math-machine-learning-ai/chapter-4-decision-trees-algorithms-b93975f7a1f1)]
+
+**Information Gain**
+  
+  $$
+  IG = Entropy(parent) - weight_{avg}*Entropy(children)
+  $$
+
+  $$
+  Gain(S, A) = H(S) - \sum_{v \in values(A)} \frac{\vert S_v \vert}{\vert S \vert}H(S_v)
+  $$
+
+where, 
+
+- $V$ - possible values of categorical feature $A$
+- $S$ - set of examples $\{X\}$
+- $S_v$ - subset where $X_A = V$
+
+**Cross Entropy**
++ Cross-entropy loss, or log loss, measures the performance of a classification model whose output is a probability value between 0 and 1.
++ In binary classification, where the number of classes $M=2$, cross-entropy can be calculated as:
+$-{(y\log(p) + (1 - y)\log(1 - p))}$
++ If $M \gt 2$ (i.e. multiclass classification), we calculate a separate loss for each class label per observation and sum the result.
+
+$$
+H(y, \hat{y}) = \sum_i y_i \log \frac{1}{\hat{y}_i} = -\sum_i y_i \log \hat{y}_i
+$$
+
+Entropy
+
+**CHI Square:** It is an algorithm to find out the statistical significance between the differences between sub-nodes and parent node.
+
+Reduction of Variance
 
 **Reference:**
 
-- [Link 1](https://www.mathsisfun.com/data/chi-square-test.html)
-- [Link 2](https://medium.com/greyatom/decision-trees-a-simple-way-to-visualize-a-decision-dc506a403aeb)
-- [Link 3](https://clearpredictions.com/Home/DecisionTree)
+- [Mathisfun](https://www.mathsisfun.com/data/chi-square-test.html)
+- [Medium blog](https://medium.com/greyatom/decision-trees-a-simple-way-to-visualize-a-decision-dc506a403aeb)
+- [Decision tree](https://clearpredictions.com/Home/DecisionTree)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
-## What is the formula of Gini index criteria?
+----
 
-![image](/assets/images/image_22_Tree_1.png)
-![image](/assets/images/image_22_Tree_2.png)
+# What is the formula of Gini index criteria?
 
-- [Reference](http://dni-institute.in/blogs/cart-decision-tree-gini-index-explained/)
+<center>
+<img src="/assets/images/image_22_Tree_1.png" height="350" alt="image">
+</center>
+
+
+<center>
+<img src="/assets/images/image_22_Tree_2.png" height="190" alt="image">
+</center>
 
 ## How is it decided that on which features it has to split?
 
 Based on for which feature the information gain is maximum.
 
 
-## What is the formula for Entropy criteria?
+**Reference:**
+
+- [Gini index](http://dni-institute.in/blogs/cart-decision-tree-gini-index-explained/)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
+# What is the formula for Entropy criteria?
 
 Entropy is nothing but `Expectation` with negative sign. 
 
-Expectation Formula: $E[g(x)] = \Sigma p(x)g(x)$
+Expectation Formula: $E[g(x)] = \sum p(x)g(x)$
 
 In entropy, $g(x)$ is $\log (p(x))$, and combining with the negative sign (which is apparent as for $0 \leq x \leq 1$ , $\log (x)$ is negative), which makes it positive, the  entropy ( or expectation) formula becomes:
 
-$$H[x] = -\Sigma p(x) \log (p(x))$$
+$$H[x] = -\sum p(x) \log (p(x))$$
+
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
 
 ## How do you calculate information gain mathematically? 
 
@@ -354,10 +401,22 @@ where `i=1,...,N` and $S$ is the size of total datasets and $S_i$ is the size of
 - [clear explanation, slides](https://www3.nd.edu/~rjohns15/cse40647.sp14/www/content/lectures/23%20-%20Decision%20Trees%202.pdf)
 
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
 ## Pros and Cons of Decision Trees:
 
-![image](/assets/images/image_22_Tree_3.png)
-![image](/assets/images/image_22_Tree_4.png)
+<center>
+<img src="/assets/images/image_22_Tree_3.png" height="300" alt="image">
+</center>
+
+
+<center>
+<img src="/assets/images/image_22_Tree_4.png" height="205" alt="image">
+</center>
+
 
 - Decision Tree also suffers from `high variance`.
 
@@ -382,7 +441,7 @@ where `i=1,...,N` and $S$ is the size of total datasets and $S_i$ is the size of
 The relative entropy  ${KL}(p\sim||\sim q)$ 
 is a measure of the `inefficiency` of assuming that the distribution is q, when the true distribution is p. 
 
-- The KL divergence from p to q is simply the difference between cross entropy and entropy:
+- The KL divergence from $p$ to $q$ is simply the difference between cross entropy and entropy:
 
 $${KL}(y~||~\hat{y}) = \sum_i y_i \log \frac{1}{\hat{y}_i} - \sum_i y_i \log \frac{1}{y_i}= \sum_i y_i \log \frac{y_i}{\hat{y}_i}$$ 
 
@@ -402,17 +461,17 @@ Where $y_i \sim p$ and $\hat{y}_i \sim q$, i.e. they come from two different pro
 
 ## Why ensemble is good?
 
-Q: Suppose we have 10 independent classifiers, each with error rate of 0.3. What will be the final error rate if we ensemble these 10 independent classifiers?
+Q: Suppose we have $10$ independent classifiers, each with error rate of $0.3$. What will be the final error rate if we ensemble these $10$ independent classifiers?
 
 $\epsilon=0.3$
 
 In this setting, the error rate of the ensemble can be computed as below: 
 
-Assumption: We are taking a majority vote on the predictions. 
+**Assumption:** We are taking a majority vote on the predictions. 
 
 An ensemble makes a wrong prediction only when more than half of the base classifiers are wrong.
 
-$$\epsilon_{ensemble}= \Sigma_{i=6}^{i=10} \binom{10}{i} \epsilon^i (1-\epsilon)^{10-i} \approx 0.05$$
+$$\epsilon_{ensemble}= \sum_{i=6}^{i=10} \binom{10}{i} \epsilon^i (1-\epsilon)^{10-i} \approx 0.05$$
 
 It can be seen that with the theoretical guarantees stated above an ensemble model performs significantly well.
 
@@ -421,14 +480,14 @@ However in practice it is not possible to guarantee such classifier independence
 
 **Reference:**
 
-- [link](https://www.quora.com/What-are-some-advantages-of-using-a-random-forest-over-a-decision-tree-given-that-a-decision-tree-is-simpler)
+- [Quora](https://www.quora.com/What-are-some-advantages-of-using-a-random-forest-over-a-decision-tree-given-that-a-decision-tree-is-simpler)
 
 
 
 ## Ensemble Learning algorithm
 
-- [link1](https://www.analyticsvidhya.com/blog/2017/02/introduction-to-ensembling-along-with-implementation-in-r/)
-- [link2](https://www.analyticsvidhya.com/blog/2015/08/introduction-ensemble-learning/)
+- [introduction-to-ensembling-along-with-implementation-in-r](https://www.analyticsvidhya.com/blog/2017/02/introduction-to-ensembling-along-with-implementation-in-r/)
+- [introduction-ensemble-learning](https://www.analyticsvidhya.com/blog/2015/08/introduction-ensemble-learning/)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
@@ -436,7 +495,9 @@ However in practice it is not possible to guarantee such classifier independence
 
 # Characteristics of Different Learning Methods
 
-![image](/assets/images/image_22_Algorithms_1.png)
+<center>
+<img src="../assets/images/image_22_Algorithms_1.png" height="400" alt="image">
+</center>
 
 MARS: Multivariate Adaptive Regression Splines 
 
@@ -452,42 +513,41 @@ MARS: Multivariate Adaptive Regression Splines
 
 The term `Boosting` refers to a family of algorithms which **boosts** (i.e converts) weak learner to strong learners.
 
-1. AdaBoost (Adaptive Boosting)
-2. Gradient Tree Boosting
-3. XGBoost
+1. **AdaBoost (Adaptive Boosting)**
+
+>> At the end of every model prediction we end up boosting the weights of the misclassified instances so that the next model does a better job on them, and so on.
+
+Adaptive Boosting, or most commonly known AdaBoost, is a Boosting algorithm :rocket:. The method this algorithm uses to correct its predecessor is by **paying more attention to underfitted training instances by the previous model**.
+
+<center>
+<img src="https://miro.medium.com/max/850/0*paPv7vXuq4eBHZY7.png" width="500" alt="image">
+</center>
+
+2. **Gradient Tree Boosting:** It works by **sequentially adding the previous predictors underfitted predictions to the ensemble**, ensuring the erros made previously are corrected.
+
+The difference lies in what it does with the underfitted values of its predecessor. 
+- AdaBoost: Tweaks the instance weights at every interaction, 
+- Gradient Boosting: Tries to **fit the new predictor to the residual errors** made by the previous predictor.
+
+3. **XGBoost:** Extreme Gradient Boosting is an **advanced implementation of the Gradient Boosting**. This algorithm has **high predictive power** and is **ten times faster** than any other gradient boosting techniques. Moreover, includes a **variety of regularisation** which reduces overfitting and improves overall performance.
+
+4. **Light GB:** For datasets which are extremely large Light Gradient Boosting is the best, compared to all of the other, since it takes less time to run.
 
 - The motivation behind the `Boosting` algorithm is, there are `n weak classifiers`. Combining together gives a `powerful committee` who decides the final verdict of the classifier.
 - A week classifier is one whose error rate is slightly better than `random guessing` 
 
 **Resource:**
 
-- [link1](https://www.analyticsvidhya.com/blog/2015/11/quick-introduction-boosting-algorithms-machine-learning/)
+- [quick-introduction-boosting-algorithms-machine-learning](https://www.analyticsvidhya.com/blog/2015/11/quick-introduction-boosting-algorithms-machine-learning/)
+- [Boosting-with-adaboost-and-gradient-boosting](https://medium.com/diogo-menezes-borges/boosting-with-adaboost-and-gradient-boosting-9cbab2a1af81)
 
-## Do you know about Adaboost algorithm ? How and why does it work ?
 
-![image](/assets/images/image_21_AdaBoost_1.png)
-![image](/assets/images/image_21_AdaBoost_2.png)
-![image](/assets/images/image_21_AdaBoost_3.png)
 
-- In AdaBoost you need to define a `base classifier`.
-- `Classification Tree` acts as the best off the shelf base classifier for Adaboost.
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
-**Resource:**
+----
 
-- [Pdf: link](http://math.mit.edu/~rothvoss/18.304.3PM/Presentations/1-Eric-Boosting304FinalRpdf.pdf)
-- [Book: ESL, Chapter 10, Page 339]()
-
-## TODO: Adaboost objective function
-
-## How does gradient boosting works ?
-   
-1.  Bagging and Boosting both are ensemble learning algorithm, where a collection of weak learner builds the strong learner. 
-2. Bagging works on `re-sampling data with replacement` and create different dataset and the week learners are learnt on them, and final predictions are taken by 
-	averaging or majority voting. E.g. Random Forest.
-    
-**Bagging:** It is a simple ensembling technique in which we build many independent predictors/models/learners on sampled data with replacement from the original data (**Bootstrap Aggregatoin**) and combine them using some model averaging techniques. (e.g. weighted average, majority vote or normal average). E.g: `Random Forest`
-
-**Boosting:** Also an ensemble learning method in which the predictors are not made independently, but sequentially. [[link](https://medium.com/mlreview/gradient-boosting-from-scratch-1e317ae4587d)]
+# Do you know about Adaboost algorithm ? How and why does it work ?
 
 **AdaBoost:**
 
@@ -496,14 +556,51 @@ Also called Adaptive Boosting, where boosting is applied in a gradual way in the
 - First: A weak learner is applied and all the training examples, which are misclassified, are given higher weight. 
 - Second: While building the dataset for training the next learner, the previously misclassified training examples will appear in the dataset (as high weight has been given to them). Now on this new dataset another learner is trained. Obviously this learner will correctly classify those previously misclassified examples plus some more misclassification in this step. 
 - Repeat first and second.  
+
+
+<center>
+<img src="/assets/images/image_21_AdaBoost_1.png" width="500" alt="image">
+</center>
+
+<center>
+<img src="/assets/images/image_21_AdaBoost_2.png" width="500" alt="image">
+</center>
+
+<center>
+<img src="/assets/images/image_21_AdaBoost_3.png" width="500" alt="image">
+</center>
+
+- In AdaBoost you need to define a `base classifier`.
+- `Classification Tree` acts as the best off the shelf base classifier for Adaboost.
+
+**Resource:**
+
+- [MIT Resource](http://math.mit.edu/~rothvoss/18.304.3PM/Presentations/1-Eric-Boosting304FinalRpdf.pdf)
+- [Book: ESL, Chapter 10, Page 339]()
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
+# How does gradient boosting works ?
+   
+1.  Bagging and Boosting both are ensemble learning algorithm, where a collection of weak learner builds the strong learner. 
+2. Bagging works on `re-sampling data with replacement` and create different dataset and the week learners are learnt on them, and final predictions are taken by 
+averaging or majority voting. E.g. Random Forest.
+    
+**Bagging:** It is a simple ensembling technique in which we build many independent predictors/models/learners on sampled data with replacement from the original data (**Bootstrap Aggregatoin**) and combine them using some model averaging techniques. (e.g. weighted average, majority vote or normal average). E.g: `Random Forest`
+
+**Boosting:** Also an ensemble learning method in which the predictors are not made independently, but sequentially. [[link](https://medium.com/mlreview/gradient-boosting-from-scratch-1e317ae4587d)]
+
    
    
 **Gradient Boosting:** 
 
 - Gradient Boosting is also a boosting algorithm(Duh!), hence it also tries to create a strong learner from an ensemble of weak learners. This is algorithm is similar to Adaptive Boosting (AdaBoost) but differs from it on certain aspects. In this method we try to `visualize the boosting problem as an optimization problem`, i.e we take up a loss function and try to optimise it. 
 - We take up a weak learner(in previous case it was decision stump) and at each step, we add another weak learner to increase the performance and build a strong learner. This reduces the loss of the loss function. We iteratively add each model and compute the loss. The loss represents the error residuals(the difference between actual value and predicted value) and using this loss value the predictions are updated to minimise the residuals.
-- It learns a weak learner $F(x)+\epsilon_1$ ($\epsilon$ is the noise). Then on the noise 
-it builds another weak learner $H(x)+\epsilon_2$ and so on. Thus it becomes $F(x)+H(x)+G(x)+....+\epsilon$.
+- **Important:** It learns a weak learner $F(x)+\epsilon_1$ ($\epsilon$ is the noise). Then on the noise, i.e. the residual, 
+it builds another weak learner $H(x)+\epsilon_2$ and so on. Thus it becomes $F(x)+H(x)+G(x)+....+\epsilon$, where $\epsilon = \sum_i \epsilon_i$. Gradient boosting a sequential approach.
 
 
 **Reference:**
@@ -514,13 +611,19 @@ it builds another weak learner $H(x)+\epsilon_2$ and so on. Thus it becomes $F(x
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+----
+
 ## Difference of AdaBoost, Gradient Boost and XGBoost
 
-Both AdaBoost and Gradient Boosting build weak learners in a sequential fashion. Originally, AdaBoost was designed in such a way that at every step the sample distribution was adapted to put more weight on misclassified samples and less weight on correctly classified samples. The final prediction is a weighted average of all the weak learners, where more weight is placed on stronger learners. 
+Both AdaBoost and Gradient Boosting build weak learners in a sequential fashion. Originally, AdaBoost was designed in such a way that at every step the **sample distribution was adapted to put more weight on misclassified samples and less weight on correctly classified samples.** The final prediction is a weighted average of all the weak learners, where more weight is placed on stronger learners. 
 
-AdaBoost can also be expressed as in terms of the more general framework of additive models with a particular loss function (the exponential loss) [_chapter 10 in (Hastie) ESL_].
+AdaBoost can also be expressed as in terms of the more general framework of `additive models` with a particular loss function (the exponential loss) [_chapter 10 in (Hastie) ESL_]. AdaBoost.M1 (Algorithm 10.1, from the book) is equivalent to forward stagewise additive modeling (Algorithm 10.2) using the loss function 
 
->> In `Gradient Boosting`, ‘shortcomings’ (of existing weak learners) are identified by gradients. In `Adaboost`, ‘shortcomings’ are identified by high-weight data points.
+$$
+L(y, f(x)) = exp(-yf(x))
+$$
+
+>> In `Gradient Boosting`, **shortcomings** (of existing weak learners) are identified by gradients a.k.a **residuals**. In `Adaboost`, ‘shortcomings’ are identified by **high-weight data points**.
 
 
 
@@ -530,7 +633,7 @@ Second, AdaBoost can be interepted from a much more intuitive perspective and ca
 
 **Reference:**
 
-- [link](https://www.quora.com/What-is-the-difference-between-gradient-boosting-and-adaboost) 
+- [Quora: What-is-the-difference-between-gradient-boosting-and-adaboost](https://www.quora.com/What-is-the-difference-between-gradient-boosting-and-adaboost) 
 - [Math Explanation: Imp_link](http://www.ccs.neu.edu/home/vip/teach/MLcourse/4_boosting/slides/gradient_boosting.pdf)
 - [Stack Exchange](https://datascience.stackexchange.com/questions/39193/adaboost-vs-gradient-boosting)
 
