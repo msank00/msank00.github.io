@@ -498,11 +498,6 @@ A reliability diagram is a line plot of the relative frequency of what was obser
 
 These plots are commonly referred to as `reliability` diagrams in forecast literature, although may also be called `calibration` plots or curves as they summarize how well the forecast probabilities are calibrated.
 
-<center>
-<img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2018/06/Calibrated-and-Uncalibrated-SVM-Reliability-Diagram.png", height="400">
-</center>
-
-_Blue line: Uncalibrated, Orange line: calibrated. After calibration, the orange line is hugging the diagonal line more closely_
 
 **Interpretation:**
 
@@ -528,6 +523,48 @@ There are two popular approaches to calibrating probabilities:
   - Platt Scaling is simpler and is suitable for reliability diagrams with the S-shape.
 - Isotonic Regression
   - Isotonic Regression is more complex, requires a lot more data (otherwise it may overfit), but can support reliability diagrams with different shapes (is nonparametric).
+
+## Implementation
+
+
+```py
+# SVM reliability diagram with calibration
+from sklearn.datasets import make_classification
+from sklearn.svm import SVC
+from sklearn.calibration import CalibratedClassifierCV
+from sklearn.model_selection import train_test_split
+from sklearn.calibration import calibration_curve
+from matplotlib import pyplot
+# generate 2 class dataset
+X, y = make_classification(n_samples=1000, n_classes=2, weights=[1,1], random_state=1)
+# split into train/test sets
+trainX, testX, trainy, testy = train_test_split(X, y, test_size=0.5, random_state=2)
+# fit a model
+model = SVC()
+calibrated = CalibratedClassifierCV(model, method='sigmoid', cv=5)
+calibrated.fit(trainX, trainy)
+# predict probabilities
+probs = calibrated.predict_proba(testX)[:, 1]
+# reliability diagram
+fop, mpv = calibration_curve(testy, probs, n_bins=10, normalize=True)
+# plot perfectly calibrated
+pyplot.plot([0, 1], [0, 1], linestyle='--')
+# plot calibrated reliability
+pyplot.plot(mpv, fop, marker='.')
+pyplot.show()
+```
+
+<center>
+<img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2018/06/Calibrated-and-Uncalibrated-SVM-Reliability-Diagram.png", height="250">
+</center>
+
+_Blue line: Uncalibrated, Orange line: calibrated. After calibration, the orange line is hugging the diagonal line more closely_
+
+- `sklearn.calibration.calibration_curve()` for getting the values for plotting in `calibration curve`
+- `sklearn.calibration.CalibratedClassifierCV()` is used for calibrating the probabilities.
+  - Probability calibration with isotonic regression or sigmoid.
+  - With this class, the `base_estimator` is fit on the train set of the cross-validation generator and the test set is used for calibration. The probabilities for each of the folds are then averaged for prediction.
+
 
 **Reference:**
 
