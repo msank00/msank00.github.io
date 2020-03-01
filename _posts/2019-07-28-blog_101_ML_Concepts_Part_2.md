@@ -98,6 +98,8 @@ Common input variable data types:
 
 2. Numerical Input, Categorical Output
    1. ANOVA correlation coefficient (linear).
+      1. Check this implementation [video](https://www.youtube.com/watch?v=PWZLhr3FfIM)
+      2. Understand [ANOVA](https://www.youtube.com/watch?v=-yQb_ZJnFXw)
    2. Kendall’s rank coefficient (nonlinear). Kendall does assume that the categorical variable is `ordinal`.
 
 
@@ -124,6 +126,8 @@ For example:
 - Chi-Squared: [chi2()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.chi2.html)
 - Mutual Information: [mutual_info_classif()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_classif.html) and
 [mutual_info_regression()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_regression.html)
+
+
 
 Also, the SciPy library provides an implementation of many more statistics, such as Kendall’s tau ([kendalltau](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.kendalltau.html)) and Spearman’s rank correlation ([spearmanr](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.spearmanr.html)).
 
@@ -213,7 +217,14 @@ def select_features(X_train, y_train, X_test):
   X_test_fs = fs.transform(X_test)
   return X_train_fs, X_test_fs, fs
 ```
-_for more detailed coding example follow this_ _[link](https://machinelearningmastery.com/feature-selection-with-categorical-data/)_.
+
+## Other methods
+
+- Feature Selection with Filtering Method- Constant, Quasi Constant and Duplicate Feature Removal
+  - [Implementation video](https://www.youtube.com/watch?v=nPHU1CpX4jg&list=PLc2rvfiptPSQYzmDIFuq2PqN2n28ZjxDH&index=2)
+- _for more detailed coding example follow this_ _[link](https://machinelearningmastery.com/feature-selection-with-categorical-data/)_.
+- [Very good explanation video](https://www.youtube.com/watch?v=kA4mD3y4aqA&list=PLc2rvfiptPSQYzmDIFuq2PqN2n28ZjxDH)
+
 
 **Reference:**
 
