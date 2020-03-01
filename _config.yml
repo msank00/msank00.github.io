@@ -16,6 +16,7 @@ plugins:
   - "disqus-for-jekyll"
   - jekyll-feed
   - jemoji
+  - rouge
 
 header_pages:
   #- resume.md
