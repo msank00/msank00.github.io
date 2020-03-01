@@ -409,12 +409,12 @@ where `i=1,...,N` and $S$ is the size of total datasets and $S_i$ is the size of
 ## Pros and Cons of Decision Trees:
 
 <center>
-<img src="/assets/images/image_22_Tree_3.png" height="300" alt="image">
+<img src="/assets/images/image_22_Tree_3.png" height="350" alt="image">
 </center>
 
 
 <center>
-<img src="/assets/images/image_22_Tree_4.png" height="205" alt="image">
+<img src="/assets/images/image_22_Tree_4.png" height="230" alt="image">
 </center>
 
 
@@ -496,7 +496,7 @@ However in practice it is not possible to guarantee such classifier independence
 # Characteristics of Different Learning Methods
 
 <center>
-<img src="../assets/images/image_22_Algorithms_1.png" height="400" alt="image">
+<img src="../assets/images/image_22_Algorithms_1.png" height="450" alt="image">
 </center>
 
 MARS: Multivariate Adaptive Regression Splines 
