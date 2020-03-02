@@ -1300,8 +1300,8 @@ the vanishing gradient problem arises when, during backprop, the error signal us
 - $i_t=\sigma(W_i[h_{t-1},x_t])$
 - $o_t=\sigma(W_o[h_{t-1},x_t])$
 - $\tilde{C}_t=\tanh(W_C[h_{t-1},x_t])$
-- $C_t=f_tC_{t-1} + i_t\widetilde{C}_t$
-- $h_t=o_ttanh(C_t)$
+- $C_t=f_t \odot C_{t-1} + i_t \odot \widetilde{C}_t$
+- $h_t=o_t \odot tanh(C_t)$
 
 ![image](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-chain.png)
 
