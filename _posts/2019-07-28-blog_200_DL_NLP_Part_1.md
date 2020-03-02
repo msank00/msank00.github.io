@@ -766,8 +766,8 @@ It is an unpublished, adaptive learning rate method proposed by Geoff Hinton in 
 
 ## Adam
 
-Adaptive Moment Estimation (Adam) is another method that computes adaptive learning rates for each parameter. In addition to storing an exponentially decaying average of past squared gradients $v_t$
-like Adadelta and RMSprop, Adam also keeps an exponentially decaying average of past gradients $m_t$, similar to momentum. Whereas momentum can be seen as a ball running down a slope, Adam behaves like a heavy ball with friction, which thus prefers flat minima in the error surface. We compute the decaying averages of past and past squared gradients $m_t$ and $v_t$ respectively as follows:
+Adaptive Moment Estimation (Adam) is another method that computes adaptive learning rates for each parameter. In addition to storing an `exponentially decaying` average of **past squared gradients** $v_t$
+like Adadelta and RMSprop, Adam also keeps an `exponentially decaying` average of **past gradients** $m_t$, similar to momentum. Whereas momentum can be seen as a ball running down a slope, Adam behaves like a heavy ball with friction, which thus prefers flat minima in the error surface. We compute the decaying averages of past and past squared gradients $m_t$ and $v_t$ respectively as follows:
 
 $$m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t \\ 
 v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2 $$
@@ -1072,8 +1072,8 @@ The paper ‘Attention Is All You Need’ describes transformers and what is cal
 <img src="https://cdn-images-1.medium.com/max/800/1*BHzGVskWGS_3jEcYYi6miQ.png" height="400">
 </center>
 
-- One interesting point is, even if it's used for seq2seq generation, but there is no `recurrence` part inside the model like the  `vanilla rnn` or `lstm`.
-- So one slight but important part of the model is the positional encoding of the different words. Since we have no recurrent networks that can remember how sequences are fed into a model, we need to somehow give every word/part in our sequence a relative position since a sequence depends on the order of its elements. These positions are added to the embedded representation (n-dimensional vector) of each word. 
+- One interesting point is, even if it's used for **seq2seq generation**, **but there is no** `recurrence` part inside the model like the  `vanilla rnn` or `lstm`.
+- So one slight but important part of the model is the **positional encoding** of the different words. Since we have no recurrent networks that can remember how sequences are fed into a model, we need to somehow give every word/part in our sequence a relative position since a sequence depends on the order of its elements. These positions are added to the embedded representation (n-dimensional vector) of each word. 
 
 Pros:
 - Faster learning. More GPU efficient unlike the `vanilla rnn`
