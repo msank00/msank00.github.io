@@ -167,8 +167,45 @@ Therefore, in such network the total derivative $\frac{\delta s_4}{\delta W}$ ha
 
 ![image](/assets/images/bptt_1.png)
 
-![image](/assets/images/bptt_2.png)
+<center>
+<img src="/assets/images/bptt_2.png" height="300">
+</center>
 
+
+## Vanishing and Exploding gradient problem in BPTT
+
+So we got
+
+$$
+\frac{\delta L_t(\theta)}{\delta W} =  \frac{\delta L_t(\theta)}{\delta s_t} \sum\limits_{k=1}^{t}\frac{\delta s_t}{\delta s_k}\frac{\delta^+ s_k}{\delta W}
+$$
+
+However we will now focus on $\frac{\delta s_t}{\delta s_k}$ which is causing a problem in training RNN using BPTT.
+
+$$
+\frac{\delta s_t}{\delta s_k} = \frac{\delta s_t}{\delta s_{t-1}} \frac{\delta s_{t-1}}{\delta s_{t-2}}\dots \frac{\delta s_{k+1}}{\delta s_{k}} = \prod\limits_{j=k}^{t-1} \frac{\delta s_{j+1}}{\delta s_{j}}
+$$
+
+Therefore the earlier equation becomes
+
+$$
+\frac{\delta L_t(\theta)}{\delta W} =  \frac{\delta L_t(\theta)}{\delta s_t} \sum\limits_{k=1}^{t}(\prod\limits_{j=k}^{t-1} \frac{\delta s_{j+1}}{\delta s_{j}})\frac{\delta^+ s_k}{\delta W}
+$$
+
+Now we are interested in the magnitude of $\frac{\delta s_{j+1}}{\delta s_{j}}$. 
+- If $\frac{\delta s_{j+1}}{\delta s_{j}}$ is small, i.e $\lt 1$, then on repeated multiplication, it will **vanish**, $\Rightarrow$ $\frac{\delta s_{t}}{\delta s_{k}}$ will **vanish** $\Rightarrow$  $\frac{\delta L_t(\theta)}{\delta W}$ will **vanish**.
+- If $\frac{\delta s_{j+1}}{\delta s_{j}}$ is large, i.e $\gt 1$, then on repeated multiplication, it will **explode**, $\Rightarrow$ $\frac{\delta s_{t}}{\delta s_{k}}$ will **explode** $\Rightarrow$  $\frac{\delta L_t(\theta)}{\delta W}$ will **explode**.
+ 
+From [Lecture 14 by Prof.Mitesh K](http://www.cse.iitm.ac.in/~miteshk/CS7015.html),
+
+<center>
+<img src="/assets/images/image_03_bptt_1.png" width="600">
+</center>
+
+
+<center>
+<img src="/assets/images/image_03_bptt_2.png" width="600">
+</center>
 
 **Resource:**
 
