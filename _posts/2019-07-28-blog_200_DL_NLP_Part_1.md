@@ -1173,26 +1173,35 @@ For feature learning in word2vec we do not need a full probabilistic model. The 
 
 # LSTM demystified
 
-![image](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-chain.png)
-
+<center>
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-chain.png" width="500">
+</center>
 
 **Core Idea:**
 The key to LSTMs is the cell state, the horizontal line running through the top of the diagram. The cell state is kind of like a conveyor belt. It runs straight down the entire chain, with only some minor linear interactions. It’s very easy for information to just flow along it unchanged.
 
+<center>
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-C-line.png" width="500">
+</center>
 
-![image](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-C-line.png)
 
 The LSTM does have the ability to remove or add information to the cell state, carefully regulated by structures called gates. It has `forget gate`, `input gate` and `output gate`.
 
 **Forget Gate:**
 
-![image](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-f.png)
+<center>
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-f.png" width="500">
+</center>
+
 
 It controls how much old information (or old memory or state) you want to retain or not. $f_t\in(0,1)$ and thus it maintains a proportion of old memory.
 
 **Input Gate:**
 
-![image](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-i.png)
+<center>
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-i.png" width="500">
+</center>
+
 
 The next step is to decide what new information we’re going to store in the cell state. This has two parts. 
 
@@ -1202,13 +1211,19 @@ The next step is to decide what new information we’re going to store in the ce
 
 **Cell Update:**
 
-![image](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-C.png)
+<center>
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-C.png" width="500">
+</center>
+
 
 We multiply the old state by ft, forgetting the things we decided to forget earlier. Then we add $i_t*\tilde{C}_t$. This is the new candidate values, scaled by how much we decided to update each state value.
 
 **Output Gate:**
 
-![image](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-o.png)
+<center>
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-o.png" width="500">
+</center>
+
 
 Finally, we need to decide what we’re going to output. This output will be based on our cell state, but will be a filtered version. 
 
@@ -1247,7 +1262,10 @@ To understand why LSTMs help, we need to understand the problem with vanilla RNN
 $$h_t = tanh(W_Ix_t + W_Rh_{t-1})$$
 $$y_t = W_Oh_t$$
 
-![image](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-SimpleRNN.png)
+<center>
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-SimpleRNN.png" width="500">
+</center>
+
 
 To do backpropagation through time to train the RNN, we need to compute the gradient of $E$ with respect to $W_R$. The overall error gradient is equal to the sum of the error gradients at each time step. For step $t$, we can use the multivariate chain rule to derive the error gradient as:
 
@@ -1303,7 +1321,11 @@ the vanishing gradient problem arises when, during backprop, the error signal us
 - $C_t=f_t \odot C_{t-1} + i_t \odot \widetilde{C}_t$
 - $h_t=o_t \odot tanh(C_t)$
 
-![image](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-chain.png)
+
+<center>
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-chain.png" width="500">
+</center>
+
 
 As we can see above (previous question), the biggest culprit in causing our gradients to vanish is that dastardly recursive derivative we need to compute: 
 $\frac{\partial h_t}{\partial h_i}$. If only this derivative was ‘well behaved’ (that is, it doesn’t go to 0 or infinity as we backpropagate through layers) then we could learn long term dependencies!
@@ -1311,11 +1333,11 @@ $\frac{\partial h_t}{\partial h_i}$. If only this derivative was ‘well behaved
 
 **The original LSTM solution:** The original motivation behind the LSTM was to make this recursive derivative have a constant value. If this is the case then our gradients would neither explode or vanish. How is this accomplished? As you may know, the LSTM introduces a separate cell state $C_t$. In the original 1997 LSTM, the value for $C_t$ depends on the previous value of the cell state and an update term weighted by the input gate value. 
 
-$$C_t = C_{t-1} + i\widetilde{C}_t$$
+$$C_t = C_{t-1} + i \odot \widetilde{C}_t$$
 
 This formulation doesn’t work well because the cell state tends to grow uncontrollably. In order to prevent this unbounded growth, a forget gate was added to scale the previous cell state, leading to the more modern formulation:
 
-$$C_t = fC_{t-1} + i\widetilde{C}_t$$
+$$C_t = f \odot C_{t-1} + i \odot \widetilde{C}_t$$
 
 **A common misconception:** Most explanations for why LSTMs solve the vanishing gradient state that under this update rule, the recursive derivative is equal to 1 (in the case of the original LSTM) or f
 (in the case of the modern LSTM)3 and is thus well behaved! One thing that is often forgotten is that f, i, and $\widetilde{C}_t$
