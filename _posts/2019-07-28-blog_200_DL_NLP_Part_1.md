@@ -1069,7 +1069,7 @@ Natural Language Understanding (NLU):  language modeling, machine translation an
 The paper ‘Attention Is All You Need’ describes transformers and what is called a sequence-to-sequence architecture. Sequence-to-Sequence (or Seq2Seq) is a neural net that transforms a given sequence of elements, such as the sequence of words in a sentence, into another sequence.
 
 <center>
-<img src="https://cdn-images-1.medium.com/max/800/1*BHzGVskWGS_3jEcYYi6miQ.png" height="400">
+<img src="https://cdn-images-1.medium.com/max/800/1*BHzGVskWGS_3jEcYYi6miQ.png" width="600">
 </center>
 
 - One interesting point is, even if it's used for **seq2seq generation**, **but there is no** `recurrence` part inside the model like the  `vanilla rnn` or `lstm`.
@@ -1290,7 +1290,7 @@ $$
 Thus, if we want to backpropagate through $k$ timesteps, this gradient will be :
 
 $$
-\frac{\partial h_{k}}{\partial h_1} =  \prod_i^k diag(f'(W_Ix_i + W_Rh_{i-1}))W_R
+\frac{\partial h_{k}}{\partial h_1} =  \prod\limits_i^k diag(f'(W_Ix_i + W_Rh_{i-1}))W_R
 $$
 
 As shown in this paper, if the dominant eigenvalue of the matrix $W_R$
