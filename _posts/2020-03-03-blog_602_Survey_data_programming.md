@@ -83,7 +83,7 @@ From the original Snorkle [paper](https://link.springer.com/article/10.1007/s007
 
 # Data Programming: Creating Large Training Sets, Quickly
 
-We will highlight the main points from [this](https://arxiv.org/abs/1605.07723) paper.
+We will highlight the main points from [this](https://arxiv.org/abs/1605.07723) NIPS 2016 paper.
 
 Large labeled training sets are the critical building blocks of supervised learning methods and are key enablers of deep learning techniques. For some applications, **creating labeled training sets is the most time-consuming and expensive** part of applying machine learning. The author therefore proposes a paradigm for the programmatic creation of training sets called data programming in which users express **weak supervision** strategies or domain heuristics as **labeling functions**, which are programs that label subsets of the data, but that are noisy and may conflict.
 
@@ -132,11 +132,34 @@ $$
 $$
 
 
-In other words, we are maximizing the probability that the observed labels produced on our training examples occur under the generative model in ($1$). In our experiments, we use stochastic gradient descent to solve this problem; since this is a standard technique, we defer its analysis to the appendix. 
+In other words, we are maximizing the probability that the **observed labels produced on our training examples occur under the generative model in** ($1$). In our experiments, we use stochastic gradient descent to solve this problem; since this is a standard technique, we defer its analysis to the appendix. 
 
 Learning $(\hat\alpha, \hat\beta)$ means we can generate the labelling distribution $\rightarrow$ i.e. we can generate the labels.
 
 We then use the predictions, $\widetilde{Y} = P_{(\hat\alpha, \hat\beta)}(Y \vert \Lambda)$, as **probabilistic training labels**.
+
+## Noise-Aware Empirical Loss - Discriminative Model
+
+Given that our parameter learning phase (using generative model) has successfully found some $(\hat\alpha, \hat\beta)$ that accurately describe the training set, we can now proceed to estimate the parameter $\hat{w}$ which **minimizes the expected risk of a linear model** over our feature mapping $f(.)$, given $(\hat\alpha, \hat\beta)$.
+
+
+To do so, we define the **noise-aware empirical risk** $\mathcal{L}_{\hat\alpha, \hat\beta}$ with regularization parameter $\rho$, and compute the **noise-aware empirical risk minimizer.**
+
+$$
+\hat{w} = {argmin}_{w} \mathcal{L}_{\hat\alpha, \hat\beta} (w;S)
+$$
+
+$$
+= {argmin}_{w} \frac{1}{\vert S \vert} \sum\limits_{x \in S} \mathbf{E}_{(\Lambda, Y) \sim \mu_{\alpha, \beta}} \left[  \log(1+exp(-w^T f(x) Y)) \vert \Lambda = \lambda(x) \right] + \rho \vert \vert w \vert \vert^2 
+$$
+
+This is a logistic regression problem, so it can be solved using stochastic gradient descent as well.
+
+- **Why noise-aware?** Because it's based on the learnt $(\hat\alpha, \hat\beta)$ which already captured the noise aware part by learning the generative model over the noisy labels. 
+
+This is the overall idea. Now the feature generation $f(x)$ can also be done using automatic feature generation process like LSTM.
+
+For more details, please go through the fantastic paper. 
 
 **Reference**
 
