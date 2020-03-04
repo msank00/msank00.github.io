@@ -137,6 +137,7 @@ Now that the Bayesian network structure is completely directed, we can fit the p
 # ...
 ```
 
+
 **Reference:**
 
 - [Oxford: slide 1](https://www.bnlearn.com/about/slides/slides-aist17.pdf)
@@ -145,6 +146,7 @@ Now that the Bayesian network structure is completely directed, we can fit the p
 - [Book: Learning Bayesian Network](http://www.cs.technion.ac.il/~dang/books/Learning%20Bayesian%20Networks(Neapolitan,%20Richard).pdf)
 - [Columbia: Slide](https://www.ee.columbia.edu/~vittorio/Lecture12.pdf)
 - [Imp Blog](https://ermongroup.github.io/cs228-notes/learning/structure/)
+
 ----
 
 <a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>
