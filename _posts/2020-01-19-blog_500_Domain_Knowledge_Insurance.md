@@ -440,9 +440,51 @@ _for more details, read the bellow link thoroughly_
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+----
+
+# What is Loss Ratio?
+
+A loss ratio is a ratio of losses to gains, used normally in a financial context. It is the opposite of the gross profit ratio (commonly known as the gross profit margin). 
+
+For insurance, the loss ratio is the **ratio of total losses incurred (paid and reserved) in claims plus adjustment expenses divided by the total premiums earned**. For example, if an insurance company pays $60$ in claims for every $100$ in collected premiums, then its loss ratio is $60\%$ with a profit ratio/gross margin of 40% or $40$. Some portion of those $40$ dollars must pay all operating costs (things such as overhead and payroll), and what is left is the net profit.
+ 
+Loss ratios for property and casualty insurance (e.g. motor car insurance) typically range from $40\%$ to $60\%$. Such companies are collecting premiums more than the amount paid in claims. Conversely, insurers that consistently experience high loss ratios may be in bad financial health. They may not be collecting enough premium to pay claims, expenses, and still make a reasonable profit. 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 
 ----
 
+# What is Burning Cost?
+
+The burning cost is an **experience-rating method** most commonly used in nonproportional reinsurance when there is sufficient credible claims experience. 
+
+The **burning cost** adjusts the actual historical losses and translates them to the prospective reinsurance period. Strain defines the burning cost as, **"The ratio of actual past reinsured losses to ceding company’s subject matter premium (written or earned) for the same period. Used to analyze past reinsurance experience or to project the future."** 
+
+The burning cost is most useful for lower layers
+where there is significant claims experience for the results to be meaningful and predictive. When there is no sufficient claims experience, alternative rating methods might be used, for example, the exposure rating method. 
+
+**Basic formula:**
+
+$$
+\frac{LossPaid + Outstanding}{NetPremiumIncome}*Loading = Rate
+$$
+
+
+The calculation is adjusted each year until all losses have been settled. If the rate calculated fall below the minimum, the minimum rate applies. If the rate calculated exceeds the maximum, then maximum  rate is applied.  
+
+**Reference:**
+
+- [basic-concepts-and-techniques-of-the-pricing-process](https://www.cii.co.uk/fact-files/actuarial/basic-concepts-and-techniques-of-the-pricing-process/)
+
+----
+
+# What is a Ceding Company?
+
+A ceding company is an insurance company that passes the part or all of its risks from its insurance policy portfolio to a reinsurance firm. Passing off risk in this manner allows the ceding company to hedge against undesired exposure to loss and frees up capital to use in writing new insurance contracts.
+
+
+----
 
 # Exercise:
 
