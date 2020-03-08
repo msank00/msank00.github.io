@@ -655,6 +655,46 @@ The scalability of XGBoost is due to several important systems and algorithmic o
 - A theoretically justified weighted quantile sketch procedure enables handling instance weights in approximate tree learning. 
 - Parallel and distributed computing makes learning faster which enables quicker model exploration.
 
+## Objective Function
+
+Read section $2.1$ and $2.2$ of the original XGBoost paper.
+
+**Regularized Learning Objective**
+
+For a given data set with $n$ examples and $m$ features
+$D = \{(x_i, y_i)\}$ $( \vert D \vert = n, x_i \in \mathbb{R}^m, y_i \in \mathbb{R})$, a tree ensemble model uses $K$-**additive functions** to predict the output.
+
+$$
+\hat{y_i} = \phi(\mathbf{x_i}) = \sum\limits_{k=1}^K f_k(\mathbf{x_i})  
+$$
+
+where $f_k \in \mathcal{F}$. Also $\mathcal{F} = {f(\mathbf{x}) = w_{q(\mathbf{x})}}(q : \mathbb{R}^m \rightarrow T, w \in \mathbb{R}^T)$ is the space of regression trees (also known as CART). Here $q$ represents the structure of each tree that maps an example to the corresponding leaf index. $T$ is the number of leaves in the tree. Each $f_k$ corresponds to an independent tree structure $q$ and leaf weights $w$. Unlike decision trees, each regression tree contains a continuous score on each of the leaf, we use $w_i$ to represent score on $i^{th}$ leaf. For a given example, we will use the decision rules in the trees (given by q) to classify it into the leaves and calculate the final prediction by summing up the score in the corresponding leaves (given by $w$). To learn the set of functions used in the model, we minimize the following regularized objective. 
+
+$$
+\mathcal{L}(\phi) = \sum_i l(\hat{y_i}, y_i) + \sum_k \Omega(f_k)
+$$
+
+
+where $\Omega(f)= \gamma T + \frac{1}{2} \lambda \vert \vert w \vert \vert^2$
+
+Here $l$ is a differentiable convex loss function that measures the difference between the prediction $\hat{y_i}$ and the target $y_i$. The second term $\Omega$ penalizes the complexity of the model (i.e., the regression tree functions). The additional regularization term helps to smooth the final learnt weights to avoid over-fitting. Intuitively, the regularized objective will tend to select a model employing simple and predictive functions. When the regularization parame- ter is set to zero, the objective falls back to the traditional gradient tree boosting.
+
+
+**Gradient Tree Boosting**
+
+The tree ensemble model in the above equation includes functions as parameters and cannot be optimized using traditional optimization methods in Euclidean space. Instead, the model is **trained in an additive manner**. Formally, let $\hat{y_i}$ be the prediction of the $i^{th}$ instance at the $t^{th}$ iteration, we will need to add $f_t$ to minimize the following objective.
+
+$$
+\mathcal{L}^{(t)} = \sum\limits_{i=1}^{n} l(\hat{y_i}, y_i^{(t-1)} + f_t(\mathbf{x_i})) + \Omega(f_t)
+$$
+
+
+This means we greedily add the ft that most improves our model according to the above equation. Second-order approximation can be used to quickly optimize the objective in the general setting.
+
+Fore more in-depth math, read the section $2.2$ of the [paper](https://arxiv.org/pdf/1603.02754.pdf). 
+
+
+
 ## System design
 
 **Column Block for Parallel Learning:**
