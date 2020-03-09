@@ -269,7 +269,62 @@ PyTorchNLPBook by Delip Rao, Chapter 3
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
----
+-----
+
+# Why you should use `torch.no_grad()` instead of `model.eval()`?
+
+It's more memory efficient and runs faster. It's a very handy operation that can save you from `CUDA Out of memory` error. 
+
+Because many times, in the `evaluation()` step using the validation dataset and dataloader, you may face this CUDA OOM error. 
+
+```py
+# RuntimeError: cuda runtime error (2) : out of memory at /data/users/soumith/miniconda2/conda-bld/pytorch-0.1.9_1487346124464/work/torch/lib/THC/generic/THCStorage.cu:66
+```
+
+
+That time `torch.no_grad()` will help you. So it's better to use this instead of `model.eval()`
+
+
+
+## Use of `volatile` in gpu memory improvement?
+
+From the comment section of this github issue [#958](https://github.com/pytorch/pytorch/issues/958)
+
+**Sample error**
+
+```py
+# RuntimeError: cuda runtime error (2) : out of memory at /data/users/soumith/miniconda2/conda-bld/pytorch-0.1.9_1487346124464/work/torch/lib/THC/generic/THCStorage.cu:66
+```
+
+ Same error occurred to me in the same situation. It was solved by changing `volatile` in `Variable()` when **inference** i.e using `val_data`. If we set `volatile=True`, the computational graph will be retained during inference. But in inference time, we don't need to retain computational graphs. It's very memory consuming.
+You can just set flags of volatile to True like this, `Variable(x, volatile=True)`.
+
+**Read** the comments of the issue page mentioned above.
+
+See how to use `volatile=True` in inference time.
+
+```py
+if phase == 'train':
+scheduler.step()
+
+........
+
+for data in dataloaders[phase]:  ## Iterate over data.
+
+inputs, labels = data  ## get the inputs
+
+if use_gpu:  ## pass them into GPU
+inputs = inputs.cuda()
+labels = labels.cuda()
+
+if phase == 'train':  ## wrap them in Variable
+inputs, labels = Variable(inputs), Variable(labels)
+else:
+inputs = Variable(inputs, volatile=True)
+labels = Variable(labels, volatile=True)
+```
+
+-----
 
 # Dive into Deep Learning with PyTroch
 
