@@ -1011,8 +1011,8 @@ Along with the above methods `Random Forest` also does the following:
 
 **Reference:**
 
-- [Ref 1](https://stackoverflow.com/questions/34997134/random-forest-tuning-tree-depth-and-number-of-trees/35012011#35012011)
-- [Ref 2](https://stats.stackexchange.com/questions/111968/random-forest-how-to-handle-overfitting)
+- [SO:random-forest-tuning-tree-depth-and-number-of-trees](https://stackoverflow.com/questions/34997134/random-forest-tuning-tree-depth-and-number-of-trees/35012011#35012011)
+- [statsexchange:random-forest-how-to-handle-overfitting](https://stats.stackexchange.com/questions/111968/random-forest-how-to-handle-overfitting)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
