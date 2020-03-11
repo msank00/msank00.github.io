@@ -380,11 +380,11 @@ assumed to be non-negative
 - For different application of NMF you can check [this](https://msank00.github.io/blog/2019/07/27/blog_203_ML_NLP_Part_1#what-is-nonnegative-matrix-factorization-nmf-)
 
 <center>
-<img src="../assets/images/image_36_mf_1.png" height="380">
+<img src="/assets/images/image_36_mf_1.png" height="380">
 </center>
 
 <center>
-<img src="../assets/images/image_36_mf_2.png" height="400">
+<img src="/assets/images/image_36_mf_2.png" height="400">
 </center>
 
 Figure:1 **Non-negative matrix factorization** (NMF) learns a parts-based representation of faces, whereas vector quantization (VQ)and principal components analysis (PCA) learn holistic representations. 
