@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Survey - Model Explainability"
-date:   2020-03-05 00:00:10 -0030
+title:  "Survey - Auto-encoder"
+date:   2020-03-11 00:00:10 -0030
 categories: jekyll update
 mathjax: true
 ---
