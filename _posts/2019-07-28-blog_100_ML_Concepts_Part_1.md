@@ -273,10 +273,92 @@ where Q is the matrix with eigenvectors as columns and $\Sigma$ is $diag(\lambda
 
 # Matrix Factorization
 
+Matrix factorization is a simple **embedding model**. Given the feedback matrix $A \in \mathbb{R}^{m \times n}$ , where $m$ is the number of users (or queries) and $n$ is the number of items, the model learns:
+
+- A **user embedding matrix** $U \in \mathbb{R}^{m \times d}$, where row $i$ is the embedding for user $i$.
+- An **item embedding matrix** $V \in \mathbb{R}^{n \times d}$, where row $j$ is the embedding for item $j$.
+
+<center>
+<img src="https://developers.google.com/machine-learning/recommendation/images/Matrixfactor.svg" width="600">
+</center>
+
+The embeddings are learned such that the product $UV^T$ is a **good approximation** of the `feedback matrix` $A$. Observe that the  $(i j)$ entry of $(U.V^T)$ is simply the **dot product** of the embeddings of $user_i$ and $item_j$ , which you want to be close to $A_{ij}$.
+
+## Why matrix factorization is so efficient?
+
+Matrix factorization typically gives a more `compact representation` than learning the full matrix. The full matrix has entries $O(nm)$, while the embedding matrices $U$, $V$  have $O((n+m)d)$ entries, where the embedding dimension $d$ is typically much smaller than $m$ and $n$, i.e $d \ll m$ and $d \ll n$ . As a result, matrix factorization finds **latent structure** in the data, assuming that observations lie close to a low-dimensional subspace. 
+
+In the preceding example, the values of $n$, $m$, and $d$ are so low that the advantage is negligible. In real-world recommendation systems, however, matrix factorization can be significantly more compact than learning the full matrix.
+
+## Choosing the Objective Function
+
+One intuitive objective function is the squared distance. To do this, minimize the sum of squared errors over all pairs of observed entries:
+
+$$
+\argmin\limits_{U, V} \sum\limits_{i,j \in obs} (A_{ij}- (U_i V_j))^2
+$$
+
+In this objective function, you only sum over **observed pairs** $(i, j)$, that is, over non-zero values in the feedback matrix. 
+
+However, only summing over values of one is not a good idea—a matrix of all ones will have a minimal loss and produce a model that can't make effective recommendations and that generalizes poorly.
+
+<center>
+<img src="https://developers.google.com/machine-learning/recommendation/images/UnobservedEntries.svg" width="600">
+</center>
+
+You can solve this quadratic problem through **Singular Value Decomposition** (SVD) of the matrix. However, SVD is not a great solution either, because in real applications, the matrix may be very sparse. For example, think of all the videos on YouTube compared to all the videos a particular user has viewed. The solution
+
+(which corresponds to the model's approximation of the input matrix) will likely be close to zero, leading to poor generalization performance.
+
+In contrast, **Weighted Matrix Factorization** decomposes the objective into the following two sums:
+
+- A sum over **observed entries** i.e. $i,j \in obs$.
+- A sum over **unobserved entries** (treated as zeroes) i.e. $ij \notin obs$.
+
+$$
+\argmin\limits_{U, V} \sum\limits_{i,j \in obs} (A_{ij}- (U_i V_j))^2 + w_0 \sum\limits_{i,j \notin obs} ((U_i V_j))^2
+$$
+
+Here $w_0$, is a hyperparameter that weights the two terms so that the objective is not dominated by one or the other. Tuning this hyperparameter is very important.
+
+## Minimizing the Objective Function
+
+Common algorithms to minimize the objective function include:
+
+- **Stochastic gradient descent** (SGD) is a generic method to minimize loss functions.
+- **Weighted Alternating Least Squares** (WALS) is specialized to this particular objective.
+
+The objective is quadratic in each of the two matrices $U$ and $V$. (Note, however, that the problem is **not jointly convex**.) 
+
+WALS works by initializing the embeddings randomly, then alternating between:
+
+- Fixing $U$ and solving for $V$
+- Fixing $V$ and solving for $U$
+
+Each stage can be solved exactly (via solution of a linear system) and can be distributed. This technique is guaranteed to converge because each step is guaranteed to decrease the loss.
+
+### SGD vs. WALS
+
+SGD and WALS have advantages and disadvantages. Review the information below to see how they compare:
+
+**SGD**
+
+- :heavy_check_mark: Very flexible—can use other loss functions.
+- :heavy_check_mark: Can be parallelized.
+- :x: Slower—does not converge as quickly.
+- :x: Harder to handle the unobserved entries (need to use negative sampling or gravity).
+
+**WALS**
+
+- :x: Reliant on Loss Squares only.
+- :heavy_check_mark: Can be parallelized
+- :heavy_check_mark: Converges faster than SGD.
+- :heavy_check_mark: Easier to handle unobserved entries.
+
 **References:**
 
 - [CMU Lecture](https://www.cs.cmu.edu/~mgormley/courses/10601-s17/slides/lecture25-mf.pdf)
-- [Google blog - Matrix Factorization from the pov of recsys](https://developers.google.com/machine-learning/recommendation/collaborative/matrix)
+- [IMP Google blog - Matrix Factorization from the pov of recsys](https://developers.google.com/machine-learning/recommendation/collaborative/matrix)
 - [Very good video - Part 1](https://www.youtube.com/watch?v=10qVo3kxAhI)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
