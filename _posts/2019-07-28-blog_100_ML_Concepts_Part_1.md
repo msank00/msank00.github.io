@@ -295,7 +295,7 @@ In the preceding example, the values of $n$, $m$, and $d$ are so low that the ad
 One intuitive objective function is the squared distance. To do this, minimize the sum of squared errors over all pairs of observed entries:
 
 $$
-\argmin\limits_{U, V} \sum\limits_{i,j \in obs} (A_{ij}- (U_i V_j))^2
+argmin_{(U, V)} \sum\limits_{i,j \in obs} (A_{ij}- (U_i V_j))^2
 $$
 
 In this objective function, you only sum over **observed pairs** $(i, j)$, that is, over non-zero values in the feedback matrix. 
@@ -316,7 +316,7 @@ In contrast, **Weighted Matrix Factorization** decomposes the objective into the
 - A sum over **unobserved entries** (treated as zeroes) i.e. $ij \notin obs$.
 
 $$
-\argmin\limits_{U, V} \sum\limits_{i,j \in obs} (A_{ij}- (U_i V_j))^2 + w_0 \sum\limits_{i,j \notin obs} ((U_i V_j))^2
+argmin_{(U, V)} \sum\limits_{i,j \in obs} (A_{ij}- (U_i V_j))^2 + w_0 \sum\limits_{i,j \notin obs} ((U_i V_j))^2
 $$
 
 Here $w_0$, is a hyperparameter that weights the two terms so that the objective is not dominated by one or the other. Tuning this hyperparameter is very important.
