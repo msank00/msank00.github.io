@@ -628,8 +628,8 @@ much better time: $O(n^{3.5}L^2)$ [Kar84].
 
 **KKT Conditions:**
 - Stationarity $\nabla_x L(x,\lambda,\mu)=0$
-- Primal feasibility, $g(x)<=0$ (for minimization problem)
-- Dual feasibility, $\lambda>=0, \mu>=0$
+- Primal feasibility, $g(x) \leq 0$ (for minimization problem)
+- Dual feasibility, $\lambda \geq 0, \mu \geq 0$
 - Complementary slackness, $\lambda g(x) = 0$ and $\mu h(x)=0$
 
 **Resource**
@@ -752,11 +752,12 @@ v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2
 $$
 
 2. **Exponentially decaying average of `past gradients`** $m_t$, similar to momentum, ($1^{st}$ moment of gradient). 
+
 $$ 
 m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t 
 $$
 
-**Physical Intuition:** Momentum can be seen as a ball running down a slope, Adam behaves like a heavy ball with friction, which thus prefers `flat minima` in the error surface.
+**Physical Intuition:** Momentum can be seen as a `ball running down a slope`, Adam behaves like a heavy ball with friction, which thus prefers `flat minima` in the error surface.
 
 
 $m_t$ and $v_t$ are estimates of the **first moment** (the mean) and **the second moment** (the un-centered variance) of the gradients respectively, hence the name of the method. 
