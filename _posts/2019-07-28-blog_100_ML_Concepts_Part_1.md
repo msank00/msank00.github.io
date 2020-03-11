@@ -375,7 +375,8 @@ Follow lecture 6 of [Prof.Mitesh_IITM](https://www.cse.iitm.ac.in/~miteshk/CS701
 + orthonormal vectors are orthogonal and they have unit length.
 + If $V$ is an orthonormal matrix then, $V'V=I$
 
-**PCA**
+## PCA
+
 + PCA decomposes a **real, symmetric matrix $A$** into `eigenvectors` and `eigenvalues`. 
 + Every **real, symmetric matrix $A$** can be decomposed into the following expression: $A=VSV'$.
   + $V$ is an orthogonal matrix. 
@@ -395,7 +396,10 @@ Follow lecture 6 of [Prof.Mitesh_IITM](https://www.cse.iitm.ac.in/~miteshk/CS701
 - [principal-component-analysis](https://medium.com/@SeoJaeDuk/principal-component-analysis-pooling-in-tensorflow-with-interactive-code-pcap-43aa2cee9bb)
 - [IMP_link: Deep-Learning-Book-Series-2](https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.12-Example-Principal-Components-Analysis/)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+
+----
 
 ## SVD 
 
@@ -423,7 +427,13 @@ $$\mathbf{A} = \mathbf{U D V}^T$$
 
 **Reference:**
 
-- [(IMP_source)](https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.8-Singular-Value-Decomposition/)
+- [Deep-Learning-Book-Series-2](https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.8-Singular-Value-Decomposition/)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+
+----
 
 ## Relation between SVD and PCA
 
