@@ -363,6 +363,43 @@ SGD and WALS have advantages and disadvantages. Review the information below to 
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+----
+
+# What is NMF?
+
+Non-negative matrix factorization (NMF or NNMF), also non-negative matrix approximation is a group of algorithms in multivariate analysis and linear algebra where a matrix $\mathbf{V}$ is factorized into (usually) two matrices $\mathbf{W}$ and $\mathbf{H}$, with the property that all three matrices have `no negative elements`. This non-negativity makes the resulting matrices easier to inspect.
+
+<center>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/NMF.png/400px-NMF.png" height="100">
+</center>
+
+
+- Like principal components (SVD), but data and components are
+assumed to be non-negative
+- Model: $\mathbf{V} \approx \mathbf{W} \mathbf{H}$
+- For different application of NMF you can check [this](https://msank00.github.io/blog/2019/07/27/blog_203_ML_NLP_Part_1#what-is-nonnegative-matrix-factorization-nmf-)
+
+<center>
+<img src="../assets/images/image_36_mf_1.png" height="380">
+</center>
+
+<center>
+<img src="../assets/images/image_36_mf_2.png" height="400">
+</center>
+
+Figure:1 **Non-negative matrix factorization** (NMF) learns a parts-based representation of faces, whereas vector quantization (VQ)and principal components analysis (PCA) learn holistic representations. 
+
+The three learning methods were applied to a database of $m= 2,429$ facial images, each consisting of $n= 19×19$ pixels, and constituting an $n×m$ matrix $V$. All three find approximate factorizations of the form $X=WH$, but with three different types of constraints on $W$ and $H$, as described more fully in the main text and methods. As shown in the $7×7$ montages, each method has learned a set of $r= 49$ basis images. 
+
+Positive values are illustrated with black pixels :black_circle: and negative values with red pixels :red_circle:. A particular instance of a face :hurtrealbad: , shown at top right, is approximately represented by a linear superposition of basis images. The coefficients of the linear superposition are shown next to each montage, in a $7×7$ grid, and the resulting superpositions are shown on the other side of the equality sign. Unlike VQ and PCA, NMF learns to represent faces with a set of basis images resembling parts of faces.
+
+
+**Reference:**
+
+- [Wiki](https://en.wikipedia.org/wiki/Non-negative_matrix_factorization)
+- [Stanford Notes](http://statweb.stanford.edu/~tibs/sta306bfiles/nnmf.pdf)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -490,15 +527,15 @@ how do we know what size we should choose for `k`, and how do we know if we have
 
 **Resource:**
 
-+ [pdf](http://www.math.ucsd.edu/~gptesler/283/slides/pca_15-handout.pdf)
-+ [Link1](https://towardsdatascience.com/a-one-stop-shop-for-principal-component-analysis-5582fb7e0a9c)
-+ [Link2](https://rstudio-pubs-static.s3.amazonaws.com/249839_48d65d85396a465986f2d7df6db73c3d.html)
++ [pca](http://www.math.ucsd.edu/~gptesler/283/slides/pca_15-handout.pdf)
++ [a-one-stop-shop-for-principal-component-analysis](https://towardsdatascience.com/a-one-stop-shop-for-principal-component-analysis-5582fb7e0a9c)
++ [rstudio-pubs-static](https://rstudio-pubs-static.s3.amazonaws.com/249839_48d65d85396a465986f2d7df6db73c3d.html)
 + [PPT: Prof. Piyush Rai IIT Kanpur](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec11_slides.pdf)
 
 ## What is disadvantage of using PCA?
 
 + One disadvantage of PCA lies in interpreting the results of dimension reduction analysis. This challenge will become particularly telling when the data needs to be normalized.
-+ PCA assumes approximate normality of the input space distribution. [link](http://www.stat.columbia.edu/~fwood/Teaching/w4315/Fall2009/pca.pdf)
++ PCA assumes **approximate normality** of the input space distribution. [link](http://www.stat.columbia.edu/~fwood/Teaching/w4315/Fall2009/pca.pdf)
 + For more reading [link](https://www.quora.com/What-are-some-of-the-limitations-of-principal-component-analysis)
 
 ## Why PCA needs normalization?
@@ -508,38 +545,10 @@ how do we know what size we should choose for `k`, and how do we know if we have
 For example, if one of the attributes is orders of magnitude higher than others, PCA tends to ascribe the highest amount of variance to this attribute and thus skews the results of the analysis. By normalizing, we can get rid of this effect. **However normalizing results in spreading the influence across many more principal components**. In others words, *more PCs are required to explain the same amount of variance in data*. The interpretation of analysis gets muddied. 
 
 
-[Reference](http://www.simafore.com/blog/bid/105347/Feature-selection-with-mutual-information-Part-2-PCA-disadvantages)
+- [Reference](http://www.simafore.com/blog/bid/105347/Feature-selection-with-mutual-information-Part-2-PCA-disadvantages)
 
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
-----
-
-## What is NMF?
-
-Non-negative matrix factorization (NMF or NNMF), also non-negative matrix approximation is a group of algorithms in multivariate analysis and linear algebra where a matrix $\mathbf{V}$ is factorized into (usually) two matrices $\mathbf{W}$ and $\mathbf{H}$, with the property that all three matrices have `no negative elements`. This non-negativity makes the resulting matrices easier to inspect.
-
-<center>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/NMF.png/400px-NMF.png" height="100">
-</center>
-
-- Like principal components (SVD), but data and components are
-assumed to be non-negative
-
-- Model: $\mathbf{V} \approx \mathbf{W} \mathbf{H}$
-
-- For different application of NMF you can check [this](https://msank00.github.io/blog/2019/07/27/blog_203_ML_NLP_Part_1#what-is-nonnegative-matrix-factorization-nmf-)
-
-
-**Reference:**
-
-- [Wiki](https://en.wikipedia.org/wiki/Non-negative_matrix_factorization)
-- [Stanford Notes](http://statweb.stanford.edu/~tibs/sta306bfiles/nnmf.pdf)
-
-
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
 
 ----
 
