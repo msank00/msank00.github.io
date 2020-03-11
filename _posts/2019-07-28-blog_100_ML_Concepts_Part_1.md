@@ -373,25 +373,27 @@ Follow lecture 6 of [Prof.Mitesh_IITM](https://www.cse.iitm.ac.in/~miteshk/CS701
 + Eigenvectors can only be found for Square matrix. But, not every square matrix has eigen vectors. 
 + All eigen vectors are perpendicular, i.e orthogonal.
 + orthonormal vectors are orthogonal and they have unit length.
-+ If `V` is an orthonormal matrix then, `V'V=I`
++ If $V$ is an orthonormal matrix then, $V'V=I$
 
 **PCA**
 + PCA decomposes a **real, symmetric matrix $A$** into `eigenvectors` and `eigenvalues`. 
-+ Every **real, symmetric matrix $A$** can be decomposed into the following expression: `A=VSV'`. Where `V` is an orthogonal matrix. `S` is a diagonal matrix with all the eigen values.
-+ Though, any real symmetric matrix is **guranteed** to have an **eigen decomposition**, the decomposition may not be unique. 
++ Every **real, symmetric matrix $A$** can be decomposed into the following expression: $A=VSV'$.
+  + $V$ is an orthogonal matrix. 
+  + $S$ is a `diagonal matrix` with all the eigen values.
++ Though, any real symmetric matrix is **guaranteed** to have an **eigen decomposition**, the decomposition may not be unique. 
 + If a matrix is not square, then it's eigen decomposition is not defined.
 + A matrix is `singular` **if and only if**, any of the eigenvalue is zero.
 + Consider A as real, symmetric matrix and $\lambda_i$ are the eigen values.
-  + if all $\lambda_i>0$, then $\mathbf{A}$ is called **positive definite** matrix.
-  + if all $\lambda_i>=0$, then $\mathbf{A}$ is called **positive semidefinite definite (PSD)** matrix.
-+ PSD matricies are interesting because the gurantee that `for all x`, $x'Ax>=0$. 
+  + if all $\lambda_i \gt 0$, then $\mathbf{A}$ is called **positive definite** matrix.
+  + if all $\lambda_i \ge 0$, then $\mathbf{A}$ is called **positive semidefinite definite (PSD)** matrix.
++ PSD matricies are interesting because the gurantee that `for all x`, $x'Ax \ge 0$. 
 + PSD additionally guarantee that if $x'Ax=0$ then $x=0$. 
 
 
 **Reference:**
 
-- [source](https://medium.com/@SeoJaeDuk/principal-component-analysis-pooling-in-tensorflow-with-interactive-code-pcap-43aa2cee9bb)
-- [IMP_link](https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.12-Example-Principal-Components-Analysis/)
+- [principal-component-analysis](https://medium.com/@SeoJaeDuk/principal-component-analysis-pooling-in-tensorflow-with-interactive-code-pcap-43aa2cee9bb)
+- [IMP_link: Deep-Learning-Book-Series-2](https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.12-Example-Principal-Components-Analysis/)
 
 
 
