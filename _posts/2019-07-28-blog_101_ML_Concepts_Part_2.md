@@ -496,7 +496,7 @@ However in practice it is not possible to guarantee such classifier independence
 # Characteristics of Different Learning Methods
 
 <center>
-<img src="../assets/images/image_22_Algorithms_1.png" height="450" alt="image">
+<img src="/assets/images/image_22_Algorithms_1.png" height="450" alt="image">
 </center>
 
 MARS: Multivariate Adaptive Regression Splines 
