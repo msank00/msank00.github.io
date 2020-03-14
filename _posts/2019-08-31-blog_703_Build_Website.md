@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Build website using Jekyll and MathJax"
-date:   2019-07-31 00:11:31 +0530
+date:   2019-08-31 00:00:10 -0030
 categories: jekyll update
 mathjax: true
 ---
