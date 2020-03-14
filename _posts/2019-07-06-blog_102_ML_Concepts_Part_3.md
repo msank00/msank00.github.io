@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Machine Learning Concepts (Part 3)"
-date:   2019-07-28 00:11:31 +0530
+date:   2019-07-06 00:00:10 -0030
 categories: jekyll update
 mathjax: true
 ---

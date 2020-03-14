@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Learning Curve"
-date:   2019-07-24 00:00:10 -0030
+date:   2019-07-02 00:00:10 -0030
 categories: jekyll update
 mathjax: true
 ---
