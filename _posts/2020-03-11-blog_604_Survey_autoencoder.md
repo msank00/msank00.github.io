@@ -88,6 +88,53 @@ optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 Listen to the [lecture 7](https://www.cse.iitm.ac.in/~miteshk/CS7015.html) by Prof. Mitesh 
 
+![image](/assets/images/image_37_ae_1.png)
+![image](/assets/images/image_37_ae_2.png)
+![image](/assets/images/image_37_ae_3.png)
+
+## Choice of $f(x_i)$ and $g(x_i)$
+
+![image](/assets/images/image_37_ae_4.png)
+![image](/assets/images/image_37_ae_5.png)
+
+## Choice of Loss Function
+
+![image](/assets/images/image_37_ae_6.png)
+
+_for mathematical proof check slide 11-12 of Lecture 7 by Prof. Mitesh_
+
+![image](/assets/images/image_37_ae_7.png)
+
+_for mathematical proof check slide 13-14 of Lecture 7 by Prof. Mitesh_
+
+
+## Link between PCA and Autoencoders
+
+![image](/assets/images/image_37_ae_8.png)
+
+_for mathematical proof check slide 17-21 of Lecture 7 by Prof. Mitesh_
+
+## Regularization in autoencoders
+
+- The simplest solution is to add a **L2-regularization**  term  to  the  objective function
+
+$$
+argmin_{\theta} \frac{1}{m} \sum\limits_{i=1}^m \sum\limits_{j=1}^n (\hat{x_{ij}} - x_{ij})^2 + \lambda \vert \vert \theta \vert \vert^2
+$$
+
+- Another trick is to tie the weights of the  encoder and decoder i.e. , $W^*=W^T$.
+- This  effectively  reduces  the  capacity of Autoencoder and acts as a regularizer.
+
+![image](/assets/images/image_37_ae_11.png)
+
+- Different regularization gives rise to different Autoencoder as seen in the above slide. The second and third regularization gives rise to **Spare AE** and **Contractive AE**. For more details check the slide. 
+
+## Denoising Autoencoder
+
+![image](/assets/images/image_37_ae_9.png)
+![image](/assets/images/image_37_ae_10.png)
+
+
 **Reference:**
 
 - [Very Important Lecture 7, both slide and video](https://www.cse.iitm.ac.in/~miteshk/CS7015.html)
