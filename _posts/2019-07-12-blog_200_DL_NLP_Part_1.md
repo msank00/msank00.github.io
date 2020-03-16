@@ -121,6 +121,46 @@ Where $\tilde{C_t}$ is the new input or content which will be used to update the
 
 ![image](/assets/images/rnn_gru_lstm.png)
 
+## Different Variation of LSTM
+
+What we have described so far is a pretty normal LSTM. But not all LSTMs are the same as the above. In fact, it seems like almost every paper involving LSTMs uses a slightly different version. The differences are minor, but it’s worth mentioning some of them.
+
+### Peep-hole LSTM
+
+One popular LSTM variant, introduced by Gers & Schmidhuber (2000), is adding `peephole connections`. This means that we let the gate layers look at the cell state.
+
+<center>
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-var-peepholes.png" width="500">
+</center>
+
+The above diagram adds peepholes to all the gates, but many papers will give some peepholes and not others.
+
+### Coupled forget and input gates
+
+Instead of separately deciding what to forget and what we should add new information to, we make those decisions together. We only forget when we’re going to input something in its place. We only input new values to the state when we forget something older.
+
+
+<center>
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-var-tied.png" width="500">
+</center>
+
+This is the backbone of GRU.
+
+
+### GRU
+
+A slightly more dramatic variation on the LSTM is the Gated Recurrent Unit, or GRU, introduced by Cho, et al. (2014).
+
+It combines the forget and input gates into a single “update gate.” It also merges the cell state and hidden state, and makes some other changes. The resulting model is simpler than standard LSTM models, and has been growing increasingly popular.
+
+
+<center>
+<img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-var-GRU.png" alt="image" width="500">
+</center>
+
+Which of these variants is best? Do the differences matter? Greff, et al. (2015) do a nice comparison of popular variants, finding that they’re all about the same. Jozefowicz, et al. (2015) tested more than ten thousand RNN architectures, finding some that worked better than LSTMs on certain tasks.
+
+
 **Reference:**
 
 - [IMP, Lecture 10, Standford cs231 page-96 ](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture10.pdf)

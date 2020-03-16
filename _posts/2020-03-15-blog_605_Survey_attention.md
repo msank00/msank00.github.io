@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Survey: Attention"
+title:  "Survey - Attention"
 date:   2020-03-15 00:00:10 -0030
 categories: jekyll update
 mathjax: true
