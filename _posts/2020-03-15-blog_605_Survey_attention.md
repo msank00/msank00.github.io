@@ -80,11 +80,11 @@ Before the discussion of the multi-head attention layer, let’s quick express t
 <img src="https://d2l.ai/_images/self-attention.svg" alt="image" width="400">
 </center>
 
+
 The `multi-head attention` layer consists of $h$ **parallel self-attention layers**, each one is called a `head`. For each head, before feeding into the attention layer, we project the `queries`, `keys`, and `values` with three dense layers with hidden sizes $p_q$, $p_k$, and $p_v$, respectively. The outputs of these $h$ attention heads are concatenated and then processed by a final dense layer.
 
-<center>
-<img src="https://d2l.ai/_images/multi-head-attention.svg" alt="image" width=="400">
-</center>
+![image](https://d2l.ai/_images/multi-head-attention.svg)
+
 
 Assume that the dimension for a `query`, a `key`, and a `value` are $d_q$, $d_k$, and $d_v$, respectively. Then, for each head $i=1, \dots ,h$, we can train learnable parameters $W^{(i)}_q \in \mathbb{R}^{p_q \times d_q}$, $W^{(i)}_k \in \mathbb{R}^{p_k \times d_k}$ , and $W^{(i)}_v \in \mathbb{R}^{p_v \times d_v}$. Therefore, the output for each head is
 
