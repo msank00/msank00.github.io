@@ -39,7 +39,7 @@ f^*_\mathcal{F} := \mathop{\mathrm{argmin}}_f L(X, Y, f) \text{ subject to } f \
 $$
 
 
-It is only reasonable to assume that if we design a different and more powerful architecture $\mathcal{F}'$ we should arrive at a better outcome. In other words, we would expect that $f^∗_{\mathcal{F}'}$ is `better` than $f^∗_{\mathcal{F}}$. However, if $\mathcal{F} \nsubseteq \mathcal{F}'$ there is no guarantee that this should even happen. In fact, $f^∗_{\mathcal{F}'}$ might well be worse. 
+It is only reasonable to assume that if we design a different and more powerful architecture $\mathcal{F}'$ we should arrive at a better outcome. In other words, we would expect that $f^{∗}_{\mathcal{F}'}$ is `better` than $f^{∗}_{\mathcal{F}}$. However, if $\mathcal{F} \nsubseteq \mathcal{F'}$ there is no guarantee that this should even happen. In fact, $f^{∗}_{\mathcal{F}'}$ might well be worse. 
 
 This is a situation that we often encounter in practice - adding layers does not only make the network more expressive, it also changes it in sometimes not quite so predictable ways. The following illustrates this in slightly abstract terms.
 
