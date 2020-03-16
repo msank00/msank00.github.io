@@ -468,7 +468,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 ----
 
-# why it's called Residual Network?
+# Why it's called Residual Network?
 
 Where is the residue? It’s time we let the mathematicians within us to come to the surface. Let us consider a neural network block, whose input is $x$ and we would like to learn the true distribution $H(x)$. Let us denote the difference (or the residual) between this as
 
