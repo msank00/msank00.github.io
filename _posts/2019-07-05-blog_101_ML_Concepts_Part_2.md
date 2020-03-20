@@ -247,6 +247,87 @@ The chi-square independence test is a procedure for testing if two categorical v
 
 - [blog](https://www.spss-tutorials.com/chi-square-independence-test/#what-is-it)
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
+# How to apply embedding for categorical variable?
+
+
+<center>
+<img src="https://miro.medium.com/max/1793/1*C7z2bk0DSfwr9rMyAbSVWQ.png" width="600" alt="image">
+</center>
+
+
+## Model Architecture
+
+The first layer of the network contains embeddings for each categorical feature. These are initialized randomly, but updated via gradient descent through training. Embeddings are then concatenated and passed through a fully connected layer that fans out to an output layer that is the same size as the number of retailers we have. This is followed by a sigmoid activation due to the nature of the multi-label classification task.
+
+<center>
+<img src="https://miro.medium.com/max/1734/1*AFC0FKwdim42Rb-S3QUR8g.png" height="400" alt="image">
+</center>
+
+
+Unlike most models where we’re interested in the outputs, in this case, we’re interested in the inputs. More precisely, we’re trying to extract the learned representation of the inputs in the embedding layer of the network. We can easily extract these from the weights of the neural network within the `state_dict()` of the trained model.
+
+
+**Results**
+
+One of the most interesting applications of the resulting embeddings is to examine the distance between different categories within this new latent space using a standard similarity score like cosine similarity. Take state for example — since we used retailer prediction as the supervised task to train these embeddings and retailers are sometimes regional, we might expect geographically close states to have similar embeddings. We can confirm this by selecting some example states and looking at their top 5 nearest neighbors by cosine similarity.
+
+
+<center>
+<img src="https://miro.medium.com/max/2775/1*ZS2sr5JIFI3bRlqNZHnfYA.png" width="500" alt="image">
+</center>
+
+:paperclip: **Reference:**
+
+- [Deeplearning with tabular data](https://towardsdatascience.com/deeplearning-with-tabular-data-data-processing-cd2e73908257)
+- [Fast AI: categorical-embeddings](https://www.fast.ai/2018/04/29/categorical-embeddings/) :pushpin:
+- [Youtube: Entity Embeddings for Categorical Variables, Abhishek Thakur](https://www.youtube.com/watch?v=EATAM3BOD_E) :pushpin:
+- [Reg2Vec: Learning Embeddings for High Cardinality Customer Registration Features](https://medium.com/building-ibotta/reg2vec-learning-embeddings-for-high-cardinality-customer-registration-features-faf712f12842) :pushpin:
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
+
+# How autoML works?
+
+
+
+**Example:** Say if you have a problem of Diabetic Classification and you have different types of data like medical data for Europe, Africa, Asia and you need to build a platform where given any  medical history data-set (for any region) it will solve the Diabetic Classification automatically. How to build such platform.   
+
+
+## What is AutoML?
+
+Automated Machine Learning provides methods and processes to make Machine Learning available for non-Machine Learning experts, to improve efficiency of Machine Learning and to accelerate research on Machine Learning.
+
+Machine learning (ML) has achieved considerable successes in recent years and an ever-growing number of disciplines rely on it. However, this success crucially relies on human machine learning experts to perform the following tasks:
+
+
+- Pre-process and **clean the data**.
+- Select and **construct** appropriate **features**.
+- Select an appropriate **model family**.
+- Optimize model **hyperparameters**.
+- Post-process machine learning models.
+- Critically analyze the results obtained.
+
+
+As the complexity of these tasks is often beyond non-ML-experts, the rapid growth of machine learning applications has created a demand for off-the-shelf machine learning methods that can be used easily and without expert knowledge. We call the resulting research area that targets progressive automation of machine learning AutoML.
+
+
+:paperclip: **Reference:**
+
+- [Google's AutoML: Cutting Through the Hype from FastAI](https://www.fast.ai/2018/07/23/auto-ml-3/)
+- [AutoML](https://www.ml4aad.org/automl/) :rocket:
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ----
 
 # What are the parameters in training a decision tree?
