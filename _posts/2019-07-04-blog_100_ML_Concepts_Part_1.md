@@ -794,7 +794,7 @@ Batch normalization **reestablishes these normalizations** for every mini-batch 
 
 By making **normalization part of the model architecture**, we are able to use higher learning rates and pay less attention to the initialization parameters. Batch normalization additionally acts as a regularizer, reducing (and sometimes even eliminating) the need for Dropout.
 
-For more details look [here](https://msank00.github.io/blog/2019/07/27/blog_300_DL_CV#why-layer-normalization-is-required-in-deep-learning).
+For more details look [here](https://msank00.github.io/blog/2019/08/10/blog_300_DL_CV#why-layer-normalization-is-required-in-deep-learning).
 
 **Reference:**
 
