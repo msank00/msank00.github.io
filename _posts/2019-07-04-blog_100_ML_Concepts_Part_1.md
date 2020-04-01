@@ -404,7 +404,7 @@ Positive values are illustrated with black pixels :black_circle: and negative va
 
 ----
 
-# PCA and SVD
+#  PCA and SVD
 
 Follow lecture 6 of [Prof.Mitesh_IITM](https://www.cse.iitm.ac.in/~miteshk/CS7015.html)
 
@@ -456,7 +456,10 @@ $$\mathbf{A} = \mathbf{U D V}^T$$
   + singular values::eigen values = singular vectors::eigen vectors
 + Every real matrix has SVD but same is not true for PCA.
 + If a matrix is not square then PCA not applicable.
-+ During PCA we write `A=VSV'`. However, for SVD we write `A=UDV'`, where A is `m x n`, U is `m x m`, D is `m x n` and V is `n x n` [**V is square !!**]. 
+
+- During PCA we write $A=VSV^T$. 
+- However, for SVD we write $A=UDV^T$, 
+  - where A is `m x n`, U is `m x m`, D is `m x n` and V is `n x n` [**U and V both square !!**]. 
   + U, V orthogonal matricies.
   + D is diagonal matrix and **not necessarily a square**
   + `diag(D)` are the `singular values` of the matrix A
