@@ -102,7 +102,7 @@ $$
 l(w) = \mathbf{E}_{(x,y)\sim \pi} [\log(1+exp(-w^T f(x) y))]
 $$
 
-where without loss of generality, it's assumed that $\vert \vert f(x) \vert \vert \leq 1$. Then, a labeling function $\lambda_i : X \rightarrowtail \{−1, 0, 1\}$ is a **user-defined function** that encodes some domain heuristic, which provides a (non-zero) label for some subset of the objects. As part of a data programming specification, a user provides some $m$ labeling functions, which is denoted in vectorized form as $\lambda : X \rightarrowtail \{−1, 0, 1\}^m$.
+where without loss of generality, it's assumed that $\vert \vert f(x) \vert \vert \leq 1$. Then, a labeling function $\lambda_i : X \rightarrowtail (−1, 0, 1)$ is a **user-defined function** that encodes some domain heuristic, which provides a (non-zero) label for some subset of the objects. As part of a data programming specification, a user provides some $m$ labeling functions, which is denoted in vectorized form as $\lambda : X \rightarrowtail (−1, 0, 1)^m$.
 
 
 A labeling function need not have perfect accuracy or recall; rather, it represents a pattern that the user wishes to impart to their model and that is easier to encode as a labeling function than as a set of hand-labeled examples.
