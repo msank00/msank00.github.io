@@ -185,13 +185,13 @@ To summarize the basic idea, the `generalized linear model` differs from the `ge
 
 - General Linear Model
 
-$$y=\theta_0+\theta_1 x_1+\theta_2 x_2+...+\theta_n x_n=\theta_0 + \Sigma_i \theta_i x_i$$
+$$y=\theta_0+\theta_1 x_1+\theta_2 x_2+...+\theta_n x_n=\theta_0 + \sum_i \theta_i x_i$$
 
 - Generalized Linear Model
 
-$$y=g(\theta_0+\theta_1 x_1+\theta_2 x_2+...+\theta_n x_n)= g(\theta_0 + \Sigma_i \theta_i x_i)$$
+$$y=g(\theta_0+\theta_1 x_1+\theta_2 x_2+...+\theta_n x_n)= g(\theta_0 + \sum_i \theta_i x_i)$$
 
-$$g^{-i}(y)=\theta_0 + \Sigma_i \theta_i x_i$$
+$$g^{-i}(y)=\theta_0 + \sum_i \theta_i x_i$$
 
 where $g^{-i}()$ is the inverse of $g()$
 
@@ -203,9 +203,9 @@ Inverse of $g()$, say $g^{-i}()$ is the link function.
 
 We can combine the notion of `additive models` with `generalized linear models`, to derive the notion of `generalized additive models`, as:
 
-$$y = g(\theta_0 + \Sigma_{i=1}^n \theta_i f_i(x_i))$$
+$$y = g(\theta_0 + \sum_{i=1}^n \theta_i f_i(x_i))$$
 
-$$g^{-i}(y)=\theta_0+\theta_1 f_1(x_1)+\theta_2 f_2(x_2)+...+\theta_n f_n(x_n)= \theta_0 + \Sigma_{i=1}^n \theta_i f_i(x_i)$$
+$$g^{-i}(y)=\theta_0+\theta_1 f_1(x_1)+\theta_2 f_2(x_2)+...+\theta_n f_n(x_n)= \theta_0 + \sum_{i=1}^n \theta_i f_i(x_i)$$
 
 
 **Reference:**
@@ -218,11 +218,11 @@ $$g^{-i}(y)=\theta_0+\theta_1 f_1(x_1)+\theta_2 f_2(x_2)+...+\theta_n f_n(x_n)= 
 
 - **Linear Model:** They are linear in parameters $\theta$
 
-  $$y_i = \theta_0 + \Sigma_{i=1}^{n} \theta_i x_i$$
+  $$y_i = \theta_0 + \sum_{i=1}^{n} \theta_i x_i$$
 
 - **Non Linear Model:** They are non-linear in parameters $\theta$
 
-  $$y_i = \theta_0 + \Sigma_{i=1}^{n} g(\theta_i) x_i$$
+  $$y_i = \theta_0 + \sum_{i=1}^{n} g(\theta_i) x_i$$
   where $g()$ is any non linear function.
 
 **GLM:**
@@ -257,6 +257,7 @@ $A=Q* \Sigma *Q^T$
 
 where Q is the matrix with eigenvectors as columns and $\Sigma$ is $diag(\lambda)$.
 
++ Also $Q$ is an orthonormal matrix. So, $Q^TQ=I$ i.e. $Q^T=Q^{-1}$
 
 ## Why Eigenvalue and Eigenvectors are so important?
 
@@ -410,7 +411,7 @@ Follow lecture 6 of [Prof.Mitesh_IITM](https://www.cse.iitm.ac.in/~miteshk/CS701
 + Eigenvectors can only be found for Square matrix. But, not every square matrix has eigen vectors. 
 + All eigen vectors are perpendicular, i.e orthogonal.
 + orthonormal vectors are orthogonal and they have unit length.
-+ If $V$ is an orthonormal matrix then, $V'V=I$
++ If $V$ is an orthonormal matrix then, $V^TV=I$ i.e. $V^T=V^{-1}$
 
 ## PCA
 
