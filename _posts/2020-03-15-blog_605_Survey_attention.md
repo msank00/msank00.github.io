@@ -171,6 +171,7 @@ During training, the output for the $t$-`query` could observe all the previous `
 **Reference:**
 
 - [D2L: Alex Smola, Transformer](https://d2l.ai/chapter_attention-mechanisms/transformer.html)
+- [IMP: The Annotated Transformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html)
 
 
 
