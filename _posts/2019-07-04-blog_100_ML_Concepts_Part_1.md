@@ -150,15 +150,15 @@ Multiple regression is an extension of simple linear regression. It is used when
 
 Multiple linear regression is the most common form of linear regression analysis.  As a predictive analysis, the multiple linear regression is used to explain the relationship between one continuous dependent variable and two or more independent variables
 
-$$y=\theta_0+\theta_1 x_1+\theta_2 x_2+\dots+\theta_n x_n$$
+$$y=\theta_0+\theta_1 x_1+\theta_2 x_2+\dots+\theta_n x_n = \theta_0 + \sum\limits_{i=1}^{n} \theta_i x_i$$
 
 
 
 ## Additive Model:
 
-$$y=\theta_0+\theta_1 f_1(x_1)+\theta_2 f_2(x_2)+\dots+\theta_n f_n(x_n)$$
+$$y=\theta_0+\theta_1 f_1(x_1)+\theta_2 f_2(x_2)+\dots+\theta_n f_n(x_n)= \theta_0 + \sum\limits_{i=1}^{n} \theta_i f(x_i)$$
 
-A generalization of the multiple regression model would be to maintain the additive nature of the model, but to replace the simple terms of the linear equation $\theta_i * x_i$ with $f_i(x_i)$ where $f_i()$ is a **non-parametric function** of the predictor $x_i$.  
+A generalization of the multiple regression model would be to maintain the additive nature of the model, but to replace the simple terms of the linear equation $\theta_i * x_i$ with $\theta_i * f_i(x_i)$ where $f_i()$ is a **non-parametric function** of the predictor $x_i$.  
 
 In other words, instead of a single coefficient for each variable (additive term) in the model, in additive models an unspecified (non-parametric) function is estimated for each predictor, to achieve the best prediction of the dependent variable values.
 
