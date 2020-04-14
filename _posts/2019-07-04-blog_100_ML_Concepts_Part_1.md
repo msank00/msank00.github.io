@@ -241,7 +241,7 @@ Now GLM in `non-linear` due to the presence of $g()$ but it can be transformed i
 
 # Eigen Decomposition
 
-Matrices acts as **linear transformations**. Some matrices will **rotate** your space, others will **rescale** it etc. So when we apply a matrix to a vector, we end up with a transformed version of the vector. When we say that we ‘apply’ the matrix to the vector it means that we calculate the dot product of the matrix with the vector. 
+Matrices acts as **linear transformations**. Some matrices will **rotate** your space, others will **rescale** it etc. So when we apply a matrix to a vector, we end up with a transformed version of the vector. When we say that we `apply` the matrix to the vector it means that we calculate the dot product of the matrix with the vector. 
 
 
 **Eigenvector:** Now imagine that the transformation of the initial vector gives us a new vector that has the exact same direction. **The scale can be different but the direction is the same**. Applying the matrix didn’t change the direction of the vector. Therefore, this type of initial vector is special and called an eigenvector of the matrix.
@@ -257,7 +257,7 @@ $A=Q* \Sigma *Q^T$
 
 where Q is the matrix with eigenvectors as columns and $\Sigma$ is $diag(\lambda)$.
 
-+ Also $Q$ is an orthonormal matrix. So, $Q^TQ=I$ i.e. $Q^T=Q^{-1}$
++ Also $Q$ is an `orthonormal` matrix. So, $Q^TQ=I$ i.e. $Q^T=Q^{-1}$
 
 ## Why Eigenvalue and Eigenvectors are so important?
 
@@ -388,7 +388,7 @@ assumed to be non-negative
 <img src="/assets/images/image_36_mf_2.png" height="400">
 </center>
 
-Figure:1 **Non-negative matrix factorization** (NMF) learns a parts-based representation of faces, whereas vector quantization (VQ)and principal components analysis (PCA) learn holistic representations. 
+Figure:1 **Non-negative matrix factorization** (NMF) learns a parts-based representation of faces, whereas vector quantization (VQ) and principal components analysis (PCA) learn holistic representations. 
 
 The three learning methods were applied to a database of $m= 2,429$ facial images, each consisting of $n= 19×19$ pixels, and constituting an $n×m$ matrix $V$. All three find approximate factorizations of the form $X=WH$, but with three different types of constraints on $W$ and $H$, as described more fully in the main text and methods. As shown in the $7×7$ montages, each method has learned a set of $r= 49$ basis images. 
 
@@ -416,7 +416,7 @@ Follow lecture 6 of [Prof.Mitesh_IITM](https://www.cse.iitm.ac.in/~miteshk/CS701
 ## PCA
 
 + PCA decomposes a **real, symmetric matrix $A$** into `eigenvectors` and `eigenvalues`. 
-+ Every **real, symmetric matrix $A$** can be decomposed into the following expression: $A=VSV'$.
++ Every **real, symmetric matrix $A$** can be decomposed into the following expression: $A=VSV^T$.
   + $V$ is an orthogonal matrix. 
   + $S$ is a `diagonal matrix` with all the eigen values.
 + Though, any real symmetric matrix is **guaranteed** to have an **eigen decomposition**, the decomposition may not be unique. 
@@ -425,8 +425,8 @@ Follow lecture 6 of [Prof.Mitesh_IITM](https://www.cse.iitm.ac.in/~miteshk/CS701
 + Consider A as real, symmetric matrix and $\lambda_i$ are the eigen values.
   + if all $\lambda_i \gt 0$, then $\mathbf{A}$ is called **positive definite** matrix.
   + if all $\lambda_i \ge 0$, then $\mathbf{A}$ is called **positive semidefinite definite (PSD)** matrix.
-+ PSD matricies are interesting because the gurantee that `for all x`, $x'Ax \ge 0$. 
-+ PSD additionally guarantee that if $x'Ax=0$ then $x=0$. 
++ PSD matricies are interesting because the gurantee that `for all x`, $x^TAx \ge 0$. 
++ PSD additionally guarantee that if $x^TAx=0$ then $x=0$. 
 
 
 **Reference:**
