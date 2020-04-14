@@ -517,7 +517,8 @@ how do we know what size we should choose for `k`, and how do we know if we have
 + `kth` Eigenvector determines the `kth` direction that maximizes the variance in that direction.
 + the corresponding `kth` Eigenvalue determines the variance along `kth` Eigenvector
 
-### Tl;DR: Steps 
+**Tl;DR: Steps**
+
   + Let $X$ is the original dataset ($n$ x $d$) [$n$: data points, $d$: dimension]
   + Centered the data w.r.t mean and get the centered data: $M$ [dim: $n$ x $d$]
   + Compute covariance matrix: $C=(MM^T)/(n-1)$ [dim: $d$ x $d$]

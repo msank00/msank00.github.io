@@ -93,8 +93,8 @@ Common input variable data types:
 - [image_source](https://machinelearningmastery.com/feature-selection-with-real-and-categorical-data/)
 
 1. Numerical Input, Numerical Output
-   1. Pearson’s correlation coefficient (linear)
-   2. Spearman’s rank coefficient (nonlinear)
+   1. Pearson’s correlation coefficient (**linear**)
+   2. Spearman’s rank coefficient (**non-linear**)
 
 2. Numerical Input, Categorical Output
    1. ANOVA correlation coefficient (linear).
@@ -288,6 +288,7 @@ One of the most interesting applications of the resulting embeddings is to exami
 - [Fast AI: categorical-embeddings](https://www.fast.ai/2018/04/29/categorical-embeddings/) :pushpin:
 - [Youtube: Entity Embeddings for Categorical Variables, Abhishek Thakur](https://www.youtube.com/watch?v=EATAM3BOD_E) :pushpin:
 - [Reg2Vec: Learning Embeddings for High Cardinality Customer Registration Features](https://medium.com/building-ibotta/reg2vec-learning-embeddings-for-high-cardinality-customer-registration-features-faf712f12842) :pushpin:
+- [Paper: Entity Embeddings of Categorical Variables](https://arxiv.org/abs/1604.06737) :pushpin:
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
