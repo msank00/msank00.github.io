@@ -759,11 +759,11 @@ where $f_k \in \mathcal{F}$. Also $\mathcal{F} = {f(\mathbf{x}) = w_{q(\mathbf{x
 For a given example, we will use the decision rules in the trees (given by $q$) to classify it into the leaves and calculate the final prediction by summing up the score in the corresponding leaves (given by $w$). To learn the set of functions used in the model, we minimize the following **regularized objective**. 
 
 $$
-\mathcal{L}(\phi) = \sum_i l(\hat{y_i}, y_i) + \sum_k \Omega(f_k)
+\mathcal{L}(\phi) = \sum_{i \in leaves} l(\hat{y_i}, y_i) + \sum_{k \in addtv. fun} \Omega(f_k)
 $$
 
 
-where $\Omega(f)= \gamma T + \frac{1}{2} \lambda \vert \vert w \vert \vert^2$
+where $\Omega(f)= \gamma T + \frac{1}{2} \lambda \vert \vert w \vert \vert^2$, $i$ belongs to all the leaves and $k$ belongs to all the additive functions.
 
 Here $l$ is a differentiable convex loss function that measures the difference between the prediction $\hat{y_i}$ and the target $y_i$. **The second term $\Omega$ penalizes the complexity of the model (i.e., the regression tree functions)**. The additional regularization term helps to smooth the final learnt weights to avoid over-fitting. Intuitively, the regularized objective will tend to select a model employing simple and predictive functions. 
 
