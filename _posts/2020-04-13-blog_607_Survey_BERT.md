@@ -427,6 +427,37 @@ You can find the creation of the AdamW optimizer in `run_glue.py` [here](https:/
 
 - [Colab Notebook by Chris McCormick](https://colab.research.google.com/drive/1pTuQhug6Dhl9XalKB0zUGf4FIdYFlpcX#scrollTo=-8kEDRvShcU5)
 
+----
+
+# BERT Architecture
+
+The BERT Encoder block implements the base version of the BERT network. It is composed of 12 successive transformer layers, each having 12 attention heads.
+The total number of parameters is 110 million.
+
+<center>
+<img src="https://peltarion.com/static/bert_encoder_block.svg" alt="image" height="600">
+</center>
+
+_The architecture is reverse. Input at the top and the output at the bottom._
+
+
+Every token in the input of the block is first embedded into a learned `768-long` **embedding vector**.
+
+Each embedding vector is then transformed progressively every time it traverses one of the BERT Encoder layers:
+
+- Through linear projections, every embedding vector creates a **triplet** of `64-long vectors`, called the **key, query, and value vectors**
+- The key, query, and value vectors from all the embeddings pass through a **self-attention head**, which outputs one `64-long vector` for each **input triplet**.
+- Every output vector from the self-attention head is a function of the whole input sequence, which is what makes **BERT context-aware**.
+- A single embedding vector uses **different linear projections** to create `12 unique` **triplets of key, query, and value** vectors, which all go through their own self-attention head.
+- This allows each self-attention head to focus on different aspects of how the tokens interact with each other.
+- The output from all the self-attention heads are first concatenated together, then they go through another linear projection and a feed-forward layer, which helps to utilize **deep non-linearity**
+  - **Residual connections from previous states** are also used to increase robustness.
+
+
+
+**Reference:**
+
+- [IMP: BERT Architecture](https://peltarion.com/knowledge-center/documentation/modeling-view/build-an-ai-model/blocks/bert-encoder?fbclid=IwAR1t_a3no4BRylPk_29fZbKwmKB1mRdT0jFLSzXWL0t5fnSKKXTZlpKCVsA)
 
 ----
 

@@ -772,7 +772,7 @@ Here $l$ is a differentiable convex loss function that measures the difference b
 
 **Gradient Tree Boosting:**
 
-- **Optimization Problem:** The tree ensemble model in the above equation **includes functions $f_k(.)$ (which is nothing but independent tree structure $q$ with elaf weights $w$) as parameters** and cannot be optimized using traditional optimization methods in Euclidean space. 
+- **Optimization Problem:** The tree ensemble model in the above equation **includes functions $f_k(.)$ (which is nothing but independent tree structure $q$ with leaf weights $w$) as parameters** and cannot be optimized using traditional optimization methods in Euclidean space. 
 
 - **Solution:** Instead, the model is **trained in an additive manner**. Formally, let $\hat{y_i}$ be the prediction of the $i^{th}$ instance at the $t^{th}$ iteration, we will need to add $f_t(.)$ to minimize the following objective.
 
