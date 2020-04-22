@@ -14,55 +14,119 @@ mathjax: true
 
 Quick Refresher: Neural Network in NLP
 
+# What is Syntactic and Semantic analysis?
 
-# Sentence Transformers: Sentence Embeddings using BERT a.k.a Sentence BERT
+Syntactic analysis (syntax) and semantic analysis (semantic) are the two primary techniques that lead to the understanding of natural language. Language is a set of valid sentences, but what makes a sentence valid? Syntax and semantics.
 
-From the abstract of the original paper
+- **Syntax** is the grammatical structure of the text 
+- **Semantics** is the meaning being conveyed. 
 
-**BERT** (Devlin et al., $2018$) and **RoBERTa** (Liu et al., 2019) has set a new state-of-the-art performance on **sentence-pair regression** tasks like `semantic textual similarity` (STS). However, it requires that both sentences are fed into the network, which causes a massive computational overhead: Finding the most similar pair in a collection of 10,000 sentences requires about 50 million inference computations (~65 hours) with BERT. The construction of BERT makes it unsuitable for semantic similarity search as well as for unsupervised tasks like clustering.
+A sentence that is syntactically correct, however, is not always semantically correct. 
+- E**xample,** “cows flow supremely” is grammatically valid (subject — verb — adverb) but it doesn't make any sense.
 
-In this paper, we present **Sentence-BERT** (SBERT), a modification of the pretrained BERT network that use `siamese` and `triplet network` structures to derive semantically meaningful sentence embeddings that can be compared using cosine-similarity. This reduces the effort for finding the most similar pair from 65 hours with BERT / RoBERTa to about 5 seconds with SBERT, while maintaining the accuracy from BERT. 
+## SYNTACTIC ANALYSIS
 
-![image](/assets/images/image_06_SBERT_1.png)
+Syntactic analysis, also referred to as syntax analysis or parsing. 
 
+> It is the process of analyzing natural language with the rules of a formal grammar. 
 
-## How to use it in code
+Grammatical rules are applied to categories and groups of words, not individual words. Syntactic analysis basically assigns a semantic structure to text.
 
-```py
-# install the package
-pip install -U sentence-transformers
-```
+For example, a sentence includes a subject and a predicate where the subject is a noun phrase and the predicate is a verb phrase. Take a look at the following sentence: “The dog (noun phrase) went away (verb phrase).” Note how we can combine every noun phrase with a verb phrase. Again, it's important to reiterate that a sentence can be syntactically correct but not make sense.
 
-```py
-# download a pretrained model.
-from sentence_transformers import SentenceTransformer
-model = SentenceTransformer('bert-base-nli-mean-tokens')
+## SEMANTIC ANALYSIS
 
-# Then provide some sentences to the model.
-sentences = ['This framework generates embeddings for each input sentence',
-    'Sentences are passed as a list of string.', 
-    'The quick brown fox jumps over the lazy dog.']
-sentence_embeddings = model.encode(sentences)
+The way we understand what someone has said is an unconscious process relying on our intuition and knowledge about language itself. In other words, the way we understand language is heavily based on meaning and context. Computers need a different approach, however. The word `semantic` is a **linguistic term** and means `related to meaning or logic`.
 
-# And that's it already. We now have a list of numpy arrays with the embeddings.
-for sentence, embedding in zip(sentences, sentence_embeddings):
-    print("Sentence:", sentence)
-    print("Embedding:", embedding)
-    print("")
-```
+:paperclip: **Reference:**
 
-_**for more details check the pypi repository_
-
-
-**Reference:**
-
-- [PyPi sentence-transformers](https://pypi.org/project/sentence-transformers/#Training)
-- [arXiv: Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks](https://arxiv.org/abs/1908.10084)
-
+- [Blog](https://builtin.com/data-science/introduction-nlp)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
+
+# What is Natural Language Underrstanding?
+
+It can be easily understood by the syllabus topic of the course CS224U by Standford. Though over the years the definition has been changed.
+
+**2012**
+
+- WordNet
+- Word sense disambiguation
+- Vector-space models
+- Dependency parsing for NLU
+- Relation extraction
+- Semantic role labeling
+- Semantic parsing
+- Textual inference
+- Sentiment analysis
+- Semantic composition withvectors
+- Text segmentation
+- Dialogue
+
+**2020**
+
+- Vector-space models
+- Sentiment analysis
+- Relation extraction
+- Natural LanguageInference
+- Grounding
+- Contextual wordrepresentations
+- Adversarial testing
+- Methods and metrics
+
+:paperclip: **Reference:**
+
+- [CS224u course website](https://web.stanford.edu/class/cs224u/)
+- [CS224u slide](https://web.stanford.edu/class/cs224u/materials/cs224u-2020-intro-handout.pdf)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# How to design a basic vector space model?
+
+- [Youtube](https://www.youtube.com/watch?v=gtuhPq0Xyno&feature=youtu.be)
+
+-----
+
+# What is PMI: Point-wise Mutual Information?
+
+The idea behind the NLP algorithm is that of transposing words into a vector space, where each word is a D-dimensional vector of features. By doing so, we can compute some quantitative metrics of words and between words, namely their cosine similarity.
+
+**Problem:** How to understand whether two (or more) words actually form a unique concept?
+
+**Example:** Namely, consider the expression ‘social media’: both the words can have independent meaning, however, when they are together, they express a precise, unique concept.
+
+Nevertheless, it is not an easy task, since if both words are frequent by themselves, their co-occurrence might be just a chance. Namely, consider the name ‘Las Vegas’: it is not that frequent to read only ‘Las’ or ‘Vegas’ (in English corpora of course). The only way we see them is in the bigram Las Vegas, hence it is likely for them to form a unique concept. On the other hand, if we think of ‘New York’, it is easy to see that the word ‘New’ will probably occur very frequently in different contexts. How can we assess that the co-occurrence with York is meaningful and not as vague as ‘new dog, new cat…’?
+
+The answer lies in the **Pointwise Mutual Information (PMI)** criterion. The idea of PMI is that we want to 
+
+> quantify the likelihood of co-occurrence of two words, taking into account the fact that it might be caused by the frequency of the single words. 
+
+Hence, the algorithm computes the ($\log$) probability of co-occurrence scaled by the product of the single probability of occurrence as follows:
+
+
+$$
+PMI(w_a, w_b) = \log  \left( \frac{p(w_a, w_b)}{p(w_a) p(w_b)} \right) = \log \left( \frac{p(w_a, w_b)}{p(w_a)} \times \frac{1}{p(w_b)} \right) \\ = \log \left( p(w_b \vert w_a) \times \frac{1}{p(w_b)} \right) = \log \left( p(w_a \vert w_b) \times \frac{1}{p(w_a)} \right) 
+$$
+
+where $w_a$ and $w_b$ are two words.
+
+Now, knowing that, when $w_a$ and $w_b$ are independent, their joint probability is equal to the product of their marginal probabilities, when the ratio equals 1 (hence the log equals 0), it means that the two words together don’t form a unique concept: they co-occur by chance.
+
+On the other hand, if either one of the words (or even both of them) has a **low probability of occurrence if singularly considered**, but **its joint probability together with the other word is high**, it means that the two are likely to express a **unique concept**.
+
+
+Let’s focus on the last expression. As you can see, it’s the conditional probability of $w_b$ given $w_a$ times $\frac{1}{p(w_b)}$. If $w_b$ and $w_a$ are independent, there is no meaning to the multiplication (it’s going to be zero times something). But if the conditional probability is larger than zero, $p(w_b \vert w_a) > 0$, then there is a meaning to the multiplication. How `important` is the event $W_b = w_b$? if $P(W_b = w_b) = 1$ then the event $W_b = w_b$ is not really important is it? think a die which always rolls the same number; there is no point to consider it. But, If the event $W_b = w_b$ is fairly rare → $p(w_b)$ is relatively low → $\frac{1}{p(w_b)}$ is relatively high → the value of $p(w_b \vert w_a)$ becomes much more important in terms of information. So that is the first observation regarding the PMI formula. 
+
+:paperclip: **Reference:**
+
+- [PMI](https://medium.com/dataseries/understanding-pointwise-mutual-information-in-nlp-e4ef75ecb57a)
+- [understanding-pointwise-mutual-information-in-statistics](https://eranraviv.com/understanding-pointwise-mutual-information-in-statistics/)
+
+-----
 
 # What is Siamese Network
 

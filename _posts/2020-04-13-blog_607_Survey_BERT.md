@@ -455,10 +455,63 @@ Each embedding vector is then transformed progressively every time it traverses 
 
 
 
+The result is a sequence of transformed embedding vectors, which are sent through the same layer structure 11 more times.
+
+After the 12th encoding layer, the embedding vectors have been transformed to contain more accurate information about each token. You can choose if you want the BERT Encoder block to return all of them or only the first one (corresponding to the [CLS] token), which is often sufficient for classification tasks.
+
+
 **Reference:**
 
 - [IMP: BERT Architecture](https://peltarion.com/knowledge-center/documentation/modeling-view/build-an-ai-model/blocks/bert-encoder?fbclid=IwAR1t_a3no4BRylPk_29fZbKwmKB1mRdT0jFLSzXWL0t5fnSKKXTZlpKCVsA)
 
 ----
+
+# Sentence Transformers: Sentence Embeddings using BERT a.k.a Sentence BERT
+
+From the abstract of the original paper
+
+**BERT** (Devlin et al., $2018$) and **RoBERTa** (Liu et al., 2019) has set a new state-of-the-art performance on **sentence-pair regression** tasks like `semantic textual similarity` (STS). However, it requires that both sentences are fed into the network, which causes a massive computational overhead: Finding the most similar pair in a collection of 10,000 sentences requires about 50 million inference computations (~65 hours) with BERT. The construction of BERT makes it unsuitable for semantic similarity search as well as for unsupervised tasks like clustering.
+
+In this paper, we present **Sentence-BERT** (SBERT), a modification of the pretrained BERT network that use `siamese` and `triplet network` structures to derive semantically meaningful sentence embeddings that can be compared using cosine-similarity. This reduces the effort for finding the most similar pair from 65 hours with BERT / RoBERTa to about 5 seconds with SBERT, while maintaining the accuracy from BERT. 
+
+![image](/assets/images/image_06_SBERT_1.png)
+
+
+## How to use it in code
+
+```py
+# install the package
+pip install -U sentence-transformers
+```
+
+```py
+# download a pretrained model.
+from sentence_transformers import SentenceTransformer
+model = SentenceTransformer('bert-base-nli-mean-tokens')
+
+# Then provide some sentences to the model.
+sentences = ['This framework generates embeddings for each input sentence',
+    'Sentences are passed as a list of string.', 
+    'The quick brown fox jumps over the lazy dog.']
+sentence_embeddings = model.encode(sentences)
+
+# And that's it already. We now have a list of numpy arrays with the embeddings.
+for sentence, embedding in zip(sentences, sentence_embeddings):
+    print("Sentence:", sentence)
+    print("Embedding:", embedding)
+    print("")
+```
+
+_**for more details check the pypi repository_
+
+
+**Reference:**
+
+- [PyPi sentence-transformers](https://pypi.org/project/sentence-transformers/#Training)
+- [arXiv: Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks](https://arxiv.org/abs/1908.10084)
+
+
+----
+
 
 <a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>
