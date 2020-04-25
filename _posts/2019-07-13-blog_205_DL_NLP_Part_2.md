@@ -85,6 +85,37 @@ It can be easily understood by the syllabus topic of the course CS224U by Standf
 
 ----
 
+# Motivation: Why Learn Word Embeddings?
+
+Image and audio processing systems work with rich, high-dimensional datasets encoded as vectors of the individual raw pixel-intensities for image data, or e.g. power spectral density coefficients for audio data. For tasks like object or speech recognition we know that all the information required to successfully perform the task is encoded in the data (because humans can perform these tasks from the raw data). However, **natural language processing** systems **traditionally treat words as discrete atomic symbols**, and therefore `cat` may be represented as `Id537` and `dog` as `Id143`. These encodings are **arbitrary, and provide no useful information** to the system regarding the relationships that may exist between the individual symbols. This means that the model can leverage very little of what it has learned about ‘cats’ when it is processing data about ‘dogs’ (such that they are both animals, four-legged, pets, etc.). Representing words as unique, discrete ids furthermore leads to **data sparsity**, and usually means that we may need more data in order to successfully train statistical models. Using vector representations can overcome some of these obstacles.
+
+**Vector space models** (**VSM**s) represent (`embed`) words in a continuous vector space where **semantically similar** (meaningfully similar) words are mapped to nearby points (`are embedded nearby each other`). VSMs have a long, rich history in NLP, but all methods depend in some way or another on the **Distributional Hypothesis**, 
+
+> which states that words that appear in the same contexts share semantic meaning. 
+
+The different approaches that leverage this principle can be divided into two categories: 
+
+- **Count-based methods** (e.g. Latent Semantic Analysis),
+- **Predictive methods** (e.g. neural probabilistic language models like `word2vec`).
+
+This distinction is elaborated in much more detail by [Baroni et al. 2014](https://www.aclweb.org/anthology/P14-1023.pdf) in his great paper **Don’t count, predict!**, where he compares the `context-counting` vs `context-prediction`. In a nutshell: 
+  - **Count-based** methods first compute the statistics of how often some word co-occurs with its neighbor words in a large text corpus, and then map these count-statistics down to a small, dense vector for each word. 
+  - **Predictive models** `directly try to predict` a word from its neighbors in terms of learned small, dense embedding vectors (considered parameters of the model).
+
+**Word2vec** is a particularly **computationally-efficient predictive model** for learning word embeddings from raw text. It comes in two flavors, the Continuous Bag-of-Words model (CBOW) and the Skip-Gram model. 
+  - Algorithmically, these models are similar, except that CBOW predicts target words (e.g. ‘mat’) from source context words (‘the cat sits on the’), while the skip-gram does the inverse and predicts source context-words from the target words. 
+
+This inversion might seem like an arbitrary choice, but statistically it has different effect.
+- **CBOW** **smoothes over a lot of the distributional information** (by treating an entire context as one observation). For the most part, this turns out to be a **useful thing for smaller datasets**. 
+- **Skip-gram** treats each context-target pair as a new observation, and this tends to **do better when we have larger datasets**. 
+
+:paperclip: **Reference:**
+
+- [Tensorflow: Vector Representations of Words](https://chromium.googlesource.com/external/github.com/tensorflow/tensorflow/+/refs/heads/0.6.0/tensorflow/g3doc/tutorials/word2vec/index.md) :fire:
+- [Baroni et al. 2014](https://www.aclweb.org/anthology/P14-1023.pdf)
+
+----
+
 # How to design a basic vector space model?
 
 - [Youtube](https://www.youtube.com/watch?v=gtuhPq0Xyno&feature=youtu.be)
@@ -118,6 +149,7 @@ Now, knowing that, when $w_a$ and $w_b$ are independent, their joint probability
 
 On the other hand, if either one of the words (or even both of them) has a **low probability of occurrence if singularly considered**, but **its joint probability together with the other word is high**, it means that the two are likely to express a **unique concept**.
 
+> PMI is the re-weighting of the entire count matrix
 
 Let’s focus on the last expression. As you can see, it’s the conditional probability of $w_b$ given $w_a$ times $\frac{1}{p(w_b)}$. If $w_b$ and $w_a$ are independent, there is no meaning to the multiplication (it’s going to be zero times something). But if the conditional probability is larger than zero, $p(w_b \vert w_a) > 0$, then there is a meaning to the multiplication. How `important` is the event $W_b = w_b$? if $P(W_b = w_b) = 1$ then the event $W_b = w_b$ is not really important is it? think a die which always rolls the same number; there is no point to consider it. But, If the event $W_b = w_b$ is fairly rare → $p(w_b)$ is relatively low → $\frac{1}{p(w_b)}$ is relatively high → the value of $p(w_b \vert w_a)$ becomes much more important in terms of information. So that is the first observation regarding the PMI formula. 
 
@@ -125,6 +157,68 @@ Let’s focus on the last expression. As you can see, it’s the conditional pro
 
 - [PMI](https://medium.com/dataseries/understanding-pointwise-mutual-information-in-nlp-e4ef75ecb57a)
 - [understanding-pointwise-mutual-information-in-statistics](https://eranraviv.com/understanding-pointwise-mutual-information-in-statistics/)
+
+-----
+
+# GloVe: Global Vectors
+
+Read this amazing paper by [Pennington et al. (2014)](https://www.aclweb.org/anthology/D14-1162.pdf)
+
+**Main Idea:**
+
+> The objective is to learn vectors for words such that their **dot product is proportional to their probability of co-occurrence**.
+
+- Can use the `Mittens` package. [PyPi](https://pypi.org/project/mittens/), [Paper](https://www.aclweb.org/anthology/N18-2034/)
+
+<center>
+<img src="/assets/images/image_40_nlu_01.png" alt="image" width="500">
+</center>
+
+- $w_i$: row embedding
+- $w_k$: column embedding
+- $X_{ik}$: Co-occurrence count
+- $\log(P_{ik})$: log of co-occurrence probability
+- $\log(X_{ik})$: log of co-occurrence count
+- $\log(X_i)$: log of row probability
+
+Their dot products are the 2 primary terms + 2 bias terms.
+
+And the idea is that should be equal to (at-least proportional to) the log of the co-occurrence probability. 
+
+Equation 6 tells that the dot product is equal to the difference of  of two log terms and if re-arrange them they looks very similar to **PMI** !! Where PMI is the re-weighting of the entire count matrix. 
+
+## The Weighted GloVe objective
+
+
+<center>
+<img src="/assets/images/image_40_nlu_02.png" alt="image" height="250">
+</center>
+
+
+<center>
+<img src="/assets/images/image_40_nlu_03.png" alt="image" width="300">
+</center>
+
+Weighted by the function $f()$. Which is `flatten`ing out and `rescale`ing the co-occurrence count $X_{ik}$ values.
+
+Say the co-occurrence count vector is like this `v = [100 99 75 10 1]`. Then $f(v)$ is `[1.00 0.99 0.81 0.18 0.03]`.
+
+## What's happening behind the scene (BTS)?
+
+<center>
+<img src="/assets/images/image_40_nlu_04.png" alt="image" width="600">
+</center>
+
+**Example:**
+
+Word `wicked` and `gnarly` (positive slang) never co-occur. If you look at the left plot in the above image, then you see, what GLoVe does is, it pushes both `wicked` and `gnarly` **away from negative word** `terrible` and moves them **towards positive word** `awsome`. Because even if `wicked` and `gnarly` don't occur together, they have co-occurrence with positive word `awsome`. GloVe thus achieves this latent connection.   
+
+**Note:** Glove transforms the `raw count` distribution into a `normal distribution` which is essential when you train deep-learning model using word-embedding as your initial layer. It's essential because the embedding values have constant `mean` and `variance` and this is a crucial part for training any deep-learning model. The weight values while passing through different layers should maintain their distribution. That's why GloVe does so well as an input to another system. 
+
+:paperclip: **Reference:**
+
+- [CS224U Slide](https://web.stanford.edu/class/cs224u/materials/cs224u-2020-vsm-handout.pdf) :pushpin:
+- [CS224U Youtube](https://www.youtube.com/watch?v=pip8h9vjTHY&list=PLoROMvodv4rObpMCir6rNNUlFAn56Js20&index=4) :pushpin:
 
 -----
 
