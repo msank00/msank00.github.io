@@ -236,6 +236,19 @@ Word `wicked` and `gnarly` (positive slang) never co-occur. If you look at the l
 
 ----
 
+# Word2Vec
+
+- Introduced by Mikolov et al. 2013 [[1]](#1)
+- Goldberg and Levy 2014 [[2]](#2) identified the relation between `word2vec` and `PMI`
+- [Gensim](https://radimrehurek.com/gensim/auto_examples/tutorials/run_word2vec.html) package has a highly scalable implementation
+
+:paperclip: **Reference:**
+
+- <a id="1">[1]</a> [Paper: Distributed Representations of Words and Phrases and their Compositionality](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf)
+- <a id="2">[2]</a> 
+[Paper: Neural Word Embeddingas Implicit Matrix Factorization](https://papers.nips.cc/paper/5477-neural-word-embedding-as-implicit-matrix-factorization.pdf)
+
+----
 
 # Scaling up with Noise-Contrastive Training
 
