@@ -22,7 +22,7 @@ Syntactic analysis (syntax) and semantic analysis (semantic) are the two primary
 - **Semantics** is the meaning being conveyed. 
 
 A sentence that is syntactically correct, however, is not always semantically correct. 
-- E**xample,** “cows flow supremely” is grammatically valid (subject — verb — adverb) but it doesn't make any sense.
+- **Example,** “cows flow supremely” is grammatically valid (subject — verb — adverb) but it doesn't make any sense.
 
 ## SYNTACTIC ANALYSIS
 
@@ -114,11 +114,17 @@ This inversion might seem like an arbitrary choice, but statistically it has dif
 - [Tensorflow: Vector Representations of Words](https://chromium.googlesource.com/external/github.com/tensorflow/tensorflow/+/refs/heads/0.6.0/tensorflow/g3doc/tutorials/word2vec/index.md) :fire:
 - [Baroni et al. 2014](https://www.aclweb.org/anthology/P14-1023.pdf)
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # How to design a basic vector space model?
 
 - [Youtube](https://www.youtube.com/watch?v=gtuhPq0Xyno&feature=youtu.be)
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 -----
 
@@ -157,6 +163,9 @@ Let’s focus on the last expression. As you can see, it’s the conditional pro
 
 - [PMI](https://medium.com/dataseries/understanding-pointwise-mutual-information-in-nlp-e4ef75ecb57a)
 - [understanding-pointwise-mutual-information-in-statistics](https://eranraviv.com/understanding-pointwise-mutual-information-in-statistics/)
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 -----
 
@@ -220,64 +229,56 @@ Word `wicked` and `gnarly` (positive slang) never co-occur. If you look at the l
 - [CS224U Slide](https://web.stanford.edu/class/cs224u/materials/cs224u-2020-vsm-handout.pdf) :pushpin:
 - [CS224U Youtube](https://www.youtube.com/watch?v=pip8h9vjTHY&list=PLoROMvodv4rObpMCir6rNNUlFAn56Js20&index=4) :pushpin:
 
------
-
-# What is Siamese Network
-
-A **twin neural network** (sometimes called a Siamese Network, though this term is frowned upon) is an artificial neural network that **uses the same weights** while working in tandem (having two things arranged one in front of the other) on two different input vectors to compute comparable output vectors. Often one of the output vectors is precomputed, thus forming a baseline against which the other output vector is compared. This is similar to comparing fingerprints but can be described more technically as a distance function for `locality-sensitive hashing`.
-
-It is possible to make a kind of structure that is functional similar to a siamese network, but implements a slightly different function. This is typically used for comparing similar instances in different type sets.
-
-Uses of similarity measures where a twin network might be used are such things as 
-
-- Recognizing handwritten checks
-- Automatic detection of faces in camera images
-- Matching queries with indexed documents.
-
-## Learning
-
-Learning in twin networks can be done with `triplet loss` or `contrastive loss`.
-
-### Triplet Loss
-
-Triplet loss is a loss function for artificial neural networks where a baseline (`anchor`) input is compared to a positive (`truthy`) input and a negative (`falsy`) input. The distance from the baseline (anchor) input to the positive (truthy) input is minimized, and the distance from the baseline (anchor) input to the negative (falsy) input is maximized. [wiki](https://en.wikipedia.org/wiki/Triplet_loss)
-
-- minimize distance(baseline,truth)
-- maximize distance(baseline,false) 
-
-The negative (false) vector will force learning in the network, while the positive vector (truth) will act like a regularizer.
-
-### Predefined metrics, Euclidean distance metric
-
-The common learning goal is to minimize a distance metric for similar objects and maximize for distinct ones. This gives a loss function like 
-
-$$
-\delta(x^i, x^j)=\left\{
-                \begin{array}{ll}
-                  min \vert\vert f(x^i) - f(x^j) \vert\vert, i \ne j\\
-                  max \vert\vert f(x^i) - f(x^j) \vert\vert, i = j
-                \end{array}
-              \right.
-$$
-
-
-### Twin Networks for Object Tracking
-
-Twin networks have been used in object tracking because of its unique two tandem inputs and **similarity measurement**. In object tracking, one input of the twin network is user pre-selected exemplar image, the other input is a larger search image, which twin network's job is to locate exemplar inside of search image. By measuring the similarity between exemplar and each part of the search image, a map of similarity score can be given by the twin network. 
-
-Furthermore, using a Fully Convolutional Network, the process of computing each sector's similarity score can be replaced with only one cross correlation layer.
-
-
-**Reference:**
-
-- [wiki: Siamese network](https://en.wikipedia.org/wiki/Siamese_neural_network)
-- [wiki: triplet loss](https://en.wikipedia.org/wiki/Triplet_loss)
-
 
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
+
+
+# Scaling up with Noise-Contrastive Training
+
+Neural probabilistic language models are traditionally trained using the maximum likelihood (ML) principle to maximize the probability of the next word $w_t$ (for `target`) given the previous words $h$ (for `history`) in terms of a softmax function,
+
+$$
+P(w_t \vert h) = \text{softmax}(\text{score}(w_t, h)) = \frac{\exp ({ \text{score}(w_t, h) }) } {\sum_\text{Word w' in Vocab} \exp ({ \text{score}(w', h) }) }
+$$
+
+where $\text{score}(w_t, h)$ computes the compatibility of word $w_t$ with the context $h$ (a dot product is commonly used). We train this model by maximizing its log-likelihood on the training set, i.e. by maximizing
+
+$$ J_\text{ML} = \log P(w_t \vert h) = \text{score}(w_t, h) - \log \left( \sum_{w' \in V} \exp ({ \text{score}(w', h) }) \right) $$
+
+- $w'$ is a word
+- $V$ is the vocabulary set
+
+This yields a properly normalized probabilistic model for language modeling. However this is very **expensive**, because we need to compute and normalize each probability using the score for all other $V$ words $w'$ in the current context $h$, at every training step.
+
+On the other hand, for feature learning in `word2vec` we do not need a full probabilistic model. The CBOW and skip-gram models are **instead trained using a binary classification objective** (logistic regression) to discriminate the real target words $w_t$ from $k$ imaginary (`noise`) words $\tilde w$, in the same context. We illustrate this below for a CBOW model. For skip-gram the direction is simply inverted.
+
+Mathematically, the objective (for each example) is to maximize
+
+$$J_\text{NEG} = \log Q_\theta(D=1 \vert w_t, h) + k \mathop{\mathbb{E}}{\tilde w \sim P_\text{noise}} \left[ \log Q_\theta(D = 0 \vert \tilde w, h) \right]$$
+
+- where $Q_\theta(D=1 \vert w, h)$ is the binary logistic regression probability under the model of seeing the word $w$ in the context $h$ in the dataset $D$, calculated in terms of the learned embedding vectors $\theta$. 
+- In practice the author approximates the expectation by drawing $k$ contrastive words (contrasting/different words) from the noise distribution (i.e. we compute a [Monte Carlo average](https://en.wikipedia.org/wiki/Monte_Carlo_integration)).
+
+This objective is maximized when the model assigns high probabilities to the real words, and low probabilities to noise words. Technically, this is called [Negative Sampling](http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf), and there is good mathematical motivation for using this loss function: 
+- The updates it proposes **approximate the updates of the softmax function in the limit**. 
+- But computationally it is especially appealing because computing the loss function now **scales only with the number of noise words that we select** ($k$), and not all words in the vocabulary ($V$). 
+- This makes it much **faster to train**. The author uses the very similar [noise-contrastive estimation](http://papers.nips.cc/paper/5165-learning-word-embeddings-efficiently-with-noise-contrastive-estimation.pdf) (NCE) loss.
+
+:paperclip: **Reference:**
+
+- [TensorFlow: Vector Representations of Words](https://chromium.googlesource.com/external/github.com/tensorflow/tensorflow/+/refs/heads/0.6.0/tensorflow/g3doc/tutorials/word2vec/index.md) :bomb: :fire: :rocket:
+- [Paper: Distributed Representations of Words and Phrases
+and their Compositionality](http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf)
+- [Learning word embeddings efficiently with
+noise-contrastive estimation](http://papers.nips.cc/paper/5165-learning-word-embeddings-efficiently-with-noise-contrastive-estimation.pdf)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+-----
 
 # Exercise:
 
