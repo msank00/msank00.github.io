@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Deep Learning: Natural Language Processing (Part 2)"
-date:   2019-07-13 00:00:10 -0030
+title:  "Survey - Natural Language Understanding"
+date:   2020-04-24 00:00:10 -0030
 categories: jekyll update
 mathjax: true
 ---
@@ -10,9 +10,10 @@ mathjax: true
 
 1. TOC
 {:toc}
+
 ---
 
-Quick Refresher: Neural Network in NLP
+Quick Refresher on Natural Language Understanding
 
 # What is Syntactic and Semantic analysis?
 
@@ -272,7 +273,7 @@ This objective is maximized when the model assigns high probabilities to the rea
 - [TensorFlow: Vector Representations of Words](https://chromium.googlesource.com/external/github.com/tensorflow/tensorflow/+/refs/heads/0.6.0/tensorflow/g3doc/tutorials/word2vec/index.md) :bomb: :fire: :rocket:
 - [Paper: Distributed Representations of Words and Phrases
 and their Compositionality](http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf)
-- [Learning word embeddings efficiently with
+- [Paper: Learning word embeddings efficiently with
 noise-contrastive estimation](http://papers.nips.cc/paper/5165-learning-word-embeddings-efficiently-with-noise-contrastive-estimation.pdf)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
