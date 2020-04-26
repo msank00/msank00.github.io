@@ -168,6 +168,32 @@ Let’s focus on the last expression. As you can see, it’s the conditional pro
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+----
+
+# LSA: Latent Semantic Analysis
+
+**Note:** LSA and [LS (Latent Semantic Indexing) are mostly used synonymously, with the information retrieval community usually referring to it as LSI. LSA/LSI uses SVD to decompose the term-document matrix $A$ into a term-concept matrix $U$, a singular value matrix $S$, and a concept-document matrix $V$ in the form: $A = USV'$
+
+- One of the oldest and most widely used dimensionality reduction method.
+- Also known as **truncated SVD**
+- Standard baseline, often very tough to beat.
+
+## Related dimensionality reduction technique
+
+- PCA
+- NNMF
+- Probabilistic LSA
+- LDA
+- t-SNE
+
+For more details check this [blog from msank](https://msank00.github.io/blog/2019/08/05/blog_203_ML_NLP_Part_1#Top)
+
+
+:paperclip: **Reference:**
+
+- [Blog: LSI](https://msank00.github.io/blog/2019/08/05/blog_203_ML_NLP_Part_1#what-is-lsi-latent-semantic-indexing)
+- [CS224U Youtube Lecture](https://www.youtube.com/watch?v=nH4rn3X8i0c&list=PLoROMvodv4rObpMCir6rNNUlFAn56Js20&index=3) :rocket:
+
 -----
 
 # GloVe: Global Vectors
@@ -388,18 +414,9 @@ The basic Skip-gram formulation defines $p(w_{t+j} \vert w_t)$ using the softmax
 - input sentence: `it was the best of times it was the worst of times...`
 - window size = 2
 
- X    | Y           
-:----:|:-----:
- it  | was
- it  | the
- was | it
- was | the
- was | best
- the | was
- the | it
- the | best
- the | of
- ... | ...
+<center>
+<img src="/assets/images/image_40_nlu_07.png" alt="image" height="200">
+</center>
 
 Earlier in LSA and others, it was **count-based co-occurrence**, but here it's like positional co-occurrence, thus bypassing the task of creating the count-matrix.
 
@@ -480,6 +497,40 @@ noise-contrastive estimation](http://papers.nips.cc/paper/5165-learning-word-emb
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+-----
+
+# Retrofitting
+
+**Central goals:**
+
+- Distributional representations are powerful and easy, but they tend to reflect only similarity (synonymy, connotation).
+- Structured resources are sparse and hard to obtain, but they support learning rich, diverse, `semantic` distinctions.
+- Can we have the best of both world? Answer is YES using **Retrofitting**.
+- Read the original paper from [Faruqui et al 2015, NAACL best paper](https://www.aclweb.org/anthology/N15-1184/)
+
+<center>
+<img src="https://miro.medium.com/max/1280/0*QsBIIogEUALmMx8k.png" alt="image" height="200">
+</center>
+
+
+<center>
+<img src="../assets/images/image_40_nlu_08.png" alt="image" width="450">
+</center>
+
+
+<center>
+<img src="../assets/images/image_40_nlu_09.png" alt="image" width="400">
+</center>
+
+
+<center>
+<img src="../assets/images/image_40_nlu_10.png" alt="image" width="400">
+</center>
+
+:paperclip: **Reference:**
+
+- [Talk by author Manaal Faruqui](https://www.youtube.com/watch?v=yG4XbgytH4w&feature=youtu.be)
+- [CS224U Youtube Lecture](https://www.youtube.com/watch?v=pip8h9vjTHY&list=PLoROMvodv4rObpMCir6rNNUlFAn56Js20&index=4)
 
 -----
 
