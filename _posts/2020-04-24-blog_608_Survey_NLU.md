@@ -514,17 +514,17 @@ noise-contrastive estimation](http://papers.nips.cc/paper/5165-learning-word-emb
 
 
 <center>
-<img src="../assets/images/image_40_nlu_08.png" alt="image" width="450">
+<img src="/assets/images/image_40_nlu_08.png" alt="image" width="450">
 </center>
 
 
 <center>
-<img src="../assets/images/image_40_nlu_09.png" alt="image" width="400">
+<img src="/assets/images/image_40_nlu_09.png" alt="image" width="400">
 </center>
 
 
 <center>
-<img src="../assets/images/image_40_nlu_10.png" alt="image" width="400">
+<img src="/assets/images/image_40_nlu_10.png" alt="image" width="400">
 </center>
 
 :paperclip: **Reference:**
