@@ -311,7 +311,7 @@ Say, we have a sentence $S = w_1 w_2 w_3 w_4 w_5$ where $w_i$ are words. Now say
 - Candidate: $w_3$
 - Neighbor:  $w_1 w_2 w_4 w_5$
 
-# Objective 
+## Objective 
 
 The train objective is to learn word vector representation that are good at predicting the nearby words.
 
@@ -379,23 +379,27 @@ The basic Skip-gram formulation defines $p(w_{t+j} \vert w_t)$ using the softmax
 - The hierarchical softmax uses a binary tree representation of the output layer with the W words as its leaves and, for each node, explicitly represents the relative probabilities of its child nodes. These define a random walk that assigns probabilities to words.
 - Such representation makes the learning faster using distributed technique.
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
 ## Word2vec: from corpus to labeled data
 
 - input sentence: `it was the best of times it was the worst of times...`
 - window size = 2
 
  X    | Y           
-|:----:|:-----:
-| it  | was
-| it  | the
-| was | it
-| was | the
-| was | best
-| the | was
-| the | it
-| the | best
-| the | of
-| ... | ...
+:----:|:-----:
+ it  | was
+ it  | the
+ was | it
+ was | the
+ was | best
+ the | was
+ the | it
+ the | best
+ the | of
+ ... | ...
 
 Earlier in LSA and others, it was **count-based co-occurrence**, but here it's like positional co-occurrence, thus bypassing the task of creating the count-matrix.
 
@@ -412,7 +416,7 @@ To bypass the training issue a variant of SkipGram is used.
 ## Word2vec: noise contrastive estimation
 
 <center>
-<img src="../assets/images/image_40_nlu_06.png" alt="image" width="500">
+<img src="assets/images/image_40_nlu_06.png" alt="image" width="500">
 </center>
 
 Sum of 2 separate objective, each one of them is binary. The left side is for those words which actually co-occur. And then we sample some negative instances (meaning the word pair that doesn't co-occur) which are used in the right side objective. 
@@ -430,6 +434,8 @@ Collobert, R., & Weston, J. (2008). A unified architecture for natural language 
 - <a id="7">[7]</a> 
 Pennington, J., Socher, R., & Manning, C. D. (2014). Glove: Global Vectors for Word Representation, EMNLP 2014
 - [CS224u Youtube Lecture](https://www.youtube.com/watch?v=pip8h9vjTHY&list=PLoROMvodv4rObpMCir6rNNUlFAn56Js20&index=4)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -459,17 +465,17 @@ $$J_\text{NEG} = \log Q_\theta(D=1 \vert w_t, h) + k \mathop{\mathbb{E}}{\tilde 
 - where $Q_\theta(D=1 \vert w, h)$ is the binary logistic regression probability under the model of seeing the word $w$ in the context $h$ in the dataset $D$, calculated in terms of the learned embedding vectors $\theta$. 
 - In practice the author approximates the expectation by drawing $k$ contrastive words (contrasting/different words) from the noise distribution (i.e. we compute a [Monte Carlo average](https://en.wikipedia.org/wiki/Monte_Carlo_integration)).
 
-This objective is maximized when the model assigns high probabilities to the real words, and low probabilities to noise words. Technically, this is called [Negative Sampling](http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf), and there is good mathematical motivation for using this loss function: 
+This objective is maximized when the model assigns high probabilities to the real words, and low probabilities to noise words. Technically, this is called `Negative Sampling` [[8]](#8), and there is good mathematical motivation for using this loss function: 
 - The updates it proposes **approximate the updates of the softmax function in the limit**. 
 - But computationally it is especially appealing because computing the loss function now **scales only with the number of noise words that we select** ($k$), and not all words in the vocabulary ($V$). 
-- This makes it much **faster to train**. The author uses the very similar [noise-contrastive estimation](http://papers.nips.cc/paper/5165-learning-word-embeddings-efficiently-with-noise-contrastive-estimation.pdf) (NCE) loss.
+- This makes it much **faster to train**. The author uses the very similar `noise-contrastive estimation` [[9]](#9) (NCE) loss.
 
 :paperclip: **Reference:**
 
 - [TensorFlow: Vector Representations of Words](https://chromium.googlesource.com/external/github.com/tensorflow/tensorflow/+/refs/heads/0.6.0/tensorflow/g3doc/tutorials/word2vec/index.md) :bomb: :fire: :rocket:
-- [Paper: Distributed Representations of Words and Phrases
+- <a id="8">[8]</a> [Paper: Distributed Representations of Words and Phrases
 and their Compositionality](http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf)
-- [Paper: Learning word embeddings efficiently with
+- <a id="9">[9]</a> [Paper: Learning word embeddings efficiently with
 noise-contrastive estimation](http://papers.nips.cc/paper/5165-learning-word-embeddings-efficiently-with-noise-contrastive-estimation.pdf)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
