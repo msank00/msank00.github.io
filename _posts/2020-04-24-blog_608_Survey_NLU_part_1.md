@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Survey - Natural Language Understanding"
+title:  "Survey - Natural Language Understanding (NLU - Part 1)"
 date:   2020-04-24 00:00:10 -0030
 categories: jekyll update
 mathjax: true

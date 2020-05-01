@@ -1325,6 +1325,55 @@ built-in types like (`list, set, dict,byte array`) are mutable. Custom classes a
 
 ------
 
+# Difference between Multi-Class and Multi-Label classification
+
+## Multi-Class Classification
+
+<center>
+<img src="/assets/images/image_41_ml_02.png" alt="image" width="400"/>
+</center>
+
+
+## Multi-Label Classification
+
+<center>
+<img src="/assets/images/image_41_ml_03.png" alt="image" width="400"/>
+</center>
+
+
+<center>
+<img src="/assets/images/image_41_ml_01.png" alt="image" width="400"/>
+</center>
+
+**Method:**
+
+1. **Not so good idea:** Two independent classifiers might output combinations of labels that don’t make sense.
+
+**Limitations:**
+
+- Calico cats are almost always female
+- If your classifiers predict male and calico, this is probably wrong
+- There might be correlations between the classes that you could help classification if you had a way to combine the two classifiers
+
+2. **Good idea:** train one classifier first, use its output as a feature in the other.
+
+**Limitations:**
+
+- If the first classifier is wrong, you’ll have an incorrect feature value.
+- This is a `pipeline` approach where one classifier informs the other, rather than both informing each other simultaneously.
+
+3. **Better Idea:** treat combinations of classes as their own “classes”, then do single-label classification. combine Class $y_1$ and $y_2$ and create single class and use **multi-class classification**.
+
+**Limitations:**
+
+- All classes are learned independently:the classifier has no idea that `Tuxedo+Male` and `Tuxedo+Female` are both the same color and therefore probably have similar feature weights.
+
+:paperclip: **Reference:**
+
+- [Lecture - Colorado](https://cmci.colorado.edu/classes/INFO-4604/files/slides-7_multi.pdf)
+
+------
+
 # How do you handle multi-class classification with unbalanced dataset ?
 
 + [link1](https://www.linkedin.com/pulse/multi-class-classification-imbalanced-data-using-random-burak-ozen/)
@@ -1405,7 +1454,9 @@ $$BIC=-2\log L(\hat \theta) + k \log n$$
 
 What are the odds of that happening? What should Jack do? What would you have done?
 
+<center>
 <img src="https://miro.medium.com/max/454/1*t_t7cMq3FGqDk6gbwfA4EA.png" alt="image" width="400"/>
+</center>
 
 - **Type I: False Positive**
 - **Type II: False Negative**
