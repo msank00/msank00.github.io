@@ -161,10 +161,11 @@ It combines the forget and input gates into a single “update gate.” It also 
 Which of these variants is best? Do the differences matter? Greff, et al. (2015) do a nice comparison of popular variants, finding that they’re all about the same. Jozefowicz, et al. (2015) tested more than ten thousand RNN architectures, finding some that worked better than LSTMs on certain tasks.
 
 
-**Reference:**
+:paperclip: **Reference:**
 
 - [IMP, Lecture 10, Standford cs231 page-96 ](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture10.pdf)
-- [Chrish Olah LSTM](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+- [Chrish Olah LSTM](https://colah.github.io/posts/2015-08-Understanding-LSTMs/) :fire:
+- [Illustrated Guide to LSTM’s and GRU’s](https://towardsdatascience.com/illustrated-guide-to-lstms-and-gru-s-a-step-by-step-explanation-44e9eb85bf21) :fire: :fire:
 - [Lecture 15 by Prof. Mitesh K](https://www.youtube.com/watch?v=9TFnjJkfqmA&feature=youtu.be)
 - [Edward Chen](http://blog.echen.me/2017/05/30/exploring-lstms/)
 

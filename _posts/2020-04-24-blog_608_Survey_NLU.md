@@ -532,7 +532,203 @@ noise-contrastive estimation](http://papers.nips.cc/paper/5165-learning-word-emb
 - [Talk by author Manaal Faruqui](https://www.youtube.com/watch?v=yG4XbgytH4w&feature=youtu.be)
 - [CS224U Youtube Lecture](https://www.youtube.com/watch?v=pip8h9vjTHY&list=PLoROMvodv4rObpMCir6rNNUlFAn56Js20&index=4)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Sentiment Analysis
+
+## Core Reading
+
+- [Sentiment Treebank - Richard Socher, EMNLP 2013](https://www.aclweb.org/anthology/D13-1170.pdf)
+- [Opinion mining and sentiment analysis - Pang and Lee (2008)](https://www.cs.cornell.edu/home/llee/omsa/omsa.pdf)
+- [A Primer on Neural Network Models for Natural Language Processing - Goldberg 2015](https://arxiv.org/abs/1510.00726)
+
+## Introduction
+
+`Sentiment analysis` seems simple at first but turns out to exhibit all of the complexity of full natural language understanding. To see this, consider how your intuitions about the sentiment of the following sentences can change depending on perspective, social relationships, tone of voice, and other aspects of the context of utterance:
+
+1. There was an earthquake in LA.
+2. The team failed the physical challenge. (We win/lose!)
+3. They said it would be great. They were right/wrong.
+4. Many consider the masterpiece bewildering, boring, slow-moving or annoying.
+5. The party fat-cats are sipping their expensive, imported wines.
+6. Oh, you're terrible!
+
+## Related paper
+
+- :book: [Subjectivity - Pang and Lee 2008](https://www.cs.cornell.edu/home/llee/papers/cutsent.pdf)
+- :book: [Bias - Recasens et al. 2013](https://nlp.stanford.edu/pubs/neutrality.pdf)
+- :book: [Stance - Anand et al. 2011](https://www.aclweb.org/anthology/W11-1701/)
+- :book: [Abusive Language Detection - Nobata et al. 2016](https://pdfs.semanticscholar.org/e39b/586e561b36a3b71fa3d9ee7cb15c35d84203.pdf)
+- :book: [Sarcasm - Khodak et al. 2017](https://arxiv.org/abs/1704.05579)
+- :book: [Deception and Betrayal - Niculae et al. 2015](https://arxiv.org/abs/1506.04744)
+- :book: [Online Troll - Cheng et al. CSCW 2017](https://arxiv.org/abs/1702.01119)
+- :book: [Polarization - Gentzkow et al. 2019](https://arxiv.org/abs/1904.01596)
+- :book: [Politeness - Danescu-Niculescu-Mizil et al. 2013](https://nlp.stanford.edu/pubs/politeness.pdf)
+- :book: [Linguistic alignment - Doyle et al. 2013](https://www.aclweb.org/anthology/P16-1050.pdf)
+
+_*Dataset available for these paper_
+
+:paperclip: **Reference:**
+
+- [CS224U Youtube Lecture](https://www.youtube.com/watch?v=O1Xh3H1uEYY&list=PLoROMvodv4rObpMCir6rNNUlFAn56Js20&index=5)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 -----
+
+# What is Lexicon
+
+A word to meaning dictionary
+
+- [Slide Page 10](https://web.stanford.edu/class/cs224u/materials/cs224u-2020-sentiment-handout.pdf)
+
+# Sentiment Dataset
+
+- [Slide Page 9](https://web.stanford.edu/class/cs224u/materials/cs224u-2020-sentiment-handout.pdf)
+
+----
+
+# Art of Tokenization
+
+Normal words are fine for tokenization. But it becomes problematic when you process social media post, e.g Tweet.
+
+<center>
+<img src="https://camo.githubusercontent.com/9117c63a6795f6981aaa42d7dc4f5640d31b1cd1/687474703a2f2f692e696d6775722e636f6d2f4b714a6e5654782e706e67" width="400">
+</center>
+
+<center>
+<img src="https://jenniferbakerconsulting.com/wp-content/uploads/JKD.jpg
+" height="300">
+</center>
+
+- `whitespace` tokenization is Okay. Basic. Preserve emoticons.
+- `treebank` tokenizer - most systems are using.
+  - Destroys hashtags, http link emoticons
+- `sentiment aware` tokenization
+  - `nltk.tokenize.casual.TweetTokenizer`
+  - Isolate emoticon, respect domain specific tweet markup, capture multi-word expression, preserves capitalization where seems meaningful.
+
+Different tokenization has impact on the final nlp task.  
+
+:paperclip: **Reference:**
+
+- [CS224U Youtube Lecture](https://www.youtube.com/watch?v=O1Xh3H1uEYY&list=PLoROMvodv4rObpMCir6rNNUlFAn56Js20&index=5)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+-----
+
+# Danger of Stemming
+
+- Stemming is heuristically collapsing words together by trimming of their ends. The idea is, this is helping you to collapse `morphological` variance.
+- `porter` and `lancaster` destroy too many sentiment distinctions.
+- `wordnet` is better but still not best.
+- All comparative and superlative adjectives are stripped down to their base form
+- `Sentiment-aware` tokenizer beats both `porter` and `lancaster`
+
+
+## Question
+
+**Does stemming work on misspelling words?**
+
+**Ans:** Stemming is a set of rules and they are not intelligent. So whatever input you feed to them, if the rules are applicable, then they will be applied. However, for modern NLU model, misspelling words are not that much of a problem due to dense representations of words **generated from the context**. Therefore, if you have a common misspelling, then their word representation will be similar to the actual correct word. And this is one of the selling point of the modern NLU papers which state that no need of spell checker as preprocessing steps as the system will gracefully recover from that due to **context aware word vector representation**.
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+-----
+
+# POS tagging
+
+POS tagging helps in improving sentiment classification task. Because there are words for which if multiple pos tags are available, then sentiment of different tags are different.
+
+**Example:** 
+
+- `fine`: if Adjective POSITIVE, if Noun then NEGATIVE
+
+
+But even that Sentiment distinctions transcends (goes beyond) parts of speech.
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Stanford Sentiment Treebank (SST)
+
+- :page_with_curl: [Sentiment Treebank - Richard Socher, EMNLP 2013](https://www.aclweb.org/anthology/D13-1170.pdf)
+
+Most sentiment prediction systems work just by looking at words in isolation, giving positive points for positive words and negative points for negative words and then summing up these points. **Problem:** the order of words is ignored and important information is lost. 
+
+In constrast, our new deep learning model actually 
+
+> **builds up a representation of whole sentences based on the `sentence structure`.**
+
+**It computes the sentiment based on how words compose the meaning of longer phrases.**
+
+<center>
+<img src="https://miro.medium.com/max/1400/1*sh9P4hY6oR0mFbzWkUFtNA.png" height="300">
+</center>
+
+This way, the model is not as easily fooled as previous models. For example, our model learned that `funny` and `witty` are positive but the following sentence is still negative overall:
+
+>> This movie was actually neither that funny, nor super witty.
+
+The underlying technology of this demo is based on a new type of Recursive Neural Network that builds on top of grammatical structures. 
+
+
+<center>
+<img src="/assets/images/image_40_nlu_11.png" height="400">
+</center>
+
+Sentiment from bottom up is projected towards the top.
+
+- :large_blue_circle: positive
+- :white_circle: neutral
+- :red_circle: negative
+
+**SST-5** consists of $11855$ sentences extracted from movie reviews with fine-grained sentiment labels $[1–5]$, as well as $215154$ phrases that compose each sentence in the dataset.
+
+The raw data with phrase-based fine-grained sentiment labels is in the form of a tree structure, designed to help train a **Recursive Neural Tensor Network** (**RNTN**) from their 2013 paper. The component phrases were constructed by parsing each sentence using the Stanford parser (section 3 in the paper) and creating a recursive tree structure as shown in the below image. A deep neural network was then trained on the tree structure of each sentence to classify the sentiment of each phrase to obtain a cumulative sentiment of the entire sentence.
+
+:paperclip: **Reference:**
+
+- [Stanford sentiment](https://nlp.stanford.edu/sentiment/)
+- [Blog](https://towardsdatascience.com/fine-grained-sentiment-analysis-in-python-part-1-2697bb111ed4)
+- Check the noebooks on sst from the course website
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Sentiment classifier comparison
+
+<center>
+<img src="/assets/images/image_40_nlu_12.png" height="300">
+</center>
+
+:paperclip: **Reference:**
+
+- [Wilcoxon signed-rank test](https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test)
+- [McNemar test](https://en.wikipedia.org/wiki/McNemar%27s_test)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Assessing individual feature selection
+
+<center>
+<img src="/assets/images/image_40_nlu_13.png" width="400">
+</center>
+
+These kind of feature selection in the presence of `correlated features` are hard to interpret. So handle with care.
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
 
 # Exercise:
 
