@@ -30,7 +30,6 @@ Quick Refresher on Natural Language Understanding
 
 ## Overview
 
-Overview
 
 This notebook illustrates an approach to [relation extraction](http://deepdive.stanford.edu/relation_extraction) using [distant supervision](http://deepdive.stanford.edu/distant_supervision). It uses a simplified version of the approach taken by Mintz et al. in their 2009 paper, `Distant supervision for relation extraction without labeled data`. Read the paper. Must.
 
@@ -87,10 +86,14 @@ By making the blind assumption that all such sentences do express the founder re
 
 2. We **need an existing KB** to start from. We can only train a model to extract new instances of the founders relation if we already have many instances of the founders relation. Thus, while distant supervision is a great way to extend an existing KB, it's not useful for creating a KB containing new relations from scratch.
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
 
 # Entity Extraction
 
-- While extracting entities, direction matter.
+- While extracting entities, direction matters.
 
 ```py
 corpus.show_examples_for_pair('Elon_Musk', 'Tesla_Motors')
@@ -181,6 +184,9 @@ So we'll formulate our prediction problem such that the
 - The `corpus` will provide the features.
 
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ----
 
 # Problem formulation
@@ -245,6 +251,7 @@ The dataset for each relation will include KBTriples derived from two sources:
 - [Blog on Data Programming](https://msank00.github.io/blog/2020/03/03/blog_602_Survey_data_programming#snorkel-rapid-training-data-creation-with-weak-supervision)
 - [Section 18.2.3 and 18.2.4  Relation extraction by Bootstrapping -  Book by Jurafsky, 3rd ed] :fire: :fire:
 - [Stanford: Notebook Relation Extraction Part 1](https://nbviewer.jupyter.org/github/cgpotts/cs224u/blob/master/rel_ext_01_task.ipynb) :fire: :fire:
+- :movie_camera: [Stanford Lecture CS224U](https://www.youtube.com/watch?v=pO3Jsr31s_Q&list=PLoROMvodv4rObpMCir6rNNUlFAn56Js20&index=7) :rocket:
 
 
 
