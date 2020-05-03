@@ -12,6 +12,17 @@ mathjax: true
 {:toc}
 ---
 
+# PyTorch Tips
+
+- [CS224U PyTorch](https://nbviewer.jupyter.org/github/cgpotts/cs224u/blob/master/tutorial_pytorch.ipynb)
+
+
+# Numpy Tips
+
+- [CS224U Numpy](https://nbviewer.jupyter.org/github/cgpotts/cs224u/blob/master/tutorial_numpy.ipynb)
+
+----
+
 # How to fine-tune pre-trained model?
 
 

@@ -253,7 +253,77 @@ The dataset for each relation will include KBTriples derived from two sources:
 - [Stanford: Notebook Relation Extraction Part 1](https://nbviewer.jupyter.org/github/cgpotts/cs224u/blob/master/rel_ext_01_task.ipynb) :fire: :fire:
 - :movie_camera: [Stanford Lecture CS224U](https://www.youtube.com/watch?v=pO3Jsr31s_Q&list=PLoROMvodv4rObpMCir6rNNUlFAn56Js20&index=7) :rocket:
 
+----
 
+# Natural Language Inference (NLI)
+
+## Prologue
+
+NLI is interesting compared to Sentiment Analysis, because it has two texts to work with.
+- **Premise**
+- **Hypothesis**
+
+That opens up lots of interesting avenue for modelling. How to model Premise and Hypothesis separately and how to relate them.
+
+- Sentence encoding models
+- Chained models
+
+## Core Reading
+
+- [Learning Distributed Word Representations for Natural Logic Reasoning - Bowman et al. 2015 AAAI](https://www.aaai.org/ocs/index.php/SSS/SSS15/paper/view/10221) :fire: :fire:
+- [Stanford Natural Language Inference (SNLI) Corpus](https://nlp.stanford.edu/projects/snli/)
+- [Reasoning about Entailment with Neural Attention - Rocktäschel et al. 2015](https://arxiv.org/pdf/1509.06664v1.pdf)
+- [A Broad-Coverage Challenge Corpus for Sentence Understanding through Inference - Williams et al. 2018](https://www.aclweb.org/anthology/N18-1101/)
+- [Adversarial NLI: A New Benchmark for Natural Language Understanding - Nie et al. 2019](https://arxiv.org/abs/1910.14599)
+
+## Overview
+
+Natural Language Inference (NLI) is the task of **predicting the logical relationships** between words, phrases, sentences, (paragraphs, documents, ...). Such relationships are crucial for all kinds of reasoning in natural language: `arguing`, `debating`, `problem solving`, `summarization`, and so forth.
+
+[Dagan et al. 2006](https://link.springer.com/chapter/10.1007%2F11736790_9) one of the foundational papers on NLI (also called **Recognizing Textual Entailment**; `RTE`), make a case for the generality of this task in NLU:
+
+
+> It seems that major inferences, as needed by multiple applications, can indeed be cast in terms of `**textual entailment**`. For example, a **QA** system has to identify texts that entail (require) a hypothesized answer. [...] Similarly, for certain **Information Retrieval** queries the combination of `semantic concepts` and `relations` denoted by the `query` should be entailed (needed) from relevant retrieved documents. [...] In **multi-document summarization** a redundant sentence, to be omitted from the summary, should be entailed from other sentences in the summary. And in **MT** evaluation a correct translation should be semantically equivalent to the gold standard translation, and thus both translations should entail each other. Consequently, we hypothesize that **textual entailment recognition** is a suitable generic task for evaluating and comparing applied semantic inference models. Eventually, such efforts can promote the development of **entailment recognition** `engines` which may provide useful generic modules across applications.
+
+**Examples:**
+
+<center>
+<img src="/assets/images/image_40_nlu_14.png" width="500" alt="image">
+</center>
+
+## NLI task formulation
+
+Does the premise justify an inference to the hypothesis?
+
+- Commonsense reasoning, rather than strict logic.
+- Focus on local inference steps, rather than long deductive chains.
+- Emphasis on variability of linguistic expression
+
+**Connection to other tasks**
+
+<center>
+<img src="/assets/images/image_40_nlu_15.png" width="360" alt="image">
+</center>
+
+
+## Dataset
+
+- [The Stanford Natural Language Inference corpus (SNLI)](https://nlp.stanford.edu/projects/snli/)
+- [The Multi-Genre NLI Corpus (MultiNLI)](https://www.nyu.edu/projects/bowman/multinli/)
+
+They have the same format and were crowdsourced using the same basic methods. However, SNLI is entirely focused on image captions, whereas MultiNLI includes a greater range of contexts.
+
+## NLI Model Landscape
+
+<center>
+<img src="/assets/images/image_40_nlu_16.png" width="500" alt="image">
+</center>
+
+
+:paperclip: **Reference:**
+
+- [Stanford Notebook on NLI Part 1](https://nbviewer.jupyter.org/github/cgpotts/cs224u/blob/master/nli_01_task_and_data.ipynb) :fire:
+- [CS224U Youtube Lecture on NLI Part 1](https://www.youtube.com/watch?v=M_VPUF9ResU&list=PLoROMvodv4rObpMCir6rNNUlFAn56Js20&index=8)
 
 ----
 
