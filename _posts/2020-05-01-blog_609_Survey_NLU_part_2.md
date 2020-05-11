@@ -396,11 +396,34 @@ In the simplest version of this model, we just concatenate the premise and hypot
 <img src="/assets/images/image_40_nlu_19.png" width="500" alt="image">
 </center>
 
+**Separate premise and hypothesis RNNs:**
+
+A natural variation on the above is to give the premise and hypothesis each their own RNN:
+
+<center>
+<img src="/assets/images/image_40_nlu_20.png" width="500" alt="image">
+</center>
+
+This greatly increases the number of parameters, but it gives the model more chances to learn that appearing in the premise is different from appearing in the hypothesis. One could even push this idea further by giving the premise and hypothesis their own embeddings as well. One could implement this easily by modifying the sentence-encoder version defined above.
+
+
+**Attention mechanisms:**
+
+Many of the best-performing systems in the [SNLI leader board](https://nlp.stanford.edu/projects/snli/) use attention mechanisms to help the model learn important associations between words in the premise and words in the hypothesis. I believe [Rocktäschel et al. (2015)](https://arxiv.org/pdf/1509.06664v1.pdf) were the first to explore such models for NLI.
+
+For instance, if puppy appears in the premise and dog in the conclusion, then that might be a high-precision indicator that the correct relationship is entailment.
+
+This diagram is a `high-level` schematic for adding **attention mechanisms** to a chained RNN model for NLI:
+
+<center>
+<img src="/assets/images/image_40_nlu_21.png" width="500" alt="image">
+</center>
+
+
 
 ## Sparse feature representations
 
 We begin by looking at models based in sparse, hand-built feature representations. As in earlier units of the course, we will see that these models are competitive: easy to design, fast to optimize, and highly effective.
-
 
 **Feature representations**
 
