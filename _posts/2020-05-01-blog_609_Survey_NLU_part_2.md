@@ -253,6 +253,8 @@ The dataset for each relation will include KBTriples derived from two sources:
 - [Stanford: Notebook Relation Extraction Part 1](https://nbviewer.jupyter.org/github/cgpotts/cs224u/blob/master/rel_ext_01_task.ipynb) :fire: :fire:
 - :movie_camera: [Stanford Lecture CS224U](https://www.youtube.com/watch?v=pO3Jsr31s_Q&list=PLoROMvodv4rObpMCir6rNNUlFAn56Js20&index=7) :rocket:
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # Natural Language Inference (NLI)
@@ -291,6 +293,10 @@ Natural Language Inference (NLI) is the task of **predicting the logical relatio
 <img src="/assets/images/image_40_nlu_14.png" width="500" alt="image">
 </center>
 
+- Understanding of `common sense` reasoning.
+- Capturing variability in expression.
+  
+
 ## NLI task formulation
 
 Does the premise justify an inference to the hypothesis?
@@ -320,10 +326,164 @@ They have the same format and were crowdsourced using the same basic methods. Ho
 </center>
 
 
+## Combine Dense and Sparse representation
+
+In general hand crafted features are used in linear models and there are deep learning models. Now in deep learning models we use `short-dense vectors`.
+
+Now how to combine the hand-crafted feature with dense vector. 
+- **Hand-crafted** features are `long and sparse` e.g. dimension $20K$
+- **Learnt** features are `short and dense` e.g. dimension $50$
+
+Now these 2 can be think of as 2 different word embedding and how to join them.
+
+- **Quick and dirty** approach is simple concatenation. But the `long-sparse` vector will dominate over the `short-dense` part. 
+- **Mature approach:** So before concatenation, one good strategy will be to shorten the `long-sparse` vector by **dimensionality reduction** (LSA, PSA) and create a short representation. Which is called **model external transformation**.
+
+## NLI Method: Sentence-encoding models
+
+The hallmark of these is that the premise and hypothesis get their own representation in some sense, and then those representations are combined to predict the label. [Bowman et al. 2015](http://aclweb.org/anthology/D/D15/D15-1075.pdf) explore models of this form as part of introducing SNLI data.
+
+The `feed-forward networks` are members of this family of models: each word was represented separately, and the concatenation of those representations was used as the input to the model.
+
+- Different embedding for `Premise` and `Hypothesis`, combine them and model against the target (`entails`/`contradict`/`neutral`)
+- The embedding can be done in many ways. Simple **GloVe lookup**
+
+<center>
+<img src="/assets/images/image_40_nlu_17.png" width="500" alt="image">
+</center>
+
+Here's an implementation of this model where
+
+- The embedding is GloVe.
+- The word representations are summed.
+- The premise and hypothesis vectors are concatenated.
+- A softmax classifier is used at the top.
+
+
+
+- **sentence encoding** using 2 separate RNN for premise and hypothesis and thus get 2 separate encoding of the 2 sentences as embedding 
+
+
+**Dense representations with a shallow neural network**
+
+A small tweak to the above is to use a neural network instead of a softmax classifier at the top:
+
+**Sentence-encoding RNNs**
+
+A more sophisticated sentence-encoding model processes the `premise` and `hypothesis` with separate RNNs and uses the concatenation of their final states as the basis for the classification decision at the top:
+
+
+<center>
+<img src="/assets/images/image_40_nlu_18.png" width="500" alt="image">
+</center>
+
+$h_3$ and $h_d$ are sentence level embedding of premise and hypothesis. 
+
+- This RNN representation creates a summary embedding. 
+- We can also use a `bi-directional` RNN. 
+- But can we join the 2 sentences (premise and hypothesis) and use a single RNN instead of 2 separate RNN. Will that be helpful? `Chained model` is the answer to this.
+
+
+## Chained models
+
+The final major class of NLI designs we look at are those in which the premise and hypothesis are processed sequentially, as a pair. These don't deliver representations of the premise or hypothesis separately. They bear the strongest resemblance to classic sequence-to-sequence models.
+
+**Simple RNN**
+
+In the simplest version of this model, we just concatenate the premise and hypothesis. The model itself is identical to the one we used for the Stanford Sentiment Treebank:
+
+<center>
+<img src="/assets/images/image_40_nlu_19.png" width="500" alt="image">
+</center>
+
+
+## Sparse feature representations
+
+We begin by looking at models based in sparse, hand-built feature representations. As in earlier units of the course, we will see that these models are competitive: easy to design, fast to optimize, and highly effective.
+
+
+**Feature representations**
+
+The guiding idea for NLI sparse features is that one wants to **knit together** the `premise` and `hypothesis`, so that the model can learn about their relationships rather than just about each part separately.
+
+
 :paperclip: **Reference:**
 
 - [Stanford Notebook on NLI Part 1](https://nbviewer.jupyter.org/github/cgpotts/cs224u/blob/master/nli_01_task_and_data.ipynb) :fire:
 - [CS224U Youtube Lecture on NLI Part 1](https://www.youtube.com/watch?v=M_VPUF9ResU&list=PLoROMvodv4rObpMCir6rNNUlFAn56Js20&index=8)
+- [CS224U Youtube Lecture on NLI Part 2](https://www.youtube.com/watch?v=JXtH_ABQFX0&list=PLoROMvodv4rObpMCir6rNNUlFAn56Js20&index=9)
+- [CS224U Notebook on NLI Part 2](https://nbviewer.jupyter.org/github/cgpotts/cs224u/blob/master/nli_02_models.ipynb) :fire:
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Evaluation
+
+## Classifier Comparison
+
+Suppose you've assessed two classifier models. Their performance is probably different to some degree. What can be done to establish whether these models are different in any meaningful sense?
+
+
+**Confidence intervals**
+
+If you can afford to run the model multiple times, then reporting `confidence intervals` based on the resulting scores could suffice to build an argument about whether the models are meaningfully different.
+
+The following will calculate a simple $95\%$ confidence interval for a vector of scores vals:
+
+```py
+def get_ci(vals):
+    if len(set(vals)) == 1:
+        return (vals[0], vals[0])
+    loc = np.mean(vals)
+    scale = np.std(vals) / np.sqrt(len(vals))
+    return stats.t.interval(0.95, len(vals)-1, loc=loc, scale=scale)
+```
+
+It's very likely that these confidence intervals will look very large relative to the variation that you actually observe. You probably can afford to do no more than $10–20$ runs. Even if your model is performing very predictably over these runs (which it will, assuming your method for creating the splits is sound), the above intervals will be large in this situation. This might justify `bootstrapping` the confidence intervals. I recommend [scikits-bootstrap](https://github.com/cgevans/scikits-bootstrap) for this.
+
+**TL;DR:** If model training time is short and you can run the model multiple times on the same train-test split, then create $n$ models and do the prediction of the test set on these $n$ models and for each test input you wil get $n$ predictions which will give you `mean` and `variance` and thus you can draw a confidence interval.
+
+```py
+import scikits.bootstrap as boot
+import numpy as np
+boot.ci(np.random.rand(100), np.average)
+```
+
+**Important:** when evaluating multiple systems via repeated `train/test` splits or cross-validation, all the systems have to be run on the same splits. This is the only way to ensure that all the systems face the same challenges.
+
+
+**Learning curves with confidence intervals**
+
+
+- Incremental performance plots are the best augmented with confidence interval.
+
+Example from paper [Dingall and Potts 2018](https://arxiv.org/abs/1803.09901)
+
+<center>
+<img src="https://nbviewer.jupyter.org/github/cgpotts/cs224u/blob/master/fig/diagnosis-curve.png" width="500" alt="image">
+</center>
+
+
+**The role of random parameter initialization**
+
+Most deep learning models have their parameters **initialized randomly**, perhaps according to some heuristics related to the number of parameters ([Glorot and Bengio 2010](http://proceedings.mlr.press/v9/glorot10a.html)) or their `internal structure` ([Saxe et al. 2014](https://arxiv.org/abs/1312.6120)). This is meaningful largely because of the `non-convex optimization` problems that these models define, but it can impact simpler models that have multiple optimal solutions that still differ at test time.
+
+There is growing awareness that these **random choices have serious consequences**. For instance, [Reimers and Gurevych (2017)](https://aclanthology.coli.uni-saarland.de/papers/D17-1035/d17-1035) report that **different initializations** for neural sequence models can lead to `statistically significant results`, and they show that a number of recent systems are indistinguishable in terms of raw performance once this source of variation is taken into account.
+
+
+- For better or worse, the only response we have to this situation is to **report scores for multiple complete runs of a model with different randomly chosen initializations**. 
+- [Confidence intervals](https://nbviewer.jupyter.org/github/cgpotts/cs224u/blob/master/evaluation_methods.ipynb#Confidence-intervals) and [Statistical tests](https://nbviewer.jupyter.org/github/cgpotts/cs224u/blob/master/evaluation_methods.ipynb#Wilcoxon-signed-rank-test) can be used to summarize the variation observed. If the evaluation regime already involves comparing the results of multiple train/test splits, then ensuring a new random initializing for each of those would seem sufficient.
+
+Arguably, these observations are incompatible with evaluation regimes involving only a single train/test split, as in `McNemar's test`. However, as discussed above, we have to be realistic. **If multiple run aren't feasible, then a more heuristic argument will be needed to try to convince skeptics that the differences observed are larger than we would expect from just different random initializations**.
+
+- Strive to base your model comparisons in multiple runs on the same splits. This is especially important for deep learning, where a single model can perform in very different ways on the same data, depending on the vagaries of optimization.
+
+For more evaluation refer to this [cs224u notebook 2](https://nbviewer.jupyter.org/github/cgpotts/cs224u/blob/master/evaluation_metrics.ipynb) :fire: :fire:
+
+:paperclip: **Reference:**
+
+- [cs224u notebook 1](https://nbviewer.jupyter.org/github/cgpotts/cs224u/blob/master/evaluation_metrics.ipynb)
 
 ----
 
