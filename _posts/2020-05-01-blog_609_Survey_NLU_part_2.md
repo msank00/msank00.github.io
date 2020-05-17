@@ -470,10 +470,10 @@ In the vast majority of cases, the `data` $\rightarrow$ `word` mapping depends o
 
 other data (in addition to temperature).  For example, 
 
-- $30\degree$C may be hot if humidity is high, but not if humidity is low
-- **Expectations and interpretation.**  For example, $30\degree$C may be hot in Antartica :greenland:, but not in the Sahara desert :egypt:.
-- **Individual speakers:**  Even in the same location, a Scottish person may call $30\degree$C hot, while a Vietnamese   :vietnam: does not.
-- **Discourse context:**  If a previous speaker has used hot to mean $30\degree$C, other speakers may align to this usage and do likewise
+- $30 \degree$C may be hot if humidity is high, but not if humidity is low
+- **Expectations and interpretation.**  For example, $30 \degree$C may be hot in Antartica :greenland:, but not in the Sahara desert :egypt:.
+- **Individual speakers:**  Even in the same location, a Scottish person may call $30 \degree$C hot, while a Vietnamese   :vietnam: does not.
+- **Discourse context:**  If a previous speaker has used hot to mean $30 \degree$C, other speakers may align to this usage and do likewise
 - **Perceived colour** depends on `visual context` (lighting conditions, nearby objects) as well as the RGB value of a set of pixels
 - **Perceived time** in expressions such as `by evening` can depend on `season` and `sunset` time as well as the clock time being communicated.
 
