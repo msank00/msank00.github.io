@@ -441,6 +441,77 @@ The guiding idea for NLI sparse features is that one wants to **knit together** 
 
 ----
 
+# Language Grounding
+
+## Context
+
+>> How does language relate to the real world?
+
+From the paper [Matuszek et al. IJCAI2018](https://www.ijcai.org/Proceedings/2018/0810.pdf),
+**Grounded language acquisition** is concerned with
+learning the meaning of language as it applies to
+the physical world. As robots become more capable and ubiquitous, there is an increasing need for
+non-specialists to interact with and control them,
+and natural language is an intuitive, flexible, and
+customizable mechanism for such communication.
+At the same time, physically embodied agents offer a way to learn to understand natural language
+in the context of the world to which it refers.
+
+This is perhaps most easily seen in an NLG context in the problem of choosing words to express data.  For example, 
+- How do we map visual data onto colour terms such as "red" :red_circle: 
+- How do we map `clock times` onto `time expressions` such as "late evening"?
+- How do we map `geographic regions` onto `descriptors` such as "central Scotland"?
+
+Current progress in this field:
+
+- Generating image descriptions
+
+In the vast majority of cases, the `data` $\rightarrow$ `word` mapping depends on `context`.  For example, sticking to temperatures, lets look at `hot` :fire:.  Its meaning depends on (amongst other things)
+
+other data (in addition to temperature).  For example, 
+
+- $30\degree$C may be hot if humidity is high, but not if humidity is low
+- **Expectations and interpretation.**  For example, $30\degree$C may be hot in Antartica :greenland:, but not in the Sahara desert :egypt:.
+- **Individual speakers:**  Even in the same location, a Scottish person may call $30\degree$C hot, while a Vietnamese   :vietnam: does not.
+- **Discourse context:**  If a previous speaker has used hot to mean $30\degree$C, other speakers may align to this usage and do likewise
+- **Perceived colour** depends on `visual context` (lighting conditions, nearby objects) as well as the RGB value of a set of pixels
+- **Perceived time** in expressions such as `by evening` can depend on `season` and `sunset` time as well as the clock time being communicated.
+
+## Core reading
+
+- [Colors in Context by Monroe et al. 2017](https://transacl.org/ojs/index.php/tacl/article/view/1142)
+
+## Example: Color Describer
+
+**Training with Teacher Forcing**
+
+<center>
+<img src="../assets/images/image_40_nlu_22.png" width="500" alt="image">
+</center>
+
+**Prediction**
+
+<center>
+<img src="../assets/images/image_40_nlu_23.png" width="500" alt="image">
+</center>
+
+:paperclip: **Reference:**
+
+- [Blog: Language Grounding and Context](https://ehudreiter.com/2018/09/13/language-grounding/)
+- [CS224U Lecture Grounding, skip to 11th minute](https://www.youtube.com/watch?v=7b2_3dDTKMc&list=PLoROMvodv4rObpMCir6rNNUlFAn56Js20&index=10)
+- [NLP: Entity Grounding](https://medium.com/@b.terryjack/nlp-entity-grounding-d89cf0cbbfea)
+- [CS 395T](https://www.cs.utexas.edu/~mooney/gnlp/)
+- [Grounded Language Learning: Where Robotics and NLP Meet IJCAI 2018](https://www.ijcai.org/Proceedings/2018/0810.pdf)
+- [CMU 10-808: Language Grounding to Vision and Control ](https://katefvision.github.io/LanguageGrounding/)
+- [
+COMP 790.139 Processing: Grounded Language for Robotics](http://www.cs.unc.edu/~mbansal/teaching/robonlp-seminar-spring17.html)
+- [AAAI2013 Talk on Grounded Language Learning by Prof.  Raymond J. Mooney from UT Austin](http://videolectures.net/aaai2013_mooney_language_learning/) :fire:
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
 # Evaluation
 
 ## Classifier Comparison
