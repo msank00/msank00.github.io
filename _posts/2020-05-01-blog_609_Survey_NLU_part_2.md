@@ -486,13 +486,13 @@ other data (in addition to temperature).  For example,
 **Training with Teacher Forcing**
 
 <center>
-<img src="../assets/images/image_40_nlu_22.png" width="500" alt="image">
+<img src="/assets/images/image_40_nlu_22.png" width="500" alt="image">
 </center>
 
 **Prediction**
 
 <center>
-<img src="../assets/images/image_40_nlu_23.png" width="500" alt="image">
+<img src="/assets/images/image_40_nlu_23.png" width="500" alt="image">
 </center>
 
 :paperclip: **Reference:**
