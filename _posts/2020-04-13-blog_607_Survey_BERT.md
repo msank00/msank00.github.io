@@ -427,42 +427,6 @@ You can find the creation of the AdamW optimizer in `run_glue.py` [here](https:/
 
 - [Colab Notebook by Chris McCormick](https://colab.research.google.com/drive/1pTuQhug6Dhl9XalKB0zUGf4FIdYFlpcX#scrollTo=-8kEDRvShcU5)
 
-----
-
-# BERT Architecture
-
-The BERT Encoder block implements the base version of the BERT network. It is composed of 12 successive transformer layers, each having 12 attention heads.
-The total number of parameters is 110 million.
-
-<center>
-<img src="https://peltarion.com/static/bert_encoder_block.svg" alt="image" height="600">
-</center>
-
-_The architecture is reverse. Input at the top and the output at the bottom._
-
-
-Every token in the input of the block is first embedded into a learned `768-long` **embedding vector**.
-
-Each embedding vector is then transformed progressively every time it traverses one of the BERT Encoder layers:
-
-- Through linear projections, every embedding vector creates a **triplet** of `64-long vectors`, called the **key, query, and value vectors**
-- The key, query, and value vectors from all the embeddings pass through a **self-attention head**, which outputs one `64-long vector` for each **input triplet**.
-- Every output vector from the self-attention head is a function of the whole input sequence, which is what makes **BERT context-aware**.
-- A single embedding vector uses **different linear projections** to create `12 unique` **triplets of key, query, and value** vectors, which all go through their own self-attention head.
-- This allows each self-attention head to focus on different aspects of how the tokens interact with each other.
-- The output from all the self-attention heads are first concatenated together, then they go through another linear projection and a feed-forward layer, which helps to utilize **deep non-linearity**
-  - **Residual connections from previous states** are also used to increase robustness.
-
-
-
-The result is a sequence of transformed embedding vectors, which are sent through the same layer structure 11 more times.
-
-After the 12th encoding layer, the embedding vectors have been transformed to contain more accurate information about each token. You can choose if you want the BERT Encoder block to return all of them or only the first one (corresponding to the [CLS] token), which is often sufficient for classification tasks.
-
-
-**Reference:**
-
-- [IMP: BERT Architecture](https://peltarion.com/knowledge-center/documentation/modeling-view/build-an-ai-model/blocks/bert-encoder?fbclid=IwAR1t_a3no4BRylPk_29fZbKwmKB1mRdT0jFLSzXWL0t5fnSKKXTZlpKCVsA)
 
 ----
 
@@ -505,11 +469,111 @@ for sentence, embedding in zip(sentences, sentence_embeddings):
 _**for more details check the pypi repository_
 
 
-**Reference:**
+:paperclip: **Reference:**
 
 - [PyPi sentence-transformers](https://pypi.org/project/sentence-transformers/#Training)
-- [arXiv: Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks](https://arxiv.org/abs/1908.10084)
+- [arXiv: Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks](https://arxiv.org/abs/1908.10084) :fire:
 
+----
+
+# BERT Inner Workings 
+
+**Original NMT**
+
+<center>
+<img src="../assets/images/image_39_bert_06.png" width="500" alt="image">
+</center>
+
+
+<center>
+<img src="../assets/images/image_39_bert_08.png" width="500" alt="image">
+</center>
+
+
+
+2 RNN, Encoder and Decoder.
+
+- Decoder generates probability distribution for each of the word in the vocab and you pick which has the highest probability.
+- Next given the first decoder output what will be the next decoder output and so on.You can add `Teacher-Forcing` here if required.
+
+**Google NMT**
+
+<center>
+<img src="../assets/images/image_39_bert_07.png" width="500" alt="image">
+</center>
+
+
+<center>
+<img src="../assets/images/image_39_bert_09.svg" width="700" alt="image">
+</center>
+
+
+- Google added the `attention` (the concept existed already)
+- First **major** use of attention in NLP.
+- In Original NMT, entire sentence is encoded into one encoding vector. 
+- But google, 
+>> instead of looking at the single encoded output vector, they look at the individual hidden state for all the input words and **attention mechanism takes a linear combination of those hidden states** (gives different weights to different input words' hidden representation). :+1: :rocket: 
+
+_**MUST watch** [lecture 16, prof. Mikesh IIT-M](https://www.cse.iitm.ac.in/~miteshk/CS7015.html) **for in-depth attention understanding**_ :fire: :fire:
+
+
+- So when the decoder tries to output the word `European`, hope that the attention mechanism already giving lots of weight to the input word `European` and less weight to the other words.
+- In general attention tells the model to which words it should focus on.
+- The biggest benefit of Transformer model is it's ability to run in parallel. 
+
+## BERT Architecture
+
+- BERT is an enhancement of the Transformer model (**Attention is all you need**).
+  - Transformer model is an encoder-decoder model with stack of 6 encode and decoder. 
+- In BERT the decoder part is dropped and numbers of encoder layers are increased from 6 to 12
+
+
+<center>
+<img src="../assets/images/image_39_bert_10.png" width="700" alt="image">
+</center>
+
+- Now the main challenge for this model is how to train or on which kind of task you will train this model.
+  - 2 **fake tasks** are created
+  - **Predict the masked word**
+  - Next sentence prediction (was `Sentence B` found immediately after `Sentence A` ?)
+
+**BERT is conceptually not so simple but empirically very powerful**. 
+
+The BERT Encoder block implements the base version of the BERT network. It is composed of 12 successive transformer layers, each having 12 attention heads.
+The total number of parameters is 110 million.
+
+<center>
+<img src="https://peltarion.com/static/bert_encoder_block.svg" alt="image" height="600">
+</center>
+
+_The architecture is reverse. Input at the top and the output at the bottom._
+
+
+Every token in the input of the block is first embedded into a learned `768-long` **embedding vector**.
+
+Each embedding vector is then transformed progressively every time it traverses one of the BERT Encoder layers:
+
+- Through linear projections, every embedding vector creates a **triplet** of `64-long vectors`, called the **key, query, and value vectors**
+- The key, query, and value vectors from all the embeddings pass through a **self-attention head**, which outputs one `64-long vector` for each **input triplet**.
+- Every output vector from the self-attention head is a function of the whole input sequence, which is what makes **BERT context-aware**.
+- A single embedding vector uses **different linear projections** to create `12 unique` **triplets of key, query, and value** vectors, which all go through their own self-attention head.
+- This allows each self-attention head to focus on different aspects of how the tokens interact with each other.
+- The output from all the self-attention heads are first concatenated together, then they go through another linear projection and a feed-forward layer, which helps to utilize **deep non-linearity**
+  - **Residual connections from previous states** are also used to increase robustness.
+
+
+
+The result is a sequence of transformed embedding vectors, which are sent through the same layer structure 11 more times.
+
+After the 12th encoding layer, the embedding vectors have been transformed to contain more accurate information about each token. You can choose if you want the BERT Encoder block to return all of them or only the first one (corresponding to the [CLS] token), which is often sufficient for classification tasks.
+
+
+:paperclip: **Reference:**
+
+- [How Google Translate Works - YT Video](https://www.youtube.com/watch?v=AIpXjFwVdIE) :fire:
+- [BERT Research - Ep. 4 - Inner Workings I by  ChrisMcCormickAI
+](https://www.youtube.com/watch?v=C4jmYHLLG3A&list=PLam9sigHPGwOBuH4_4fr-XvDbe5uneaf6&index=5) :fire: :rocket:
+- [BERT Architecture](https://peltarion.com/knowledge-center/documentation/modeling-view/build-an-ai-model/blocks/bert-encoder?fbclid=IwAR1t_a3no4BRylPk_29fZbKwmKB1mRdT0jFLSzXWL0t5fnSKKXTZlpKCVsA) :fire:
 
 ----
 
