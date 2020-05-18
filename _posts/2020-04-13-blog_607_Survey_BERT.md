@@ -481,12 +481,12 @@ _**for more details check the pypi repository_
 **Original NMT**
 
 <center>
-<img src="../assets/images/image_39_bert_06.png" width="500" alt="image">
+<img src="/assets/images/image_39_bert_06.png" width="500" alt="image">
 </center>
 
 
 <center>
-<img src="../assets/images/image_39_bert_08.png" width="500" alt="image">
+<img src="/assets/images/image_39_bert_08.png" width="500" alt="image">
 </center>
 
 
@@ -499,12 +499,12 @@ _**for more details check the pypi repository_
 **Google NMT**
 
 <center>
-<img src="../assets/images/image_39_bert_07.png" width="500" alt="image">
+<img src="/assets/images/image_39_bert_07.png" width="500" alt="image">
 </center>
 
 
 <center>
-<img src="../assets/images/image_39_bert_09.svg" width="700" alt="image">
+<img src="/assets/images/image_39_bert_09.svg" width="700" alt="image">
 </center>
 
 
@@ -529,7 +529,7 @@ _**MUST watch** [lecture 16, prof. Mikesh IIT-M](https://www.cse.iitm.ac.in/~mit
 
 
 <center>
-<img src="../assets/images/image_39_bert_10.png" width="700" alt="image">
+<img src="/assets/images/image_39_bert_10.png" width="700" alt="image">
 </center>
 
 - Now the main challenge for this model is how to train or on which kind of task you will train this model.
