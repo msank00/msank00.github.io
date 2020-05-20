@@ -6,6 +6,8 @@ categories: jekyll update
 mathjax: true
 ---
 
+<link rel="stylesheet" href="assets/css/markdownstyle.css">
+
 # Content
 
 1. TOC
@@ -19,7 +21,8 @@ mathjax: true
 </figure>
 </center>
 
-
+test line. 
+{: .blue}
 
 # Introduction
 
