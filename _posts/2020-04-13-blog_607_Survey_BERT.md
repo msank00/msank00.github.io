@@ -21,7 +21,7 @@ mathjax: true
 </figure>
 </center>
 
-test line. 
+**test line.** 
 {: .blue}
 
 # Introduction
