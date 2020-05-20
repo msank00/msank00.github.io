@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 
-<link rel="stylesheet" href="assets/css/markdownstyle.css">
+<link rel="stylesheet" href="/assets/css/markdownstyle.css">
 
 # Content
 
