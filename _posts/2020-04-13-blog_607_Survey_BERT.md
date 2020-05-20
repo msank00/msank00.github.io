@@ -21,9 +21,6 @@ mathjax: true
 </figure>
 </center>
 
-**test line.** 
-{: .purple}
-
 # Introduction
 
 ## History
@@ -478,6 +475,7 @@ for sentence, embedding in zip(sentences, sentence_embeddings):
 ```
 
 _**for more details check the pypi repository_
+{: .purple}
 
 
 :paperclip: **Reference:**
