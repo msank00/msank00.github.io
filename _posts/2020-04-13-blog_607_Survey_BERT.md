@@ -15,7 +15,7 @@ mathjax: true
 
 <center>
 <figure class="video_container">
-  <iframe src="https://www.youtube.com/embed/FKlPCK1uFrc" frameborder="0" allowfullscreen="true" width="80%" height="300"> </iframe>
+  <iframe src="https://www.youtube.com/embed/FKlPCK1uFrc" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
 </figure>
 </center>
 
