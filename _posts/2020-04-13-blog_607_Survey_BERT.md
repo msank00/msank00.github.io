@@ -56,6 +56,42 @@ This shift to transfer learning parallels the same shift that took place in comp
 
 ----
 
+Before digging into BERT, it's advised to read the [Transformer blog by Jay Alammar](https://jalammar.github.io/illustrated-transformer/).
+
+# Self-Attention at a High Level
+
+Say the following sentence is an input sentence we want to translate:
+
+`The animal didn't cross the street because it was too tired`
+
+What does `it` in this sentence refer to? Is it referring to the `street` or to the `animal`? It’s a simple question to a human, but not as simple to an algorithm.
+
+When the model is processing the word `it`, **self-attention** allows it to associate `it` with `animal`.
+
+As the model processes each word (each `position` in the input sequence), self attention allows it to look at other positions in the input sequence for clues that can help lead to a better encoding for this word.
+
+- If you’re familiar with RNNs, think of how maintaining a hidden state allows an RNN to incorporate its representation of previous words/vectors it has processed with the current one it’s processing. 
+- Self-attention is the method the **Transformer** uses to bring the `understanding` of other relevant words into the one we’re currently processing.
+
+<center>
+<img src="https://jalammar.github.io/images/t/transformer_self-attention_visualization.png" width="400" alt="image">
+</center>
+
+
+MUST read `self attention` details from Jay Alammar's blog.
+{: .purple}
+
+:paperclip: **Reference:**
+
+- [Illustrated Transformer by Jay Alammar](https://jalammar.github.io/illustrated-transformer/) :fire: :fire:
+
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
 # BERT Shortcomings
 
 1. BERT is very large. $\sim 109$M parameters with total size $\sim 417$MB.
@@ -485,6 +521,7 @@ _**for more details check the pypi repository_
 
 ----
 
+
 # BERT Inner Workings 
 
 **Original NMT**
@@ -575,6 +612,7 @@ Each embedding vector is then transformed progressively every time it traverses 
 The result is a sequence of transformed embedding vectors, which are sent through the same layer structure 11 more times.
 
 After the 12th encoding layer, the embedding vectors have been transformed to contain more accurate information about each token. You can choose if you want the BERT Encoder block to return all of them or only the first one (corresponding to the [CLS] token), which is often sufficient for classification tasks.
+
 
 
 :paperclip: **Reference:**

@@ -6,6 +6,8 @@ categories: jekyll update
 mathjax: true
 ---
 
+<link rel="stylesheet" href="/assets/css/markdownstyle.css">
+
 # Content
 
 1. TOC
@@ -14,6 +16,18 @@ mathjax: true
 ---
 
 # Introduction
+
+From the blog of [Jay Alammar](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)
+
+Sequence-to-sequence models are deep learning models that have achieved a lot of success in tasks like machine translation, text summarization, and image captioning. Google Translate started using such a [model](https://blog.google/products/translate/found-translation-more-accurate-fluent-sentences-google-translate/) in production in late 2016. These models are explained in the two pioneering papers ([Sutskever et al. 2014](https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf), [Cho et al., 2014](http://emnlp2014.org/papers/pdf/EMNLP2014179.pdf)).
+
+In neural machine translation, a sequence is a series of words, processed one after another. The output is, likewise, a series of words:
+
+<center>
+<figure class="video_container">
+  <iframe src="https://jalammar.github.io/images/seq2seq_2.mp4" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
 
 >  The attention-mechanism looks at an input sequence and decides at each step which other parts of the sequence are important.
 
