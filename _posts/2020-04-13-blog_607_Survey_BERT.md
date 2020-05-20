@@ -22,7 +22,7 @@ mathjax: true
 </center>
 
 **test line.** 
-{: .blue}
+{: .red}
 
 # Introduction
 
