@@ -8,6 +8,11 @@ mathjax: true
 
 <link rel="stylesheet" href="/assets/css/markdownstyle.css">
 
+**DISCLAIMER:** I am not the original author of these contents. I compile from various sources to understand a concept and for future reference as I believe in DRY (Don't repeat yourself). This blog is nothing but a SCRIBE for me. Solely for education purpose. I try my best to put all the due credits in the reference. If you find any content is incorrect or credit is missing, please contact me. I will be happy to add/edit them.  
+{: .green}
+
+----
+
 # Content
 
 1. TOC
@@ -57,7 +62,7 @@ An attention model differs from a classic sequence-to-sequence model in two main
 </center>
 
 
->> **Attention mechanism takes a linear combination of all the encoder hidden states**
+**Attention mechanism takes a linear combination of all the encoder hidden states**
 {: .red}
 
 
