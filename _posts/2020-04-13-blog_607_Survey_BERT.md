@@ -8,8 +8,12 @@ mathjax: true
 
 # Content
 
-1. TOC
-{:toc}
+```toc
+:maxdepth: 2
+:numbered:
+
+guide/index
+```
 
 ---
 
