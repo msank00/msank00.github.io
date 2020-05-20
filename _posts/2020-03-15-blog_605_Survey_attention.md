@@ -29,13 +29,66 @@ In neural machine translation, a sequence is a series of words, processed one af
 </figure>
 </center>
 
+Under the hood, the model is composed of an `encoder` and a `decoder`.
+
+The `encoder` processes each item in the input sequence, it compiles the information it captures into a vector (called the `context`). After processing the entire input sequence, the encoder sends the context over to the `decoder`, which begins producing the output sequence item by item.
+
+
+<center>
+<figure class="video_container">
+  <iframe src="https://jalammar.github.io/images/seq2seq_4.mp4" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+The context is nothing but a **vector of floats**.  It is basically the number of hidden units in the encoder RNN. 
+
+
+The `context` vector turned out to be a bottleneck for these types of models. It made it challenging for the models to deal with long sentences. A solution was proposed in [Bahdanau et al., 2014](https://arxiv.org/abs/1409.0473) and [Luong et al., 2015](https://arxiv.org/abs/1508.04025). These papers introduced and refined a technique called **Attention**, which highly improved the quality of machine translation systems. Attention allows the model to focus on the relevant parts of the input sequence as needed.
+
+An attention model differs from a classic sequence-to-sequence model in two main ways:
+
+- First, the `encoder` passes a lot more data to the `decoder`. Instead of passing the last hidden state of the encoding stage, the encoder **passes all the hidden states to the decoder**:
+
+
+<center>
+<figure class="video_container">
+  <iframe src="https://jalammar.github.io/images/seq2seq_7.mp4" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+
+>> **Attention mechanism takes a linear combination of all the encoder hidden states**
+{: .red}
+
+
+- Second, an attention decoder does an extra step before producing its output. In order to focus on the parts of the input that are relevant to this decoding time step, the decoder does the following:
+
+- Look at the set of encoder hidden states it received – each encoder hidden states is most associated with a certain word in the input sentence
+- Give each hidden states a score (let’s ignore how the scoring is done for now)
+- Multiply each hidden states by its softmaxed score, thus amplifying hidden states with high scores, and drowning out hidden states with low scores
+
+<center>
+<figure class="video_container">
+  <iframe src="https://jalammar.github.io/images/attention_process.mp4" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+
+<center>
+<figure class="video_container">
+  <iframe src="https://jalammar.github.io/images/attention_tensor_dance.mp4" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+
 >  The attention-mechanism looks at an input sequence and decides at each step which other parts of the sequence are important.
+
 
 Neural networks, in particular recurrent neural networks (RNNs), are now at the core of the leading approaches to language understanding tasks such as **language modeling, machine translation and question answering**. In [Attention Is All You Need](https://arxiv.org/abs/1706.03762), the authors introduce the **Transformer**, a novel neural network architecture based on a self-attention mechanism that we believe to be particularly well suited for language understanding.
 
-In our paper, we show that the Transformer outperforms both recurrent and convolutional models on academic `English to German` and `English to French` translation benchmarks. On top of higher translation quality, the Transformer requires **less computation to train** and is a much better fit for modern machine learning hardware, speeding up training by up to an order of magnitude.
+In the paper, the author shows that the Transformer outperforms both recurrent and convolutional models on academic `English to German` and `English to French` translation benchmarks. On top of higher translation quality, the Transformer requires **less computation to train** and is a much better fit for modern machine learning hardware, speeding up training by up to an order of magnitude.
 
-The **“sequence-to-sequence”** neural network models are widely used for NLP. A popular type of these models is an **“encoder-decoder”**. There, one part of the network — encoder — encodes the input sequence into a fixed-length context vector. This vector is an internal representation of the text. This context vector is then decoded into the output sequence by the decoder. See an example:
+The **sequence-to-sequence** neural network models are widely used for NLP. A popular type of these models is an **encoder-decoder**. There, one part of the network — encoder — encodes the input sequence into a fixed-length context vector. This vector is an internal representation of the text. This context vector is then decoded into the output sequence by the decoder. See an example:
 
 <center>
 <img src="https://miro.medium.com/max/900/1*1ui7iDq956eDs-mAZHEdIg.png" width="600">
@@ -44,11 +97,41 @@ The **“sequence-to-sequence”** neural network models are widely used for NLP
 
 However, there is a catch with the common encoder-decoder approach: a neural network compresses all the information of an input source sentence into a fixed-length vector. It has been shown that this leads to a decline in performance when dealing with long sentences. The attention mechanism was introduced by Bahdanau in “Neural Machine Translation by Jointly Learning to Align and Translate” to alleviate this problem.
 
+:paperclip: **Reference:**
+
+- [Attention Explained by Jay Alammar](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/) :fire: :fire: MUST read
+
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
-# Transformer
+# Transformer - Visual Understanding
+
+- The Transformer uses attention to boost the speed with which these models can be trained.
+- The biggest benefit, however, comes from how The Transformer lends itself to **parallelization**.
+- At the core of Transformer, there is `encoder-decoder` block
+
+The encoding component is a stack of encoders (the paper stacks six of them on top of each other – there’s nothing magical about the number six, one can definitely experiment with other arrangements). The decoding component is a stack of decoders of the same number.
+
+<center>
+<img src="https://jalammar.github.io/images/t/The_transformer_encoder_decoder_stack.png" width="500" alt="image">
+</center>
+
+The encoders are all identical in structure (yet they do not share weights).
+{: .purple}
+
+
+:paperclip: **Reference:**
+
+- [The Illustrated Transformer by Jay Alammar](https://jalammar.github.io/illustrated-transformer/) :fire: :fire: 
+- [The Annotated Transformer](http://nlp.seas.harvard.edu/2018/04/03/attention.html) :fire: :fire: 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
+# Transformer - Deeper Understanding
 
 The following content has been borrowed from
 [D2L: Alex Smola, Transformer](https://d2l.ai/chapter_attention-mechanisms/transformer.html) for educational purpose.
