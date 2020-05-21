@@ -8,6 +8,11 @@ mathjax: true
 
 <link rel="stylesheet" href="/assets/css/markdownstyle.css">
 
+**DISCLAIMER:** I am not the original author of these contents. I compile from various sources to understand a concept and for future reference as I believe in DRY (Don’t repeat yourself !!). This blog is nothing but a SCRIBE for me. Solely for education purposes. I try my best to put all the due credits in the reference. If you find any content is incorrect or credit is missing, please contact me. I will be happy to add/edit them. 
+{: .olive}
+
+----
+
 # Content
 
 1. TOC
@@ -78,8 +83,10 @@ As the model processes each word (each `position` in the input sequence), self a
 </center>
 
 
-MUST read `self attention` details from Jay Alammar's blog.
+**MUST read `self attention` details from Jay Alammar's blog.**
 {: .purple}
+
+For more deeper understanding of attention please look into [this](https://msank00.github.io/blog/2020/04/13/blog_607_Survey_BERT) summary blog. 
 
 :paperclip: **Reference:**
 
@@ -583,7 +590,8 @@ _**MUST watch** [lecture 16, prof. Mikesh IIT-M](https://www.cse.iitm.ac.in/~mit
   - **Predict the masked word**
   - Next sentence prediction (was `Sentence B` found immediately after `Sentence A` ?)
 
-**BERT is conceptually not so simple but empirically very powerful**. 
+**BERT is conceptually not so simple but empirically very powerful.**
+{: .red}
 
 The BERT Encoder block implements the base version of the BERT network. It is composed of 12 successive transformer layers, each having 12 attention heads.
 The total number of parameters is 110 million.
