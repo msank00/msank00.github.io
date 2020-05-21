@@ -57,7 +57,7 @@ An attention model differs from a classic sequence-to-sequence model in two main
 
 <center>
 <figure class="video_container">
-  <iframe src="https://jalammar.github.io/images/seq2seq_7.mp4" frameborder="0" allowfullscreen="true" width="100%" height="150"> </iframe>
+  <iframe src="https://jalammar.github.io/images/seq2seq_7.mp4" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
 </figure>
 </center>
 
@@ -74,14 +74,14 @@ An attention model differs from a classic sequence-to-sequence model in two main
 
 <center>
 <figure class="video_container">
-  <iframe src="https://jalammar.github.io/images/attention_process.mp4" frameborder="0" allowfullscreen="true" width="100%" height="150"> </iframe>
+  <iframe src="https://jalammar.github.io/images/attention_process.mp4" frameborder="0" allowfullscreen="true" width="100%" height="350"> </iframe>
 </figure>
 </center>
 
 
 <center>
 <figure class="video_container">
-  <iframe src="https://jalammar.github.io/images/attention_tensor_dance.mp4" frameborder="0" allowfullscreen="true" width="100%" height="150"> </iframe>
+  <iframe src="https://jalammar.github.io/images/attention_tensor_dance.mp4" frameborder="0" allowfullscreen="true" width="100%" height="350"> </iframe>
 </figure>
 </center>
 
@@ -159,7 +159,7 @@ The **first step** in calculating self-attention is to create three vectors from
 - Multiplying $x_1$ by the $W^Q$ weight matrix produces $q_1$, the `query` vector associated with that word. We end up creating a `query`, a `key`, and a `value` projection of each word in the input sentence. 
 
 **What are the “query”, “key”, and “value” vectors?**
-{: .skyblue}
+{: .red}
 
 - They’re abstractions that are useful for calculating and thinking about attention. 
 
@@ -212,7 +212,7 @@ All the different heads give different $z_i$ matrices. Concat them and multiply 
 Summarizing all here it is:
 
 <center>
-<img src="https://jalammar.github.io/images/t/transformer_multi-headed_self-attention-recap.png" width="600" alt="image">
+<img src="https://jalammar.github.io/images/t/transformer_multi-headed_self-attention-recap.png" width="800" alt="image">
 </center>
 
 ## Positional Encoding
@@ -222,7 +222,7 @@ One thing that’s missing from the model as we have described it so far is a wa
 To address this, the transformer **adds a vector** to each input embedding. These positional encoding vectors are also **learnt**. These vectors follow a specific pattern that the model learns, which helps it determine the position of each word, or the distance between different words in the sequence.
 
 <center>
-<img src="https://jalammar.github.io/images/t/transformer_positional_encoding_vectors.png" width="500" alt="image">
+<img src="https://jalammar.github.io/images/t/transformer_positional_encoding_vectors.png" width="600" alt="image">
 </center>
 
 ## The Residuals
@@ -242,10 +242,8 @@ This goes for the sub-layers of the decoder as well. If we’re to think of a Tr
 
 Now that we’ve covered most of the concepts on the encoder side, we basically know how the components of decoders work as well. But let’s take a look at how they work together.
 
-<center>
-<img src="https://jalammar.github.io/images/t/transformer_decoding_1.gif
-" width="600" alt="image">
-</center>
+
+![image](https://jalammar.github.io/images/t/transformer_decoding_1.gif)
 
 
 :paperclip: **Reference:**
