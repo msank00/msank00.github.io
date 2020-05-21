@@ -30,7 +30,7 @@ In neural machine translation, a sequence is a series of words, processed one af
 
 <center>
 <figure class="video_container">
-  <iframe src="https://jalammar.github.io/images/seq2seq_2.mp4" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+  <iframe src="https://jalammar.github.io/images/seq2seq_2.mp4" frameborder="0" allowfullscreen="true" width="100%" height="150"> </iframe>
 </figure>
 </center>
 
@@ -41,7 +41,7 @@ The `encoder` processes each item in the input sequence, it compiles the informa
 
 <center>
 <figure class="video_container">
-  <iframe src="https://jalammar.github.io/images/seq2seq_4.mp4" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+  <iframe src="https://jalammar.github.io/images/seq2seq_4.mp4" frameborder="0" allowfullscreen="true" width="100%" height="150"> </iframe>
 </figure>
 </center>
 
@@ -57,7 +57,7 @@ An attention model differs from a classic sequence-to-sequence model in two main
 
 <center>
 <figure class="video_container">
-  <iframe src="https://jalammar.github.io/images/seq2seq_7.mp4" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+  <iframe src="https://jalammar.github.io/images/seq2seq_7.mp4" frameborder="0" allowfullscreen="true" width="100%" height="150"> </iframe>
 </figure>
 </center>
 
@@ -74,14 +74,14 @@ An attention model differs from a classic sequence-to-sequence model in two main
 
 <center>
 <figure class="video_container">
-  <iframe src="https://jalammar.github.io/images/attention_process.mp4" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+  <iframe src="https://jalammar.github.io/images/attention_process.mp4" frameborder="0" allowfullscreen="true" width="100%" height="150"> </iframe>
 </figure>
 </center>
 
 
 <center>
 <figure class="video_container">
-  <iframe src="https://jalammar.github.io/images/attention_tensor_dance.mp4" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+  <iframe src="https://jalammar.github.io/images/attention_tensor_dance.mp4" frameborder="0" allowfullscreen="true" width="100%" height="150"> </iframe>
 </figure>
 </center>
 
@@ -122,8 +122,130 @@ The encoding component is a stack of encoders (the paper stacks six of them on t
 <img src="https://jalammar.github.io/images/t/The_transformer_encoder_decoder_stack.png" width="500" alt="image">
 </center>
 
-The encoders are all identical in structure (yet they do not share weights).
+**The encoders are all identical in structure (yet they do not share weights)**.
 {: .purple}
+
+- Each `encoder` block is a combination of a FFNN and Self-Attention
+
+
+<center>
+<img src="https://jalammar.github.io/images/t/Transformer_encoder.png" width="500" alt="image">
+</center>
+
+- The encoder’s inputs first flow through a self-attention layer
+
+**A layer that helps the encoder look at other words in the input sentence as it encodes a specific word.**
+{: .orange}
+
+- The FFNNs are all independent, this helps to run the code in parallel.
+
+As multiple encoders are stacked on top of each other, **ENCODER#0** receives the `regular word embedding` which passes through self-attention layer followed by FFNN. The output of these FFNN are form of `enriched word embedding` which act as input to the **ENCODER#1**.
+
+The decoder has both those layers, but between them is an attention layer that helps the decoder focus on relevant parts of the input sentence
+
+<center>
+<img src="https://jalammar.github.io/images/t/Transformer_decoder.png" width="500" alt="image">
+</center>
+
+
+## Self-Attention in Detail
+
+The **first step** in calculating self-attention is to create three vectors from each of the encoder’s input vectors (in this case, the embedding of each word). So for each word, we create a `Query vector`, a `Key vector`, and a `Value vector`. These vectors are created by multiplying the embedding by three matrices that we trained during the training process.
+
+<center>
+<img src="https://jalammar.github.io/images/t/transformer_self_attention_vectors.png" width="500">
+</center>
+
+- Multiplying $x_1$ by the $W^Q$ weight matrix produces $q_1$, the `query` vector associated with that word. We end up creating a `query`, a `key`, and a `value` projection of each word in the input sentence. 
+
+**What are the “query”, “key”, and “value” vectors?**
+{: .skyblue}
+
+- They’re abstractions that are useful for calculating and thinking about attention. 
+
+
+The **second step** in calculating self-attention is to calculate a `score`. Say we’re calculating the self-attention for the first word in this example, `Thinking`. We need to **score each word of the input sentence against this word**. The score determines how much focus to place on other parts of the input sentence as we encode a word at a certain position.
+
+The **third and forth steps** are to divide the scores by 8 (the square root of the dimension of the key vectors used in the paper – 64. This leads to having more stable gradients and then normalize them by taking Softmax of these scores.
+
+This softmax score determines how much each word will be expressed at this position.
+
+The **fifth step** is to multiply each value vector by the softmax score (in preparation to sum them up). The intuition here is to `keep intact the values` of the word(s) we want to focus on, and `drown-out irrelevant words` (by multiplying them by tiny numbers like $0.001$, for example).
+
+The **sixth step** is to sum up the weighted value vectors. This produces the output of the self-attention layer at **this position (for the first word)**.
+
+<center>
+<img src="https://jalammar.github.io/images/t/self-attention-output.png" width="500" alt="image">
+</center>
+
+The resulting vector is one we can send along to the feed-forward neural network. In the actual implementation, however, this calculation is done in matrix form for faster processing.
+
+
+## Matrix Calculation of Self-Attention
+
+The first step is to calculate the `Query`, `Key`, and `Value` matrices. We do that by packing our embeddings into a matrix $X$, and multiplying it by the weight matrices we’ve trained ($W^Q$, $W^K$, $W^V$).
+
+
+<center>
+<img src="https://jalammar.github.io/images/t/self-attention-matrix-calculation.png" width="300" alt="image">
+</center>
+
+- Every row in the X matrix corresponds to a word in the input sentence.
+
+Finally, since we’re dealing with matrices, we can condense **steps two** through **six** in one formula to calculate the outputs of the self-attention layer.
+
+<center>
+<img src="https://jalammar.github.io/images/t/self-attention-matrix-calculation-2.png" width="500" alt="image">
+</center>
+
+## Multi Headed Attention 
+
+The paper further refined the self-attention layer by adding a mechanism called “multi-headed” attention. This improves the performance of the attention layer in two ways:
+
+1. It expands the model’s ability to `focus on different positions`. In the example above, $z_1$ contains a little bit of every other encoding, but it could be dominated by the the actual word itself.
+2. It gives the attention layer multiple `representation subspaces`.
+   1. With multi-headed attention, we maintain **separate** $Q_i/K_i/V_i$ weight matrices for **each head** resulting in different $Q_i/K_i/V_i$ matrices. As we did before, we multiply $X$ by the $W_i^Q/W_i^K/W_i^V$ matrices to produce Q/K/V matrices. Here $i$ represents the $i^{th}$ head.
+   2. In the original paper they used $8$ heads.
+
+All the different heads give different $z_i$ matrices. Concat them and multiply with weight matrix $W^O$ (trained jointly with the model) to get the final $z$ matrix that captures information from all the attention heads. This final $z$ can be sent to the FFNN.
+
+Summarizing all here it is:
+
+<center>
+<img src="https://jalammar.github.io/images/t/transformer_multi-headed_self-attention-recap.png" width="600" alt="image">
+</center>
+
+## Positional Encoding
+
+One thing that’s missing from the model as we have described it so far is a way **to account for the order of the words** in the input sequence.
+
+To address this, the transformer **adds a vector** to each input embedding. These positional encoding vectors are also **learnt**. These vectors follow a specific pattern that the model learns, which helps it determine the position of each word, or the distance between different words in the sequence.
+
+<center>
+<img src="https://jalammar.github.io/images/t/transformer_positional_encoding_vectors.png" width="500" alt="image">
+</center>
+
+## The Residuals
+
+One detail in the architecture of the encoder that we need to mention before moving on, is that each sub-layer (self-attention, ffnn) in each encoder has a residual connection around it, and is followed by a [layer-normalization](https://arxiv.org/abs/1607.06450) step.
+
+If we’re to visualize the vectors and the layer-norm operation associated with self attention, it would look like this:
+
+<center>
+<img src="https://jalammar.github.io/images/t/transformer_resideual_layer_norm_2.png" width="400" alt="image">
+</center>
+
+This goes for the sub-layers of the decoder as well. If we’re to think of a Transformer of 2 stacked encoders and decoders, it would look something like this:
+
+
+## The Decoder Side
+
+Now that we’ve covered most of the concepts on the encoder side, we basically know how the components of decoders work as well. But let’s take a look at how they work together.
+
+<center>
+<img src="https://jalammar.github.io/images/t/transformer_decoding_1.gif
+" width="600" alt="image">
+</center>
 
 
 :paperclip: **Reference:**
