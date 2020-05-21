@@ -86,7 +86,7 @@ As the model processes each word (each `position` in the input sequence), self a
 **MUST read `self attention` details from Jay Alammar's blog.**
 {: .purple}
 
-For more deeper understanding of attention please look into [this](https://msank00.github.io/blog/2020/04/13/blog_607_Survey_BERT) summary blog. 
+For more deeper understanding of `attention` please look into [this](https://msank00.github.io/blog/2020/03/15/blog_605_Survey_attention) summary blog. 
 
 :paperclip: **Reference:**
 
