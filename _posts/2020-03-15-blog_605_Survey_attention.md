@@ -202,9 +202,9 @@ Finally, since we’re dealing with matrices, we can condense **steps two** thro
 
 The paper further refined the self-attention layer by adding a mechanism called “multi-headed” attention. This improves the performance of the attention layer in two ways:
 
-1. It expands the model’s ability to `focus on different positions`. In the example above, $z_1$ contains a little bit of every other encoding, but it could be dominated by the the actual word itself.
+1. It **expands** the model’s ability to `focus on different positions`. In the example above, $z_1$ contains a little bit of every other encoding, but it could be **dominated by** the the **actual word itself**.
 2. It gives the attention layer multiple `representation subspaces`.
-   1. With multi-headed attention, we maintain **separate** $Q_i/K_i/V_i$ weight matrices for **each head** resulting in different $Q_i/K_i/V_i$ matrices. As we did before, we multiply $X$ by the $W_i^Q/W_i^K/W_i^V$ matrices to produce Q/K/V matrices. Here $i$ represents the $i^{th}$ head.
+   1. With multi-headed attention, we maintain **separate** $Q_i/K_i/V_i$ weight matrices for **each head** resulting in different $Q_i/K_i/V_i$ matrices. As we did before, we multiply $X$ by the $W_i^Q/W_i^K/W_i^V$ matrices to produce $Q/K/V$ matrices. Here $i$ represents the $i^{th}$ head.
    2. In the original paper they used $8$ heads.
 
 All the different heads give different $z_i$ matrices. Concat them and multiply with weight matrix $W^O$ (trained jointly with the model) to get the final $z$ matrix that captures information from all the attention heads. This final $z$ can be sent to the FFNN.

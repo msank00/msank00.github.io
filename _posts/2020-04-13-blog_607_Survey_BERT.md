@@ -38,6 +38,11 @@ mathjax: true
 <img src="/assets/images/image_39_bert_03.png" height="300" alt="image">
 </center>
 
+**TL;DR: To Understand BERT, understand `Attention` and `Transformer` thoroughly.**
+{: .red}
+
+Read [this](https://msank00.github.io/blog/2020/03/15/blog_605_Survey_attention) first.
+
 BERT (Bidirectional Encoder Representations from Transformers), released in late 2018, is the model we will use in this tutorial to provide readers with a better understanding of and practical guidance for using transfer learning models in NLP. BERT is a method of pretraining language representations that was used to create models that NLP practicioners can then download and use for free. You can either use these models to extract high quality language features from your text data, or you can fine-tune these models on a specific task (classification, entity recognition, question answering, etc.) with your own data to produce state of the art predictions.
 
 This post will explain how you can modify and fine-tune BERT to create a powerful NLP model that quickly gives you state of the art results.
@@ -621,13 +626,16 @@ The result is a sequence of transformed embedding vectors, which are sent throug
 
 After the 12th encoding layer, the embedding vectors have been transformed to contain more accurate information about each token. You can choose if you want the BERT Encoder block to return all of them or only the first one (corresponding to the [CLS] token), which is often sufficient for classification tasks.
 
+## Architecture explained
+
+As you might already understood BERT is based on Transformer. The Transformer has $8$ `head`s of length $64$, i.e, gives embedding size of $512$. Whereas BERT has $12$ `head`s with same length and then embedding size is $768$ 
 
 
 :paperclip: **Reference:**
 
 - [How Google Translate Works - YT Video](https://www.youtube.com/watch?v=AIpXjFwVdIE) :fire:
-- [BERT Research - Ep. 4 - Inner Workings I by  ChrisMcCormickAI
-](https://www.youtube.com/watch?v=C4jmYHLLG3A&list=PLam9sigHPGwOBuH4_4fr-XvDbe5uneaf6&index=5) :fire: :rocket:
+- [BERT Inner Workings I by  ChrisMcCormickAI](https://www.youtube.com/watch?v=C4jmYHLLG3A&list=PLam9sigHPGwOBuH4_4fr-XvDbe5uneaf6&index=5) :fire: :rocket:
+- [BERT Inner Workings I by  ChrisMcCormickAI]() :fire: :rocket:
 - [BERT Architecture](https://peltarion.com/knowledge-center/documentation/modeling-view/build-an-ai-model/blocks/bert-encoder?fbclid=IwAR1t_a3no4BRylPk_29fZbKwmKB1mRdT0jFLSzXWL0t5fnSKKXTZlpKCVsA) :fire:
 
 ----
