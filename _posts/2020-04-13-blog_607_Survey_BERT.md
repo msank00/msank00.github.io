@@ -483,53 +483,7 @@ You can find the creation of the AdamW optimizer in `run_glue.py` [here](https:/
 
 - [Colab Notebook by Chris McCormick](https://colab.research.google.com/drive/1pTuQhug6Dhl9XalKB0zUGf4FIdYFlpcX#scrollTo=-8kEDRvShcU5)
 
-
-----
-
-# Sentence Transformers: Sentence Embeddings using BERT a.k.a Sentence BERT
-
-From the abstract of the original paper
-
-**BERT** (Devlin et al., $2018$) and **RoBERTa** (Liu et al., 2019) has set a new state-of-the-art performance on **sentence-pair regression** tasks like `semantic textual similarity` (STS). However, it requires that both sentences are fed into the network, which causes a massive computational overhead: Finding the most similar pair in a collection of 10,000 sentences requires about 50 million inference computations (~65 hours) with BERT. The construction of BERT makes it unsuitable for semantic similarity search as well as for unsupervised tasks like clustering.
-
-In this paper, we present **Sentence-BERT** (SBERT), a modification of the pretrained BERT network that use `siamese` and `triplet network` structures to derive semantically meaningful sentence embeddings that can be compared using cosine-similarity. This reduces the effort for finding the most similar pair from 65 hours with BERT / RoBERTa to about 5 seconds with SBERT, while maintaining the accuracy from BERT. 
-
-![image](/assets/images/image_06_SBERT_1.png)
-
-
-## How to use it in code
-
-```py
-# install the package
-pip install -U sentence-transformers
-```
-
-```py
-# download a pretrained model.
-from sentence_transformers import SentenceTransformer
-model = SentenceTransformer('bert-base-nli-mean-tokens')
-
-# Then provide some sentences to the model.
-sentences = ['This framework generates embeddings for each input sentence',
-    'Sentences are passed as a list of string.', 
-    'The quick brown fox jumps over the lazy dog.']
-sentence_embeddings = model.encode(sentences)
-
-# And that's it already. We now have a list of numpy arrays with the embeddings.
-for sentence, embedding in zip(sentences, sentence_embeddings):
-    print("Sentence:", sentence)
-    print("Embedding:", embedding)
-    print("")
-```
-
-_**for more details check the pypi repository_
-{: .purple}
-
-
-:paperclip: **Reference:**
-
-- [PyPi sentence-transformers](https://pypi.org/project/sentence-transformers/#Training)
-- [arXiv: Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks](https://arxiv.org/abs/1908.10084) :fire:
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -635,8 +589,73 @@ As you might already understood BERT is based on Transformer. The Transformer ha
 
 - [How Google Translate Works - YT Video](https://www.youtube.com/watch?v=AIpXjFwVdIE) :fire:
 - [BERT Inner Workings I by  ChrisMcCormickAI](https://www.youtube.com/watch?v=C4jmYHLLG3A&list=PLam9sigHPGwOBuH4_4fr-XvDbe5uneaf6&index=5) :fire: :rocket:
-- [BERT Inner Workings I by  ChrisMcCormickAI]() :fire: :rocket:
+- [BERT Inner Workings III by  ChrisMcCormickAI](https://www.youtube.com/watch?v=0U1irnILcN0&list=PLam9sigHPGwOBuH4_4fr-XvDbe5uneaf6&index=7) :fire: :rocket:
 - [BERT Architecture](https://peltarion.com/knowledge-center/documentation/modeling-view/build-an-ai-model/blocks/bert-encoder?fbclid=IwAR1t_a3no4BRylPk_29fZbKwmKB1mRdT0jFLSzXWL0t5fnSKKXTZlpKCVsA) :fire:
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Implementation - Attention, Transformer, GPT2, BERT
+
+
+:paperclip: **Core Reading:**
+
+- [Transformers from scratch](http://www.peterbloem.nl/blog/transformers)
+- [Attention](https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html)
+- [The Annotated GPT-2](https://amaarora.github.io/2020/02/18/annotatedGPT2.html)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
+
+# Sentence Transformers: Sentence Embeddings using BERT a.k.a Sentence BERT
+
+From the abstract of the original paper
+
+**BERT** (Devlin et al., $2018$) and **RoBERTa** (Liu et al., 2019) has set a new state-of-the-art performance on **sentence-pair regression** tasks like `semantic textual similarity` (STS). However, it requires that both sentences are fed into the network, which causes a massive computational overhead: Finding the most similar pair in a collection of 10,000 sentences requires about 50 million inference computations (~65 hours) with BERT. The construction of BERT makes it unsuitable for semantic similarity search as well as for unsupervised tasks like clustering.
+
+In this paper, we present **Sentence-BERT** (SBERT), a modification of the pretrained BERT network that use `siamese` and `triplet network` structures to derive semantically meaningful sentence embeddings that can be compared using cosine-similarity. This reduces the effort for finding the most similar pair from 65 hours with BERT / RoBERTa to about 5 seconds with SBERT, while maintaining the accuracy from BERT. 
+
+![image](/assets/images/image_06_SBERT_1.png)
+
+
+## How to use it in code
+
+```py
+# install the package
+pip install -U sentence-transformers
+```
+
+```py
+# download a pretrained model.
+from sentence_transformers import SentenceTransformer
+model = SentenceTransformer('bert-base-nli-mean-tokens')
+
+# Then provide some sentences to the model.
+sentences = ['This framework generates embeddings for each input sentence',
+    'Sentences are passed as a list of string.', 
+    'The quick brown fox jumps over the lazy dog.']
+sentence_embeddings = model.encode(sentences)
+
+# And that's it already. We now have a list of numpy arrays with the embeddings.
+for sentence, embedding in zip(sentences, sentence_embeddings):
+    print("Sentence:", sentence)
+    print("Embedding:", embedding)
+    print("")
+```
+
+_**for more details check the pypi repository_
+{: .purple}
+
+
+:paperclip: **Reference:**
+
+- [PyPi sentence-transformers](https://pypi.org/project/sentence-transformers/#Training)
+- [arXiv: Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks](https://arxiv.org/abs/1908.10084) :fire:
+
 
 ----
 
