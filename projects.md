@@ -5,5 +5,8 @@ title: Projects
 #author_profile: true
 ---
 
-### Weekend Projects
+# Weekend Projects
 
+## Image Caption Generation
+
+- Details coming soon...
