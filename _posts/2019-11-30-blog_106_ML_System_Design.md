@@ -323,7 +323,9 @@ Until the 1980s, more than 200 readability formulas had been published (Klare 19
 
 Among these factors, vocabulary difficulty (or semantic factors) and sentence length (or syntactic factors) are the strongest indexes of readability (Chall and Dale 1995). The following is the `Flesch Reading Ease` Formula.
 
-$$206.835-1.015\frac{N_{words}}{N_{sents}} - 84.6 \frac{N_{syllables}}{N_{words}}$$
+$$
+206.835-1.015\frac{N_{words}}{N_{sents}} - 84.6 \frac{N_{syllables}}{N_{words}}
+$$
 
 
 The resulting score ranges from 0 to 100; the lower the score, the more difficult to read the material.
