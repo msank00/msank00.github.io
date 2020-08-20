@@ -25,9 +25,11 @@ To learn how to design machine learning systems
 
 **Play the video:** :arrow_heading_down: 
 
-<div align="center">
-  <a href="https://www.youtube.com/watch?v=5ygO8FxNB8c"><img src="https://img.youtube.com/vi/5ygO8FxNB8c/0.jpg" alt="IMAGE ALT TEXT"></a>
-</div>
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/watch?v=5ygO8FxNB8c" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
 
 >> The average elapsed time between key algorithm proposal and corresponding advances was about 18 years, whereas the average elapsed time between key dataset availabilities and corresponding advances was less than 3 years, i.e. about 6 times faster. 
 
