@@ -156,13 +156,20 @@ Multiple regression is an extension of simple linear regression. It is used when
 
 Multiple linear regression is the most common form of linear regression analysis.  As a predictive analysis, the multiple linear regression is used to explain the relationship between one continuous dependent variable and two or more independent variables
 
-$$y=\theta_0+\theta_1 x_1+\theta_2 x_2+\dots+\theta_n x_n = \theta_0 + \sum\limits_{i=1}^{n} \theta_i x_i$$
+<center>
 
+$y=\theta_0+\theta_1 x_1+\theta_2 x_2+\dots+\theta_n x_n = \theta_0 + \sum\limits_{i=1}^{n} \theta_i x_i$
+
+</center>
 
 
 ## Additive Model:
 
-$$y=\theta_0+\theta_1 f_1(x_1)+\theta_2 f_2(x_2)+\dots+\theta_n f_n(x_n)= \theta_0 + \sum\limits_{i=1}^{n} \theta_i f(x_i)$$
+<center>
+
+$y=\theta_0+\theta_1 f_1(x_1)+\theta_2 f_2(x_2)+\dots+\theta_n f_n(x_n)= \theta_0 + \sum\limits_{i=1}^{n} \theta_i f(x_i)$
+
+</center>
 
 A generalization of the multiple regression model would be to maintain the additive nature of the model, but to replace the simple terms of the linear equation $\theta_i * x_i$ with $\theta_i * f_i(x_i)$ where $f_i()$ is a **non-parametric function** of the predictor $x_i$.  
 
@@ -173,7 +180,11 @@ In other words, instead of a single coefficient for each variable (additive term
 
 One way in which the `general linear model` differs from the `multiple regression model` is in terms of the number of dependent variables that can be analyzed. The $Y$ vector of $n$ observations of a single $Y$ variable can be replaced by a $\mathbf{Y}$ matrix of $n$ observations of $m$ different $Y$ variables. Similarly, the $w$ vector of regression coefficients for a single $Y$ variable can be replaced by a $\mathbf{W}$ matrix of regression coefficients, with one vector of $w$ coefficients for each of the m dependent variables. These substitutions yield what is sometimes called the multivariate regression model,
 
-$${\mathbf{Y}}=\mathbf{XW}+{E}$$
+<center>
+
+${\mathbf{Y}}=\mathbf{XW}+{E}$
+
+</center>
 
 where 
 
@@ -191,13 +202,21 @@ To summarize the basic idea, the `generalized linear model` differs from the `ge
 
 - General Linear Model
 
-$$y=\theta_0+\theta_1 x_1+\theta_2 x_2+...+\theta_n x_n=\theta_0 + \sum_i \theta_i x_i$$
+<center>
+
+$y=\theta_0+\theta_1 x_1+\theta_2 x_2+...+\theta_n x_n=\theta_0 + \sum_i \theta_i x_i$
+
+</center>
 
 - Generalized Linear Model
 
-$$y=g(\theta_0+\theta_1 x_1+\theta_2 x_2+...+\theta_n x_n)= g(\theta_0 + \sum_i \theta_i x_i)$$
+<center>
 
-$$g^{-i}(y)=\theta_0 + \sum_i \theta_i x_i$$
+$y=g(\theta_0+\theta_1 x_1+\theta_2 x_2+...+\theta_n x_n)= g(\theta_0 + \sum_i \theta_i x_i)$
+
+$g^{-i}(y)=\theta_0 + \sum_i \theta_i x_i$
+
+</center>
 
 where $g^{-i}()$ is the inverse of $g()$
 
@@ -209,9 +228,13 @@ Inverse of $g()$, say $g^{-i}()$ is the link function.
 
 We can combine the notion of `additive models` with `generalized linear models`, to derive the notion of `generalized additive models`, as:
 
-$$y = g(\theta_0 + \sum_{i=1}^n \theta_i f_i(x_i))$$
+<center>
 
-$$g^{-i}(y)=\theta_0+\theta_1 f_1(x_1)+\theta_2 f_2(x_2)+...+\theta_n f_n(x_n)= \theta_0 + \sum_{i=1}^n \theta_i f_i(x_i)$$
+$y = g(\theta_0 + \sum_{i=1}^n \theta_i f_i(x_i))$
+
+$g^{-i}(y)=\theta_0+\theta_1 f_1(x_1)+\theta_2 f_2(x_2)+...+\theta_n f_n(x_n)= \theta_0 + \sum_{i=1}^n \theta_i f_i(x_i)$
+
+</center>
 
 
 **Reference:**
@@ -224,7 +247,11 @@ $$g^{-i}(y)=\theta_0+\theta_1 f_1(x_1)+\theta_2 f_2(x_2)+...+\theta_n f_n(x_n)= 
 
 - **Linear Model:** They are linear in parameters $\theta$
 
-  $$y_i = \theta_0 + \sum_{i=1}^{n} \theta_i x_i$$
+<center>
+
+  $y_i = \theta_0 + \sum_{i=1}^{n} \theta_i x_i$
+
+</center>
 
 - **Non Linear Model:** They are non-linear in parameters $\theta$
 
