@@ -140,7 +140,13 @@ Indeed, the general linear model can be seen as an **extension of linear multipl
 ## Single Regression
 One independent variable and one dependent variable
 
-$$y=\theta_0+\theta_1 x_1$$
+<center>
+
+$y=\theta_0+\theta_1 x_1$
+
+</center>
+
+
 
 ## Multiple Regression
 
