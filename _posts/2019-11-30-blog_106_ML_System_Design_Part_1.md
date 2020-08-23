@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Machine Learning System Design"
+title:  "Machine Learning System Design (Part - 1)"
 date:   2019-11-30 00:00:10 -0030
 categories: jekyll update
 mathjax: true
@@ -133,15 +133,6 @@ A query returns either `possibly in set` or `definitely not in set`. Elements ca
 
 - [Geeks4geeks](https://www.geeksforgeeks.org/bloom-filters-introduction-and-python-implementation/)
 
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
-
-----    
-
-# Design a movie recommendation system like Netflix?
-
-- [system-design-interview-questions](http://blog.gainlo.co/index.php/category/system-design-interview-questions/)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
