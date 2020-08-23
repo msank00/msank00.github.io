@@ -140,20 +140,32 @@ Unfortunately, the above equation is still too hard to compute directly: without
 - Assumption 1: bag of words - i.e features $f_1, \dots ,f_n$ only encode word identity bout not their position.
 - **Naive-Bayes Assumption**: The conditional independence assumption that the probabilities $P(f_i \vert c)$ are independent given the class $c$. And thus:
 
-$$
+<center>
+
+$
 P(d \vert c) = P(f_1, \dots ,f_n \vert c) = \Pi_{i=1}^n P(f_i \vert c)
-$$
+$
 
 
-$$
+$
 \hat c = argmax_{c \in C} P(c \vert d) = argmax_{c \in C} P(c) * \Pi_{i=1}^n P(f_i \vert c)
-$$
+$
+
+</center>
+
+<br>
 
 Now again multiplication of probabilities. So again $\log()$ is at our rescue. 
 
-$$
+<center>
+
+$
 \hat c =  argmax_{c \in C} \log P(c) + \Sigma_{i=1}^n \log P(f_i \vert c)
-$$
+$
+
+</center>
+
+<br>
 
 The beauty of the above equation is, in the log-space it's computing the predicted class as the liner combination of the input features $f_i \in d$. And also in the log-space the `prior` $P(c)$ somewhat `acts as regularizer`. 
 
