@@ -125,9 +125,13 @@ Where $P(d \vert c)$, **likelihood** of the data and $P(c)$ is the **prior**.
 
 Now the document $d$ can be seen as a collection of features $f_1, \dots ,f_n$. Therefore we can write
 
-$$
+<center>
+
+$
 P(d \vert c) = P(f_1, \dots ,f_n \vert c)
-$$
+$
+
+</center>
 
 Unfortunately, the above equation is still too hard to compute directly: without some simplifying assumption. ANd here comes the great Naive Bayes assumption which is the culprit of such naming **naive**.
 
