@@ -111,17 +111,15 @@ _TODO: Review the answer_
 
 We want to maximize the class ($c$) probability given the document $d$
 
-<br>
-
 <center>
 
 $\hat c = argmax_{c \in C} P(c \vert d) = argmax_{c \in C} \frac{P(d \vert c)P(c)}{P(d)}$
 
+$\hat c = argmax_{c \in C} P(c \vert d) = argmax_{c \in C} P(d \vert c)P(c)$
+
 </center>
 
-$$
-\hat c = argmax_{c \in C} P(c \vert d) = argmax_{c \in C} P(d \vert c)P(c)
-$$
+
 
 Where $P(d \vert c)$, **likelihood** of the data and $P(c)$ is the **prior**.
 
