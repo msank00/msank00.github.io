@@ -119,6 +119,31 @@ To learn how to design machine learning systems
 - [how-to-succeed-in-a-system-design-interview](https://blog.pramp.com/how-to-succeed-in-a-system-design-interview-27b35de0df26)
 
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
+# What is CDN - Content Delivery Network?
+
+
+A content delivery network, or content distribution network (CDN), is a `geographically distributed network` of proxy servers and their data centers. The goal is to provide high availability and performance by distributing the service spatially relative to end users.
+
+<center>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/NCDN_-_CDN.png/220px-NCDN_-_CDN.png">
+</center>
+
+CDNs are a layer in the internet ecosystem. Content owners such as media companies and e-commerce vendors pay CDN operators to deliver their content to their end users. In turn, a CDN pays Internet service providers (ISPs), carriers, and network operators for hosting its servers in their data centers.
+
+CDN is an umbrella term spanning different types of content delivery services: video streaming, software downloads, web and mobile content acceleration, licensed/managed CDN, transparent caching, and services to measure CDN performance, load balancing, Multi CDN switching and analytics and cloud intelligence. CDN vendors may cross over into other industries like security, with DDoS protection and web application firewalls (WAF), and WAN optimization. 
+
+**Reference:**
+
+- [wiki](https://en.wikipedia.org/wiki/Content_delivery_network)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ----
 
 # What is Bloom Filter?
