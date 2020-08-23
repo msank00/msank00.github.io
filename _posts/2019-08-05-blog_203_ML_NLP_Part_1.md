@@ -119,7 +119,7 @@ $\hat c = argmax_{c \in C} P(c \vert d) = argmax_{c \in C} P(d \vert c)P(c)$
 
 </center>
 
-
+<br>
 
 Where $P(d \vert c)$, **likelihood** of the data and $P(c)$ is the **prior**.
 
@@ -132,6 +132,8 @@ P(d \vert c) = P(f_1, \dots ,f_n \vert c)
 $
 
 </center>
+
+<br>
 
 Unfortunately, the above equation is still too hard to compute directly: without some simplifying assumption. ANd here comes the great Naive Bayes assumption which is the culprit of such naming **naive**.
 
