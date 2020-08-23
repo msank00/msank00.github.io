@@ -214,6 +214,10 @@ $y=\theta_0+\theta_1 x_1+\theta_2 x_2+...+\theta_n x_n=\theta_0 + \sum_i \theta_
 
 $y=g(\theta_0+\theta_1 x_1+\theta_2 x_2+...+\theta_n x_n)= g(\theta_0 + \sum_i \theta_i x_i)$
 
+</center>
+
+<center>
+
 $g^{-i}(y)=\theta_0 + \sum_i \theta_i x_i$
 
 </center>
@@ -231,6 +235,10 @@ We can combine the notion of `additive models` with `generalized linear models`,
 <center>
 
 $y = g(\theta_0 + \sum_{i=1}^n \theta_i f_i(x_i))$
+
+</center>
+
+<center>
 
 $g^{-i}(y)=\theta_0+\theta_1 f_1(x_1)+\theta_2 f_2(x_2)+...+\theta_n f_n(x_n)= \theta_0 + \sum_{i=1}^n \theta_i f_i(x_i)$
 
@@ -255,8 +263,13 @@ $g^{-i}(y)=\theta_0+\theta_1 f_1(x_1)+\theta_2 f_2(x_2)+...+\theta_n f_n(x_n)= \
 
 - **Non Linear Model:** They are non-linear in parameters $\theta$
 
-  $$y_i = \theta_0 + \sum_{i=1}^{n} g(\theta_i) x_i$$
-  where $g()$ is any non linear function.
+<center>
+
+  $y_i = \theta_0 + \sum_{i=1}^{n} g(\theta_i) x_i$
+  
+</center>
+
+where $g()$ is any non linear function.
 
 **GLM:**
 
