@@ -795,12 +795,11 @@ _LEFT: shows a long shallow ravine leading to the optimum and steep walls on the
 <img src="https://qph.fs.quoracdn.net/main-qimg-5ca1b0071aa0bec8ecaf0d2e3c07bd11.webp" height="300">
 </center>
 
-
 <center>
-<img src="https://st4.ning.com/topology/rest/1.0/file/get/3713179836?profile=RESIZE_710x
-" height="300">
-</center>
 
+![image](https://st4.ning.com/topology/rest/1.0/file/get/3713179836?profile=RESIZE_710x)
+
+</center>
 
 <center>
 <img src="https://blog.paperspace.com/content/images/2018/05/patho.png" height="300">
