@@ -325,9 +325,7 @@ Matrix factorization is a simple **embedding model**. Given the feedback matrix 
 - A **user embedding matrix** $U \in \mathbb{R}^{m \times d}$, where row $i$ is the embedding for user $i$.
 - An **item embedding matrix** $V \in \mathbb{R}^{n \times d}$, where row $j$ is the embedding for item $j$.
 
-<center>
-<img src="https://developers.google.com/machine-learning/recommendation/images/Matrixfactor.svg" width="600">
-</center>
+![image](https://developers.google.com/machine-learning/recommendation/images/Matrixfactor.svg)
 
 The embeddings are learned such that the product $UV^T$ is a **good approximation** of the `feedback matrix` $A$. Observe that the  $(i j)$ entry of $(U.V^T)$ is simply the **dot product** of the embeddings of $user_i$ and $item_j$ , which you want to be close to $A_{ij}$.
 
@@ -341,17 +339,20 @@ In the preceding example, the values of $n$, $m$, and $d$ are so low that the ad
 
 One intuitive objective function is the squared distance. To do this, minimize the sum of squared errors over all pairs of observed entries:
 
-$$
+<center>
+
+$
 argmin_{(U, V)} \sum\limits_{i,j \in obs} (A_{ij}- (U_i V_j))^2
-$$
+$
+
+</center>
 
 In this objective function, you only sum over **observed pairs** $(i, j)$, that is, over non-zero values in the feedback matrix. 
 
 However, only summing over values of one is not a good idea—a matrix of all ones will have a minimal loss and produce a model that can't make effective recommendations and that generalizes poorly.
 
-<center>
-<img src="https://developers.google.com/machine-learning/recommendation/images/UnobservedEntries.svg" width="600">
-</center>
+
+![image](https://developers.google.com/machine-learning/recommendation/images/UnobservedEntries.svg)
 
 You can solve this quadratic problem through **Singular Value Decomposition** (SVD) of the matrix. However, SVD is not a great solution either, because in real applications, the matrix may be very sparse. For example, think of all the videos on YouTube compared to all the videos a particular user has viewed. The solution
 
@@ -362,9 +363,11 @@ In contrast, **Weighted Matrix Factorization** decomposes the objective into the
 - A sum over **observed entries** i.e. $i,j \in obs$.
 - A sum over **unobserved entries** (treated as zeroes) i.e. $ij \notin obs$.
 
-$$
-argmin_{(U, V)} \sum\limits_{i,j \in obs} (A_{ij}- (U_i V_j))^2 + w_0 \sum\limits_{i,j \notin obs} ((U_i V_j))^2
-$$
+<center>
+
+$argmin_{(U, V)} \sum\limits_{i,j \in obs} (A_{ij}- (U_i V_j))^2 + w_0 \sum\limits_{i,j \notin obs} ((U_i V_j))^2$
+
+</center>
 
 Here $w_0$, is a hyperparameter that weights the two terms so that the objective is not dominated by one or the other. Tuning this hyperparameter is very important.
 
@@ -490,7 +493,11 @@ Follow lecture 6 of [Prof.Mitesh_IITM](https://www.cse.iitm.ac.in/~miteshk/CS701
 
 >> A is a matrix that can be seen as a linear transformation. This transformation can be decomposed in three sub-transformations: 1. **rotation**, 2. **re-scaling**, 3. **rotation**. These three steps correspond to the three matrices U, D, and V.
 
-$$\mathbf{A} = \mathbf{U D V}^T$$
+<center>
+
+$\mathbf{A} = \mathbf{U D V}^T$
+
+</center>
 
 + Every matrix can be seen as a linear transformation
 
@@ -573,7 +580,13 @@ how do we know what size we should choose for `k`, and how do we know if we have
     + $D$: [dim: $k$ x $k$]
   + Compute `principal component`: $P = V\sqrt{D}$. Or you can also take the first $k$ leading `eigen vectors` from $V$ and the corresponding `eigen values` from $D$ and calculate $P$. [$P$ dim: $d$ x $k$]  
   + Combining all:
-  $$C=(MM^T)/(n-1)=VDV^T= = V\sqrt{D}\sqrt{D}V^T =  PP^T$$
+  
+  <center>
+
+  $C=(MM^T)/(n-1)=VDV^T= = V\sqrt{D}\sqrt{D}V^T =  PP^T$
+
+  </center>
+  
   + Apply **principle component matrix** $P$ on the centered data $M$ to get the transformed data projected on the principle component and thus doing `dimensionality reduction`: $M^* = M P$, [$M^*$: new dataset after the PCA, dim: $n$ x $k$]. $k \lt d$, i.e. `dimension reduced` using `PCA`.
 
 **Resource:**
@@ -717,7 +730,11 @@ There are three variants of gradient descent, which differ in how much data we u
 
 Vanilla gradient descent, aka batch gradient descent, computes the gradient of the cost function w.r.t. to the parameters θ for the entire training dataset:
 
-$$\theta = \theta - \eta \cdot \nabla_\theta J( \theta)$$
+<center>
+
+$\theta = \theta - \eta \cdot \nabla_\theta J( \theta)$
+
+</center>
 
 As we need to calculate the gradients for the whole dataset to perform just one update, batch gradient descent can be very slow and is intractable for datasets that don't fit in memory. 
 
@@ -732,7 +749,11 @@ for i in range(nb_epochs):
 
 Stochastic gradient descent (SGD) in contrast performs a parameter update for each training example $x^{(i)}$ and label $y^{(i)}$:
 
-$$\theta = \theta - \eta \cdot \nabla_\theta J( \theta; x^{(i)}; y^{(i)})$$
+<center>
+
+$\theta = \theta - \eta \cdot \nabla_\theta J( \theta; x^{(i)}; y^{(i)})$
+
+</center>
 
 Batch gradient descent performs redundant computations for large datasets, as it recomputes gradients for similar examples before each parameter update. SGD does away with this redundancy by performing one update at a time. It is therefore usually much faster and can also be used to learn online. 
 
@@ -748,7 +769,11 @@ for i in range(nb_epochs):
 ## Mini-batch gradient descent
 Mini-batch gradient descent finally takes the best of both worlds and performs an update for every mini-batch of n training examples:
 
-$$\theta = \theta - \eta \cdot \nabla_\theta J( \theta; x^{(i:i+n)}; y^{(i:i+n)})$$
+<center>
+
+$\theta = \theta - \eta \cdot \nabla_\theta J( \theta; x^{(i:i+n)}; y^{(i:i+n)})$
+
+</center>
 
 ```py
 for i in range(nb_epochs):
@@ -785,8 +810,18 @@ SGD has trouble navigating ravines, i.e. areas where the surface curves much mor
 
 Momentum is a method that helps accelerate SGD in the relevant direction and dampens oscillations. It does this by adding a fraction $\gamma$ of the update vector of the past time step to the current update vector:
 
-$$v_t = \gamma v_{t-1} + \eta \nabla_\theta J( \theta)$$  
-$$\theta = \theta - v_t$$
+<center>
+
+$v_t = \gamma v_{t-1} + \eta \nabla_\theta J( \theta)$
+
+</center>
+
+
+<center>
+
+$\theta = \theta - v_t$
+
+</center>
 
 Essentially, when using momentum, we push a ball down a hill. The ball accumulates momentum as it rolls downhill, becoming faster and faster on the way (until it reaches its terminal velocity if there is air resistance, i.e. γ<1). The same thing happens to our parameter updates: The momentum term increases for dimensions whose gradients point in the same directions and reduces updates for dimensions whose gradients change directions. As a result, we gain faster convergence and reduced oscillation.
 
@@ -797,16 +832,19 @@ Adaptive Moment Estimation (Adam) is another method that computes **adaptive lea
 
 1. **Exponentially decaying average of `past squared gradients`** $v_t$ like `Adadelta` and `RMSprop` ($2^{nd}$ moment of gradient),
 
+<center>
 
-$$
-v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2 
-$$
+$v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2 $
+
+</center>
 
 2. **Exponentially decaying average of `past gradients`** $m_t$, similar to momentum, ($1^{st}$ moment of gradient). 
 
-$$ 
-m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t 
-$$
+<center>
+
+$m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t $
+
+</center>
 
 **Physical Intuition:** Momentum can be seen as a `ball running down a slope`, Adam behaves like a heavy ball with friction, which thus prefers `flat minima` in the error surface.
 
@@ -817,19 +855,27 @@ As $m_t$ and $v_t$ are initialized as vectors of $0$'s, the authors of Adam obse
 
 They counteract these biases by computing bias-corrected first and second moment estimates:
 
-$$
-\hat{m}_t = \dfrac{m_t}{1 - \beta^t_1}
-$$
+<center>
 
-$$
-\hat{v}_t = \dfrac{v_t}{1 - \beta^t_2}
-$$
+$\hat{m}_t = \dfrac{m_t}{1 - \beta^t_1}$
+
+</center>
+
+<center>
+
+$\hat{v}_t = \dfrac{v_t}{1 - \beta^t_2}$
+
+</center>
 
 Finally combining all together here is the param update rule:
 
-$$
+<center>
+
+$
 \theta_{t+1} = \theta_{t} - \dfrac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t
-$$
+$
+
+</center>
 
 The authors propose default values of $0.9$ for $\beta_1$, $0.999$ for $\beta_2$, and $10^{-8}$ for $\epsilon$. They show empirically that Adam works well in practice and compares favorably to other adaptive learning-method algorithms.
 
