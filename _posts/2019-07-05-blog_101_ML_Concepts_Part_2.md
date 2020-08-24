@@ -156,7 +156,7 @@ Two of the more popular methods include:
 
 **Numerical Input, Numerical Output**
 
-```python
+```py
 # pearson's correlation feature selection for numeric input and numeric output
 from sklearn.datasets import make_regression
 from sklearn.feature_selection import SelectKBest
@@ -173,7 +173,7 @@ print(X_selected.shape)
 
 **Numerical Input, Categorical Output**
 
-```python
+```py
 # ANOVA feature selection for numeric input and categorical output
 from sklearn.datasets import make_classification
 from sklearn.feature_selection import SelectKBest
@@ -390,13 +390,21 @@ There are couple of algorithms there to build a decision tree. Some of the impor
 
 **Information Gain**
   
-  $$
-  IG = Entropy(parent) - weight_{avg}*Entropy(children)
-  $$
+<center>
 
-  $$
+  $
+  IG = Entropy(parent) - weight_{avg}*Entropy(children)
+  $
+
+</center>
+
+<center>
+
+  $
   Gain(S, A) = H(S) - \sum_{v \in values(A)} \frac{\vert S_v \vert}{\vert S \vert}H(S_v)
-  $$
+  $
+
+</center>
 
 where, 
 
@@ -410,9 +418,15 @@ where,
 $-{(y\log(p) + (1 - y)\log(1 - p))}$
 + If $M \gt 2$ (i.e. multiclass classification), we calculate a separate loss for each class label per observation and sum the result.
 
-$$
+<center>
+
+$
 H(y, \hat{y}) = \sum_i y_i \log \frac{1}{\hat{y}_i} = -\sum_i y_i \log \hat{y}_i
-$$
+$
+
+</center>
+
+
 
 Entropy
 
@@ -463,7 +477,11 @@ Expectation Formula: $E[g(x)] = \sum p(x)g(x)$
 
 In entropy, $g(x)$ is $\log (p(x))$, and combining with the negative sign (which is apparent as for $0 \leq x \leq 1$ , $\log (x)$ is negative), which makes it positive, the  entropy ( or expectation) formula becomes:
 
-$$H[x] = -\sum p(x) \log (p(x))$$
+<center>
+
+$H[x] = -\sum p(x) \log (p(x))$
+
+</center>
 
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
@@ -474,7 +492,11 @@ $$H[x] = -\sum p(x) \log (p(x))$$
 
 - If `H` is the entropy of the original data D and it has undergone `N` splits for feature `f`, then Information Gain: 
 
-$$IG(D,f) = H - \Sigma \frac{S_i}{S}H_i$$
+<center>
+
+$IG(D,f) = H - \Sigma \frac{S_i}{S}H_i$
+
+</center>
 
 where `i=1,...,N` and $S$ is the size of total datasets and $S_i$ is the size of the $i_{th}$ split data.  
 
@@ -525,7 +547,11 @@ is a measure of the `inefficiency` of assuming that the distribution is q, when 
 
 - The KL divergence from $p$ to $q$ is simply the difference between cross entropy and entropy:
 
-$${KL}(y~||~\hat{y}) = \sum_i y_i \log \frac{1}{\hat{y}_i} - \sum_i y_i \log \frac{1}{y_i}= \sum_i y_i \log \frac{y_i}{\hat{y}_i}$$ 
+<center>
+
+${KL}(y~||~\hat{y}) = \sum_i y_i \log \frac{1}{\hat{y}_i} - \sum_i y_i \log \frac{1}{y_i}= \sum_i y_i \log \frac{y_i}{\hat{y}_i}$ 
+
+</center>
 
 Where $y_i \sim p$ and $\hat{y}_i \sim q$, i.e. they come from two different probability distribution.
 
@@ -553,7 +579,11 @@ In this setting, the error rate of the ensemble can be computed as below:
 
 An ensemble makes a wrong prediction only when more than half of the base classifiers are wrong.
 
-$$\epsilon_{ensemble}= \sum_{i=6}^{i=10} \binom{10}{i} \epsilon^i (1-\epsilon)^{10-i} \approx 0.05$$
+<center>
+
+$\epsilon_{ensemble}= \sum_{i=6}^{i=10} \binom{10}{i} \epsilon^i (1-\epsilon)^{10-i} \approx 0.05$
+
+</center>
 
 It can be seen that with the theoretical guarantees stated above an ensemble model performs significantly well.
 
@@ -701,9 +731,13 @@ Both AdaBoost and Gradient Boosting build weak learners in a sequential fashion.
 
 AdaBoost can also be expressed as in terms of the more general framework of `additive models` with a particular loss function (the exponential loss) [_chapter 10 in (Hastie) ESL_]. AdaBoost.M1 (Algorithm 10.1, from the book) is equivalent to forward stagewise additive modeling (Algorithm 10.2) using the loss function 
 
-$$
+<center>
+
+$
 L(y, f(x)) = exp(-yf(x))
-$$
+$
+
+</center>
 
 >> In `Gradient Boosting`, **shortcomings** (of existing weak learners) are identified by gradients a.k.a **residuals**. In `Adaboost`, ‘shortcomings’ are identified by **high-weight data points**.
 
@@ -746,9 +780,13 @@ Read section $2.1$ and $2.2$ of the original XGBoost paper.
 For a given data set with $n$ examples and $m$ features
 $D = \{(x_i, y_i)\}$ $( \vert D \vert = n, x_i \in \mathbb{R}^m, y_i \in \mathbb{R})$, a tree ensemble model uses $K$-**additive functions** to predict the output.
 
-$$
+<center>
+
+$
 \hat{y_i} = \phi(\mathbf{x_i}) = \sum\limits_{k=1}^K f_k(\mathbf{x_i})  
-$$
+$
+
+</center>
 
 where $f_k \in \mathcal{F}$. Also $\mathcal{F} = {f(\mathbf{x}) = w_{q(\mathbf{x})}}(q : \mathbb{R}^m \rightarrow T, w \in \mathbb{R}^T)$ is the space of regression trees (also known as CART). 
 - $q$ represents the `structure of each tree` that maps an example to the corresponding leaf index. 
@@ -758,9 +796,13 @@ where $f_k \in \mathcal{F}$. Also $\mathcal{F} = {f(\mathbf{x}) = w_{q(\mathbf{x
 
 For a given example, we will use the decision rules in the trees (given by $q$) to classify it into the leaves and calculate the final prediction by summing up the score in the corresponding leaves (given by $w$). To learn the set of functions used in the model, we minimize the following **regularized objective**. 
 
-$$
+<center>
+
+$
 \mathcal{L}(\phi) = \sum_{i \in leaves} l(\hat{y_i}, y_i) + \sum_{k \in addtv. fun} \Omega(f_k)
-$$
+$
+
+</center>
 
 
 where $\Omega(f)= \gamma T + \frac{1}{2} \lambda \vert \vert w \vert \vert^2$, $i$ belongs to all the leaves and $k$ belongs to all the additive functions.
@@ -776,9 +818,13 @@ Here $l$ is a differentiable convex loss function that measures the difference b
 
 - **Solution:** Instead, the model is **trained in an additive manner**. Formally, let $\hat{y_i}$ be the prediction of the $i^{th}$ instance at the $t^{th}$ iteration, we will need to add $f_t(.)$ to minimize the following objective.
 
-$$
+<center>
+
+$
 \mathcal{L}^{(t)} = \sum\limits_{i=1}^{n} l(\hat{y_i}, y_i^{(t-1)} + f_t(\mathbf{x_i})) + \Omega(f_t)
-$$
+$
+
+</center>
 
 
 This means we greedily add the $f_t(.)$ that most improves our model according to the above equation. **Second-order approximation** can be used to quickly optimize the objective in the general setting.
@@ -830,7 +876,11 @@ This is a very tricky question.
 
 When $y \in ({0,1})$
 
-$$NLL(w) = - \sum_{i=1}^{N}[y_i log (\hat{y_i}) + (1-y_i)log (1-\hat{y_i})] $$
+<center>
+
+$NLL(w) = - \sum_{i=1}^{N}[y_i log (\hat{y_i}) + (1-y_i)log (1-\hat{y_i})]$
+
+</center>
 
 This is also called `cross entropy` error function.
 
@@ -838,13 +888,21 @@ This is also called `cross entropy` error function.
 
 When $y \in ({-1,+1})$
 
-$$NLL(w)= \sum_{i=1}^{N}log(1+\exp(-y_iw^Tx_i))$$
+<center>
+
+$NLL(w)= \sum_{i=1}^{N}log(1+\exp(-y_iw^Tx_i))$
+
+</center>
 
 Though these 2 equations look different. But if you pay attention for **case 1**, it's written in terms of $\hat{y_i}$ but for **case 2** there is no such term. Now what is $\hat{y_i}$ ??
 
-$$
+<center>
+
+$
 \hat{y_i} = \frac{exp(w^Tx_i)}{1+exp(w^Tx_i)}
-$$
+$
+
+</center>
 
 So if we substitute this in case 1, then we will find case 2. So they are same. 
 
@@ -881,7 +939,11 @@ Q. Is it always necessary the decision boundary is linear / plane always?
 
 The short answer is: Logistic regression is considered a generalized linear model because the outcome always depends on the sum of the inputs and parameters. Or in other words, the output cannot depend on the product (or quotient, etc.) of its parameters! $z = \sum_i w_ix_i$
 
-$$f(x) = \frac{1}{1+e^{-\sum_i w_ix_i}}$$
+<center>
+
+$f(x) = \frac{1}{1+e^{-\sum_i w_ix_i}}$
+
+</center>
 
 The key is that our model is `additive`.  Our outcome z depends on the additivity of the weight parameter values, e.g., : $z = w_1x_1 + w_2x_2$
 
@@ -927,7 +989,11 @@ We find w and b by solving the following objective function using Quadratic Prog
 
 ## Hard Margin
 
-$$min \frac{1}{2}w^Tw$$ 
+<center>
+
+$min \frac{1}{2}w^Tw$ 
+
+</center>
 
 s.t $y_i(w.x_i+b)\ge 1, \forall x_i$ 
 
@@ -958,9 +1024,20 @@ regularization problem.
 
 Re write the soft margin problem using `hinge loss` $(z)$ defined as the positive part of $1-z$, written as $(1-z)^+$. The relaxed optimization problem (soft margin) can be reformulated as 
 
-$$min \frac{1}{2}\vert \vert w \vert \vert^2 + C \sum\limits_{t=1}^{n}(1 - y_t(w^T x_t + w_0))^+ $$
+<center>
 
-Here $\frac{1}{2}\vert \vert w \vert \vert^2$, the `inverse squared` **geometric margin** is viewed as a regularization penalty that helps stabilizes the objective $C \sum\limits_{t=1}^{n}(1 - y_t(w^T x_t + w_0))^+$ . 
+$min \frac{1}{2}\vert \vert w \vert \vert^2 + C \sum\limits_{t=1}^{n}(1 - y_t(w^T x_t + w_0))^+$
+
+</center>
+
+
+Here $\frac{1}{2}\vert \vert w \vert \vert^2$, the `inverse squared` **geometric margin** is viewed as a regularization penalty that helps stabilizes the objective 
+
+<center>
+
+$C \sum\limits_{t=1}^{n}(1 - y_t(w^T x_t + w_0))^+$ . 
+
+</center>
 
 - [MIT OCW Notes](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-867-machine-learning-fall-2006/lecture-notes/lec4.pdf)
 
@@ -1421,8 +1498,11 @@ In general, it might be best to use AIC and BIC together in model selection.
 - `AIC is better in situations when a false negative finding would be considered more misleading than a false positive`, 
 - `BIC is better in situations where a false positive is as misleading as, or more misleading than, a false negative`.
 
+<center>
 
-$$AIC=-2\log L(\hat \theta) + 2k$$
+$AIC=-2\log L(\hat \theta) + 2k$
+
+</center>
 
 where, 
 
@@ -1435,7 +1515,11 @@ The  more  parameters,  the  greater the amount added to the first component, in
 
 **BIC** is  another  model  selection  criterion  based  on  infor-mation theory but set within a Bayesian context. The difference between the BIC and the AIC is the greater penalty imposed for the number of param-eters  by  the BIC  than the AIC.
 
-$$BIC=-2\log L(\hat \theta) + k \log n$$
+<center>
+
+$BIC=-2\log L(\hat \theta) + k \log n$
+
+</center>
 
 **Reference:**
 
@@ -1477,11 +1561,19 @@ An ROC curve (receiver operating characteristic curve) is a graph showing the pe
 - True Positive Rate:
   - True Positive Rate (TPR) is a synonym for recall and is therefore defined as follows:
 
-  $$TPR = \frac{TP} {TP + FN}$$
+<center>
+
+  $TPR = \frac{TP} {TP + FN}$
+
+</center>
 
 - False Positive Rate
 
-$$FPR = \frac{FP} {FP + TN}$$
+<center>
+
+$FPR = \frac{FP} {FP + TN}$
+
+</center>
 
 To compute the points in an ROC curve, we could evaluate a logistic regression model many times with different classification thresholds, but this would be inefficient. Fortunately, there's an efficient, sorting-based algorithm that can provide this information for us, called AUC.
 
@@ -1518,15 +1610,27 @@ The ROC curve is plotted with `TPR` against the `FPR` where TPR is on y-axis and
 
 - `TPR == RECALL`
 
-$$\frac{TP}{TP+FN}$$
+<center>
+
+$\frac{TP}{TP+FN}$
+
+</center>
 
 - Specificity:
 
-$$\frac{TN}{TN+FP}$$
+<center>
+
+$\frac{TN}{TN+FP}$
+
+</center>
 
 - `FPR == 1-Specificity`
 
-$$\frac{FP}{TN+FP}$$
+<center>
+
+$\frac{FP}{TN+FP}$
+
+</center>
 
 ### How will you draw ROC for multi class classification problem
 
