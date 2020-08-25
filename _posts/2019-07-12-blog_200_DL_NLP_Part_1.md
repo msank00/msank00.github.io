@@ -72,7 +72,9 @@ $f_t$, $i_t$, $o_t$ decides the fraction of {$\in [0,1]$} forget, read and write
 
 Combining all together:
 
-$$
+<center>
+
+$
  \begin{bmatrix} 
   i_t \\ 
   f_t \\
@@ -91,9 +93,13 @@ $$
    x_t  
    \end{bmatrix}_{2x1}
    + B_{4x1})
-$$
+$
 
-$$
+</center>
+
+<center>
+
+$
 W = \begin{bmatrix} 
   W_i & U_i \\ 
   W_f & U_f\\
@@ -106,7 +112,11 @@ B = \begin{bmatrix}
   b_{oh} + b_{ox} \\
   b_{\tilde{C_t}h} + b_{\tilde{C_t}i} 
 \end{bmatrix}_{4x1}
-$$
+$
+
+</center>
+
+
 
 Where $\tilde{C_t}$ is the new input or content which will be used to update the current cell state $C_t$ by forgetting a fraction $f_t$ of old cell state $C_{t-1}$ (`selective forget`) + adding fraction $i_t$ of new cell input $\tilde{C_t}$ (`selective read`). Finally $h_t$ is obtained by doing a `selective write` with the fraction $o_t$ and cell state $C_t$. Note $\odot$ is called the `pointwise product` or the `hadamard` product.
 
