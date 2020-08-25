@@ -124,6 +124,9 @@ Must Watch :fire:
 
 _*If above link is broken, click [here](https://www.youtube.com/watch?v=mV8c9dJpxQE)_
 
+<iframe  title="YouTube video player" width="480" height="390" src="https://www.youtube.com/watch?v=mV8c9dJpxQE" frameborder="0" allowfullscreen></iframe>
+
+
 - The Transformer uses attention to boost the speed with which these models can be trained.
 - The biggest benefit, however, comes from how The Transformer lends itself to **parallelization**.
 - At the core of Transformer, there is `encoder-decoder` block
