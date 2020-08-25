@@ -122,7 +122,11 @@ While the concept of probability gives us the mathematical calculations, distrib
 
 A variable X is said to be uniformly distributed if the density function is:
 
-$$f(x) = \frac{1}{b-a}$$ 
+<center>
+
+$f(x) = \frac{1}{b-a}$$
+
+</center>
 
 where $-\infty<a<=x<=b<\infty$
  
@@ -135,16 +139,30 @@ where $-\infty<a<=x<=b<\infty$
 
 The probability mass function is given by: 
 
-$$p^x(1-p)^{1-x}$$  
+<center>
+
+$p^x(1-p)^{1-x}$  
+
+</center>
+
+
 where $x \in (0, 1)$.
 
 The expected value of a random variable X from a Bernoulli distribution is found as follows:
 
-$$E(X) = 1*p + 0*(1-p) = p$$
+<center>
+
+$E(X) = 1*p + 0*(1-p) = p$
+
+</center>
 
 The variance of a random variable from a bernoulli distribution is:
 
-$$V(X) = E(X^2)- [E(X)]^2 = p - p^2 = p(1-p)$$
+<center>
+
+$V(X) = E(X^2)- [E(X)]^2 = p - p^2 = p(1-p)$
+
+</center>
 
 
 ## Binomial Distribution
@@ -153,7 +171,11 @@ $$V(X) = E(X^2)- [E(X)]^2 = p - p^2 = p(1-p)$$
 
 **Formulation:** An experiment with only two possible outcomes repeated n number of times is called binomial. The parameters of a binomial distribution are n and p where n is the total number of trials and p is the probability of success in each trial. If `x` is the total number fof success, we can write:
 
-$$P(x) = \binom{n}{x} p^x (1-p)^{n-x}$$
+<center>
+
+$P(x) = \binom{n}{x} p^x (1-p)^{n-x}$
+
+</center>
 
 On the basis of the above explanation, the properties of a Binomial Distribution are:
 + Each trial is independent.
@@ -161,9 +183,13 @@ On the basis of the above explanation, the properties of a Binomial Distribution
 + A total number of n identical trials are conducted.
 + The probability of success and failure is same for all trials. (Trials are identical.)
 + Mean:  $\mu = n*p$
-+ Variance: 
-  $$Var(X) = n*p*(1-p)$$
++ Variance:
 
+<center>
+
+  $Var(X) = n*p*(1-p)$
+
+</center>
 
 ## Normal Distribution:
 
@@ -181,13 +207,21 @@ A normal distribution is highly different from Binomial Distribution. However, i
 
 The PDF of a random variable X following a normal distribution is given by:
 
-$$P(x) = \frac{1}{\sqrt{2\pi\sigma}}\exp({-\frac{(x-\mu)^2}{2\sigma^2}})$$
+<center>
+
+$P(x) = \frac{1}{\sqrt{2\pi\sigma}}\exp({-\frac{(x-\mu)^2}{2\sigma^2}})$
+
+</center>
 
 where $-\infty<x<\infty$
 
 A **standard normal distribution looks as follows:**
 
-$$P(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$$
+<center>
+
+$P(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$
+
+</center>
 
 
 ## Poisson Distribution
@@ -218,7 +252,11 @@ Let $\mu$ denote the mean number of events in an interval of length t. Then, $\m
 
 The PMF of X following a Poisson distribution is given by:
 
-$$P(X=x)=e^{-\mu} \frac{\mu^x}{x!}$$
+<center>
+
+$P(X=x)=e^{-\mu} \frac{\mu^x}{x!}$
+
+</center>
 
 where $x=0,1,2,3,...$
 
@@ -238,8 +276,12 @@ Exponential distribution is widely used for survival analysis. From the expected
 
 **Formulation:** A random variable $X$ is said to have an exponential distribution with PDF:
 
-$$f(x) = \lambda e^{-\lambda x} $$
+<center>
+
+$f(x) = \lambda e^{-\lambda x}$
   
+</center>
+
 where $x ≥ 0$ and parameter $\lambda>0$ which is also called the rate.
 
 For survival analysis, $\gamma$ is called the failure rate of a device at any time `t`, given that it has survived up to `t`.
@@ -254,23 +296,33 @@ Mean and Variance of a random variable X following an exponential distribution:
 We now define the gamma distribution by providing its PDF: 
 A continuous random variable $X$ is said to have a gamma distribution with parameters $\alpha>0$ and $\lambda>0$, shown as $X \sim Gamma(\alpha,\lambda)$, if its PDF is given by:
 
-$$
+<center>
+
+$
 f_X(x) = \left\{
 						\begin{array}{l l}
 						\frac{\lambda^{\alpha} x^{\alpha-1} e^{-\lambda x}}{\Gamma(\alpha)} \hspace {5pt} x > 0\\
 						0 \hspace{56pt} \textrm{otherwise}
 						\end{array}\right.
-$$
+$
+
+</center>
+
+
 
 If we let $\alpha=1$, we obtain:
 
-$$
+<center>
+
+$
 f_X(x) = \left\{
 					\begin{array}{l l}
 					\lambda e^{-\lambda x} \hspace{20pt} x > 0\\
 					0 \hspace{41pt} \textrm{otherwise}
 					\end{array}\right.
-$$
+$
+
+</center>
 
 Thus, we conclude $Gamma(1,\lambda)=Exponential(\lambda)$. More generally, if you sum n independent $Exponential(\lambda)$ random variables, then you will get a $Gamma(n,\lambda)$ random variable.
 
@@ -322,11 +374,20 @@ The theorem is a key concept in probability theory because it implies that proba
 **Formulation:**
 Suppose that $[X_1, X_2 ,...,X_n]$ are i.i.d. random variables with expected values $E(X_{\large i})=\mu < \infty$ and variance $\mathrm{Var}(X_{\large i})=\sigma^2 < \infty$. Then as we saw above, the sample mean $\overline{X}={\large\frac{X_1+X_2+...+X_n}{n}}$ has mean $E(\overline{X})=\mu$ and variance $\mathrm{Var}(\overline{X})={\large \frac{\sigma^2}{n}}$. Thus the normalized random variable is: 
 
-$$Z_{\large n}=\frac{\overline{X}-\mu}{ \sigma / \sqrt{n}}=\frac{X_1+X_2+...+X_{\large n}-n\mu}{\sqrt{n} \sigma}$$
+<center>
+
+$Z_{\large n}=\frac{\overline{X}-\mu}{ \sigma / \sqrt{n}}=\frac{X_1+X_2+...+X_{\large n}-n\mu}{\sqrt{n} \sigma}$
+
+</center>
 
 which has mean $E(Z_n)=0$ and variance $Var(Z_n)=1$, i.e the random variable $Z_n$ converges in distribution to the standard normal random variable as n goes to infinity, i.e
 
-$$\lim_{n \rightarrow \infty} P(Z_{\large n} \leq x)=\Phi(x), \qquad \textrm{ for all }x \in \mathbb{R}$$ 
+<center>
+
+$\lim_{n \rightarrow \infty} P(Z_{\large n} \leq x)=\Phi(x), \qquad \textrm{ for all }x \in \mathbb{R}$
+
+</center>
+
 
 where $\Phi(x)$ is the standard normal CDF.
 
@@ -374,26 +435,51 @@ A Gaussian mixture model is parameterized by two types of values, the mixture co
 
 ## One-dimensional Model:
 
-$$
-p(x) = \sum_{i=1}^K\phi_i \mathcal{N}(x \;|\; \mu_i, \sigma_i)$$
+<center>
 
-$$
+$
+p(x) = \sum_{i=1}^K\phi_i \mathcal{N}(x \;|\; \mu_i, \sigma_i)
+$
+
+</center>
+
+<center>
+
+$
 \mathcal{N}(x \;|\; \mu_i, \sigma_i) = \frac{1}{\sigma_i\sqrt{2\pi}} \exp\left(-\frac{(x-\mu_i)^2}{2\sigma_i^2}\right)
-$$
+$
 
-$$\sum_{i=1}^K\phi_i = 1$$
+</center>
+
+<center>
+
+$\sum_{i=1}^K\phi_i = 1$
+
+</center>
 
 ## Multi-dimensional Model
 
-$$
+<center>
+
+$
 p(\vec{x}) = \sum_{i=1}^K\phi_i \mathcal{N}(\vec{x} \;|\; \vec{\mu}_i, \Sigma_i)
-$$
+$
 
-$$
+</center>
+
+<center>
+
+$
 \mathcal{N}(\vec{x} \;|\; \vec{\mu}_i, \Sigma_i) = \frac{1}{\sqrt{(2\pi)^K|\Sigma_i|}} \exp\left(-\frac{1}{2}(\vec{x}-\vec{\mu}_i)^\mathrm{T}{\Sigma_i}^{-1}(\vec{x}-\vec{\mu}_i)\right)
-$$
+$
 
-$$\sum_{i=1}^K\phi_i = 1$$
+</center>
+
+<center>
+
+$\sum_{i=1}^K\phi_i = 1$
+
+</center>
 
 ## Learning the Model
 
@@ -407,7 +493,11 @@ Expectation maximization (EM) is a numerical technique for maximum likelihood es
 
 Say we have $\mid Y \mid$ number of data-_points coming from 2 normal distribution, i.e. `mixture of 2 gaussian distribution`. Where $Y_1 \sim N(\mu_1, \sigma_1)$ and $Y_2 \sim N(\mu_2, \sigma_2)$ and $\mid Y \mid = \mid Y_1 \mid + \mid Y_2 \mid$. Our task is to figure out those 2 distribution. More formally we want to estimate $\hat\mu_1, \hat\sigma_1$ and $\hat\mu_2, \hat\sigma_2$. We want to model $Y$ as follows 
 
-$$Y = (1-\Delta)Y_1 + \Delta Y_2$$
+<center>
+
+$Y = (1-\Delta)Y_1 + \Delta Y_2$
+
+</center>
 
 where $\Delta \in \{0,1\}$ with $P(\Delta=1)=\pi$. 
 
@@ -417,13 +507,22 @@ In the above notation we can think of $\pi$ as the mixing coefficient. We can th
 
 Let $\phi_\theta(x)$ denotes the normal density with parameters $\theta = (\mu, \sigma^2)$. Then the density of $Y$ is 
 
-$$g_Y=(1-\pi)\phi_\theta^1(y) + \pi\phi_\theta^2(y)$$
+<center>
+
+$g_Y=(1-\pi)\phi_\theta^1(y) + \pi\phi_\theta^2(y)$
+
+</center>
 
 Now we wish to fit this model to data by maximum likelihood estimation. The parameters are $\theta = (\pi, \theta^1, \theta^2) = (\pi, \mu_1, \sigma_1^2, \mu_2, \sigma_2^2)$.
 
 The log likelihood based on all the training case is:
 
-$$l(\theta; Z) = \sum_{i=1}^{N}log[(1-\pi)\phi_\theta^1(y_i) + \pi\phi_\theta^2(y_i)]$$
+<center>
+
+$l(\theta; Z) = \sum_{i=1}^{N}log[(1-\pi)\phi_\theta^1(y_i) + \pi\phi_\theta^2(y_i)]$
+
+</center>
+
 
 But direct maximization (by taking grad and set to 0) is difficult due to the sum inside log.
 
@@ -433,27 +532,59 @@ So we apply Expectation Maximization (EM) algorithm.
 - s1: guess: $\pi, \theta_1, \theta_2$
 - s2: While $(oldLogLikelihood - Likelihood) > tolerance$
   - s3: **Expectaton Step:** Find Posterior Probability (`Responsibility`)
-      
-      $$\hat\gamma_i = p(\theta_2|y_i) = \frac{p(y_i | \theta_2)p(\theta_2)}{p(y_i | \theta_1)p(\theta_1) + p(y_i |\theta_2)p(\theta_2)}$$
 
-    - Where $p(\theta_2) = \pi$, $p(\theta_1) = 1-\pi$
-    - $p(y_i) = p(y_i \vert \theta_1)p(\theta_1) + p(y_i \vert\theta_2)p(\theta_2)$
-    - $p(y_i \vert \theta_2) = N(\mu_2, \sigma_2)$ [use from s1 (1st time) and s4 (later)]
+<center>
+      
+$
+\hat\gamma_i = p(\theta_2|y_i) = \frac{p(y_i | \theta_2)p(\theta_2)}{p(y_i | \theta_1)p(\theta_1) + p(y_i |\theta_2)p(\theta_2)}
+$
+
+</center>
+
+  - Where $p(\theta_2) = \pi$, $p(\theta_1) = 1-\pi$
+  - $p(y_i) = p(y_i \vert \theta_1)p(\theta_1) + p(y_i \vert\theta_2)p(\theta_2)$
+  - $p(y_i \vert \theta_2) = N(\mu_2, \sigma_2)$ [use from s1 (1st time) and s4 (later)]
 
   - s4: **Maximization Step:** compute the weighted mean and variances
     
-    $$\hat\mu_1 = \frac{\Sigma(1-\hat\gamma_i)y_i}{\Sigma{1-\hat\gamma_i}}$$
+<center>
 
-    $$\hat\mu_2 = \frac{\Sigma(\hat\gamma_i)y_i}{\Sigma{\hat\gamma_i}}$$
-    
-    $$\hat\sigma_1 = \frac{\Sigma (1-\hat\gamma_i) (y_i - \hat\mu_1)^2}{\Sigma(1-\hat\gamma_i)}$$
-    
-    $$\hat\sigma_2 = \frac{\Sigma \hat\gamma_i (y_i - \hat\mu_2)^2}{\Sigma{\hat\gamma_i}}$$
-    
-    $$\hat\pi = \Sigma \frac{\hat\gamma_i}{N}$$
+$\hat\mu_1 = \frac{\Sigma(1-\hat\gamma_i)y_i}{\Sigma{1-\hat\gamma_i}}$
+
+</center>
+
+<center>
+
+$\hat\mu_2 = \frac{\Sigma(\hat\gamma_i)y_i}{\Sigma{\hat\gamma_i}}$
+
+</center>
+
+<center>
+
+$\hat\sigma_1 = \frac{\Sigma (1-\hat\gamma_i) (y_i - \hat\mu_1)^2}{\Sigma(1-\hat\gamma_i)}$
+
+</center>
+
+
+<center>
+
+$\hat\sigma_2 = \frac{\Sigma \hat\gamma_i (y_i - \hat\mu_2)^2}{\Sigma{\hat\gamma_i}}$
+
+</center>
+
+<center>
+
+$\hat\pi = \Sigma \frac{\hat\gamma_i}{N}$
+
+</center>
+
   - s5: calculate loglikelihood:
-    
-    $$l(\theta; Z) = \sum_{i=1}^{N}log[(1-\hat\pi)\hat\phi_\theta^1(y_i) + \hat\pi\hat\phi_\theta^2(y_i)]$$
+
+<center>
+
+$l(\theta; Z) = \sum_{i=1}^{N}log[(1-\hat\pi)\hat\phi_\theta^1(y_i) + \hat\pi\hat\phi_\theta^2(y_i)]$
+
+</center>
 
 So we are trying to maximize the log-likelihood through this iterative approach. The above algorithm is a simple version for 1D data. If the data is 2D then instead of variance $\sigma^2$, we will have covariance matrix $\Sigma$ because of Multivariate Gaussian. But the basic procedure is like this.
 
@@ -535,7 +666,7 @@ There are two popular approaches to calibrating probabilities:
 ## Implementation
 
 
-```python
+```py
 # SVM reliability diagram with calibration
 from sklearn.datasets import make_classification
 from sklearn.svm import SVC
