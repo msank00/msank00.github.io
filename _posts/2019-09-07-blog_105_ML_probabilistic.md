@@ -53,9 +53,13 @@ Score metrics
 
 The score metrics for a structure $\mathcal{G}$ and data $D$ can be generally defined as:
 
-$$
+<center>
+
+$
 Score(G:D)= LL(G:D) - \phi(\vert D \vert) \vert \vert G \vert \vert.
-$$
+$
+
+</center>
 
 Here $LL(G:D)$ refers to the **log-likelihood of the data** under the graph structure $\mathcal{G}$. The parameters in Bayesian network $G$ are estimated based on MLE and the log-likelihood score is calculated based on the estimated parameters. If we consider only the log-likelihood in the score function, we will end up with an overfitting structure (namely, a complete graph.) That is why we have the second term in the scoring function. $\vert D \vert$ is the number of sample and $\vert \vert G \vert \vert$ is the number of parameters in the graph $\mathcal{G}$. With this extra term, we will penalize the over-complicated graph structure and avoid overfitting. 
 

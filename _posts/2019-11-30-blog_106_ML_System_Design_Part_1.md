@@ -339,9 +339,13 @@ Until the 1980s, more than 200 readability formulas had been published (Klare 19
 
 Among these factors, vocabulary difficulty (or semantic factors) and sentence length (or syntactic factors) are the strongest indexes of readability (Chall and Dale 1995). The following is the `Flesch Reading Ease` Formula.
 
-$$
+<center>
+
+$
 206.835-1.015\frac{N_{words}}{N_{sents}} - 84.6 \frac{N_{syllables}}{N_{words}}
-$$
+$
+
+</center>
 
 
 The resulting score ranges from 0 to 100; the lower the score, the more difficult to read the material.
@@ -455,7 +459,11 @@ In the initial design of Line,
 - Haversine distances $d_{hvrsn}(A,B)$ are straight-line distances between two points A, B and are multiplied by the region’s (pink box, $region(A,B)$) average speed $\mu_v$ to get a time estimate $t_{AB}$
 - A greedy system is one in which we take the first match we find that satisfies our constraints, as opposed to the best one for the entire system.
 
-$$t_{AB} = d_{hvrsn}(A,B)*\mu_v^{region(A,B)}$$
+<center>
+
+$t_{AB} = d_{hvrsn}(A,B)*\mu_v^{region(A,B)}$
+
+</center>
 
 - We denoted passengers as letters of the alphabet and every passenger has two stops — a pickup and drop-off — A and A’, B and B’, etc. So when comparing passenger A and B, we looked at 24 potential orderings: ABB’A’, ABA’B’, B’A’BA, B’AA’B, B’ABA’, BAA’B’, AA’B’B, B’BAA’, etc. We were able to reduce the number of permutations down to only 4 given that there would never be a drop-off before a pickup, and an ordering such as AA’BB’ had no overlap and thus wasn’t worth considering. We would look at all four permutations and eliminate ones that didn’t satisfy all of our constraints. We would then choose the most optimal ordering.
 - **Optimal Ordering:** The most optimal ordering is the one in which the `total matched distance is minimized`. For example if an ABBA route had a total distance of 3.5 miles, but an ABAB route had a total distance of 3.2 miles, we would select the ABAB route.
@@ -495,14 +503,18 @@ Geohash is a public domain geocode system invented, which
 
 Using historical data from past Lyft rides, we could record the average speed $\mu_v$ of our rides from one geohash $h_{geo}(A)$ to another $h_{geo}(B)$ and store that in a simple hash-table lookup. Then, when calculating estimates, we would multiply the haversine distance $d_{hvrsn}(A,B)$ between those two points with this speed to figure out a time estimate $t_{AB}$
 
-$$t_{AB} = d_{hvrsn}(A,B)*\mu_v^{(h_{geo}(A),h_{geo}(B))}$$
+<center>
+
+$t_{AB} = d_{hvrsn}(A,B)*\mu_v^{(h_{geo}(A),h_{geo}(B))}$
+
+</center>
 
 - Added another nested hash table for `each hour` of the week between origin and destination which reduced our inaccuracies around rush hour.
 - This approach also became more accurate as we collected more data as we could break our model down into smaller geohash sizes.
 
 ## Efficiency and Efficiency improvements
 
-Triple matching ABCBCA or even ABACBDCD, adding up to a total of 1,776 permutations. This meant we had to quickly scale the efficiency of our system to handle this load
+Triple matching ABCBCA or even ABACBDCD, adding up to a total of $1,776$ permutations. This meant we had to quickly scale the efficiency of our system to handle this load
 
 - **Longitudinal Sorting**: When considering pairing A and B together, there was some maximum distance they could be apart from each other. So we sorted the outer and inner loops by longitude, we could short circuit out of that loop when we’ve passed this maximum distance.
 
@@ -562,7 +574,11 @@ It does this by maintaining a tree of paths originating at the start node and ex
 
 At each iteration of its main loop, A* needs to determine which of its paths to extend. It does so based on the cost of the path and an estimate of the cost required to extend the path all the way to the goal. Specifically, A* selects the path that minimizes
 
-$$    f ( n ) = g ( n ) + h ( n ) $$ 
+<center>
+
+$f ( n ) = g ( n ) + h ( n )$
+
+</center>
 
 where 
 
@@ -615,8 +631,11 @@ Contraction hierarchies is a speed-up method optimized to exploit properties of 
 
 Traditional price optimization requires knowing or estimating the dependency between the `price` and `demand`. Assuming that this dependency is known (at least at a certain time interval), the `revenue-optimal price` can be found by employing the following equation:
 
-$$p^* = \underset{p}{\text{argmax}}\ \ p \times d(p)$$
+<center>
 
+$p^* = \underset{p}{\text{argmax}}\ \ p \times d(p)$
+
+</center>
 
 where $p$ is the price and $d(p)$ is a demand function.
 
@@ -640,7 +659,7 @@ Classical `exploration-exploitation` problem:
 - Provide the ability to specify valid price levels and price combinations. Most retailers restrict themselves to a certain set of price points (e.g., $25.90, $29.90, ..., $55.90), and the optimization process has to support this constraint.
 - Enable the optimization of prices under inventory constraints, or given dependencies between products.
 
-**Reference*:*
+**Reference**
 
 - [A guide to dynamic pricing algorithms](https://blog.griddynamics.com/dynamic-pricing-algorithms/)
 - [Code-Github](https://github.com/ikatsov/algorithmic-examples)
