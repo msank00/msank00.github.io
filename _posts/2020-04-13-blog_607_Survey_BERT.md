@@ -325,8 +325,8 @@ The "Attention Mask" is simply an array of 1s and 0s indicating which tokens are
 
 The maximum length does impact training and evaluation speed, however. For example, with a Tesla K80:
 
-- MAX_LEN = $128$ --> Training epochs take $\sim 5:28$ each
-- MAX_LEN = $64$ --> Training epochs take $\sim 2:57$ each
+- MAX_LEN = $128\rightarrow$  Training epochs take $\sim 5:28$ each
+- MAX_LEN = $64\rightarrow$ Training epochs take $\sim 2:57$ each
 
 **Reference:**
 

@@ -30,7 +30,7 @@ Must Watch :fire:
 <center>
 
 <figure class="video_container">
-  <iframe src="https://www.youtube.com/watch?v=0tBPSxioIZE" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+  <iframe src="https://www.youtube.com/embed/0tBPSxioIZE" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
 </figure>
 
 </center>
@@ -43,7 +43,7 @@ Must Watch :fire:
 <center>
 
 <figure class="video_container">
-  <iframe src="https://www.youtube.com/watch?v=lugkZaFj4x8" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+  <iframe src="https://www.youtube.com/embed/lugkZaFj4x8" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
 </figure>
 
 </center>

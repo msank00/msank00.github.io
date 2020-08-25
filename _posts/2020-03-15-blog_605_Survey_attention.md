@@ -168,7 +168,7 @@ Must Watch :fire:
 <center>
 
 <figure class="video_container">
-  <iframe src="https://www.youtube.com/watch?v=flHtAUGB0PU&t=1s" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+  <iframe src="https://www.youtube.com/embed/flHtAUGB0PU" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
 </figure>
 
 </center>
@@ -232,7 +232,7 @@ Must Watch :fire:
 <center>
 
 <figure class="video_container">
-  <iframe src="https://www.youtube.com/watch?v=N9AGY-Z6tbM&t=1s" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+  <iframe src="https://www.youtube.com/embed/N9AGY-Z6tbM" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
 </figure>
 
 </center>
