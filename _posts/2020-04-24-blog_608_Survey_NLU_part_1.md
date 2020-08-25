@@ -632,10 +632,8 @@ Normal words are fine for tokenization. But it becomes problematic when you proc
 <img src="https://camo.githubusercontent.com/9117c63a6795f6981aaa42d7dc4f5640d31b1cd1/687474703a2f2f692e696d6775722e636f6d2f4b714a6e5654782e706e67" width="400">
 </center>
 
-<center>
-<img src="https://jenniferbakerconsulting.com/wp-content/uploads/JKD.jpg
-" height="300">
-</center>
+
+![image](https://jenniferbakerconsulting.com/wp-content/uploads/JKD.jpg)
 
 - `whitespace` tokenization is Okay. Basic. Preserve emoticons.
 - `treebank` tokenizer - most systems are using.
