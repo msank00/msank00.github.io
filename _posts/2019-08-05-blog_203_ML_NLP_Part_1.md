@@ -29,11 +29,19 @@ Raw term frequency as above suffers from a critical problem: all terms are consi
 
 A mechanism is introduced for attenuating the effect of terms that occur too often. The idea would be to reduce the tf weight of a term by a factor that grows with its collection frequency. So it is more commonplace to use for this purpose, the `document frequency` $df_t$, defined to be the number of documents in the collection that contain a term $t$. We then define the inverse document frequency ($idf$) of a term $$ as follows
 
-$$idf_t = \log \frac{N}{df_t}$$
+<center>
+
+$idf_t = \log \frac{N}{df_t}$
+
+</center>
 
 Finally, The $tf\_idf$ weighting scheme assigns to term $t$ a weight in document $d$ given by:
 
-$$tf\_idf_{t,d} = tf_{t,d} * idf_t$$
+<center>
+
+$tf\_idf_{t,d} = tf_{t,d} * idf_t$
+
+</center>
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
@@ -42,7 +50,7 @@ $$tf\_idf_{t,d} = tf_{t,d} * idf_t$$
 
 # Tf-Idf fails in document classification/clustering? How can you improve further?
 
- TF-IDF is supposed to be a `weighting scheme` that puts more weight on more relevant keywords. And by design, it chooses those keywords as relevant which are uncommon or rare in the corpus. 
+ **TF-IDF** is supposed to be a `weighting scheme` that puts more weight on more relevant keywords. And by design, it chooses those keywords as relevant which are uncommon or rare in the corpus. 
 
 The main disadvantages of using tf/idf is that it clusters documents which have `more similar uncommon keywords`. So it's only good to identify near identical documents. For example consider the following sentences:
 
@@ -115,11 +123,14 @@ We want to maximize the class ($c$) probability given the document $d$
 
 $\hat c = argmax_{c \in C} P(c \vert d) = argmax_{c \in C} \frac{P(d \vert c)P(c)}{P(d)}$
 
+</center>
+
+<center>
+
 $\hat c = argmax_{c \in C} P(c \vert d) = argmax_{c \in C} P(d \vert c)P(c)$
 
 </center>
 
-<br>
 
 Where $P(d \vert c)$, **likelihood** of the data and $P(c)$ is the **prior**.
 
@@ -133,11 +144,10 @@ $
 
 </center>
 
-<br>
 
 Unfortunately, the above equation is still too hard to compute directly: without some simplifying assumption. ANd here comes the great Naive Bayes assumption which is the culprit of such naming **naive**.
 
-- Assumption 1: bag of words - i.e features $f_1, \dots ,f_n$ only encode word identity bout not their position.
+- **Assumption 1:** bag of words - i.e features $f_1, \dots ,f_n$ only encode word identity bout not their position.
 - **Naive-Bayes Assumption**: The conditional independence assumption that the probabilities $P(f_i \vert c)$ are independent given the class $c$. And thus:
 
 <center>
@@ -146,6 +156,9 @@ $
 P(d \vert c) = P(f_1, \dots ,f_n \vert c) = \Pi_{i=1}^n P(f_i \vert c)
 $
 
+</center>
+
+<center>
 
 $
 \hat c = argmax_{c \in C} P(c \vert d) = argmax_{c \in C} P(c) * \Pi_{i=1}^n P(f_i \vert c)
@@ -153,7 +166,7 @@ $
 
 </center>
 
-<br>
+
 
 Now again multiplication of probabilities. So again $\log()$ is at our rescue. 
 
@@ -165,7 +178,7 @@ $
 
 </center>
 
-<br>
+
 
 The beauty of the above equation is, in the log-space it's computing the predicted class as the liner combination of the input features $f_i \in d$. And also in the log-space the `prior` $P(c)$ somewhat `acts as regularizer`. 
 
@@ -204,7 +217,11 @@ One way to estimate probability is: relative frequency count.
 
 Say sentence $S = w_1 w_2 w_3$ where $w_i$ are words. Then 
 
-$$P(w_3 \vert w_1 w_2) = \frac{C(w_1 w_2 w_3)}{C(w_1 w_2)}$$
+<center>
+
+$P(w_3 \vert w_1 w_2) = \frac{C(w_1 w_2 w_3)}{C(w_1 w_2)}$
+
+</center>
 
 i.e count number of times $w_3$ is used followed by $w_1 w_2$: $C(w_1 w_2 w_3)$. And divide this by how many times $w_1 w_2$ appear together $C(w_1 w_2)$.
 
@@ -212,15 +229,21 @@ However count based methods have flaws. New sentences are created very often and
 
 So we can compute the probabilities of the entire sentence $S=w_1 \dots w_n$ like this:
 
+<center>
 
-$$
+$
 P(x_1 \dots x_n) = P(x_1)P(x_2\vert x_1)P(x_3\vert x_1^2)\dots P(x_{n}\vert x_1^{n-1}) 
-$$
+$
 
+</center>
 
-$$
+<center>
+
+$
 P(w_1^n)=\Pi_{k=1}^n P(x_k \vert x_1^{k-1})
-$$
+$
+
+</center>
 
 where $x_1^n$ means $x_1 x_2 \dots x_n$. The chain rule shows the link between computing the joint probability of a sequence and computing the conditional probability of a word given previous words.
 
@@ -228,9 +251,13 @@ The **intuition of the n-gram model** is that instead of computing the probabili
 
 Now product form of so many probabilities are going to be very small. So we can take $\log$ of $P(w_1^n)$ and get a nice summation form:
 
-$$
+<center>
+
+$
 \log(P(w_1^n) = \Sigma_{k=1}^{n} P(w_n \vert w_{n-1})
-$$
+$
+
+</center>
 
 _note: the above formulation is for Bi-gram model_
 
@@ -260,7 +287,7 @@ However with count based approach we may face the situation of **Zero Count** pr
 
 # What is Linear Discriminant Analysis
 
-- Logistic regression involves directly modeling $P(Y = k \vert X = x)$ using the logistic function. But in LDA we take indirect approach. In this alternative approach, we model the distribution of the predictors $X$ separately in each of the response classes (i.e. given $$), and then use Bayes’ theorem to flip these around into estimates for $Pr(Y = k \vert X = x)$. 
+- Logistic regression involves directly modeling $P(Y = k \vert X = x)$ using the logistic function. But in LDA we take indirect approach. In this alternative approach, we model the distribution of the predictors $X$ separately in each of the response classes (i.e. given $x$), and then use Bayes’ theorem to flip these around into estimates for $Pr(Y = k \vert X = x)$. 
 - When these distributions are assumed to be normal, it turns out that the model is very similar in form to logistic regression.
 
 ## Why we need LDA when we have Logistic Regression?
