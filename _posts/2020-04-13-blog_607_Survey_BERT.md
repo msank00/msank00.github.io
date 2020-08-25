@@ -26,6 +26,9 @@ mathjax: true
 </figure>
 </center>
 
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/FKlPCK1uFrc)_
+
+
 # Introduction
 
 ## History

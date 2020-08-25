@@ -145,10 +145,21 @@ The answer lies in the **Pointwise Mutual Information (PMI)** criterion. The ide
 
 Hence, the algorithm computes the ($\log$) probability of co-occurrence scaled by the product of the single probability of occurrence as follows:
 
+<center>
 
-$$
-PMI(w_a, w_b) = \log  \left( \frac{p(w_a, w_b)}{p(w_a) p(w_b)} \right) = \log \left( \frac{p(w_a, w_b)}{p(w_a)} \times \frac{1}{p(w_b)} \right) \\ = \log \left( p(w_b \vert w_a) \times \frac{1}{p(w_b)} \right) = \log \left( p(w_a \vert w_b) \times \frac{1}{p(w_a)} \right) 
-$$
+$
+PMI(w_a, w_b) = \log  \left( \frac{p(w_a, w_b)}{p(w_a) p(w_b)} \right) = \log \left( \frac{p(w_a, w_b)}{p(w_a)} \times \frac{1}{p(w_b)} \right)
+$
+
+</center>
+
+<center>
+
+$
+= \log \left( p(w_b \vert w_a) \times \frac{1}{p(w_b)} \right) = \log \left( p(w_a \vert w_b) \times \frac{1}{p(w_a)} \right) 
+$
+
+</center>
 
 where $w_a$ and $w_b$ are two words.
 
@@ -206,9 +217,13 @@ GloVe [[1]](#1) is an **unsupervised learning algorithm** for obtaining vector r
 
 To achieve this, they propose a **weighted least squares objective** $J$ that directly aims to minimize the difference between the dot product of the vectors of two words and the logarithm of their number of co-occurrences:
 
-$$
+<center>
+
+$
 J = \sum\limits_{i, j=1}^V f(X_{ij})   (w_i^T \tilde{w}_j + b_i + \tilde{b}_j - \text{log}   X_{ij})^2
-$$
+$
+
+</center>
 
 
 where $w_i$ and $b_i$ are the word vector and bias respectively of word $i$, $\tilde{w_j}$ and $b_j$ are the context word vector and bias respectively of word $j$, $X_{ij}$ is the number of times word $i$ occurs in the context of word $j$, and $f$ is a weighting function that assigns relatively lower weight to rare and frequent co-occurrences.
@@ -382,10 +397,13 @@ Mikolov et al. thus use both the $n$ words before and after the target word $w_t
 
 The objective function of CBOW in turn is only slightly different than the language model one:
 
+<center>
 
-$$
+$
 J_\theta = \frac{1}{T}\sum\limits_{t=1}^T\ \log p(w_t \vert w_{t-n}^{t-1},w_{t+1}^{t+n})
-$$
+$
+
+</center>
 
 where $w_{t-n}^{t-1}=w_{t-n} , \cdots , w_{t-1}$ and $w_{t+1}^{t+n}=w_{t+1}, \cdots , w_{t+n}$ 
 
@@ -395,7 +413,11 @@ While CBOW can be seen as a precognitive language model, skip-gram turns the lan
 
 The training objective of the Skip-gram model is to find word representations that are useful for predicting the surrounding words in a sentence or a document. More formally, given a sequence of training words $w_1, w_2, w_3, \dots , w_T$, the objective of the Skip-gram model is to maximize the average log probability, i.e
 
-$$J_\theta = \frac{1}{T} \sum\limits_{t=1}^T \sum\limits_{-c \leq j \leq c , j \ne 0} \log{p(w_{t+j}\vert w_t)}$$
+<center>
+
+$J_\theta = \frac{1}{T} \sum\limits_{t=1}^T \sum\limits_{-c \leq j \leq c , j \ne 0} \log{p(w_{t+j}\vert w_t)}$
+
+</center>
 
 where $c$ is the size of the training context (which can be a function of the center word $w_t$). Larger $c$ results in more training examples and thus can lead to a higher accuracy, at the expense of the training time.
 
@@ -460,13 +482,21 @@ Pennington, J., Socher, R., & Manning, C. D. (2014). Glove: Global Vectors for W
 
 Neural probabilistic language models are traditionally trained using the maximum likelihood (ML) principle to maximize the probability of the next word $w_t$ (for `target`) given the previous words $h$ (for `history`) in terms of a softmax function,
 
-$$
+<center>
+
+$
 P(w_t \vert h) = \text{softmax}(\text{score}(w_t, h)) = \frac{\exp ({ \text{score}(w_t, h) }) } {\sum_\text{Word w' in Vocab} \exp ({ \text{score}(w', h) }) }
-$$
+$
+
+</center>
 
 where $\text{score}(w_t, h)$ computes the compatibility of word $w_t$ with the context $h$ (a dot product is commonly used). We train this model by maximizing its log-likelihood on the training set, i.e. by maximizing
 
-$$ J_\text{ML} = \log P(w_t \vert h) = \text{score}(w_t, h) - \log \left( \sum_{w' \in V} \exp ({ \text{score}(w', h) }) \right) $$
+<center>
+
+$J_\text{ML} = \log P(w_t \vert h) = \text{score}(w_t, h) - \log \left( \sum_{w' \in V} \exp ({ \text{score}(w', h) }) \right)$
+
+</center>
 
 - $w'$ is a word
 - $V$ is the vocabulary set
@@ -477,7 +507,11 @@ On the other hand, for feature learning in `word2vec` we do not need a full prob
 
 Mathematically, the objective (for each example) is to maximize
 
-$$J_\text{NEG} = \log Q_\theta(D=1 \vert w_t, h) + k \mathop{\mathbb{E}}{\tilde w \sim P_\text{noise}} \left[ \log Q_\theta(D = 0 \vert \tilde w, h) \right]$$
+<center>
+
+$J_\text{NEG} = \log Q_\theta(D=1 \vert w_t, h) + k \mathop{\mathbb{E}}{\tilde w \sim P_\text{noise}} \left[ \log Q_\theta(D = 0 \vert \tilde w, h) \right]$
+
+</center>
 
 - where $Q_\theta(D=1 \vert w, h)$ is the binary logistic regression probability under the model of seeing the word $w$ in the context $h$ in the dataset $D$, calculated in terms of the learned embedding vectors $\theta$. 
 - In practice the author approximates the expectation by drawing $k$ contrastive words (contrasting/different words) from the noise distribution (i.e. we compute a [Monte Carlo average](https://en.wikipedia.org/wiki/Monte_Carlo_integration)).
@@ -732,8 +766,8 @@ These kind of feature selection in the presence of `correlated features` are har
 
 # Exercise:
 
-- UMLFit
-- U-Net
+- What is UMLFit ?
+- What is U-Net
 
 ----
 

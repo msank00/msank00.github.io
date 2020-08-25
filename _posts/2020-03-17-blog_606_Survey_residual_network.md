@@ -25,6 +25,33 @@ However another great tutorial is available from Sebastian Raschka in his [githu
 
 # Residual Networks (ResNet)
 
+Must Watch :fire:
+
+<center>
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/watch?v=0tBPSxioIZE" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+
+</center>
+
+_* In case the above link is broken, click [here](https://www.youtube.com/watch?v=0tBPSxioIZE)_
+
+
+Must Watch :fire:
+
+<center>
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/watch?v=lugkZaFj4x8" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+
+</center>
+
+_* In case the above link is broken, click [here](https://www.youtube.com/watch?v=lugkZaFj4x8)_
+
+
+
 As we design increasingly deeper networks it becomes imperative to understand how adding layers can increase the `complexity` and `expressiveness` of the network. Even more important is the ability to design networks where adding layers **makes networks strictly more expressive** rather than just different. To make some progress we need a bit of theory.
 
 
@@ -34,14 +61,22 @@ Consider $\mathcal{F}$, the class of functions that a specific network architect
 
 If it is in $\mathcal{F}$, we are in good shape but typically we will not be quite so lucky. Instead, we will try to find some $f^∗_{\mathcal{F}}$ which is our best bet within $\mathcal{F}$. For instance, we might try finding it by solving the following optimization problem:
 
-$$
+<center>
+
+$
 f^*_\mathcal{F} := \mathop{\mathrm{argmin}}_f L(X, Y, f) \text{ subject to } f \in \mathcal{F}.
-$$
+$
+
+</center>
 
 
 It is only reasonable to assume that if we design a different and more powerful architecture $\mathcal{F}'$ we should arrive at a better outcome. In other words, we would expect that $f_{F'}^{\star}$ is **better** than $f_{F}^{\star}$. However, if 
 
-$$\mathcal{F} \nsubseteq \mathcal{F'}$$ 
+<center>
+
+$\mathcal{F} \nsubseteq \mathcal{F'}$
+
+</center>
 
 there is no guarantee that this should even happen. In fact, $f^{∗}_{\mathcal{F}'}$ might well be worse. 
 
@@ -476,15 +511,23 @@ optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 Where is the residue? It’s time we let the mathematicians within us to come to the surface. Let us consider a neural network block, whose input is $x$ and we would like to learn the true distribution $H(x)$. Let us denote the difference (or the residual) between this as
 
-$$
+<center>
+
+$
 R(x) = Output - Input = H(x) - x
-$$
+$
+
+</center>
 
 Rearranging it, we get,
 
-$$
+<center>
+
+$
 H(x) = R(x) + x
-$$
+$
+
+</center>
 
 
 <center>
