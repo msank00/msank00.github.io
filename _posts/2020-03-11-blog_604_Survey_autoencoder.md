@@ -118,9 +118,13 @@ _for mathematical proof check slide 17-21 of Lecture 7 by Prof. Mitesh_
 
 - The simplest solution is to add a **L2-regularization**  term  to  the  objective function
 
-$$
+<center>
+
+$
 argmin_{\theta} \frac{1}{m} \sum\limits_{i=1}^m \sum\limits_{j=1}^n (\hat{x_{ij}} - x_{ij})^2 + \lambda \vert \vert \theta \vert \vert^2
-$$
+$
+
+</center>
 
 - Another trick is to tie the weights of the  encoder and decoder i.e. , $W^*=W^T$.
 - This  effectively  reduces  the  capacity of Autoencoder and acts as a regularizer.

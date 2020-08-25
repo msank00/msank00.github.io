@@ -112,11 +112,13 @@ The LIME method interprets individual model predictions based on **locally appro
 
 The local linear explanation model that LIME uses adheres to the below equation and is thus an additive feature attribution method. 
 
+<center>
 
-
-$$
+$
 g(z) = \phi_0 + \sum\limits_{i=1}^{M}\phi_i z_{i}' \dots (1)
-$$
+$
+
+</center>
 
 LIME refers to simplified inputs $x'$ as `interpretable inputs`, and the mapping $x = h_x(x')$ converts a binary vector of interpretable inputs into the original input space. 
 
@@ -127,11 +129,13 @@ Different types of $h_x$ mappings are used for different input spaces.
 
 To find $\phi$, LIME minimizes the following objective function:
 
+<center>
 
-
-$$
+$
 \xi = argmin_{g \in \mathcal{G}} L(f, g, \pi_{x'}) + \Omega(g) \dots (2)
-$$
+$
+
+</center>
 
 
 Faithfulness of the explanation model $g(z')$ to the original model $f(hx(z'))$ is enforced through the loss $L$ over a set of samples in the simplified input space weighted by the local kernel $\pi_x$. $\Omega$ penalizes the complexity of $g$. Since in LIME $g$ follows Equation $1$ and $L$ is a squared loss, Equation $2$ can be solved using **penalized linear regression**.
@@ -155,9 +159,13 @@ Let f be the original prediction model to be explained and $g$ the explanation m
 
 **Definition 1 Additive feature attribution methods** have an explanation model that is a linear function ofbinary variables:
 
-$$
+</center>
+
+$
 g(z) = \phi_0 + \sum\limits_{i=1}^{M}\phi_i z_{i}'
-$$
+$
+
+</center>
 
 where $z' \in \{0, 1\}^M$, $M$ is the number of simplified input features, and $\phi_i ∈ \mathbb{R}$.
 
@@ -173,10 +181,13 @@ Then, **predictions from the two models are compared** on the current input $f_{
 
 Since the effect of withholding a feature depends on other features in the model, the preceding differences are computed for all possible subsets $S \subseteq F /\ \{i\}$. The Shapley values are then computed and used as feature attributions. They are a weighted average of all possible differences:
 
+<center>
 
-$$
+$
 \phi_i = \sum\limits_{S \subseteq F /\ \{i\}} \frac{\vert S \vert !(\vert F \vert - \vert S \vert -1)!}{\vert F \vert !} \left[ f_{S \cup \{i\}}(x_{S∪\{i\}}) − f_S(x_S) \right] \dots (3)
-$$
+$
+
+</center>
 
 ----
 
@@ -186,19 +197,26 @@ A surprising attribute of the class of additive feature attribution methods is t
 
 **Property 1 (Local accuracy)**
 
+<center>
 
-$$
+$
 f(x) = g(x') = \phi_0 + \sum\limits_{i=1}^{M}\phi_i x_{i}'
-$$
+$
+
+</center>
 
 The explanation model $g(x')$ matches the original model $f(x)$ when $x = h_x(x')$, where $\phi_0 = f(h_x(\mathbf{0}))$ represents the model output with all simplified inputs toggled off(i.e. **missing**).
 
 
 **Property 2 (Missingness)**
 
-$$
+<center>
+
+$
 x' = 0 \Rightarrow \phi_i = 0
-$$
+$
+
+</center>
 
 Missingness constrains features where $x'_i = 0$ to have no attributed impact.
 
@@ -206,9 +224,13 @@ Missingness constrains features where $x'_i = 0$ to have no attributed impact.
 
 Let $f_x(z') = f(h_x(z'))$ and $z' \backslash i$ denote setting $z'_i = 0$. For any two models $f$ and $f'$, if
 
-$$
+<center>
+
+$
 f'_x(z') − f'_x(z' \backslash i) \geq f_x(z') − f_x(z' \backslash i)
-$$
+$
+
+</center>
 
 for all inputs $z' \in \{0, 1\}^M$, then $\phi_i(f', x) \geq \phi_i(f,   x)$.
 
@@ -218,9 +240,13 @@ for all inputs $z' \in \{0, 1\}^M$, then $\phi_i(f', x) \geq \phi_i(f,   x)$.
 
 **Theorem 1** Only one possible explanation model $g$ follows Definition 1 and satisfies Properties 1, 2, and 3:
 
-$$
+<center>
+
+$
 \phi_i(f,x) = \sum\limits_{z' \subseteq x'} \frac{\vert z' \vert !(\vert M \vert - \vert z' \vert -1)!}{\vert M \vert !} \left[ f_x(z') − f_x(z' \backslash i) \right]
-$$
+$
+
+</center>
 
 where $\vert z' \vert$ is the number of non-zero entries in $z'$, and $z' \subseteq x'$ represents all $z'$ vectors where the non-zero entries are a subset of the non-zero entries in $x'$.
 

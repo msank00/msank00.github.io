@@ -310,21 +310,29 @@ The `multi-head attention` layer consists of $h$ **parallel self-attention layer
 
 Assume that the dimension for a `query`, a `key`, and a `value` are $d_q$, $d_k$, and $d_v$, respectively. Then, for each head $i=1, \dots ,h$, we can train learnable parameters $W^{(i)}_q \in \mathbb{R}^{p_q \times d_q}$, $W^{(i)}_k \in \mathbb{R}^{p_k \times d_k}$ , and $W^{(i)}_v \in \mathbb{R}^{p_v \times d_v}$. Therefore, the output for each head is
 
-$$
+<center>
+
+$
 o^{(i)} = attention(W^{(i)}_q q,W^{(i)}_k k, W^{(i)}_v v )
-$$
+$
+
+</center>
 
 
 where **attention** can be any attention layer, such as the `DotProductAttention` and `MLPAttention`. 
 
 After that, the output with length $p_v$ from each of the $h$ attention heads are concatenated to be an output of length $h p_v$, which is then passed the final dense layer with $d_o$ hidden units. The weights of this dense layer can be denoted by $W_o \in \mathbf{R}^{d_o \times hp_v}$. As a result, the multi-head attention output will be
 
-$$
+<center>
+
+$
 \mathbf o = \mathbf W_o 
 \begin{bmatrix}
 \mathbf o^{(1)}\\\vdots\\\mathbf o^{(h)}
 \end{bmatrix}
-$$
+$
+
+</center>
 
 ## Position-wise Feed-Forward Networks
 
@@ -354,10 +362,21 @@ The position $P$ is a $2$-D matrix, where
 
 In this way, each value in the origin sequence is then maintained using the equations below:
 
-$$
-P_{i, 2j} = \sin(i/10000^{2j/d})\\
+<center>
+
+$
+P_{i, 2j} = \sin(i/10000^{2j/d})
+$
+
+</center>
+
+<center>
+
+$
 P_{i, 2j+1} = \cos(i/10000^{2j/d})
-$$
+$
+
+</center>
 
 for $i=0,\ldots, l-1$ and $j=0,\ldots,\lfloor(d-1)/2\rfloor$.
 

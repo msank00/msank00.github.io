@@ -98,9 +98,13 @@ In data programming, users encode this weak supervision in the form of labeling 
 
 In the remainder of this paper, the author focuses on a **binary classification** task in which they have a distribution $\pi$ over object and class pairs $(x, y) \in X \times \{−1, 1\}$, and authors are concerned with **minimizing the logistic loss under a linear model given some features** $f(x)$.
 
-$$
+<center>
+
+$
 l(w) = \mathbf{E}_{(x,y)\sim \pi} [\log(1+exp(-w^T f(x) y))]
-$$
+$
+
+</center>
 
 where without loss of generality, it's assumed that $\vert \vert f(x) \vert \vert \leq 1$. Then, a labeling function $\lambda_i : X \rightarrowtail (−1, 0, 1)$ is a **user-defined function** that encodes some domain heuristic, which provides a (non-zero) label for some subset of the objects. As part of a data programming specification, a user provides some $m$ labeling functions, which is denoted in vectorized form as $\lambda : X \rightarrowtail (−1, 0, 1)^m$.
 
@@ -115,21 +119,34 @@ The author first describes a model in which the labeling functions label indepen
 - Each labeling function $\lambda_i$ has some probability $\beta_i$ of labeling the $i^{th}$ object (unlabelled data) 
 - And then has probability $\alpha_i$ of **labeling the object correctly**; for simplicity it's assumed here that each class has probability $0.5$. This model has distribution
 
-$$
+<center>
+
+$
 \mu_{\alpha, \beta}(\Lambda, Y) = \frac{1}{2} \prod\limits_{i=1}^m \left[\beta_i \alpha_i \mathbf{1}_{\{\Lambda_i = Y\}} + \beta_i (1-\alpha_i) \mathbf{1}_{\{\Lambda_i = -Y\}} + (1-\beta_i) \mathbf{1}_{\{\Lambda_i = 0\}}\right] \dots (1)
-$$
+$
+
+</center>
+
 
 where $\Lambda \in \{−1, 0, 1\}^m$ contains the labels output by the labeling functions, and $Y \in \{−1, 1\}$ is the predicted class. If we allow the parameters $\alpha \in \mathbb{R}^m$ and $\beta \in \mathbb{R}^m$ to vary, specifies a **family of generative models**.
 
 The **first goal** will be to **learn which parameters** $(\alpha, \beta)$ are most consistent with the observations $\rightarrow$ the unlabeled training set $\rightarrow$ using **maximum likelihood estimation**. To do this for a particular training set $S \subset X$,
 
-$$
-(\hat{\alpha}, \hat{\beta}) = {argmax}_{\alpha,\beta} \sum\limits_{x \in S} \log \mathbf{P}_{(\Lambda, Y) \sim \mu_{\alpha, \beta}} (\Lambda = \lambda(x))
-$$
+<center>
 
-$$
+$
+(\hat{\alpha}, \hat{\beta}) = {argmax}_{\alpha,\beta} \sum\limits_{x \in S} \log \mathbf{P}_{(\Lambda, Y) \sim \mu_{\alpha, \beta}} (\Lambda = \lambda(x))
+$
+
+</center>
+
+<center>
+
+$
 = {argmax}_{\alpha, \beta} \sum\limits_{x \in S} \log \left( \sum\limits_{y' \in \{ -1, 1\}} \mu_{\alpha, \beta}(\lambda(x), y')\right) \dots (2)
-$$
+$
+
+</center>
 
 
 In other words, we are maximizing the probability that the **observed labels produced on our training examples occur under the generative model in** ($1$). In our experiments, we use stochastic gradient descent to solve this problem; since this is a standard technique, we defer its analysis to the appendix. 
@@ -145,13 +162,21 @@ Given that our parameter learning phase (using generative model) has successfull
 
 To do so, we define the **noise-aware empirical risk** $\mathcal{L}_{\hat\alpha, \hat\beta}$ with regularization parameter $\rho$, and compute the **noise-aware empirical risk minimizer.**
 
-$$
-\hat{w} = {argmin}_{w} \mathcal{L}_{\hat\alpha, \hat\beta} (w;S)
-$$
+<center>
 
-$$
+$
+\hat{w} = {argmin}_{w} \mathcal{L}_{\hat\alpha, \hat\beta} (w;S)
+$
+
+</center>
+
+<center>
+
+$
 = {argmin}_{w} \frac{1}{\vert S \vert} \sum\limits_{x \in S} \mathbf{E}_{(\Lambda, Y) \sim \mu_{\alpha, \beta}} \left[  \log(1+exp(-w^T f(x) Y)) \vert \Lambda = \lambda(x) \right] + \rho \vert \vert w \vert \vert^2 
-$$
+$
+
+</center>
 
 This is a logistic regression problem, so it can be solved using stochastic gradient descent as well.
 
