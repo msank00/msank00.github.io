@@ -97,6 +97,8 @@ $
 
 </center>
 
+<br>
+
 <center>
 
 $
@@ -193,7 +195,11 @@ Which of these variants is best? Do the differences matter? Greff, et al. (2015)
 
 So total loss for sequence learning is 
 
-$$L(\theta) = \sum\limits‎_{t=1}^{T} L_t(\theta) $$
+<center>
+
+$L(\theta) = \sum\limits‎_{t=1}^{T} L_t(\theta)$
+
+</center>
 
 ![image](/assets/images/bptt.png)
 
@@ -202,12 +208,20 @@ In the above image is a simple vanilla RNN, where $t$ is from $1$ to $4$.  For b
 
 Now taking derivative w.r.t $V$ is straight forward.
 
-$$\frac{\delta L(\theta)}{\delta V} = \sum\limits_{t=1}^{T} \frac{\delta L_t(\theta)}{\delta V}$$
+<center>
+
+$\frac{\delta L(\theta)}{\delta V} = \sum\limits_{t=1}^{T} \frac{\delta L_t(\theta)}{\delta V}$
+
+</center>
 
 
 Problem arrives now while taking derivative w.r.t $W$.
 
-$$\frac{\delta L(\theta)}{\delta W} = \sum\limits_{t=1}^{T} \frac{\delta L_t(\theta)}{\delta W}$$
+<center>
+
+$\frac{\delta L(\theta)}{\delta W} = \sum\limits_{t=1}^{T} \frac{\delta L_t(\theta)}{\delta W}$
+
+</center>
 
 However, while applying chain rule $L_4(\theta)$ is dependent on $s_4$, $s_4$ is dependent on $W$ and $s_3$, $s_3$ is dependent on $s_2$ and so on. So while taking derivative of $s_i$ w.r.t $W$, we can't take $s_{i-1}$ as constant. That's the problem in such `ordered network`
 
@@ -227,21 +241,34 @@ Therefore, in such network the total derivative $\frac{\delta s_4}{\delta W}$ ha
 
 So we got
 
-$$
+<center>
+
+$
 \frac{\delta L_t(\theta)}{\delta W} =  \frac{\delta L_t(\theta)}{\delta s_t} \sum\limits_{k=1}^{t}\frac{\delta s_t}{\delta s_k}\frac{\delta^+ s_k}{\delta W}
-$$
+$
+
+</center>
 
 However we will now focus on $\frac{\delta s_t}{\delta s_k}$ which is causing a problem in training RNN using BPTT.
 
-$$
+<center>
+
+$
 \frac{\delta s_t}{\delta s_k} = \frac{\delta s_t}{\delta s_{t-1}} \frac{\delta s_{t-1}}{\delta s_{t-2}}\dots \frac{\delta s_{k+1}}{\delta s_{k}} = \prod\limits_{j=k}^{t-1} \frac{\delta s_{j+1}}{\delta s_{j}}
-$$
+$
+
+</center>
+
 
 Therefore the earlier equation becomes
 
-$$
+<center>
+
+$
 \frac{\delta L_t(\theta)}{\delta W} =  \frac{\delta L_t(\theta)}{\delta s_t} \sum\limits_{k=1}^{t}(\prod\limits_{j=k}^{t-1} \frac{\delta s_{j+1}}{\delta s_{j}})\frac{\delta^+ s_k}{\delta W}
-$$
+$
+
+</center>
 
 Now we are interested in the magnitude of $\frac{\delta s_{j+1}}{\delta s_{j}}$. 
 - If $\frac{\delta s_{j+1}}{\delta s_{j}}$ is small, i.e $\lt 1$, then on repeated multiplication, it will **vanish**, $\Rightarrow$ $\frac{\delta s_{t}}{\delta s_{k}}$ will **vanish** $\Rightarrow$  $\frac{\delta L_t(\theta)}{\delta W}$ will **vanish**.
@@ -420,11 +447,19 @@ The biggest culprit in causing our gradients to vanish is that dastardly recursi
 
 **The original LSTM solution:** The original motivation behind the LSTM was to make this recursive derivative have a constant value. If this is the case then our gradients would neither explode or vanish. How is this accomplished? As you may know, the LSTM introduces a separate cell state $C_t$. In the original 1997 LSTM, the value for $C_t$ depends on the previous value of the cell state and an update term weighted by the input gate value (for motivation on why the input/output gates are needed, I would check out this [great post](https://r2rt.com/written-memories-understanding-deriving-and-extending-the-lstm.html)):
 
-$$C_t=C_{t−1}+i \odot \tilde C_t$$
+<center>
+
+$C_t=C_{t−1}+i \odot \tilde C_t$
+
+</center>
 
 This formulation doesn’t work well because the cell state tends to `grow uncontrollably`. In order to prevent this unbounded growth, a `forget gate` was added to scale the previous cell state, leading to the more modern formulation:
 
-$$C_t= f \odot C_{t−1}+i \odot \tilde C_t$$
+<center>
+
+$C_t= f \odot C_{t−1}+i \odot \tilde C_t$
+
+</center>
 
 
 One important thing to note is that the values $f_t$, $o_t$, $i_t$, and $\tilde C_t$ are things that the network learns to set (conditioned on the current input and hidden state). Thus, in this way the network learns to decide when to let the gradient vanish, and when to preserve it, by setting the gate values accordingly!
@@ -497,20 +532,28 @@ Commonly, $sigmoid$ and $tanh$ activation functions are problematic (gradient va
 
 A problem where you predict a real-value quantity.
 
-Case 1:
+**Case 1:**
 
 - `Output Layer Configuration:` One node with a linear activation unit.
 - `Loss Function:` Mean Squared Error (MSE).
 
-$$\boldsymbol{\mathcal{L}}=\frac{1}{n}\sum_{i=1}^{n}(y^{(i)}-\hat{y}^{(i)})^{2}$$
+<center>
 
-Case 2:
+$\boldsymbol{\mathcal{L}}=\frac{1}{n}\sum_{i=1}^{n}(y^{(i)}-\hat{y}^{(i)})^{2}$
+
+</center>
+
+**Case 2:**
 
 - `Output Layer Configuration:` One node with a linear activation unit.
 - `Loss Function:` Mean Squared Logarithmic Error (MSLE)
 
 
-$$\boldsymbol{\mathcal{L}}=\frac{1}{n}\sum_{i=1}^{n}\big(\log(y^{(i)}+1)-\log(\hat{y}^{(i)}+1)\big)^{2}$$
+<center>
+
+$\boldsymbol{\mathcal{L}}=\frac{1}{n}\sum_{i=1}^{n}\big(\log(y^{(i)}+1)-\log(\hat{y}^{(i)}+1)\big)^{2}$
+
+</center>
 
 
 **When to use case 2**
@@ -537,13 +580,21 @@ Mean Squared Logarithmic Error (MSLE) loss function is a variant of MSE, which i
 
 In binary classification, where the number of classes `M` equals 2, cross-entropy can be calculated as:
 
-$$-{(y\log(p) + (1 - y)\log(1 - p))}$$
+<center>
+
+  $-{(y\log(p) + (1 - y)\log(1 - p))}$
+
+</center>
 
 here the assumption is $y \in [0,1]$
 
 If $M\gt2$ (i.e. multiclass classification), we calculate a separate loss for each class label per observation and sum the result.
 
-$$-\sum_{c=1}^My_{o,c}\log(p_{o,c})$$
+<center>
+
+  $-\sum_{c=1}^My_{o,c}\log(p_{o,c})$
+
+</center>
 
 **Summary**
 
@@ -597,6 +648,7 @@ print("Custom NLL loss: ", NLLLoss(x_log, y))
 # Torch NLL loss:  tensor(1.8739)
 # Custom NLL loss:  tensor(1.8739)
 ```
+
 - For optimized code see the resource below
 
 **Remember:** In short - `CrossEntropyLoss = LogSoftmax + NLLLoss`. 
@@ -646,11 +698,19 @@ print("Custom NLL loss: ", NLLLoss(x_log, y))
 
 **But why is perplexity in NLP defined the way it is?**
 
-$$PP(W) = P(w_1 w_2 \dots w_N)^{-\frac{1}{N}}$$
+<center>
+
+$PP(W) = P(w_1 w_2 \dots w_N)^{-\frac{1}{N}}$
+
+</center>
 
 If you look up the perplexity of a discrete probability distribution in Wikipedia, it looks like:
 
-$$2^{H[P]}=2^{-\Sigma_x P(x)\log_2 P(x)}$$
+<center>
+
+$2^{H[P]}=2^{-\Sigma_x P(x)\log_2 P(x)}$
+
+</center>
 
 $H(p)$ is the entropy of the distribution $P(x)$ and x is a random variable over all possible events.
 
@@ -741,13 +801,21 @@ A saddle point in the error surface. A saddle point is a point where derivatives
 
 ## Batch gradient descent
   
-$$\theta = \theta - \eta \cdot \nabla_\theta J( \theta)$$
+<center>
+
+  $\theta = \theta - \eta \cdot \nabla_\theta J( \theta)$
+
+</center>
 
 Batch gradient descent also doesn't allow us to update our model online, i.e. with new examples on-the-fly.
 
 ## Stochastic gradient descent
 
-$$\theta = \theta - \eta \cdot \nabla_\theta J( \theta; x^{(i)}; y^{(i)})$$
+<center>
+
+$\theta = \theta - \eta \cdot \nabla_\theta J( \theta; x^{(i)}; y^{(i)})$
+
+</center>
 
 Batch gradient descent performs redundant computations for large datasets, as it recomputes gradients for similar examples before each parameter update. SGD does away with this redundancy by performing one update at a time. It is therefore usually much faster and can also be used to learn online.
 
@@ -757,7 +825,11 @@ While batch gradient descent converges to the minimum of the basin the parameter
 
 Mini-batch gradient descent finally takes the best of both worlds and performs an update for every mini-batch of n training examples. 
 
-$$\theta = \theta - \eta \cdot \nabla_\theta J( \theta; x^{(i:i+n)}; y^{(i:i+n)})$$
+<center>
+
+$\theta = \theta - \eta \cdot \nabla_\theta J( \theta; x^{(i:i+n)}; y^{(i:i+n)})$
+
+</center>
 
 Mini-batch gradient descent is typically the algorithm of choice when training a neural network and the term SGD usually is employed also when mini-batches are used.
 
@@ -773,9 +845,14 @@ SGD oscillates across the slopes of the `ravine` while only making hesitant prog
 
 LEFT: shows a `long shallow ravine` leading to the optimum and steep walls on the sides. Standard SGD will tend to oscillate across the narrow ravine. RIGHT: Momentum is one method for pushing the objective more quickly along the shallow ravine. 
 
-$$ 
+<center>
+
+$ 
 v_t = \gamma v_{t-1} + \eta \nabla_\theta J( \theta) \\ 
-\theta = \theta - v_t $$
+\theta = \theta - v_t
+$
+
+</center>
 
 The momentum term $\gamma$ is usually set to `0.9` or a similar value.
 
@@ -786,8 +863,12 @@ Essentially, when using momentum, we push a ball down a hill. The ball accumulat
 
 However, a ball that rolls down a hill, blindly following the slope, is highly unsatisfactory. We'd like to have a smarter ball, a ball that has a notion of where it is going so that it knows to slow down before the hill slopes up again.
   - Nesterov accelerated gradient (NAG) [6] is a way to give our momentum term this kind of prescience.
-  
-  $$v_t = \gamma v_{t-1} + \eta \nabla_\theta J( \theta - \gamma v_{t-1} ) \\ \theta = \theta - v_t$$
+
+<center>  
+
+  $v_t = \gamma v_{t-1} + \eta \nabla_\theta J( \theta - \gamma v_{t-1} ) \\ \theta = \theta - v_t$
+
+</center>
 
 All previous methods use the same learning rate for each of the parameter. Now we want different learning rate for different parameters. Here we go:
 
@@ -795,14 +876,27 @@ All previous methods use the same learning rate for each of the parameter. Now w
 
 It adapts the learning rate to the parameters, performing smaller updates (i.e. low learning rates) for parameters associated with frequently occurring features, and larger updates (i.e. high learning rates) for parameters associated with infrequent features. For this reason, it is well-suited for dealing with `sparse data`.
 
-$$g_{t, i} = \nabla_\theta J( \theta_{t, i} )$$
-$$\theta_{t+1, i} = \theta_{t, i} - \dfrac{\eta}{\sqrt{G_{t, ii} + \epsilon}} \cdot g_{t, i}$$
+<center>
+
+$g_{t, i} = \nabla_\theta J( \theta_{t, i} )$
+
+</center>
+
+<center>
+
+$\theta_{t+1, i} = \theta_{t, i} - \dfrac{\eta}{\sqrt{G_{t, ii} + \epsilon}} \cdot g_{t, i}$
+
+</center>
 
 $G_{t} \in \mathbb{R}^{d \times d}$ here is a diagonal matrix where each diagonal element $i,i$ is the sum of the squares of the gradients w.r.t. $\theta_i$ up to time step $t$, while $\epsilon$ is a smoothing term that avoids division by zero.
 
 As $G_t$ contains the sum of the squares of the past gradients w.r.t. to all parameters $\theta$ along its diagonal, we can now vectorize our implementation by performing a matrix-vector product $\odot$ between $G_t$ and $g_t$:
 
-$$\theta_{t+1} = \theta_{t} - \dfrac{\eta}{\sqrt{G_{t} + \epsilon}} \odot g_{t}$$
+<center>
+
+$\theta_{t+1} = \theta_{t} - \dfrac{\eta}{\sqrt{G_{t} + \epsilon}} \odot g_{t}$
+
+</center>
 
 One of Adagrad's main benefits is that it eliminates the need to manually tune the learning rate. Most implementations use a default value of 0.01 and leave it at that.
 
@@ -820,19 +914,32 @@ It is an unpublished, adaptive learning rate method proposed by Geoff Hinton in 
 Adaptive Moment Estimation (Adam) is another method that computes adaptive learning rates for each parameter. In addition to storing an `exponentially decaying` average of **past squared gradients** $v_t$
 like Adadelta and RMSprop, Adam also keeps an `exponentially decaying` average of **past gradients** $m_t$, similar to momentum. Whereas momentum can be seen as a ball running down a slope, Adam behaves like a heavy ball with friction, which thus prefers flat minima in the error surface. We compute the decaying averages of past and past squared gradients $m_t$ and $v_t$ respectively as follows:
 
-$$m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t \\ 
-v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2 $$
+<center>
+
+$m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t \\ 
+v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2$
+
+</center>
 
 As $m_t$ and $v_t$ are initialized as vectors of 0's, the authors of Adam observe that they are biased towards zero, especially during the initial time steps, and especially when the decay rates are small.
 
 They counteract these biases by computing bias-corrected first and second moment estimates:
 
-$$\hat{m}_t = \dfrac{m_t}{1 - \beta^t_1} \\ 
-\hat{v}_t = \dfrac{v_t}{1 - \beta^t_2}$$
+<center>
+
+$\hat{m}_t = \dfrac{m_t}{1 - \beta^t_1} \\ 
+\hat{v}_t = \dfrac{v_t}{1 - \beta^t_2}$
+
+<center>
 
 They then use these to update the parameters just as we have seen in Adadelta and RMSprop, which yields the Adam update rule:
 
-$$\theta_{t+1} = \theta_{t} - \dfrac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t$$
+<center>
+
+$\theta_{t+1} = \theta_{t} - \dfrac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t$
+
+</center>
+
 
 <center>
 <img src="https://user-images.githubusercontent.com/11681225/49325458-fc785480-f585-11e8-8d2a-9012d6024c6e.gif" width="400" height="400" />
@@ -869,17 +976,29 @@ Mathematically, it is the preferred loss function under the inference framework 
 
 - **Cross Entropy Loss or Negative Loss Likelihood (NLL):** It is the default loss function to use for binary classification problems. It is intended for use with binary classification where the target values are in the set `{0, 1}`. Mathematically, it is the preferred loss function under the inference framework of maximum likelihood. It is the loss function to be evaluated first and only changed if you have a good reason.
 
-$$CrossEntropyLoss = -(y_i \log (\hat y_i) + (1-y_i) \log (1-\hat y_i))$$
+<center>
+
+$CrossEntropyLoss = -(y_i \log (\hat y_i) + (1-y_i) \log (1-\hat y_i))$
+
+</center>
 
 - **Hinge Loss or SVM Loss:** An alternative to cross-entropy for binary classification problems is the hinge loss function, primarily developed for use with **Support Vector Machine** (SVM) models. It is intended for use with binary classification where the target values are in the set {-1, 1}. The hinge loss function encourages examples to have the correct sign, assigning more error when there is a difference in the sign between the actual and predicted class values.
 
-$$HingeLoss = \Sigma_{j \neq y_i} max(0, s_j - s_{y_i}+1)$$
+<center>
+
+$HingeLoss = \Sigma_{j \neq y_i} max(0, s_j - s_{y_i}+1)$
+
+</center>
 
 ## Multi-Class Classification Loss Functions
 
 - **Categorical Cross Entropy:** It is the default loss function to use for multi-class classification problems. In this case, it is intended for use with multi-class classification where the target values are in the set {0, 1, 3, …, n}, where each class is assigned a unique integer value. Mathematically, it is the preferred loss function under the inference framework of maximum likelihood. It is the loss function to be evaluated first and only changed if you have a good reason.
 
-$$CategoricalCrossEntropyLoss = -y_c \log (\hat y_c)$$
+<center>
+
+$CategoricalCrossEntropyLoss = -y_c \log (\hat y_c)$
+
+</center>
 
 , where `c` is the class.
 
