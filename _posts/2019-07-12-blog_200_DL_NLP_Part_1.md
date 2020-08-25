@@ -916,8 +916,13 @@ like Adadelta and RMSprop, Adam also keeps an `exponentially decaying` average o
 
 <center>
 
-$m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t \\ 
-v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2$
+$m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t$ 
+
+</center>
+
+<center>
+
+$v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2$
 
 </center>
 
@@ -927,10 +932,15 @@ They counteract these biases by computing bias-corrected first and second moment
 
 <center>
 
-$\hat{m}_t = \dfrac{m_t}{1 - \beta^t_1} \\ 
-\hat{v}_t = \dfrac{v_t}{1 - \beta^t_2}$
+$\hat{m}_t = \dfrac{m_t}{1 - \beta^t_1}$ 
+
+</center>
 
 <center>
+
+$\hat{v}_t = \dfrac{v_t}{1 - \beta^t_2}$
+
+</center>
 
 They then use these to update the parameters just as we have seen in Adadelta and RMSprop, which yields the Adam update rule:
 
@@ -1118,7 +1128,7 @@ With negative sampling, we are instead going to randomly select just a small num
 
 # Word embedding - Implementation
 
-Natural language processing systems traditionally treat words as discrete atomic symbols, and therefore 'cat' may be represented as Id537 and 'dog' as Id143. These encodings are arbitrary, and provide no useful information to the system regarding the relationships that may exist between the individual symbols. This means that the model can leverage very little of what it has learned about 'cats' when it is processing data about 'dogs'.
+Natural language processing systems traditionally treat words as discrete atomic symbols, and therefore :cat: `cat` may be represented as `Id537` and :dog: `dog` as `Id143`. These encodings are arbitrary, and provide no useful information to the system regarding the relationships that may exist between the individual symbols. This means that the model can leverage very little of what it has learned about 'cats' when it is processing data about 'dogs'.
 
 Word embeddings transform sparse vector representations of words into a dense, continuous vector space, enabling you to identify similarities between words and phrases — on a large scale — based on their context.
 
@@ -1135,22 +1145,40 @@ This distinction is elaborated in much more detail by Baroni et al., but in a nu
 
 Neural probabilistic language models are traditionally trained using the maximum likelihood (ML) principle to maximize the probability of the next word $w_t$ (for "target") given the previous words $h$ (for "history") in terms of a softmax function
 
-$$
+<center>
+
+$
 P(w_t | h) = \text{softmax} (\text{score} (w_t, h))
-$$
-$$
+$
+
+</center>
+
+<center>
+
+$
            = \frac{\exp \{ \text{score} (w_t, h) \} }
              {\sum_\text{Word w' in Vocab} \exp \{ \text{score} (w', h) \} }
-$$
+$
+
+</center>
 
 
 where $score(w_t,h)$ computes the compatibility of word $w_t$  with the context $h$ (a dot product is commonly used). We train this model by maximizing its log-likelihood on the training set, i.e. by maximizing
 
+<center>
 
-$$J_\text{ML} = \log P(w_t | h)$$
-$$= \text{score} (w_t, h) -
+$J_\text{ML} = \log P(w_t | h)$
+
+</center>
+
+
+<center>
+
+$= \text{score} (w_t, h) -
      \log \left( \sum_\text{Word w' in Vocab} \exp \{ \text{score} (w', h) \} \right).
-$$
+$
+
+</center>
 
 This yields a `properly normalized probabilistic` model for language modeling. However this is very expensive, because we need to compute and normalize each probability using the score for all other $V$ words $w'$ in the current context $h$ , at every training step.
 
@@ -1284,8 +1312,17 @@ If you don’t already know, the vanishing gradient problem arises when,during b
 
 To understand why LSTMs help, we need to understand the problem with vanilla RNNs. In a vanilla RNN, the hidden vector and the output is computed as such:
 
-$$h_t = tanh(W_Ix_t + W_Rh_{t-1})$$
-$$y_t = W_Oh_t$$
+<center>
+
+$h_t = tanh(W_Ix_t + W_Rh_{t-1})$
+
+</center>
+
+<center>
+
+$y_t = W_Oh_t$
+
+</center>
 
 <center>
 <img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-SimpleRNN.png" width="500">
@@ -1294,29 +1331,45 @@ $$y_t = W_Oh_t$$
 
 To do backpropagation through time to train the RNN, we need to compute the gradient of $E$ with respect to $W_R$. The overall error gradient is equal to the sum of the error gradients at each time step. For step $t$, we can use the multivariate chain rule to derive the error gradient as:
 
-$$
+<center>
+
+$
 \frac{\partial E_t}{\partial W_R} = \sum^{t}_{i=0} \frac{\partial E_t}{\partial y_t}\frac{\partial y_t}{\partial h_t}\frac{\partial h_t}{\partial h_i}\frac{\partial h_i}{\partial W_R}
-$$
+$
+
+</center>
 
 Now everything here can be computed pretty easily except the term 
 $\frac{\partial h_t}{\partial h_i}$, which needs another chain rule application to compute:
 
-$$
+<center>
+
+$
 \frac{\partial h_t}{\partial h_i} = \frac{\partial h_t}{\partial h_{t-1}}\frac{\partial h_{t-1}}{\partial h_{t-2}}...\frac{\partial h_{i+1}}{\partial h_i} = \prod^{t-1}_{k=i} \frac{\partial h_{k+1}}{\partial h_k}
-$$
+$
+
+</center>
 
 
 Now let us look at a single one of these terms by taking the derivative of $h_{k+1}$ with respect to $h_k$ (where $diag$ turns a vector into a diagonal matrix):
 
-$$
+<center>
+
+$
 \frac{\partial h_{k+1}}{\partial h_k} =  diag(f'(W_Ix_i + W_Rh_{i-1}))W_R
-$$
+$
+
+</center>
 
 Thus, if we want to backpropagate through $k$ timesteps, this gradient will be :
 
-$$
+<center>
+
+$
 \frac{\partial h_{k}}{\partial h_1} =  \prod\limits_i^k diag(f'(W_Ix_i + W_Rh_{i-1}))W_R
-$$
+$
+
+</center>
 
 As shown in this paper, if the dominant eigenvalue of the matrix $W_R$
  is greater than 1, the gradient explodes. If it is less than 1, the gradient vanishes.2 The fact that this equation leads to either vanishing or exploding gradients should make intuitive sense. Note that the values of $f'(x)$ will always be less than 1. So if the magnitude of the values of $W_R$ are too small, then inevitably the derivative will go to 0. The repeated multiplications of values less than one would overpower the repeated multiplications of $W_R$
@@ -1358,11 +1411,19 @@ $\frac{\partial h_t}{\partial h_i}$. If only this derivative was ‘well behaved
 
 **The original LSTM solution:** The original motivation behind the LSTM was to make this recursive derivative have a constant value. If this is the case then our gradients would neither explode or vanish. How is this accomplished? As you may know, the LSTM introduces a separate cell state $C_t$. In the original 1997 LSTM, the value for $C_t$ depends on the previous value of the cell state and an update term weighted by the input gate value. 
 
-$$C_t = C_{t-1} + i \odot \widetilde{C}_t$$
+<center>
+
+$C_t = C_{t-1} + i \odot \widetilde{C}_t$
+
+</center>
 
 This formulation doesn’t work well because the cell state tends to grow uncontrollably. In order to prevent this unbounded growth, a forget gate was added to scale the previous cell state, leading to the more modern formulation:
 
-$$C_t = f \odot C_{t-1} + i \odot \widetilde{C}_t$$
+<center>
+
+$C_t = f \odot C_{t-1} + i \odot \widetilde{C}_t$
+
+</center>
 
 **A common misconception:** Most explanations for why LSTMs solve the vanishing gradient state that under this update rule, the recursive derivative is equal to 1 (in the case of the original LSTM) or f
 (in the case of the modern LSTM)3 and is thus well behaved! One thing that is often forgotten is that f, i, and $\widetilde{C}_t$
