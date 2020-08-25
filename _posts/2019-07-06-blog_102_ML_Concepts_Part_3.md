@@ -38,7 +38,7 @@ mathjax: true
 
 # What is the difference between inductive machine learning and deductive machine learning?
    
-**Inductive Learning:** We are given input samples (x) and output samples (f(x)) and the problem is to estimate the function (f). Specifically, the problem is to generalize from the samples and the mapping to be useful to estimate the output for new samples in the future. [source](https://machinelearningmastery.com/basic-concepts-in-machine-learning/)
+**Inductive Learning:** We are given input samples $(x)$ and output samples $(f(x))$ and the problem is to estimate the function $(f)$. Specifically, the problem is to generalize from the samples and the mapping to be useful to estimate the output for new samples in the future. [source](https://machinelearningmastery.com/basic-concepts-in-machine-learning/)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
@@ -118,15 +118,31 @@ Memory-intensive, hard to interpret, and kind of annoying to run and tune, thoug
 
 Let the variable we are trying to predict as `Y` and other covariates as `X`. We assume there is a relationship between the two such that
 
-$$Y = f(X) + error$$
+<center>
+
+$Y = f(X) + error$
+
+</center>
 
 So the expected squared error at a point x is
 
-$$Err(x) = E[(Y - \hat f(x))^2]$$
+<center>
 
-$$Err(x)=(E[\hat f(x)]-f(x))^2 + E[(\hat f(x) - E[\hat f(x)])^2] + \sigma_e^2$$
+$Err(x) = E[(Y - \hat f(x))^2]$
 
-$$Err(x)=Bias^2 + Variance + Irreducible error$$
+</center>
+
+<center>
+
+$Err(x)=(E[\hat f(x)]-f(x))^2 + E[(\hat f(x) - E[\hat f(x)])^2] + \sigma_e^2$
+
+</center>
+
+<center>
+
+$Err(x)=Bias^2 + Variance + Irreducible error$
+
+</center>
 
 
 
@@ -256,7 +272,7 @@ Very generic Qusestion. Prepare well.
 + Anomaly Detection
 + Active Learning
 + Bandits:
-  + In the multi-armed bandit problem, at each stage, an agent (or decision maker) chooses one action (or arm), and receives a reward from it. The agent aims at maximizing his rewards. Since he does not know the process generating the rewards, he needs to explore (try) the different actions and yet, exploit (concentrate its draws on) the seemingly most rewarding arms. The bandit problem has been increasingly popular in the machine learning community. 
+  + In the **multi-armed bandit** problem, at each stage, an agent (or decision maker) chooses one action (or arm), and receives a reward from it. The agent aims at maximizing his rewards. Since he does not know the process generating the rewards, he needs to explore (try) the different actions and yet, exploit (concentrate its draws on) the seemingly most rewarding arms. The bandit problem has been increasingly popular in the machine learning community. 
   + It can be a central building block of larger systems, like in `evolutionary programming` and `reinforcement learning`, in particular in large state space Markovian Decision Problems. ((ICML Tutorial)[https://sites.google.com/site/banditstutorial/])
 
 + Gaussian Processes
@@ -276,7 +292,7 @@ Very generic Qusestion. Prepare well.
 + Quadratic (referring to construction of the gram (kernel) matrix), cubic (referring to the matrix inversion)
 
 ## Describe ways to overcome scaling issues.
-  + nystrom methods/low-rank kernel matrix approximations, random features, local by query/near neighbors
+  + `nystrom methods`/`low-rank kernel matrix approximations`, random features, local by query/near neighbors
 
 ----
 
@@ -304,13 +320,27 @@ In regression, the expected mean squared error of an estimator can be decomposed
 + **Bias:** It represents the extent to which the average prediction over all the datasets differs from the desired regression function.
 +  **Variance:** It measures the extent to which the solution to the particular datasets vary around their average, and hence it measures the extent to which the learnt function is sensitive to the particular choice of data. [_source, Bishop book, p149_]
 
-$$Err(x) = E\left[(Y-\hat{f}(x))^2\right]$$
- 
+<center>
+
+$Err(x) = E\left[(Y-\hat{f}(x))^2\right]$
+
+</center>
+
 Then we can write 
 
-$$Err(x) = \left(E[\hat{f}(x)]-f(x)\right)^2 + E\left[\left(\hat{f}(x)-E[\hat{f}(x)]\right)^2\right] +\sigma_e^2$$$
+<center>
 
-$$Err(x) = \mathrm{Bias}^2 + \mathrm{Variance} + \mathrm{Irreducible\ Error}$$
+$Err(x) = \left(E[\hat{f}(x)]-f(x)\right)^2 + E\left[\left(\hat{f}(x)-E[\hat{f}(x)]\right)^2\right] +\sigma_e^2$
+
+</center>
+
+<center>
+
+$Err(x) = \mathrm{Bias}^2 + \mathrm{Variance} + \mathrm{Irreducible\ Error}$
+
+
+</center>
+
 
 **Reference:**
 
@@ -331,7 +361,7 @@ $$Err(x) = \mathrm{Bias}^2 + \mathrm{Variance} + \mathrm{Irreducible\ Error}$$
 6.  **What is inductive machine learning?**
 7.  What are the different Algorithm techniques in Machine Learning?
 8.  List out some important methods of reducing dimensionality.
-9.  **Explain prior probability, likelihood and marginal likelihood in context of na�ve Bayes algorithm?**
+9.  **Explain prior probability, likelihood and marginal likelihood in context of naive Bayes algorithm?**
 10. What are the three stages to build the hypotheses or model in machine learning?
 14. What is the standard approach to supervised learning?
 15. What is Training set and Test set?
@@ -342,11 +372,11 @@ $$Err(x) = \mathrm{Bias}^2 + \mathrm{Variance} + \mathrm{Irreducible\ Error}$$
 20. List some use cases where classification machine learning algorithms can be used.
 21. What kind of problems does regularization solve?
 22. How much data will you allocate for your training, validation and test sets?
-23. **Which one would you prefer to choose � model accuracy or model performance?**
+23. **Which one would you prefer to choose model accuracy or model performance?**
 24. What is the most frequent metric to assess model accuracy for classification problems?
 25. Describe some popular machine learning methods.
 26. **What is not Machine Learning?**
-27. **Explain what is the function of �Unsupervised Learning�?**
+27. **Explain what is the function of Unsupervised Learning?**
 28. When will you use classification over regression?
 29. How will you differentiate between supervised and unsupervised learning? Give few examples of algorithms for supervised learning?
 30. What is linear regression? Why is it called linear?
