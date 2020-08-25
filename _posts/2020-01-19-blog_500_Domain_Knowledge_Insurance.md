@@ -178,7 +178,11 @@ Mortality rate, or death rate, is a measure of the number of deaths (in general,
 
 In the generic form, mortality rates are calculated as:
 
-$$\frac{d}{p} * 10^n$$
+<center>
+
+$\frac{d}{p} * 10^n$
+
+</center>
 
 where $d$ represents the deaths occurring within a given time period, $p$ represents the size of the population in which the deaths occur and $10^n$ is a conversion factor from fraction to some other unit (such as multiplying by $10^3$ to get mortality rate per 1,000 individuals). 
 
@@ -302,9 +306,13 @@ A Poisson regression model that specifies the **logarithm of the annual hurrican
 
 The Poisson regression model is expressed as
 
-$$
+<center>
+
+$
  \log(\lambda) = \beta_0+\beta_1 x_1 + \ldots +\beta_p x_p
-$$
+$
+
+</center>
 
 Here there are $p$ covariates (indicated by the $x_i$'s) and $p+1$ parameters ($\beta_i$'s).
 
@@ -330,9 +338,13 @@ Poisson regression specifies a linear relationship between your covariates and t
 
 MARS builds models of the form
 
-$$
+<center>
+
+$
 \hat f(x) = \sum_{i=1}^k c_i B_i(x)
-$$
+$
+
+</center>
 
 where $B_i(x)$ is a basis function and $c_i$ is a constant coefficient. The model is thus a weighted sum of the $k$ basis functions.
 
@@ -387,9 +399,13 @@ Linear regression is not the appropriate model for binary data. It violates the 
 
 However, instead of using the logarithm as the link between the response and the covariates as you did in the Poission regression model, here you use the **logit function**. The logit of a number $\pi$ between $0$ and $1$ is 
 
-$$
+<center>
+
+$
 {logit}(\pi)=\log\left( \frac{\pi}{1-\pi} \right) =\log(\pi)-\log(1-\pi)
-$$ 
+$ 
+
+</center>
 
 If $\pi$ is a probability then $\frac{\pi}{(1-\pi)}$ is the corresponding **odds**, and the `logit of the probability` is the `logarithm of the odds`. 
 - Odds are expressed as for:against (read: for to against) something happening. So the odds of a hurricane strike that is posted at $1:4$ has a $20\%$ chance of occurring.
@@ -397,9 +413,13 @@ If $\pi$ is a probability then $\frac{\pi}{(1-\pi)}$ is the corresponding **odds
 
 The logistic regression model is expressed statistically as 
 
-$$
+<center>
+
+$
 {logit}(\pi) = \beta_0 + \beta_1 x_1 + \ldots +\beta_p x_p = \beta_0 +\Sigma_{i=1}^p \beta_i x_i
-$$ 
+$ 
+
+</center>
 
 where $\pi$ is the `mean`. There are $p$ covariates (i.e. predictors) 
 ($x_i$'s) and $p+1$ parameters ($\beta_i$'s).
@@ -407,17 +427,27 @@ where $\pi$ is the `mean`. There are $p$ covariates (i.e. predictors)
 - Substitute the $logit(\pi)$ with $\frac{\pi}{1-\pi}$
 - Take $\exp()$ on both side and rearrange and you will get
 
-$$
+<center>
+
+$
 \pi = \frac{\exp(\beta_0 +\Sigma_{i=1}^p \beta_i x_i)}{1+\exp(\beta_0 +\Sigma_{i=1}^p \beta_i x_i)} = \frac{\exp(\alpha)}{1+\exp(\alpha)}
-$$
+$
+
+</center>
 
 where $\alpha=\beta_0 +\Sigma_{i=1}^p \beta_i x_i = logit(\pi)$
 
 To convert $logit(\pi)$ to $\pi$ (probability of occurrence) you use the logistic function (inverse of the logit function) given as 
 
-$$
+<center>
+
+$
 {logistic}(\alpha) = \frac{1}{1 + \exp(-\alpha)} = \frac{\exp(\alpha)}{1 + \exp(\alpha)}
-$$
+$
+
+</center>
+
+
 
 
 ### Fit and interpretation
@@ -466,9 +496,13 @@ where there is significant claims experience for the results to be meaningful an
 
 **Basic formula:**
 
-$$
+<center>
+
+$
 \frac{LossPaid + Outstanding}{NetPremiumIncome}*Loading = Rate
-$$
+$
+
+</center>
 
 
 The calculation is adjusted each year until all losses have been settled. If the rate calculated fall below the minimum, the minimum rate applies. If the rate calculated exceeds the maximum, then maximum  rate is applied.  
