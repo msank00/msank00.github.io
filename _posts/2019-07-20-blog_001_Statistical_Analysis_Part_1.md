@@ -124,7 +124,7 @@ A variable X is said to be uniformly distributed if the density function is:
 
 <center>
 
-$f(x) = \frac{1}{b-a}$$
+$f(x) = \frac{1}{b-a}$
 
 </center>
 

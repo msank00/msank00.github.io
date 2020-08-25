@@ -25,7 +25,11 @@ Each algorithm is based on some assumption which is applicable to some scenario.
 
 - k-means assume the variance of the distribution of each attribute (variable) is spherical;
 
+<center>
+
 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Uniform_Spherical_Distribution_8.png" height="200">
+
+</center>
 
 - All variables have the same variance;
 - The prior probability for all k clusters are the same, i.e. each cluster has roughly equal number of observations; 
@@ -70,9 +74,17 @@ Each algorithm is based on some assumption which is applicable to some scenario.
 
 # Bayesian Analysis
 
-$$P(Hyp \vert Data) = \frac{P(Data \vert Hyp) P(Hyp)}{P(Data)}$$
+<center>
 
-$$posterior \propto Likelihood \times prior$$
+$P(Hyp \vert Data) = \frac{P(Data \vert Hyp) P(Hyp)}{P(Data)}$
+
+</center>
+
+<center>
+
+$posterior \propto Likelihood \times prior$
+
+</center>
 
 - $p(Hyp)$ is the `probability of the hypothesis` before we see the data, called the `prior probability`, or just **prior**.
 - $p(Hyp\vert Data)$ is our goal, this is the `probability of the hypothesis` after we see the data, called the **posterior**.
@@ -93,8 +105,18 @@ $$posterior \propto Likelihood \times prior$$
 ![image](https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Coefficient_of_Determination.svg/400px-Coefficient_of_Determination.svg.png)
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/6b863cb70dd04b45984983cb6ed00801d5eddc94)
 
-$$SS_{tot} = \Sigma_i (y_i - \bar y)^2$$
-$$SS_{res} = \Sigma_i (y_i - \hat{y_i})^2$$ 
+
+<center>
+
+$SS_{tot} = \Sigma_i (y_i - \bar y)^2$
+
+</center>
+
+<center>
+
+$SS_{res} = \Sigma_i (y_i - \hat{y_i})^2$
+
+</center>
 
 where $\hat{y_i} = f(x_i)$ 
 
@@ -154,7 +176,11 @@ _Reducing sampling from a multinomial distribution to sampling a uniform distrib
 
 - Sampling from a distribution lets us perform many useful tasks, including marginal and MAP inference, as well as computing integrals of the form
 
-$$E_{x \sim p}[f(x)] = \sum_x f(x) p(x)$$
+<center>
+
+$E_{x \sim p}[f(x)] = \sum_x f(x) p(x)$
+
+</center>
 
 >> Algorithms that construct solutions based on a large number of samples from a given distribution are referred to as Monte Carlo (MC) methods.
 
@@ -193,9 +219,13 @@ The **main idea** of variational methods is to cast `inference as an optimizatio
 
 To formulate inference as an optimization problem, we need to choose an approximating family $Q$ and an optimization objective $J(q)$. This objective needs to capture the similarity between $q$ and $p$; the field of information theory provides us with a tool for this called the _Kullback-Leibler (KL)_ divergence.
 
-$$
+<center>
+
+$
 KL(q\|p) = \sum_x q(x) \log \frac{q(x)}{p(x)} = E_{x \sim q}[f(x)]
-$$
+$
+
+</center>
 
 where $f(x)$ is $\log \frac{q(x)}{p(x)}$
 
@@ -244,9 +274,13 @@ Figure 10.3(a) illustrates a **first-order Markov chain** as a DAG. Of course, t
 
 The corresponding joint distribution is:
 
-$$
+<center>
+
+$
 P(x_{1:T}) = P(x_1, x_2) \prod_{t=3}^T P(x_t \vert x_{t-1}, x_{t-2})
-$$
+$
+
+</center>
 
 
 
@@ -287,7 +321,7 @@ Read the chapter for `MLE of Markov Model`.
 
 **Reference:**
 
-- [murphy, sec. 10.2.2 and ch: 17]
+- [murphy, sec. $10.2.2$ and ch: $17$]
 
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
@@ -301,18 +335,26 @@ A **hidden Markov model** or HMM consists of a _discrete-time, discrete-state Ma
 
 The corresponding joint distribution has the form
 
-$$
+<center>
+
+$
 p(z_{1:T}, x_{1:T})= p(z_{1:T})p(x_{1:T} \vert z_{1:T})=[p(z_1) \prod_{t=2}^T p(z_t \vert z_{t-1})][\prod_{t=1}^T p(x_t \vert z_t)]
-$$
+$
+
+</center>
+
+
 
 ## Application of HMMs
 
-HMMs can be used as black-box density models on sequences. They have the advantage over Markov models in that they can represent long-range dependencies between observations, mediated via the latent variables. In particular, note that they do not assume the Markov property holds for the observations themselves. Such black-box models are useful for time- series prediction (Fraser 2008). They can also be used to define class-conditional densities inside a generative classifier.
+HMMs can be used as **black-box density models on sequences**. They have the advantage over Markov models in that they can represent long-range dependencies between observations, mediated via the latent variables. In particular, note that they do not assume the Markov property holds for the observations themselves. Such black-box models are useful for time- series prediction (Fraser 2008). They can also be used to define class-conditional densities inside a generative classifier.
 
 - **Automatic speech recognition:** Here $x_t$ represents features extracted from the speech signal, and $z_t$ represents the word that is being spoken. The **transition model** $p(z_t \vert z_{t−1})$ model  represents the language model, and the **observation model** $p(x_t \vert z_t)$ represents the acoustic model.
-See e.g., (Jelinek 1997; Jurafsky and Martin 2008) for details.
+See e.g., (Jelinek $1997$; Jurafsky and Martin $2008$) for details.
 - **Activity recognition:** Here $x_t$ represents features extracted from a video frame, and $z_t$ is the class of activity the person is engaged in (e.g., running, walking, sitting, etc.).
-- **Part of speech tagging:** Here $x_t$ represents a word, and $z_t$ represents its part of speech (noun, verb, adjective, etc.) _[See Section 19.6.2.1 for more information on POS tagging and related tasks.]_
+- **Part of speech tagging:** Here $x_t$ represents a word, and $z_t$ represents its part of speech (noun, verb, adjective, etc.) 
+
+_*[See Section $19.6.2.1$ for more information on POS tagging and related tasks.]_
 
 **Reference:**
 
@@ -338,11 +380,11 @@ form $p(y \vert x)$, work better than discriminative DGMs.
 1. The parameters are less interpretable and less modular.
 2. Parameter estimation is computationally more expensive.
 
-Read chapter 19.6 for Conditional Random Field and it's application in NLP, like POS tagging.
+Read chapter $19.6$ for Conditional Random Field and it's application in NLP, like POS tagging.
 
 **Reference:**
 
-- [murphy, ch: 19]
+- [murphy, ch: $19$]
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
@@ -352,7 +394,7 @@ Read chapter 19.6 for Conditional Random Field and it's application in NLP, like
 # Exercise:
 
 
-2. What is Hidden Markov Model? [murphy, sec. 10.2.2 and ch: 17]
+2. What is Hidden Markov Model? [murphy, sec. $10.2.2$ and ch: $17$]
 
 ---
 
