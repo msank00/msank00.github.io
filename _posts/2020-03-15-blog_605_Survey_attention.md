@@ -112,6 +112,18 @@ However, there is a catch with the common encoder-decoder approach: a neural net
 
 # Transformer - Visual Understanding
 
+Must Watch :fire:
+
+<center>
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/watch?v=mV8c9dJpxQE" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+
+</center>
+
+_*If above link is broken, click [here](https://www.youtube.com/watch?v=mV8c9dJpxQE)_
+
 - The Transformer uses attention to boost the speed with which these models can be trained.
 - The biggest benefit, however, comes from how The Transformer lends itself to **parallelization**.
 - At the core of Transformer, there is `encoder-decoder` block
@@ -149,6 +161,19 @@ The decoder has both those layers, but between them is an attention layer that h
 
 
 ## Self-Attention in Detail
+
+Must Watch :fire:
+
+<center>
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/watch?v=flHtAUGB0PU&t=1s" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+
+</center>
+
+_*If above link is broken, click [here](https://www.youtube.com/watch?v=flHtAUGB0PU&t=1s)_
+
 
 The **first step** in calculating self-attention is to create three vectors from each of the encoder’s input vectors (in this case, the embedding of each word). So for each word, we create a `Query vector`, a `Key vector`, and a `Value vector`. These vectors are created by multiplying the embedding by three matrices that we trained during the training process.
 
@@ -199,6 +224,19 @@ Finally, since we’re dealing with matrices, we can condense **steps two** thro
 </center>
 
 ## Multi Headed Attention 
+
+
+Must Watch :fire:
+
+<center>
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/watch?v=N9AGY-Z6tbM&t=1s" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+
+</center>
+
+_*If above link is broken, click [here](https://www.youtube.com/watch?v=N9AGY-Z6tbM&t=1s)_
 
 The paper further refined the self-attention layer by adding a mechanism called “multi-headed” attention. This improves the performance of the attention layer in two ways:
 
