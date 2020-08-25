@@ -117,17 +117,13 @@ Must Watch :fire:
 <center>
 
 <figure class="video_container">
-  <iframe src="https://www.youtube.com/watch?v=mV8c9dJpxQE" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+  <iframe src="https://www.youtube.com/embed/mV8c9dJpxQE" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
 </figure>
 
 </center>
 
 _*If above link is broken, click [here](https://www.youtube.com/watch?v=mV8c9dJpxQE)_
 
-<iframe  title="YouTube video player" width="480" height="390" src="https://www.youtube.com/watch?v=mV8c9dJpxQE" frameborder="0" allowfullscreen></iframe>
-
-<object data="https://www.youtube.com/watch?v=mV8c9dJpxQE"
-   width="560" height="315"></object>
 
 - The Transformer uses attention to boost the speed with which these models can be trained.
 - The biggest benefit, however, comes from how The Transformer lends itself to **parallelization**.
