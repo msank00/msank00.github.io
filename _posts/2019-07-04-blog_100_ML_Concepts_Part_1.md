@@ -543,6 +543,73 @@ $\mathbf{A} = \mathbf{U D V}^T$
 
 - [source: chapter 2, deep learning book - Goodfellow, p42](http://www.deeplearningbook.org/contents/linear_algebra.html)   
 
+----
+
+## How to prepare data for `PCA`/`SVD` analysis?
+
+Before applying PCA/SVD preprocess with 3 principles:
+
+
+:radio_button: **Fix count and heavy tail distribution**
+
+- `Sqrt` any features that are `counts`. `log` any feature with a heavy tail.
+
+`Count` data and data with `heavy tails` can mess up the PCA.  
+
+- PCA prefers things that are `homoscedastic`
+- `sqrt` and `log` are **variance stabilizing transformations**.  It typically fixes it!
+
+
+:radio_button: **Localization**
+
+If you make a histogram of a component (or loading) vector and it has really big outliers, that is localization.  It's bad.  It means the vector is noise. 
+
+- **Localization** is noise.  **Regularize** when you normalize.
+- To address localization, I would suggest normalizing by **regularized** `row/column sum`
+
+Let $A$ be your matrix, define $rs$ to contain the `row sums`, and $cs$ to contain the `column sums`.  define 
+
+- $D_r = Diag(\frac{1}{\sqrt{(rs + \bar{rs})}})$
+- $D_c = Diag(\frac{1}{\sqrt{(cs + \bar{cs})}})$ 
+
+where $\bar{rs}$ is `mean(rs)`
+
+Do SVD on
+
+$D_r$   $A$   $D_c$
+
+The use of mean(rs) is what makes it **regularized**.
+
+**Why it works like magic?**
+
+- [NIPS 2018- Understanding Regularized Spectral Clustering viaGraph Conductance](https://papers.nips.cc/paper/8262-understanding-regularized-spectral-clustering-via-graph-conductance.pdf)
+  - [Twitter thread](https://twitter.com/karlrohe/status/1011269017582137346?s=20) on above paper summary
+  - [Youtube Video](https://www.youtube.com/watch?v=lOCoa3hYR4Y&feature=youtu.be) on the above paper
+
+
+
+:radio_button: **The Cheshire cat rule**
+
+
+```py 
+# One day Alice came to a fork in the road and saw a Cheshire cat in a tree.
+me: "Which road do I take?" 
+cat: "Where do you want to go?" 
+me: "I don’t know" 
+cat: "Then, it doesn’t matter."
+```
+In unsupervised learning, we often don't quite know where we are going.
+
+So, is it ok to down-weight, discard, or interact the features? Try it out and see where it takes you!
+
+
+**Reference:**
+
+- [twitter thread](https://twitter.com/karlrohe/status/1297741340340629504?s=19)
+
+
+----
+
 ## BONUS: Apply SVD on Images:
 
 - [link](https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.8-Singular-Value-Decomposition/)
