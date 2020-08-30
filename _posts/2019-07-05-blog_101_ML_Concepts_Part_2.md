@@ -626,7 +626,7 @@ MARS: Multivariate Adaptive Regression Splines
 
 The term `Boosting` refers to a family of algorithms which **boosts** (i.e converts) weak learner to strong learners.
 
-1. :green_circle: **AdaBoost (Adaptive Boosting)**
+1. :sparkle: **AdaBoost (Adaptive Boosting)**
 
 >> At the end of every model prediction we end up boosting the weights of the misclassified instances so that the next model does a better job on them, and so on.
 
@@ -636,20 +636,20 @@ Adaptive Boosting, or most commonly known AdaBoost, is a Boosting algorithm :roc
 <img src="https://miro.medium.com/max/850/0*paPv7vXuq4eBHZY7.png" width="500" alt="image">
 </center>
 
-2. :green_circle: **Gradient Tree Boosting:** It works by **sequentially adding the previous predictors underfitted predictions to the ensemble**, ensuring the erros made previously are corrected.
+2. :sparkle: **Gradient Tree Boosting:** It works by **sequentially adding the previous predictors underfitted predictions to the ensemble**, ensuring the erros made previously are corrected.
 
 The difference lies in what it does with the underfitted values of its predecessor. 
 - AdaBoost: Tweaks the instance weights at every interaction, 
 - Gradient Boosting: Tries to **fit the new predictor to the residual errors** made by the previous predictor.
 
-3. :green_circle: **XGBoost:** Extreme Gradient Boosting is an **advanced implementation of the Gradient Boosting**. This algorithm has **high predictive power** and is **ten times faster** than any other gradient boosting techniques. Moreover, includes a **variety of regularisation** which reduces overfitting and improves overall performance.
+3. :sparkle: **XGBoost:** Extreme Gradient Boosting is an **advanced implementation of the Gradient Boosting**. This algorithm has **high predictive power** and is **ten times faster** than any other gradient boosting techniques. Moreover, includes a **variety of regularisation** which reduces overfitting and improves overall performance.
 
-4. **Light GB:** For datasets which are extremely large Light Gradient Boosting is the best, compared to all of the other, since it takes less time to run.
+4. :sparkle: **Light GB:** For datasets which are extremely large Light Gradient Boosting is the best, compared to all of the other, since it takes less time to run.
 
 - The motivation behind the `Boosting` algorithm is, there are `n weak classifiers`. Combining together gives a `powerful committee` who decides the final verdict of the classifier.
 - A week classifier is one whose error rate is slightly better than `random guessing` 
 
-**Resource:**
+:bookmark_tabs: **Resource:**
 
 - [quick-introduction-boosting-algorithms-machine-learning](https://www.analyticsvidhya.com/blog/2015/11/quick-introduction-boosting-algorithms-machine-learning/)
 - [Boosting-with-adaboost-and-gradient-boosting](https://medium.com/diogo-menezes-borges/boosting-with-adaboost-and-gradient-boosting-9cbab2a1af81)
@@ -662,7 +662,7 @@ The difference lies in what it does with the underfitted values of its predecess
 
 # Do you know about Adaboost algorithm ? How and why does it work ?
 
-**AdaBoost:**
+:dart: **AdaBoost:**
 
 Also called Adaptive Boosting, where boosting is applied in a gradual way in the form of combining new learners on the misclassified data.
 
@@ -686,7 +686,7 @@ Also called Adaptive Boosting, where boosting is applied in a gradual way in the
 - In AdaBoost you need to define a `base classifier`.
 - `Classification Tree` acts as the best off the shelf base classifier for Adaboost.
 
-**Resource:**
+:bookark_tabs: **Resource:**
 
 - [MIT Resource](http://math.mit.edu/~rothvoss/18.304.3PM/Presentations/1-Eric-Boosting304FinalRpdf.pdf)
 - [Book: ESL, Chapter 10, Page 339]()
@@ -702,21 +702,21 @@ Also called Adaptive Boosting, where boosting is applied in a gradual way in the
 2. Bagging works on `re-sampling data with replacement` and create different dataset and the week learners are learnt on them, and final predictions are taken by 
 averaging or majority voting. E.g. Random Forest.
     
-**Bagging:** It is a simple ensembling technique in which we build many independent predictors/models/learners on sampled data with replacement from the original data (**Bootstrap Aggregatoin**) and combine them using some model averaging techniques. (e.g. weighted average, majority vote or normal average). E.g: `Random Forest`
+:arrow_forward: **Bagging:** It is a simple ensembling technique in which we build many independent predictors/models/learners on sampled data with replacement from the original data (**Bootstrap Aggregatoin**) and combine them using some model averaging techniques. (e.g. weighted average, majority vote or normal average). E.g: `Random Forest`
 
-**Boosting:** Also an ensemble learning method in which the predictors are not made independently, but sequentially. [[link](https://medium.com/mlreview/gradient-boosting-from-scratch-1e317ae4587d)]
+:arrow_forward: **Boosting:** Also an ensemble learning method in which the predictors are not made independently, but sequentially. [[link](https://medium.com/mlreview/gradient-boosting-from-scratch-1e317ae4587d)]
 
    
    
-**Gradient Boosting:** 
+:arrow_forward: **Gradient Boosting:** 
 
 - Gradient Boosting is also a boosting algorithm(Duh!), hence it also tries to create a strong learner from an ensemble of weak learners. This is algorithm is similar to Adaptive Boosting (AdaBoost) but differs from it on certain aspects. In this method we try to `visualize the boosting problem as an optimization problem`, i.e we take up a loss function and try to optimise it. 
 - We take up a weak learner(in previous case it was decision stump) and at each step, we add another weak learner to increase the performance and build a strong learner. This reduces the loss of the loss function. We iteratively add each model and compute the loss. The loss represents the error residuals(the difference between actual value and predicted value) and using this loss value the predictions are updated to minimise the residuals.
-- **Important:** It learns a weak learner $F(x)+\epsilon_1$ ($\epsilon$ is the noise). Then on the noise, i.e. the residual, 
+- :fire: **Important:** It learns a weak learner $F(x)+\epsilon_1$ ($\epsilon$ is the noise). Then on the noise, i.e. the residual, 
 it builds another weak learner $H(x)+\epsilon_2$ and so on. Thus it becomes $F(x)+H(x)+G(x)+....+\epsilon$, where $\epsilon = \sum_i \epsilon_i$. Gradient boosting a sequential approach.
 
 
-**Reference:**
+:bookmark_tabs: **Reference:**
 
 - [link](https://www.analyticsvidhya.com/blog/2015/09/complete-guide-boosting-methods/)
 - [Difference of Gradient Boosting and XGBoost](https://medium.com/hackernoon/gradient-boosting-and-xgboost-90862daa6c77)
@@ -740,14 +740,14 @@ $
 
 </center>
 
->> In `Gradient Boosting`, **shortcomings** (of existing weak learners) are identified by gradients a.k.a **residuals**. In `Adaboost`, ‘shortcomings’ are identified by **high-weight data points**.
+>> In `Gradient Boosting`, **shortcomings** (of existing weak learners) are identified by gradients a.k.a **residuals**. In `Adaboost`, ‘shortcomings’ are identified by **high-weight data points**. :sparkles:
 
 
 The **main differences** therefore are that Gradient Boosting is a generic algorithm to find approximate solutions to the additive modeling problem, while AdaBoost can be seen as a special case with a particular loss function. Hence, gradient boosting is much more flexible.
 
 Second, AdaBoost can be interepted from a much more intuitive perspective and can be implemented without the reference to gradients by reweighting the training samples based on classifications from previous learners. 
 
-**Reference:**
+:bookmark_tabs: **Reference:**
 
 - [Quora: What-is-the-difference-between-gradient-boosting-and-adaboost](https://www.quora.com/What-is-the-difference-between-gradient-boosting-and-adaboost) 
 - [Math Explanation: Imp_link](http://www.ccs.neu.edu/home/vip/teach/MLcourse/4_boosting/slides/gradient_boosting.pdf)
@@ -776,7 +776,7 @@ The scalability of XGBoost is due to several important systems and algorithmic o
 
 Read section $2.1$ and $2.2$ of the original XGBoost paper.
 
-**Regularized Learning Objective**
+:arrow_right: **Regularized Learning Objective**
 
 For a given data set with $n$ examples and $m$ features
 $D = \{(x_i, y_i)\}$ $( \vert D \vert = n, x_i \in \mathbb{R}^m, y_i \in \mathbb{R})$, a tree ensemble model uses $K$-**additive functions** to predict the output.
@@ -810,10 +810,10 @@ where $\Omega(f)= \gamma T + \frac{1}{2} \lambda \vert \vert w \vert \vert^2$, $
 
 Here $l$ is a differentiable convex loss function that measures the difference between the prediction $\hat{y_i}$ and the target $y_i$. **The second term $\Omega$ penalizes the complexity of the model (i.e., the regression tree functions)**. The additional regularization term helps to smooth the final learnt weights to avoid over-fitting. Intuitively, the regularized objective will tend to select a model employing simple and predictive functions. 
 
-**NOTE:** When the regularization parameter is set to zero, the objective falls back to the traditional gradient tree boosting.
+:yin_yang: **NOTE:** When the regularization parameter is set to zero, the objective falls back to the traditional gradient tree boosting.
 
 
-**Gradient Tree Boosting:**
+:arrow_right: **Gradient Tree Boosting:**
 
 - **Optimization Problem:** The tree ensemble model in the above equation **includes functions $f_k(.)$ (which is nothing but independent tree structure $q$ with leaf weights $w$) as parameters** and cannot be optimized using traditional optimization methods in Euclidean space. 
 
@@ -836,17 +836,17 @@ Fore more in-depth math, read the section $2.2$ of the [paper](https://arxiv.org
 
 ## System design
 
-**Column Block for Parallel Learning:**
+:atom_symbol: **Column Block for Parallel Learning:**
 
 The most time consuming part of tree learning is to get
 the data into sorted order. In order to reduce the cost of sorting, we propose to store the data in in-memory units, which we called `block`. Data in each block is stored in the compressed column (`CSC`) format, with each column sorted by the corresponding feature value. This input data layout only needs to be computed once before training, and can be reused in later iterations.
 
-**Cache-aware Access:** 
+:atom_symbol: **Cache-aware Access:** 
 
 While the proposed block structure helps optimize the
 computation complexity of split finding, the new algorithm requires indirect fetches of gradient statistics by row index, since these values are accessed in order of feature. This is a non-continuous memory access. A naive implementation of split enumeration introduces immediate read/write de- pendency between the accumulation and the non-continuous memory fetch operation. This slows down split finding when the gradient statistics do not fit into CPU cache and cache miss occur. For the exact greedy algorithm, we can alleviate the problem by a cache-aware prefetching algorithm. Specifically, we allocate an internal buffer in each thread, fetch the gradient statistics into it, and then perform accumulation in a mini-batch manner.
 
-**Blocks for Out-of-core Computation:**
+:atom_symbol: **Blocks for Out-of-core Computation:**
 
 One goal of our system is to fully utilize a machine’s re-
 sources to achieve scalable learning. Besides processors and memory, it is important to utilize disk space to handle data that does not fit into main memory. To enable out-of-core computation, we divide the data into multiple blocks and store each block on disk. During computation, it is important to use an independent thread to pre-fetch the block into a main memory buffer, so computation can happen in concurrence with disk reading.
@@ -914,7 +914,7 @@ So if we substitute this in case 1, then we will find case 2. So they are same.
 
 The above image shows, that how we approximate `0-1 loss` in SVM and in Logistic regression.
 
-**Resource:**
+:bookmark_tabs: **Resource:**
 
 - Probabilistic Perspective:  Murphy - Chapter 8.3.1
 - [Very IMP, ML Course: Prof. Piyush Rai](https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec9_print.pdf)
@@ -958,7 +958,7 @@ However we can use non-linear feature s.t $z = \sum_i w_if(x_i)$ where $f()$ is 
 $h(x) = [x_1, x_2, x_1^2, x_2^2, x_1x_2]$
 and your logistic model is now $y=f(w^Th(x))$ with the decision boundary given by $w^Th(x)=0$ (which is now a `non-linear quadratic curve` in the **original data space**).
 
-**Resource**
+:bookmark_tabs: **Resource**
 
 - [logistic_regression_linear](https://sebastianraschka.com/faq/docs/logistic_regression_linear.html)
 - [Quora](https://www.quora.com/Why-is-logistic-regression-considered-a-linear-model)
@@ -1017,7 +1017,7 @@ The simplest way to separate two groups of data is with a straight line (1 dimen
 
 ## Formulate SVM with loss function and solve by gradient decent 
 
-**Alternative question:** How do you adjust the cost parameter for the SVM regularizer? 
+:six_pointed_star: **Alternative question:** How do you adjust the cost parameter for the SVM regularizer? 
 
 Regularization problems are typically formulated as optimization problems involving the desired objective(classification loss in our case) and a regularization penalty.The regularization penalty is used to help stabilize the minimization of the ob­jective or infuse prior knowledge we might have about desirable solutions.Many machine learning methods can be viewed as regularization methods in this manner.For later utility we will cast SVM optimization problem as a 
 regularization problem.
@@ -1124,9 +1124,9 @@ In the higher dimension, they are separated linearly.
 
 # Constrained optimization (`Lagrangian`)
 
-- **minimize** $f(x)$ such that **`g(x)<=0`** and $h(x)=0$. 
+- :arrow_double_down: **minimize** $f(x)$ such that **`g(x)<=0`** and $h(x)=0$. 
   - Our target is to bring a new equation where we will combine $f(x), g(x), h(x)$ in a single equation. We will do this by introducing Lagrange Multiplier $\lambda$ and $\mu$. The new equation looks like: $L(x,\lambda,\mu)=f(x)+\lambda g(x)+ \mu h(x)$.
-+ **maximize** $f(x)$ such that **`g(x)>=0`** and $h(x)=0$. 
++ :arrow_double_up: **maximize** $f(x)$ such that **`g(x)>=0`** and $h(x)=0$. 
   + Our target is to bring a new equation where we will combine $f(x), g(x), h(x)$ in a single equation. We will do this by introducing Lagrange Multiplier $\lambda$ and $\mu$. The new equation looks like: $L(x,\lambda,\mu)=f(x)+\lambda g(x)+ \mu h(x)$.
 
 **NOTE:** In the above formulation, pay special attention to the `minimize` and `maximize` kewords and the change in inequality constrains. So given any minimization or maximization problem, convert its constraints to $g(x)<=0$ or $g(x)>=0$ accordingly and then formulate the Lagrangian form. The $h(x)=0$ may or may not be there. Finally apply KKT conditions for finding the solution. 
@@ -1142,7 +1142,7 @@ In the higher dimension, they are separated linearly.
 - Dual feasibility, $\lambda>=0, \mu>=0$
 - Complementary slackness, $\lambda g(x) = 0$ and $\mu h(x)=0$
 
-**Resource**
+:bookmark_tabs: **Resource**
 
 - [Prof. Piyush Rai, Lecture 10](https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec10_print.pdf)
 - [notes](http://mat.gsia.cmu.edu/classes/QUANT/NOTES/chap4.pdf)
@@ -1167,13 +1167,13 @@ In the higher dimension, they are separated linearly.
 ![image](/assets/images/image_13_KMeans_6.png)
 
 
-**Resource:**
+:bookmark_tabs: **Resource:**
 
 - [Prof. Piyush Rai, Lecture 13](https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec13_print.pdf)
 - [Prof. Piyush Rai, Lecture 13](https://www.cse.iitk.ac.in/users/piyush/courses/ml_autumn18/material/771_A18_lec14_print.pdf)
 
 
-**Algorithm:**
+:wheel_of_dharma: **Algorithm:**
 
 1. Clusters the data into k groups where k  is predefined.
 2. Select k points at random as cluster centers.
@@ -1198,7 +1198,7 @@ In the higher dimension, they are separated linearly.
 - Average Silhouette Method
 - Gap Statistics
 
-**Reference:**
+:bookmark_tabs: **Reference:**
 
 - [link1](http://www.sthda.com/english/articles/29-cluster-validation-essentials/96-determining-the-optimal-number-of-clusters-3-must-know-methods/)
 - [link2](https://uc-r.github.io/kmeans_clustering)
@@ -1218,7 +1218,7 @@ In the higher dimension, they are separated linearly.
 4. Repeat Steps 2 and 3 until k centers have been chosen.
 5. Now that the initial centers have been chosen, proceed using standard k-means clustering.
 
-**Reference:**
+:bookmark_tabs: **Reference:**
 
 - [resource_wiki](https://en.wikipedia.org/wiki/K-means%2B%2B)
 - [link2](https://datasciencelab.wordpress.com/2014/01/15/improved-seeding-for-clustering-with-k-means/)
@@ -1340,16 +1340,18 @@ some added momentum which is based on the previous velocity and gradient.
 
 ----
 
-# How the model varies in KNN for K=1 and K=N?
+# How the model varies in `KNN` for $K=1$ and $K=N$?
 
 - When K equals 1 or other small number the model is prone to `overfitting (high variance)`, while when K equals number of data points or other large number the model is prone to `underfitting (high bias)`.
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+----
+
 # Generative model vs Discriminative model.
 
-- Discriminative algorithms model `P(y|x; w)`, that is, given the dataset and learned parameter, what is the probability of y belonging to a specific class. A discriminative algorithm doesn't care about how the data was generated, it simply categorizes a given example.
-- Generative algorithms try to model `P(x|y)`, that is, the distribution of features given that it belongs to a certain class. A generative algorithm models how the data was generated. [source](https://github.com/ShuaiW/data-science-question-answer#knn)
+- **Discriminative algorithms** model `P(y|x; w)`, that is, given the dataset and learned parameter, what is the probability of y belonging to a specific class. A discriminative algorithm doesn't care about how the data was generated, it simply categorizes a given example.
+- **Generative algorithms** try to model `P(x|y)`, that is, the distribution of features given that it belongs to a certain class. A generative algorithm models how the data was generated. [source](https://github.com/ShuaiW/data-science-question-answer#knn)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
@@ -1459,7 +1461,7 @@ built-in types like (`list, set, dict,byte array`) are mutable. Custom classes a
     + Random under sampling
     + Random over sampling
     + Cluster based over sampling
-    + Informed Over Sampling: Synthetic Minority Over-sampling Technique (**SMOTE**)
+    + Informed Over Sampling: **Synthetic Minority Over-sampling Technique** (**SMOTE**)
 + Modifying existing classification algorithms to make them appropriate for imbalanced data sets.
    + Bagging based
    + Boosting based: AdaBoost, Gradient Boost, XGBoost
@@ -1478,13 +1480,13 @@ Generally, the most commonly used metrics, for measuring regression model qualit
 - **AIC** stands for (Akaike’s Information Criteria), a metric developped by the Japanese Statistician, Hirotugu Akaike, 1970. The basic idea of AIC is to `penalize the inclusion of additional variables` to a model. It adds a penalty that increases the error when including additional terms. `The lower the AIC, the better the model.`
 `AICc` is a version of AIC corrected for small sample sizes.
 - **BIC** (or Bayesian information criteria) is a variant of AIC with a stronger penalty for including additional variables to the model.
-- **Mallows Cp:** A variant of AIC developed by Colin Mallows
+- :zap: **Mallows Cp:** A variant of AIC developed by Colin Mallows
 - $R^2$ not a good criterion.Always increase with model size –> `optimum` is to take the biggest model.
 - `Adjusted` $R^2$: better. It `penalized` bigger models.
 
 
 
-**Reference:**
+:bookmark_tabs: **Reference:**
 
 - [Blog](http://www.sthda.com/english/articles/38-regression-model-validation/158-regression-model-accuracy-metrics-r-square-aic-bic-cp-and-more/)
 - [Blog](https://www.sciencedirect.com/topics/medicine-and-dentistry/akaike-information-criterion)
@@ -1535,7 +1537,7 @@ $BIC=-2\log L(\hat \theta) + k \log n$
 
 ## Type I and Type II Errors
 
->> One fine morning, Jack got a phone call. It was a stranger on the line. Jack, still sipping his freshly brewed morning coffee, was barely in a position to understand what was coming for him. The stranger said, “Congratulations Jack! You have won a lottery of $10 Million! I just need you to provide me your bank account details, and the money will be deposited in your bank account right way…”
+>> One fine morning, Jack got a phone call. It was a stranger on the line. Jack, still sipping his freshly brewed morning coffee, was barely in a position to understand what was coming for him. The stranger said, “Congratulations Jack! You have won a lottery of $10$ Million USD! I just need you to provide me your bank account details, and the money will be deposited in your bank account right way…” :sparkles:
 
 What are the odds of that happening? What should Jack do? What would you have done?
 
@@ -1692,7 +1694,7 @@ In such scenarios, Decision trees would be a better fit as DT essentially is a n
 + If number of data objects are less than the number of features, logistic regression should not be used.
 + Lastly, as noted in this paper, either of the random forest or logistic regression “models appear to perform similarly across the datasets with performance more influenced by choice of dataset rather than model selection”
 
-**Reference:**
+:bookmark_tabs: **Reference:**
 
 - [Quora](https://www.quora.com/When-should-random-forest-be-used-over-logistic-regression-for-classification-and-vice-versa)
 
