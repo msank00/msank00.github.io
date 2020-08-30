@@ -1074,6 +1074,7 @@ The `RBF` is by far the **most popular choice of kernel** types used in Support 
     </embed>
 </object>
 
+<p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://drona.csa.iisc.ac.in/~shivani/Teaching/E0370/Aug-2011/Lectures/2.pdf">Download PDF</a>.</p>
 
 ## Why bring Lagrange Multiplier for solving the SVM problem?
 
