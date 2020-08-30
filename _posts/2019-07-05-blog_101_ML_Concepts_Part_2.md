@@ -22,13 +22,13 @@ Feature-based feature selection methods involve evaluating the relationship betw
 
 There are three general classes of feature selection algorithms: filter methods, wrapper methods and embedded methods.
 
-**Filter Methods:** Filter feature selection methods apply a statistical measure to `assign a scoring` to each feature. The features are ranked by the score and either selected to be kept or removed from the dataset. The methods are often **univariate** and `consider the feature independently`, or with regard to the dependent variable. **Example:** Chi squared test, information gain and correlation coefficient scores.
+:large_orange_diamond: **Filter Methods:** Filter feature selection methods apply a statistical measure to `assign a scoring` to each feature. The features are ranked by the score and either selected to be kept or removed from the dataset. The methods are often **univariate** and `consider the feature independently`, or with regard to the dependent variable. **Example:** Chi squared test, information gain and correlation coefficient scores.
 
-**Wrapper Methods:** Wrapper methods consider the selection of a set of features as a **search problem**, where different combinations are prepared, evaluated and compared to other combinations. A predictive model is used to evaluate a combination of features and assign a score based on model accuracy. **Example:** [sklearn.feature_selection.RFE](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html)
+:large_orange_diamond: **Wrapper Methods:** Wrapper methods consider the selection of a set of features as a **search problem**, where different combinations are prepared, evaluated and compared to other combinations. A predictive model is used to evaluate a combination of features and assign a score based on model accuracy. **Example:** [sklearn.feature_selection.RFE](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html)
 
-**Main difference** of filter method with wrapper method is that, in filter method, before applying the model we are filtering the feature. This is quite helpful if running the model is a costly affair and also our data set is quite huge. Because in wrapper method to evaluate each combination of feature, we need to build and train the model first and only then we can evaluate.  
+:radio_button: **Main difference** of filter method with wrapper method is that, in filter method, before applying the model we are filtering the feature. This is quite helpful if running the model is a costly affair and also our data set is quite huge. Because in wrapper method to evaluate each combination of feature, we need to build and train the model first and only then we can evaluate.  
 
-**Embedded Methods:** Embedded methods **learn** which **features** best contribute to the accuracy of the model while the model is being created. The most common type of embedded feature selection methods are **regularization** methods. Automatic feature selection. 
+:diamond_shape_with_a_dot_inside: **Embedded Methods:** Embedded methods **learn** which **features** best contribute to the accuracy of the model while the model is being created. The most common type of embedded feature selection methods are **regularization** methods. Automatic feature selection. 
 
 ## Feature Selection Checklist
 
@@ -53,6 +53,10 @@ There are three general classes of feature selection algorithms: filter methods,
    1.  If yes, compare several feature selection methods, including your new idea, `correlation coefficients`, `backward selection` and `embedded methods`. Use linear and non-linear predictors. Select the best approach with model selection
 10. **Do you want a stable solution** (to improve performance and/or understanding)? 
     1.  If yes, subsample your data and redo your analysis for several `bootstrap`.
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 
 ----
 
@@ -85,8 +89,8 @@ Common input variable data types:
 ## 2. Statistics for Filter-Based Feature Selection Methods
 
 
-- **Numerical Output:** Regression predictive modeling problem.
-- **Categorical Output:** Classification predictive modeling problem.
+- :large_blue_diamond: **Numerical Output:** Regression predictive modeling problem.
+- :large_blue_diamond: **Categorical Output:** Classification predictive modeling problem.
 
 ![image](https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2019/11/How-to-Choose-Feature-Selection-Methods-For-Machine-Learning.png)
 
@@ -121,10 +125,10 @@ The scikit-learn library provides an implementation of most of the useful statis
 
 For example:
 
-- Pearson’s Correlation Coefficient: [f_regression()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_regression.html)
-- ANOVA: [f_classif()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_classif.html)
-- Chi-Squared: [chi2()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.chi2.html)
-- Mutual Information: [mutual_info_classif()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_classif.html) and
+- `Pearson’s Correlation Coefficient`: [f_regression()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_regression.html)
+- `ANOVA`: [f_classif()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_classif.html)
+- `Chi-Squared`: [chi2()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.chi2.html)
+- `Mutual Information`: [mutual_info_classif()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_classif.html) and
 [mutual_info_regression()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_regression.html)
 
 
@@ -154,7 +158,7 @@ Two of the more popular methods include:
 
 ## Worked Examples of Feature Selection
 
-**Numerical Input, Numerical Output**
+:large_orange_diamond: **Numerical Input, Numerical Output**
 
 ```py
 # pearson's correlation feature selection for numeric input and numeric output
@@ -171,7 +175,7 @@ print(X_selected.shape)
 # (100, 10)
 ```
 
-**Numerical Input, Categorical Output**
+:large_orange_diamond: **Numerical Input, Categorical Output**
 
 ```py
 # ANOVA feature selection for numeric input and categorical output
@@ -188,7 +192,7 @@ print(X_selected.shape)
 # (100, 2)
 ```
 
-**Categorical Input, Categorical Output**
+:large_orange_diamond: **Categorical Input, Categorical Output**
 
 - **use of chi-squared test**
 
@@ -226,7 +230,7 @@ def select_features(X_train, y_train, X_test):
 - [Very good explanation video](https://www.youtube.com/watch?v=kA4mD3y4aqA&list=PLc2rvfiptPSQYzmDIFuq2PqN2n28ZjxDH)
 
 
-**Reference:**
+:bookmark_tabs: **Reference:**
 
 - [feature-selection-with-real-and-categorical-data](https://machinelearningmastery.com/feature-selection-with-real-and-categorical-data/)
 - [an-introduction-to-feature-selection](https://machinelearningmastery.com/an-introduction-to-feature-selection/)
@@ -298,9 +302,7 @@ One of the most interesting applications of the resulting embeddings is to exami
 
 # How autoML works?
 
-
-
-**Example:** Say if you have a problem of Diabetic Classification and you have different types of data like medical data for Europe, Africa, Asia and you need to build a platform where given any  medical history data-set (for any region) it will solve the Diabetic Classification automatically. How to build such platform.   
+:tada: **Example:** Say if you have a problem of Diabetic Classification and you have different types of data like medical data for Europe, Africa, Asia and you need to build a platform where given any  medical history data-set (for any region) it will solve the Diabetic Classification automatically. How to build such platform.   
 
 
 ## What is AutoML?
@@ -365,7 +367,7 @@ Dl     Dr
 `EntropyAfter_f = Entropy(Dl)+Entropy(Dr)` and finaly 
 `InformationGain_f = EntropyBefore_f - EntropyAfter_f`.
 
-**Reference:**
+:bookmark_tabs: **Reference:**
 
 - [SO](https://stackoverflow.com/questions/1859554/what-is-entropy-and-information-gain)
 - [Medium](https://medium.com/deep-math-machine-learning-ai/chapter-4-decision-trees-algorithms-b93975f7a1f1)
@@ -379,8 +381,9 @@ Dl     Dr
 
 There are couple of algorithms there to build a decision tree. Some of the important ones are
 
-+ **CART (Classification and Regression Trees)** → uses Gini Index(Classification) as metric. Lower the Gini Index, higher the purity of the split.
-+ **ID3 (Iterative Dichotomiser 3)** → uses Entropy function and Information gain as metrics. Higher the Information Gain, better the split is.
+:large_orange_diamond: **CART (Classification and Regression Trees)** → uses Gini Index(Classification) as metric. Lower the Gini Index, higher the purity of the split.
+
+:large_orange_diamond: **ID3 (Iterative Dichotomiser 3)** → uses Entropy function and Information gain as metrics. Higher the Information Gain, better the split is.
 
 ## What are the criteria for splitting at a node in decision trees ?
 
@@ -392,17 +395,17 @@ There are couple of algorithms there to build a decision tree. Some of the impor
   
 <center>
 
-  $
-  IG = Entropy(parent) - weight_{avg}*Entropy(children)
-  $
+$
+IG = Entropy(parent) - weight_{avg}*Entropy(children)
+$
 
 </center>
 
 <center>
 
-  $
-  Gain(S, A) = H(S) - \sum_{v \in values(A)} \frac{\vert S_v \vert}{\vert S \vert}H(S_v)
-  $
+$
+Gain(S, A) = H(S) - \sum_{v \in values(A)} \frac{\vert S_v \vert}{\vert S \vert}H(S_v)
+$
 
 </center>
 
@@ -412,8 +415,8 @@ where,
 - $S$ - set of examples $\{X\}$
 - $S_v$ - subset where $X_A = V$
 
-**Cross Entropy**
-+ Cross-entropy loss, or log loss, measures the performance of a classification model whose output is a probability value between 0 and 1.
+:diamond_shape_with_a_dot_inside: **Cross Entropy**
++ `Cross-entropy loss`, or log loss, measures the performance of a classification model whose output is a probability value between $0$ and $1$.
 + In binary classification, where the number of classes $M=2$, cross-entropy can be calculated as:
 $-{(y\log(p) + (1 - y)\log(1 - p))}$
 + If $M \gt 2$ (i.e. multiclass classification), we calculate a separate loss for each class label per observation and sum the result.
@@ -426,15 +429,13 @@ $
 
 </center>
 
-
-
 Entropy
 
-**CHI Square:** It is an algorithm to find out the statistical significance between the differences between sub-nodes and parent node.
+:diamond_shape_with_a_dot_inside: **CHI Square:** It is an algorithm to find out the statistical significance between the differences between sub-nodes and parent node.
 
 Reduction of Variance
 
-**Reference:**
+:bookmark_Tabs: **Reference:**
 
 - [Mathisfun](https://www.mathsisfun.com/data/chi-square-test.html)
 - [Medium blog](https://medium.com/greyatom/decision-trees-a-simple-way-to-visualize-a-decision-dc506a403aeb)
@@ -460,7 +461,7 @@ Reduction of Variance
 Based on for which feature the information gain is maximum.
 
 
-**Reference:**
+:bookmark_tabs: **Reference:**
 
 - [Gini index](http://dni-institute.in/blogs/cart-decision-tree-gini-index-explained/)
 
@@ -471,9 +472,9 @@ Based on for which feature the information gain is maximum.
 
 # What is the formula for Entropy criteria?
 
-Entropy is nothing but `Expectation` with negative sign. 
+Entropy is nothing but **Expectation with negative sign**. 
 
-Expectation Formula: $E[g(x)] = \sum p(x)g(x)$
+:diamond_shape_with_a_dot_inside: **Expectation Formula:** $E[g(x)] = \sum p(x)g(x)$
 
 In entropy, $g(x)$ is $\log (p(x))$, and combining with the negative sign (which is apparent as for $0 \leq x \leq 1$ , $\log (x)$ is negative), which makes it positive, the  entropy ( or expectation) formula becomes:
 
@@ -500,7 +501,7 @@ $IG(D,f) = H - \Sigma \frac{S_i}{S}H_i$
 
 where `i=1,...,N` and $S$ is the size of total datasets and $S_i$ is the size of the $i_{th}$ split data.  
 
-**Reference:**
+:bookmark_tabs: **Reference:**
 
 - [clear explanation, slides](https://www3.nd.edu/~rjohns15/cse40647.sp14/www/content/lectures/23%20-%20Decision%20Trees%202.pdf)
 
@@ -575,7 +576,7 @@ $\epsilon=0.3$
 
 In this setting, the error rate of the ensemble can be computed as below: 
 
-**Assumption:** We are taking a majority vote on the predictions. 
+:star: **Assumption:** We are taking a majority vote on the predictions. 
 
 An ensemble makes a wrong prediction only when more than half of the base classifiers are wrong.
 
@@ -590,7 +591,7 @@ It can be seen that with the theoretical guarantees stated above an ensemble mod
 However in practice it is not possible to guarantee such classifier independence as they are trained from the same data, but still introduction of randomness helps achieve independence to a certain degree and it has been empirically observed that ensembles perform significantly well over individual base classifiers.
 
 
-**Reference:**
+:bookmark_tabs: **Reference:**
 
 - [Quora](https://www.quora.com/What-are-some-advantages-of-using-a-random-forest-over-a-decision-tree-given-that-a-decision-tree-is-simpler)
 
@@ -613,7 +614,7 @@ However in practice it is not possible to guarantee such classifier independence
 
 MARS: Multivariate Adaptive Regression Splines 
 
-**Reference:**
+:bookmark_tabs: **Reference:**
 
 - [Book: ESL C10 P351]()
 
@@ -625,7 +626,7 @@ MARS: Multivariate Adaptive Regression Splines
 
 The term `Boosting` refers to a family of algorithms which **boosts** (i.e converts) weak learner to strong learners.
 
-1. **AdaBoost (Adaptive Boosting)**
+1. :green_circle: **AdaBoost (Adaptive Boosting)**
 
 >> At the end of every model prediction we end up boosting the weights of the misclassified instances so that the next model does a better job on them, and so on.
 
@@ -635,13 +636,13 @@ Adaptive Boosting, or most commonly known AdaBoost, is a Boosting algorithm :roc
 <img src="https://miro.medium.com/max/850/0*paPv7vXuq4eBHZY7.png" width="500" alt="image">
 </center>
 
-2. **Gradient Tree Boosting:** It works by **sequentially adding the previous predictors underfitted predictions to the ensemble**, ensuring the erros made previously are corrected.
+2. :green_circle: **Gradient Tree Boosting:** It works by **sequentially adding the previous predictors underfitted predictions to the ensemble**, ensuring the erros made previously are corrected.
 
 The difference lies in what it does with the underfitted values of its predecessor. 
 - AdaBoost: Tweaks the instance weights at every interaction, 
 - Gradient Boosting: Tries to **fit the new predictor to the residual errors** made by the previous predictor.
 
-3. **XGBoost:** Extreme Gradient Boosting is an **advanced implementation of the Gradient Boosting**. This algorithm has **high predictive power** and is **ten times faster** than any other gradient boosting techniques. Moreover, includes a **variety of regularisation** which reduces overfitting and improves overall performance.
+3. :green_circle: **XGBoost:** Extreme Gradient Boosting is an **advanced implementation of the Gradient Boosting**. This algorithm has **high predictive power** and is **ten times faster** than any other gradient boosting techniques. Moreover, includes a **variety of regularisation** which reduces overfitting and improves overall performance.
 
 4. **Light GB:** For datasets which are extremely large Light Gradient Boosting is the best, compared to all of the other, since it takes less time to run.
 
