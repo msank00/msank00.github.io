@@ -27,7 +27,7 @@ To learn how to design machine learning systems
 
 <center>
 <figure class="video_container">
-  <iframe src="https://www.youtube.com/watch?v=5ygO8FxNB8c" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+  <iframe src="https://www.youtube.com/embed/5ygO8FxNB8c" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
 </figure>
 </center>
 

@@ -262,6 +262,50 @@ if st[startIndex] == st[endIndex]:
 
 ----
 
+# Spiral Matrix
+
+Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
+
+```py
+Input:
+[
+ [ 1, 2, 3 ],
+ [ 4, 5, 6 ],
+ [ 7, 8, 9 ]
+]
+Output: [1,2,3,6,9,8,7,4,5]
+```
+
+**Solution Explanation:**
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/siKFOI8PNKM" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+:movie_camera: _If the video is not opening, click [here](https://www.youtube.com/embed/siKFOI8PNKM)_
+
+
+----
+
+# Search in Rotated Sorted Array
+
+<center>
+<img src="/assets/images/image_42_code_1.png" width="400" alt="image">
+</center>
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/uufaK2uLnSI" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+:movie_camera: _If the video is not opening, click [here](https://www.youtube.com/watch?v=uufaK2uLnSI)_
+
+
+----
+
 # Comprehensive Data Structure and Algorithm Study Guide
 
 - [Leetcode: Gold Mine](https://leetcode.com/discuss/general-discussion/494279/comprehensive-data-structure-and-algorithm-study-guide)
