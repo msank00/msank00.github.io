@@ -195,6 +195,10 @@ The below example is to find `Longest Palindromic Substring` for string `cddpd`
 
 This is the overall thought processing, how the 2 things are related in High Dimension i.e DP 2D matrix with Low Dimension i.e 1D string.
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ----
 
 # Difference between Longest Palindromic `Substring` and Longest Palindromic `Subsequence`
@@ -260,6 +264,10 @@ if st[startIndex] == st[endIndex]:
 
 - `dp[startIndex+1][endIndex-1] == True` denotes if remaining in between elements are also palindrome.
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ----
 
 # Spiral Matrix
@@ -278,6 +286,11 @@ Output: [1,2,3,6,9,8,7,4,5]
 
 **Solution Explanation:**
 
+
+<center>
+<img src="/assets/images/image_42_code_2.png" width="600" alt="image">
+</center>
+
 <center>
 <figure class="video_container">
   <iframe src="https://www.youtube.com/embed/siKFOI8PNKM" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
@@ -287,12 +300,16 @@ Output: [1,2,3,6,9,8,7,4,5]
 :movie_camera: _If the video is not opening, click [here](https://www.youtube.com/embed/siKFOI8PNKM)_
 
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ----
 
 # Search in Rotated Sorted Array
 
 <center>
-<img src="/assets/images/image_42_code_1.png" width="400" alt="image">
+<img src="/assets/images/image_42_code_1.png" width="600" alt="image">
 </center>
 
 <center>
@@ -302,6 +319,10 @@ Output: [1,2,3,6,9,8,7,4,5]
 </center>
 
 :movie_camera: _If the video is not opening, click [here](https://www.youtube.com/watch?v=uufaK2uLnSI)_
+
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 
 ----
