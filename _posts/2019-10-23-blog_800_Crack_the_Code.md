@@ -106,9 +106,46 @@ Applications of Heaps:
 
 4. Many problems can be efficiently solved using Heaps. See following for example.
    1. K’th Largest Element in an array.
-   2. Sort an almost sorted array/
+      1. Sol 1: Create a **max heap of size k** and return the root
+      2. Sol 2: Create a **regular max heap** and pop/delete items k time
+      3. [Leetcode 215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/submissions/)
+   
+  ```py
+  import heapq
+
+  class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        
+        # creating max-heap
+        nums = [i*(-1) for i in nums]
+        heapq.heapify(nums)
+        
+        for i in range(k):
+            item = heapq.heappop(nums)
+
+        return item*(-1)
+
+  ```
+   2. **Sort an almost sorted array**
    3. Merge K Sorted Arrays.
 
+## Python Implementation
+
+Python has the `heapq` module which creates a `min-heap`. To create a `max-heap`, multiply the numbers with $(-1)$ and create a `min-heap` and while popping element, return `poped_item*(-1)`
+
+**Time Complexity:** 
+
+`heapq` is a `binary heap`, with $O(\log n)$ push and $O(\log n)$ pop
+
+The algorithm you show takes $O(n \log n)$ to push all the items onto the heap, and then $O((n-k) \log n)$ to find the kth largest element. So the complexity would be $O(n \log n)$. It also requires $O(n)$ extra space.
+
+
+
+- [SO](https://stackoverflow.com/questions/38806202/whats-the-time-complexity-of-functions-in-heapq-library)
+
+### TODO:
+
+- [Implement Heap datastructure](https://runestone.academy/runestone/books/published/pythonds/Trees/BinaryHeapImplementation.html) :fire:
 
 **Reference:**
 
@@ -116,6 +153,10 @@ Applications of Heaps:
 - [G4G: Binary Heap](https://www.geeksforgeeks.org/binary-heap/)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Quick Select
 
 ----
 
