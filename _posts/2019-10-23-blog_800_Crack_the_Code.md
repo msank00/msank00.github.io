@@ -160,6 +160,44 @@ The algorithm you show takes $O(n \log n)$ to push all the items onto the heap, 
 
 ----
 
+# Leetcode: 221. Maximal Square
+
+<center>
+<img src="https://assets.leetcode.com/users/arkaung/image_1587997244.png" width="600" alt="image">
+</center>
+
+Here we are drawing squares from top left corner to bottom right corner. Therefore, by "surrounding elements", we mean cells above the corner cell and the cells on the left of the corner cell.
+
+Building DP grid to memoize
+
+- We are going to create a dp grid with initial values of $0$.
+- We are going to update dp as described in the following figure.
+
+<center>
+<img src="https://assets.leetcode.com/users/arkaung/image_1587997873.png" width="600" alt="image">
+</center>
+
+**Bigger Example**
+
+Let's try to see a bigger example.
+We go over one cell at a time row by row in the matrix and then update our dp grid accordingly.
+Update max_side with the maximum dp cell value as you update.
+
+<center>
+<img src="https://assets.leetcode.com/users/arkaung/image_1588005144.png" width="600" alt="image">
+</center>
+
+
+
+**Reference:**
+
+- [Explanation](https://leetcode.com/problems/maximal-square/discuss/600149/Python-Thinking-Process-Diagrams-DP-Approach)
+- [Youtube Video](https://www.youtube.com/watch?v=RElcqtFYTm0)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
 # Difference between `bounded` and `unbounded` 0/1 knapsack
 
 ## In Recursive Approach
@@ -371,6 +409,82 @@ Output: [1,2,3,6,9,8,7,4,5]
 # Comprehensive Data Structure and Algorithm Study Guide
 
 - [Leetcode: Gold Mine](https://leetcode.com/discuss/general-discussion/494279/comprehensive-data-structure-and-algorithm-study-guide)
+
+----
+
+# Leetcode 210: Course Schedule
+
+- [Problem Statement](https://leetcode.com/problems/course-schedule-ii/)
+
+**Problem Statement**
+
+There are a total of n courses you have to take labelled from `0` to `n - 1`.
+
+Some courses may have prerequisites, for example, if `prerequisites[i] = [ai, bi]` this means you must take the course `bi` before the course `ai`.
+
+Given the total number of courses numCourses and a list of the prerequisite pairs, **return** the **ordering of courses** you should take to finish all courses.
+
+If there are many valid answers, return any of them. If it is impossible to finish all courses, return an empty array.
+
+**Solution:**
+
+This is the classical problem about topological sort: (for more details you can look [here](https://en.wikipedia.org/wiki/Topological_sorting). The basic idea of **topological order** for **directed graphs** is to **check** if there **cycle in this graph**. 
+
+For example if you have in your schedule dependencies like `0 -> 5`, `5-> 3` and `3 -> 0`, then we say, that cycle exists and in this case we need to return _False_.
+
+**Important:** There are different ways to do topological sort, We use dfs. The idea is to use **classical dfs traversal**, but color our nodes into 3 different colors, 
+- `0` (white) for node which is not visited yet
+- `1` (gray) for node which is in process of visiting (not all its neibours are processed)
+- `2` (black) for node which is fully visited (all its neibours are already processed).
+
+```py
+from collections import defaultdict
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        
+        self.NOT_VISITED = 0
+        self.IN_PROCESS = 1 # in the process of visiting neighbours
+        self.VISITED = 2 # when all neighbours are visited
+        
+        self.graph = defaultdict(list)
+        
+        for course in prerequisites:
+            dest, src = course[0], course[1]
+            self.graph[src].append(dest)
+            
+        self.visited_list = {node: self.NOT_VISITED for node in range(numCourses)}
+        
+        self.order = []
+        self.has_cycle = 0
+        
+        for node in range(numCourses):
+            if self.visited_list[node] == self.NOT_VISITED:
+                self.dfs(node)
+        
+        # return in reverse order as in the given input in Leetcode the
+        # src, dest were in reverse order
+        return [] if self.has_cycle == 1 else self.order[::-1]
+        
+    def dfs(self, node: int):
+        
+        if self.has_cycle == 1: return
+        
+        # begin of recursion
+        self.visited_list[node] = self.IN_PROCESS
+        
+        if node in self.graph:
+            for neib in self.graph[node]:
+                if self.visited_list[neib] == self.NOT_VISITED:
+                    self.dfs(neib)
+                elif self.visited_list[neib] == self.IN_PROCESS:
+                    self.has_cycle = 1
+        
+        # end of recursion
+        self.visited_list[node] = self.VISITED
+        self.order.append(node)
+```
+
+**Note:** Uderstanding the **classical DFS** is very beneficial for many graph related question. 
 
 ----
 
