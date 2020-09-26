@@ -556,14 +556,15 @@ ${KL}(y~||~\hat{y}) = \sum_i y_i \log \frac{1}{\hat{y}_i} - \sum_i y_i \log \fra
 
 Where $y_i \sim p$ and $\hat{y}_i \sim q$, i.e. they come from two different probability distribution.
 
+
+![gif](../assets/images/kl_divergence.gif)
+
+
+**Reference:**
+
+- [Twitter](https://twitter.com/ari_seff/status/1303741288911638530)
+
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
-![gif](https://twitter.com/i/status/1303741288911638530)
-
-<video width="320" height="240" autoplay>
-  <source src="../assets/images/kl_divergence.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video> 
 
 ----
 

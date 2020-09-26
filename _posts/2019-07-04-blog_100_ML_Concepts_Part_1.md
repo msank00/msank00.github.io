@@ -490,6 +490,11 @@ Follow lecture 6 of [Prof.Mitesh_IITM](https://www.cse.iitm.ac.in/~miteshk/CS701
 
 ## SVD 
 
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/DG7YTlGnCEo" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
 
 >> A is a matrix that can be seen as a linear transformation. This transformation can be decomposed in three sub-transformations: 1. **rotation**, 2. **re-scaling**, 3. **rotation**. These three steps correspond to the three matrices U, D, and V.
 
