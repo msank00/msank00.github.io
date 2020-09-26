@@ -23,7 +23,7 @@ Example:
 
 Say in your data you have both numerical and categorical columns. And you need to apply some processing on that and you also want to make sure to apply them during the prediction phase. Also both training and prediction phases are two different pipeline. In such situation you can apply something like this:
 
-```
+```py
 import joblib
 import numpy as np
 import pandas as pd
