@@ -67,4 +67,14 @@ You can also add preprocessing steps for categorical column as well.
 
 ----
 
+# Machine Learning in Python with Scikit-Learn
+
+Please follow [this](https://www.youtube.com/watch?list=PL5-da3qGB5ICeMbQuqbbCOQWcS6OYBr5A&time_continue=1565&v=irHhDMbw3xo&feature=emb_logo) quick refresher from youtube.
+
+**Reference:**
+
+- [Scikit-learn-tips](https://github.com/justmarkham/scikit-learn-tips)
+
+----
+
 <a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>

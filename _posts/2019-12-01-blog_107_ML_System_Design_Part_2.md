@@ -13,6 +13,70 @@ mathjax: true
 
 ----
 
+# How to test your machine learning system?
+
+A typical software testing suite will include:
+
+- **unit tests** which operate on atomic pieces of the codebase and can be run quickly during development,
+- **regression tests** replicate bugs that we've previously encountered and fixed,
+- **integration tests** which are typically longer-running tests that observe higher-level behaviors that leverage multiple components in the codebase,
+
+
+Let's contrast this with a typical workflow for developing machine learning systems. After training a new model, we'll typically produce an **evaluation report** including:
+
+- Performance of an established metric on a validation dataset,
+- Plots such as precision-recall curves,
+- Operational statistics such as inference speed,
+- Examples where the model was most confidently incorrect,
+
+and follow conventions such as:
+
+- Save all of the hyper-parameters used to train the model,
+- Only promote models which offer an improvement over the existing model (or baseline) when evaluated on the same dataset. 
+
+![image](https://www.jeremyjordan.me/content/images/size/w1000/2020/08/Group-3-1.png)
+
+
+>> it feels like that testing for machine learning systems is in such early days that this question of test coverage isn't really being asked by many people. :star:
+
+
+## Difference between model testing and model evaluation
+
+For machine learning systems, we should be running model evaluation and model tests in parallel.
+
+- **Model evaluation** covers metrics and plots which summarize performance on a validation or test dataset.
+- **Model testing** involves explicit checks for behaviors that we expect our model to follow.
+
+**NOTE:** Do [error analysis](https://www.coursera.org/lecture/machine-learning-projects/carrying-out-error-analysis-GwViP)
+
+## How do you write model tests?
+
+There's two general classes of model tests that we'll want to write.
+
+- **Pre-train tests** allow us to identify some bugs early on and short-circuit a training job.
+- **Post-train tests** use the trained model artifact to inspect behaviors for a variety of important scenarios that we define.
+
+_*please read the actual blog thoroughly_
+
+- **Invariance Tests:** check for consistency in the model predictions
+- **Directional Expectation Tests:**  define a set of perturbations to the input which should have a predictable effect on the model output. 
+  - Increasing the number of bathrooms (holding all other features constant) should not cause a drop in price.
+  - Lowering the square footage of the house (holding all other features constant) should not cause an increase in price.
+- **Minimum Functionality Tests** (aka data unit tests): 
+
+## Model development pipeline
+
+![image](https://www.jeremyjordan.me/content/images/size/w1000/2020/08/Group-7.png)
+
+**Reference:**
+
+- [Effective testing for machine learning systems.](https://www.jeremyjordan.me/testing-ml/) :fire: :fire:
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
 # How to approach System Design Interview Question
 
 ## Be familiar with basic knowledge
