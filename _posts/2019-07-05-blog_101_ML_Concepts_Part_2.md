@@ -558,7 +558,16 @@ Where $y_i \sim p$ and $\hat{y}_i \sim q$, i.e. they come from two different pro
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+![gif](https://twitter.com/i/status/1303741288911638530)
+
+<video width="320" height="240" autoplay>
+  <source src="../assets/images/kl_divergence.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video> 
+
 ----
+
+
 # What is the advantage with random forest ?
 
 - Random forest is an ensemble method in which a classifier is constructed by `combining several different Independent base classifiers`. 
