@@ -559,6 +559,8 @@ Where $y_i \sim p$ and $\hat{y}_i \sim q$, i.e. they come from two different pro
 
 ![gif](assets/images/kl_divergence.gif)
 
+<img src="assets/images/kl_divergence.gif" width="40" height="40" />
+
 
 **Reference:**
 
