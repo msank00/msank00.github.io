@@ -248,6 +248,29 @@ def select_features(X_train, y_train, X_test):
 
 ## ANOVA
 
+An ANOVA tests the relationship between a `categorical` and a `numeric variable` by testing the differences between two or more means. This test produces a `p-value` to determine whether the relationship is significant or not.
+
+Examples of using ANOVA
+
+You may want to use ANOVA to help you answer questions like this:
+
+1. Do gender, race have any effect on whether someone clicks on a landing page or their salary amount?
+2. Do location, employment status, or education have an effect on NPS score?
+
+**How does ANOVA work?**
+
+Like other types of statistical tests, ANOVA compares the means of different groups and shows you if there are any statistical differences between the means. ANOVA is classified as an **omnibus test statistic**. This means that it can’t tell you which specific groups were statistically significantly different from each other, only that at least two of the groups were.
+
+It’s important to remember that the main ANOVA research question is whether the sample means are from different populations. There are two assumptions upon which ANOVA rests:
+
+First: Whatever the technique of data collection, the observations within each sampled population are normally distributed.
+
+Second: The sampled population has a common variance of $s_2$.
+
+**What is the difference between one-way and two-way ANOVA tests?**
+
+This is defined by how many independent variables are included in the ANOVA test. One-way means the analysis of variance has one independent variable. Two-way means the test has two independent variables. An example of this may be the independent variable being a brand of drink (one-way), or independent variables of brand of drink and how many calories it has or whether it’s original or diet.
+
 ## CHI Square test
 
 The chi-square independence test is a procedure for testing if two categorical variables are related in some population. 
