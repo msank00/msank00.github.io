@@ -437,6 +437,10 @@ For example if you have in your schedule dependencies like `0 -> 5`, `5-> 3` and
 - `1` (gray) for node which is in process of visiting (not all its neibours are processed)
 - `2` (black) for node which is fully visited (all its neibours are already processed).
 
+<details>
+<summary>Code</summary>
+<p>
+
 ```py
 from collections import defaultdict
 class Solution:
@@ -483,6 +487,11 @@ class Solution:
         self.visited_list[node] = self.VISITED
         self.order.append(node)
 ```
+
+</p>
+</details>  
+
+
 
 **Note:** Uderstanding the **classical DFS** is very beneficial for many graph related question. 
 
