@@ -403,12 +403,14 @@ Output: [1,2,3,6,9,8,7,4,5]
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
-
 ----
 
 # Comprehensive Data Structure and Algorithm Study Guide
 
 - [Leetcode: Gold Mine](https://leetcode.com/discuss/general-discussion/494279/comprehensive-data-structure-and-algorithm-study-guide)
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
@@ -436,11 +438,6 @@ For example if you have in your schedule dependencies like `0 -> 5`, `5-> 3` and
 - `0` (white) for node which is not visited yet
 - `1` (gray) for node which is in process of visiting (not all its neibours are processed)
 - `2` (black) for node which is fully visited (all its neibours are already processed).
-
-<details>
-<summary>Code</summary>
-
-<br>
 
 ```py
 
@@ -491,44 +488,122 @@ class Solution:
 
 ```
 
-<br>
-
-</details>  
-
-
-
-### A collapsible section containing code
-<details>
-  <summary>
-  
-  Click to expand!
-  
-  </summary>
-  
-  ```javascript
-    function whatIsLove() {
-      console.log('Baby Don't hurt me. Don't hurt me');
-      return 'No more';
-    }
-  ```
-</details>
-
-## collapsible markdown?
-
-<details>
-
-
-#### yes, even hidden code blocks!
-
-    ```python
-    print("hello world!")
-
-    ``` 
-
-</details>
-
 
 **Note:** Uderstanding the **classical DFS** is very beneficial for many graph related question. 
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Kadane Algorithm
+
+Write an efficient program to find the sum of contiguous subarray within a one-dimensional array of numbers which has the largest sum. 
+
+<center>
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/kadane-Algorithm.png" width="400" alt="image">
+</center>
+
+**Explanation:** Simple idea of the Kadane’s algorithm is to look for **all** `positive` **contiguous segments** of the array (`max_ending_here` is used for this). 
+  - Keep track of **maximum sum contiguous segment** among all positive segments (`max_so_far` is used for this). 
+  - Each time we get a positive sum compare it with `max_so_far` and update `max_so_far` if it is greater than `max_so_far`
+
+```py
+def maxSubArraySum(a,size): 
+       
+    max_so_far = 0
+    max_ending_here = 0
+       
+    for i in range(0, size): 
+        max_ending_here = max_ending_here + a[i] 
+
+        # if max_ending_here < 0, reset to 0
+        max_ending_here = max(0, max_ending_here)
+        max_so_far = max(max_so_far, max_ending_here)
+        
+    return max_so_far 
+
+# Driver function to check the above function  
+a = [-13, -3, -25, -20, -3, -16, -23, -12, -5, -22, -15, -4, -7] 
+print "Maximum contiguous sum is", maxSubArraySum(a,len(a)) 
+
+# Maximum contiguous sum is 7
+```
+
+## Why this problem is important?
+
+Many time the question will not give the array $a$ directly. Rather, the question will be twisted such that, the input array is $a'$.
+
+You need to convert array $a'$ to $a$ and map the problem to Kadane's algo.
+
+See the next problem.
+
+**Reference:**
+
+- [geeks4geeks](https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/)
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Best Time to Buy and Sell Stock
+
+Say you have an array for which the ith element is the price of a given stock on day i.
+
+If you were only permitted to complete at most one transaction (i.e., buy one and sell one share of the stock), design an algorithm to find the maximum profit.
+
+Note that you cannot sell a stock before you buy one.
+
+```
+Input: [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+             Not 7-1 = 6, as selling price needs to be larger than buying price.
+```
+Say the given array is:
+
+`[7, 1, 5, 3, 6, 4]`
+
+If we plot the numbers of the given array on a graph, we get:
+
+![image](https://assets.leetcode.com/static_assets/media/original_images/121_profit_graph.png)
+
+The points of interest are the peaks and valleys in the given graph. We need to find the largest peak following the smallest valley.
+
+Now this problem can be mapped to Kadane's algo.
+
+**Solution:**
+
+The logic to solve this problem is same as "max subarray problem" using Kadane's Algorithm.
+
+For the given input $a' = \{1, 7, 4, 11\}$, convert it to daily profit array $a =\{0, 6, -3, 7\}$ and then your task is to find the `max sum contiguous subarray` $\rightarrow$ Kadane's algo
+
+```py
+def maxProfit(prices: List[int]) -> int:
+
+    n = len(prices)
+    if n < 2: return 0
+    
+    profit = [0]*n
+    for i in range(1,n):
+        profit[i] = prices[i] - prices[i-1]
+    
+    print(profit)
+    max_profit_ending_here = 0
+    max_profit_so_far = 0
+    
+    for i in range(1,n):
+        max_profit_ending_here += profit[i]
+        max_profit_ending_here = max(0, max_profit_ending_here)
+        max_profit_so_far = max(max_profit_so_far, max_profit_ending_here)
+        
+        
+    return max_profit_so_far
+```
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
