@@ -36,23 +36,23 @@ There are three general classes of feature selection algorithms: `filter methods
 1. **Do you have domain knowledge?** 
    1. If yes, construct a better set of **ad hoc** features
 2. **Are your features commensurate** (i.e comparable)?
-   1. If no, consider `normalizing` them.
+   1. If no, consider `normalizing` them. :pushpin:
 3. **Do you suspect interdependence of features?**
-   1. If yes, expand your feature set by constructing `conjunctive features` or `products of features`, as much as your computer resources allow you.
+   1. If yes, expand your feature set by constructing `conjunctive features` or `products of features`, as much as your computer resources allow you. :pushpin:
 4. **Do you need to prune the input variables** (e.g. for cost, speed or data understanding reasons)? 
    1. If no, construct disjunctive features or weighted sums of feature
 5. **Do you need to assess features individually** (e.g. to understand their influence on the system or because their number is **so large that you need to do a first filtering**)? 
    1. If yes, use a `variable ranking method`; else, do it anyway to get baseline results.
 6. Do you need a predictor? If no, stop
 7. **Do you suspect your data is** `dirty` (has a few meaningless input patterns and/or noisy outputs or wrong class labels)? 
-   1. If yes, `detect the outlier` examples using the top ranking variables obtained in step 5 as representation; check and/or discard them.
+   1. If yes, `detect the outlier` examples using the top ranking variables obtained in step 5 as representation; check and/or discard them. :pushpin:
 8. **Do you know what to try first ?** 
    1. If no, use a `linear predictor`. Use a forward selection method with the “probe” method as a stopping criterion or use the 0-norm embedded method for comparison, following the ranking of step 5, construct a sequence of predictors of same nature using increasing subsets of features. Can you match or improve performance with a smaller subset? 
    2. If yes, try a `non-linear predictor` with that subset.
 9. **Do you have new ideas, time**, computational resources, and enough examples? 
    1.  If yes, compare several feature selection methods, including your new idea, `correlation coefficients`, `backward selection` and `embedded methods`. Use linear and non-linear predictors. Select the best approach with model selection
 10. **Do you want a stable solution** (to improve performance and/or understanding)? 
-    1.  If yes, subsample your data and redo your analysis for several `bootstrap`.
+    1.  If yes, subsample your data and redo your analysis for several `bootstrap`. :pushpin:
 
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
