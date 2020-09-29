@@ -319,6 +319,7 @@ One of the most interesting applications of the resulting embeddings is to exami
 - [Youtube: Entity Embeddings for Categorical Variables, Abhishek Thakur](https://www.youtube.com/watch?v=EATAM3BOD_E) :pushpin:
 - [Reg2Vec: Learning Embeddings for High Cardinality Customer Registration Features](https://medium.com/building-ibotta/reg2vec-learning-embeddings-for-high-cardinality-customer-registration-features-faf712f12842) :pushpin:
 - [Paper: Entity Embeddings of Categorical Variables](https://arxiv.org/abs/1604.06737) :pushpin:
+- [Using Embedding Layers to Manage High Cardinality Categorical Data | PyData LA 2019](https://www.youtube.com/watch?v=icmjDyNaj2E)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
@@ -740,7 +741,7 @@ Also called Adaptive Boosting, where boosting is applied in a gradual way in the
 2. Bagging works on `re-sampling data with replacement` and create different dataset and the week learners are learnt on them, and final predictions are taken by 
 averaging or majority voting. E.g. Random Forest.
     
-:arrow_forward: **Bagging:** It is a simple ensembling technique in which we build many independent predictors/models/learners on sampled data with replacement from the original data (**Bootstrap Aggregatoin**) and combine them using some model averaging techniques. (e.g. weighted average, majority vote or normal average). E.g: `Random Forest`
+:arrow_forward: **Bagging:** It is a simple ensembling technique in which we build many independent predictors/models/learners on sampled data with replacement from the original data (**Bootstrap Aggregation**) and combine them using some model averaging techniques. (e.g. weighted average, majority vote or normal average). E.g: `Random Forest`
 
 :arrow_forward: **Boosting:** Also an ensemble learning method in which the predictors are not made independently, but sequentially. [[link](https://medium.com/mlreview/gradient-boosting-from-scratch-1e317ae4587d)]
 
@@ -766,7 +767,7 @@ it builds another weak learner $H(x)+\epsilon_2$ and so on. Thus it becomes $F(x
 
 ## Difference of AdaBoost, Gradient Boost and XGBoost
 
-Both AdaBoost and Gradient Boosting build weak learners in a sequential fashion. Originally, AdaBoost was designed in such a way that at every step the **sample distribution was adapted to put more weight on misclassified samples and less weight on correctly classified samples.** The final prediction is a weighted average of all the weak learners, where more weight is placed on stronger learners. 
+Both AdaBoost and Gradient Boosting build weak learners in a `sequential fashion`. Originally, AdaBoost was designed in such a way that at every step the **sample distribution was adapted to put more weight on misclassified samples and less weight on correctly classified samples.** The final prediction is a weighted average of all the weak learners, where more weight is placed on stronger learners. 
 
 AdaBoost can also be expressed as in terms of the more general framework of `additive models` with a particular loss function (the exponential loss) [_chapter 10 in (Hastie) ESL_]. AdaBoost.M1 (Algorithm 10.1, from the book) is equivalent to forward stagewise additive modeling (Algorithm 10.2) using the loss function 
 
@@ -778,10 +779,10 @@ $
 
 </center>
 
->> In `Gradient Boosting`, **shortcomings** (of existing weak learners) are identified by gradients a.k.a **residuals**. In `Adaboost`, ‘shortcomings’ are identified by **high-weight data points**. :sparkles:
+>> :bulb: In `Gradient Boosting`, **shortcomings** (of existing weak learners) are identified by gradients a.k.a **residuals**. In `Adaboost`, ‘shortcomings’ are identified by **high-weight data points**. 
 
 
-The **main differences** therefore are that Gradient Boosting is a generic algorithm to find approximate solutions to the additive modeling problem, while AdaBoost can be seen as a special case with a particular loss function. Hence, gradient boosting is much more flexible.
+:shield: The **main differences** therefore are that Gradient Boosting is a generic algorithm to find approximate solutions to the additive modeling problem, while AdaBoost can be seen as **a special case with a particular loss** function. Hence, gradient boosting is much more flexible.
 
 Second, AdaBoost can be interepted from a much more intuitive perspective and can be implemented without the reference to gradients by reweighting the training samples based on classifications from previous learners. 
 
