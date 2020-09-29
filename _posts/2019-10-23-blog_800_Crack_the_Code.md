@@ -610,13 +610,6 @@ def maxProfit(prices: List[int]) -> int:
 
 ----
 
-{% capture summary %}SUMMARY{% endcapture %}  
-{% capture details %}  
-DETAILS  
-{% endcapture %}{% include details.html %} 
-
-----
-
 # Exercise:
 
 1. [DP: bellman-equations-reinforcement-learning](https://int8.io/bellman-equations-reinforcement-learning/)
