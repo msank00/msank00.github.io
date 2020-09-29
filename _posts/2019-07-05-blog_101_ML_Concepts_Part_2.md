@@ -16,19 +16,19 @@ mathjax: true
 
 Feature selection is the process of reducing the number of input variables when developing a predictive model.
 
-Feature-based feature selection methods involve evaluating the relationship between each input variable and the target variable using statistics and selecting those input variables that have the strongest relationship with the target variable. These methods can be fast and effective, although the choice of `statistical measures` depends on the data type of both the input and output variables.
+`Feature-based` feature selection methods involve evaluating the relationship between each input variable and the target variable using statistics and selecting those input variables that have the strongest relationship with the target variable. These methods can be fast and effective, although the choice of `statistical measures` depends on the data type of both the input and output variables.
 
 ## Feature Selection Algorithms
 
-There are three general classes of feature selection algorithms: filter methods, wrapper methods and embedded methods.
+There are three general classes of feature selection algorithms: `filter methods`, `wrapper methods` and `embedded methods`.
 
 :large_orange_diamond: **Filter Methods:** Filter feature selection methods apply a statistical measure to `assign a scoring` to each feature. The features are ranked by the score and either selected to be kept or removed from the dataset. The methods are often **univariate** and `consider the feature independently`, or with regard to the dependent variable. **Example:** Chi squared test, information gain and correlation coefficient scores.
 
 :large_orange_diamond: **Wrapper Methods:** Wrapper methods consider the selection of a set of features as a **search problem**, where different combinations are prepared, evaluated and compared to other combinations. A predictive model is used to evaluate a combination of features and assign a score based on model accuracy. **Example:** [sklearn.feature_selection.RFE](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html)
 
-:radio_button: **Main difference** of filter method with wrapper method is that, in filter method, before applying the model we are filtering the feature. This is quite helpful if running the model is a costly affair and also our data set is quite huge. Because in wrapper method to evaluate each combination of feature, we need to build and train the model first and only then we can evaluate.  
+:radio_button: **Main difference** of `filter method` with `wrapper method` is that, in filter method, before applying the model we are filtering the feature. This is quite helpful if running the model is a costly affair and also our data set is quite huge. Because in wrapper method to evaluate each combination of feature, we need to build and train the model first and only then we can evaluate.  
 
-:diamond_shape_with_a_dot_inside: **Embedded Methods:** Embedded methods **learn** which **features** best contribute to the accuracy of the model while the model is being created. The most common type of embedded feature selection methods are **regularization** methods. Automatic feature selection. 
+:diamond_shape_with_a_dot_inside: **Embedded Methods:** Embedded methods **learn** which **features** best contribute to the accuracy of the model while the model is being created. The most common type of embedded feature selection methods are **regularization** :gear: based methods. They help to attain automatic feature selection. 
 
 ## Feature Selection Checklist
 
