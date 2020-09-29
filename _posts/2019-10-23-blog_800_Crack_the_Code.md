@@ -439,9 +439,10 @@ For example if you have in your schedule dependencies like `0 -> 5`, `5-> 3` and
 
 <details>
 <summary>Code</summary>
-<p>
+
 
 ```py
+
 from collections import defaultdict
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
@@ -486,9 +487,10 @@ class Solution:
         # end of recursion
         self.visited_list[node] = self.VISITED
         self.order.append(node)
+
 ```
 
-</p>
+
 </details>  
 
 
