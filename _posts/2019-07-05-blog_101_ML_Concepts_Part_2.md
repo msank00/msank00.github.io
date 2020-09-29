@@ -158,7 +158,7 @@ Two of the more popular methods include:
 
 ## Worked Examples of Feature Selection
 
-:large_orange_diamond: **Numerical Input, Numerical Output**
+:large_orange_diamond: **Numerical Input, Numerical Output** `Pearson’s Correlation Coefficient`
 
 ```py
 # pearson's correlation feature selection for numeric input and numeric output
@@ -175,7 +175,7 @@ print(X_selected.shape)
 # (100, 10)
 ```
 
-:large_orange_diamond: **Numerical Input, Categorical Output**
+:large_orange_diamond: **Numerical Input, Categorical Output** `Anova`
 
 ```py
 # ANOVA feature selection for numeric input and categorical output
@@ -192,7 +192,7 @@ print(X_selected.shape)
 # (100, 2)
 ```
 
-:large_orange_diamond: **Categorical Input, Categorical Output**
+:large_orange_diamond: **Categorical Input, Categorical Output** `Chi-Squared`
 
 - **use of chi-squared test**
 
@@ -207,7 +207,7 @@ def select_features(X_train, y_train, X_test):
   X_test_fs = fs.transform(X_test)
 ```
 
-- **Mutual Information Feature Selection**
+- :large_orange_diamond: **Mutual Information Feature Selection** `Mutual Information`
 
 ```py
 # feature selection
