@@ -100,7 +100,7 @@ Common input variable data types:
    1. Pearson’s correlation coefficient (**linear**)
    2. Spearman’s rank coefficient (**non-linear**)
 
-2. Numerical Input, Categorical Output :fire:
+2. **Numerical Input, Categorical Output** :fire:
    1. ANOVA correlation coefficient (linear).
       1. Check this implementation [video](https://www.youtube.com/watch?v=PWZLhr3FfIM)
       2. Understand [ANOVA](https://www.youtube.com/watch?v=-yQb_ZJnFXw)
@@ -113,12 +113,12 @@ This is a strange example of a regression problem (e.g. you would not encounter 
 
 Nevertheless, you can use the same “Numerical Input, Categorical Output” methods (described above), but in reverse.
 
-4. Categorical Input, Categorical Output
+4. **Categorical Input, Categorical Output**
    1. Chi-Squared test (contingency tables).
    2. **Mutual Information** :rocket:
       1. Let $(X,Y)$ be a pair of random variables with values over the space $\mathcal{X} × \mathcal{Y}$. If their joint distribution is $P(X ,Y)$ and the marginal distributions are $P_X$ and $P_Y$, the mutual information is defined as
 
-$I(X;Y) = D_{KL}(P_{(X,Y)}||P_{X} \times P_{Y})$ 
+$I(X;Y) = D_{KL}(P_{(X,Y)} \vert \vert P_{X} \times P_{Y})$ 
 
 :start: In fact, mutual information is a powerful method that may prove useful for both categorical and numerical data, e.g. it is **agnostic to the data types**.
 
@@ -178,7 +178,7 @@ print(X_selected.shape)
 # (100, 10)
 ```
 
-:large_orange_diamond: **Numerical Input, Categorical Output** `Anova`
+:large_orange_diamond: **Numerical Input, Categorical Output** `Anova` :pushpin:
 
 ```py
 # ANOVA feature selection for numeric input and categorical output
@@ -195,9 +195,9 @@ print(X_selected.shape)
 # (100, 2)
 ```
 
-:large_orange_diamond: **Categorical Input, Categorical Output** `Chi-Squared`
+:large_orange_diamond: **Categorical Input, Categorical Output** `Chi-Squared` :pushpin:
 
-- **use of chi-squared test**
+- **Chi-squared test**
 
 ```py
 def select_features(X_train, y_train, X_test):
@@ -210,7 +210,7 @@ def select_features(X_train, y_train, X_test):
   X_test_fs = fs.transform(X_test)
 ```
 
-- :large_orange_diamond: **Mutual Information Feature Selection** `Mutual Information`
+- **Mutual Information Feature Selection** `Mutual Information`
 
 ```py
 # feature selection
