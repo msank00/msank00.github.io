@@ -782,7 +782,7 @@ $
 >> :bulb: In `Gradient Boosting`, **shortcomings** (of existing weak learners) are identified by gradients a.k.a **residuals**. In `Adaboost`, ‘shortcomings’ are identified by **high-weight data points**. 
 
 
-:shield: The **main differences** therefore are that Gradient Boosting is a generic algorithm to find approximate solutions to the additive modeling problem, while AdaBoost can be seen as **a special case with a particular loss** function. Hence, gradient boosting is much more flexible.
+:shield: The **main differences** therefore are that Gradient Boosting is a **generic algorithm** to find approximate solutions to the additive modeling problem, while AdaBoost can be seen as **a special case with a particular loss** function. Hence, gradient boosting is much more flexible.
 
 Second, AdaBoost can be interepted from a much more intuitive perspective and can be implemented without the reference to gradients by reweighting the training samples based on classifications from previous learners. 
 
@@ -977,7 +977,7 @@ The above image shows, that how we approximate `0-1 loss` in SVM and in Logistic
 
 Q. Is it always necessary the decision boundary is linear / plane always?
 
-The short answer is: Logistic regression is considered a generalized linear model because the outcome always depends on the sum of the inputs and parameters. Or in other words, the output cannot depend on the product (or quotient, etc.) of its parameters! $z = \sum_i w_ix_i$
+The short answer is: Logistic regression is considered a **generalized linear model** because the outcome always depends on the sum of the inputs and parameters. Or in other words, the output cannot depend on the product (or quotient, etc.) of its parameters! $z = \sum_i w_ix_i$
 
 <center>
 
@@ -987,11 +987,11 @@ $f(x) = \frac{1}{1+e^{-\sum_i w_ix_i}}$
 
 The key is that our model is `additive`.  Our outcome z depends on the additivity of the weight parameter values, e.g., : $z = w_1x_1 + w_2x_2$
 
-There’s no interaction between the weight parameter values,nothing like $w_1x_1 * w_2x_2$ or so, which would make our model non-linear!
+There’s **no interaction** between the weight parameter values,nothing like $w_1x_1 * w_2x_2$ or so, which would make our model non-linear!
 
-However we can use non-linear feature s.t $z = \sum_i w_if(x_i)$ where $f()$ is a non linear function of $x$. But still z is linear in terms of parameter $w_i$
+:shield: However we can use non-linear feature s.t $z = \sum_i w_if(x_i)$ where $f()$ is a non linear function of $x$. But still $z$ is **linear in terms of parameter** $w_i$.
 
-- In general the decision boundary is linear in `x`. To be more specific, the decision boundary in this case is given by $w^Tx=0$ (a hyperplane). But then you go on to say `but we can generate non-linear decision boundaries as well`.
+- In **general the decision boundary is linear** in `x`. To be more specific, the decision boundary in this case is given by $w^Tx=0$ (a hyperplane). But then you go on to say `but we can generate non-linear decision boundaries as well`.
 - Well, of course you can, but then that'll be called a `non-linear instance` of logistic regression (the exact same way we have linear SVMs and non-linear SVMs). In other words, you can start with your original data x and see/decide that it's not linearly separable. What you can do next is introduce a feature transformation h(x) and use that in place of x. 
 - For example, if you decide to apply a quadratic feature transformation on say for simplicity, your 2-dimensional data then h(x) in this case is simply given by
 $h(x) = [x_1, x_2, x_1^2, x_2^2, x_1x_2]$
