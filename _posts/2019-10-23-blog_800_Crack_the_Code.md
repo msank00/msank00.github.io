@@ -440,6 +440,7 @@ For example if you have in your schedule dependencies like `0 -> 5`, `5-> 3` and
 <details>
 <summary>Code</summary>
 
+<br>
 
 ```py
 
@@ -490,6 +491,7 @@ class Solution:
 
 ```
 
+<br>
 
 </details>  
 
