@@ -1058,11 +1058,10 @@ The simplest way to separate two groups of data is with a straight line (1 dimen
 
 :six_pointed_star: **Alternative question:** How do you adjust the cost parameter for the SVM regularizer? 
 
-Regularization problems are typically formulated as optimization problems involving the desired objective(classification loss in our case) and a regularization penalty.The regularization penalty is used to help stabilize the minimization of the ob­jective or infuse prior knowledge we might have about desirable solutions.Many machine learning methods can be viewed as regularization methods in this manner.For later utility we will cast SVM optimization problem as a 
-regularization problem.
+Regularization problems are typically formulated as optimization problems involving the desired objective(classification loss in our case) and a regularization penalty. The regularization penalty is used to help stabilize the minimization of the ob­jective or infuse prior knowledge we might have about desirable solutions. Many machine learning methods can be viewed as regularization methods in this manner. For later utility we will cast SVM optimization problem as a regularization problem.
 
 
-Re write the soft margin problem using `hinge loss` $(z)$ defined as the positive part of $1-z$, written as $(1-z)^+$. The relaxed optimization problem (soft margin) can be reformulated as 
+Re write the **soft margin problem** using `hinge loss` $(z)$ defined as the positive part of $1-z$, written as $(1-z)^+$. The relaxed optimization problem (soft margin) can be reformulated as 
 
 <center>
 
@@ -1071,7 +1070,7 @@ $min \frac{1}{2}\vert \vert w \vert \vert^2 + C \sum\limits_{t=1}^{n}(1 - y_t(w^
 </center>
 
 
-Here $\frac{1}{2}\vert \vert w \vert \vert^2$, the `inverse squared` **geometric margin** is viewed as a regularization penalty that helps stabilizes the objective 
+Here $\frac{1}{2}\vert \vert w \vert \vert^2$, the `inverse squared` **geometric margin** is viewed as a `regularization penalty` that helps stabilizes the objective 
 
 <center>
 
@@ -1080,6 +1079,8 @@ $C \sum\limits_{t=1}^{n}(1 - y_t(w^T x_t + w_0))^+$ .
 </center>
 
 - [MIT OCW Notes](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-867-machine-learning-fall-2006/lecture-notes/lec4.pdf)
+
+----
 
 ## What sort of optimization problem would you be solving to train a support vector machine?
 
@@ -1104,16 +1105,13 @@ The `RBF` is by far the **most popular choice of kernel** types used in Support 
 
 - [Blog](http://www.statsoft.com/Textbook/Support-Vector-Machines)
 
+----
+
 ## What is the optimization technique of SVM?
 
+Please download the PDF to view it: <a href="https://drona.csa.iisc.ac.in/~shivani/Teaching/E0370/Aug-2011/Lectures/2.pdf">Download PDF</a>
 
-<object data="https://drona.csa.iisc.ac.in/~shivani/Teaching/E0370/Aug-2011/Lectures/2.pdf" width="750px" height="750px">
-    <embed src="https://drona.csa.iisc.ac.in/~shivani/Teaching/E0370/Aug-2011/Lectures/2.pdf" type="application/pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://drona.csa.iisc.ac.in/~shivani/Teaching/E0370/Aug-2011/Lectures/2.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
-
-<p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://drona.csa.iisc.ac.in/~shivani/Teaching/E0370/Aug-2011/Lectures/2.pdf">Download PDF</a>.</p>
+----
 
 ## Why bring Lagrange Multiplier for solving the SVM problem?
 
@@ -1169,7 +1167,7 @@ In the higher dimension, they are separated linearly.
 + :arrow_double_up: **maximize** $f(x)$ such that **`g(x)>=0`** and $h(x)=0$. 
   + Our target is to bring a new equation where we will combine $f(x), g(x), h(x)$ in a single equation. We will do this by introducing Lagrange Multiplier $\lambda$ and $\mu$. The new equation looks like: $L(x,\lambda,\mu)=f(x)+\lambda g(x)+ \mu h(x)$.
 
-**NOTE:** In the above formulation, pay special attention to the `minimize` and `maximize` kewords and the change in inequality constrains. So given any minimization or maximization problem, convert its constraints to $g(x)<=0$ or $g(x)>=0$ accordingly and then formulate the Lagrangian form. The $h(x)=0$ may or may not be there. Finally apply KKT conditions for finding the solution. 
+**NOTE:** In the above formulation, pay special attention to the `minimize` and `maximize` kewords and the change in inequality constrains. So given any minimization or maximization problem, convert its constraints to $g(x) \leq 0$ or $g(x) \geq 0$ accordingly and then formulate the Lagrangian form. The $h(x)=0$ may or may not be there. Finally apply KKT conditions for finding the solution. 
 
 
 ![image](/assets/images/image_25_svm_lagrange_1.png)
