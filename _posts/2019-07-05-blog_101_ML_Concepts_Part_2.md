@@ -975,7 +975,7 @@ The above image shows, that how we approximate `0-1 loss` in SVM and in Logistic
 
 # Why is logistic regression considered as a linear model? 
 
-Q. Is it always necessary the decision boundary is linear / plane always?
+**Q. Is it always necessary the decision boundary is linear / plane always?**
 
 The short answer is: Logistic regression is considered a **generalized linear model** because the outcome always depends on the sum of the inputs and parameters. Or in other words, the output cannot depend on the product (or quotient, etc.) of its parameters! $z = \sum_i w_ix_i$
 
