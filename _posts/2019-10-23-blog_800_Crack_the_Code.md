@@ -499,7 +499,11 @@ class Solution:
 
 ### A collapsible section containing code
 <details>
-  <summary>Click to expand!</summary>
+  <summary>
+  
+  Click to expand!
+  
+  </summary>
   
   ```javascript
     function whatIsLove() {
@@ -508,6 +512,26 @@ class Solution:
     }
   ```
 </details>
+
+## collapsible markdown?
+
+<details>
+<summary>
+
+`CLICK ME`
+
+</summary>
+<p>
+
+#### yes, even hidden code blocks!
+
+```python
+print("hello world!")
+
+``` 
+
+</details>
+
 
 **Note:** Uderstanding the **classical DFS** is very beneficial for many graph related question. 
 
