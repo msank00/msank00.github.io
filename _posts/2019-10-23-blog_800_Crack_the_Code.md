@@ -610,20 +610,10 @@ def maxProfit(prices: List[int]) -> int:
 
 ----
 
-
-{% capture text-capture %}
-
-### Trial
-
-```py
-print("Hello World !!)
-``` 
-
-{% endcapture %}
-
-{% include widgets/toggle-field.html toggle-name="toggle-thats" button-text="Cod for Thats All Folks" toggle-text=text-capture  footer="" %}
-
-
+{% capture summary %}SUMMARY{% endcapture %}  
+{% capture details %}  
+DETAILS  
+{% endcapture %}{% include details.html %} 
 
 ----
 
