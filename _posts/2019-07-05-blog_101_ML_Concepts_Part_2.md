@@ -100,7 +100,7 @@ Common input variable data types:
    1. Pearson’s correlation coefficient (**linear**)
    2. Spearman’s rank coefficient (**non-linear**)
 
-2. Numerical Input, Categorical Output
+2. Numerical Input, Categorical Output :fire:
    1. ANOVA correlation coefficient (linear).
       1. Check this implementation [video](https://www.youtube.com/watch?v=PWZLhr3FfIM)
       2. Understand [ANOVA](https://www.youtube.com/watch?v=-yQb_ZJnFXw)
@@ -115,9 +115,9 @@ Nevertheless, you can use the same “Numerical Input, Categorical Output” met
 
 4. Categorical Input, Categorical Output
    1. Chi-Squared test (contingency tables).
-   2. Mutual Information.
+   2. **Mutual Information** :rocket:
 
-In fact, mutual information is a powerful method that may prove useful for both categorical and numerical data, e.g. it is **agnostic to the data types**.
+:start: In fact, mutual information is a powerful method that may prove useful for both categorical and numerical data, e.g. it is **agnostic to the data types**.
 
 ## Correlation Statistics
 
@@ -125,10 +125,10 @@ The scikit-learn library provides an implementation of most of the useful statis
 
 For example:
 
-- `Pearson’s Correlation Coefficient`: [f_regression()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_regression.html)
-- `ANOVA`: [f_classif()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_classif.html)
-- `Chi-Squared`: [chi2()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.chi2.html)
-- `Mutual Information`: [mutual_info_classif()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_classif.html) and
+- **i/p:** `numerical`, **o/p:** `numerical` $\rightarrow$  `Pearson’s Correlation Coefficient`: [f_regression()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_regression.html)
+- **i/p:** `numerical`, **o/p:** `categorical` $\rightarrow$ `ANOVA`: [f_classif()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_classif.html)
+- **i/p:** `categorical`, **o/p:** `categorical` $\rightarrow$ `Chi-Squared`: [chi2()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.chi2.html)
+- **i/p:** `categorical`, **o/p:** `categorical` $\rightarrow$ `Mutual Information`: [mutual_info_classif()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_classif.html) and
 [mutual_info_regression()](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_regression.html)
 
 
