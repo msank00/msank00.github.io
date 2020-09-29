@@ -610,6 +610,26 @@ def maxProfit(prices: List[int]) -> int:
 
 ----
 
+{% capture text-capture %}
+
+```html
+
+<div class="demo-thats-all-container">  
+    <div class="demo-thats-all-folks">
+      That's All Folks
+    </div>
+</div>
+
+``` 
+
+{% endcapture %}
+
+{% include widgets/toggle-field.html toggle-name="toggle-thats" button-text="Cod for Thats All Folks" toggle-text=text-capture  footer="cheers!" %}
+
+
+
+----
+
 # Exercise:
 
 1. [DP: bellman-equations-reinforcement-learning](https://int8.io/bellman-equations-reinforcement-learning/)
