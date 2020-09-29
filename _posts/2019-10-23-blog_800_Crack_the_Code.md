@@ -529,6 +529,9 @@ print "Maximum contiguous sum is", maxSubArraySum(a,len(a))
 
 # Maximum contiguous sum is 7
 ```
+## Similar question:
+
+- LC152: Maximum Product Subarray [Try yourself]
 
 ## Why this problem is important?
 
