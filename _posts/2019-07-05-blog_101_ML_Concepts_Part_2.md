@@ -116,6 +116,9 @@ Nevertheless, you can use the same “Numerical Input, Categorical Output” met
 4. Categorical Input, Categorical Output
    1. Chi-Squared test (contingency tables).
    2. **Mutual Information** :rocket:
+      1. Let $(X,Y)$ be a pair of random variables with values over the space $\mathcal{X} × \mathcal{Y}$. If their joint distribution is $P(X ,Y)$ and the marginal distributions are $P_X$ and $P_Y$, the mutual information is defined as
+
+$I(X;Y) = D_{KL}(P_{(X,Y)}||P_{X} \times P_{Y})$ 
 
 :start: In fact, mutual information is a powerful method that may prove useful for both categorical and numerical data, e.g. it is **agnostic to the data types**.
 
