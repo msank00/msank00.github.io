@@ -605,8 +605,156 @@ def maxProfit(prices: List[int]) -> int:
     return max_profit_so_far
 ```
 
-
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# LC79. Word Search
+
+Given a 2D board and a word, find if the word exists in the grid.
+
+The word can be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
+
+```py
+board =
+[
+  ['A','B','C','E'],
+  ['S','F','C','S'],
+  ['A','D','E','E']
+]
+
+Given word = "ABCCED", return true.
+Given word = "SEE", return true.
+Given word = "ABCB", return false.
+```
+
+- [Youtube](https://www.youtube.com/watch?v=OYxTVKogJkQ&t=30s)
+
+----
+
+# Construct binary tree from tree traversal 
+
+In general you need to: 
+
+:bulb: **DO**
+- Find the `root` of the tree. [obtain from `preorder` or `postorder` list]
+  - Find the index of `root.val` , say `idx`,  in the `inorder` list  
+- Subset of nodes which will be in the left subtree [`inorder[:idx]`]
+- Subuset of nodes in the right subtree [`inorder[idx+1:]`]
+
+**RECUR**
+
+:shield: _finding `root` in `preorder` or `postorder` is slightly different_
+
+## from inorder and postorder traversal
+
+Base implementation
+
+```py
+class Solution:
+    def buildTree(self, inorder, postorder):
+        if not inorder or not postorder:
+            return None
+        
+        root = TreeNode(postorder.pop())
+        inorderIndex = inorder.index(root.val) # Line A
+
+        root.right = self.buildTree(inorder[inorderIndex+1:], postorder) # Line B
+        root.left = self.buildTree(inorder[:inorderIndex], postorder) # Line C
+
+        return root
+
+```
+
+The code is clean and short. However, if you give this implementation during an interview, there is a good chance you will be asked, "can you improve/optimize your solution?"
+
+Why? Take a look at `Line A`, `Line B` and `Line C`. Line A takes $O(N)$ time. Line B and C takes $O(N)$ time and extra space. Thus, the overall running time and extra space is $O(N^2)$.
+
+Running time $O(N^2)$: Because here for each call to `line B` and `line C`, searching time at `line A` is $O(N)$. So it's taking $O(N^2)$.
+
+So this implementation has a very bad performance, and you can avoid it.
+
+
+optimized implementation use `dict()` to search in $O(1)$
+
+```py
+class Solution:
+    def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
+        
+        self.key_map = {v:i for i,v in enumerate(inorder)}
+        self.postorder = postorder
+        return self.helper(0, len(inorder)-1)
+        
+    def helper(self, left:int, right:int):
+        
+        if left > right: return None
+        root = TreeNode(self.postorder.pop())
+        idx = self.key_map[root.val]
+        root.right = self.helper(idx+1, right) # pay attention
+        root.left = self.helper(left, idx-1) # pay attention
+        return root
+
+```
+:shield: **Note:** 
+
+- `root.right` is called first before `root.left` as it's using postorder traversal and we are scanning the postorder list from right side, which holds the right subtree elements at the right side.
+- - The length (`right` - `left`) denotes the number of nodes in the respective subtree and also decides the number of time it should apply recursion in the respective branch.
+
+**Reference:**
+
+- [Youtube](https://www.youtube.com/watch?v=s5XRtcud35E)
+
+## from inorder and preorder traversal
+
+```py
+def buildTree(preorder: List[int], inorder: List[int]) -> TreeNode:
+    
+    if len(preorder) == 0:return None
+    
+    root = TreeNode(preorder[0])
+    mid_idx =  inorder.index(root.val)
+    root.left = buildTree(preorder[1:mid_idx+1], inorder[:mid_idx])
+    root.right = buildTree(preorder[mid_idx+1:], inorder[mid_idx+1:])
+    return root
+```
+
+With same logic, here is the optimizied version
+
+```py
+class Solution(object):
+    def buildTree(self, preorder, inorder):
+        """
+        :type preorder: List[int]
+        :type inorder: List[int]
+        :rtype: TreeNode
+        """
+        
+        inor_dict = {}
+        for i, num in enumerate(inorder):
+            inor_dict[num] = i
+        pre_iter = iter(preorder)
+        
+        def helper(start, end):
+            if start > end:return None
+            root_val = next(pre_iter)
+            root = TreeNode(root_val)
+            idx = inor_dict[root_val]
+            root.left = helper(start, idx-1) # pay attention
+            root.right = helper(idx+1, end) # pay attention
+            return root
+        
+        return helper(0, len(inorder) - 1)
+```
+
+:shield: **Note:** 
+
+- `root.left` is called first before `root.right` as it's using preorder traversal and we are scanning the preorder list from left side, which holds the left subtree elements at the left side.
+- The length (`end` - `start`) denotes the number of nodes in the respective subtree and also decides the number of time it should apply recursion in the respective branch.
+
+**Reference:**
+
+- [Youtube](https://www.youtube.com/watch?v=PoBGyrIWisE)
+
 
 ----
 
