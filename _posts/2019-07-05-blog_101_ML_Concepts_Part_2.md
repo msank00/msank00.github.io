@@ -1361,23 +1361,6 @@ Lot of times, we may have to write ML models from scratch in C++ ? Will you be a
 
 ----
 
-# How Stochastic Gradient Decent with momentum works?
-
-+ An SGD can be thought of as a ball rolling down the hill where the velocity of the ball is influenced by the gradient of the 
-curve. However, in this approach, the ball has a chance to get stuck in any ravine. So if the ball can have enough momentum to get past
-get past the ravine would have been better. based on this idea, SGD with Momentum works. Where the ball has been given 
-some added momentum which is based on the previous velocity and gradient. 
-   + `velocity = momentum*past_velocity + learning_rate*gradient`
-   +  `w=w-velocity`
-   +  `past_velocity = velocity`
-+ [easy explanation](http://ufldl.stanford.edu/tutorial/supervised/OptimizationStochasticGradientDescent/)
-+ book: deep learning in Python - by Cholet, page 51, but the equation looks suspicious 
-+ [through explanation, distill pub](https://distill.pub/2017/momentum/)
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
-----
-
 # How the model varies in `KNN` for $K=1$ and $K=N$?
 
 - When K equals 1 or other small number the model is prone to `overfitting (high variance)`, while when K equals number of data points or other large number the model is prone to `underfitting (high bias)`.

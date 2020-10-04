@@ -31,6 +31,7 @@ mathjax: true
 
 - [source](https://data36.com/statistical-bias-types-explained/). 
 - [source2](https://newonlinecourses.science.psu.edu/stat509/node/28/)
+- [A Framework for Understanding Unintended Consequences of Machine Learning - From MIT](https://arxiv.org/pdf/1901.10002.pdf) :fire:
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
@@ -182,33 +183,6 @@ In linear regression, without the bias term your solution has to go through the 
 
 ----
 
-# How are kernel methods different from Neural Network?
-
->> they are more than simply related, they are duals of each other ~Shakir M
-
-One way to think about an `NN` with `L` layers is that the first `L - 1` layers perform some `non-linear transformation` $\phi(x_i;\theta)$ on the input data point $x_i$ parameterized by $\theta$, while the last layer is just a linear model on these non-linear representations parameterized by a weights vector $w$.
-
-It can be shown that some class of NN models is mathematically equivalent to a `kernelized ridge-regression` model. Further steps in the `back-propagation` adjust the parameters $\theta$ of the `non-linear transformation` $\phi$, which has the effect of adjusting the equivalent kernel matrix at the $t$ step of the next iteration of back-propagation. So it could be said that this class of NNs is mathematically equivalent to a kernelized ridge-regression that learns its own kernel from the data. Of course, these NNs are only able to learn kernels in finite-dimensional spaces, unlike the kernel based-methods which can use kernels in infinite-dimensional spaces. For full math details check the below blogs.
-
-**Reference:**
-
-- [Blog by Shakir](http://blog.shakirm.com/2015/04/a-statistical-view-of-deep-learning-iii-memory-and-kernels/)
-- [Quora](https://www.quora.com/What-are-the-mathematical-relationship-between-kernel-methods-and-Neural-Networks-NN)
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
-----
-
-# Statistical view of Deep Learning
-
->> In deep learning, the link function is referred to as the activation function
-
-- [Blog: Shakir M](http://blog.shakirm.com/2015/01/a-statistical-view-of-deep-learning-i-recursive-glms/)
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
-----
-
 # Different types of models and their example
 
 - **Parametric Model:** A parametric modelis one that can be parametrized by a finite number of parameters
@@ -224,15 +198,6 @@ It can be shown that some class of NN models is mathematically equivalent to a `
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
-
-# How are neural nets related to Fourier transforms? 
-
-What are Fourier transforms, for that matter?
-
-- [Quora](https://www.quora.com/How-are-neural-networks-related-to-Fourier-transforms)
-
-
-------
 
 # How to `seed` K-means clustering algorithm?
 
@@ -255,13 +220,6 @@ Alternative to BLAS is `LAPACK` or `ATLAS`.
 
 ----
 
-# Compare stochastic gradient descent to interior point methods
-
-- [mlss tuebingen slide](http://mlss.tuebingen.mpg.de/2013/wright_slides.pdf)
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
--------
 
 # What areas of machine learning are you most familiar with?
 
