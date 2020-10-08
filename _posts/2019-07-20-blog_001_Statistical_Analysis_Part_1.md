@@ -12,7 +12,16 @@ comments: true
 ---
 
 # What is P Value?
->> In statistical hypothesis testing, the p-value or probability value is, for a given statistical model, the probability that, when the null hypothesis is true, the statistical summary (such as the absolute value of the sample mean difference between two compared groups) would be greater than or equal to the actual observed results.
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/vemZtEM63GY" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_[youtube link](https://www.youtube.com/watch?v=vemZtEM63GY)_ :fire:
+
+>> :bulb: In statistical hypothesis testing, the p-value or probability value is, for a given statistical model, the probability that, when the null hypothesis is true, the statistical summary (such as the absolute value of the sample mean difference between two compared groups) would be greater than or equal to the actual observed results.
 
 - Hypothesis Testing
 - Normal Distribution
@@ -59,6 +68,7 @@ The rule of thumb is to set alpha to be either 0.05 or 0.01 (again, the value de
 + So how does that work? Well, basically, some sample outcomes are highly unlikely given our null hypothesis.
 + If our population correlation really is zero, then we can find a sample correlation of 0.25 in a sample of N = 100. The probability of this happening is only 0.012. So it's very unlikely. A reasonable conclusion is that our population correlation wasn't zero after all. 
 + **Conclusion:** we reject the null hypothesis. Given our sample outcome, we no longer believe that happiness and wealth are unrelated. However, we still can't state this with certainty.
+
 
 **Reference:**
 
