@@ -90,6 +90,19 @@ The rule of thumb is to set alpha to be either 0.05 or 0.01 (again, the value de
 
 _[youtube link](https://www.youtube.com/watch?v=ARfXDSkQf1Y)_ :fire:
 
+----
+
+# Understand the `log` axis
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/VSi0Z04fWj0" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+
+_[youtube link](https://www.youtube.com/watch?v=VSi0Z04fWj0)_ :fire: :rocket:
+
 
 ------
 
