@@ -79,6 +79,20 @@ The rule of thumb is to set alpha to be either 0.05 or 0.01 (again, the value de
 
 ----
 
+# Odds and log(Odds) and what is logits
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/ARfXDSkQf1Y" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+
+_[youtube link](https://www.youtube.com/watch?v=ARfXDSkQf1Y)_ :fire:
+
+
+------
+
 # Why bayesian inference can be difficult?
 
 Determining the `posterior distribution` directly from the Byes' rule involves computing the evidence i.e `marginal likelihood`. For continuous parameters, the integral can be impossible to solve analytically.
