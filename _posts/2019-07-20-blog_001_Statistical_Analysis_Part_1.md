@@ -430,6 +430,36 @@ Let's say $X$ follows Binomial distribution. Then as ${n \rightarrow \infty}$, t
 
 ---
 
+# Maximum likelihood estimation
+
+Let's assume $D$ is the data that comes from distribution parameterized by $\theta$. In MLE, given data we want to find the distribution (parameterized by $\theta$) from which the probability of geting the data is maximum.
+
+
+<center>
+
+$
+p(\theta \vert D) = \frac{p(D \vert \theta)p(\theta)}{p(D)}
+$
+
+</center>
+
+Where 
+
+- $p(\theta \vert D)$ is the likeihood and can be written as $\mathcal{L}(\theta \vert D)$.
+- $p(D \vert \theta)$ is the posterior
+- $p(\theta)$ is the prior
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/XepXtl9YKwc" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_[youtube link](https://www.youtube.com/watch?v=XepXtl9YKwc)_ :fire:
+
+
+----
+
 # Expectation Maximization (EM), Gaussian Mixture Model
 
 Gaussian mixture models are a probabilistic model for representing normally distributed subpopulations within an overall population. Mixture models in general don't require knowing which subpopulation a data point belongs to, allowing the model to learn the subpopulations automatically. Since subpopulation assignment is not known, this constitutes a form of `unsupervised learning`.
