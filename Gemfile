@@ -7,3 +7,6 @@ gem 'jemoji'
 
 
 gem "jekyll", ">= 3.7.4"
+gem "kramdown", ">= 2.3.0"
+
+
