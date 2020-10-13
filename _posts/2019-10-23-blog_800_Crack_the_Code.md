@@ -11,6 +11,20 @@ mathjax: true
 1. TOC
 {:toc}
 
+----
+
+# Master Theorem
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/2y0HQGd1-nA" frameborder="0" allowfullscreen="true" width="90%" height="250"> </iframe>
+</figure>
+</center>
+
+:shield: _*In case the above link is broken, click [here](https://www.youtube.com/watch?v=2y0HQGd1-nA)_
+
+-----
+
 # Practice followup questions for each coding questions
 
 1. How do you test your solution? Testing is also an important area in interview and you can treat the interview question as a real life project and how can you guarantee the system works as intended?
@@ -755,6 +769,11 @@ class Solution(object):
 
 - [Youtube](https://www.youtube.com/watch?v=PoBGyrIWisE)
 
+----
+
+# Interesting problems:
+
+- Find peak in 1D and 2D surface [MIT](https://www.youtube.com/watch?v=HtSuA80QTyo&t=1687s)
 
 ----
 
