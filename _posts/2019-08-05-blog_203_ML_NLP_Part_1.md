@@ -443,7 +443,6 @@ The `generative story` begins with begins with only Dirichlet Prior over the top
 >> :sparkles: The `term-document` matrix is the basis for computing the similarity between `document` and `query`. Can we transform this matrix so that we can get better measure of similarity between document and query?
 
 
-![image](/assets/images/image_29_lsi_1.png)
 ![image](/assets/images/image_29_lsi_2.png)
 ![image](/assets/images/image_29_lsi_3.png)
 ![image](/assets/images/image_29_lsi_4.png)

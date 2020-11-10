@@ -14,30 +14,13 @@ mathjax: true
 {:toc}
 ---
 
-# Algorithm selection Tips 
-
-- When to use and when not to use.
-- Merits and Demerits
-- Pros and Cons
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
-----
-
-# How to Prepare for ML-DL Interview
-
-> Interviews are stressful, even more so when they are for your dream job. As someone who has been in your shoes, and might again be in your shoes in the future, I just want to tell you that it doesn’t have to be so bad. Each interview is a learning experience. An offer is great, but a rejection isn’t necessarily a bad thing, and is never the end of the world. I was pretty much rejected for every job when I began this process. Now I just get rejected at a less frequent rate. Keep on learning and improving. You’ve got this!
-
-- [Tweet: Chip Huyen](https://twitter.com/chipro/status/1152077188985835521)
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
----
 
 # How do you find the similar documents related to some query sentence/search?
 
-+ Simplest approach is to do tf-idf of both documents and query, and then measure cosine distance (i.e., dot product)
-+ On top of that, if you use `SVD/PCA/LSA` on the tfidf matrix, it should further improve results. 
++ Simplest approach is to do `tf-idf` of both documents and query, and then measure cosine distance (i.e., dot product)
++ On top of that, if you use `SVD/PCA/LSA` on the `tf-idf` matrix, it should further improve results. 
+- For more on LSI - Latent Semantic Indexing, please check [here](https://msank00.github.io/blog/2019/08/05/blog_203_ML_NLP_Part_1#what-is-lsi-latent-semantic-indexing).
+
 
 **Reference:**
 
