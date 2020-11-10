@@ -435,6 +435,7 @@ The most widely used kind of CRF uses a chain-structured graph to model correlat
 
 _*In case the above link is broken, click [here](https://www.youtube.com/embed/GF3iSJkgPbA)_
 
+For more CRF see [this](https://www.youtube.com/playlist?list=PL6Xpj9I5qXYEcOhn7TqghAJ6NAPrNmUBH) playlist, section 3.
 
 ----
 
