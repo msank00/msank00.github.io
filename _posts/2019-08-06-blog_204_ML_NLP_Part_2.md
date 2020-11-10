@@ -33,9 +33,11 @@ mathjax: true
 
 # What is POS tagger? 
 
- > A Part-Of-Speech Tagger (POS Tagger) is a piece of software that reads text in some language and assigns parts of speech to each word (and other token), such as noun, verb, adjective, etc.
+ > :sparkles: A Part-Of-Speech Tagger (POS Tagger) is a piece of software that reads text in some language and assigns parts of speech to each word (and other token), such as noun, verb, adjective, etc.
 
-PoS taggers use an algorithm to label terms in text bodies. These taggers make more complex categories than those defined as basic PoS, with tags such as “noun-plural” or even more complex labels.
+In POS tagging, the goal is to label a sentence (a sequence of words or tokens) with tags like ADJECTIVE, NOUN, PREPOSITION, VERB, ADVERB, ARTICLE.
+
+For example, given the sentence “Bob drank coffee at Starbucks”, the labeling might be “Bob (NOUN) drank (VERB) coffee (NOUN) at (PREPOSITION) Starbucks (NOUN)”.
 
 ## How to build a POS simple tagger? How to account for the new word?
 
@@ -50,7 +52,7 @@ tagged_sentences = nltk.corpus.treebank.tagged_sents()
 
 - Preprocess the sentences and create `[(word_1, tag_1), ... (word_n, tag_n)]`. This becomes your $X$ and $Y$.
 
-- Train a multiclass classification algorithm like RandomForest and build your model
+- Train a multiclass classification algorithm like RandomForest, CRF and build your model
 
 - Give test sentence, split into words, feed to the model and get corresponding tags.
 
@@ -59,6 +61,7 @@ tagged_sentences = nltk.corpus.treebank.tagged_sents()
 - [Build your own POS tagger](https://nlpforhackers.io/training-pos-tagger/)
 - [Build more complex POS tagger with Keras](https://nlpforhackers.io/lstm-pos-tagger-keras/)
 - [NLP for Hackers](https://nlpforhackers.io)
+- [CRF](https://blog.echen.me/2012/01/03/introduction-to-conditional-random-fields/) :fire:
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
@@ -69,6 +72,14 @@ tagged_sentences = nltk.corpus.treebank.tagged_sents()
 Q. How would you train a model that identifies whether the word “Apple” in a sentence belongs to the fruit or the company?
 
 - This is a classic example of `Named Entity Recognition`. It is a statistical technique that (most commonly) uses `Conditional Random Fields` to find named entities, based on having been trained to learn things about named entities. Essentially, it looks at the content and context of the word, (looking back and forward a few words), to estimate the probability that the word is a named entity. 
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/GF3iSJkgPbA" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/GF3iSJkgPbA)_
 
 
 ## How to build your own NER model?

@@ -246,9 +246,32 @@ In graphical models, each vertex represents a random variable, and the graph giv
 
 They can be useful for either unsupervised or supervised learning.
 
-- **Undirected graphical models**, also known as **Markov random** fields or **Markov networks**.
 
 - **Directed graphical models** or **Bayesian networks**; these are graphical models in which the edges have directional arrows (but no directed cycles). Directed graphical models represent probability distributions that can be factored into products of conditional distributions, and have the potential for causal interpretations.
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/zCWRTKnOYYg" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/zCWRTKnOYYg)_
+
+:bulb: Naive Bayes and Logistic Regression can be thought as Bayes Nets
+
+![image](/assets/images/image_08_gm_1.png)
+
+- **Undirected graphical models**, also known as **Markov random fields (MRF)** or **Markov networks**.
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/iBQkZdPHlCs" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/iBQkZdPHlCs)_
+
+
 
 - GMs tend to fall into two broad classes – those useful in **modelling**, and those useful in representing **inference algorithms**. 
   - For modelling, Belief Networks, Markov Networks, Chain Graphs and Influence Diagrams are some of the most popular. 
@@ -388,12 +411,36 @@ Read chapter $19.6$ for Conditional Random Field and it's application in NLP, li
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+----
+
+# Conditional Random Field
+
+A conditional random field or CRF (Lafferty et al. 2001), sometimes a discriminative random field (Kumar and Hebert 2003), is just a version of an MRF where all the clique potentials are conditioned on input features.
+
+:dart: **Similarity with Logisitc Regression:** A CRF can be thought of as a structured output extension of logistic regression. We will usually assume a log-linear representation of the potentials.
+
+The advantage of a CRF over an MRF is analogous to the advantage of a discriminative
+classifier over a generative classifier (see Section 8.6), namely, we don’t need to “waste resources” modeling things that we always observe. Instead we can focus our attention on modeling what we care about, namely the distribution of labels given the data.
+
+The most widely used kind of CRF uses a chain-structured graph to model correlation amongst neighboring labels. Such models are useful for a variety of sequence labeling tasks.
+
+![image](/assets/images/image_08_markov_2.png)
+
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/GF3iSJkgPbA" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/GF3iSJkgPbA)_
+
 
 ----
 
 # Exercise:
 
-
+1. What is Label Bias problem? :fire:
 2. What is Hidden Markov Model? [murphy, sec. $10.2.2$ and ch: $17$]
 
 ---
