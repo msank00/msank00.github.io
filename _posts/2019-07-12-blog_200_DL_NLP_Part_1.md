@@ -299,10 +299,13 @@ From [Lecture 14 by Prof.Mitesh K](http://www.cse.iitm.ac.in/~miteshk/CS7015.htm
 
 # Vanishing Gradient in CNN and RNN:
 
-- When talking about RNN, the vanishing gradient problem refers to the `change of gradient in one RNN layer over different time steps` (because the repeated use of the recurrent weight matrix). 
-- On the contrary, when talking about CNN, it is about the `gradient change over different layers`, and it is generally referred to as `“gradient decaying over layers”`. Just for your information, the recent IndRNN model addresses the vanishing and exploding gradient problems. It is much more robust than the traditional RNN.
-- If you just keep on adding convolution layers to a CNN , after a point you will start facing vanishing gradient. You can experiment this using the vgg architecture. To avoid this problem and build deeper networks , most of the modern architectures uses `skip connections` like in _Resnet_ , _Inception_. These modern architectures go deeper to more than 150 layers.
-- RNNs unfolded are deep in common application scenarios, thus prone to severer vanishing gradient problems. For example, when used in language modeling, `RNN depth can go as long as the longest sentence in the training corpus`. If the model is character-based, then the depth is even larger. CNNs in typical application scenarios are `shallower`, but still suffer from the same problem with gradients.
+:atom_symbol: **Vanishing gradient over different time-steps in same layer:** When talking about RNN, the vanishing gradient problem refers to the `change of gradient in one RNN layer over different time steps` (because the repeated use of the recurrent weight matrix). 
+
+:atom_symbol: **Decaying gradients over different layers:** On the contrary, when talking about CNN, it is about the `gradient change over different layers`, and it is generally referred to as `“gradient decaying over layers”`. Just for your information, the recent IndRNN model addresses the vanishing and exploding gradient problems. It is much more robust than the traditional RNN.
+
+- If you just keep on adding convolution layers to a CNN , after a point you will start facing vanishing gradient. You can experiment this using the vgg architecture. 
+  - :star: **Solution:** To avoid this problem and build deeper networks , most of the modern architectures uses `skip connections` like in _Resnet_ , _Inception_. These modern architectures go deeper to more than 150 layers.
+- RNNs unfolded are deep in common application scenarios, thus prone to severe vanishing gradient problems. For example, when used in language modeling, `RNN depth can go as long as the longest sentence in the training corpus`. If the model is character-based, then the depth is even larger. CNNs in typical application scenarios are `shallower`, but still suffer from the same problem with gradients.
 - Images typically have `hierarchy of scales`, so parts of the image which are far away from each other typically interact only at `higher order layers of the network`.
   - For RNN parts which are far far away from each other can huge influence. e.g. If you smoke when you are young, you may have cancer 40 years later. RNN should be able to make predictions based on very long term correlations.
 
@@ -388,12 +391,12 @@ There are some less subtle signs that you can use to confirm that you have explo
 
 There are two factors that affect the magnitude of gradients 
 - The weights
-- The activation functions (or more precisely, their derivatives) that the gradient passes through.
+- The **activation functions** (or more precisely, their **derivatives**) that the gradient passes through.
 
 If either of these factors is smaller than 1, then the gradients may vanish in time; if larger than 1, then exploding might happen. For example,- The $tanh$ derivative is $\lt1$ for all inputs except $0$ 
 - Sigmoid is even worse and is always $\leq 0.25$.
 
->> In the recurrency of the LSTM the activation function is the identity function with a derivative of 1.0. So, the backpropagated gradient neither vanishes or explodes when passing through, but remains constant.
+>> :bulb: In the recurrency of the LSTM, the activation function is the identity function with a derivative of 1.0. So, the backpropagated gradient neither vanishes or explodes when passing through, but remains constant.
 
 
 The effective weight of the recurrency is equal to the forget gate activation. So, if the forget gate is on (activation close to 1.0), then the gradient does not vanish. Since the forget gate activation is never >1.0, the gradient can't explode either.
