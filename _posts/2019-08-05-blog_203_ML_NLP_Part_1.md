@@ -145,9 +145,9 @@ $
 </center>
 
 
-Unfortunately, the above equation is still too hard to compute directly: without some simplifying assumption. ANd here comes the great Naive Bayes assumption which is the culprit of such naming **naive**.
+Unfortunately, the above equation is still too hard to compute directly: without some simplifying assumption. And here comes the great Naive Bayes assumption which is the culprit of such naming **naive**.
 
-- **Assumption 1:** bag of words - i.e features $f_1, \dots ,f_n$ only encode word identity bout not their position.
+- **Assumption 1:** bag of words - i.e features $f_1, \dots ,f_n$ only encode word identity but **not their position**.
 - **Naive-Bayes Assumption**: The conditional independence assumption that the probabilities $P(f_i \vert c)$ are independent given the class $c$. And thus:
 
 <center>
@@ -184,7 +184,7 @@ The beauty of the above equation is, in the log-space it's computing the predict
 
 **How to train the model?**
 
-How can we learn the probabilities $P(c)$ and $P(f_i \vert c)$? Let’s first consider the maximum likelihood estimate. We’ll simply use the frequencies in the data.
+How can we learn the probabilities $P(c)$ and $P(f_i \vert c)$? Let’s first consider the maximum likelihood estimate. We’ll simply use the `frequencies in the data`.
 
 To learn the probability $P( f_i \vert c)$, we’ll assume a feature is just the existence of a word in the document’s `bag of words`, and so we’ll want $P(w_i \vert c)$.
 
@@ -225,7 +225,7 @@ $P(w_3 \vert w_1 w_2) = \frac{C(w_1 w_2 w_3)}{C(w_1 w_2)}$
 
 i.e count number of times $w_3$ is used followed by $w_1 w_2$: $C(w_1 w_2 w_3)$. And divide this by how many times $w_1 w_2$ appear together $C(w_1 w_2)$.
 
-However count based methods have flaws. New sentences are created very often and we won’t always be able to count entire sentences. For this reason, we’ll need to introduce cleverer ways of estimating the probability of a word w given a history h, or the probability of an entire word sequence W.
+However count based methods have flaws. New sentences are created very often and we won’t always be able to count entire sentences. For this reason, we’ll need to introduce cleverer ways of estimating the probability of a word $w$ given a history $h$, or the probability of an entire word sequence $W$.
 
 So we can compute the probabilities of the entire sentence $S=w_1 \dots w_n$ like this:
 
@@ -245,27 +245,27 @@ $
 
 </center>
 
-where $x_1^n$ means $x_1 x_2 \dots x_n$. The chain rule shows the link between computing the joint probability of a sequence and computing the conditional probability of a word given previous words.
+where $x_1^n$ means $x_1 x_2 \dots x_n$. The chain rule shows the link between computing the `joint probability` of a sequence and computing the `conditional probability` of a word given previous words.
 
-The **intuition of the n-gram model** is that instead of computing the probability of a word given its entire history, we can approximate the history by just the last few words. And applying **Markov Assumption** we can say that probability of $w_n$ depends on the previous word $w_{n-1}$ only i.e $P(w_n \vert w_{n-1})$ and thus we create the foundation of the **Bi-gram model**. 
+The **intuition of the n-gram model** is that instead of computing the probability of a word given its entire history, we can approximate the history by just the last few words. And applying **Markov Assumption** we can say that probability of $w_n$ depends on the previous word $w_{n-1}$ only i.e $p(w_n \vert w_{n-1})$ and thus we create the foundation of the **Bi-gram model**. 
 
-Now product form of so many probabilities are going to be very small. So we can take $\log$ of $P(w_1^n)$ and get a nice summation form:
+Now product form of so many probabilities are going to be very small. So we can take $\log()$ of $p(w_1^n)$ and get a nice summation form:
 
 <center>
 
 $
-\log(P(w_1^n) = \Sigma_{k=1}^{n} P(w_n \vert w_{n-1})
+\log(p(w_1^n)) = \Sigma_{k=1}^{n} p(w_n \vert w_{n-1})
 $
 
 </center>
 
-_note: the above formulation is for Bi-gram model_
+:bulb: _note: the above formulation is for Bi-gram model_
 
-Now interestingly the above equation gives us the joint probability of those words together. So, it's showing the **likelihood** (i.e. the probability) of the data (i.e. the sentence). To estmiate these likelihood we can go for maximization -- enter **Maximum LIkelihood Estimation**. 
+Now interestingly the above equation gives us the joint probability of those words together. So, it's showing the **likelihood** (i.e. the probability) of the data (i.e. the sentence). To estmiate these likelihood we can go for maximization $\rightarrow$ **Maximum Likelihood Estimation**. 
 
-**Evaluation:** In practice we don’t use raw probability as our metric for evaluating language mod- els, but a variant called **perplexity**. However the concept of perplexity is related to entropy.  
+**Evaluation:** In practice we don’t use raw probability as our metric for evaluating language models, but a variant called **perplexity**. However the concept of perplexity is related to `entropy`.  [For more details look [here](https://msank00.github.io/blog/2019/07/12/blog_200_DL_NLP_Part_1#what-is-model-perplexity)]
 
-> There is another way to think about perplexity: as the **weighted average branching factor** of a language. The branching factor of a language is the number of possible next words that can follow any word.
+> :star: There is another way to think about perplexity: as the **weighted average branching factor** of a language. The `branching factor` of a language is the **number of possible next word** that can follow any word.
 
 However with count based approach we may face the situation of **Zero Count** problem. And to mitigate that use **Smoothing**.
 
@@ -285,28 +285,35 @@ However with count based approach we may face the situation of **Zero Count** pr
 
 ---
 
-# What is Linear Discriminant Analysis
+# What is LDA - Linear Discriminant Analysis
 
-- Logistic regression involves directly modeling $P(Y = k \vert X = x)$ using the logistic function. But in LDA we take indirect approach. In this alternative approach, we model the distribution of the predictors $X$ separately in each of the response classes (i.e. given $x$), and then use Bayes’ theorem to flip these around into estimates for $Pr(Y = k \vert X = x)$. 
+> :star: ... model the distribution of the predictors $X$ separately in each of the response classes $Y$...
+
+- Logistic regression involves directly modeling $P(Y = k \vert X = x)$ using the logistic function. But in LDA we take indirect approach. In this alternative approach, we **model the distribution of the predictors** $X$ separately in each of the response classes (i.e. given $x$), and then use Bayes’ theorem to flip these around into estimates for $Pr(Y = k \vert X = x)$. 
 - When these distributions are assumed to be normal, it turns out that the model is very similar in form to logistic regression.
 
 ## Why we need LDA when we have Logistic Regression?
 
-- When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable. Linear discriminant analysis does not suffer from this problem.
-- If $n$ is small and the distribution of the predictors $X$ is approximately normal in each of the classes, the linear discriminant model is again more stable than the logistic regression model.
-- linear discriminant analysis is popular when we have more than two response classes.
+- **Stability when well separated:** When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable. Linear discriminant analysis does not suffer from this problem.
+- **Stability when normally distributed:** If $n$ is small and the distribution of the predictors $X$ is approximately normal in each of the classes, the linear discriminant model is again more stable than the logistic regression model.
+- **Stability for $\gt2$ classes:** Linear discriminant analysis is popular when we have more than two response classes.
 
 ## How LDA is related to PCA?
 
+> :star: Linear Discriminant Analysis (LDA) is most commonly used as **dimensionality reduction technique** in the pre-processing step for pattern-classification
+
 -  The goal of an LDA is to project a feature space (a dataset $n$-dimensional samples) onto a smaller subspace $k$ (where $k \leq n−1$) while maintaining the `class-discriminatory` information. 
 - It's a classification algorithm.
-- Linear Discriminant Analysis (LDA) is most commonly used as dimensionality reduction technique in the pre-processing step for pattern-classification and machine learning applications. The goal is to project a dataset onto a lower-dimensional space with good class-separability in order avoid overfitting (“curse of dimensionality”) and also reduce computational costs.
-- The general LDA approach is very similar to a Principal Component Analysis, but in addition to finding the component axes that maximize the variance of our data (PCA), we are additionally interested in the axes that maximize the separation between multiple classes (LDA).
+- Linear Discriminant Analysis (LDA) is most commonly used as dimensionality reduction technique in the pre-processing step for pattern-classification and machine learning applications. The goal is to project a dataset onto a lower-dimensional space with good class-separability in order avoid overfitting (`curse of dimensionality`) and also reduce computational costs.
+- The general LDA approach is very similar to a Principal
+  Component Analysis. LDA tries to satisfy the below $2$ conditions:
+  - **Dimensionality Reduction:** Find component axes that maximizes the variances (similar to PCA). 
+  - **Class Separability:** Find axes that maximizes the separation between multiple classes. 
 
 ![image](https://sebastianraschka.com/images/blog/2014/linear-discriminant-analysis/lda_1.png)
 
-- Both Linear Discriminant Analysis (LDA) and Principal Component Analysis (PCA) are linear transformation techniques that are commonly used for dimensionality reduction.
-- PCA is unsupervised where as LDA is supervised and LDA computes the `directions ("linear discriminants")` that will represent the axes that that maximize the separation between multiple classes
+- Both Linear Discriminant Analysis (LDA) and Principal Component Analysis (PCA) are **linear transformation** techniques that are commonly used for dimensionality reduction.
+- PCA is unsupervised where as LDA is **supervised** and LDA computes the `directions` (`linear discriminants`) that will represent the axes that maximize the separation between multiple classes
 
 
 **Reference:**
@@ -321,41 +328,65 @@ However with count based approach we may face the situation of **Zero Count** pr
 ----
 
 
-# LDA, Topic Modelling
+# LDA - Latent Dirichlet Allocation, Topic Modelling
 
-Topic Modelling is different from rule-based text mining approaches that use regular expressions or dictionary based keyword searching techniques. It is an unsupervised approach used for finding and observing the bunch of words (called “topics”) in large clusters of texts.
+> :star: ...a repeating pattern of co-occurring terms in a corpus...
 
-Topics can be defined as “a repeating pattern of co-occurring terms in a corpus”. A good topic model should result in – “health”, “doctor”, “patient”, “hospital” for a topic – Healthcare, and “farm”, “crops”, “wheat” for a topic – “Farming”.
+Topic Modelling is different from rule-based text mining approaches that use regular expressions or dictionary based keyword searching techniques. It is an **unsupervised** approach used for finding and observing the bunch of words (called `topics`) in large clusters of texts.
 
-Topic Models are very useful for the purpose for document clustering, organizing large blocks of textual data, information retrieval from unstructured text and feature selection. For Example – New York Times are using topic models to boost their user – article recommendation engines. Various professionals are using topic models for recruitment industries where they aim to extract latent features of job descriptions and map them to right candidates. They are being used to organize large datasets of emails, customer reviews, and user social media profiles.
+Topics can be defined as `a repeating pattern of co-occurring terms in a corpus`. A good topic model should result in 
+- “health”, “doctor”, “patient”, “hospital” for a topic $\rightarrow$ Healthcare
+- “farm”, “crops”, “wheat” for a topic $\rightarrow$ “Farming”.
+
+Topic Models are very useful for the purpose for 
+- Document clustering
+- Organizing large blocks of textual data
+- Information retrieval from unstructured text
+- Feature selection. 
+
+Application:
+- **News Recommendation:** New York Times are using topic models to boost their user – article recommendation engines. 
+- **Candidate Recruitment from CV:** Various professionals are using topic models for recruitment industries where they aim to extract **latent features of job descriptions** and map them to right candidates. 
+
+They are being used to organize large datasets of emails, customer reviews, and user social media profiles.
 
 <img src="https://www.analyticsvidhya.com/wp-content/uploads/2016/08/Modeling1.png" alt="image" width="400"/>
 
 You can try doing topic modelling using the following methods.
 
 - Term Frequency and Inverse Document Frequency. 
-- Do Non negative Matrix Factorization (NMF)
-- LDA. 
+- Non negative Matrix Factorization (NMF)
+- LDA - Latent Dirichlet Allocation 
 
-NMF is supposed to be a lot faster than LDA, but LDAs supposed to be more accurate. Problem is LDA takes a long time, unless you’re using distributed computing.
+:atom_symbol: **Performance vs Accuracy:** NMF is supposed to be a lot faster than LDA, but LDAs supposed to be more accurate. Problem is LDA takes a long time, unless you’re using distributed computing.
 
-LDA assumes documents are produced from a mixture of topics. Those topics then generate words based on their probability distribution. Given a dataset of documents, LDA backtracks and tries to figure out what topics would create those documents in the first place.
+:atom_symbol: **Assumption:** LDA assumes documents are produced from a `mixture of topics`. Those topics then generate words based on their `probability distribution`. 
 
-LDA is a matrix factorization technique. In vector space, any corpus (collection of documents) can be represented as a document-term matrix. LDA converts this Document-Term Matrix into two lower dimensional matrices – M1 and M2.
-M1 is a document-topics matrix and M2 is a topic – terms matrix with dimensions ($N$,  $K$) and ($K$, $M$) respectively, where $N$ is the number of documents, $K$ is the number of topics and $M$ is the vocabulary size.
+>> :star: Given a dataset of documents, LDA backtracks and tries to figure out what topics would create those documents in the first place.
 
-It Iterates through each word `w` for each document `d` and tries to adjust the current topic – word assignment with a new assignment. A new topic `k` is assigned to word `w` with a probability P which is a product of two probabilities p1 and p2.
+:atom_symbol: LDA is a **matrix factorization technique**. In vector space, any corpus (collection of documents) can be represented as a **document-term matrix**. LDA converts this `Document-Term` Matrix ($N \times M$) into two lower dimensional matrices – $M_1$ and $M_2$.
+- $M_1$ is a `document-topics` matrix ($N \times K$)
+- $M_2$ is a `topic – terms` matrix ($K \times M$)
 
-For every topic, two probabilities p1 and p2 are calculated. 
+where 
+- $N$ is the number of documents
+- $K$ is the number of topics
+- $M$ is the vocabulary size.
 
-- P1: $p(topic_t \vert doc_d)$ = the proportion of words in document d that are currently assigned to topic t.
-- P2: $p(word_w \vert topic_t)$ = the proportion of assignments to topic t over all documents that come from this word w.
+It iterates through each word $w_i$ for each document $d_j$ and tries to adjust the current `topic – word` assignment with a new assignment. A new topic $t_k$ is assigned to word $w_i$ with a probability $p$ which is a product of two probabilities $p_1$ and $p_2$.
 
-The current topic – word assignment is updated with a new topic with the probability, product of p1 and p2 . In this step, the model assumes that all the existing word – topic assignments except the current word are correct. This is essentially the probability that topic t generated word w, so it makes sense to adjust the current word’s topic with new probability.
+For every topic, two probabilities $p_1$ and $p_2$ are calculated. 
 
-After a number of iterations, a steady state is achieved where the document topic and topic term distributions are fairly good. This is the convergence point of LDA.
+- $p_1$: $p(t_k \vert d_j)$ = the proportion of words in document $d_j$ that are currently assigned to topic $t_k$.
+- $p_2$: $p(w_i \vert t_k)$ = the proportion of assignments to topic $t_k$ over all documents that come from this word $w_i$.
 
-**Resource:**
+The current `topic – word` assignment is updated with a new topic with the probability, product of $p_1$ and $p_2$ . 
+
+**Assumption:** The model assumes that all the existing `word – topic` assignments, except the current word are correct. This is essentially the probability that topic $t_k$ generated word $w_i$, so it makes sense to adjust the current word’s topic with new probability.
+
+After a number of iterations, a steady state is achieved where the `document-topic` and `topic-term` distributions are fairly good. This is the convergence point of LDA.
+
+:paperclip: **References:**
 
 - [AVB](https://www.analyticsvidhya.com/blog/2016/08/beginners-guide-to-topic-modeling-in-python/)
 - [EdwinChen](http://blog.echen.me/2011/08/22/introduction-to-latent-dirichlet-allocation/)
@@ -367,9 +398,11 @@ After a number of iterations, a steady state is achieved where the document topi
 
 ## More on LDA: Latent Dirichlet Allocation
 
-- Generative model for topic modelling. It's an unsupervised learning.
-- LDA is one of the early versions of a ’topic model’ which was first presented by David Blei, Andrew Ng, and Michael I. Jordan in 2003.
-- In essence, LDA is a `generative model` that allows observations about data to be explained by unobserved latent variables that explain why some parts of the data are similar, or potentially belong to groups of similar "topics"
+- **Generative model** for topic modelling. It's an **unsupervised learning**.
+- LDA is one of the early versions of a `topic model` which was first presented by David Blei, Andrew Ng, and Michael I. Jordan in 2003.
+- In essence, LDA is a `generative model` that allows observations about data to be **explained by unobserved latent variables** that explain why some parts of the data are similar, or potentially belong to groups of similar `topics`.
+
+Each doccument is a mixture of topic:
 
 ![image](/assets/images/image_28_lda_3.png)
 ![image](/assets/images/image_28_lda_4.png)
@@ -384,9 +417,9 @@ The `generative story` begins with begins with only Dirichlet Prior over the top
 
 ## Dirichlet Distribution
 
-- In probability and statistics, the Dirichlet distribution (after Peter Gustav Lejeune Dirichlet), often denoted $Dir( \alpha )$, is a family of `continuous multivariate probability distributions` parameterized by a vector $\alpha$ of positive reals. 
-- It is a `multivariate generalization of the beta distribution`, hence its alternative name of multivariate beta distribution (MBD).
-- Dirichlet distributions are commonly used as prior distributions in Bayesian statistics, and in fact the Dirichlet distribution is the conjugate prior of the categorical distribution and multinomial distribution. 
+- :sparkles: In probability and statistics, the Dirichlet distribution (after Peter Gustav Lejeune Dirichlet), often denoted $Dir( \alpha )$, is a family of `continuous multivariate probability distributions` parameterized by a vector $\alpha$ of positive reals. 
+- :sparkles: It is a `multivariate generalization of the beta distribution`, hence its alternative name of multivariate beta distribution (MBD).
+- :rocket: Dirichlet distributions are commonly used as prior distributions in Bayesian statistics, and in fact the Dirichlet distribution is the conjugate prior of the categorical distribution and multinomial distribution. 
 
 ![image](/assets/images/image_28_lda_1.png)
 ![image](/assets/images/image_28_lda_2.png)
@@ -407,7 +440,7 @@ The `generative story` begins with begins with only Dirichlet Prior over the top
 
 - It's SVD used in information retrieval.
 
->> The term document matrix is the basis for computing the similarity between document and query. Can we transform this matrix so that we can get better measure of similarity between document and query?
+>> :sparkles: The `term-document` matrix is the basis for computing the similarity between `document` and `query`. Can we transform this matrix so that we can get better measure of similarity between document and query?
 
 
 ![image](/assets/images/image_29_lsi_1.png)
@@ -433,19 +466,19 @@ The `generative story` begins with begins with only Dirichlet Prior over the top
 # What is Nonnegative Matrix Factorization (NMF) ?
 
 
-> With the rise of complex models like deep learning, we often forget simpler, yet powerful machine learning methods that can be equally powerful. NMF (Nonnegative Matrix Factorization) is one effective machine learning technique that I feel does not receive enough attention. NMF has a wide range of uses, from topic modeling to signal processing.
+> :fire: With the rise of complex models like deep learning, we often forget simpler, yet powerful machine learning methods that can be equally powerful. NMF (Nonnegative Matrix Factorization) is one effective machine learning technique that I feel does not receive enough attention. NMF has a wide range of uses, from `topic modeling` to `signal processing`.
 
 ## When do we use NMF?
 
 **Example: Computer Vision**
 
-- A different, commonly used factorization method is PCA (Principle Components Analysis). But PCA creates factors that can be both positive and negative.
+- A different, commonly used factorization method is PCA (Principle Components Analysis). But PCA creates factors that can be both `positive` and `negative`.
 
 Let’s see what happens when we try decomposing various faces. In the following image, we show the components (bases) we calculated with PCA on the left and the weights corresponding to a single image on the right. Red represents negative values.
 
 ![image](https://keitakurita.files.wordpress.com/2017/11/pca_faces.png?resize=293%2C137)
 
-If you look at the components, you see that they don’t make much sense. It’s also difficult to interpret what it means for a face to have a “negative” component.
+If you look at the components, you see that they don’t make much sense. It’s also difficult to interpret what it means for a face to have a `negative` component.
 
 Now, let’s see what happens when we use NMF.
 
@@ -456,9 +489,9 @@ Now, the components seem to have some meaning. Some of them look like parts of a
 
 **Example 2: Topic Modeling**
 
-Imagine if you wanted to decompose a term-document matrix, where each column represented a document, and each element in the document represented the weight of a certain word (the weight might be the raw count or the tf-idf weighted count or some other encoding scheme; those details are not important here).
+Imagine if you wanted to decompose a `term-document` matrix, where each column represented a document, and each element in the document represented the weight of a certain word (the weight might be the raw count or the tf-idf weighted count or some other encoding scheme; those details are not important here).
 
-NMF decomposition of the term-document matrix would yield components that could be considered “topics”, and decompose each document into a weighted sum of topics. This is called topic modeling and is an important application of NMF.
+> :fire: NMF decomposition of the `term-document` matrix would yield components that could be considered `topics`, and **decompose each document** into a **weighted sum of topics**. This is called topic modeling and is an important application of NMF.
 
 NMF ensures that after decomposition the values are non-negative, which brings lots of meaningful insight which wouldn't have been possible in other decomposition. 
 
