@@ -274,6 +274,8 @@ Now we are interested in the magnitude of $\frac{\delta s_{j+1}}{\delta s_{j}}$.
 - If $\frac{\delta s_{j+1}}{\delta s_{j}}$ is small, i.e $\lt 1$, then on repeated multiplication, it will **vanish**, $\Rightarrow$ $\frac{\delta s_{t}}{\delta s_{k}}$ will **vanish** $\Rightarrow$  $\frac{\delta L_t(\theta)}{\delta W}$ will **vanish**.
 - If $\frac{\delta s_{j+1}}{\delta s_{j}}$ is large, i.e $\gt 1$, then on repeated multiplication, it will **explode**, $\Rightarrow$ $\frac{\delta s_{t}}{\delta s_{k}}$ will **explode** $\Rightarrow$  $\frac{\delta L_t(\theta)}{\delta W}$ will **explode**.
  
+:bulb: Note: Here $s$ is `cell state`, and $j$ is the time step, thus wew can write in more meaningful way as $\frac{\partial C_{t+1}}{\partial C_{t}}$)
+
 From [Lecture 14 by Prof.Mitesh K](http://www.cse.iitm.ac.in/~miteshk/CS7015.html),
 
 <center>
@@ -360,15 +362,15 @@ There are some less subtle signs that you can use to confirm that you have explo
 
 ## How to Fix Exploding Gradients?
 
-1. Re-Design the Network Model
+:atom_symbol: **Re-Design the Network Model**
 
 - In recurrent neural networks, updating across fewer prior time steps during training, called `truncated Backpropagation` through time, may reduce the exploding gradient problem.
 
-2.  Using LSTM 
+:atom_symbol:  **Using LSTM** 
 
 - Exploding gradients can be reduced by using the `Long Short-Term Memory` (LSTM) memory units and perhaps related `gated-type` neuron structures. Adopting LSTM memory units is a new best practice for recurrent neural networks for sequence prediction.
 
-3. Use Gradient Clipping
+:atom_symbol: **Use Gradient Clipping**
 
 - Exploding gradients can still occur in very deep Multilayer Perceptron networks with 
   - Large batch size
@@ -377,7 +379,7 @@ There are some less subtle signs that you can use to confirm that you have explo
 
 >> clipping gradients if their norm exceeds a given threshold
 
-4. Use Weight Regularization
+:atom_symbol: **Use Weight Regularization**
 
 **Resource:**
 
@@ -434,7 +436,7 @@ Given that $f$, the `forget gate`, is the rate at which you want the neural netw
 
 In the paper [Sequence to Sequence Learning with Neural Networks (by Ilya Sutskever, Oriol Vinyals, Quoc V. Le)](https://arxiv.org/abs/1409.3215), section "3.4 Training details", it is stated `Although LSTMs tend to not suffer from the vanishing gradient problem, they can have exploding gradients.`
 
-**TL;DR:** LSTM decouples cell state (typically denoted by `c`) and hidden layer/output (typically denoted by `h`), and only `do additive updates` to `c`, which makes memories in `c` more stable. Thus the gradient flows through `c` is kept and hard to vanish (therefore the overall gradient is hard to vanish). However, other paths may cause gradient explosion.
+**TL;DR:** LSTM decouples cell state (typically denoted by $C_t$) and hidden layer/output (typically denoted by $h_t$), and only `do additive updates` to $C_t$, which makes memories in $C_t$ more stable. Thus the gradient flows through $C_t$ is kept and hard to vanish (therefore the overall gradient is hard to vanish). However, other paths may cause gradient explosion.
 
 **Detailed Answer:** [StackExchange](https://stats.stackexchange.com/questions/320919/why-can-rnns-with-lstm-units-also-suffer-from-exploding-gradients/339129#339129)
 
@@ -446,9 +448,9 @@ In the paper [Sequence to Sequence Learning with Neural Networks (by Ilya Sutske
 
 # Preventing Vanishing Gradients with LSTMs
 
-The biggest culprit in causing our gradients to vanish is that dastardly recursive derivative we need to compute: $\frac{\partial s_j}{\partial s_{j-1}}$. If only this derivative was `well behaved` (that is, it doesn’t go to 0 or infinity as we backpropagate through layers) then we could learn long term dependencies!
+**Well behaved derivated:** The biggest culprit in causing our gradients to vanish is that dastardly recursive derivative we need to compute: $\frac{\partial s_j}{\partial s_{j-1}}$ (:bulb: where $s$ is `cell state`, and $j$ is the time step, thus wew can write in more meaningful way as $\frac{\partial C_t}{\partial C_{t-1}}$). If only this derivative was `well behaved` (that is, it doesn’t go to $0$ or $\infty$ (infinity) as we backpropagate through layers) then we could learn long term dependencies!
 
-**The original LSTM solution:** The original motivation behind the LSTM was to make this recursive derivative have a constant value. If this is the case then our gradients would neither explode or vanish. How is this accomplished? As you may know, the LSTM introduces a separate cell state $C_t$. In the original 1997 LSTM, the value for $C_t$ depends on the previous value of the cell state and an update term weighted by the input gate value (for motivation on why the input/output gates are needed, I would check out this [great post](https://r2rt.com/written-memories-understanding-deriving-and-extending-the-lstm.html)):
+**The original LSTM solution:** The original motivation behind the LSTM was to make this recursive derivative have a constant value. If this is the case then our gradients would neither explode or vanish. How is this accomplished? As you may know, the LSTM introduces a separate cell state $C_t$. In the original 1997 LSTM, the value for $C_t$ depends on the previous value of the cell state (i.e $C_{t-1}$) and an update term weighted by the input gate value (for motivation on why the input/output gates are needed, I would check out this [great post](https://r2rt.com/written-memories-understanding-deriving-and-extending-the-lstm.html)):
 
 <center>
 
@@ -469,7 +471,7 @@ One important thing to note is that the values $f_t$, $o_t$, $i_t$, and $\tilde 
 
 This might all seem magical, but it really is just the result of two main things:
 
->> The additive update function for the cell state gives a derivative thats much more ‘well behaved’. The gating functions allow the network to decide how much the gradient vanishes, and can take on different values at each time step. The values that they take on are learned functions of the current input and hidden state.
+>> :bulb: The **additive update** function for the cell state gives a derivative thats much more `well behaved`. The **gating functions** allow the network to decide how much the gradient vanishes, and can take on different values at each time step. The values that they take on are learned functions of the current input and hidden state.
 
 
 **Resource:**
