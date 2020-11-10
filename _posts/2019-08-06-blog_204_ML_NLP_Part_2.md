@@ -81,6 +81,7 @@ Q. How would you train a model that identifies whether the word “Apple” in a
 
 _*In case the above link is broken, click [here](https://www.youtube.com/embed/GF3iSJkgPbA)_
 
+_For more on Graphical Models, click [here](https://msank00.github.io/blog/2019/07/21/blog_002_Statistical_Analysis_Part_2#what-is-graphical-model-gm)_
 
 ## How to build your own NER model?
 
@@ -119,7 +120,7 @@ But quotes are a tricky business. Lots of things look like quotes that aren't, a
 
 ## Maximum Entropy Model
 
-> This model considers all of the probability distributions that are `empirically consistent` with the training data; and chooses the distribution with the `highest entropy`.  A probability distribution is "empirically consistent" with a set of training data if its estimated frequency with which a class and a feature vector value co-occur is
+> :sparkles: This model considers all of the probability distributions that are `empirically consistent` with the training data; and chooses the distribution with the `highest entropy`.  A probability distribution is "empirically consistent" with a set of training data if its estimated frequency with which a class and a feature vector value co-occur is
 equal to the actual frequency in the data.
 
 - Many problems in natural language processing can be viewed as `linguistic classification` problems, in which `linguistic contexts` are used to predict `linguistic classes`. 
@@ -135,52 +136,6 @@ In the above problem, use feature and apply maximum entropy model to classify if
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
-
----
-
-# Latent Semantic Analysis (LSA) for Text Classification Tutorial?
-
-- [AV](https://www.analyticsvidhya.com/blog/2018/10/stepwise-guide-topic-modeling-latent-semantic-analysis/)
-
-## What is Latent Semantic Indexing?
-
-- Latent semantic indexing is a mathematical technique to extract information from unstructured data. It is based on the principle that words used in the same context carry the same meaning.
-
-> **Latent Semantic Analysis (LSA)** is a theory and method for extracting and representing the contextual-usage meaning of words by statistical computations applied to a large corpus of text.
-
-- In order to identify relevant (concept) components, or in other words, aims to group words into classes that represent concepts or semantic fields, this method applies `Singular Value Decomposition` to the `Term-Document matrix` **tf-idf**. As the name suggests this matrix consists of words as rows and document as columns. 
-- LSA itself is an unsupervised way of uncovering synonyms in a collection of documents.
-
-## Where you can apply Latent Semantic Analysis?
-
-- Text classification
-- Topic Modelling
-
-## Pros and Cons of LSA
-
-`Latent Semantic Analysis` can be very useful as we saw above, but it does have its limitations. It’s important to understand both the sides of LSA so you have an idea of when to leverage it and when to try something else.
-
-**Pros:**
-
-- LSA is fast and easy to implement.
-- It gives decent results, much better than a plain vector space model.
-
-**Cons:**
-
-
-- Since it is a linear model, it might not do well on datasets with non-linear dependencies.
-- LSA assumes a Gaussian distribution of the terms in the documents, which may not be true for all problems.
-- LSA involves SVD, which is computationally intensive and hard to update as new data comes up.
-
-
-**Reference:**
-
-- [Blog](https://mccormickml.com/2016/03/25/lsa-for-text-classification-tutorial/)
-- [Stepwise guide to Topic Modelling](https://www.analyticsvidhya.com/blog/2018/10/stepwise-guide-topic-modeling-latent-semantic-analysis/)
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
-
 ----
 
 # Build a system that auto corrects text
@@ -190,7 +145,8 @@ Q. How would you build a system that auto corrects text that has been generated 
 > A spellchecker points to spelling errors and possibly suggests alternatives. An autocorrector usually goes a step further and automatically picks the most likely word. In case of the correct word already having been typed, the same is retained. So, in practice, an autocorrect is a bit more aggressive than a spellchecker, but this is more of an implementation detail — tools allow you to configure the behaviour.
 
 - [language-models-spellchecking-and-autocorrection](https://towardsdatascience.com/language-models-spellchecking-and-autocorrection-dd10f739443c)
-
+- [Dan Jurafsky slide](https://web.stanford.edu/class/cs124/lec/spelling.pdf) :fire:
+- [Natural Language Corpus Data - Peter Norvig](https://norvig.com/ngrams/ch14.pdf) :fire:
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
@@ -262,7 +218,7 @@ Actually there is no machine learning going on here but this library parses for 
 
 - Ontologies provide semantic context. Identifying entities in unstructured text is a picture only half complete. Ontology models complete the picture by showing how these entities relate to other entities, whether in the document or in the wider world.
 
-> An ontology is a formal and structural way of representing the concepts and relations of a shared conceptualization
+> :bulb: An ontology is a formal and structural way of representing the concepts and relations of a shared conceptualization
 
 ![image](https://dw1.s81c.com/developerworks/mydeveloperworks/blogs/nlp/resource/nlp-shakespeare.jpg)
 
@@ -327,6 +283,8 @@ Syntactic Parse Tree
 
 # What is `Semantic` analysis?
 
+> :bulb: Lexical analysis is based on smaller token but on the other side semantic analysis focuses on larger chunks
+
 We already know that lexical analysis also deals with the meaning of the words, then how is semantic analysis different from lexical analysis? Lexical analysis is based on smaller token but on the other side semantic analysis focuses on larger chunks. That is why semantic analysis can be divided into the following two parts −
 
 - The semantic analysis of natural language content starts by reading all of the words in content to capture the real meaning of any text. 
@@ -349,13 +307,30 @@ Semantic analysis is a larger term, meaning to analyse the meaning contained wit
 
 ----
 
-# TODO: What id `Taxonomy`?
+# What is `Taxonomy` and `Ontology`?
+
+An **ontology** identifies and distinguishes `concepts` and their `relationships`; it describes content and relationships. 
+
+A **taxonomy** formalizes the `hierarchical relationships` among **concepts** and specifies the term to be used to refer to each; it prescribes structure and terminology. Taxonomy identifies hierarchical relationships within a category.
+
+**Ontology**
+
+![image](https://miro.medium.com/max/602/0*cWDzFFjigyJHDpa6)
+
+
+**Taxonomy example:**
+
+![image](https://miro.medium.com/max/602/0*81qITtZ1qMksajww)
+
+**Reference:**
+
+- [Blog](https://stangarfield.medium.com/whats-the-difference-between-an-ontology-and-a-taxonomy-c8da7c56fbea)
 
 ----
 
 # Explain TF-IDF 
 
-Q. What is the drawback of Tf-Idf ? How do you overcome it ?**
+Q. What is the drawback of Tf-Idf ? How do you overcome it ?
 
 ## Advantages:
 - Easy to compute
@@ -364,8 +339,8 @@ Q. What is the drawback of Tf-Idf ? How do you overcome it ?**
 
 ## Disadvantages:
 
-- TF-IDF is based on the bag-of-words (BoW) model, therefore it does not capture position in text, semantics, co-occurrences in different documents, etc.
-- For this reason, TF-IDF is only useful as a lexical level feature
+- TF-IDF is based on the bag-of-words (BoW) model, therefore it **does not capture position** in text, semantics, co-occurrences in different documents, etc.
+- For this reason, TF-IDF is only useful as a **lexical level feature**
 - Cannot capture semantics (e.g. as compared to topic models, word embeddings)
 
 

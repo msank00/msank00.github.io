@@ -460,7 +460,55 @@ The `generative story` begins with begins with only Dirichlet Prior over the top
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+
 ----
+
+## What is Latent Semantic Indexing?
+
+- Latent semantic indexing is a mathematical technique to extract information from unstructured data. It is based on the principle that words used in the same context carry the same meaning.
+
+> **Latent Semantic Analysis (LSA)** is a theory and method for extracting and representing the contextual-usage meaning of words by statistical computations applied to a large corpus of text.
+
+- In order to identify relevant (concept) components, or in other words, aims to group words into classes that represent concepts or semantic fields, this method applies `Singular Value Decomposition` to the `Term-Document matrix` **tf-idf**. As the name suggests this matrix consists of words as rows and document as columns. 
+- LSA itself is an unsupervised way of uncovering synonyms in a collection of documents.
+
+## Where you can apply Latent Semantic Analysis?
+
+- Text classification
+- Topic Modelling
+
+## Pros and Cons of LSA
+
+`Latent Semantic Analysis` can be very useful as we saw above, but it does have its limitations. It’s important to understand both the sides of LSA so you have an idea of when to leverage it and when to try something else.
+
+**Pros:**
+
+- LSA is fast and easy to implement.
+- It gives decent results, much better than a plain vector space model.
+
+**Cons:**
+
+
+- Since it is a linear model, it might not do well on datasets with non-linear dependencies.
+- LSA assumes a Gaussian distribution of the terms in the documents, which may not be true for all problems.
+- LSA involves SVD, which is computationally intensive and hard to update as new data comes up.
+
+
+**Reference:**
+
+- [Blog](https://mccormickml.com/2016/03/25/lsa-for-text-classification-tutorial/)
+- [Stepwise guide to Topic Modelling](https://www.analyticsvidhya.com/blog/2018/10/stepwise-guide-topic-modeling-latent-semantic-analysis/)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Latent Semantic Analysis (LSA) for Text Classification Tutorial?
+
+- [AV](https://www.analyticsvidhya.com/blog/2018/10/stepwise-guide-topic-modeling-latent-semantic-analysis/)
+
+
+-----
 
 # What is Nonnegative Matrix Factorization (NMF) ?
 
