@@ -21,7 +21,7 @@ Quick Refresher: Neural Network in NLP
 - The dimensionality of the hidden layer decides the width of the model.
 - The strategy of deep learning is to learn $\phi$. In this approach, we have a model $y=f(x;\theta,w)=\phi(x;\theta)^Tx$. We now have $\theta$, that we use to learn $\phi$ from a broad class of functions and parameter $w$ that map from $\phi(x)$ to the desired output. This is an example of deep FNN and $\phi$ denotes the hidden layer.
 -  This approach gives up the convexity of the training problem but the benefits out-weight the harm.
-- FFN has introduced the concept of **hidden layer**, and this requires us to choose the **activation function** to compute the the hidden layer values.
+- FFN has introduced the concept of **hidden layer**, and this requires us to choose the **activation function** to compute the the hidden layer values and brings **non-linearity** into the system.
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
