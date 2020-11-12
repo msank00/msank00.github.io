@@ -424,7 +424,7 @@ $
 for $i=0,\ldots, l-1$ and $j=0,\ldots,\lfloor(d-1)/2\rfloor$.
 
 <center>
-<img src="https://d2l.ai/_images/positional_encoding.svg" alt="image" width="500">
+<img src="https://d2l.ai/_images/positional-encoding.svg" alt="image" width="500">
 </center>
 
 ## Encoder
