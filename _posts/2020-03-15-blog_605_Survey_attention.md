@@ -22,6 +22,8 @@ mathjax: true
 
 # Introduction
 
+> :bulb: ... in classic `seq2seq` model, encoder RNN passes the last hidden state as `context_vector` to the decoder. But in Attention model, the encoder RNN passes all the hidden states to the decoder and takes linear combination of all the encoder hidden states... 
+
 From the blog of [Jay Alammar](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)
 
 Sequence-to-sequence models are deep learning models that have achieved a lot of success in tasks like machine translation, text summarization, and image captioning. Google Translate started using such a [model](https://blog.google/products/translate/found-translation-more-accurate-fluent-sentences-google-translate/) in production in late 2016. These models are explained in the two pioneering papers ([Sutskever et al. 2014](https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf), [Cho et al., 2014](http://emnlp2014.org/papers/pdf/EMNLP2014179.pdf)).
@@ -52,7 +54,7 @@ The `context` vector turned out to be a bottleneck for these types of models. It
 
 An attention model differs from a classic sequence-to-sequence model in two main ways:
 
-- First, the `encoder` passes a lot more data to the `decoder`. Instead of passing the last hidden state of the encoding stage, the encoder **passes all the hidden states to the decoder**:
+:atom_symbol: First, the `encoder` passes a lot more data to the `decoder`. Instead of passing the last hidden state of the encoding stage, the encoder **passes all the hidden states to the decoder**:
 
 
 <center>
@@ -62,15 +64,15 @@ An attention model differs from a classic sequence-to-sequence model in two main
 </center>
 
 
-**Attention mechanism takes a linear combination of all the encoder hidden states**
+:sparkles: **Attention mechanism takes a linear combination of all the encoder hidden states**
 {: .red}
 
 
-- Second, an attention decoder does an extra step before producing its output. In order to focus on the parts of the input that are relevant to this decoding time step, the decoder does the following:
+:atom_symbol: Second, an attention decoder does an extra step before producing its output. In order to focus on the parts of the input that are relevant to this decoding time step, the decoder does the following:
 
 - Look at the set of encoder hidden states it received – each encoder hidden states is most associated with a certain word in the input sentence
-- Give each hidden states a score (let’s ignore how the scoring is done for now)
-- Multiply each hidden states by its softmaxed score, thus amplifying hidden states with high scores, and drowning out hidden states with low scores
+- Give each hidden states a `score` (let’s ignore how the scoring is done for now)
+- Multiply each hidden states by its `softmaxed score`, thus amplifying hidden states with high scores, and drowning out hidden states with low scores
 
 <center>
 <figure class="video_container">
@@ -89,7 +91,9 @@ An attention model differs from a classic sequence-to-sequence model in two main
 >  The attention-mechanism looks at an input sequence and decides at each step which other parts of the sequence are important.
 
 
-Neural networks, in particular recurrent neural networks (RNNs), are now at the core of the leading approaches to language understanding tasks such as **language modeling, machine translation and question answering**. In [Attention Is All You Need](https://arxiv.org/abs/1706.03762), the authors introduce the **Transformer**, a novel neural network architecture based on a self-attention mechanism that we believe to be particularly well suited for language understanding.
+Neural networks, in particular recurrent neural networks (RNNs), are now at the core of the leading approaches to language understanding tasks such as **language modeling, machine translation and question answering**. 
+
+In [Attention Is All You Need](https://arxiv.org/abs/1706.03762), the authors introduce the **Transformer**, a novel neural network architecture based on a self-attention mechanism that we believe to be particularly well suited for language understanding.
 
 In the paper, the author shows that the Transformer outperforms both recurrent and convolutional models on academic `English to German` and `English to French` translation benchmarks. On top of higher translation quality, the Transformer requires **less computation to train** and is a much better fit for modern machine learning hardware, speeding up training by up to an order of magnitude.
 
