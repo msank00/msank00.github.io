@@ -274,7 +274,7 @@ Now we are interested in the magnitude of $\frac{\delta s_{j+1}}{\delta s_{j}}$.
 - If $\frac{\delta s_{j+1}}{\delta s_{j}}$ is small, i.e $\lt 1$, then on repeated multiplication, it will **vanish**, $\Rightarrow$ $\frac{\delta s_{t}}{\delta s_{k}}$ will **vanish** $\Rightarrow$  $\frac{\delta L_t(\theta)}{\delta W}$ will **vanish**.
 - If $\frac{\delta s_{j+1}}{\delta s_{j}}$ is large, i.e $\gt 1$, then on repeated multiplication, it will **explode**, $\Rightarrow$ $\frac{\delta s_{t}}{\delta s_{k}}$ will **explode** $\Rightarrow$  $\frac{\delta L_t(\theta)}{\delta W}$ will **explode**.
  
-:bulb: Note: Here $s$ is `cell state`, and $j$ is the time step, thus wew can write in more meaningful way as $\frac{\partial C_{t+1}}{\partial C_{t}}$)
+:bulb: Note: Here $s$ is `cell state`, and $j$ is the time step, thus we can write in more meaningful way as $\frac{\partial C_{t+1}}{\partial C_{t}}$)
 
 From [Lecture 14 by Prof.Mitesh K](http://www.cse.iitm.ac.in/~miteshk/CS7015.html),
 
@@ -415,7 +415,7 @@ So that's why LSTM is so good at learning long range dependencies.
 
 
 
-The vanishing (and exploding) gradient problem is caused by the repeated use of the recurrent weight matrix in RNN. In LSTM, the recurrent weight matrix is replaced by the `identity function` in the **carousel** and controlled by the forget gate. So ignoring the forget gate (which can always be open), the repeated use of the identity function would not introduce the vanishing (and exploding) gradient.
+The vanishing (and exploding) gradient problem is caused by the repeated use of the recurrent weight matrix in RNN. In LSTM, the recurrent weight matrix is replaced by the `identity function` in the **carousel** (carousel means conveyor belt, here it denotes the cell state $C_t$) and controlled by the forget gate. So ignoring the forget gate (which can always be open), the repeated use of the identity function would not introduce the vanishing (and exploding) gradient.
 
 The recent **IndRNN**(Building A Longer and Deeper RNN) model also addresses the gradient vanishing and exploding problem. It uses learnable recurrent weights but regulated in a way to avoid the gradient vanishing and exploding problem. Compared with LSTM, `it is much faster and can be stacked into deep models. Better performance is shown by IndRNN over the traditional RNN and LSTM`.
 
@@ -448,7 +448,7 @@ In the paper [Sequence to Sequence Learning with Neural Networks (by Ilya Sutske
 
 # Preventing Vanishing Gradients with LSTMs
 
-**Well behaved derivated:** The biggest culprit in causing our gradients to vanish is that dastardly recursive derivative we need to compute: $\frac{\partial s_j}{\partial s_{j-1}}$ (:bulb: where $s$ is `cell state`, and $j$ is the time step, thus wew can write in more meaningful way as $\frac{\partial C_t}{\partial C_{t-1}}$). If only this derivative was `well behaved` (that is, it doesn’t go to $0$ or $\infty$ (infinity) as we backpropagate through layers) then we could learn long term dependencies!
+**Well behaved derivated:** The biggest culprit in causing our gradients to vanish is that dastardly recursive derivative we need to compute: $\frac{\partial s_j}{\partial s_{j-1}}$ (:bulb: where $s$ is `cell state`, and $j$ is the time step, thus we can write in more meaningful way as $\frac{\partial C_t}{\partial C_{t-1}}$). If only this derivative was `well behaved` (that is, it doesn’t go to $0$ or $\infty$ (infinity) as we backpropagate through layers) then we could learn long term dependencies!
 
 **The original LSTM solution:** The original motivation behind the LSTM was to make this recursive derivative have a constant value. If this is the case then our gradients would neither explode or vanish. How is this accomplished? As you may know, the LSTM introduces a separate cell state $C_t$. In the original 1997 LSTM, the value for $C_t$ depends on the previous value of the cell state (i.e $C_{t-1}$) and an update term weighted by the input gate value (for motivation on why the input/output gates are needed, I would check out this [great post](https://r2rt.com/written-memories-understanding-deriving-and-extending-the-lstm.html)):
 
