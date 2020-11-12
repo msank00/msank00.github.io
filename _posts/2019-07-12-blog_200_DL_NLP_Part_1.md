@@ -1412,7 +1412,7 @@ the vanishing gradient problem arises when, during backprop, the error signal us
 - $f_t=\sigma(W_f[h_{t-1},x_t])$
 - $i_t=\sigma(W_i[h_{t-1},x_t])$
 - $o_t=\sigma(W_o[h_{t-1},x_t])$
-- $\widetilde{C}_t=\tanh(W_C[h_{t-1},x_t])$
+- $\widetilde{C}_t = \tanh(W_C[h_{t-1},x_t])$
 - $C_t=f_t \odot C_{t-1} + i_t \odot \widetilde{C}_t$
 - $h_t=o_t \odot tanh(C_t)$
 

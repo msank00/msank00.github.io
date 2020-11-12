@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Deep Learning Programming Tips, Best Practices"
+title:  "Deep Learning Programming Tips, Best Practices (NLP & CV"
 date:   2019-08-01 00:00:10 -0030
 categories: jekyll update
 mathjax: true
