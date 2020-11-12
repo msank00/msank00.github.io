@@ -448,6 +448,8 @@ In the paper [Sequence to Sequence Learning with Neural Networks (by Ilya Sutske
 
 # Preventing Vanishing Gradients with LSTMs
 
+> :bulb: ..replace **activation function** with the **gating function**....
+
 **Well behaved derivated:** The biggest culprit in causing our gradients to vanish is that dastardly recursive derivative we need to compute: $\frac{\partial s_j}{\partial s_{j-1}}$ (:bulb: where $s$ is `cell state`, and $j$ is the time step, thus we can write in more meaningful way as $\frac{\partial C_t}{\partial C_{t-1}}$). If only this derivative was `well behaved` (that is, it doesn’t go to $0$ or $\infty$ (infinity) as we backpropagate through layers) then we could learn long term dependencies!
 
 **The original LSTM solution:** The original motivation behind the LSTM was to make this recursive derivative have a constant value. If this is the case then our gradients would neither explode or vanish. How is this accomplished? As you may know, the LSTM introduces a separate cell state $C_t$. In the original 1997 LSTM, the value for $C_t$ depends on the previous value of the cell state (i.e $C_{t-1}$) and an update term weighted by the input gate value (for motivation on why the input/output gates are needed, I would check out this [great post](https://r2rt.com/written-memories-understanding-deriving-and-extending-the-lstm.html)):
@@ -490,6 +492,8 @@ This might all seem magical, but it really is just the result of two main things
 ----
 
 # Gating in Deep learning
+
+> :bulb: ... gating decides how much `cell state` $C$ information flows from $C_{t-1}$ to $C_t$ 
 
 **Gating meaning:**
 
@@ -565,7 +569,7 @@ $\boldsymbol{\mathcal{L}}=\frac{1}{n}\sum_{i=1}^{n}\big(\log(y^{(i)}+1)-\log(\ha
 
 Mean Squared Logarithmic Error (MSLE) loss function is a variant of MSE, which is defined as above.
 
-- It is usually used when the `true values` and the `predicted values` are very big. And therefore, their difference are also very big. In that situation, you generally don't want to penalizes huge difference between true and predicted die to their high value range.
+- It is usually used when the `true values` and the `predicted values` are very big. And therefore, their difference are also very big. In that situation, you generally don't want to penalizes huge difference between true and predicted to their high value range.
 - One use case say `sales price` prediction. Here the true value range can be very `skewed` which affects the prediction as well. Here regular `MSE` will heavily penalizes the big differences. But in this scenario it's wrong because here by default the value ranges are very big i.e. skewed. In this scenario one good approach is take the `log(true_value)` and predict that, and by default you have to use the `MSLE`.
 - Another usefulness of applying `log` is it fixes the skewness and brings it more close to normal distribution. 
 
