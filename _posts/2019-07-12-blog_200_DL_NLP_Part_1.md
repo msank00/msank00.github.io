@@ -1319,7 +1319,9 @@ Finally, we need to decide what we’re going to output. This output will be bas
 
 ## What is vanishing gradient problem in RNN?
 
-If you don’t already know, the vanishing gradient problem arises when,during backprop, the error signal used to train the network exponentially decreases the further you travel backwards in your network. The effect of this is that the layers closer to your input don’t get trained.
+> :bulb: The derivative $\frac{\partial h_{k}}{\partial h_1}$ ($\frac{\partial s_{t}}{\partial s_1}$ or $\frac{\partial C_{t}}{\partial C_1}$, all same) is essentially telling us how much our hidden state at time $t=k$ will change when we change the hidden state at time $t=1$ by a little bit...
+
+If you don’t already know, the vanishing gradient problem arises when, during backprop, the error signal used to train the network exponentially decreases the further you travel backwards in your network. The effect of this is that the layers closer to your input don’t get trained.
 
 To understand why LSTMs help, we need to understand the problem with vanilla RNNs. In a vanilla RNN, the hidden vector and the output is computed as such:
 
@@ -1382,11 +1384,15 @@ $
 
 </center>
 
+:bulb: $h_t$ is the hidden state, in other books or resource it's also shown as $s_t$ or $C_t$. Thus $\frac{\partial h_{t+1}}{\partial h_t}$ is same as $\frac{\partial s_{t+1}}{\partial s_t}$ or $\frac{\partial C_{t+1}}{\partial C_t}$
+
 As shown in this paper, if the dominant eigenvalue of the matrix $W_R$
  is greater than 1, the gradient explodes. If it is less than 1, the gradient vanishes.2 The fact that this equation leads to either vanishing or exploding gradients should make intuitive sense. Note that the values of $f'(x)$ will always be less than 1. So if the magnitude of the values of $W_R$ are too small, then inevitably the derivative will go to 0. The repeated multiplications of values less than one would overpower the repeated multiplications of $W_R$
 . On the contrary, make $W_R$ too big and the derivative will go to infinity since the exponentiation of $W_R$ will overpower the repeated multiplication of the values less than 1. In practice, the vanishing gradient is more common, so we will mostly focus on that.
 
-The derivative $\frac{\partial h_{k}}{\partial h_1}$ is essentially telling us how much our hidden state at time $k$ will change when we change the hidden state at time 1 by a little bit. According to the above math, if the gradient vanishes it means the earlier hidden states have no real effect on the later hidden states, meaning no long term dependencies are learned! This can be formally proved, and has been in many papers, including the original LSTM paper.
+:fire: The derivative $\frac{\partial h_{k}}{\partial h_1}$ ($\frac{\partial s_{t}}{\partial s_1}$ or $\frac{\partial C_{t}}{\partial C_1}$) is essentially telling us how much our hidden state at time $t=k$ will change when we change the hidden state at time $t=1$ by a little bit. 
+
+:fire: According to the above math, if the gradient vanishes it means the earlier hidden states have no real effect on the later hidden states, meaning no long term dependencies are learned! This can be formally proved, and has been in many papers, including the original LSTM paper.
 
 
 **Reference:**
