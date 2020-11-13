@@ -234,8 +234,8 @@ Finally, since we’re dealing with matrices, we can condense **steps two** thro
 
 > :bulb: The idea behind it is that whenever you are translating a word, you may pay different attention to each word based on the type of question that you are asking. The images below show what that means. For example, whenever you are translating `kicked` in the sentence `I kicked the ball`, you may ask `Who kicked`. Depending on the answer, the translation of the word to another language can change. Or ask other questions, like `Did what?`, etc…
 
-![image](assets/images/image_20_Attention_10.png)
-![image](assets/images/image_20_Attention_11.png)
+![image](/assets/images/image_20_Attention_10.png)
+![image](/assets/images/image_20_Attention_11.png)
 
 _must read: [slide](https://web.stanford.edu/class/cs224n/slides/cs224n-2019-lecture14-transformers.pdf), [blog](https://towardsdatascience.com/transformers-141e32e69591)_
 
