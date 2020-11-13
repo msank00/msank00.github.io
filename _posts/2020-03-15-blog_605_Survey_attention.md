@@ -116,6 +116,8 @@ However, there is a catch with the common encoder-decoder approach: a neural net
 
 # Transformer - Visual Understanding
 
+> :bulb: To solve the problem of parallelization, Transformers try to solve the problem by using **Convolutional Neural Networks together with attention** models. Attention boosts the speed of how fast the model can translate from one sequence to another.
+
 Must Watch :fire:
 
 <center>
@@ -230,6 +232,12 @@ Finally, since we’re dealing with matrices, we can condense **steps two** thro
 
 ## Multi Headed Attention 
 
+> :bulb: The idea behind it is that whenever you are translating a word, you may pay different attention to each word based on the type of question that you are asking. The images below show what that means. For example, whenever you are translating `kicked` in the sentence `I kicked the ball`, you may ask `Who kicked`. Depending on the answer, the translation of the word to another language can change. Or ask other questions, like `Did what?`, etc…
+
+![image](assets/images/image_20_Attention_10.png)
+![image](assets/images/image_20_Attention_11.png)
+
+_must read: [slide](https://web.stanford.edu/class/cs224n/slides/cs224n-2019-lecture14-transformers.pdf), [blog](https://towardsdatascience.com/transformers-141e32e69591)_
 
 Must Watch :fire:
 
@@ -242,6 +250,7 @@ Must Watch :fire:
 </center>
 
 _*If above link is broken, click [here](https://www.youtube.com/watch?v=N9AGY-Z6tbM&t=1s)_
+
 
 The paper further refined the self-attention layer by adding a mechanism called “multi-headed” attention. This improves the performance of the attention layer in two ways:
 
@@ -293,6 +302,7 @@ Now that we’ve covered most of the concepts on the encoder side, we basically 
 
 - [The Illustrated Transformer by Jay Alammar](https://jalammar.github.io/illustrated-transformer/) :fire: :fire: 
 - [The Annotated Transformer](http://nlp.seas.harvard.edu/2018/04/03/attention.html) :fire: :fire: 
+- [How Transformers Work](https://towardsdatascience.com/transformers-141e32e69591) :fire: :fire: :fire:
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
