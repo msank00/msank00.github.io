@@ -15,7 +15,7 @@ mathjax: true
 
 # When we should accept an Algorithm and when we shouldn't?
 
-Each algorithm is based on some assumption which is applicable to some scenario. Now if the assumption fails in some scenario, then the ALgorithm will fail there. 
+Each algorithm is based on some assumption which is applicable to some scenario. Now if the assumption fails in some scenario, then the Algorithm will fail there. 
 
 **Example:**
 
@@ -23,7 +23,7 @@ Each algorithm is based on some assumption which is applicable to some scenario.
 
 **Assumptions:**
 
-- k-means assume the variance of the distribution of each attribute (variable) is spherical;
+- k-means assume the **variance** of the distribution of each attribute (variable) is **spherical**;
 
 <center>
 
@@ -31,11 +31,11 @@ Each algorithm is based on some assumption which is applicable to some scenario.
 
 </center>
 
-- All variables have the same variance;
-- The prior probability for all k clusters are the same, i.e. each cluster has roughly equal number of observations; 
+- All variables have the **same variance**;
+- The prior probability for all $k$ clusters are the same, i.e. **each cluster has roughly equal number of observations**; 
 
 **Drawbacks:**
-- If any one of these 3 assumptions is violated, then k-means will fail.
+- If any one of these 3 assumptions is violated, then `k-means` will fail.
 - Number of cluster needs to know beforehand. 
 - The clusters should be non-overlapping.
 
@@ -90,7 +90,7 @@ $posterior \propto Likelihood \times prior$
 - $p(Hyp\vert Data)$ is our goal, this is the `probability of the hypothesis` after we see the data, called the **posterior**.
 - $p(Data \vert Hyp)$ is the `probability of the data under the hypothesis`, called the **likelihood**.
 
-> There is an element which is key when we want to build a model under Bayesian approach: the Bayes factor. The Bayes factor is the ratio of the likelihood probability of two competing hypotheses (usually null and alternative hypothesis) and it helps us to quantify the support of a model over another one.
+> :bulb: There is an element which is key when we want to build a model under Bayesian approach: the **Bayes factor** :+1:. The Bayes factor is the **ratio of the likelihood probability of two competing hypotheses** (usually null and alternative hypothesis) and it helps us to quantify the support of a model over another one.
 
 - however, the prior starts to lose weight when we add more data
 
@@ -100,7 +100,9 @@ $posterior \propto Likelihood \times prior$
 
 # How to interpret $R^2$ ?
 
-> Specifically, this linear regression is used to determine how well a line fits’ to a data set of observations, especially when comparing models. Also, it is the fraction of the total variation in y that is captured by a model.
+> :bulb: Specifically, this linear regression is used to determine how well a line fits’ to a data set of observations, especially when comparing models. Also, it is the fraction of the total variation in y that is captured by a model.
+
+> :dart: ..it captures how much variability of target variable, the model is capturing...
 
 ![image](https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Coefficient_of_Determination.svg/400px-Coefficient_of_Determination.svg.png)
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/6b863cb70dd04b45984983cb6ed00801d5eddc94)
