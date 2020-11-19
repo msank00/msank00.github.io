@@ -139,6 +139,10 @@ where $\hat{y_i} = f(x_i)$
 
 - [TDS Blog](https://towardsdatascience.com/linear-and-bayesian-modelling-in-r-predicting-movie-popularity-6c8ef0a44184)
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ----
 
 # Bayesian Linear Regression 
@@ -153,6 +157,10 @@ Bayesian linear regression allows a fairly natural mechanism to survive insuffic
 
 - [Bayesian](https://www.cs.cmu.edu/afs/cs.cmu.edu/project/learn-43/lib/photoz/.g/web/glossary/bayesian.html)
 - [Chapter 6: introduction-to-bayesian-regression](https://statswithr.github.io/book/introduction-to-bayesian-regression.html)
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 
 ----
 
