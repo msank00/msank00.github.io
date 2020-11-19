@@ -472,9 +472,11 @@ $
 
 Where 
 
-- $p(\theta \vert D)$ is the likeihood and can be written as $\mathcal{L}(\theta \vert D)$.
-- $p(D \vert \theta)$ is the posterior
+- $p(\theta \vert D)$ is the posterior probability of $\theta$ given $D$ 
+- $p(D \vert \theta)$ is likelihood (i.e likelihood of data $D$ given $\theta$) and can be written as $\mathcal{L}(D \vert \theta)$ or $\mathcal{L}(D ; \theta)$.
 - $p(\theta)$ is the prior
+
+> :bulb: posterior $\propto$ likelihood $\times$ prior
 
 <center>
 <figure class="video_container">
