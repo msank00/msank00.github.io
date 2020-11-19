@@ -704,6 +704,10 @@ A reliability diagram is a line plot of the relative frequency of what was obser
 - Thus for each bin, you get $(x,y)$ and then you plot them.
 - If there are $n$ bins, then there will be $n$ points on the calibration curve.
 
+<center>
+<img src="/assets/images/image_35_calibration_plot_2.png" height="650">
+</center>
+
 These plots are commonly referred to as `reliability` diagrams in forecast literature, although may also be called `calibration` plots or curves as they summarize how well the forecast probabilities are calibrated.
 
 
