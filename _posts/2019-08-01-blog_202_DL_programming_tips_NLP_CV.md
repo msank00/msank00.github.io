@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Deep Learning Programming Tips, Best Practices (NLP & CV"
+title:  "Practical Deep Learning (NLP & CV)"
 date:   2019-08-01 00:00:10 -0030
 categories: jekyll update
 mathjax: true
@@ -12,6 +12,54 @@ mathjax: true
 {:toc}
 ---
 
+# How to Classify Text using PyTorch and TorchText?
+
+1.Why PyTorch for Text Classification?
+
+:atom_symbol: **Dealing with Out of Vocabulary words:** A text classification model is trained on fixed vocabulary size. But during inference, we might come across some words which are not present in the vocabulary. These words are known as `Out of Vocabulary` words. Skipping Out of Vocabulary words can be a critical issue as this results in the loss of information.
+
+In order to handle the Out Of Vocabulary words, PyTorch supports a cool feature that replaces the rare words in our training data with Unknown token `UNK`. This, in turn, helps us in tackling the problem of Out of Vocabulary words.
+
+:atom_symbol: **Handling Variable Length sequences:**  PyTorch comes with a useful feature  ‘Packed Padding sequence‘ that implements Dynamic Recurrent Neural Network.
+
+Padding is a process of adding an extra token called padding token at the beginning or end of the sentence. As the number of the words in each sentence varies, we convert the variable length input sentences into sentences with the same length by adding padding tokens. As you can see in the diagram (below), the last element, which is a padding token is also used while generating the output. This is taken care of by the Packed Padding sequence in PyTorch.
+
+![image](https://cdn.analyticsvidhya.com/wp-content/uploads/2020/01/Untitled-Diagram.png)
+
+Packed padding ignores the input timesteps with padding token. These values are never shown to the Recurrent Neural Network which helps us in building a dynamic Recurrent Neural Network.
+
+![image](https://cdn.analyticsvidhya.com/wp-content/uploads/2020/01/Untitled-Diagram1.png)
+
+:atom_symbol: **Wrappers and Pre-trained models:** The state of the art architectures are being launched for PyTorch framework. Hugging Face released Transformers which provides more than 32 state of the art architectures for the Natural Language Understanding Generation!.
+
+## How to preprocess the text data
+
+There are $2$ different types of field objects – `Field` and `LabelField`. Let us quickly understand the difference between the two-
+
+
+- `Field`: Field object from data module is used to specify preprocessing steps for each column in the dataset.
+- `LabelField`: LabelField object is a special case of Field object which is used only for the classification tasks. Its only use is to set the `unk_token` and `sequential` to `None` by default.
+
+**Parameters of Field:**
+
+- Tokenize: specifies the way of tokenizing the sentence i.e. converting sentence to words. I am using spacy tokenizer since it uses novel tokenization algorithm
+- Lower: converts text to lowercase
+- batch_first: The first dimension of input and output is always batch size
+
+
+```py
+# TEXT = data.Field(tokenize='spacy',batch_first=True,include_lengths=True)
+# LABEL = data.LabelField(dtype = torch.float,batch_first=True)
+```
+
+TODO: Implement it using vanila PyTorch and then refactor using `PyTorchLightning`
+
+**Reference:**
+
+- [Build Your First Text Classification model using PyTorch](https://www.analyticsvidhya.com/blog/2020/01/first-text-classification-in-pytorch/) :fire:
+
+----
+
 # PyTorch Tips
 
 - [CS224U PyTorch](https://nbviewer.jupyter.org/github/cgpotts/cs224u/blob/master/tutorial_pytorch.ipynb)
@@ -21,12 +69,16 @@ mathjax: true
 
 - [CS224U Numpy](https://nbviewer.jupyter.org/github/cgpotts/cs224u/blob/master/tutorial_numpy.ipynb)
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ----
 
 # How to fine-tune pre-trained model?
 
 
-For full details reading [this](https://mc.ai/ideas-on-how-to-fine-tune-a-pre-trained-model-in-pytorch/) blog is a must.
+:dart: For full details reading [this](https://mc.ai/ideas-on-how-to-fine-tune-a-pre-trained-model-in-pytorch/) blog is a must.
 
 However I am sharing some basic techniques from the blog rest you can follow the original blog.
 
@@ -49,9 +101,13 @@ data_transform = transforms.Compose([
                          	[0.229, 0.224, 0.225])])
 ```
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ## How should my classifier look like?
 
-This section is very important
+:dart: This section is very important
 
 Generally in the transfer learning tasks the Fully Connected (FC) classifier layers are ripped off and new FC layers are added to train on the new data and perform the new task. But many students would generally stick with the conventional Linear and Dropout layers in the FC layers. Could we add some different layers? Yes we could, consider the following example where we added AdaptivePooling Layers in the new classifier:
 
@@ -122,6 +178,10 @@ Also use other improvements like
 - [Kaggle: Pre-trained architecture fine-tuning](https://www.kaggle.com/c/dog-breed-identification/discussion/44645)
 - [Transfer learning with PyTorch](https://stackabuse.com/image-classification-with-transfer-learning-and-pytorch/)
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ----
 
 # Deep Learning Best Practices - Mistakes and Tips:
@@ -145,7 +205,7 @@ The purpose of this repo is to consolidate all the **Best Practices** for buildi
 
 These are pure gold.
 
-- [Tweet_andrej_karpathy](https://twitter.com/karpathy/status/1013244313327681536)
+- [Tweet_andrej_karpathy](https://twitter.com/karpathy/status/1013244313327681536) :fire:
 - [Recipe for training neural network](https://karpathy.github.io/2019/04/25/recipe/)
 - [What should I do when my neural network doesn't learn?](https://stats.stackexchange.com/questions/352036/what-should-i-do-when-my-neural-network-doesnt-learn)
 - [Practical Advice for Building Deep Neural Networks](https://pcc.cs.byu.edu/2017/10/02/practical-advice-for-building-deep-neural-networks/) 
@@ -224,7 +284,7 @@ These are pure gold.
 
 ----
 
-# Difference of `Conv1D` and `Conv2D` in deep learning.
+# Difference of `Conv1D` and `Conv2D` in deep learning. or How CNN works on text data?
 
 **Conv2D**
 
