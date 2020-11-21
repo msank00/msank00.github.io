@@ -27,7 +27,7 @@ Raw term frequency as above suffers from a critical problem: all terms are consi
 
 > Rare term is more informative than the common term.
 
-A mechanism is introduced for attenuating the effect of terms that occur too often. The idea would be to reduce the tf weight of a term by a factor that grows with its collection frequency. So it is more commonplace to use for this purpose, the `document frequency` $df_t$, defined to be the number of documents in the collection that contain a term $t$. We then define the inverse document frequency ($idf$) of a term $$ as follows
+A mechanism is introduced for attenuating the effect of terms that occur too often. The idea would be to reduce the tf weight of a term by a factor that grows with its collection frequency. So it is more commonplace to use for this purpose, the `document frequency` $df_t$, defined to be the number of documents in the collection that contain a term $t$. We then define the inverse document frequency ($idf$) of a term $t$ as follows
 
 <center>
 
@@ -328,15 +328,15 @@ However with count based approach we may face the situation of **Zero Count** pr
 ----
 
 
-# LDA - Latent Dirichlet Allocation, Topic Modelling
+# :dart: Topic Modelling - LDA: Latent Dirichlet Allocation
 
 > :star: ...a repeating pattern of co-occurring terms in a corpus...
 
 Topic Modelling is different from rule-based text mining approaches that use regular expressions or dictionary based keyword searching techniques. It is an **unsupervised** approach used for finding and observing the bunch of words (called `topics`) in large clusters of texts.
 
 Topics can be defined as `a repeating pattern of co-occurring terms in a corpus`. A good topic model should result in 
-- “health”, “doctor”, “patient”, “hospital” for a topic $\rightarrow$ Healthcare
-- “farm”, “crops”, “wheat” for a topic $\rightarrow$ “Farming”.
+- `health`, `doctor`, `patient`, `hospital` for a topic $\rightarrow$ **Healthcare**
+- `farm`, `crops`, `wheat` for a topic $\rightarrow$ **Farming**.
 
 Topic Models are very useful for the purpose for 
 - Document clustering
@@ -344,7 +344,8 @@ Topic Models are very useful for the purpose for
 - Information retrieval from unstructured text
 - Feature selection. 
 
-Application:
+:sparkle: **Application:**
+
 - **News Recommendation:** New York Times are using topic models to boost their user – article recommendation engines. 
 - **Candidate Recruitment from CV:** Various professionals are using topic models for recruitment industries where they aim to extract **latent features of job descriptions** and map them to right candidates. 
 
@@ -364,7 +365,9 @@ You can try doing topic modelling using the following methods.
 
 >> :star: Given a dataset of documents, LDA backtracks and tries to figure out what topics would create those documents in the first place.
 
-:atom_symbol: LDA is a **matrix factorization technique**. In vector space, any corpus (collection of documents) can be represented as a **document-term matrix**. LDA converts this `Document-Term` Matrix ($N \times M$) into two lower dimensional matrices – $M_1$ and $M_2$.
+:atom_symbol: LDA is a **probabilistic matrix factorization** technique. 
+
+In vector space, any corpus (collection of documents) can be represented as a **document-term matrix**. Matrix Factorization converts this `Document-Term` Matrix ($N \times M$) into two lower dimensional matrices – $M_1$ and $M_2$.
 - $M_1$ is a `document-topics` matrix ($N \times K$)
 - $M_2$ is a `topic – terms` matrix ($K \times M$)
 
@@ -384,11 +387,11 @@ The current `topic – word` assignment is updated with a new topic with the pro
 
 **Assumption:** The model assumes that all the existing `word – topic` assignments, except the current word are correct. This is essentially the probability that topic $t_k$ generated word $w_i$, so it makes sense to adjust the current word’s topic with new probability.
 
-After a number of iterations, a steady state is achieved where the `document-topic` and `topic-term` distributions are fairly good. This is the convergence point of LDA.
+After a number of iterations, a steady state is achieved where the `document-topic` and `topic-term` distributions are fairly good..
 
 :paperclip: **References:**
 
-- [AVB](https://www.analyticsvidhya.com/blog/2016/08/beginners-guide-to-topic-modeling-in-python/)
+- [AVB](https://www.analyticsvidhya.com/blog/2016/08/beginners-guide-to-topic-modeling-in-python/) <- Wrongly says LDA is MF. LDA is actutally probabilistic MF. 
 - [EdwinChen](http://blog.echen.me/2011/08/22/introduction-to-latent-dirichlet-allocation/)
 - [medium-PySparkImplementation](https://medium.com/@connectwithghosh/topic-modelling-with-latent-dirichlet-allocation-lda-in-pyspark-2cb3ebd5678e)
 
@@ -427,7 +430,7 @@ The `generative story` begins with begins with only Dirichlet Prior over the top
 
 **Resource:**
 
-- [IMP: Topic Model: CMU](https://www.cs.cmu.edu/~mgormley/courses/10701-f16/slides/lecture20-topic-models.pdf)
+- :fire: [IMP: Topic Model: CMU](https://www.cs.cmu.edu/~mgormley/courses/10701-f16/slides/lecture20-topic-models.pdf)
 - [Lecture 10: LDA](http://www.cs.columbia.edu/~verma/classes/uml/lec/uml_lec9_lda.pdf)
 - [Dirichlet_distribution](https://en.wikipedia.org/wiki/Dirichlet_distribution)
 
@@ -436,8 +439,9 @@ The `generative story` begins with begins with only Dirichlet Prior over the top
 
 ----
 
-# What is LSI: Latent Semantic Indexing?
+# What is LSI: Latent Semantic Indexing? (or LSA)
 
+- LSI is also known as Latent Semantic Analysis (LSA)
 - It's SVD used in information retrieval.
 
 >> :sparkles: The `term-document` matrix is the basis for computing the similarity between `document` and `query`. Can we transform this matrix so that we can get better measure of similarity between document and query?
@@ -448,7 +452,7 @@ The `generative story` begins with begins with only Dirichlet Prior over the top
 ![image](/assets/images/image_29_lsi_4.png)
 ![image](/assets/images/image_29_lsi_5.png)
 
-- The "boat" and "ship" are similar in meaning. The `reduced similarity measure` reflects this.
+- The `boat` :boat: and `ship` :ship: are similar in meaning. The `reduced similarity measure` reflects this.
 
 ![image](/assets/images/image_29_lsi_6.png)
 
@@ -463,14 +467,14 @@ The `generative story` begins with begins with only Dirichlet Prior over the top
 
 ----
 
-## What is Latent Semantic Indexing?
+## More on Latent Semantic Indexing (LSI/LSA) ?
 
 - Latent semantic indexing is a mathematical technique to extract information from unstructured data. It is based on the principle that words used in the same context carry the same meaning.
 
-> **Latent Semantic Analysis (LSA)** is a theory and method for extracting and representing the contextual-usage meaning of words by statistical computations applied to a large corpus of text.
+> :bulb: **Latent Semantic Analysis (LSA)** is a theory and method for extracting and representing the contextual-usage meaning of words by statistical computations applied to a large corpus of text.
 
 - In order to identify relevant (concept) components, or in other words, aims to group words into classes that represent concepts or semantic fields, this method applies `Singular Value Decomposition` to the `Term-Document matrix` **tf-idf**. As the name suggests this matrix consists of words as rows and document as columns. 
-- LSA itself is an unsupervised way of uncovering synonyms in a collection of documents.
+- LSA itself is an **unsupervised** way of uncovering synonyms in a collection of documents.
 
 ## Where you can apply Latent Semantic Analysis?
 
@@ -490,8 +494,8 @@ The `generative story` begins with begins with only Dirichlet Prior over the top
 
 
 - Since it is a linear model, it might not do well on datasets with non-linear dependencies.
-- LSA assumes a Gaussian distribution of the terms in the documents, which may not be true for all problems.
-- LSA involves SVD, which is computationally intensive and hard to update as new data comes up.
+- :sparkle: LSA assumes a **Gaussian distribution** (see later) of the terms in the documents, which may not be true for all problems.
+- :sparkle: LSA involves SVD, which is **computationally intensive** and hard to update as new data comes up.
 
 
 **Reference:**
@@ -501,9 +505,108 @@ The `generative story` begins with begins with only Dirichlet Prior over the top
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+---
+
+## Difference between LSI (LSA) and LDA?
+
+LSA was introduced in 2005 whereas LDA was introduced in 2003
+.
+
+:atom_symbol: LSI (also known as Latent Semantic Analysis, LSA) learns latent topics by performing a matrix decomposition (SVD) on the term-document matrix. It's an **upsupervised** approach.
+
+:atom_symbol: LDA is a **generative probabilistic** model, that assumes a `Dirichlet` prior over the latent topics.
+
+> :bulb: LSI is much faster to train than LDA, but has lower accuracy.
+
+:dart: LSI is a variant of PCA. LSI has a probabilistic variant developed by Thomas Hofmann known as **Probabilistic latent semantic analysis**, (PLSI or PLSA), which was the motivation for developing LDA. **LDA is the Bayesian version of PLSI**.
+
+
+**Reference:**
+
+- [Quora](https://www.quora.com/Whats-the-difference-between-Latent-Semantic-Indexing-LSI-and-Latent-Dirichlet-Allocation-LDA)
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ----
 
-# Latent Semantic Analysis (LSA) for Text Classification Tutorial?
+# How LDA and LSI are related?
+
+- LSA is applying SVD on `term-document` matrix
+
+![image](/assets/images/image_29_lsi_7.png)
+![image](/assets/images/image_29_lsi_8.png)
+
+This MF (matrix factorization) technique can be molded into Probabilistic model.
+
+![image](/assets/images/image_29_lsi_9.png)
+
+As mentioned earlier, LSI assumes Gaussian Distribution of `terms` in the `document`.
+
+> LSI is good at synonymy but bad at polysemy
+
+![image](/assets/images/image_29_lsi_11.png)
+
+**Probabilistic LSI (PLSI)**
+
+![image](/assets/images/image_29_lsi_12.png)
+
+See, how `term-topic` matrix $U_{w,k}$ and `document-topic` matrix $V_{d,k}$ are included in the equation.
+
+
+![image](/assets/images/image_29_lsi_13.png)
+
+Example:
+
+- Topic $t_1$ generates $n$ words $w_1^1, \dots, w_n^1$ and topic $t_2$ generates $n$ words $w_1^2, \dots, w_n^2$.
+- Now say document $D$ has $p$ words from topic $t_1$ and $q$ words from topic $t_2$ s.t $D=[w_1^1, \dots, w_p^1, w_1^2, \dots, w_q^2]$ 
+- Thus document $D$ is mixture of topic $t_1$ and $t_2$.
+
+:rocket: Say there is a `movie on cricket`. And then there is a `movie review` available in IMDB. In `movie` related documents, we will see words like [`director`, `producer`, `actor`, `award`, `songs`, `dialogue`] and in `cricket` related documents we will see words like [`cricket`, `player`, `bat`, `ball`, `run`, `batsman`, `bowler`, $\dots$] 
+
+![image](/assets/images/image_29_lsi_15.png)
+![image](/assets/images/image_29_lsi_16.png)
+
+_*[image source](https://www.imdb.com/title/tt0169102/reviews?ref_=tt_ql_3)_
+
+This movie review has words from both topic `movie` and `cricket`
+
+
+coming back to PLSI...
+
+![image](/assets/images/image_29_lsi_14.png)
+
+:bulb: **Latent Drichlet Allocation is a Bayesian PLSI**. **BAM !!**
+
+![image](/assets/images/image_29_lsi_17.png)
+
+_memorize the equation_
+
+
+![image](/assets/images/image_29_lsi_18.png)
+
+:bulb: :bulb: **LDA can also be modeled as Probabilistic PCA (PPCA)** **DOUBLE BAM !!**
+
+_For more on PPCA, check slide 20 [here](https://www.cs.cmu.edu/~epxing/Class/10708-15/slides/LDA_SC.pdf)_
+
+**Summary:**
+
+![image](/assets/images/image_29_lsi_19.png)
+
+
+**Bonus: How Sparsity works here?**
+
+![image](/assets/images/image_29_lsi_20.png)
+
+
+**Reference:**
+
+- :fire: [CMU Slide](https://www.cs.cmu.edu/~epxing/Class/10708-15/slides/LDA_SC.pdf)
+
+----
+
+## Latent Semantic Analysis (LSA) for Text Classification Tutorial?
 
 - [AV](https://www.analyticsvidhya.com/blog/2018/10/stepwise-guide-topic-modeling-latent-semantic-analysis/)
 
