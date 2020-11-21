@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Machine Learning Programming Tips, Best Practices"
-date:   2019-08-02 00:00:10 -0030
+date:   2019-08-04 00:00:10 -0030
 categories: jekyll update
 mathjax: true
 ---

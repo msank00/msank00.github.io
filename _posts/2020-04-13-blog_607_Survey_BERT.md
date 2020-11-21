@@ -536,7 +536,7 @@ _**MUST watch** [lecture 16, prof. Mikesh IIT-M](https://www.cse.iitm.ac.in/~mit
 - In general attention tells the model to which words it should focus on.
 - The biggest benefit of Transformer model is it's ability to run in parallel. 
 
-## BERT Architecture
+## :dart: BERT Architecture
 
 - BERT is an enhancement of the Transformer model (**Attention is all you need**).
   - Transformer model is an encoder-decoder model with stack of 6 encode and decoder. 
