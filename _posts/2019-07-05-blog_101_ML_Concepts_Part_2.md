@@ -247,7 +247,6 @@ def select_features(X_train, y_train, X_test):
 # Different Statistical tests for feature selection
 
 
-
 <center>
 <figure class="video_container">
   <iframe src="https://www.youtube.com/embed/I10q6fjPxJ0" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
