@@ -12,6 +12,26 @@ mathjax: true
 {:toc}
 ---
 
+# Linear Regression Assumption
+
+There are four assumptions associated with a linear regression model:
+
+- **Linearity:** The relationship between $X$ and the mean of $Y$ is linear.
+- **Homoscedasticity:** The variance of residual is the same for any value of X.
+- **Independence:** Observations are independent of each other.
+- :fire: **Normality:** For any fixed value of $X$, $Y$ is normally distributed. The error($\epsilon = (Y_i - \hat{Y_i})$ residuals) follow a normal distribution $\mathcal{N}(\mu , \sigma)$
+
+
+**Reference:**
+
+- [Simple Linear Regression](https://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/R/R5_Correlation-Regression/R5_Correlation-Regression4.html)
+- [Assumptions Of Linear Regression Algorithm](https://towardsdatascience.com/assumptions-of-linear-regression-algorithm-ed9ea32224e1) :fire:
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
 # Algorithm selection Tips 
 
 - When to use and when not to use.
