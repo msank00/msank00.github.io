@@ -103,6 +103,35 @@ _[youtube link](https://www.youtube.com/watch?v=ARfXDSkQf1Y)_ :fire:
 
 _[youtube link](https://www.youtube.com/watch?v=VSi0Z04fWj0)_ :fire: :rocket:
 
+----
+
+# Different Statistical tests for feature selecton
+
+See [here](https://msank00.github.io/blog/2019/07/05/blog_101_ML_Concepts_Part_2#different-statistical-tests-for-feature-selection)
+
+----
+
+# Difference between `Standard Deviation` and `Standard Error`
+
+> :bulb: Standard Deviation of the `means` is called Standard Error
+
+- SD quantifies the variation within a set of measurement
+- SE quantifies the variation in the means from **multiple set of measurements**.
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/A82brFpdr9g" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+
+_[youtube link](https://www.youtube.com/watch?v=A82brFpdr9g)_ :fire: :rocket:
+
+
+Reference:
+
+- [Standard Error Detailed](https://www.youtube.com/watch?v=XNgt7F6FqDU) :fire:
+- [P hacking and Power calculation](https://www.youtube.com/watch?v=UFhJefdVCjE) :rocket:
 
 ------
 

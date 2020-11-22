@@ -246,6 +246,17 @@ def select_features(X_train, y_train, X_test):
 
 # Different Statistical tests for feature selection
 
+
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/I10q6fjPxJ0" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/I10q6fjPxJ0)_ :fire:
+
+
 ## ANOVA
 
 An ANOVA tests the relationship between a `categorical` and a `numeric variable` by testing the differences between two or more means. This test produces a `p-value` to determine whether the relationship is significant or not.
@@ -263,23 +274,199 @@ Like other types of statistical tests, ANOVA compares the means of different gro
 
 It’s important to remember that the main ANOVA research question is whether the sample means are from different populations. There are two assumptions upon which ANOVA rests:
 
-First: Whatever the technique of data collection, the observations within each sampled population are normally distributed.
+**Assumptions:**
 
-Second: The sampled population has a common variance of $s_2$.
+- First: Whatever the technique of data collection, the observations within each sampled population are normally distributed.
+
+- Second: The sampled population has a common variance of $s_2$.
 
 **What is the difference between one-way and two-way ANOVA tests?**
 
 This is defined by how many independent variables are included in the ANOVA test. One-way means the analysis of variance has one independent variable. Two-way means the test has two independent variables. An example of this may be the independent variable being a brand of drink (one-way), or independent variables of brand of drink and how many calories it has or whether it’s original or diet.
 
+> :bulb: ANOVA, also known as analysis of variance, is used to compare multiple (three or more) samples with a single test. 
+
+The hypothesis being tested in ANOVA is
+
+- **Null:** All pairs of samples are same i.e. all sample means are equal
+- **Alternate:** At least one pair of samples is significantly different
+
+The statistics used to measure the significance, in this case, is called **F-statistics**. The F value is calculated using the formula..
+
+
+<center>
+
+$F= \frac{\frac{(SSE_1 — SSE_2)}{m}}{\frac{SSE2}{n-k}}$
+
+</center>
+
+- $SSE$ = residual sum of squares
+- $m$ = number of restrictions
+- $k$ = number of independent variables
+
+## t-test
+
+The t-test is any statistical hypothesis test in which the test statistic follows a Student's t-distribution under the null hypothesis. A t-test is the most commonly applied when the test statistic would follow a normal distribution if the value of a scaling term in the test statistic were known.
+
+> :bulb: The t-test and ANOVA examine whether group means differ from one another. The `t-test` **compares two groups**, while ANOVA can do more than two groups. 
+
+- `t-test` can be used for feature selection between numerical columns and categorical columns given that the categorical level is $2$. If more than $2$ then opt for ANOVA.
+
+- `t-test` is a special type of ANOVA that can be used when we have only two populations to compare their means
+
+**The t-test ANOVA have three assumptions:**
+
+- **Independence assumption:** The elements of one sample are not related to those of the other sample
+- **Normality assumption:** Samples are randomly drawn from the normally distributed populstions with unknown population means; otherwise the means are no longer best measures of central tendency, thus test will not be valid
+- **Equal variance assumption:** The population variances of the two groups are equal. 
+
+<center>
+<img src="../asset/../assets/images/image_04_stat_analysis_1.png" width="600" alt="image">
+</center>
+
+The following diagram summarizes the t-tes and one-way ANOVA.
+
+<center>
+<img src="https://www.iuj.ac.jp/faculty/kucc625/method/anova.gif" width="600" alt="image">
+</center>
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/NF5_btOaCig" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/NF5_btOaCig)_
+
+**Reference:**
+
+- [Difference Between T-test and ANOVA](https://keydifferences.com/difference-between-t-test-and-anova.html)
+- [t-test & ANOVA (Analysis of Variance)](https://raybiotech.com/learning-center/t-test-anova/)
+- [T-test & ANOVA](https://www.iuj.ac.jp/faculty/kucc625/method/anova.html) :fire:
+
+
 ## CHI Square test
 
 The chi-square independence test is a procedure for testing if two categorical variables are related in some population. 
 
-- [blog](https://www.spss-tutorials.com/chi-square-independence-test/#what-is-it)
+There are two types of chi-square tests. Both use the chi-square statistic and distribution for different purposes:
 
+
+- **Goodness of Fit Test:** A chi-square goodness of fit test determines if a sample data matches a population. 
+- **Test for independence:** A chi-square test for independence compares two variables in a contingency table to see if they are related. In a more general sense, it tests to see whether distributions of categorical variables differ from each another.
+  - A very **small chi square test** statistic means that your observed data fits your expected data extremely well. In other words, there is a relationship, i.e $\chi^2$ is very small.
+  - A very **large chi square test** statistic means that the data does not fit very well. In other words, there isn’t a relationship, i.e $\chi^2$ is very large.
+
+
+<center>
+
+$\chi^2 = \Sigma \frac{(O_i - E_i)^2}{E_i}$
+
+</center>
+
+- $\chi^2$	= 	chi squared
+- ${O}_i$	= 	observed value
+- $E_{i}$	= 	expected value
+
+
+**Reference:**
+
+- [blog](https://www.spss-tutorials.com/chi-square-independence-test/#what-is-it)
+- [Khan Academy Video](https://www.youtube.com/watch?v=2QeDRsxSF9M)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+----
+
+# Student t-distribution
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/Uv6nGIgZMVw" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/Uv6nGIgZMVw)_ :fire:
+
+----
+
+# Z-test
+
+> :bulb: population parameters are known
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/pGv13jvnjKc" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/pGv13jvnjKc)_ :fire:
+
+
+## More on `Z` and `t` statistics
+
+:atom_symbol: **Z test**
+
+> :bulb: population parameters are known
+
+In a `z-test`, the sample is `assumed` to be **normally distributed**. 
+
+A z-score is calculated with **population parameters** such as **population mean** and **population standard deviation** and is used to validate a hypothesis that the sample drawn belongs to the same population.
+
+- **Null:** Sample mean is same as the population mean
+- **Alternate:** Sample mean is not same as the population mean
+
+The statistics used for this hypothesis testing is called `z-statistic`, the score for which is calculated as
+
+
+<center>
+
+$z = \frac{(x — \mu)}{\frac{\sigma}{\sqrt n}}$
+
+</center>
+
+where
+
+- $x$ = sample mean
+- $\mu$ = population mean
+- $\frac{\sigma}{\sqrt n}$ = population standard deviation
+
+If the test statistic is lower than the critical value, accept the Alternate Hypothesis or else reject the Alternate hypothesis
+
+:atom_symbol: **t test**
+
+A t-test is used to compare the mean of two given samples. Like a z-test, a t-test also assumes a normal distribution of the sample. A t-test is used when the population parameters (mean and standard deviation) are not known.
+
+> :bulb: A t-test is used when the population parameters (mean and standard deviation) are not known.
+
+There are three versions of t-test
+
+1. **Independent samples t-test** which compares mean for `two groups`
+
+2. **Paired sample t-test** which compares means from the same group at `different times`
+
+3. **One sample t-test** which tests the mean of a single group against a known mean.
+
+The statistic for this hypothesis testing is called t-statistic, the score for which is calculated as
+
+<center>
+
+$t = \frac{(x_1 — x_2)}{(\frac{\sigma}{\sqrt n_1}   + \frac{\sigma}{\sqrt n_2})}$
+
+</center>
+
+,where
+
+- $x_1$ = mean of sample 1
+- $x_2$ = mean of sample 2
+- $n_1$ = size of sample 1
+- $n_2$ = size of sample 2
+
+There are multiple variations of t-test which are explained in detail [here](https://www.statisticshowto.com/probability-and-statistics/t-test/).
+
+**Reference:**
+
+- [Statistical Tests — When to use Which ?](https://towardsdatascience.com/statistical-tests-when-to-use-which-704557554740) :fire:
 
 ----
 
