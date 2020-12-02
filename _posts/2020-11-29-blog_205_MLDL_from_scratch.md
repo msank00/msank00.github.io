@@ -16,6 +16,9 @@ mathjax: true
 
 # Build Logistic Regression from scratch
 
+- [Implementation](https://nbviewer.jupyter.org/github/msank00/ml_algo_from_scratch/blob/master/logistic_regression.ipynb) :fire:
+
+
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
