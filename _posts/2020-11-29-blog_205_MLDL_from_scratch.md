@@ -26,6 +26,8 @@ mathjax: true
 
 # Build Decision Tree from scratch
 
+- [TODO](https://medium.com/@penggongting/implementing-decision-tree-from-scratch-in-python-c732e7c69aea)
+
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
