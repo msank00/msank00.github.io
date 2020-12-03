@@ -274,6 +274,8 @@ The paper further refined the self-attention layer by adding a mechanism called 
    1. With multi-headed attention, we maintain **separate** $Q_i/K_i/V_i$ weight matrices for **each head** resulting in different $Q_i/K_i/V_i$ matrices. As we did before, we multiply $X$ by the $W_i^Q/W_i^K/W_i^V$ matrices to produce $Q/K/V$ matrices. Here $i$ represents the $i^{th}$ head.
    2. In the original paper they used $8$ heads.
 
+> :bulb: Multiple Head is asking as if **multiple queries to the same sentence**, to highlight (attend) multiple values (words/tokens).
+
 All the different heads give different $z_i$ matrices. Concat them and multiply with weight matrix $W^O$ (trained jointly with the model) to get the final $z$ matrix that captures information from all the attention heads. This final $z$ can be sent to the FFNN.
 
 Summarizing all here it is:
