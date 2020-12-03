@@ -118,6 +118,13 @@ However, there is a catch with the common encoder-decoder approach: a neural net
 
 > :bulb: To solve the problem of parallelization, Transformers try to solve the problem by using **Convolutional Neural Networks together with attention** models. Attention boosts the speed of how fast the model can translate from one sequence to another.
 
+
+**MUST READ:**
+
+- [Attention Attention !](https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html#a-family-of-attention-mechanisms), [Multi_head_attention](https://paperswithcode.com/method/multi-head-attention) :fire:
+- [Annotated Transformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html) :fire:
+
+
 Must Watch :fire:
 
 <center>

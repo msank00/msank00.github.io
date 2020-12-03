@@ -44,6 +44,11 @@ _*In case the above link is broken, click [here](https://www.youtube.com/embed/F
 **TL;DR: To Understand BERT, understand `Attention` and `Transformer` thoroughly.**
 {: .red}
 
+**MUST READ:**
+
+- [Attention Attention !](https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html#a-family-of-attention-mechanisms), [Multi_head_attention](https://paperswithcode.com/method/multi-head-attention) :fire:
+- [Annotated Transformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html) :fire:
+
 Read [this](https://msank00.github.io/blog/2020/03/15/blog_605_Survey_attention) first.
 
 BERT (Bidirectional Encoder Representations from Transformers), released in late 2018, is the model we will use in this tutorial to provide readers with a better understanding of and practical guidance for using transfer learning models in NLP. BERT is a method of pretraining language representations that was used to create models that NLP practicioners can then download and use for free. You can either use these models to extract high quality language features from your text data, or you can fine-tune these models on a specific task (classification, entity recognition, question answering, etc.) with your own data to produce state of the art predictions.
