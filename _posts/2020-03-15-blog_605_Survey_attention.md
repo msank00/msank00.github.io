@@ -239,7 +239,15 @@ Finally, since we’re dealing with matrices, we can condense **steps two** thro
 
 ## Multi Headed Attention 
 
-> :bulb: The idea behind it is that whenever you are translating a word, you may pay different attention to each word based on the type of question that you are asking. The images below show what that means. For example, whenever you are translating `kicked` in the sentence `I kicked the ball`, you may ask `Who kicked`. Depending on the answer, the translation of the word to another language can change. Or ask other questions, like `Did what?`, etc…
+> :bulb: The idea behind it is that whenever you are translating a word, you may pay `different attention` to each word based on the type of `queries` that you are asking. The images below show what that means. 
+
+**Input:** `Bob kicked the ball.`
+
+- Query 1: `Who kicked?` $\rightarrow$ Value 1: `Bob`
+- Query 2: `What kicked?` $\rightarrow$ Value 2: `Ball`
+- Query 3: `Did what?` $\rightarrow$ Value 3: `Kicked`
+
+Depending on the answer, the translation of the word to another language can change. Or ask other questions. [pay attention to this, for **Multi Head Attention** later]
 
 ![image](/assets/images/image_20_Attention_10.png)
 ![image](/assets/images/image_20_Attention_11.png)
