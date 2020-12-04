@@ -116,8 +116,9 @@ However, there is a catch with the common encoder-decoder approach: a neural net
 
 # Transformer - Visual Understanding
 
-> :bulb: To solve the problem of parallelization, Transformers try to solve the problem by using **Convolutional Neural Networks together with attention** models. Attention boosts the speed of how fast the model can translate from one sequence to another.
+> :bulb: The transformer has **no recurrent or convolutional structure**, even with the positional encoding added to the embedding vector, the sequential order is only weakly incorporated. For problems sensitive to the positional dependency like reinforcement learning, this can be a big problem.
 
+> :dart: It presented a lot of **improvements** to the `soft attention` and make it possible to **do seq2seq modeling without recurrent network units**. The proposed `transformer` model is entirely built on the self-attention mechanisms (**scaled dot product attention**) without using sequence-aligned recurrent architecture.
 
 **MUST READ:**
 
@@ -188,6 +189,21 @@ Must Watch :fire:
 
 _*If above link is broken, click [here](https://www.youtube.com/watch?v=flHtAUGB0PU&t=1s)_
 
+**TL;DR:** 
+
+- The major component in the transformer is the unit of **multi-head self-attention mechanism**. The transformer views the encoded representation of the input as a set of **key-value** pairs, ($\mathbf{K},\mathbf{V}$), both of dimension $n$ (input sequence length); in the context of NMT, both the keys and values are the encoder hidden states. In the decoder, the previous output is compressed into a **query** ($\mathbf{Q}$ of dimension $m$) and the next output is produced by mapping this query and the set of keys and values.
+
+- The transformer adopts the `scaled dot-product attention`: the output is a weighted sum of the values, where the weight assigned to each value is determined by the dot-product of the query with all the keys:
+
+<center>
+
+$
+\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}(\frac{\mathbf{Q}\mathbf{K}^\top}{\sqrt{n}})\mathbf{V}
+$
+
+</center>
+
+:atom_symbol: **Details:**
 
 The **first step** in calculating self-attention is to create three vectors from each of the encoder’s input vectors (in this case, the embedding of each word). So for each word, we create a `Query vector`, a `Key vector`, and a `Value vector`. These vectors are created by multiplying the embedding by three matrices that we trained during the training process.
 
@@ -266,6 +282,60 @@ Must Watch :fire:
 
 _*If above link is broken, click [here](https://www.youtube.com/watch?v=N9AGY-Z6tbM&t=1s)_
 
+:atom_symbol: **TL;DR:**
+
+> :bulb: Rather than only computing the attention once, the multi-head mechanism runs through the scaled dot-product attention multiple times in parallel.
+
+> :dart: The independent attention outputs are simply **concatenated and linearly transformed into the expected dimensions**. I assume the motivation is because ensembling always helps? ;) According to the paper, “multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. With a single attention head, averaging inhibits this.”
+
+<center>
+
+$
+\text{MultiHead}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = [\text{head}_1; \dots; \text{head}_h]\mathbf{W}^O
+$
+
+</center>
+
+<center>
+
+$
+\text{where head}_i = \text{Attention}(\mathbf{Q}\mathbf{W}^Q_i, \mathbf{K}\mathbf{W}^K_i, \mathbf{V}\mathbf{W}^V_i)
+$
+
+</center>
+
+
+
+where $\mathbf{W}^Q_i$, $\mathbf{W}^K_i$ , $\mathbf{W}^V_i$, and $\mathbf{W}^O$ are parameter matrices to be learned.
+
+**ENCODER:**
+
+<center>
+
+<img src="https://lilianweng.github.io/lil-log/assets/images/transformer-encoder.png" width="300">
+
+</center>
+
+**DECODER:**
+
+<center>
+
+<img src="https://lilianweng.github.io/lil-log/assets/images/transformer-decoder.png" width="300">
+
+</center>
+
+**FULL ARCHITECTURE**
+
+<center>
+
+<img src="https://lilianweng.github.io/lil-log/assets/images/transformer.png" width="600">
+
+</center>
+
+_[MUST READ](https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html#a-family-of-attention-mechanisms)_ :rocket:
+
+
+:atom_symbol: **Details:**
 
 The paper further refined the self-attention layer by adding a mechanism called “multi-headed” attention. This improves the performance of the attention layer in two ways:
 
