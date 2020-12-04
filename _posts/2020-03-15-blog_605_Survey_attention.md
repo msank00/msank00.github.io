@@ -64,7 +64,7 @@ An attention model differs from a classic sequence-to-sequence model in two main
 </center>
 
 
-:sparkles: **Attention mechanism takes a linear combination of all the encoder hidden states**
+**Attention mechanism takes a linear combination of all the encoder hidden states**
 {: .red}
 
 
@@ -540,7 +540,7 @@ for $i=0,\ldots, l-1$ and $j=0,\ldots,\lfloor(d-1)/2\rfloor$.
 <img src="https://d2l.ai/_images/positional-encoding.svg" alt="image" width="500">
 </center>
 
-:atom_symbol: **Why do we need it in the first place?** {: .red}
+**Why do we need it in the first place?** {: .red}
 
 Transformer architecture ditched the recurrence mechanism in favor of multi-head self-attention mechanism. Avoiding the RNNs’ method of recurrence will result in massive speed-up in the training time. And theoretically, it can capture longer dependencies in a sentence.
 
