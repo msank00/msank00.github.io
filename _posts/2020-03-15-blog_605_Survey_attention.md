@@ -412,10 +412,17 @@ To combine the advantages from both CNNs and RNNs, [Vaswani et al., 2017](https:
 
 As a result, Transformer leads to a compatible model with significantly shorter training time.
 
-Similar to the `seq2seq` model, Transformer is also based on the `encoder-decoder` architecture. However, Transformer differs to the former by 
+Similar to the `seq2seq` model, Transformer is also based on the `encoder-decoder` architecture. However, Transformer differs to the former as follows:
+
+:taurus: **Salient features of transformers:**
+
 1. **Replacing the recurrent layers** in seq2seq with **multi-head attention layers**
 2. Incorporating the `position-wise` information through **position encoding**
 3. Applying **layer normalization**. 
+
+----
+
+## Comapre Transformer with Seq2Seq model
 
 We compare Transformer and seq2seq side-by-side in the below figure
 
@@ -424,15 +431,22 @@ We compare Transformer and seq2seq side-by-side in the below figure
 </center>
 
 
-Overall, these two models are similar to each other: 
-- The source sequence embeddings are fed into $n$ repeated blocks. The outputs of the last block are then used as **attention memory** for the decoder. 
+
+:gemini: **Similarity:**
+
+- The source sequence embeddings are fed into $n$ repeated blocks. The **outputs of the last block** are then used as **attention memory** for the decoder. 
 - The target sequence embeddings are similarly fed into $n$ repeated blocks in the decoder, and the final outputs are obtained by applying a dense layer with vocabulary size to the last block’s outputs.
 
-On the flip side, Transformer differs from the seq2seq with attention model in the following:
+:gemini: **Dissimilarity**
 
-- **Transformer block:** a recurrent layer in seq2seq is replaced by a Transformer block. This block contains a `multi-head attention layer` and a network with two `position-wise` feed-forward network layers for the **encoder**. For the **decoder**, another `multi-head attention` layer is used to take the encoder state.
+- **Transformer block:** a recurrent layer in seq2seq is replaced by a Transformer block. This block contains  
+  - a `multi-head attention layer` 
+  - a network with two `position-wise` feed-forward network layers for the **encoder**. 
+  - For the **decoder**, another `multi-head attention` layer is used to take the encoder state.
 - **Add and norm:** the inputs and outputs of both the multi-head attention layer or the position-wise feed-forward network, are processed by two `add and norm` layer that contains a **residual structure** and a `layer normalization` layer.
 - **Position encoding:** Since the self-attention layer does not distinguish the item order in a sequence, a `positional encoding` layer is used to add sequential information into each sequence item.
+
+----
 
 ## Multi-Head Attention
 
@@ -474,15 +488,17 @@ $
 
 </center>
 
+----
 ## Position-wise Feed-Forward Networks
 
-Another key component in the Transformer block is called position-wise feed-forward network (FFN). It accepts a $3$-dimensional input with shape (`batch size`, `sequence length`, `feature size`). The position-wise FFN consists of two dense layers that applies to the last dimension. Since the same two dense layers are used for each position item in the sequence, we referred to it as position-wise. Indeed, it is **equivalent to applying two** $1 \times 1$ convolution layers.
+- Another key component in the Transformer block is called position-wise feed-forward network (FFN). It accepts a $3$-dimensional input with shape (`batch size`, `sequence length`, `feature size`). 
+- The position-wise FFN consists of two dense layers that applies to the last dimension. Since the same two dense layers are used for each position item in the sequence, we referred to it as position-wise. Indeed, it is **equivalent to applying two** $1 \times 1$ convolution layers.
 
 ## Add and Norm
 
 Besides the above two components in the Transformer block, the `add and norm` within the block also plays a key role to **connect** the `inputs` and `outputs` of other layers `smoothly`. To explain, we add a layer that contains a **residual structure** and a **layer normalization** after both the multi-head attention layer and the position-wise FFN network. 
 
-Layer normalization is similar to batch normalization in Section 7.5. One difference is that the mean and variances for the layer normalization are calculated along the last dimension, e.g `X.mean(axis=-1)` instead of the first batch dimension, e.g., X.mean(axis=0). 
+:dart: Layer normalization is similar to batch normalization. One difference is that the mean and variances for the layer normalization are calculated along the **last dimension**, e.g `X.mean(axis=-1)` instead of the first batch dimension, e.g., `X.mean(axis=0)`. 
 
 Layer normalization prevents the range of values in the layers from changing too much, which means that **faster training** and **better generalization** ability.
 
@@ -500,7 +516,7 @@ The position $P$ is a $2$-D matrix, where
 - $i$ refers to the **order in the sentence**
 - $j$ refers to the **position along the embedding vector dimension**. 
 
-In this way, each value in the origin sequence is then maintained using the equations below:
+In this way, each value in the original sequence is then maintained using the equations below:
 
 <center>
 
@@ -523,6 +539,53 @@ for $i=0,\ldots, l-1$ and $j=0,\ldots,\lfloor(d-1)/2\rfloor$.
 <center>
 <img src="https://d2l.ai/_images/positional-encoding.svg" alt="image" width="500">
 </center>
+
+:atom_symbol: **Why do we need it in the first place?** {: .red}
+
+Transformer architecture ditched the recurrence mechanism in favor of multi-head self-attention mechanism. Avoiding the RNNs’ method of recurrence will result in massive speed-up in the training time. And theoretically, it can capture longer dependencies in a sentence.
+
+The model itself doesn’t have any sense of position/order for each word. Consequently, there’s still the need for a way to incorporate the order of the words into our model. One possible solution to give the model some sense of order is to add a piece of information to each word about its position in the sentence. We call this “piece of information”, the positional encoding.
+
+Ideally, the following criteria should be satisfied:
+
+- **Unique Positional Encoding** It should output a unique encoding for each time-step (word’s position in a sentence)
+- **Consistent Distance:** Distance between any two time-steps should be consistent across sentences with different lengths.
+- Model should generalize to longer sentences without any efforts. Its values should be bounded.
+- It must be deterministic.
+
+**Intuition of** $\sin$ and $\cos$ **in positional encoding**:
+
+> :bulb: A more intuitive explanation of positional embedding is to think about it as a clock (as cos and sin are just concept from unit circle). Every two dimension of the positional embedding just specifies one of the clock's hand (the hour hand, the minute hand, the second hand, for example). Then moving from one position to the next position is just rotating those hands at different frequencies. Thus, without formal proof, it immediately tells you why a rotation matrix exist.
+
+**Reference:**
+
+- [Transformer Architecture: The Positional Encoding](https://kazemnejad.com/blog/transformer_architecture_positional_encoding/) :fire: [read comment section] 
+- [proof](https://timodenk.com/blog/linear-relationships-in-the-transformers-positional-encoding/)
+
+
+----
+
+## What is position wise FFN?
+
+From the author of "Attention is all you need" by Vaswani et al.
+
+> :bulb: In addition to attention sub-layers, each of the layers in our encoder and decoder contains a fully connected feed-forward network, which is applied to each position separately and identically. This consists of two linear transformations with a ReLU activation in between.
+
+<center>
+
+$
+FFN(𝑥)=max(0,𝑥×𝑊_1+𝑏_1)×𝑊_2+𝑏_2
+$
+
+</center>
+
+> While the **linear transformations are the same across different positions**, they use different parameters from layer to layer. Another way of describing this is as **two convolutions with kernel size 1**. The dimensionality of input and output is $𝑑_{model}=512$, and the inner-layer has dimensionality $𝑑_{𝑓𝑓}=2048$.
+
+**Reference:**
+
+- [stackexchange](https://ai.stackexchange.com/questions/15524/why-would-you-implement-the-position-wise-feed-forward-network-of-the-transforme)
+
+----
 
 ## Encoder
 
