@@ -112,13 +112,91 @@ For more deeper understanding of `attention` please look into [this](https://msa
 
 ----
 
+# BERT - Deeper understanding 
+
+> :dart: One of the biggest challenges in natural language processing (NLP) is the `shortage of task specific training data`. 
+
+Because NLP is a diversified field with many distinct tasks, most task-specific datasets contain only a few thousand or a few hundred thousand human-labeled training examples. 
+
+However, modern deep learning-based NLP models see benefits from much larger amounts of data, improving when trained on millions, or billions, of annotated training examples. To help close this gap in data, researchers have developed a variety of techniques for training general purpose language representation models using the enormous amount of `unannotated text` on the web (known as pre-training). 
+
+The pre-trained model can then be fine-tuned on `small annotated data` for NLP tasks like **question answering** and **sentiment analysis**, resulting in substantial accuracy improvements compared to training on these datasets from scratch.
+
+**TL;DR:** This idea of training on large unlabelled data and later fine tuning on task specific small labeled data is called a form of **Semi Supervised** (click [here](https://msank00.github.io/blog/2020/03/03/blog_602_Survey_data_programming)) learning.
+
+## What Makes BERT Different? 
+
+BERT builds upon recent work in pre-training contextual representations — including [Semi-supervised Sequence Learning](https://arxiv.org/abs/1511.01432), [Generative Pre-Training](https://blog.openai.com/language-unsupervised/), [ELMo](https://allennlp.org/elmo), and ULMFit. However, unlike these previous models, BERT is the 
+- First deeply bidirectional
+- Unsupervised language representation, pre-trained using only a plain text corpus (in this case, Wikipedia).
+
+**Why does this matter?** {: .red}
+
+Pre-trained representations can either be 
+
+- Context-free [[word2vec](https://msank00.github.io/blog/2020/04/24/blog_608_Survey_NLU_part_1#word2vec), [Glove](https://msank00.github.io/blog/2020/04/24/blog_608_Survey_NLU_part_1#glove-global-vectors)]
+  - Unidirectional 
+  - Bi Derectoinal
+- Contextual
+  - Unidirectional: OpenAI GPT
+  - Biderectional
+    - Deep: BERT
+    - Shallow: ELMo
+
+<center>
+
+<img src="https://1.bp.blogspot.com/-RLAbr6kPNUo/W9is5FwUXmI/AAAAAAAADeU/5y9466Zoyoc96vqLjbruLK8i_t8qEdHnQCLcBGAs/s1600/image3.png" width="600">
+
+</center>
+
+
+
+Contextual representations can further be unidirectional or bidirectional. Context-free models such as word2vec or GloVe generate a single word embedding representation for each word in the vocabulary. For example, the word `bank` would have the same context-free representation in `bank account` and `bank of the river`. 
+
+Contextual models instead generate a representation of each word that is based on the other words in the sentence. For example, in the sentence `I accessed the bank account`, a **unidirectional contextual** model would represent `bank` based on `I accessed the` but not `account`. However, BERT represents `bank` using both its previous and next context: `I accessed the _____ account` $\rightarrow$ starting from the very bottom of a deep neural network, making it deeply bidirectional.
+
+**The Strength of Bidirectionality** {: .red}
+
+If bidirectionality is so powerful, why hasn’t it been done before? To understand why, consider that unidirectional models are efficiently trained by predicting each word conditioned on the previous words in the sentence. However, it is not possible to train bidirectional models by simply conditioning each word on its previous and next words, since this would allow the word that’s being predicted to indirectly `see itself` in a multi-layer model. Which is not correct. So we need to `design a task` on which the model can be trained with `correct` bi-directionality. 
+
+:atom_symbol: **Masked Language Model:** To solve this problem, the straightforward technique is to **mask** out some of the words in the input and then condition each word bidirectionally to predict the masked words. For example:
+
+<center>
+
+<img src="https://2.bp.blogspot.com/-pNxcHHXNZg0/W9iv3evVyOI/AAAAAAAADfA/KTSvKXNzzL0W8ry28PPl7nYI1CG_5WuvwCLcBGAs/s1600/f1.png" width="600">
+
+</center>
+
+Masking means that the model looks in both directions and it uses the full context of the sentence, both left and right surroundings, in order to predict the masked word. Unlike the previous language models, it takes both the previous and next tokens into account at the **same time**. The existing combined left-to-right and right-to-left LSTM based models were missing this `same-time part`. (It might be more accurate to say that BERT is non-directional though.)
+
+:atom_symbol: **Next Sentence Prediction:** BERT also learns to model relationships between sentences by pre-training on a very simple task that can be generated from any text corpus: Given two sentences A and B, is B the actual next sentence that comes after A in the corpus, or just a random sentence? For example:
+
+<center>
+
+<img src="https://4.bp.blogspot.com/-K_7yu3kjF18/W9iv-R-MnyI/AAAAAAAADfE/xUwR_G1iTY0vq9X-Z3LnW5t4NLS9BQzdgCLcBGAs/s640/f2.png" width="600">
+
+</center>
+
+
+_*Now read [this](https://nlp.stanford.edu/seminar/details/jdevlin.pdf) as a continuation._ :rocket:
+
+
+**Reference:**
+
+- [BERT Google AI](https://ai.googleblog.com/2018/11/open-sourcing-bert-state-of-art-pre.html)
+- [BERT - Stanford](https://nlp.stanford.edu/seminar/details/jdevlin.pdf) :fire:
+- [Semi supervised sequence learning](https://arxiv.org/abs/1511.01432)
+
+
+----
+
 # BERT Shortcomings
 
 1. BERT is very large. $\sim 109$M parameters with total size $\sim 417$MB.
    1. Slow fine-tuning.
    2. Slow inference.
 2. Jargon (Domain specific language)
-3. NOT all NLP applications can be solved using BERT
+3. **NOT all NLP applications can be solved using BERT**
    1. :ballot_box_with_check: Classification, NER, POS Tagging, QnA
    2. :negative_squared_cross_mark: Language Modelling, Text Generation, Translation 
 
@@ -127,6 +205,73 @@ For more deeper understanding of `attention` please look into [this](https://msa
 - [Youtube video](https://www.youtube.com/watch?v=x66kkDnbzi4&list=PLam9sigHPGwOBuH4_4fr-XvDbe5uneaf6&index=3)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# BERT Architecture
+
+BERT relies on a Transformer (the attention mechanism that learns contextual relationships between words in a text). A basic Transformer consists of an encoder to read the text input and a decoder to produce a prediction for the task. Since BERT’s goal is to generate a language representation model, it only needs the encoder part. 
+
+The input to the encoder for BERT is a sequence of tokens, which are first converted into vectors and then processed in the neural network. But before processing can start, BERT needs the input to be massaged and decorated with some extra metadata:
+
+- **Token embeddings:** A [CLS] token is added to the input word tokens at the beginning of the first sentence and a [SEP] token is inserted at the end of each sentence.
+- **Segment embeddings:** A marker indicating `Sentence A` or `Sentence B` is added to each token. This allows the encoder to distinguish between sentences. Helpful in nex-sentence prediction task.
+
+
+<center>
+
+<img src="https://towardsml.files.wordpress.com/2019/09/input.png" width="600">
+
+</center>
+
+
+The input representation for BERT: The input embeddings are the sum of the token embeddings, the segmentation embeddings and the position embeddings.
+
+## Train the model
+
+:atom_symbol: **Masked LM (MLM)**
+
+The idea here is “simple”: Randomly mask out $15\%$ of the words in the input — replacing them with a `[MASK]` token —  run the entire sequence through the BERT attention based encoder and then predict only the masked words, based on the context provided by the other non-masked words in the sequence. 
+
+**Problem:** However, there is a problem with this naive masking approach —  the model only tries to predict when the `[MASK]` token is present in the input, while we want the model to try to predict the correct tokens regardless of what token is present in the input. To deal with this issue, out of the $15\%$ of the tokens selected for masking:
+
+- $80\%$ of the tokens are actually replaced with the token [MASK].
+- $10\%$ of the time tokens are replaced with a **random token**.
+- $10\%$ of the time tokens are left **unchanged**.
+
+
+
+While training the BERT loss function considers only the prediction of the masked tokens and ignores the prediction of the non-masked ones. This results in a model that converges much more slowly than left-to-right or right-to-left models.
+
+:atom_symbol: **Next Sentence Prediction (NSP)**
+
+In order to understand relationship between two sentences, BERT training process also uses next sentence prediction. A pre-trained model with this kind of understanding is relevant for tasks like `question answering`. During training the model gets as input: **pairs of sentences** and it learns to predict if the second sentence is the next sentence in the original text as well.
+
+As we have seen earlier, BERT separates sentences with a special `[SEP]` token. During training the model is fed with two input sentences at a time such that:
+
+- $50\%$ of the time the second sentence comes after the first one.
+- $50\%$ of the time it is a a **random sentence** from the full corpus.
+
+BERT is then required to predict whether the second sentence is random or not, with the assumption that the random sentence will be disconnected from the first sentence:
+
+
+
+<center>
+
+<img src="https://towardsml.files.wordpress.com/2019/09/nsp-1.png" width="500">
+
+</center>
+
+To predict if the second sentence is connected to the first one or not, basically the complete input sequence goes through the Transformer based model, the output of the `[CLS]` token is transformed into a 2×1 shaped vector using a simple classification layer, and the IsNext-Label is assigned using softmax.
+
+The model is **trained jointly** with both Masked LM and Next Sentence Prediction together. This is to minimize the combined loss function of the two strategies — `together is better`.
+
+## Loss function
+
+**Reference:**
+
+- [BERT tutorial](https://towardsml.com/2019/09/17/bert-explained-a-complete-guide-with-theory-and-tutorial/) :fire:
+
 
 ----
 
