@@ -14,6 +14,7 @@ mathjax: true
 {:toc}
 ---
 
+
 # Using the Right Processors CPUs, GPUs, ASICs, and TPUs
 
 CPUs are not ideal for large scale machine learning (ML), and they can quickly turn into a bottleneck because of the sequential processing nature. An upgrade on CPUs for ML is GPUs (graphics processing units). Unlike CPUs, GPUs contain hundreds of embedded ALUs, which make them a very good choice for any process that can benefit by leveraging parallelized computations. GPUs are much faster than CPUs for computations like vector multiplications. However, both CPUs and GPUs are designed for general purpose usage and suffer from **von Neumann bottleneck** () and higher power consumption.
@@ -117,6 +118,17 @@ The data is partitioned, and the driver node assigns tasks to the nodes in the c
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+----
+
+# Seminal Papers on Distributed Learning
+
+- [Large Scale Distributed Deep Networks by Jeff Dean Google - NeurIPS 2012](https://papers.nips.cc/paper/2012/hash/6aca97005c68f1206823815f66102863-Abstract.html) :fire:
+- [HOGWILD!: A Lock-Free Approach to Parallelizing Stochastic Gradient Descent](https://arxiv.org/abs/1106.5730)
+- [Dogwild! — Distributed Hogwild for CPU & GPU](http://stanford.edu/~rezab/nips2014workshop/submits/dogwild.pdf)
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 
 ----
 
@@ -129,6 +141,69 @@ The data is partitioned, and the driver node assigns tasks to the nodes in the c
 - [O'Reilly Podcast - Scaling machine learning](https://www.oreilly.com/radar/podcast/scaling-machine-learning/)
 - [Lessons Learned from Deploying Deep Learning at Scale ](https://algorithmia.com/blog/deploying-deep-learning-at-scale) :fire:
 - [Deploying AI to production: 12 tips from the trenches](https://www.linkedin.com/pulse/deploying-ai-production-12-tips-from-trenches-max-pagels/) :rocket:
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Tools to build large scale ML System
+
+
+- [GraphLab](https://www.analyticsvidhya.com/blog/2015/12/started-graphlab-python/)
+- [Vowpal Wabbit](https://www.youtube.com/watch?v=gyCjancgR9U)
+- [Sibyl: A System for Large Scale Machine Learning at Google](https://www.youtube.com/watch?v=3SaZ5UAQrQM) :fire:
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# How to structure PySpark application 
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/Bp0XvA3wIXw" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/Bp0XvA3wIXw)_ :fire:
+
+
+## Debugging PySPark Application
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/A0jYQlxc2FU" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/A0jYQlxc2FU)_ :fire:
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Distributed Deep Learning
+
+
+- [Distributed Deep Learning Pipelines with PySpark and Keras](https://towardsdatascience.com/distributed-deep-learning-pipelines-with-pyspark-and-keras-a3a1c22b9239)
+
+## PyTorch Dataparallel
+
+PyTorch has relatively simple interface for distributed training. To do distributed training, the model would just have to be wrapped using `DistributedDataParallel` and the training script would just have to be launched using `torch.distributed.launch`.
+
+- Please look at [this](https://leimao.github.io/blog/PyTorch-Distributed-Training/) tutorial for docker based distributed deep learning training :fire:
+
+**Resource:**
+
+- [Official PyTorch example](https://pytorch.org/tutorials/#parallel-and-distributed-training) :rocket:
+- [Writing Distributed Applications with PyTorch](https://pytorch.org/tutorials/intermediate/dist_tuto.html#)
+- [PyTorch Distributed communication package](https://pytorch.org/docs/stable/distributed.html)
+- [Single node PyTorch to distributed deep learning using HorovodRunner](https://docs.databricks.com/applications/machine-learning/train-model/distributed-training/mnist-pytorch.html)
+- [Databricks HorovodRunner: distributed deep learning with Horovod](https://docs.databricks.com/applications/machine-learning/train-model/distributed-training/horovod-runner.html) :fire:
+- [HorovodRunner for Distributed Deep Learning](https://databricks.com/blog/2018/11/19/introducing-horovodrunner-for-distributed-deep-learning-training.html)
+
 
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
