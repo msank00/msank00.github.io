@@ -387,6 +387,10 @@ $\chi^2 = \Sigma \frac{(O_i - E_i)^2}{E_i}$
 
 _*In case the above link is broken, click [here](https://www.youtube.com/embed/Uv6nGIgZMVw)_ :fire:
 
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ----
 
 # Z-test
@@ -466,6 +470,28 @@ There are multiple variations of t-test which are explained in detail [here](htt
 **Reference:**
 
 - [Statistical Tests — When to use Which ?](https://towardsdatascience.com/statistical-tests-when-to-use-which-704557554740) :fire:
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
+# Kendall’s Tau (Kendall Rank Correlation Coefficient) 
+
+Kendall’s Tau is a non-parametric measure of relationships between columns of ranked data. The Tau correlation coefficient returns a value of 0 to 1, where:
+
+
+- $0$ is no relationship,
+- $1$ is a perfect relationship.
+
+**Reference:**
+
+- [Blog](https://www.statisticshowto.com/kendalls-tau/)
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 
 ----
 

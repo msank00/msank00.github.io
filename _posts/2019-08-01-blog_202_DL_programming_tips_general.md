@@ -118,6 +118,17 @@ These are pure gold.
 
 ---
 
+# Manage Virutal Environment
+
+Apart from `conda`, Using the built-in `venv` module in Python3 we can create a new virtual environment.
+
+![image](https://pbs.twimg.com/media/EjBnclcWsAIOYar?format=jpg&name=small)
+
+- [Python Virtual Environments: A Primer](https://realpython.com/python-virtual-environments-a-primer/)
+- [Poetry](https://python-poetry.org/docs/) :rocket:
+
+----
+
 # Pytorch Learning
 
 - [JovianML: Pytorch Basics](https://jovian.ml/aakashns/01-pytorch-basics)
@@ -265,6 +276,24 @@ else:
 inputs = Variable(inputs, volatile=True)
 labels = Variable(labels, volatile=True)
 ```
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+-----
+
+# Learning rate finder PyTorch
+
+<center>
+
+<img src="https://enjoymachinelearning.com/assets/images/009/lr_plot.png" width="400">
+
+</center>
+
+- [Finding good learning rate for your neural nets using PyTorch Lightning](https://enjoymachinelearning.com/posts/find-lr-pytorch-lightning/)
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 -----
 

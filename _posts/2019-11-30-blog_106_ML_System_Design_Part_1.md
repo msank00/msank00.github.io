@@ -20,7 +20,88 @@ To learn how to design machine learning systems
 
 - [Tweet: Chip Huyen](https://twitter.com/chipro/status/1188653180902445056)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
 ----
+
+# 12 Factors of reproducible Machine Learning in production
+
+<center>
+
+<img src="https://zenml.io/assets/illustrations/architecture/vertical-large.svg" width="500">
+
+</center>
+
+1. You need to version your code, and you need to version your data.
+
+> :bulb: Serverless functions can provide an easy-access way to achieve a middle ground between the workflow of Data Scientists and production-ready requirements.
+
+2. Make your feature dependencies explicit in your code
+
+> :bulb: Explicitly defined feature dependencies allow for transparent failure as early as possible. Well-designed systems will accommodate feature dependencies both in continuous training as well as at serving time.
+
+3. Write readable code and separate code from configuration.
+
+> :dart: Code for both preprocessing and models should follow PEP8. It should consist of meaningful object names and contain helpful comments. Following `PEP8` will improve code legibility, reduce complexity and speed up debugging. Programming paradigms such as `SOLID` provide thought frameworks to make code more maintainable, understandable and flexible for future use cases.
+
+4. :fire: Reproducibility of trainings - Use **pipelines** and **automation**.
+
+> By using `pipelines` to train models entire teams gain both access and transparency over conducted experiments and training runs. Bundled with a `reusable codebase` and a `separation from configuration`, everyone can successfully relaunch any training at any point in time.
+
+5. Test your code, test your models.
+6. :fire: Drift / Continuous training - If you data can change run a **continuous training pipeline**
+
+> Data monitoring for production systems. Establish automated reporting mechanisms to alert teams of changing data, even beyond explicitly defined feature dependencies
+> Continuous training on newly incoming data. Well-automated pipelines can be rerun on newly recorded data and offer comparability to historic training results to show performance degradation
+
+7. Track results via automation - **Weights and Bias**
+
+8. Experimentation vs Production models - Notebooks are not production-ready, so experiment in pipelines early on
+
+> :bulb: Gained understanding (through Notebook) will need more molding and fitting into production-ready training pipelines. All understandings unrelated to domain-specific knowledge can however be automated.
+
+**The earlier you experiment in pipelines, the earlier you can collaborate on intermediate results and the earlier you’ll receive production-ready models**
+
+9. Training-Serving-Skew - Correctly embed preprocessing to serving, and make sure you understand up- and downstream of your data
+
+
+10. Build your pipelines so you can easily compare training results across pipelines.
+
+> :bulb: the technical possibility to compare model trainings needs to be built into training architecture as a first-class citizen early on
+
+11. Again: you build it, you run it. Monitoring models in production is a part of data science in production
+
+> Plenty of negative degradations can occur in the lifecycle of a model: Data can drift, models can become bottlenecks for overall performance and bias is a real issue. Data Scientists and teams are responsible for monitoring the models they produce. **At its minimum**, a model needs to be monitored for input data, inference times, resource usage (read: CPU, RAM) and output data 
+
+12. Every training pipeline needs to produce a deployable artefact, not “just” a model
+
+**Reference:**
+
+- [12 Factors of reproducible Machine Learning in production](https://blog.maiot.io/12-factors-of-ml-in-production/)
+- [ZenML](https://zenml.io/#features) :fire:
+  - [Why ZenML](https://zenml.io/why-ZenML/)
+- [Seldon Core](https://github.com/SeldonIO/seldon-core)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+---
+
+# MLflow and PyTorch — Where Cutting Edge AI meets MLOps
+
+Full workflow for MLops for building PyTorch models and deploying on the TorchServe plugin using the full MLflow MLops lifecycle management
+
+<center>
+
+<img src="https://miro.medium.com/max/700/0*R06hbsJNmes9GfGS" width="500">
+
+</center>
+
+- [Blog](https://medium.com/pytorch/mlflow-and-pytorch-where-cutting-edge-ai-meets-mlops-1985cf8aa789)
+- [ BERT News Classification example](https://github.com/mlflow/mlflow/tree/master/examples/pytorch/BertNewsClassification)
+
+----
+
 # Practical Deep Learning Systems - Full Stack Deep Learning
 
 **Play the video:** :arrow_heading_down: 
@@ -48,6 +129,17 @@ To learn how to design machine learning systems
 
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Serve model using Torchserve
+
+- [Getting started with Torchserve](https://cceyda.github.io/blog/torchserve/streamlit/dashboard/2020/10/15/torchserve.html)
+
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 
 ----
 

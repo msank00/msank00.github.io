@@ -217,4 +217,87 @@ Hands-on example [here](https://hackernoon.com/a-guide-to-scaling-machine-learni
 
 ----
 
+# Scalable API - Deep Learning in Production
+
+![image](https://pyimagesearch.com/wp-content/uploads/2018/01/deep_learning_cloud_animation.gif)
+
+_*image [source](https://www.pyimagesearch.com/2018/02/05/deep-learning-production-keras-redis-flask-apache/)_
+
+> Shipping deep learning models to production is a non-trivial task 
+
+If you don’t believe me, take a second and look at the “tech giants” such as Amazon, Google, Microsoft, etc. — nearly all of them provide some method to ship your machine learning/deep learning models to production in the cloud.
+
+This type of situation is more common than you may think. Consider:
+
+- An in-house project where you cannot move sensitive data outside your network
+- A project that specifies that the entire infrastructure must reside within the company
+- A government organization that needs a private cloud
+- A startup that is in “stealth mode” and needs to stress test their service/application in-house
+
+_*Please follow this amazing [blog](https://www.pyimagesearch.com/2018/02/05/deep-learning-production-keras-redis-flask-apache/) from Adrian Rosebrock from Pyimagesearch_ :fire:
+
+## First Approach: 
+
+- [A scalable Keras + deep learning REST API](https://www.pyimagesearch.com/2018/01/29/scalable-keras-deep-learning-rest-api/)
+
+<center>
+
+<img src="https://www.pyimagesearch.com/wp-content/uploads/2018/01/keras_api_header.png" width="500">
+
+</center>
+
+:atom_symbol: **A short introduction to Redis as a REST API message broker/message queue**
+
+<center>
+
+<img src="https://www.pyimagesearch.com/wp-content/uploads/2018/01/keras_api_message_broker.png" width="500">
+
+</center>
+
+[Redis](https://redis.io/) is an in-memory data store. It is different than a simple `key/value` store (such as [memcached](https://memcached.org/)) as it can can store actual data structures.
+
+> :bulb: **Memcache:** Free & open source, high-performance, distributed memory object caching system, generic in nature, but intended for use in speeding up dynamic web applications by alleviating database load.
+
+Steps:
+
+
+- Running Redis on our machine
+- Queuing up data (images) to our Redis store to be processed by our REST API
+- Polling Redis for new batches of input images
+- Classifying the images and returning the results to the client
+
+Read the full blog and have practical experience.
+
+:atom_symbol: **Considerations when scaling your deep learning REST API**
+
+- If you anticipate heavy load for extended periods of time on your deep learning REST API you may want to consider a load balancing algorithm such as round-robin scheduling to help evenly distribute requests across multiple GPU machines and Redis servers.
+- Keep in mind that Redis is an **in-memory data store** so we can only store as many images in the queue we have available memory.
+- A single `224 x 224 x 3` image with a float32 data type will consume $602112$ bytes of memory.
+- Assuming a server with a modest $16$ GB of RAM, this implies that we can hold approximately $26500$ images in our queue, but at that point we likely would want to add more GPU servers to burn through the queue faster.
+
+:warning: **Subtle issue: Multiple Model Syndrome:**
+
+:dart: Depending on how you deploy your deep learning REST API, there is a subtle problem with keeping the `classify_process`
+function in the same file as the rest of our web API code.
+
+Most web servers, including Apache and nginx, allow for multiple client threads.
+
+If you keep `classify_process` in the same file as your `predict`
+view, then you may load multiple models if your server software deems it necessary to create a new thread to serve the incoming client requests — **for every new thread, a new view will be created, and therefore a new model will be loaded**.
+
+**Solution:** The solution is to move classify_process
+to an entirely separate process and then start it along with your Flask web server and Redis server. Follow second approach
+
+
+## Second Approach: Deep learning in production with Keras, Redis, Flask, and Apache
+
+_*Follow this amazing [blog](https://www.pyimagesearch.com/2018/02/05/deep-learning-production-keras-redis-flask-apache/) by Adrian Rosebrock from pyimagesearch and try yourself_ :fire:
+
+- The main idea is almost similar to first approach, but with code refactorring to avoid subtle memory issues.
+- Also focus on the concept of `stress test`. 
+
+:dart: There is a FastAPI + Docker vesion available for the second approach. Please follow this  [blog](https://medium.com/analytics-vidhya/deploy-machine-learning-models-with-keras-fastapi-redis-and-docker-4940df614ece). Try this [code](https://github.com/shanesoh/deploy-ml-fastapi-redis-docker).
+
+----
+
 <a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>
