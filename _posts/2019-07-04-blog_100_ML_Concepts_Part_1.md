@@ -29,6 +29,34 @@ There are four assumptions associated with a linear regression model:
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+----
+
+
+To aid our conceptual understsanding, each of the algorithms can be categorized into various categories:
+
+- eager vs lazy
+- batch vs online
+- parametric vs nonparametric
+- discriminative vs generative
+
+:atom_symbol: **Eager vs lazy learners:** Eager learners are algorithms that process training data `immediately`  whereas  lazy  learners  defer  the  processing  step  `until  the  prediction`.   In  fact,  lazy learners do not have an explicit training step other than storing the training data.  A pop-ular example of a lazy learner is the **Nearest Neighbor algorithm**.
+
+:atom_symbol: **Batch  vs  online  learning:** Batch  learning  refers  to  the  fact  that  the  model  is  learned on the `entire set` of training examples.  Online learners, in contrast, learn from `one training example` at the time.  It is not uncommon, in practical applications, to learn a model viabatch learning and then update it later using online learning.
+
+
+:atom_symbol: **Parametric vs nonparametric models:** Parametric models are `fixed` models, where we assume a certain functional form for $f(x) =y$ .  For example,  linear regression can beconsidered  as  a  parametric  model  with $h(x)  = w_1 x_1+ \dots + w_m x_m+b$ .   Nonparametric models are more `flexible` and do not have a pre-specfied number of parameters.  In fact,the number of parameters grows typically with the size of the training set.  For example, a **decision tree** would be an example of a nonparametric model, where each decision node(e.g., a binary `True/False` assertion) can be regarded as a parameter.
+
+    
+:atom_symbol: **Discriminative  vs  generative:** Generative  models  (classically)  describe  methods  that model  the  `joint  distribution` $P(X,Y)  = P(Y)P(X \vert Y)  =P(X)P(Y \vert X)$  for  training  pairs $(x_i,y_i)$. Discriminative models are taking a more `direct` approach, modeling $P(Y \vert X)$ directly.  While generative models provide typically more insights and allow sampling from the  joint  distribution,  discriminative  models  are  typically  easier  to  compute  and  produce more accurate predictions.  Helpful for understanding discriminative models is the followingan alogy:  
+
+> :bulb: Discriminative modeling is like trying to extract information $Y$ `given` (from) text $X$ in a foreign language ($P(Y \vert X)$) **without learning that language**.
+
+**Reference:**
+
+- [stat451-machine-learning-fs20 - Sebastian Rachka - Lecture 1](https://github.com/rasbt/stat451-machine-learning-fs20) :fire:
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 
 ----
 
@@ -322,6 +350,56 @@ Now GLM in `non-linear` due to the presence of $g()$ but it can be transformed i
 - [Stackexchange](https://stats.stackexchange.com/questions/120047/nonlinear-vs-generalized-linear-model-how-do-you-refer-to-logistic-poisson-e)
   
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Nearest Neighbour
+
+Nearest  neighbor  algorithms  are  among  the  `simplest`  supervised  machine  learning  algorithms and have been well studied in the field of pattern recognition over the last century.
+
+While kNN is a `universal function approximator` under certain conditions, the underlying concept is relatively simple. kNN is an algorithm for supervised learning that simply stores the labeled training examples during the training phase.  For this reason, kNN is also called a lazy learning algorithm. What it means to be alazy learning algorithm is that the processing of the training examples is postponed until making predictions once again, the training consists literally of just storingthe training data.
+
+> :bulb: When you are reading recent literature, note that thepredictionstep is now often called ”inference” inthe machine learning community.  Note that in the context of machine learning, the term ”inference” is notto be confused with how we use the term ”inference” in statistics, though.
+
+Then, to make a prediction (class label or continuous target), a trained kNN model finds the k-nearest  neighbors  of  a  query  point  and  computes  the  class  label  (classification)  or continuous target (regression) based on the k nearest (most `similar`) points.  The exact mechanics will be explained in the next sections.  However, the overall idea is that instead of approximating the target function $f(x) = y$ globally, during each prediction, kNN approximates the target function locally. 
+
+Since kNN does not have an explicit training step and defers all of the computation until prediction, we already determined that kNN is a lazy algorithm. 
+
+Further, instead of devising one global model or approximation of the target function, for each  different  data  point,  there  is  a  different  local  approximation,  which  depends  on  the data  point  itself  as  well  as  the  training  data  points.   Since  the  prediction  is  based  on  a comparison  of  a  `query  point`  with  `data  points`  in  the  training  set  (rather  than  a  globalmodel), kNN is also categorized as `instance-based` (or `memory-based`) method.  While kNN  is  a  **lazy  instance-based**  learning  algorithm,  an  example  of  an  eager  instance-based learning algorithm would be the SVM. 
+
+Lastly,  because  we  do  not  make  any  assumption  about  the  functional  form  of  the kNN algorithm, a kNN model is also considered a **non-parametric** model.
+
+## Curse of Dimensionality
+
+The kNN algorithm is particularly susceptible to the curse of dimensionality.  In machine learning, the curse of dimensionality refers to scenarios with a fixed number of training examples but an increasing number of dimensions and range of feature values in each dimensionin a high-dimensional feature space. In kNN an increasing number of dimensions becomes increasingly problematic because the more dimensions we add, the larger the volume in the hyperspace needs to be to capture fixed number of neighbors.  As the volume grows larger and larger, the `neighbors` become less and less `similar` to the query point as they are now all relatively distant from the query point considering all different dimensions that are included when computing the pairwise distances.
+
+## Big-O of kNN
+
+For  the  brute force  neighbor  search  of  the kNN  algorithm,  we  have  a  time  complexity  of $O(n×m)$, where $n$ is the number of training examples and $m$ is the number of dimensions in the training set.  For simplicity, assuming $n \gggtr m$ , the complexity of the brute-force nearest-neighbor  search  is $O(n)$.   In  the  next  section,  we  will  briefly  go  over  a  few  strategies  to improve the runtime of the kNN model.
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+## Different data-structure of kNN:
+
+- Heap
+- **Bucketing:**
+  - The  simplest  approach  is  `bucketing`.   Here,  we  divide  the  search  space  into  identical, similarly-sized  cells  (or  buckets),  that  resemble  a  grid  (picture  a  2D  grid  2-dimensional hyperspace or plane)
+- **KD-Tree:**
+  - A  KD-Tree,  which  stands  for `k-dimensional  search  tree`,  is  a  generalization  of  binary search trees.  KD-Trees data structures have a time complexity of $O(\log(n))$ on average (but $O(n)$  in  the  worst  case)  or  better  and  work  well  in  relatively  low  dimensions.   KD-Trees also partition the search space perpendicular to the feature axes in a Cartesian coordinate system.  However, with a large number of features, KD-Trees become increasingly inefficient,and alternative data structures, such as Ball-Trees, should be considered.
+- **Ball Tree:**
+  - In contrast to the KD-Tree approach, the Ball-Tree partitioning algorithms are based on the construction of `hyper spheres` instead of cubes.  While Ball-Tree algorithms are generally more expensive to run than KD-Trees, the algorithms address some of the shortcomings ofthe KD-Tree datastructure and are more efficient in higher dimensions.
+
+## Parallelizing kNN
+
+kNN is one of these algorithms that are very easy to parallelize.  There are many different ways to do that. For instance, we could use distributed approaches like map-reduce and place subsets of the training datasets on different machines for the distance computations. Further,the  distance  computations  themselves  can  be  carried  out  using  parallel  computations  on multiple processors via CPUs or GPUs.
+
+**Reference:** For more details must read the below reference:
+
+- [stat451-machine-learning-fs20 - Sebastian Rachka - Lecture 2](https://github.com/rasbt/stat451-machine-learning-fs20) :fire:
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 
 ----
 
