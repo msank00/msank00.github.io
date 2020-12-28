@@ -31,6 +31,7 @@ There are four assumptions associated with a linear regression model:
 
 ----
 
+# Categorization of ML Algorithms
 
 To aid our conceptual understsanding, each of the algorithms can be categorized into various categories:
 
