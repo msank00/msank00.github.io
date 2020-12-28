@@ -320,14 +320,12 @@ The t-test is any statistical hypothesis test in which the test statistic follow
 - **Equal variance assumption:** The population variances of the two groups are equal. 
 
 <center>
-<img src="../asset/../assets/images/image_04_stat_analysis_1.png" width="600" alt="image">
+<img src="/assets/images/image_04_stat_analysis_1.png" width="600" alt="image">
 </center>
 
 The following diagram summarizes the t-tes and one-way ANOVA.
 
-<center>
-<img src="https://www.iuj.ac.jp/faculty/kucc625/method/anova.gif" width="600" alt="image">
-</center>
+![image](https://www.iuj.ac.jp/faculty/kucc625/method/anova.gif)
 
 <center>
 <figure class="video_container">
