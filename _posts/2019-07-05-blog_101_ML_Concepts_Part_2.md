@@ -809,6 +809,25 @@ Where $y_i \sim p$ and $\hat{y}_i \sim q$, i.e. they come from two different pro
 
 ----
 
+# Ensemble methods:
+
+
+<center>
+
+<img src="/assets/images/image_15_Ensemble_8.png" width="400">
+
+</center>
+
+_* image [source (slide 7)](https://github.com/rasbt/stat451-machine-learning-fs20)_
+
+**Reference:**
+
+- [stat451-machine-learning-fs20 - Sebastian Rachka](https://github.com/rasbt/stat451-machine-learning-fs20) :fire:
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
 
 # What is the advantage with random forest ?
 

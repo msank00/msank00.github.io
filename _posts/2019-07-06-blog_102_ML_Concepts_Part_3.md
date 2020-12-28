@@ -13,6 +13,26 @@ mathjax: true
 
 ---
 
+# Model Evaluation
+
+
+<center>
+
+<img src="/assets/images/image_16_ModelSelection_8.png" width="500">
+
+</center>
+
+_* image [source (slide 8)](https://github.com/rasbt/stat451-machine-learning-fs20)_
+
+**Reference:**
+
+- [stat451-machine-learning-fs20 - Sebastian Rachka](https://github.com/rasbt/stat451-machine-learning-fs20) :fire:
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
 # What is inductive bias, selection bias, statistical bias?
 
 **Inductive bias** is the set of assumptions a learner uses to predict results given inputs it has not yet encountered. 
