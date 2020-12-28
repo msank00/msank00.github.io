@@ -249,6 +249,8 @@ What are Fourier transforms, for that matter?
 
 - [Quora](https://www.quora.com/How-are-neural-networks-related-to-Fourier-transforms)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 
 ------
 
@@ -267,6 +269,17 @@ The vanishing gradient problem occurs because of the use of chain rule for backp
 - [Understanding the difficulty of training deep feedforward neural networks](http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf) :fire:
 - [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://arxiv.org/abs/1502.03167)
 - [The curious case of the vanishing & exploding gradient](https://medium.com/ml-cheat-sheet/how-to-avoid-the-vanishing-exploding-gradients-problem-f9ccb4446c5a) :rocket:
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+----
+
+# A few QA’s from Kyunghyun Cho :fire:
+
+
+- [Must read](https://kyunghyuncho.me/a-few-qa-from-the-course/)
+
 
 ----
 
