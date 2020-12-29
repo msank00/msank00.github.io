@@ -183,9 +183,12 @@ Suppose we have large number of **data sets**, `[D1,...,Dn]`, each of size N and
 Our original regression function is `Y` and say for `Di` we got our predictive function $\hat{Y_i}$.
 
 :large_orange_diamond: **Bias** = $(E[\hat{Y_i}(x;D_i)] - Y)^2$, where $E[\hat{Y_i}(x;D_i)]$ is average (expected) performance over all the datasets. So, Bias represents the extent to which the average prediction over all the datasets $D_i$ differ from the desired regression function $Y$.
+- :zap: **TL;DR:**  The  bias  of  an  estimator $\hat \beta$ is the **difference between its expected value** $E[\hat \beta]$ **and the true value** of a parameter $\beta$ being estimated: $Bias = E[\hat \beta] − \beta$
 
 :large_orange_diamond: **Variance** = $E[(\hat{Y_i}(x;D_i) - E[\hat{Y_i}(x;D_i)])^2]$, where $(\hat{Y_i}(x;D_i)$ is the predictive function over data set $D_i$ and $E[\hat{Y_i}(x;D_i)])$ is the average performance over all the datasets. So variance represents, the extent to which the individual predictive functions $\hat{Y_i}$ for dataset $D_i$ varies around their average. And thus we measure the extent by which the function $Y(x;D)$ is sensitive to the particular choice of the data sets. `[p149; Bishop]`
+- :zap: **TL;DR:** The variance is simply the statistical variance of the estimator $\hat \beta$ and its expected value $E[\hat \beta]$ , i.e $Var = E [(\hat{\beta} - E[\hat \beta])^2]$
 
+_*Note: here patameter $\beta$ and estimator $\hat \beta$._
 
 ## Bias Variance Decomposition
 
