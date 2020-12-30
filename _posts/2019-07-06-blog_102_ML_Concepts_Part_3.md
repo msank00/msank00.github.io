@@ -129,6 +129,39 @@ Memory-intensive, hard to interpret, and kind of annoying to run and tune, thoug
 
 ----
 
+
+# Time complexity of decision tree algorithm
+
+Measuring  the  time  complexity  of  decision  tree  algorithms  can  be  complicated,  and  the approach is not very straight-forward.However, we can make a few simplifying assumption to analyze the complexity of decision trees.  
+
+- **Assumption:** A  decision  tree  is  a  `balanced  binary  decision  tree`,  
+- **Tree Depth:** the final tree will have a depth of $\log_2n$, where $n$ is the `number of examples` in the training set. 
+- **Time Complexity for Prediction:** $O(\log n)$ (traverse from root to leaf with max height $\log n$)
+
+## Time Complexity for Decision Tree construction
+
+The runtime of the decision tree construction is generally $O(mn^2 \log n)$
+
+
+:atom_symbol: It can be shown that optimal binary split on `continuous features` is  on  the  _boundary  between  adjacent  examples_ with  different  class  labels. This  means that `sorting` the values of continuous features helps with determining a decision threshold efficiently. If we have $n$ examples, the sorting has time complexity $O(n \log n)$.  If we have to compare sort $m$ features, this becomes $O(mn \log n)$
+
+:atom_symbol: To see why the time complexity of decision tree construction is typically quoted at $O(mn^2 \log n)$, keep in mind that we earlier determined the depth of a decision tree at $\log_2 n$.  It follows that the number of `terminal nodes` (`leaf nodes`) is $2^{\log_2 n}=n$.  The total number of nodes in  the  tree  is  $2n−1$,  and  consequently,  the  number  of  `splitting  nodes` (`non-leaf nodes`)  in  the  tree  is $2n−1−n=n−1$ (all nodes minus the terminal (leaf) nodes)
+
+Hence, if we are not efficient and resort the features prior to each split we have to perform the $O(mn \log n)$ sorting step up to $\frac{n}{2}$ times – once for each splitting node in the tree – which results in a time complexity of $O(mn^2 \log n)$ .
+
+:zap: **Note:** Many implementations such as `scikit-learn` use efficient `caching tricks` to keep track of the general order of indices at each node such that the features do not need to be re-sorted ateach node; hence, the time complexity of these implementations is just $O(mn \log (n))$.
+
+**Reference:**
+
+- [stat451-machine-learning-fs20 - Sebastian Rachka - Lecture 6](https://github.com/rasbt/stat451-machine-learning-fs20) :fire:
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+
+----
+
 # Bias and Variance Tradeoff
 
 **Bias:** Bias is the difference between the average prediction of our model and the correct value which we are trying to predict.
