@@ -1114,20 +1114,6 @@ In **broader sense**, Regularization (as any means to prevent overfit) for Trees
 
 ----
 
-# Time complexity of decision tree algorithm
-
-
-
-
-**Reference:**
-
-- [stat451-machine-learning-fs20 - Sebastian Rachka - Lecture 6](https://github.com/rasbt/stat451-machine-learning-fs20) :fire:
-
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
-----
-
 # Why random column selection helps random forest?
 
 Random forest algorithm comes under the `Bootstrap Algorithm` a.k.a `Bagging` category whose primary objective is to `reduce the variance` of an estimate by averaging many estimates.
