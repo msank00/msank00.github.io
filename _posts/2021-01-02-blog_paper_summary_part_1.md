@@ -66,7 +66,7 @@ _[Transformer MUST READ](https://lilianweng.github.io/lil-log/2018/06/24/attenti
 
 <center>
 
-<img src="../assets/images/image_42_papersummary_1.png" width="400">
+<img src="/assets/images/image_42_papersummary_1.png" width="400">
 
 </center>
 
