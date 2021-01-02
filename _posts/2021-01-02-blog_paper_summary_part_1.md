@@ -64,11 +64,7 @@ _[Transformer MUST READ](https://lilianweng.github.io/lil-log/2018/06/24/attenti
 
 **Author's modification**
 
-<center>
-
-<img src="assets/images/image_42_papersummary_1.png" width="400">
-
-</center>
+![image](/assets/images/image_42_papersummary_1.png)
 
 _the above self attention (SA) schematic diagram is similar to the right **zoom in** image of the above original transformer architecture image above_
 
