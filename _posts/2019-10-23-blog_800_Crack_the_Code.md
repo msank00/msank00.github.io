@@ -644,6 +644,8 @@ Given word = "ABCB", return false.
 
 - [Youtube](https://www.youtube.com/watch?v=OYxTVKogJkQ&t=30s)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # Construct binary tree from tree traversal 
@@ -769,11 +771,150 @@ class Solution(object):
 
 - [Youtube](https://www.youtube.com/watch?v=PoBGyrIWisE)
 
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 ----
 
 # Interesting problems:
 
 - Find peak in 1D and 2D surface [MIT](https://www.youtube.com/watch?v=HtSuA80QTyo&t=1687s)
+
+----
+
+# Backtracking patterns and variations
+
+## Find Permutation
+
+> Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
+
+**Example:**
+```py
+# Input: nums = [1,2,3]
+# Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+```
+
+
+<center>
+<img src="/assets/images/image_42_code_3.png" width="600" alt="image">
+</center>
+
+
+_*in the below solution `first` == `cur_pos`_
+
+_*image courtsey leetcode_
+
+```py
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        
+        self.n = len(nums)
+        self.res = []
+        self.traverse(nums, 0)
+        return self.res
+        
+        
+    def traverse(self, nums, cur_pos):
+        
+        if cur_pos == self.n:
+            # print(nums)
+            self.res.append(nums[:])
+        
+        # iterate along the same level
+        for i in range(cur_pos, self.n):
+            
+            # DO OPERATION
+            nums[cur_pos], nums[i] = nums[i], nums[cur_pos]
+            
+            # go to the next level
+            self.traverse(nums, cur_pos+1)
+            
+            # backtrack
+            # UNDO OPERATION
+            nums[cur_pos], nums[i] = nums[i], nums[cur_pos]
+```
+
+## Combination sum
+
+Given an array of **distinct integers** candidates and a **target integer** target, return a list of all unique combinations of candidates where the **chosen numbers sum to target**. You may return the combinations in any order.
+
+- :warning: The same number may be chosen from candidates an unlimited number of times. 
+- Two combinations are unique if the frequency of at least one of the chosen numbers is different.
+
+
+**Examples:**
+
+```py
+# Input: candidates = [2,3,5], target = 8
+# Output: [[2,2,2,2],[2,3,3],[3,5]]
+```
+
+<center>
+<img src="/assets/images/image_42_code_4.png" width="600" alt="image">
+</center>
+
+_*image courtsey leetcode_
+
+```py
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+
+        self.results = []
+        self.candidates = candidates
+        self.traverse(target, [], 0)
+
+        return self.results
+        
+    def traverse(self, remain, comb, start):
+        if remain == 0:
+            # make a deep copy of the current combination
+            self.results.append(comb[:])
+            return
+        
+        elif remain < 0:
+            # Exceed the scope, stop exploration.
+            return
+
+        # Iterate along the same level
+        for i in range(start, len(self.candidates)):
+            
+            # DO OPERATION -> add the number into the combination
+            comb.append(self.candidates[i])
+            
+            # Go to the next level
+            # Give the current number another chance, rather than moving on
+            self.traverse(remain - self.candidates[i], comb, i)
+            
+            # Backtrack, 
+            # UNDO operation -> remove the number from the combination
+            comb.pop()
+```
+
+
+## General Strategy:
+
+Look carefully at the `traverse()` function and the _comments_. It's basically traversing an `n-arrary` tree along `level`. 
+
+- `for loop` to _traverse_ along the _same level_ (`travel horizontally`)
+  - **DO** `operation` (e.g: `swap` (e.g: permutation) or `append` (e.g: combination sum) etc as per the problem statement)
+  - At current level _recur_ i.e call `traverse()` (`traverse vertically`)
+  - **UNDO** the same `operation` $\leftarrow$ **BACKTRACK** i.e go back to the previous `tree level` and find a `new path`.  
+
+:shield: **Note:** 
+
+Once one figures out how it works with the backtracking algorithm for this problem, one can go ahead and apply this `hammer` to solve a series of similar problems in leetcode.
+
+
+- Subsets
+- Subsets II
+- Permutations
+- Permutations II
+- Combinations
+- Combination Sum II
+- Combination Sum III
+- Palindrome Partition
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
