@@ -68,26 +68,23 @@ mathjax: true
 
 - `min_heapify`: make some node and its `descendant nodes meet the heap property`.
 
-<details><summary><button type="button">Click Arrow!</button></summary>
-
-- :dart: 
-    ```py
-    def min_heapify(array, i):
-        left = 2 * i + 1
-        right = 2 * i + 2
-        length = len(array) - 1
-        smallest = i    
-        if left <= length and array[i] > array[left]:
-            smallest = left
-        if right <= length and array[smallest] > array[right]:
-            smallest = right
-        if smallest != i:
-            array[i], array[smallest] = array[smallest], array[i]
-            min_heapify(array, smallest)
-    ```
+ 
+```py
+def min_heapify(array, i):
+    left = 2 * i + 1
+    right = 2 * i + 2
+    length = len(array) - 1
+    smallest = i    
+    if left <= length and array[i] > array[left]:
+        smallest = left
+    if right <= length and array[smallest] > array[right]:
+        smallest = right
+    if smallest != i:
+        array[i], array[smallest] = array[smallest], array[i]
+        min_heapify(array, smallest)
+```
 
 
-</details>
 
 <br>
 
