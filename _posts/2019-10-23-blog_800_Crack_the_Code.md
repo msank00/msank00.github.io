@@ -34,7 +34,9 @@ mathjax: true
 5. What if you have infinite amount of memory? Any way to make the solution faster?
 6. You can also try to change some restriction of the question, like what if it’s a normal tree instead of binary tree? What if you can store the dictionary in any data structure you like?
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+<a href="#Top"><img align="right" width="15" height="15" src="https://git.io/JtehR" alt="Back to top"></a>
 
 ----
 
@@ -66,20 +68,28 @@ mathjax: true
 
 - `min_heapify`: make some node and its `descendant nodes meet the heap property`.
 
-```py
-def min_heapify(array, i):
-    left = 2 * i + 1
-    right = 2 * i + 2
-    length = len(array) - 1
-    smallest = i    
-    if left <= length and array[i] > array[left]:
-        smallest = left
-    if right <= length and array[smallest] > array[right]:
-        smallest = right
-    if smallest != i:
-        array[i], array[smallest] = array[smallest], array[i]
-        min_heapify(array, smallest)
-```
+<details><summary><button type="button">Click Arrow!</button></summary>
+
+- :dart: 
+    ```py
+    def min_heapify(array, i):
+        left = 2 * i + 1
+        right = 2 * i + 2
+        length = len(array) - 1
+        smallest = i    
+        if left <= length and array[i] > array[left]:
+            smallest = left
+        if right <= length and array[smallest] > array[right]:
+            smallest = right
+        if smallest != i:
+            array[i], array[smallest] = array[smallest], array[i]
+            min_heapify(array, smallest)
+    ```
+
+
+</details>
+
+<br>
 
 - First, this method computes the node of the smallest value among the node of index i and its child nodes and then exchange the node of the smallest value with the node of index i.
 - When the exchange happens, this method applies min_heapify to the node exchanged.
