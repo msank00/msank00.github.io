@@ -87,9 +87,9 @@ def min_heapify(array, i):
 ```
 
 
-<button class="collapsible" id="yaml">Click here for the code.</button>
+<button class="collapsible" id="code1">Click here for the code.</button>
 
-<div class="content" id="yamldata" markdown="1">
+<div class="content" id="code1data" markdown="1">
   ```py
   import pandas as pd
   df = pd.read_csv("file.csv)
@@ -98,6 +98,7 @@ def min_heapify(array, i):
 
 {%- include collapse.html -%}
 
+..
 
 - First, this method computes the node of the smallest value among the node of index i and its child nodes and then exchange the node of the smallest value with the node of index i.
 - When the exchange happens, this method applies min_heapify to the node exchanged.
@@ -124,7 +125,7 @@ def min_heapify(array, i):
 
 {%- include collapse.html -%}
 
-
+..
 
 Index of a list (an array) in Python starts from 0, the way to access the nodes will change as follow.
 
