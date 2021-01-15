@@ -90,7 +90,6 @@ def min_heapify(array, i):
 ```
 </div>
 
-{%- include collapse.html -%}
 
 ..
 
