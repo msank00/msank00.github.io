@@ -140,21 +140,21 @@ Applications of Heaps:
 <button class="collapsible" id="code1">Click here for the code.</button>
 
 <div class="content" id="code1data" markdown="1">
-    ```py
-    import heapq
+```py
+import heapq
 
-    class Solution:
-    def findKthLargest(self, nums: List[int], k: int) -> int:
-        
-        # creating max-heap
-        nums = [i*(-1) for i in nums]
-        heapq.heapify(nums)
-        
-        for i in range(k):
-            item = heapq.heappop(nums)
+class Solution:
+def findKthLargest(self, nums: List[int], k: int):
+    
+    # creating max-heap
+    nums = [i*(-1) for i in nums]
+    heapq.heapify(nums)
+    
+    for i in range(k):
+        item = heapq.heappop(nums)
 
-        return item*(-1)
-    ```
+    return item*(-1)
+```
 </div>
 
 {%- include collapse.html -%}
