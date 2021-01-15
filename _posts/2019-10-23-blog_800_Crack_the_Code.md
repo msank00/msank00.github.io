@@ -6,6 +6,8 @@ categories: jekyll update
 mathjax: true
 ---
 
+<link rel="stylesheet" href="/assets/css/mystyle.css">
+
 # Content
 
 1. TOC
@@ -84,21 +86,30 @@ def min_heapify(array, i):
         min_heapify(array, smallest)
 ```
 
-{% capture text-capture %}
 
-```html
+<button class="collapsible" id="yaml">Click here for the code.</button>
 
-<div class="demo-thats-all-container">  
-    <div class="demo-thats-all-folks">
-      That's All Folks
-    </div>
+<div class="content" id="yamldata" markdown="1">
+  CONTENT
 </div>
 
-``` 
-
-{% endcapture %}
-
-{% include widgets/toggle-field.html toggle-name="toggle-thats" button-text="Cod for Thats All Folks" toggle-text=text-capture  footer="cheers!" %}
+<!-- Start Collapse.html -->
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = document.getElementById(this.id+"data");
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+<!-- End Collapse.html -->
 
 
 <br>
