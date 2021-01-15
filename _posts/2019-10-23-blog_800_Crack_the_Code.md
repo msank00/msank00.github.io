@@ -84,6 +84,21 @@ def min_heapify(array, i):
         min_heapify(array, smallest)
 ```
 
+{% capture text-capture %}
+
+```html
+
+<div class="demo-thats-all-container">  
+    <div class="demo-thats-all-folks">
+      That's All Folks
+    </div>
+</div>
+
+``` 
+
+{% endcapture %}
+
+{% include widgets/toggle-field.html toggle-name="toggle-thats" button-text="Cod for Thats All Folks" toggle-text=text-capture  footer="cheers!" %}
 
 
 <br>
