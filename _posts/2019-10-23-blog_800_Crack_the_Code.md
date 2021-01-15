@@ -91,24 +91,6 @@ def min_heapify(array, i):
 </div>
 
 
-..
-
-----
-
-<button class="collapsible" id="code1">Click here for the code.</button>
-
-<div class="content" id="code1data" markdown="1">
-  ```py
-  import pandas as pd
-  df = pd.read_csv("file.csv)
-  ```
-</div>
-
-{%- include collapse.html -%}
-
-
-
-----
 
 
 - First, this method computes the node of the smallest value among the node of index i and its child nodes and then exchange the node of the smallest value with the node of index i.
@@ -154,10 +136,14 @@ Applications of Heaps:
       2. Sol 2: Create a **regular max heap** and pop/delete items k time
       3. [Leetcode 215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/submissions/)
    
-  ```py
-  import heapq
 
-  class Solution:
+<button class="collapsible" id="code1">Click here for the code.</button>
+
+<div class="content" id="code1data" markdown="1">
+    ```py
+    import heapq
+
+    class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         
         # creating max-heap
@@ -168,8 +154,13 @@ Applications of Heaps:
             item = heapq.heappop(nums)
 
         return item*(-1)
+    ```
+</div>
 
-  ```
+{%- include collapse.html -%}
+
+----
+
    2. **Sort an almost sorted array**
    3. Merge K Sorted Arrays.
 
