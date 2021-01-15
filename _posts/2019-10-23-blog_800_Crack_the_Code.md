@@ -70,39 +70,6 @@ mathjax: true
 
 - `min_heapify`: make some node and its `descendant nodes meet the heap property`.
 
- 
-```py
-def min_heapify(array, i):
-    left = 2 * i + 1
-    right = 2 * i + 2
-    length = len(array) - 1
-    smallest = i    
-    if left <= length and array[i] > array[left]:
-        smallest = left
-    if right <= length and array[smallest] > array[right]:
-        smallest = right
-    if smallest != i:
-        array[i], array[smallest] = array[smallest], array[i]
-        min_heapify(array, smallest)
-```
-
-
-<button class="collapsible" id="code1">Click here for the code.</button>
-
-<div class="content" id="code1data" markdown="1">
-  ```py
-  import pandas as pd
-  df = pd.read_csv("file.csv)
-  ```
-</div>
-
-{%- include collapse.html -%}
-
-..
-
-- First, this method computes the node of the smallest value among the node of index i and its child nodes and then exchange the node of the smallest value with the node of index i.
-- When the exchange happens, this method applies min_heapify to the node exchanged.
-
 
 <button class="collapsible" id="yaml">Click here for the code.</button>
 
@@ -126,6 +93,28 @@ def min_heapify(array, i):
 {%- include collapse.html -%}
 
 ..
+
+----
+
+<button class="collapsible" id="code1">Click here for the code.</button>
+
+<div class="content" id="code1data" markdown="1">
+  ```py
+  import pandas as pd
+  df = pd.read_csv("file.csv)
+  ```
+</div>
+
+{%- include collapse.html -%}
+
+
+
+----
+
+
+- First, this method computes the node of the smallest value among the node of index i and its child nodes and then exchange the node of the smallest value with the node of index i.
+- When the exchange happens, this method applies min_heapify to the node exchanged.
+
 
 Index of a list (an array) in Python starts from 0, the way to access the nodes will change as follow.
 
