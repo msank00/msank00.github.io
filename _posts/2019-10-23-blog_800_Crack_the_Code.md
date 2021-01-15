@@ -90,7 +90,10 @@ def min_heapify(array, i):
 <button class="collapsible" id="yaml">Click here for the code.</button>
 
 <div class="content" id="yamldata" markdown="1">
-  CONTENT
+  ```py
+  import pandas as pd
+  df = pd.read_csv("file.csv)
+  ```
 </div>
 
 <!-- Start Collapse.html -->
