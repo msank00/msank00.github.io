@@ -140,6 +140,7 @@ Applications of Heaps:
 <button class="collapsible" id="code1">Click here for the code.</button>
 
 <div class="content" id="code1data" markdown="1">
+
 ```py
 import heapq
 
@@ -161,8 +162,8 @@ def findKthLargest(self, nums: List[int], k: int):
 
 ----
 
-   2. **Sort an almost sorted array**
-   3. Merge K Sorted Arrays.
+1. **Sort an almost sorted array**
+2. Merge K Sorted Arrays.
 
 ## Python Implementation
 
@@ -311,6 +312,7 @@ This is the overall thought processing, how the 2 things are related in High Dim
 
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 
 
 ----
@@ -474,6 +476,11 @@ For example if you have in your schedule dependencies like `0 -> 5`, `5-> 3` and
 - `1` (gray) for node which is in process of visiting (not all its neibours are processed)
 - `2` (black) for node which is fully visited (all its neibours are already processed).
 
+
+<button class="collapsible" id="code1">Click here for the code.</button>
+
+<div class="content" id="code1data" markdown="1">
+
 ```py
 
 from collections import defaultdict
@@ -522,6 +529,12 @@ class Solution:
         self.order.append(node)
 
 ```
+
+
+</div>
+
+
+----
 
 
 **Note:** Uderstanding the **classical DFS** is very beneficial for many graph related question. 
@@ -875,6 +888,11 @@ Given an array of **distinct integers** candidates and a **target integer** targ
 
 _*image courtsey leetcode_
 
+
+<button class="collapsible" id="code1">Click here for the code.</button>
+
+<div class="content" id="code1data" markdown="1">
+
 ```py
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
@@ -909,6 +927,9 @@ class Solution:
             # UNDO operation -> remove the number from the combination
             comb.pop()
 ```
+
+</div>
+
 
 
 ## General Strategy:
