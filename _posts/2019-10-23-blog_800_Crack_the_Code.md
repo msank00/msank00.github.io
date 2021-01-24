@@ -158,7 +158,7 @@ def findKthLargest(self, nums: List[int], k: int):
 ```
 </div>
 
-{%- include collapse.html -%}
+
 
 ----
 
@@ -930,6 +930,7 @@ class Solution:
 
 </div>
 
+{%- include collapse.html -%}
 
 ----
 
