@@ -68,7 +68,9 @@ Each algorithm is based on some assumption which is applicable to some scenario.
 
 - [Book: ISL Chapter 10, Page 394]()
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+<a href="#Top"><img align="right" width="15" height="15" src="https://git.io/JtehR" alt="Back to top"></a>
+
 
 ---
 
@@ -94,7 +96,9 @@ $posterior \propto Likelihood \times prior$
 
 - however, the prior starts to lose weight when we add more data
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+<a href="#Top"><img align="right" width="15" height="15" src="https://git.io/JtehR" alt="Back to top"></a>
+
 
 ----
 
@@ -128,7 +132,9 @@ where $\hat{y_i} = f(x_i)$
 
 - [Wiki](https://en.wikipedia.org/wiki/Coefficient_of_determination)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+<a href="#Top"><img align="right" width="15" height="15" src="https://git.io/JtehR" alt="Back to top"></a>
+
 
 ----
 
@@ -449,10 +455,45 @@ For more CRF see [this](https://www.youtube.com/playlist?list=PL6Xpj9I5qXYEcOhn7
 
 ----
 
+# Confidence Inteval and Normal Approximation
+
+
+For the following procedures, the assumption is that both $np \gt 10$ and $n(1-p) \gt 10$ . When we're constructing **confidence intervals**, $p$ is typically unknown, in which case we use $\hat p$ as an estimate of $p$ .
+
+This means that our sample needs to have at least $10$ `successes` and at least $10$ `failures` in order to construct a confidence interval using the **normal approximation** method. 
+
+<p align="center">
+
+$
+ss \pm m*se
+$
+
+</p>
+
+
+- $ss$ : sample statistics
+- $m$ : multiplier
+- $se$ : standard error
+- $m*se$ : margin of error
+
+The sample statistic here is the sample proportion $\hat p$, . When using the `normal approximation` method the multiplier is taken from the standard normal distribution (i.e., $z$ distribution).  And, the `standard error` is computed using $\hat p$ as an estimate of $p$: $\sqrt{\frac{\hat p (1 - \hat p)}{n}}$ . This leaves us with the following formula to construct a confidence interval for a population proportion:
+
+<p align="center">
+
+$
+\hat{p} \pm z*(\sqrt{\frac{\hat p (1 - \hat p)}{n}})
+$
+
+</p>
+
+
+----
+
 # Exercise:
 
 1. What is Label Bias problem? :fire:
 2. What is Hidden Markov Model? [murphy, sec. $10.2.2$ and ch: $17$]
+
 
 ---
 
