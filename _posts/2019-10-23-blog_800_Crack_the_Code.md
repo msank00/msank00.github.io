@@ -158,12 +158,12 @@ def findKthLargest(self, nums: List[int], k: int):
 ```
 </div>
 
-
+{%- include collapse.html -%}
 
 ----
 
-1. **Sort an almost sorted array**
-2. Merge K Sorted Arrays.
+2. **Sort an almost sorted array**
+3. Merge K Sorted Arrays.
 
 ## Python Implementation
 
@@ -476,11 +476,6 @@ For example if you have in your schedule dependencies like `0 -> 5`, `5-> 3` and
 - `1` (gray) for node which is in process of visiting (not all its neibours are processed)
 - `2` (black) for node which is fully visited (all its neibours are already processed).
 
-
-<button class="collapsible" id="code1">Click here for the code.</button>
-
-<div class="content" id="code1data" markdown="1">
-
 ```py
 
 from collections import defaultdict
@@ -529,12 +524,6 @@ class Solution:
         self.order.append(node)
 
 ```
-
-
-</div>
-
-
-----
 
 
 **Note:** Uderstanding the **classical DFS** is very beneficial for many graph related question. 
@@ -888,11 +877,6 @@ Given an array of **distinct integers** candidates and a **target integer** targ
 
 _*image courtsey leetcode_
 
-
-<button class="collapsible" id="code1">Click here for the code.</button>
-
-<div class="content" id="code1data" markdown="1">
-
 ```py
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
@@ -928,11 +912,6 @@ class Solution:
             comb.pop()
 ```
 
-</div>
-
-{%- include collapse.html -%}
-
-----
 
 ## General Strategy:
 
