@@ -69,7 +69,7 @@ Each algorithm is based on some assumption which is applicable to some scenario.
 - [Book: ISL Chapter 10, Page 394]()
 
 
-<a href="#Top"><img align="right" width="15" height="15" src="https://git.io/JtehR" alt="Back to top"></a>
+<a href="#Top"><img align="right" width="28" height="28" src="../assets/images/icon/arrow_circle_up-24px.svg" alt="Back to top"></a>
 
 
 ---
@@ -97,7 +97,7 @@ $posterior \propto Likelihood \times prior$
 - however, the prior starts to lose weight when we add more data
 
 
-<a href="#Top"><img align="right" width="15" height="15" src="https://git.io/JtehR" alt="Back to top"></a>
+<a href="#Top"><img align="right" width="28" height="28" src="../assets/images/icon/arrow_circle_up-24px.svg" alt="Back to top"></a>
 
 
 ----
@@ -132,8 +132,7 @@ where $\hat{y_i} = f(x_i)$
 
 - [Wiki](https://en.wikipedia.org/wiki/Coefficient_of_determination)
 
-
-<a href="#Top"><img align="right" width="15" height="15" src="https://git.io/JtehR" alt="Back to top"></a>
+<a href="#Top"><img align="right" width="28" height="28" src="../assets/images/icon/arrow_circle_up-24px.svg" alt="Back to top"></a>
 
 
 ----
@@ -146,7 +145,7 @@ where $\hat{y_i} = f(x_i)$
 - [TDS Blog](https://towardsdatascience.com/linear-and-bayesian-modelling-in-r-predicting-movie-popularity-6c8ef0a44184)
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="../assets/images/icon/arrow_circle_up-24px.svg" alt="Back to top"></a>
 
 
 ----
@@ -165,7 +164,7 @@ Bayesian linear regression allows a fairly natural mechanism to survive insuffic
 - [Chapter 6: introduction-to-bayesian-regression](https://statswithr.github.io/book/introduction-to-bayesian-regression.html)
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="../assets/images/icon/arrow_circle_up-24px.svg" alt="Back to top"></a>
 
 
 ----
@@ -210,7 +209,7 @@ For different type of sampling technique check [here](https://ermongroup.github.
 - [Sampling Methods CS228](https://ermongroup.github.io/cs228-notes/inference/sampling/)
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="../assets/images/icon/arrow_circle_up-24px.svg" alt="Back to top"></a>
 
 
 ----
@@ -252,7 +251,7 @@ where $f(x)$ is $\log \frac{q(x)}{p(x)}$
 - [Important CS228](https://ermongroup.github.io/cs228-notes/)
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="../assets/images/icon/arrow_circle_up-24px.svg" alt="Back to top"></a>
 
 ----
 
@@ -298,7 +297,7 @@ _*In case the above link is broken, click [here](https://www.youtube.com/embed/i
 - [ch 17, elements of statistical learning]
 - [ch 4, Bayesian Reasoning and ML by D. Barber]
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="../assets/images/icon/arrow_circle_up-24px.svg" alt="Back to top"></a>
 
 
 ----
@@ -329,6 +328,10 @@ $
 
 ![image](/assets/images/image_08_markov_1.png)
 
+
+<a href="#Top"><img align="right" width="28" height="28" src="../assets/images/icon/arrow_circle_up-24px.svg" alt="Back to top"></a>
+
+----
 
 ## Application: Language modeling
 
@@ -363,7 +366,7 @@ Read the chapter for `MLE of Markov Model`.
 - [murphy, sec. $10.2.2$ and ch: $17$]
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="../assets/images/icon/arrow_circle_up-24px.svg" alt="Back to top"></a>
 
 ----
 
@@ -425,7 +428,7 @@ Read chapter $19.6$ for Conditional Random Field and it's application in NLP, li
 
 - [murphy, ch: $19$]
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="../assets/images/icon/arrow_circle_up-24px.svg" alt="Back to top"></a>
 
 ----
 
@@ -486,6 +489,14 @@ $
 
 </p>
 
+**Reference:**
+
+- [STAT 200: PennState](https://online.stat.psu.edu/stat200/lesson/8/8.1/8.1.1/8.1.1.1)
+- [slide](http://www.stats.ox.ac.uk/~filippi/Teaching/psychology_humanscience_2015/lecture7.pdf) :fire:
+
+
+<a href="#Top"><img align="right" width="28" height="28" src="../assets/images/icon/arrow_circle_up-24px.svg" alt="Back to top"></a>
+
 
 ----
 
@@ -497,5 +508,4 @@ $
 
 ---
 
-
-<a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>
+<a href="#Top"><img align="right" width="28" height="28" src="../assets/images/icon/arrow_circle_up-24px.svg" alt="Back to top"></a>
