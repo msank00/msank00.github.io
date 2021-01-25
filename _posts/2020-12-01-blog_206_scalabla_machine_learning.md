@@ -35,7 +35,8 @@ This way of performing matrix multiplications also reduces the computational com
 - [An in-depth look at Google’s first Tensor Processing Unit (TPU)](https://cloud.google.com/blog/products/gcp/an-in-depth-look-at-googles-first-tensor-processing-unit-tpu) :rocket: 
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 -----
@@ -103,7 +104,8 @@ The data is partitioned, and the driver node assigns tasks to the nodes in the c
 - [Machine Learning: How to Build Scalable Machine Learning Models](https://www.codementor.io/blog/scalable-ml-models-6rvtbf8dsd)
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 -----
@@ -116,7 +118,8 @@ The data is partitioned, and the driver node assigns tasks to the nodes in the c
 - [ML impossible: Train 1 billion samples in 5 minutes on your laptop using Vaex and Scikit-Learn](https://towardsdatascience.com/ml-impossible-train-a-1-billion-sample-model-in-20-minutes-with-vaex-and-scikit-learn-on-your-9e2968e6f385)
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -127,7 +130,8 @@ The data is partitioned, and the driver node assigns tasks to the nodes in the c
 - [Dogwild! — Distributed Hogwild for CPU & GPU](http://stanford.edu/~rezab/nips2014workshop/submits/dogwild.pdf)
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 ----
@@ -143,7 +147,8 @@ The data is partitioned, and the driver node assigns tasks to the nodes in the c
 - [Deploying AI to production: 12 tips from the trenches](https://www.linkedin.com/pulse/deploying-ai-production-12-tips-from-trenches-max-pagels/) :rocket:
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -154,7 +159,8 @@ The data is partitioned, and the driver node assigns tasks to the nodes in the c
 - [Vowpal Wabbit](https://www.youtube.com/watch?v=gyCjancgR9U)
 - [Sibyl: A System for Large Scale Machine Learning at Google](https://www.youtube.com/watch?v=3SaZ5UAQrQM) :fire:
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -180,7 +186,8 @@ _*In case the above link is broken, click [here](https://www.youtube.com/embed/B
 _*In case the above link is broken, click [here](https://www.youtube.com/embed/A0jYQlxc2FU)_ :fire:
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -206,7 +213,8 @@ PyTorch has relatively simple interface for distributed training. To do distribu
 
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 ----
@@ -298,6 +306,64 @@ _*Follow this amazing [blog](https://www.pyimagesearch.com/2018/02/05/deep-learn
 
 :dart: There is a FastAPI + Docker vesion available for the second approach. Please follow this  [blog](https://medium.com/analytics-vidhya/deploy-machine-learning-models-with-keras-fastapi-redis-and-docker-4940df614ece). Try this [code](https://github.com/shanesoh/deploy-ml-fastapi-redis-docker).
 
+
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
 ----
 
-<a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>
+# Exploring PUB-SUB Architecture with Redis & Python
+
+## What is the PUB/SUB Pattern?
+
+`Pub/Sub` aka Publish-Subscribe pattern is a pattern in which there are three main components, `sender`, `receiver` & a `broker`. The communication is processed by the broker, it helps the sender or publisher to publish information and deliver that information to the receiver or subscriber. 
+
+## Test Environment
+
+![image](https://miro.medium.com/max/1000/1*zC4JrtL2QfYDxGqzNbkzCg.png)
+
+
+Start `redis-server`
+
+`subscriber.py`
+
+```py
+import redis
+# connect with redis server as Bob
+bob_r = redis.Redis(host='localhost', port=6379, db=0)
+bob_p = bob_r.pubsub()
+
+# subscribe to channel: classical music
+bob_p.subscribe('classical_music')
+```
+
+`publisher.py`
+
+```py
+# connect with redis server as Alice
+alice_r = redis.Redis(host='localhost', port=6379, db=0)
+# publish new music in the channel epic_music
+alice_r.publish('classical_music', 'Raga Vairabi - Pt. Ajoy Chakrabarty')
+```
+
+
+By using the `publish` method Alice can now publish music on the `classical_music` Channel. Bob, on the other hand, can easily fetch publish music using the `get_message()` method:
+
+```py
+# ignore Bob subscribed message
+bob_p.get_message()
+# now bob can find alice’s music by simply using get_message()
+new_music = bob_p.get_message()['data']
+print(new_music)
+```
+
+**Reference:**
+
+- [Basic Redis Usage Example - Part 1: Exploring PUB-SUB with Redis & Python](https://kb.objectrocket.com/redis/basic-redis-usage-example-part-1-exploring-pub-sub-with-redis-python-583)
+- [Event Data Pipelines with Redis Pub/Sub, Async Python and Dash](https://itnext.io/event-data-pipelines-with-redis-pub-sub-async-python-and-dash-ab0a7bac63b0)
+
+
+----
+
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
