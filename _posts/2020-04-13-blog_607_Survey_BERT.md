@@ -70,7 +70,7 @@ This shift to transfer learning parallels the same shift that took place in comp
 - [Handson by Abhishek Thakur](https://www.youtube.com/watch?v=hinZO--TEk4&t=1454s)
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -107,7 +107,8 @@ For more deeper understanding of `attention` please look into [this](https://msa
 
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 ----
@@ -187,6 +188,8 @@ _*Now read [this](https://nlp.stanford.edu/seminar/details/jdevlin.pdf) as a con
 - [BERT - Stanford](https://nlp.stanford.edu/seminar/details/jdevlin.pdf) :fire:
 - [Semi supervised sequence learning](https://arxiv.org/abs/1511.01432)
 
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
 
 ----
 
@@ -204,7 +207,9 @@ _*Now read [this](https://nlp.stanford.edu/seminar/details/jdevlin.pdf) as a con
 
 - [Youtube video](https://www.youtube.com/watch?v=x66kkDnbzi4&list=PLam9sigHPGwOBuH4_4fr-XvDbe5uneaf6&index=3)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
 
 ----
 
@@ -271,6 +276,22 @@ The model is **trained jointly** with both Masked LM and Next Sentence Predictio
 **Reference:**
 
 - [BERT tutorial](https://towardsml.com/2019/09/17/bert-explained-a-complete-guide-with-theory-and-tutorial/) :fire:
+
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
+----
+
+# Finetune BERT model for domain specific task
+
+
+**Reference:**
+
+- [Blog](https://medium.com/analytics-vidhya/fine-tuning-bert-language-model-to-get-better-results-on-text-classification-3dac5e3c348e) and [Code](https://github.com/Shivampanwar/Bert-text-classification/blob/master/bert_language_model_with_sequence_classification.ipynb) :fire:
+- [Code - BERT Model Finetuning using Masked Language Modeling objective](https://github.com/jiesutd/pytorch-pretrained-BERT/tree/master/examples/lm_finetuning) :rocket:
+
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 ----
@@ -359,7 +380,10 @@ c d e f g h i j k l m n o p q r s t u v w x y z { | } ~ ¡ ¢ £ ¤ ¥ ¦ § ¨ 
 
 - [Youtube - add link]()
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
 
 ----
 
@@ -407,7 +431,9 @@ print('Token IDs: ', tokenizer.convert_tokens_to_ids(tokenizer.tokenize(sentence
 
 - [Colab Notebook ](https://colab.research.google.com/drive/1pTuQhug6Dhl9XalKB0zUGf4FIdYFlpcX#scrollTo=-8kEDRvShcU5)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 ----
@@ -451,7 +477,8 @@ You might think to try some pooling strategy over the final embeddings, but this
 
 - [Colab Notebook by Chris McCormick](https://colab.research.google.com/drive/1pTuQhug6Dhl9XalKB0zUGf4FIdYFlpcX#scrollTo=-8kEDRvShcU5)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 ----
@@ -482,7 +509,9 @@ The maximum length does impact training and evaluation speed, however. For examp
 
 - [Colab Notebook by Chris McCormick](https://colab.research.google.com/drive/1pTuQhug6Dhl9XalKB0zUGf4FIdYFlpcX#scrollTo=-8kEDRvShcU5)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 ----
@@ -605,7 +634,8 @@ classifier.bias                                                 (2,)
 
 - [Colab Notebook by Chris McCormick](https://colab.research.google.com/drive/1pTuQhug6Dhl9XalKB0zUGf4FIdYFlpcX#scrollTo=-8kEDRvShcU5)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 ----
@@ -636,7 +666,10 @@ You can find the creation of the AdamW optimizer in `run_glue.py` [here](https:/
 
 - [Colab Notebook by Chris McCormick](https://colab.research.google.com/drive/1pTuQhug6Dhl9XalKB0zUGf4FIdYFlpcX#scrollTo=-8kEDRvShcU5)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
 
 ----
 
@@ -745,7 +778,9 @@ As you might already understood BERT is based on Transformer. The Transformer ha
 - [BERT Inner Workings III by  ChrisMcCormickAI](https://www.youtube.com/watch?v=0U1irnILcN0&list=PLam9sigHPGwOBuH4_4fr-XvDbe5uneaf6&index=7) :fire: :rocket:
 - [BERT Architecture](https://peltarion.com/knowledge-center/documentation/modeling-view/build-an-ai-model/blocks/bert-encoder?fbclid=IwAR1t_a3no4BRylPk_29fZbKwmKB1mRdT0jFLSzXWL0t5fnSKKXTZlpKCVsA) :fire:
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
 
 ----
 
@@ -758,7 +793,8 @@ As you might already understood BERT is based on Transformer. The Transformer ha
 - [Attention](https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html)
 - [The Annotated GPT-2](https://amaarora.github.io/2020/02/18/annotatedGPT2.html)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 ----
@@ -813,4 +849,4 @@ _**for more details check the pypi repository_
 ----
 
 
-<a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
