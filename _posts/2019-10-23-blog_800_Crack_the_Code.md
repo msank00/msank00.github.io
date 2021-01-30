@@ -38,7 +38,7 @@ mathjax: true
 
 
 
-<a href="#Top"><img align="right" width="15" height="15" src="https://git.io/JtehR" alt="Back to top"></a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -188,7 +188,7 @@ The algorithm you show takes $O(n \log n)$ to push all the items onto the heap, 
 - [TDS: heap data Structure](https://towardsdatascience.com/data-structure-heap-23d4c78a6962)
 - [G4G: Binary Heap](https://www.geeksforgeeks.org/binary-heap/)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -230,7 +230,8 @@ Update max_side with the maximum dp cell value as you update.
 - [Explanation](https://leetcode.com/problems/maximal-square/discuss/600149/Python-Thinking-Process-Diagrams-DP-Approach)
 - [Youtube Video](https://www.youtube.com/watch?v=RElcqtFYTm0)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
 
 ----
 
@@ -288,8 +289,7 @@ for both the approach, the subtle difference is at step 2, after adding the prof
 
 Rest same. 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -311,9 +311,7 @@ The below example is to find `Longest Palindromic Substring` for string `cddpd`
 This is the overall thought processing, how the 2 things are related in High Dimension i.e DP 2D matrix with Low Dimension i.e 1D string.
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
-
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -381,8 +379,7 @@ if st[startIndex] == st[endIndex]:
 - `dp[startIndex+1][endIndex-1] == True` denotes if remaining in between elements are also palindrome.
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -416,9 +413,7 @@ Output: [1,2,3,6,9,8,7,4,5]
 :movie_camera: _If the video is not opening, click [here](https://www.youtube.com/embed/siKFOI8PNKM)_
 
 
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -437,8 +432,7 @@ Output: [1,2,3,6,9,8,7,4,5]
 :movie_camera: _If the video is not opening, click [here](https://www.youtube.com/watch?v=uufaK2uLnSI)_
 
 
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -447,7 +441,7 @@ Output: [1,2,3,6,9,8,7,4,5]
 - [Leetcode: Gold Mine](https://leetcode.com/discuss/general-discussion/494279/comprehensive-data-structure-and-algorithm-study-guide)
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -528,8 +522,7 @@ class Solution:
 
 **Note:** Uderstanding the **classical DFS** is very beneficial for many graph related question. 
 
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -583,7 +576,7 @@ See the next problem.
 - [geeks4geeks](https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/)
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -642,7 +635,7 @@ def maxProfit(prices: List[int]) -> int:
     return max_profit_so_far
 ```
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -667,7 +660,7 @@ Given word = "ABCB", return false.
 
 - [Youtube](https://www.youtube.com/watch?v=OYxTVKogJkQ&t=30s)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -794,7 +787,7 @@ class Solution(object):
 
 - [Youtube](https://www.youtube.com/watch?v=PoBGyrIWisE)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -936,9 +929,7 @@ Once one figures out how it works with the backtracking algorithm for this probl
 - Combination Sum III
 - Palindrome Partition
 
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 ----
 
 # Exercise:
@@ -946,5 +937,4 @@ Once one figures out how it works with the backtracking algorithm for this probl
 1. [DP: bellman-equations-reinforcement-learning](https://int8.io/bellman-equations-reinforcement-learning/)
 
 ----
-
-<a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
