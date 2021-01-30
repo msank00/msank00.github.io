@@ -14,6 +14,13 @@ mathjax: true
 
 Quick Refresher: Neural Network in NLP
 
+# A Comprehensive Learning Path to Understand and Master NLP in 2020
+
+
+- Follow :star: [this](https://www.analyticsvidhya.com/blog/2020/01/learning-path-nlp-2020/?utm_source=blog&utm_medium=fine_tune_BERT) wonderful learning path.
+
+------
+
 # Deep Feed Forward Network
 
 - These models are called Feed Forward Network because the information flows from $x$, through the intermediate computations used to define $f$ and finally to the output $y$.

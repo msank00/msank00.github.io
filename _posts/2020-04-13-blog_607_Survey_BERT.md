@@ -282,14 +282,20 @@ The model is **trained jointly** with both Masked LM and Next Sentence Predictio
 
 ----
 
-# Finetune BERT model for domain specific task
+# :star: Finetune BERT model for domain specific task
 
 
 **Reference:**
 
 - [Blog](https://medium.com/analytics-vidhya/fine-tuning-bert-language-model-to-get-better-results-on-text-classification-3dac5e3c348e) and [Code](https://github.com/Shivampanwar/Bert-text-classification/blob/master/bert_language_model_with_sequence_classification.ipynb) :fire:
+  - Good for understanding transfer learning
 - [Code - BERT Model Finetuning using Masked Language Modeling objective](https://github.com/jiesutd/pytorch-pretrained-BERT/tree/master/examples/lm_finetuning) :rocket:
-
+- [Transfer Learning for NLP: Fine-Tuning BERT for Text Classification](https://www.analyticsvidhya.com/blog/2020/07/transfer-learning-for-nlp-fine-tuning-bert-for-text-classification/) :fire: :fire:
+  - Try this first. Easier to understand the objective
+- [Finetune BERT for text classification - Abhishek Thakur](https://github.com/abhishekkrthakur/bert-sentiment)
+- [BERT repo from google](https://github.com/google-research/bert)
+  - [How to use the original repo](https://towardsml.com/2019/09/17/bert-explained-a-complete-guide-with-theory-and-tutorial/)
+- [Spam classifcation by msank00](https://nbviewer.jupyter.org/github/msank00/BERT_Spam_Classification/blob/main/notebooks/Bert_Spam_Classification.ipynb) :rocket: :rocket:
 
 <a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
