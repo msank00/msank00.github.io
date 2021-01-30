@@ -295,7 +295,7 @@ The model is **trained jointly** with both Masked LM and Next Sentence Predictio
 - [Finetune BERT for text classification - Abhishek Thakur](https://github.com/abhishekkrthakur/bert-sentiment)
 - [BERT repo from google](https://github.com/google-research/bert)
   - [How to use the original repo](https://towardsml.com/2019/09/17/bert-explained-a-complete-guide-with-theory-and-tutorial/)
-- Spam classifcation by `msank00` [![nbviewer](https://img.shields.io/badge/render-nbviewer-orange.svg)](https://nbviewer.jupyter.org/github/msank00/BERT_Spam_Classification/blob/main/notebooks/Bert_Spam_Classification.ipynb) :rocket: :rocket:
+- [Spam classifcation by msank00](https://github.com/msank00/BERT_Spam_Classification) [![nbviewer](https://img.shields.io/badge/render-nbviewer-orange.svg)](https://nbviewer.jupyter.org/github/msank00/BERT_Spam_Classification/blob/main/notebooks/Bert_Spam_Classification.ipynb) :rocket: :rocket:
 
 
 <a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
