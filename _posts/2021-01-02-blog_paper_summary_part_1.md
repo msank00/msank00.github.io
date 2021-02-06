@@ -14,6 +14,11 @@ mathjax: true
 {:toc}
 ---
 
+# Paper writing: Through the Eyes of Birds and Frogs - Shakir Mohamed 
+
+- [SlideLive](https://slideslive.com/38938216/through-the-eyes-of-birds-and-frogs)
+
+----
 
 # Improving Zero-Shot Translation by Disentangling Positional Information
 

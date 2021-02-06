@@ -16,6 +16,28 @@ mathjax: true
 
 ----
 
+# Gradient Checkpointing
+
+It can lower the memory requirement of deep neural networks quite substantially, allowing us to work with larger architectures and memory limitations of conventional GPUs. However, there is no free lunch here: as a trade-off for the lower-memory requirements, additional computations are carried out which can prolong the training time. However, when GPU-memory is a limiting factor that we cannot even circumvent by lowering the batch sizes, then gradient checkpointing is a great and easy option for making things work!
+
+
+- [Fitting larger networks into memory](https://medium.com/tensorflow/fitting-larger-networks-into-memory-583e3c758ff9)
+- [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/rasbt/deeplearning-models/blob/master/pytorch_ipynb/mechanics/gradient-checkpointing-nin.ipynb)
+
+----
+
+# Optimizing models using the PyTorch JIT
+
+
+
+**Reference:**
+
+- [Link](https://lernapparat.de/jit-optimization-intro/)
+- [Fast LSTMs in PyTorch](https://lernapparat.de/fast-lstm-pytorch/)
+
+
+----
+
 # PyTorch Tips
 
 - [CS224U PyTorch](https://nbviewer.jupyter.org/github/cgpotts/cs224u/blob/master/tutorial_pytorch.ipynb)

@@ -961,6 +961,33 @@ On the `graph of a function`, the second derivative corresponds to the curvature
 
 -----
 
+# Why does L1 regularization induce sparse models?
+
+- [Tweet](https://twitter.com/itayevron/status/1328421322821693441?s=20) :fire:
+
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/76B5cMEZA4Y" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/76B5cMEZA4Y)_
+
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/B5Rd2ctb_kg" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/B5Rd2ctb_kg)_
+
+
+
+
+----
+
 # Recommendation System:
 
 ## Content based recommendation:

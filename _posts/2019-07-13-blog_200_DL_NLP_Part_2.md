@@ -13,6 +13,18 @@ mathjax: true
 
 ---
 
+# High performance NLP
+
+<object data="http://gabrielilharco.com/publications/EMNLP_2020_Tutorial__High_Performance_NLP.pdf" type="application/pdf" width="750px" height="750px">
+    <embed src="http://gabrielilharco.com/publications/EMNLP_2020_Tutorial__High_Performance_NLP.pdf" type="application/pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="http://gabrielilharco.com/publications/EMNLP_2020_Tutorial__High_Performance_NLP.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
+
+
+
+----
+
 # ELMo: Embeddings from Language Models
 
 > :bulb:  This model was published early in 2018 and uses Recurrent Neural Networks (RNNs) in the form of Long Short Term Memory (LSTM) architecture to generate contextualized word embeddings

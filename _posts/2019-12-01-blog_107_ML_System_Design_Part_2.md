@@ -308,6 +308,30 @@ It's fun! :sunglasses:
 
 - [Chip Huyen](https://threadreaderapp.com/thread/1310952120431063041.html) :fire:
 
+----
+
+# Production Machine Learning Monitoring: Outliers, Drift, Explainers & Statistical Performance
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/QcevzK9ZuDg" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/QcevzK9ZuDg)_
+
+## ML Performance monitoring
+
+- prometheus grafana
+- [Seldon Core](https://docs.seldon.io/projects/seldon-core/en/latest/index.html)
+- [Monitoring Machine Learning Models in Production](https://christophergs.com/machine%20learning/2020/03/14/how-to-monitor-machine-learning-models/)
+
+**Reference:**
+
+- [Link](https://towardsdatascience.com/production-machine-learning-monitoring-outliers-drift-explainers-statistical-performance-d9b1d02ac158) :rocket:
+
+
+
 -----
 
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Machine Learning Programming Tips, Best Practices"
+title:  "Python Machine Learning Programming Tips, Best Practices"
 date:   2019-08-04 00:00:10 -0030
 categories: jekyll update
 mathjax: true
@@ -65,6 +65,11 @@ You can also add preprocessing steps for categorical column as well.
 - [Datascience stackexchange](https://datascience.stackexchange.com/questions/48026/how-to-correctly-apply-the-same-data-transformation-used-on-the-training-datas)
 
 
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
+
+
 ----
 
 # Machine Learning in Python with Scikit-Learn
@@ -75,6 +80,50 @@ Please follow [this](https://www.youtube.com/watch?list=PL5-da3qGB5ICeMbQuqbbCOQ
 
 - [Scikit-learn-tips](https://github.com/justmarkham/scikit-learn-tips)
 
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
+
 ----
 
-<a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>
+# Refactoring Python Applications for Simplicity
+
+- [link](https://realpython.com/python-refactoring/)
+
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
+
+----
+
+# Python CI/CD using Github action
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/V2TgkoExzvA" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/V2TgkoExzvA)_
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
+
+----
+
+# Pytoch gpu tuning
+
+- [Object Detection from 9 FPS to 650 FPS in 6 Steps](https://paulbridger.com/posts/video-analytics-pipeline-tuning/)
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
+
+----
+
+# Pro-tip for pytest users:
+
+![image](https://pbs.twimg.com/media/Ej1PSMqWkAMK-Xa?format=jpg&name=small)
+
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+

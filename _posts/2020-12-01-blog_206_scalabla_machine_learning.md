@@ -109,6 +109,26 @@ The data is partitioned, and the driver node assigns tasks to the nodes in the c
 <a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
+----
+
+# Scaling to trillion-parameter models
+
+
+With the rapid growth of compute available on modern GPU clusters, training a powerful trillion-parameter model with incredible capabilities is no longer a far-fetched dream but rather a near-future reality. DeepSpeed has combined three powerful technologies to enable training trillion-scale models and to scale to thousands of GPUs: `data parallel training`, `model parallel training`, and `pipeline parallel training`. This symbiosis scales deep learning training far beyond what each of the strategies can offer in isolation. 3D parallelism simultaneously addresses the two fundamental challenges toward training trillion-parameter models: `memory efficiency` and `compute efficiency`. As a result, DeepSpeed can scale to fit the most massive models in memory without sacrificing speed.
+
+![image](https://www.microsoft.com/en-us/research/uploads/prod/2020/09/Blog_DeepSpeed3_Figure-1_highres-1024x615.png)
+
+_Figure 1: Example 3D parallelism with 32 workers. Layers of the neural network are divided among four pipeline stages. Layers within each pipeline stage are further partitioned among four model parallel workers. Lastly, each pipeline is replicated across two data parallel instances, and ZeRO partitions the optimizer states across the data parallel replicas._
+
+
+![image](https://www.microsoft.com/en-us/research/uploads/prod/2020/09/Blog_DeepSpeed3_Figure2_highres.png)
+
+_Figure 2: Mapping of workers in Figure 1 to GPUs on a system with eight nodes, each with four GPUs. Coloring denotes GPUs on the same node._
+
+For more details, read [here](https://www.microsoft.com/en-us/research/blog/deepspeed-extreme-scale-model-training-for-everyone/#toc-heading-0)
+
+
+
 -----
 # Scaling common machine learning algorithms
 
@@ -363,6 +383,26 @@ print(new_music)
 - [Basic Redis Usage Example - Part 1: Exploring PUB-SUB with Redis & Python](https://kb.objectrocket.com/redis/basic-redis-usage-example-part-1-exploring-pub-sub-with-redis-python-583)
 - [Event Data Pipelines with Redis Pub/Sub, Async Python and Dash](https://itnext.io/event-data-pipelines-with-redis-pub-sub-async-python-and-dash-ab0a7bac63b0)
 
+
+----
+
+# :star: Improved matrix multiplication using CUDA
+
+The following example shows how shared memory can be used when performing matrix multiplication.
+
+In this example, each thread block is responsible for computing a square sub-matrix of C and each thread for computing an element of the sub-matrix. The sub-matrix is equal to the product of a square sub-matrix of A (sA) and a square sub-matrix of B (sB). In order to fit into the device resources, the two input matrices are divided into as many square sub-matrices of dimension TPB as necessary, and the result computed as the sum of the products of these square sub-matrices.
+
+Each product is performed by first loading sA and sB from global memory to shared memory, with one thread loading each element of each sub-matrix. Once sA and sB have been loaded, each thread accumulates the result into a register (tmp). Once all the products have been calculated, the results are written to the matrix C in global memory.
+
+By blocking the computation this way, we can reduce the number of global memory accesses since A is now only read `B.shape[1]` / `TPB` times and B is read `A.shape[0]` / TPB times.
+
+matrix multiplication using shared memory
+
+![image](https://nyu-cds.github.io/python-numba/fig/05-matmulshared.png)
+
+**Reference:**
+
+- [CUDA Programming](https://nyu-cds.github.io/python-numba/05-cuda/)
 
 ----
 
