@@ -709,6 +709,18 @@ Based on for which feature the information gain is maximum.
 
 # What is the formula for Entropy criteria?
 
+Entropy is the measure of uncertainty; how disordered a system is or in this case, the degree of randomness in a set of data. Higher the entropy, lower the predictability or chances of finding patterns in the data. It can be used to explain the origin of the universe and also where the universe headed towards.
+
+The concept of entropy or the way it is characterised had been implemented in fields remote to thermodynamics.
+
+One such application is determining the limits of carrying out information.
+
+The amount of information that is received as a result of an experiment/activity/event can be considered numerically equivalent to the amount of uncertainty concerning the event.
+
+To characterise entropy and information in a much simpler way, it was initially proposed to consider these quantities as defined on the set of generalised probability distributions.
+
+
+
 Entropy is nothing but **Expectation with negative sign**. 
 
 :diamond_shape_with_a_dot_inside: **Expectation Formula:** $E[g(x)] = \sum p(x)g(x)$
@@ -722,7 +734,74 @@ $H[x] = -\sum p(x) \log (p(x))$
 </center>
 
 
+:dart: **NOTE:** What entropy doesn't tell us is the optimal encoding scheme to help us achieve this compression. Optimal encoding of information is a very interesting topic, but not necessary for understanding KL divergence. The key thing with Entropy is that, simply knowing the theoretical lower bound on the number of bits we need, we have a way to quantify exactly how much information is in our data. Now that we can quantify this, we want to quantify how much information is lost when we substitute our observed distribution for a parameterized approximation.
+
+
+**Reference:**
+
+- [Decoding KL Divergence And Its Significance In Machine Learning ](https://analyticsindiamag.com/decoding-kl-divergence-and-its-significance-in-machine-learning/)
+
+
+
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# What is KL Divergence?
+
+> :bulb:  KL Divergence helps us to measure just how much information we lose when we choose an approximation.
+
+
+
+- KL Divergence is the measure of `relative entropy`. It is a measure of the `distance between two distributions`. 
+- In statistics, it arises as an `expected logarithm` of the likelihood ratio. 
+  
+The relative entropy  ${KL}(p\sim||\sim q)$ 
+is a measure of the `inefficiency` of assuming that the distribution is q, when the true distribution is p. 
+
+- Kullback-Leibler Divergence is just a slight modification of our formula for entropy. Rather than just having our probability distribution $p$ we add in our approximating distribution $q$. Then we look at the difference of the log values for each.
+- The KL divergence from $p$ to $q$ is simply the difference between cross entropy and entropy:
+
+<center>
+
+${KL}(y~||~\hat{y}) = \sum_i y_i \log \frac{1}{\hat{y}_i} - \sum_i y_i \log \frac{1}{y_i}= \sum_i y_i \log \frac{y_i}{\hat{y}_i}$ 
+
+</center>
+
+Where $y_i \sim p$ and $\hat{y}_i \sim q$, i.e. they come from two different probability distribution.
+
+
+![image](assets/images/kl_divergence.gif)
+
+<!--img src="../assets/images/kl_divergence.gif" width="600" height="350" /-->
+
+
+**Reference:**
+
+- [Twitter](https://twitter.com/ari_seff/status/1303741288911638530)
+- [Kullback-Leibler Divergence Explained](https://www.countbayesie.com/blog/2017/5/9/kullback-leibler-divergence-explained) :fire:
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Divergence
+
+> :bulb: In statistics and information geometry, `divergence` or a `contrast function` is a function which establishes the `distance` of one probability distribution to the other on a statistical manifold. 
+
+The divergence is a weaker notion than that of the distance, in particular the divergence need not be symmetric (that is, in general the divergence from $p$ to $q$ is not equal to the divergence from $q$ to $p$), and need not satisfy the triangle inequality.
+
+
+The two most important divergences are the 
+- `Relative entropy` (`Kullback–Leibler divergence`, KL divergence), which is central to information theory and statistics
+- The `Squared Euclidean distance` (SED) 
+
+Minimizing these two divergences is the main way that linear inverse problem are solved, via the **principle of maximum entropy and least squares**, notably in logistic regression and linear regression.
+
+
+**Reference:**
+
+- [Different divergence - Wiki](https://en.wikipedia.org/wiki/Divergence_(statistics)#CITEREFCsisz%C3%A1r1991)
 
 ----
 
@@ -775,37 +854,6 @@ where `i=1,...,N` and $S$ is the size of total datasets and $S_i$ is the size of
 
 -----
 
-# What is KL Divergence?
-
-- KL Divergence is the measure of `relative entropy`. It is a measure of the `distance between two distributions`. 
-- In statistics, it arises as an `expected logarithm` of the likelihood ratio. 
-  
-The relative entropy  ${KL}(p\sim||\sim q)$ 
-is a measure of the `inefficiency` of assuming that the distribution is q, when the true distribution is p. 
-
-- The KL divergence from $p$ to $q$ is simply the difference between cross entropy and entropy:
-
-<center>
-
-${KL}(y~||~\hat{y}) = \sum_i y_i \log \frac{1}{\hat{y}_i} - \sum_i y_i \log \frac{1}{y_i}= \sum_i y_i \log \frac{y_i}{\hat{y}_i}$ 
-
-</center>
-
-Where $y_i \sim p$ and $\hat{y}_i \sim q$, i.e. they come from two different probability distribution.
-
-
-![animation](../assets/images/kl_divergence.gif)
-
-<!--img src="../assets/images/kl_divergence.gif" width="600" height="350" /-->
-
-
-**Reference:**
-
-- [Twitter](https://twitter.com/ari_seff/status/1303741288911638530)
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
-----
 
 # Ensemble methods:
 
