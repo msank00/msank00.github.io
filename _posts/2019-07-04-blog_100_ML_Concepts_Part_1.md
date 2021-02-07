@@ -1363,6 +1363,12 @@ Lecture 12, 13, 14 of below playlist
 
 - [Mining Massive Datasets - Stanford University [FULL COURSE]](https://www.youtube.com/playlist?list=PLLssT5z_DsK9JDLcT8T62VtzwyW9LNepV)
 
+----
+
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">The toughest data science interview I ever had<br><br>I got bombarded for 45 minutes with theoretical questions:<br><br>🔸 Entropy<br>🔸 KL divergence, other divergences<br>🔸 Kolmogorov complexity<br>🔸 Jacobian and Hessian<br>🔸 Linear independence<br>🔸 Determinant<br><br>Continued 👇</p>&mdash; Alexey Grigorev (@Al_Grigor) <a href="https://twitter.com/Al_Grigor/status/1357799256321581062?ref_src=twsrc%5Etfw">February 5, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+
 
 ----
 

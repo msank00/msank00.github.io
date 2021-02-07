@@ -21,8 +21,13 @@ mathjax: true
 It can lower the memory requirement of deep neural networks quite substantially, allowing us to work with larger architectures and memory limitations of conventional GPUs. However, there is no free lunch here: as a trade-off for the lower-memory requirements, additional computations are carried out which can prolong the training time. However, when GPU-memory is a limiting factor that we cannot even circumvent by lowering the batch sizes, then gradient checkpointing is a great and easy option for making things work!
 
 
+**Reference:**
+
 - [Fitting larger networks into memory](https://medium.com/tensorflow/fitting-larger-networks-into-memory-583e3c758ff9)
 - [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/rasbt/deeplearning-models/blob/master/pytorch_ipynb/mechanics/gradient-checkpointing-nin.ipynb)
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
 
 ----
 
@@ -36,6 +41,9 @@ It can lower the memory requirement of deep neural networks quite substantially,
 - [Fast LSTMs in PyTorch](https://lernapparat.de/fast-lstm-pytorch/)
 
 
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
+
 ----
 
 # PyTorch Tips
@@ -45,10 +53,33 @@ It can lower the memory requirement of deep neural networks quite substantially,
 
 # Numpy Tips
 
+![image](https://www.bigocheatsheet.com/img/big-o-cheat-sheet-poster.png)
+
+
+
 - [CS224U Numpy](https://nbviewer.jupyter.org/github/cgpotts/cs224u/blob/master/tutorial_numpy.ipynb)
+- [NumPy Illustrated: The Visual Guide to NumPy](https://medium.com/better-programming/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d) :fire:
+- [Numpy visual guide - jalammar](https://jalammar.github.io/visual-numpy/) :fire:
+- [Time complexity](https://wiki.python.org/moin/TimeComplexity)
+- [Big-O cheat sheet](https://www.bigocheatsheet.com/)
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
+----
+
+# Sharded Training - train deep learning models on multiple GPUs
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+Training large neural network models can be computationally expensive and memory hungry. There have been many advancements to reduce this computational expense, however most of them are inaccessible to researchers, require significant engineering effort or are tied to specific architectures requiring large amounts of compute.
+
+![image](https://miro.medium.com/max/700/1*p6cuwcVbzx4-Os39mE6naA.gif)
+
+**Reference:**
+
+- [Sharded Training Powered by Lightning](https://seannaren.medium.com/introducing-pytorch-lightning-sharded-train-sota-models-with-half-the-memory-7bcc8b4484f2)
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
 
 ----
 

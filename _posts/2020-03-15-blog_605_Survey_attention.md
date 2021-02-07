@@ -124,6 +124,7 @@ However, there is a catch with the common encoder-decoder approach: a neural net
 
 - [Attention Attention !](https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html#a-family-of-attention-mechanisms), [Multi_head_attention](https://paperswithcode.com/method/multi-head-attention) :fire:
 - [Annotated Transformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html) :fire:
+- [How Transformers work in deep learning and NLP: an intuitive introduction](https://theaisummer.com/transformer/) :fire:
 
 
 Must Watch :fire:

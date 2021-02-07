@@ -83,6 +83,12 @@ Please follow [this](https://www.youtube.com/watch?list=PL5-da3qGB5ICeMbQuqbbCOQ
 
 <a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
+----
+
+# How Python Manages Memory and Creating Arrays With `np.linspace()`
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">How Python Manages Memory and Creating Arrays With np.linspace <a href="https://t.co/gRepVIQ35y">https://t.co/gRepVIQ35y</a></p>&mdash; PyCoder’s Weekly (@pycoders) <a href="https://twitter.com/pycoders/status/1343211790474358784?ref_src=twsrc%5Etfw">December 27, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
 
 ----
 
