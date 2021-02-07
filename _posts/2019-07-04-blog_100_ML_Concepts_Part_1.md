@@ -1413,8 +1413,8 @@ Lecture 12, 13, 14 of below playlist
 
 - [Entropy](https://msank00.github.io/blog/2019/07/05/blog_101_ML_Concepts_Part_2#what-is-the-formula-for-entropy-criteria)
 - [KL divergence](https://msank00.github.io/blog/2019/07/05/blog_101_ML_Concepts_Part_2#what-is-kl-divergence)
-  - other divergences
-- Kolmogorov complexity
+  - [other divergences](https://msank00.github.io/blog/2019/07/05/blog_101_ML_Concepts_Part_2#divergence)
+- [Kolmogorov complexity](https://msank00.github.io/blog/2019/07/05/blog_101_ML_Concepts_Part_2#kolmogorov-complexity)
 - Jacobian and Hessian
 - Linear independence
 - Determinant

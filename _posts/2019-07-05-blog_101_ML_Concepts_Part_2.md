@@ -829,7 +829,7 @@ $K_f​(x)=min\{ \vert p \vert : f(p)=x\}$
 
 ----
 
-## How do you calculate information gain mathematically? 
+# How do you calculate information gain mathematically? 
 
 - If `H` is the entropy of the original data D and it has undergone `N` splits for feature `f`, then Information Gain: 
 
@@ -851,7 +851,7 @@ where `i=1,...,N` and $S$ is the size of total datasets and $S_i$ is the size of
 
 ----
 
-## Pros and Cons of Decision Trees:
+# Pros and Cons of Decision Trees:
 
 <center>
 <img src="/assets/images/image_22_Tree_3.png" height="350" alt="image">
