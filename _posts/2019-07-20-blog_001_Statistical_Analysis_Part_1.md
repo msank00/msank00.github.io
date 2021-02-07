@@ -476,6 +476,23 @@ Let's say $X$ follows Binomial distribution. Then as ${n \rightarrow \infty}$, t
 
 # Law of Large Number
 
+The law of large numbers has a very central role in probability and statistics. It states that if you repeat an experiment independently a large number of times and average the result, what you obtain should be close to the expected value.
+
+There are two main versions of the law of large numbers. They are called the `weak` and `strong` laws of the large numbers.
+
+For i.i.d. random variables $X_1,X_2,...,X_n$, the sample mean, denoted by $\bar X$, is defined as: $\bar X = \frac{1}{n}\Sigma X_i$
+
+<center>
+
+$
+E[\bar{X}]=\frac{EX_1+EX_2+...+EX_{n}}{n}=\frac{nEX}{n}=EX.$
+
+</center>
+
+**Reference:**
+
+- [link](https://www.probabilitycourse.com/chapter7/7_1_1_law_of_large_numbers.php)
+
 
 ## Variational Inference: 
 

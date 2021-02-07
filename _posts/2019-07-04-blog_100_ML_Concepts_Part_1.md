@@ -1432,12 +1432,13 @@ Lecture 12, 13, 14 of below playlist
 - [Jacobian and Hessian](https://msank00.github.io/blog/2019/07/04/blog_100_ML_Concepts_Part_1#gradient-jacobian-hessian-laplacian-and-all-that)
 - Linear independence
 - Determinant
-- Eigenvalues and Eigenvectors
-- SVD
+- [Eigenvalues and Eigenvectors](https://msank00.github.io/blog/2019/07/04/blog_100_ML_Concepts_Part_1#eigen-decomposition)
+- [PCA and SVD](https://msank00.github.io/blog/2019/07/04/blog_100_ML_Concepts_Part_1#pca-and-svd)
 - The norm of a vector
 - Independent random variables
 - Expectation and variance
-- Central limit theorem 
+- [Central limit theorem](https://msank00.github.io/blog/2019/07/20/blog_001_Statistical_Analysis_Part_1#central-limit-theorem)
+- [Law of Large Number]() 
 - Gradient descent and SGD
   - Other optimization methods
 - The dimension of gradient and hessian for a neural net with 1k params 
