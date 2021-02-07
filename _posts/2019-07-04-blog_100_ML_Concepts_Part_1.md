@@ -1438,12 +1438,12 @@ Lecture 12, 13, 14 of below playlist
 - Independent random variables
 - Expectation and variance
 - [Central limit theorem](https://msank00.github.io/blog/2019/07/20/blog_001_Statistical_Analysis_Part_1#central-limit-theorem)
-- [Law of Large Number]() 
-- Gradient descent and SGD
-  - Other optimization methods
+- [Law of Large Number](https://msank00.github.io/blog/2019/07/20/blog_001_Statistical_Analysis_Part_1#law-of-large-number) 
+- [Gradient descent and SGD](https://msank00.github.io/blog/2019/07/16/blog_102_DL_Concepts_Part_1#gradient-decent)
+  - [Other optimization methods](https://msank00.github.io/blog/2019/07/16/blog_102_DL_Concepts_Part_1#momentum)
 - The dimension of gradient and hessian for a neural net with 1k params 
-- What is SVM
-  - Linear vs non-linear SVM
+- [What is SVM](https://msank00.github.io/blog/2019/07/05/blog_101_ML_Concepts_Part_2#svm-summary)
+  - [Linear](https://msank00.github.io/blog/2019/07/05/blog_101_ML_Concepts_Part_2#algorithm) vs [non-linear SVM](https://msank00.github.io/blog/2019/07/05/blog_101_ML_Concepts_Part_2#geometric-analysis-of-lagrangian-kkt-dual)
 - Quadratic optimization
 - What to do when a neural net overfits
 - What is autoencoder
