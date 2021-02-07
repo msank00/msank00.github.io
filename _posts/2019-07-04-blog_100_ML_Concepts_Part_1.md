@@ -959,6 +959,50 @@ On the `graph of a function`, the second derivative corresponds to the curvature
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
+----
+
+# Gradient, Jacobian, Hessian, Laplacian and all that
+
+**Gradient:** To generalize the notion of derivative to the multivariate functions we use the gradient operator.
+
+
+<center>
+
+$\nabla f = [ \frac{\delta f(x_1, x_2)}{\delta x_1} , \frac{\delta f(x_1, x_2)}{\delta x_2} ]$
+
+</center>
+
+
+Gradient vector gives us the **magnitude** and `direction of maximum change` of a multivariate function. 
+
+**Jacobian:** The Jacobian operator is a generalization of the derivative operator to the vector-valued functions. As we have seen earlier, a vector-valued function is a mapping from $f:ℝ^n \rightarrow ℝ^m$ hence, now instead of having a scalar value of the function $f$, we will have a mapping $[x_1,x_2, \dots ,x_n] \rightarrow [f_1,f_2, \rightarrow,f_n]$. Thus, we now need the rate of change of each component of $f_i$ with respect to each component of the input variable $x_j$, this is exactly what is captured by a matrix called Jacobian matrix $J$:
+
+<center>
+
+$
+J = \begin{vmatrix}
+\frac{\delta f_1}{\delta x_1} , \frac{\delta f_1}{\delta x_2}\\
+\frac{\delta f_2}{\delta x_1} , \frac{\delta f_2}{\delta x_2}\\
+\end{vmatrix}
+$
+
+
+</center>
+
+
+**Hessian:** The gradient is the first order derivative of a multivariate function. To find the second order derivative of a multivariate function, we define a matrix called a Hessian matrix. It describes the local curvature of a function of many variables. 
+
+Suppose $f : ℝ^n \rightarrow ℝ$ is a function taking as input a vector $x ∈ ℝ^n$ and outputting a scalar $f(x) ∈ ℝ$. If all second partial derivatives of $f$ exist and are continuous over the domain of the function, then the Hessian matrix $H$ of f is a square $n \times n$ matrix, usually defined and arranged as follows
+
+$
+H = \begin{vmatrix}
+\frac{\delta^2 f}{\delta x_1^2} , \frac{\delta^2 f}{\delta x_1 x_2}\\
+\frac{\delta^2 f}{\delta x_2 x_1} , \frac{\delta^2 f}{\delta^2 x_2}\\
+\end{vmatrix}
+$
+
+The Hessian matrix of a function f is the Jacobian matrix of the gradient of the function f ; that is: $H(f(x)) = J(\nabla f(x))$. 
+
 -----
 
 # Why does L1 regularization induce sparse models?
@@ -1381,10 +1425,10 @@ Lecture 12, 13, 14 of below playlist
 - Expectation and variance
 - Central limit theorem 
 - Gradient descent and SGD
-- Other optimization methods
+  - Other optimization methods
 - The dimension of gradient and hessian for a neural net with 1k params 
 - What is SVM
-- Linear vs non-linear SVM
+  - Linear vs non-linear SVM
 - Quadratic optimization
 - What to do when a neural net overfits
 - What is autoencoder

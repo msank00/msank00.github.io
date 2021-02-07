@@ -805,6 +805,30 @@ Minimizing these two divergences is the main way that linear inverse problem are
 
 ----
 
+# Kolmogorov Complexity
+
+Kolmogorov complexity of an object or algorithm is the **length of its optimal specification**. In some sense, it could be thought of as `algorithmic entropy`, in the sense that it is the amount of information contained in the object.
+
+
+Consider the strings 
+
+- `11111111111111111111111111111111` -  it contains 32 1's - easy to represent
+- `4c1j5b2p0cv4w1x8rx2y39umgw5q85s7` - the best way to describe the other string in haskell is (probably) to just site it
+
+Kolmogorov complexity KKK of a string, relative to a Turing machine fff of a string x,x,x, is 
+
+<center>
+
+$K_f​(x)=min\{ \vert p \vert : f(p)=x\}$
+
+</center>
+
+**Regerence:**
+
+- [Kolmogorov Complexity](https://brilliant.org/wiki/kolmogorov-complexity/)
+
+----
+
 ## How do you calculate information gain mathematically? 
 
 - If `H` is the entropy of the original data D and it has undergone `N` splits for feature `f`, then Information Gain: 
