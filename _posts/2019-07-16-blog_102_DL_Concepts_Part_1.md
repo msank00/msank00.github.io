@@ -13,6 +13,13 @@ mathjax: true
 
 ---
 
+
+# Deep Learning - Design Decision
+
+- [Link](https://sgfin.github.io/2020/06/22/Induction-Intro/) :fire:
+
+----
+
 # Gradient Decent
 
 >> The main idea is that the sign of the derivative of the function at a specific value of x tells you if you need to increase (if negative slope) or decrease (if positive slope) x to reach the minimum. When the slope is near 0, the minimum should have been reached. 

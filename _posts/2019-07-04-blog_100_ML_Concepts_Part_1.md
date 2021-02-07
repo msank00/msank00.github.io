@@ -1365,8 +1365,33 @@ Lecture 12, 13, 14 of below playlist
 
 ----
 
+# :star: Top Pick for Interview - Depth and Breadh
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">The toughest data science interview I ever had<br><br>I got bombarded for 45 minutes with theoretical questions:<br><br>🔸 Entropy<br>🔸 KL divergence, other divergences<br>🔸 Kolmogorov complexity<br>🔸 Jacobian and Hessian<br>🔸 Linear independence<br>🔸 Determinant<br><br>Continued 👇</p>&mdash; Alexey Grigorev (@Al_Grigor) <a href="https://twitter.com/Al_Grigor/status/1357799256321581062?ref_src=twsrc%5Etfw">February 5, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+- Entropy
+- KL divergence, other divergences
+- Kolmogorov complexity
+- Jacobian and Hessian
+- Linear independence
+- Determinant
+- Eigenvalues and Eigenvectors
+- SVD
+- The norm of a vector
+- Independent random variables
+- Expectation and variance
+- Central limit theorem 
+- Gradient descent and SGD
+- Other optimization methods
+- The dimension of gradient and hessian for a neural net with 1k params 
+- What is SVM
+- Linear vs non-linear SVM
+- Quadratic optimization
+- What to do when a neural net overfits
+- What is autoencoder
+- How to train an RNN
+- How decision trees work
+- Random forest and GBM
+- How to use random forest on data with 30k features
+- Favorite ML algorithm - tell about it in details
 
 
 

@@ -44,3 +44,9 @@ The Shapley framework for explainability has strength in its general applicabili
 - [github](https://github.com/uncertainty-toolbox/uncertainty-toolbox)
 
 ----
+
+# Bias, Fairness and Explainability — steps towards building Responsible AI
+
+- [Blog](https://medium.com/walmartglobaltech/bias-fairness-and-explainability-steps-towards-building-responsible-ai-dc735b06279)
+
+----
