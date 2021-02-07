@@ -1003,6 +1003,20 @@ $
 
 The Hessian matrix of a function f is the Jacobian matrix of the gradient of the function f ; that is: $H(f(x)) = J(\nabla f(x))$. 
 
+**Laplacian:** The trace of the Hessian matrix is known as the Laplacian operator denoted by $\nabla^2$
+
+<center>
+
+$
+\nabla ^2 f = trace(H) = \Sigma_i \frac{\delta^2 f}{\delta x_i^2}
+$
+
+</center>
+
+**Reference:**
+
+- [link](https://najeebkhan.github.io/blog/VecCal.html)
+
 -----
 
 # Why does L1 regularization induce sparse models?
@@ -1415,7 +1429,7 @@ Lecture 12, 13, 14 of below playlist
 - [KL divergence](https://msank00.github.io/blog/2019/07/05/blog_101_ML_Concepts_Part_2#what-is-kl-divergence)
   - [other divergences](https://msank00.github.io/blog/2019/07/05/blog_101_ML_Concepts_Part_2#divergence)
 - [Kolmogorov complexity](https://msank00.github.io/blog/2019/07/05/blog_101_ML_Concepts_Part_2#kolmogorov-complexity)
-- Jacobian and Hessian
+- [Jacobian and Hessian](https://msank00.github.io/blog/2019/07/04/blog_100_ML_Concepts_Part_1#gradient-jacobian-hessian-laplacian-and-all-that)
 - Linear independence
 - Determinant
 - Eigenvalues and Eigenvectors
