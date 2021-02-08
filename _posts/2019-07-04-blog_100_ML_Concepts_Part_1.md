@@ -408,7 +408,7 @@ For  the  brute force  neighbor  search  of  the kNN  algorithm,  we  have  a  t
 - **KD-Tree:**
   - A  KD-Tree,  which  stands  for `k-dimensional  search  tree`,  is  a  generalization  of  binary search trees.  KD-Trees data structures have a time complexity of $O(\log(n))$ on average (but $O(n)$  in  the  worst  case)  or  better  and  work  well  in  relatively  low  dimensions.   KD-Trees also partition the search space perpendicular to the feature axes in a Cartesian coordinate system.  However, with a large number of features, KD-Trees become increasingly inefficient,and alternative data structures, such as Ball-Trees, should be considered.
 - **Ball Tree:**
-  - In contrast to the KD-Tree approach, the Ball-Tree partitioning algorithms are based on the construction of `hyper spheres` instead of cubes.  While Ball-Tree algorithms are generally more expensive to run than KD-Trees, the algorithms address some of the shortcomings ofthe KD-Tree datastructure and are more efficient in higher dimensions.
+  - In contrast to the KD-Tree approach, the Ball-Tree partitioning algorithms are based on the construction of `hyper spheres` instead of cubes.  While Ball-Tree algorithms are generally more expensive to run than KD-Trees, the algorithms address some of the shortcomings of the KD-Tree data structure and are more efficient in higher dimensions.
 
 ## Parallelizing kNN
 
