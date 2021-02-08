@@ -17,7 +17,7 @@ mathjax: true
 There are four assumptions associated with a linear regression model:
 
 - **Linearity:** The relationship between $X$ and the mean of $Y$ is linear.
-- **Homoscedasticity:** The variance of residual is the same for any value of X.
+- **Homoscedasticity:** The variance of `residual` ($(Y - \hat Y)$) is the same for any value of $X$.
 - **Independence:** Observations are independent of each other.
 - :fire: **Normality:** For any fixed value of $X$, $Y$ is normally distributed. The error($\epsilon = (Y_i - \hat{Y_i})$ residuals) follow a normal distribution $\mathcal{N}(\mu , \sigma)$
 
