@@ -102,7 +102,7 @@ These are typical examples of a `parametric learners`.
 
 > :bulb: ... prediction is dependent of the training data ...
 
-> Non-parametric  models assume  that  the  data  distribution  cannot  be  defined  in terms  of  such  a  finite  set  of  parameters. Model parameters actually grows with the training set.  You can image each training instance as a "parameter" in the model, because they're the things you use during prediction
+> Non-parametric  models assume  that  the  data  distribution  cannot  be  defined  in terms  of  such  a  finite  set  of  parameters. Model parameters actually grows with the training set.  You can imagine each training instance as a "parameter" in the model, because they're the things you use during prediction
 
 - K-nearest neighbor - all the training data are needed during prediction.
 - Decision trees - All the training data needed during prediction. The test input will pass through each decision tree (each decision tree is nothing but some automatic rules based on the full training data) and finally some voting to get the actual prediction.
