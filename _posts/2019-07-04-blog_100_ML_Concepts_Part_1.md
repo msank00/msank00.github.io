@@ -390,7 +390,7 @@ Lastly,  because  we  do  not  make  any  assumption  about  the  functional  fo
 
 ## Curse of Dimensionality
 
-The kNN algorithm is particularly susceptible to the curse of dimensionality.  In machine learning, the curse of dimensionality refers to scenarios with a fixed number of training examples but an increasing number of dimensions and range of feature values in each dimensionin a high-dimensional feature space. In kNN an increasing number of dimensions becomes increasingly problematic because the more dimensions we add, the larger the volume in the hyperspace needs to be to capture fixed number of neighbors.  As the volume grows larger and larger, the `neighbors` become less and less `similar` to the query point as they are now all relatively distant from the query point considering all different dimensions that are included when computing the pairwise distances.
+The kNN algorithm is particularly susceptible to the curse of dimensionality.  In machine learning, the curse of dimensionality refers to scenarios with a fixed number of training examples but an increasing number of dimensions and range of feature values in each dimensionin a high-dimensional feature space. In kNN an increasing number of dimensions becomes increasingly problematic because the more dimensions we add, the larger the volume in the hyperspace needs to capture fixed number of neighbors.  As the volume grows larger and larger, the `neighbors` become less and less `similar` to the query point as they are now all relatively distant from the query point considering all different dimensions that are included when computing the pairwise distances.
 
 ## Big-O of kNN
 
@@ -962,7 +962,7 @@ much better time: $O(n^{3.5}L^2)$ [Kar84].
 - In calculus, the second derivative, or the second order derivative, of a function $f$ is the derivative of the derivative of $f$. Roughly speaking, the second derivative measures how the `rate of change of a quantity` is itself `changing`; 
   - For example, the second derivative of the position of a vehicle with respect to time is the instantaneous acceleration of the vehicle, or the rate at which the velocity of the vehicle is changing with respect to time.
 
-On the `graph of a function`, the second derivative corresponds to the curvature or concavity of the graph. 
+:atom_symbol: On the `graph of a function`, the second derivative corresponds to the `curvature` or `concavity of the graph`. 
 - The graph of a function with a `positive second derivative` is `upwardly concave`, 
 - The graph of a function with a `negative second derivative` curves in the opposite way.
 
@@ -1011,12 +1011,16 @@ $
 
 Suppose $f : ℝ^n \rightarrow ℝ$ is a function taking as input a vector $x ∈ ℝ^n$ and outputting a scalar $f(x) ∈ ℝ$. If all second partial derivatives of $f$ exist and are continuous over the domain of the function, then the Hessian matrix $H$ of f is a square $n \times n$ matrix, usually defined and arranged as follows
 
+<p align="center">
+
 $
 H = \begin{vmatrix}
 \frac{\delta^2 f}{\delta x_1^2} , \frac{\delta^2 f}{\delta x_1 x_2}\\
 \frac{\delta^2 f}{\delta x_2 x_1} , \frac{\delta^2 f}{\delta^2 x_2}\\
 \end{vmatrix}
 $
+
+</p>
 
 The Hessian matrix of a function f is the Jacobian matrix of the gradient of the function f ; that is: $H(f(x)) = J(\nabla f(x))$. 
 
