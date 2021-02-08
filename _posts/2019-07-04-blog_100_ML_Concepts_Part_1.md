@@ -980,7 +980,7 @@ much better time: $O(n^{3.5}L^2)$ [Kar84].
 
 # Gradient, Jacobian, Hessian, Laplacian and all that
 
-**Gradient:** To generalize the notion of derivative to the multivariate functions we use the gradient operator.
+:atom_symbol: **Gradient:** To generalize the notion of derivative to the multivariate functions we use the gradient operator.
 
 
 <center>
@@ -992,7 +992,7 @@ $\nabla f = [ \frac{\delta f(x_1, x_2)}{\delta x_1} , \frac{\delta f(x_1, x_2)}{
 
 Gradient vector gives us the **magnitude** and `direction of maximum change` of a multivariate function. 
 
-**Jacobian:** The Jacobian operator is a generalization of the derivative operator to the vector-valued functions. As we have seen earlier, a vector-valued function is a mapping from $f:ℝ^n \rightarrow ℝ^m$ hence, now instead of having a scalar value of the function $f$, we will have a mapping $[x_1,x_2, \dots ,x_n] \rightarrow [f_1,f_2, \rightarrow,f_n]$. Thus, we now need the rate of change of each component of $f_i$ with respect to each component of the input variable $x_j$, this is exactly what is captured by a matrix called Jacobian matrix $J$:
+:atom_symbol: **Jacobian:** The Jacobian operator is a generalization of the derivative operator to the vector-valued functions. As we have seen earlier, a vector-valued function is a mapping from $f:ℝ^n \rightarrow ℝ^m$ hence, now instead of having a scalar value of the function $f$, we will have a mapping $[x_1,x_2, \dots ,x_n] \rightarrow [f_1,f_2, \rightarrow,f_n]$. Thus, we now need the rate of change of each component of $f_i$ with respect to each component of the input variable $x_j$, this is exactly what is captured by a matrix called Jacobian matrix $J$:
 
 <center>
 
@@ -1007,7 +1007,7 @@ $
 </center>
 
 
-**Hessian:** The gradient is the first order derivative of a multivariate function. To find the second order derivative of a multivariate function, we define a matrix called a Hessian matrix. It describes the local curvature of a function of many variables. 
+:atom_symbol: **Hessian:** The gradient is the first order derivative of a multivariate function. To find the second order derivative of a multivariate function, we define a matrix called a Hessian matrix. It describes the `local` **curvature** of a function of many variables. 
 
 Suppose $f : ℝ^n \rightarrow ℝ$ is a function taking as input a vector $x ∈ ℝ^n$ and outputting a scalar $f(x) ∈ ℝ$. If all second partial derivatives of $f$ exist and are continuous over the domain of the function, then the Hessian matrix $H$ of f is a square $n \times n$ matrix, usually defined and arranged as follows
 
@@ -1024,7 +1024,7 @@ $
 
 The Hessian matrix of a function f is the Jacobian matrix of the gradient of the function f ; that is: $H(f(x)) = J(\nabla f(x))$. 
 
-**Laplacian:** The trace of the Hessian matrix is known as the Laplacian operator denoted by $\nabla^2$
+:atom_symbol: **Laplacian:** The trace of the Hessian matrix is known as the Laplacian operator denoted by $\nabla^2$
 
 <center>
 
