@@ -27,7 +27,7 @@ There are four assumptions associated with a linear regression model:
 - [Simple Linear Regression](https://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/R/R5_Correlation-Regression/R5_Correlation-Regression4.html)
 - [Assumptions Of Linear Regression Algorithm](https://towardsdatascience.com/assumptions-of-linear-regression-algorithm-ed9ea32224e1) :fire:
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -56,7 +56,7 @@ To aid our conceptual understsanding, each of the algorithms can be categorized 
 
 - [stat451-machine-learning-fs20 - Sebastian Rachka - Lecture 1](https://github.com/rasbt/stat451-machine-learning-fs20) :fire:
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 ----
@@ -77,7 +77,7 @@ To aid our conceptual understsanding, each of the algorithms can be categorized 
 
 - [Tweet: Chip Huyen](https://twitter.com/chipro/status/1152077188985835521)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ---
 
@@ -124,7 +124,7 @@ These are considered as `non-parametric`
 
 - [MLSS2015 Tuebingen, slide](http://mlss.tuebingen.mpg.de/2015/slides/ghahramani/gp-neural-nets15.pdf)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 ----
@@ -161,7 +161,7 @@ Regularization allows complex models to be trained on the datasets of limited si
 
 >> :sparkles: **In bayesian setting, the prior works as the Regularizer.**
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 ----
@@ -203,7 +203,7 @@ _*Note: here patameter $\beta$ and estimator $\hat \beta$._
 
 - [Prof. Piyush Rai, Lecture 19](https://cse.iitk.ac.in/users/piyush/courses/ml_autumn16/771A_lec19_slides.pdf)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -357,7 +357,18 @@ Now GLM in `non-linear` due to the presence of $g()$ but it can be transformed i
 
 - [Stackexchange](https://stats.stackexchange.com/questions/120047/nonlinear-vs-generalized-linear-model-how-do-you-refer-to-logistic-poisson-e)
   
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
+----
+
+# K-means vs kNN
+
+The two most commonly used algorithms in machine learning are K-means clustering and k-nearest neighbors algorithm.
+
+Often those two are confused with each other due to the presence of the k letter, but in reality, those algorithms are slightly different from each other.
+
+Thus, K-means `clustering` represents an unsupervised algorithm, mainly used for clustering, while KNN is a `supervised learning` algorithm used for classification. 
+
 
 ----
 
@@ -365,9 +376,9 @@ Now GLM in `non-linear` due to the presence of $g()$ but it can be transformed i
 
 Nearest  neighbor  algorithms  are  among  the  `simplest`  supervised  machine  learning  algorithms and have been well studied in the field of pattern recognition over the last century.
 
-While kNN is a `universal function approximator` under certain conditions, the underlying concept is relatively simple. kNN is an algorithm for supervised learning that simply stores the labeled training examples during the training phase.  For this reason, kNN is also called a lazy learning algorithm. What it means to be alazy learning algorithm is that the processing of the training examples is postponed until making predictions once again, the training consists literally of just storingthe training data.
+:atom_symbol: While kNN is a `universal function approximator` under certain conditions, the underlying concept is relatively simple. kNN is an algorithm for supervised learning that simply stores the labeled training examples during the training phase.  For this reason, kNN is also called a `lazy learning algorithm`. What it means to be a lazy learning algorithm is that the processing of the training examples is postponed until making predictions once again, the training consists literally of just storing the training data.
 
-> :bulb: When you are reading recent literature, note that thepredictionstep is now often called ”inference” inthe machine learning community.  Note that in the context of machine learning, the term ”inference” is notto be confused with how we use the term ”inference” in statistics, though.
+> :bulb: When you are reading recent literature, note that the prediction step is now often called ”inference” in the machine learning community.  Note that in the context of machine learning, the term ”inference” is not to be confused with how we use the term ”inference” in statistics, though.
 
 Then, to make a prediction (class label or continuous target), a trained kNN model finds the k-nearest  neighbors  of  a  query  point  and  computes  the  class  label  (classification)  or continuous target (regression) based on the k nearest (most `similar`) points.  The exact mechanics will be explained in the next sections.  However, the overall idea is that instead of approximating the target function $f(x) = y$ globally, during each prediction, kNN approximates the target function locally. 
 
@@ -385,7 +396,9 @@ The kNN algorithm is particularly susceptible to the curse of dimensionality.  I
 
 For  the  brute force  neighbor  search  of  the kNN  algorithm,  we  have  a  time  complexity  of $O(n×m)$, where $n$ is the number of training examples and $m$ is the number of dimensions in the training set.  For simplicity, assuming $n \gggtr m$ , the complexity of the brute-force nearest-neighbor  search  is $O(n)$.   In  the  next  section,  we  will  briefly  go  over  a  few  strategies  to improve the runtime of the kNN model.
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
+----
 
 ## Different data-structure of kNN:
 
@@ -406,7 +419,7 @@ kNN is one of these algorithms that are very easy to parallelize.  There are man
 - [stat451-machine-learning-fs20 - Sebastian Rachka - Lecture 2](https://github.com/rasbt/stat451-machine-learning-fs20) :fire:
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 ----
@@ -440,7 +453,7 @@ where Q is the matrix with eigenvectors as columns and $\Sigma$ is $diag(\lambda
 - [Lecture 6: Prof.Mitesh_IIT-M](https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture6.pdf)
 - [(Book_IMPORTANT_link)](https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.7-Eigendecomposition/)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -537,7 +550,7 @@ SGD and WALS have advantages and disadvantages. Review the information below to 
 - [IMP Google blog - Matrix Factorization from the pov of recsys](https://developers.google.com/machine-learning/recommendation/collaborative/matrix)
 - [Very good video - Part 1](https://www.youtube.com/watch?v=10qVo3kxAhI)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
