@@ -771,23 +771,42 @@ ${KL}(y~||~\hat{y}) = \sum_i y_i \log \frac{1}{\hat{y}_i} - \sum_i y_i \log \fra
 Where $y_i \sim p$ and $\hat{y}_i \sim q$, i.e. they come from two different probability distribution.
 
 
-![animation](../assets/images/kl_divergence.gif)
+![animation](/assets/images/kl_divergence.gif)
+
+It's well-known that KL-divergence is not symmetric, but which direction is right for fitting your model?
 
 
-![animation](assets/images/kl_divergence.gif)
+If we're fitting $q_{\theta}$ to $p$ 
 
+- Using $KL(p \vert \vert q_{\theta})$: `Mean-seeking`, `inclusive` (more principled because approximates the full distribution)
+  - Requires normalization wrt p (i.e., often not computationally convenient)
+- Using $KL(q_{\theta} \vert \vert p)$: `Mode-seeking`, `exclusive`
+  - No normalization wrt $p$ (i.e., computationally convenient)
 
+>  :bulb: **Mnemonic:** "When the truth comes first, you get the whole truth" Here `whole truth` corresponds to the inclusiveness of $KL(p \vert \vert q)$.
 
+![image](assets/images/image_43_kl_divergence.png)
 
-<img src="../assets/images/kl_divergence.gif" width="600" height="350">
+<center>
 
-<img src="assets/images/kl_divergence.gif" width="600" height="350">
+<img src="https://sidml.github.io/assets/images/kl-div/kldiv_viz.gif" width="400">
 
+</center>
+
+<p align="center">
+
+<video width="320" height="240" controls>
+  <source src="assets/images/kl_divergence.mp4" type="video/mp4">
+</video>
+
+</p>
 
 **Reference:**
 
 - [Twitter](https://twitter.com/ari_seff/status/1303741288911638530)
 - [Kullback-Leibler Divergence Explained](https://www.countbayesie.com/blog/2017/5/9/kullback-leibler-divergence-explained) :fire:
+- [KL-divergence as an objective function](https://timvieira.github.io/blog/post/2014/10/06/kl-divergence-as-an-objective-function/)
+- [Understand KL Divergence](https://sidml.github.io/Understanding-KL-Divergence/)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
