@@ -876,7 +876,166 @@ how do we know what size we should choose for `k`, and how do we know if we have
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
----
+----
+# Recommendation System:
+
+## Content based recommendation:
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/2uxXPzm-7FY" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/2uxXPzm-7FY)_
+
+### Using Feature vector and regression based analysis
+
+Here the assumption is that for each of the `item` you have the corresponding features available. 
+
+:tada: **Story:** Below are a table, of movie-user rating. 5 users and 4 movies. And the ratings are also provided (1-5) for some of them. We want to predict the rating for all the `?` unknown. It means that user $u_j$ has not seen that movie $m_i$ and if we can predict the rating for cell (i,j) then it will help us to decide whether or not to recommend the movie to the user $u_j$. For example, cell (3,4) is unknown. If by some algorithm, we can predict the rating for that cell, say the predicted rating is 4, it means if the user **would have seen this movie, then he would have rated the movie 4**. So we must definitely recommend this movie to the user. 
+
+
+|    | u1 | u2 | u3 | u4 | u5 |
+|:--:|:--:|:--:|:--:|----|:--:|
+| m1 |  4 |  5 |  ? | 1  |  2 |
+| m2 |  ? |  4 |  5 | 0  |  ? |
+| m3 |  0 |  ? |  1 | ?  |  5 |
+| m4 | 1  | 0  | 2  | 5  | ?  |
+
+For content based movie recommendation it's assumed that the features available for the content. For example if we see closely, then we can see the following patterns in the table. The bold ratings have segmented the table into 4 sub parts based on rating clustering.
+
+|    | u1 | u2 | u3 | u4 | u5 |
+|:--:|:--:|:--:|:--:|----|:--:|
+| m1 |  **4** |  **5** |  **?** | 1  |  2 |
+| m2 |  **?** |  **4** |  **5** | 0  |  ? |
+| m3 |  0 |  ? |  1 | **?**  |  **5** |
+| m4 | 1  | 0  | 2  | **5**  | **?**  |
+
+
+as if movie $m_1$, $m_2$ belong to type 1 (say romance) and $m_3$, and $m_4$ belong to type 2 (say action) and there is a clear discrimination is the rating as well.
+
+Now for content based recommendation this types are available and then the datasets actually looks as follows
+
+|    | u1 | u2 | u3 | u4 | u5 | T1  | T2  |
+|:--:|:--:|:--:|:--:|----|:--:|-----|-----|
+| m1 |  4 |  5 |  ? | 1  |  2 | 0.9 | 0.1 |
+| m2 |  ? |  4 |  5 | 0  |  ? | 0.8 | 0.2 |
+| m3 |  0 |  ? |  1 | ?  |  5 | 0.2 | 0.8 |
+| m4 | 1  | 0  | 2  | 5  | ?  | 0.1 | 0.9 |
+
+where $T_1$ and $T_2$ columns are already known. Then for each of the user we can learn a regression problem with the known rating as the target vector $u_j$ and $A = [T_1,T_2]$
+is the feature matrix and we need to learn the $\theta_j$ for user $j$ such that $A \theta_j = u_j$. Create the loss function and solve the optimization problem.
+
+:bookmark_tabs: **Reference:**
+
+- [(Content Based Recom -A.Ng)](https://www.youtube.com/watch?v=c0ZPDKbYzx0&list=PLnnr1O8OWc6ZYcnoNWQignIiP5RRtu3aS&index=2),
+- [(MMD - Stanford )](https://www.youtube.com/watch?v=2uxXPzm-7FY&index=42&list=PLLssT5z_DsK9JDLcT8T62VtzwyW9LNepV)
+
+
+
+## Colaborative Filtering
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/h9gpufJFF-0" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/h9gpufJFF-0)_
+
+
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/v_mONWiFv0k" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/v_mONWiFv0k)_
+
+
+
+:tada: **Story:** Unlike the `content based recommendation`, where the feature columns ($T_1$, $T_2$) were already given, here the features are not present. Rather they are being learnt by the algorithm. Here we assume $\theta_j$ is given i.e we know the users liking for $T_1$ and $T_2$ movies and almost similarly we formulate the regression problem but now we try to estimate the feature columns $T_k$. Then using the learnt feature we estimate the unknown ratings and then recommend those movies. Here knowing $\theta_j$
+ means that each user has given information regarding his/her preferences based on subset of movies and thus all the users are helping in colaborative way to learn the features.
+
+:large_orange_diamond: **Naive Algorithm:**
+
+1. Given $\theta_j$, learn features $T_k$. [loss function $J(T_k)$]
+2. Given $T_k$, learn $\theta_j$. [loss function $J(\theta_j)$] 
+
+and start with a random initialization of $\theta$ and then move back and forth between step 1 and 2.
+
+:large_orange_diamond: **Better Algorithm:**
+
+- combine step 1 and 2 into a single loss function $J(\theta_j,T_k)$ and solve that.
+
+
+### User User Colaborative Filtering
+
+- Fix a similarity function (Jaccard similarity, cosine similarity) for two vectors. and then pick any two users profile (their rating for different movies) and calculate the similarity function which helps you to cluster the users.
+  - `Jaccard similarity` doesn't consider the rating
+  - `Cosine similarity` consider the unknown entries as 0, which causes problem as rating range is (0-5).
+  - `Centered` cosine similarity (pearson correlation): subtract $\mu_{user}^{rating}$ from $rating_{user}$. 
+    - Missing ratings are treated as average 
+
+### Item Item Colaborative Filtering
+
+Almost similar to User User CF.
+
+:+1: **Pros:**
+
+- Works for any kind of item
+- No need data for other user
+- It's personalized recommendation as for each user a regression problem is learnt.
+- No first-rater problem, i.e. we can recommend an item to the user, as soon as it's available in the market.
+
+:-1: **Cons:**
+
+- Finding the correct feature is hard 
+- Cold start problem for new user 
+- Sparsity
+- Popularity bias
+
+:bookmark_tabs: **Reference:**
+
+- [(Collaborative Filtering-A.Ng)](https://www.youtube.com/watch?v=-Fptv3NZtmE&index=4&list=PLnnr1O8OWc6ZYcnoNWQignIiP5RRtu3aS)
+- [(MMD - Stanford )](https://www.youtube.com/watch?v=2uxXPzm-7FY&index=42&list=PLLssT5z_DsK9JDLcT8T62VtzwyW9LNepV)
+
+----
+
+## Colaborative Filtering - Low Rank Matrix Factorization (SVD)
+
+### Evaluation of Recommending System
+
+RMSE: Root Mean Square Error. However it doesn't distinguish between high rating and low rating. 
+
+- Alternative: Precision $@k$ i.e. get the precision for top k items.
+
+## Deep Learning based Recommendation System
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/ZkBQ6YA9E40" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/ZkBQ6YA9E40)_
+
+
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/MVB1cbe923A" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/MVB1cbe923A)_
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
 
 # Solve Linear Programming
 
@@ -1099,116 +1258,6 @@ _*In case the above link is broken, click [here](https://www.youtube.com/embed/B
 
 ----
 
-# Recommendation System:
-
-## Content based recommendation:
-
-### Using Feature vector and regression based analysis
-
-Here the assumption is that for each of the `item` you have the corresponding features available. 
-
-:tada: **Story:** Below are a table, of movie-user rating. 5 users and 4 movies. And the ratings are also provided (1-5) for some of them. We want to predict the rating for all the `?` unknown. It means that user $u_j$ has not seen that movie $m_i$ and if we can predict the rating for cell (i,j) then it will help us to decide whether or not to recommend the movie to the user $u_j$. For example, cell (3,4) is unknown. If by some algorithm, we can predict the rating for that cell, say the predicted rating is 4, it means if the user **would have seen this movie, then he would have rated the movie 4**. So we must definitely recommend this movie to the user. 
-
-
-|    | u1 | u2 | u3 | u4 | u5 |
-|:--:|:--:|:--:|:--:|----|:--:|
-| m1 |  4 |  5 |  ? | 1  |  2 |
-| m2 |  ? |  4 |  5 | 0  |  ? |
-| m3 |  0 |  ? |  1 | ?  |  5 |
-| m4 | 1  | 0  | 2  | 5  | ?  |
-
-For content based movie recommendation it's assumed that the features available for the content. For example if we see closely, then we can see the following patterns in the table. The bold ratings have segmented the table into 4 sub parts based on rating clustering.
-
-|    | u1 | u2 | u3 | u4 | u5 |
-|:--:|:--:|:--:|:--:|----|:--:|
-| m1 |  **4** |  **5** |  **?** | 1  |  2 |
-| m2 |  **?** |  **4** |  **5** | 0  |  ? |
-| m3 |  0 |  ? |  1 | **?**  |  **5** |
-| m4 | 1  | 0  | 2  | **5**  | **?**  |
-
-
-as if movie $m_1$, $m_2$ belong to type 1 (say romance) and $m_3$, and $m_4$ belong to type 2 (say action) and there is a clear discrimination is the rating as well.
-
-Now for content based recommendation this types are available and then the datasets actually looks as follows
-
-|    | u1 | u2 | u3 | u4 | u5 | T1  | T2  |
-|:--:|:--:|:--:|:--:|----|:--:|-----|-----|
-| m1 |  4 |  5 |  ? | 1  |  2 | 0.9 | 0.1 |
-| m2 |  ? |  4 |  5 | 0  |  ? | 0.8 | 0.2 |
-| m3 |  0 |  ? |  1 | ?  |  5 | 0.2 | 0.8 |
-| m4 | 1  | 0  | 2  | 5  | ?  | 0.1 | 0.9 |
-
-where $T_1$ and $T_2$ columns are already known. Then for each of the user we can learn a regression problem with the known rating as the target vector $u_j$ and $A = [T_1,T_2]$
-is the feature matrix and we need to learn the $\theta_j$ for user $j$ such that $A \theta_j = u_j$. Create the loss function and solve the optimization problem.
-
-:bookmark_tabs: **Reference:**
-
-- [(Content Based Recom -A.Ng)](https://www.youtube.com/watch?v=c0ZPDKbYzx0&list=PLnnr1O8OWc6ZYcnoNWQignIiP5RRtu3aS&index=2),
-- [(MMD - Stanford )](https://www.youtube.com/watch?v=2uxXPzm-7FY&index=42&list=PLLssT5z_DsK9JDLcT8T62VtzwyW9LNepV)
-
-
-
-## Colaborative Filtering
-
-:tada: **Story:** Unlike the `content based recommendation`, where the feature columns ($T_1$, $T_2$) were already given, here the features are not present. Rather they are being learnt by the algorithm. Here we assume $\theta_j$ is given i.e we know the users liking for $T_1$ and $T_2$ movies and almost similarly we formulate the regression problem but now we try to estimate the feature columns $T_k$. Then using the learnt feature we estimate the unknown ratings and then recommend those movies. Here knowing $\theta_j$
- means that each user has given information regarding his/her preferences based on subset of movies and thus all the users are helping in colaborative way to learn the features.
-
-:large_orange_diamond: **Naive Algorithm:**
-
-1. Given $\theta_j$, learn features $T_k$. [loss function $J(T_k)$]
-2. Given $T_k$, learn $\theta_j$. [loss function $J(\theta_j)$] 
-
-and start with a random initialization of $\theta$ and then move back and forth between step 1 and 2.
-
-:large_orange_diamond: **Better Algorithm:**
-
-- combine step 1 and 2 into a single loss function $J(\theta_j,T_k)$ and solve that.
-
-
-### User User Colaborative Filtering
-
-- Fix a similarity function (Jaccard similarity, cosine similarity) for two vectors. and then pick any two users profile (their rating for different movies) and calculate the similarity function which helps you to cluster the users.
-  - `Jaccard similarity` doesn't consider the rating
-  - `Cosine similarity` consider the unknown entries as 0, which causes problem as rating range is (0-5).
-  - `Centered` cosine similarity (pearson correlation): subtract $\mu_{user}^{rating}$ from $rating_{user}$. 
-    - Missing ratings are treated as average 
-
-### Item Item Colaborative Filtering
-
-Almost similar to User User CF.
-
-:+1: **Pros:**
-
-- Works for any kind of item
-- No need data for other user
-- It's personalized recommendation as for each user a regression problem is learnt.
-- No first-rater problem, i.e. we can recommend an item to the user, as soon as it's available in the market.
-
-:-1: **Cons:**
-
-- Finding the correct feature is hard 
-- Cold start problem for new user 
-- Sparsity
-- Popularity bias
-
-:bookmark_tabs: **Reference:**
-
-- [(Collaborative Filtering-A.Ng)](https://www.youtube.com/watch?v=-Fptv3NZtmE&index=4&list=PLnnr1O8OWc6ZYcnoNWQignIiP5RRtu3aS)
-- [(MMD - Stanford )](https://www.youtube.com/watch?v=2uxXPzm-7FY&index=42&list=PLLssT5z_DsK9JDLcT8T62VtzwyW9LNepV)
-
-----
-
-## Colaborative Filtering - Low Rank Matrix Factorization (SVD)
-
-### Evaluation of Recommending System
-
-RMSE: Root Mean Square Error. However it doesn't distinguish between high rating and low rating. 
-
-- Alternative: Precision $@k$ i.e. get the precision for top k items.
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
----- 
 
 # Clustering Algorithm
 
