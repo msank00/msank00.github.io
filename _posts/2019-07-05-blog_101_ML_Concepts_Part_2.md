@@ -785,21 +785,14 @@ If we're fitting $q_{\theta}$ to $p$
 
 >  :bulb: **Mnemonic:** "When the truth comes first, you get the whole truth" Here `whole truth` corresponds to the inclusiveness of $KL(p \vert \vert q)$.
 
-![image](assets/images/image_43_kl_divergence.png)
+![image](/assets/images/image_43_kl_divergence.png)
 
 <center>
 
-<img src="https://sidml.github.io/assets/images/kl-div/kldiv_viz.gif" width="400">
+<img src="https://sidml.github.io/assets/images/kl-div/kldiv_viz.gif" width="600">
 
 </center>
 
-<p align="center">
-
-<video width="320" height="240" controls>
-  <source src="assets/images/kl_divergence.mp4" type="video/mp4">
-</video>
-
-</p>
 
 **Reference:**
 
