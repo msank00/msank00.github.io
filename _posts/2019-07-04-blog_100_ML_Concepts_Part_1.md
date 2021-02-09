@@ -426,6 +426,20 @@ kNN is one of these algorithms that are very easy to parallelize.  There are man
 
 # Eigen Decomposition
 
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/PFDu9oVAE-g" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/PFDu9oVAE-g)_
+
+
+- [Application](https://www.intmath.com/matrices-determinants/8-applications-eigenvalues-eigenvectors.php)
+  - Google's PageRank - Their task was to find the "most important" page for a particular search query from the link matrix
+  - Repeated applications of a matrix: Markov processes - First, we need to consider the conditions under which we'll have a steady state. If there is no change of value from one month to the next, then the eigenvalue should have value $1$
+  - ...
+
 Matrices acts as **linear transformations**. Some matrices will **rotate** your space, others will **rescale** it etc. So when we apply a matrix to a vector, we end up with a transformed version of the vector. When we say that we `apply` the matrix to the vector it means that we calculate the dot product of the matrix with the vector. 
 
 
@@ -593,6 +607,24 @@ Positive values are illustrated with black pixels :black_circle: and negative va
 ----
 
 #  PCA and SVD
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/nbBvuuNVfco" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/nbBvuuNVfco)_
+
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/fkf4IBRSeEc" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/fkf4IBRSeEc)_
+
 
 Follow lecture 6 of [Prof.Mitesh_IITM](https://www.cse.iitm.ac.in/~miteshk/CS7015.html)
 
