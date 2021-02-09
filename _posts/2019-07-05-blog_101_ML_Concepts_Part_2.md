@@ -789,7 +789,7 @@ If we're fitting $q_{\theta}$ to $p$
 
 <center>
 
-<img src="https://sidml.github.io/assets/images/kl-div/kldiv_viz.gif" width="600">
+<img src="https://sidml.github.io/assets/images/kl-div/kldiv_viz.gif" width="700">
 
 </center>
 
