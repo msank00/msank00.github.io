@@ -473,6 +473,15 @@ where Q is the matrix with eigenvectors as columns and $\Sigma$ is $diag(\lambda
 
 # Matrix Factorization
 
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/ZspR5PZemcs" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/ZspR5PZemcs)_
+
+
 Matrix factorization is a simple **embedding model**. Given the feedback matrix $A \in \mathbb{R}^{m \times n}$ , where $m$ is the number of users (or queries) and $n$ is the number of items, the model learns:
 
 - A **user embedding matrix** $U \in \mathbb{R}^{m \times d}$, where row $i$ is the embedding for user $i$.
@@ -865,6 +874,27 @@ how do we know what size we should choose for `k`, and how do we know if we have
 ----
 
 # Determinant
+
+# Matrix Factorization
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/XkY2DOUCWMU" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/XkY2DOUCWMU)_
+
+
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/Ip3X9LOh2dk" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/Ip3X9LOh2dk)_
+
 
 >> The determinant of a matrix A is a number corresponding to the **multiplicative change** you get when you transform your space with this matrix.
 
