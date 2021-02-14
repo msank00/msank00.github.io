@@ -15,6 +15,82 @@ mathjax: true
 
 ---
 
+# How to Speed up Scikit-Learn Model Training
+
+There are quite a few approaches to solving this problem like:
+
+## Changing your optimization function (solver)
+
+![image](https://miro.medium.com/max/700/0*FpdX9xEc3wrt6CmU)
+
+_Some solvers can take longer to converge. Image from Gaël Varoquaux’s talk._
+
+>> :bulb: Better algorithms allow you to make better use of the same hardware. 
+
+With a more efficient algorithm, you can produce an optimal model faster. One way to do this is to change your optimization algorithm (solver). For example, scikit-learn’s logistic regression, allows you to choose between solvers like `newton-cg`, `lbfgs`, `liblinear`, `sag`, and `saga`.
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/1s8RzWwMdqg" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_*In case the above link is broken, click [here](https://www.youtube.com/embed/1s8RzWwMdqg)_
+
+_*watch from $11:11$_
+
+
+- A **full gradient algorithm** (`liblinear`) converges rapidly, but each iteration (shown as a white +) can be prohibitively costly because it requires you to use all of the data. 
+- In a **sub-sampled approach**, each iteration is cheap to compute, but it can converge much more slowly. 
+- **Hybrid:** Some algorithms like `saga` achieve the best of both worlds. Each iteration is cheap to compute, and the algorithm converges rapidly because of a variance reduction technique.
+
+## Different hyperparameter optimization techniques
+
+:atom_symbol: To achieve high performance for most scikit-learn algorithms, you need to tune a model’s hyperparameters. Hyperparameters are the parameters of a model which are not updated during training. They can be used to configure the model or training function. 
+
+:atom_symbol: Scikit-Learn natively contains a couple techniques for hyperparameter tuning like grid search (`GridSearchCV`) which exhaustively considers all parameter combinations and randomized search (`RandomizedSearchCV`) which samples a given number of candidates from a parameter space with a specified distribution. 
+
+Recently, scikit-learn added the experimental hyperparameter search estimators halving grid search (`HalvingGridSearchCV`) and halving random search (`HalvingRandomSearch`).
+
+:rocket: There is a library called `Tune-sklearn` that provides cutting edge hyperparameter tuning techniques (bayesian optimization, early stopping, and distributed execution) that can provide significant speedups over grid search and random search.
+
+> :star: `Tune-sklearn` is fast 
+
+
+![image](https://miro.medium.com/max/640/0*-Nx35rNv2e5ToNc1)
+
+
+## Parallelize or distribute your training with joblib and Ray
+
+
+![image](https://miro.medium.com/max/700/1*rnjSkM9LQHOmKihhhqSHcw.png)
+
+Another way to increase your model building speed is to parallelize or distribute your training with `joblib` and `Ray`. 
+
+> :bulb: By default, scikit-learn trains a model using a single core. 
+
+> :bulb: A random forest® is an easy model to parallelize as each decision tree is independent of the others.
+
+:atom_symbol: Scikit-Learn can parallelize training on a single node with joblib which by default uses the `loky` backend. Joblib allows you to choose between backends like `loky`, `multiprocessing`, `dask`, and `ray`. This is a great feature as the ‘loky’ backend is optimized for a single node and not for running distributed (multinode) applications. Running distributed applications can introduce a host of complexities like:
+
+- Scheduling tasks across multiple machines
+- Transferring data efficiently
+- Recovering from machine failures
+
+Fortunately, the `Ray` backend can handle these details for you, keep things simple, and give you better performance. The image below shows the normalized speedup in terms of execution time of Ray, Multiprocessing, and Dask relative to the default ‘loky’ backend.
+
+![image](https://miro.medium.com/max/700/0*y2s1EDgaTTqWjD5g)
+
+_The performance was measured on one, five, and ten m5.8xlarge nodes with 32 cores each. The performance of Loky and Multiprocessing does not depend on the number of machines because they run on a single machine._
+
+
+**Reference:**
+
+- [Blog](https://medium.com/distributed-computing-with-ray/how-to-speed-up-scikit-learn-model-training-aaf17e2d1e1)
+- [Tune-Sklearn - GridSearchCV 2.0 — New and Improved](https://medium.com/distributed-computing-with-ray/gridsearchcv-2-0-new-and-improved-ee56644cbabf)
+- [Easy Distributed Scikit-Learn with Ray](https://medium.com/distributed-computing-with-ray/easy-distributed-scikit-learn-training-with-ray-54ff8b643b33)
+
+----
 
 # Using the Right Processors CPUs, GPUs, ASICs, and TPUs
 

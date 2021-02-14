@@ -875,7 +875,6 @@ how do we know what size we should choose for `k`, and how do we know if we have
 
 # Determinant
 
-# Matrix Factorization
 
 <center>
 <figure class="video_container">
@@ -1062,6 +1061,8 @@ _*In case the above link is broken, click [here](https://www.youtube.com/embed/Z
 
 _*In case the above link is broken, click [here](https://www.youtube.com/embed/MVB1cbe923A)_
 
+
+- For more on Recommendation System, click [here](https://msank00.github.io/blog/2019/11/18/blog_104_RecSys). :rocket:
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
