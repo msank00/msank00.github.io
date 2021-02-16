@@ -8,6 +8,7 @@ mathjax: true
 
 <link rel="stylesheet" href="/assets/css/markdownstyle.css">
 
+
 **DISCLAIMER:** I am not the original author of these contents. I compile from various sources to understand a concept and for future reference as I believe in DRY (Don’t Repeat Yourself !!). This blog is nothing but a SCRIBE for me. Solely for education purposes. I try my best to put all the due credits in the reference. If you find any content is incorrect or credit is missing, please contact me. I will be happy to add/edit them. 
 {: .olive}
 
@@ -110,7 +111,7 @@ However, there is a catch with the common encoder-decoder approach: a neural net
 
 - [Attention Explained by Jay Alammar](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/) :fire: :fire: MUST read
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -175,6 +176,10 @@ The decoder has both those layers, but between them is an attention layer that h
 <img src="https://jalammar.github.io/images/t/Transformer_decoder.png" width="500" alt="image">
 </center>
 
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
+----
 
 ## Self-Attention in Detail
 
@@ -254,6 +259,9 @@ Finally, since we’re dealing with matrices, we can condense **steps two** thro
 <img src="https://jalammar.github.io/images/t/self-attention-matrix-calculation-2.png" width="500" alt="image">
 </center>
 
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
+----
 ## Multi Headed Attention 
 
 > :bulb: The idea behind it is that whenever you are translating a word, you may pay `different attention` to each word based on the type of `queries` that you are asking. The images below show what that means. 
@@ -392,7 +400,7 @@ Now that we’ve covered most of the concepts on the encoder side, we basically 
 - [The Annotated Transformer](http://nlp.seas.harvard.edu/2018/04/03/attention.html) :fire: :fire: 
 - [How Transformers Work](https://towardsdatascience.com/transformers-141e32e69591) :fire: :fire: :fire:
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 ----
@@ -420,6 +428,9 @@ Similar to the `seq2seq` model, Transformer is also based on the `encoder-decode
 1. **Replacing the recurrent layers** in seq2seq with **multi-head attention layers**
 2. Incorporating the `position-wise` information through **position encoding**
 3. Applying **layer normalization**. 
+
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -453,10 +464,11 @@ We compare Transformer and seq2seq side-by-side in the below figure
 
 Before the discussion of the multi-head attention layer, let’s quick express the `self-attention` architecture. The self-attention model is a normal attention model, with its `query`, its `key`, and its `value` being copied exactly the same from each item of the sequential inputs. As we illustrate in the below figure, self-attention outputs a same-length sequential output for each input item. Compared with a recurrent layer, output items of a self-attention layer can be **computed in parallel** and, therefore, it is easy to obtain a highly-efficient implementation.
 
+<!--
 <center>
 <img src="https://d2l.ai/_images/self-attention.svg" alt="image" width="400">
 </center>
-
+-->
 
 The `multi-head attention` layer consists of $h$ **parallel self-attention layers**, each one is called a `head`. For each head, before feeding into the attention layer, we project the `queries`, `keys`, and `values` with three dense layers with hidden sizes $p_q$, $p_k$, and $p_v$, respectively. The outputs of these $h$ attention heads are concatenated and then processed by a final dense layer.
 
@@ -489,6 +501,8 @@ $
 
 </center>
 
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
 ----
 ## Position-wise Feed-Forward Networks
 
@@ -497,7 +511,7 @@ $
 
 ## Add and Norm
 
-Besides the above two components in the Transformer block, the `add and norm` within the block also plays a key role to **connect** the `inputs` and `outputs` of other layers `smoothly`. To explain, we add a layer that contains a **residual structure** and a **layer normalization** after both the multi-head attention layer and the position-wise FFN network. 
+:dart: Besides the above two components in the Transformer block, the `add and norm` within the block also plays a key role to **connect** the `inputs` and `outputs` of other layers `smoothly`. To explain, we add a layer that contains a **residual structure** and a **layer normalization** after both the multi-head attention layer and the position-wise FFN network. 
 
 :dart: Layer normalization is similar to batch normalization. One difference is that the mean and variances for the layer normalization are calculated along the **last dimension**, e.g `X.mean(axis=-1)` instead of the first batch dimension, e.g., `X.mean(axis=0)`. 
 
@@ -537,11 +551,15 @@ $
 
 for $i=0,\ldots, l-1$ and $j=0,\ldots,\lfloor(d-1)/2\rfloor$.
 
+<!--
 <center>
 <img src="https://d2l.ai/_images/positional-encoding.svg" alt="image" width="500">
 </center>
+-->
 
-**Why do we need it in the first place?** {: .red}
+
+**Why do we need it in the first place?**
+{: .red}
 
 Transformer architecture ditched the recurrence mechanism in favor of multi-head self-attention mechanism. Avoiding the RNNs’ method of recurrence will result in massive speed-up in the training time. And theoretically, it can capture longer dependencies in a sentence.
 
@@ -563,6 +581,8 @@ Ideally, the following criteria should be satisfied:
 - [Transformer Architecture: The Positional Encoding](https://kazemnejad.com/blog/transformer_architecture_positional_encoding/) :fire: [read comment section] 
 - [proof](https://timodenk.com/blog/linear-relationships-in-the-transformers-positional-encoding/)
 
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -586,6 +606,9 @@ $
 
 - [stackexchange](https://ai.stackexchange.com/questions/15524/why-would-you-implement-the-position-wise-feed-forward-network-of-the-transforme)
 
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
 ----
 
 ## Encoder
@@ -607,9 +630,13 @@ Similar to the Transformer encoder block, the Transformer decoder block employs 
 
 To be specific, at time-step $t$, assume that $x_t$ is the current input, i.e., the `query`. As illustrated in the below figure, the `keys` and `values` of the self-attention layer consist of the current query with all the past queries $x_1 \ldots ,x_{t−1}$.
 
+
+<!-->
 <center>
 <img src="https://d2l.ai/_images/self-attention-predict.svg" width="400" alt="image">
 </center>
+-->
+
 
 During training, the output for the $t$-`query` could observe all the previous `key-value` pairs. It results in an different behavior from prediction. Thus, during prediction we can **eliminate the unnecessary information by specifying** the valid length to be $t$ for the $t^{th}$ query.
 
@@ -620,7 +647,7 @@ During training, the output for the $t$-`query` could observe all the previous `
 
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -668,7 +695,7 @@ Encoder works as usual, and the difference is only on the decoder’s part. As y
 - [Imp: Attention in NLP](https://medium.com/@joealato/attention-in-nlp-734c6fa9d983)
 - [Imp: Attention and Memory in NLP](http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 ----
@@ -687,7 +714,7 @@ Encoder works as usual, and the difference is only on the decoder’s part. As y
 In the Decoder equation their is a correction for $e_{jt}$. Instead of $W_{attn}s_t$, it will be $W_{attn}s_{t-1}$
 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 ----
@@ -731,7 +758,7 @@ In the Decoder equation their is a correction for $e_{jt}$. Instead of $W_{attn}
 
 - [cs224n-2019-lecture08-nmt](https://web.stanford.edu/class/cs224n/slides/cs224n-2019-lecture08-nmt.pdf)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 ----
@@ -774,7 +801,7 @@ The animation below illustrates how we apply the Transformer to machine translat
 - [Important Blog](https://medium.com/inside-machine-learning/what-is-a-transformer-d07dd1fbec04)
 - [Important: The Illustrated Transformer by Jay Alammar](https://jalammar.github.io/illustrated-transformer/) 
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
 ----
@@ -853,8 +880,7 @@ _Read the excellent slides from the below reference_
 - [Good summery (even UMLFit)](https://www.student.cs.uwaterloo.ca/~mjksmith/DSC_Transformer_Presentation.pdf)
 - [Imp slides on Transformer](https://www.slideshare.net/DaikiTanaka7/attention-is-all-you-need-127742932)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -916,4 +942,4 @@ $h_T$ passed to the every state $s_i$ of decoder.
 
 ----
 
-<a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
