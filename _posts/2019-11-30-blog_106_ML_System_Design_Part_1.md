@@ -107,7 +107,7 @@ users will click on something else.
 
 <center>
 
-<img src="https://cloud.google.com/solutions/images/application-deployment-and-testing-strategies-A-B-testing.svg" width="500">
+<img src="https://cloud.google.com/solutions/images/application-deployment-and-testing-strategies-A-B-testing.svg" width="400">
 
 </center>
 
@@ -122,7 +122,7 @@ users will click on something else.
 
 <center>
 
-<img src="https://cloud.google.com/solutions/images/application-deployment-and-testing-strategies-shadow-testing.svg" width="500">
+<img src="https://cloud.google.com/solutions/images/application-deployment-and-testing-strategies-shadow-testing.svg" width="400">
 
 </center>
 
