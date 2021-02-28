@@ -259,7 +259,23 @@ Finally, since we’re dealing with matrices, we can condense **steps two** thro
 <img src="https://jalammar.github.io/images/t/self-attention-matrix-calculation-2.png" width="500" alt="image">
 </center>
 
+
+<center>
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/VvKRZXvDzM4" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+
+</center>
+
+_*self attention: CMU Neural Nets for NLP 2021 - 
+Graham Neubig_
+
+
 <a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
+
+
 
 ----
 ## Multi Headed Attention 
