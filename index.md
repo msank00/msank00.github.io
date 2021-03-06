@@ -23,4 +23,3 @@ Before pursuing MS degree, I used to work as a Programmer Analyst in [<span styl
 - ⚡ Sometime I love to write `paper summary`. You can find them at [notion.so/papernotes](https://www.notion.so/c472d5aeba9b4effb13a4a3df7aac0b4?v=b7862439954140ec8f9fe5a5a02b2b1e).
 
 
-----
