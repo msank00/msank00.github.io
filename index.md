@@ -15,4 +15,12 @@ Before pursuing MS degree, I used to work as a Programmer Analyst in [<span styl
 
 :game_die: I received my Bachelor of Engineering (B.E.) degree in [<span style="color:blue">Computer Science and Engineering</span>](http://www.jaduniv.edu.in/view_department.php?deptid=59) from [<span style="color:blue">Jadavpur University</span>](http://www.jaduniv.edu.in/), India in 2013. In my final year project I worked under the guidance of [<span style="color:blue">Prof. Mita Nasipuri</span>](http://www.jaduniv.edu.in/profile.php?uid=651) on the project Skin Lesion Segmentation.
 
+
+**Recent Update:**
+
+
+- 📝 I ocassionally write articles on differnt ML, DL, NLP topics here [github.com/blog](https://msank00.github.io/blog/) or [notion.so/blog](https://www.notion.so/45244be573394099870f529ebba1cefd?v=a3362ad417594f2b9d08369216122cce). 
+- ⚡ Sometime I love to write `paper summary`. You can find them at [notion.so/papernotes](https://www.notion.so/c472d5aeba9b4effb13a4a3df7aac0b4?v=b7862439954140ec8f9fe5a5a02b2b1e).
+
+
 ----
