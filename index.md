@@ -19,7 +19,7 @@ Before pursuing MS degree, I used to work as a Programmer Analyst in [<span styl
 **Recent Update:**
 
 
-- 📝 I occasionally write `scribe` on differnt ML, DL, NLP topics. They are available at [github.com/blog](https://msank00.github.io/blog/) or [notion.so/blog](https://www.notion.so/45244be573394099870f529ebba1cefd?v=a3362ad417594f2b9d08369216122cce). 
+- 📝 I occasionally write `scribe` on differnt ML, DL, NLP topics. They are available at [github.com/blog](https://msank00.github.io/blog/) or [notion.so/scribe](https://www.notion.so/45244be573394099870f529ebba1cefd?v=a3362ad417594f2b9d08369216122cce). 
 - ⚡ Sometime I love to write `paper summary`. You can find them at [notion.so/papernotes](https://www.notion.so/c472d5aeba9b4effb13a4a3df7aac0b4?v=b7862439954140ec8f9fe5a5a02b2b1e).
 
 

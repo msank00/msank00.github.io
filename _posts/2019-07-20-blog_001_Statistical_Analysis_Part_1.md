@@ -21,7 +21,36 @@ comments: true
 
 _[youtube link](https://www.youtube.com/watch?v=vemZtEM63GY)_ :fire:
 
->> :bulb: In statistical hypothesis testing, the p-value or probability value is, for a given statistical model, the probability that, when the null hypothesis is true, the statistical summary (such as the absolute value of the sample mean difference between two compared groups) would be greater than or equal to the actual observed results.
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/JQc3yx0-Q9E" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+_[youtube link](https://www.youtube.com/watch?v=JQc3yx0-Q9E)_ :fire:
+
+>> :bulb: In statistical hypothesis testing, the p-value decides whether to accept or reject null hypothesis.
+
+- $p \lt$ threshold = Accept Alternate hypothesis (i.e reject null hypothesis)
+- $p \gt$ threshold = Accept Null hypothesis
+
+E.g: Say we measured the height of a woman is $147$ cm. Is the woman brazillian?
+- Null hypothesis: The height of the woman comes from Woman height distribution from Brazil
+- Alternate hypothesis:  The height of the woman doesn't come from Woman height distribution from Brazil
+
+> :star: $p$-value is not probability value. Probability of getting 2 head in a row in coin tossing is different from $p$-value of getting 2 head in a row. 
+
+p-value = P(case1) + P(case2) + P(case3)
+
+i.e p-value is sum of 3 probabilites
+
+- case 1: Original event happen randomly
+- case 2: Rare event similar to original event
+- case 3: Rarest event
+
+
+---
 
 - Hypothesis Testing
 - Normal Distribution
