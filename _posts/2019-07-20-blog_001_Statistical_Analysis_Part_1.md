@@ -50,7 +50,7 @@ i.e p-value is sum of 3 probabilites
 - case 3: Rarest event
 
 
----
+Some terms:
 
 - Hypothesis Testing
 - Normal Distribution
@@ -69,6 +69,10 @@ Before we talk about what p-value means, let’s begin by understanding hypothes
 If the p-value is lower than a predetermined significance level (people call it alpha, I call it the threshold of being ridiculous — don’t ask my why, I just find it easier for me to understand), then we reject the null hypothesis.
 
 - In my opinion, `p-values` are used as a tool to challenge our initial belief (null hypothesis) when the result is statistically significant. The moment we feel ridiculous with our own belief (provided the p-value shows the result is statistically significant), we discard our initial belief (reject the null hypothesis) and make a reasonable decision.
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
+---
 
 ## Statistical Significance
 
@@ -104,7 +108,7 @@ The rule of thumb is to set alpha to be either 0.05 or 0.01 (again, the value de
 + [source](https://www.spss-tutorials.com/null-hypothesis/)
 + [link2](https://onlinecourses.science.psu.edu/statprogram/node/138/)
 
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
 
@@ -132,11 +136,13 @@ _[youtube link](https://www.youtube.com/watch?v=ARfXDSkQf1Y)_ :fire:
 
 _[youtube link](https://www.youtube.com/watch?v=VSi0Z04fWj0)_ :fire: :rocket:
 
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
 ----
 
 # Different Statistical tests for feature selecton
 
-See [here](https://msank00.github.io/blog/2019/07/05/blog_101_ML_Concepts_Part_2#different-statistical-tests-for-feature-selection)
+See [here](https://msank00.github.io/blog/2019/07/05/blog_101_ML_Concepts_Part_2#different-statistical-tests-for-feature-selection) :zap:
 
 ----
 
@@ -145,7 +151,7 @@ See [here](https://msank00.github.io/blog/2019/07/05/blog_101_ML_Concepts_Part_2
 > :bulb: Standard Deviation of the `means` is called Standard Error
 
 - SD quantifies the variation within a set of measurement
-- SE quantifies the variation in the means from **multiple set of measurements**.
+- SE quantifies the variation in the means from **multiple set of measurements**. It's `SD of means` from multiple set of measurement of the same population. It has a simple formula which helps to find SE without repeating the measurement exercise. The formula is $\frac{\sigma}{\sqrt{n}}$.
 
 <center>
 <figure class="video_container">
@@ -157,10 +163,45 @@ See [here](https://msank00.github.io/blog/2019/07/05/blog_101_ML_Concepts_Part_2
 _[youtube link](https://www.youtube.com/watch?v=A82brFpdr9g)_ :fire: :rocket:
 
 
-Reference:
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/XNgt7F6FqDU" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+
+_[youtube link](https://www.youtube.com/watch?v=XNgt7F6FqDU)_ :fire: :rocket:
+
+
+
+**Reference:**
 
 - [Standard Error Detailed](https://www.youtube.com/watch?v=XNgt7F6FqDU) :fire:
 - [P hacking and Power calculation](https://www.youtube.com/watch?v=UFhJefdVCjE) :rocket:
+
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
+-----
+
+# Confidence interval (CI)
+
+Therer are many ways to calculate CI and bootstrapping is one of them. 
+
+
+The $95\%$ CI is just an interval that covers $95\%$ of the `mean`s.
+
+<center>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/TqOeMYtOc1w" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
+</figure>
+</center>
+
+
+_[youtube link](https://www.youtube.com/watch?v=TqOeMYtOc1w)_ :fire: :rocket:
+
+<a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
 
 ------
 
