@@ -205,6 +205,48 @@ _observe the color coding for different vectors_
 
 Must Watch :fire:
 
+## Why Transformer is more suitable than RNN based model?
+
+When encoding a sentence, RNNs won't understand what bank means until they read the whole sentence, and this can take a while for long sequences. In contrast, in Transformer's encoder tokens interact with each other all at once.
+
+<center>
+
+<img src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/rnn_vs_transformer_river-min.png" width="500">
+
+</center>
+
+
+Intuitively, Transformer's encoder can be thought of as a sequence of reasoning steps (layers). At each step, tokens look at each other (this is where we need attention - self-attention), exchange information and try to understand each other better in the context of the whole sentence. This happens in several layers. 
+
+
+In each decoder layer, tokens of the prefix also interact with each other via a self-attention mechanism, but additionally, they look at the encoder states (without this, no translation can happen, right?).
+
+## Self-Attention: the "Look at Each Other" Part
+
+Self-attention is one of the key components of the model. The difference between attention and self-attention is that self-attention operates between representations of the same nature: e.g., all encoder states in some layer.
+
+There are 3 types of attention architecture 
+
+- Attention inside Encoder block (**self-attention**)
+  - **from:** each state from a set of states
+  - **at:** all other states in the same set.
+- Attention inside Decoder block 
+  - **Masked Self-Attention:** "Don't Look Ahead" for the Decoder
+- Attention inside Encoder-Decoder communication
+  - **From:** one current decoder state 
+  - **At:** all encoder states
+
+Self-attention is the part of the model where tokens interact with each other. Each token "looks" at other tokens in the sentence with an attention mechanism, gathers context, and updates the previous representation of "self". Look at the illustration.
+
+
+<center>
+<figure class="video_container">
+  <iframe src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/encoder_self_attention.mp4" frameborder="0" allowfullscreen="true" width="100%" height="350"> </iframe>
+</figure>
+</center>
+
+----
+
 <center>
 
 <figure class="video_container">
@@ -257,6 +299,28 @@ The decoder has both those layers, but between them is an attention layer that h
 ----
 
 ## Self-Attention in Detail
+
+## Query, Key, and Value in Self-Attention
+
+Formally, this intuition is implemented with a `query-key-value` attention. Each input token in self-attention receives three representations corresponding to the roles it can play:
+
+- query - asking for information;
+- key - saying that it has some information;
+- value - giving the information.
+
+The query is used when a token looks at others - it's seeking the information to understand itself better. The key is responding to a query's request: it is used to compute attention weights. The value is used to compute attention output: it gives information to the tokens which "say" they need it (i.e. assigned large weights to this token).
+
+<center>
+<img src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/qkv_explained-min.png" width="500" alt="image">
+</center>
+
+The formula for computing attention output is as follows:
+
+<center>
+<img src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/qkv_attention_formula-min.png" width="300" alt="image">
+</center>
+
+_*[image source](https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro)_
 
 Must Watch :fire:
 
@@ -350,10 +414,29 @@ Graham Neubig_
 <a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 
-
-
 ----
-## Multi Headed Attention 
+
+## Masked Self-Attention: "Don't Look Ahead" for the Decoder
+
+In the decoder, there's also a self-attention mechanism: it is the one performing the "look at the previous tokens" function.
+
+In the decoder, self-attention is a bit different from the one in the encoder. While the encoder receives all tokens at once and the tokens can look at all tokens in the input sentence, in the decoder, we generate one token at a time: during generation, we don't know which tokens we'll generate in future.
+
+To forbid the decoder to look ahead, the model uses masked self-attention: future tokens are masked out. Look at the illustration.
+
+<center>
+<figure class="video_container">
+  <iframe src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/masked_self_attn.mp4" frameborder="0" allowfullscreen="true" width="100%" height="350"> </iframe>
+</figure>
+</center>
+
+## But how can the decoder look ahead?
+During generation, it can't - we don't know what comes next. But in training, we use reference translations (which we know). Therefore, in training, we feed the whole target sentence to the decoder - without masks, the tokens would "see future", and this is not what we want.
+
+This is done for computational efficiency: the Transformer does not have a recurrence, so all tokens can be processed at once. This is one of the reasons it has become so popular for machine translation - it's much faster to train than the once dominant recurrent models. For recurrent models, one training step requires O(len(source) + len(target)) steps, but for Transformer, it's O(1), i.e. constant.
+
+
+## Multi Headed Attention: Independently Focus on Different Things 
 
 > :bulb: The idea behind it is that whenever you are translating a word, you may pay `different attention` to each word based on the type of `queries` that you are asking. The images below show what that means. 
 
@@ -407,6 +490,23 @@ $
 
 
 where $\mathbf{W}^Q_i$, $\mathbf{W}^K_i$ , $\mathbf{W}^V_i$, and $\mathbf{W}^O$ are parameter matrices to be learned.
+
+
+<center>
+<figure class="video_container">
+  <iframe src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/multi_head.mp4" frameborder="0" allowfullscreen="true" width="100%" height="350"> </iframe>
+</figure>
+</center>
+
+
+
+Usually, understanding the role of a word in a sentence requires understanding how it is related to different parts of the sentence. This is important not only in processing source sentence but also in generating target. For example, in some languages, subjects define verb inflection (e.g., gender agreement), verbs define the case of their objects, and many more. What I'm trying to say is: each word is part of many relations.
+
+Therefore, we have to let the model focus on different things: this is the motivation behind Multi-Head Attention. Instead of having one attention mechanism, multi-head attention has several "heads" which work independently.
+
+
+Formally, this is implemented as several attention mechanisms whose results are combined:
+
 
 **ENCODER:**
 
