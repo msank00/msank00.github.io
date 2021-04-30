@@ -241,7 +241,7 @@ Self-attention is the part of the model where tokens interact with each other. E
 
 <center>
 <figure class="video_container">
-  <iframe src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/encoder_self_attention.mp4" frameborder="0" allowfullscreen="true" width="100%" height="350"> </iframe>
+  <iframe src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/encoder_self_attention.mp4" frameborder="0" allowfullscreen="true" width="70%" height="350"> </iframe>
 </figure>
 </center>
 
@@ -426,7 +426,7 @@ To forbid the decoder to look ahead, the model uses masked self-attention: futur
 
 <center>
 <figure class="video_container">
-  <iframe src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/masked_self_attn.mp4" frameborder="0" allowfullscreen="true" width="80%" height="350"> </iframe>
+  <iframe src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/masked_self_attn.mp4" frameborder="0" allowfullscreen="true" width="70%" height="350"> </iframe>
 </figure>
 </center>
 
@@ -497,7 +497,7 @@ where $\mathbf{W}^Q_i$, $\mathbf{W}^K_i$ , $\mathbf{W}^V_i$, and $\mathbf{W}^O$ 
 
 <center>
 <figure class="video_container">
-  <iframe src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/multi_head.mp4" frameborder="0" allowfullscreen="true" width="100%" height="350"> </iframe>
+  <iframe src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/multi_head.mp4" frameborder="0" allowfullscreen="true" width="70%" height="350"> </iframe>
 </figure>
 </center>
 
