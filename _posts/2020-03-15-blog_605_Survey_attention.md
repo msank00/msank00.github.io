@@ -479,6 +479,7 @@ $
 
 </center>
 
+
 <center>
 
 $
@@ -490,6 +491,8 @@ $
 
 
 where $\mathbf{W}^Q_i$, $\mathbf{W}^K_i$ , $\mathbf{W}^V_i$, and $\mathbf{W}^O$ are parameter matrices to be learned.
+
+
 
 
 <center>
@@ -742,11 +745,11 @@ $
 
 for $i=0,\ldots, l-1$ and $j=0,\ldots,\lfloor(d-1)/2\rfloor$.
 
-<!--
+
 <center>
-<img src="https://d2l.ai/_images/positional-encoding.svg" alt="image" width="500">
+<img src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/positional_encoding-min.png" alt="image" width="300">
 </center>
--->
+
 
 
 **Why do we need it in the first place?**
@@ -969,7 +972,7 @@ Natural Language Understanding (NLU):  language modeling, machine translation an
 The paper ‘Attention Is All You Need’ describes transformers and what is called a sequence-to-sequence architecture. Sequence-to-Sequence (or Seq2Seq) is a neural net that transforms a given sequence of elements, such as the sequence of words in a sentence, into another sequence.
 
 <center>
-<img src="https://cdn-images-1.medium.com/max/800/1*BHzGVskWGS_3jEcYYi6miQ.png" width="500">
+<img src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/model-min.png" width="500">
 </center>
 
 - One interesting point is, even if it's used for **seq2seq generation**, **but there is no** `recurrence` part inside the model like the  `vanilla rnn` or `lstm`.
