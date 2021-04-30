@@ -115,14 +115,89 @@ However, there is a catch with the common encoder-decoder approach: a neural net
 
 ----
 
+# Attention High Level
+
+An attention mechanism is a part of a neural network. At each decoder step, it decides which source parts are more important. In this setting, the encoder does not have to compress the whole source into a single vector - it gives representations for all source tokens (for example, all RNN states instead of the last one).
+
+<center>
+
+<img src="https://lena-voita.github.io/resources/lectures/seq2seq/attention/general_scheme-min.png" width="600">
+
+</center>
+
+_*[image source](https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#attention_idea)_
+
+
+<center>
+
+<img src="https://lena-voita.github.io/resources/lectures/seq2seq/attention/computation_scheme-min.png" width="600">
+
+</center>
+
+_*[image source](https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#attention_idea)_
+
+Everything is differentiable - learned end-to-end!
+The main idea that a network can learn which input parts are more important at each step. Since everything here is differentiable (attention function, softmax, and all the rest), a model with attention can be trained end-to-end. You don't need to specifically teach the model to pick the words you want - the model itself will learn to pick important information.
+
+## How to Compute Attention Score?
+
+In the general pipeline above, we haven't specified how exactly we compute attention scores. You can apply any function you want - even a very complicated one. However, usually you don't need to - there are several popular and simple variants which work quite well.
+
+<center>
+
+<img src="https://lena-voita.github.io/resources/lectures/seq2seq/attention/attn_score_what_is_here-min.png" width="200">
+
+</center>
+
+
+<center>
+
+<img src="https://lena-voita.github.io/resources/lectures/seq2seq/attention/score_functions-min.png" width="600">
+
+</center>
+
+Most popular is **Bahdanau Model**
+
+- encoder: bidirectional
+- To better encoder each source word, the encoder has two RNNs, forward and backward, which read input in the opposite directions. For each token, states of the two RNNs are concatenated.
+- attention score: multi-layer perceptron
+- To get an attention score, apply a multi-layer perceptron (MLP) to an encoder state and a decoder state.
+attention applied: between decoder steps
+- Attention is used between decoder steps: state $h_{t-1}$  is used to compute attention and its output $c^{(t)}$ , and both $h_{t-1}$ and $c^{(t)}$ are passed to the decoder at step $t$ .
+
+
+<center>
+
+<img src="https://lena-voita.github.io/resources/lectures/seq2seq/attention/bahdanau_model-min.png" width="600">
+
+</center>
+
+_observe the color coding for different vectors_
+
+**Reference:**
+
+- [Attention: A High-Level View - Lena Voita](https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#attention_idea) :fire: :zap:
+
+----
+
 # Transformer - Visual Understanding
 
-> :bulb: The transformer has **no recurrent or convolutional structure**, even with the positional encoding added to the embedding vector, the sequential order is only weakly incorporated. For problems sensitive to the positional dependency like reinforcement learning, this can be a big problem.
+:bulb: The transformer has **no recurrent or convolutional structure**, even with the positional encoding added to the embedding vector, the sequential order is only weakly incorporated. For problems sensitive to the positional dependency like reinforcement learning, this can be a big problem.
 
-> :dart: It presented a lot of **improvements** to the `soft attention` and make it possible to **do seq2seq modeling without recurrent network units**. The proposed `transformer` model is entirely built on the self-attention mechanisms (**scaled dot product attention**) without using sequence-aligned recurrent architecture.
+:dart: It presented a lot of **improvements** to the `soft attention` and make it possible to **do seq2seq modeling without recurrent network units**. The proposed `transformer` model is entirely built on the self-attention mechanisms (**scaled dot product attention**) without using sequence-aligned recurrent architecture.
+
+> Transformer introduced a new modeling paradigm: in contrast to previous models where processing within encoder and decoder was done with recurrence or convolutions, Transformer operates using only attention.
+
+<center>
+
+<img src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/modeling_table-min.png" width="400">
+
+</center>
+
 
 **MUST READ:**
 
+- [Transformer: Attention is All You Need - Lena Voita](https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro) :zap: :fire: :zap: 
 - [Attention Attention !](https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html#a-family-of-attention-mechanisms), [Multi_head_attention](https://paperswithcode.com/method/multi-head-attention) :fire:
 - [Annotated Transformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html) :fire:
 - [How Transformers work in deep learning and NLP: an intuitive introduction](https://theaisummer.com/transformer/) :fire:
