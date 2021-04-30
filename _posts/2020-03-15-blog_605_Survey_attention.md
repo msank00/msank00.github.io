@@ -426,7 +426,7 @@ To forbid the decoder to look ahead, the model uses masked self-attention: futur
 
 <center>
 <figure class="video_container">
-  <iframe src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/masked_self_attn.mp4" frameborder="0" allowfullscreen="true" width="100%" height="350"> </iframe>
+  <iframe src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/masked_self_attn.mp4" frameborder="0" allowfullscreen="true" width="80%" height="350"> </iframe>
 </figure>
 </center>
 
