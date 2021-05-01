@@ -311,13 +311,13 @@ Formally, this intuition is implemented with a `query-key-value` attention. Each
 The query is used when a token looks at others - it's seeking the information to understand itself better. The key is responding to a query's request: it is used to compute attention weights. The value is used to compute attention output: it gives information to the tokens which "say" they need it (i.e. assigned large weights to this token).
 
 <center>
-<img src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/qkv_explained-min.png" width="500" alt="image">
+<img src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/qkv_explained-min.png" width="400" alt="image">
 </center>
 
 The formula for computing attention output is as follows:
 
 <center>
-<img src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/qkv_attention_formula-min.png" width="300" alt="image">
+<img src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/qkv_attention_formula-min.png" width="250" alt="image">
 </center>
 
 _*[image source](https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro)_
@@ -633,7 +633,7 @@ Similar to the `seq2seq` model, Transformer is also based on the `encoder-decode
 We compare Transformer and seq2seq side-by-side in the below figure
 
 <center>
-<img src="https://d2l.ai/_images/transformer.svg" width="600" alt="image">
+<img src="https://d2l.ai/_images/transformer.svg" width="400" alt="image">
 </center>
 
 
@@ -694,6 +694,27 @@ $
 $
 
 </center>
+
+## Multi-Head Self-Attention: What are these heads doing?
+
+First, let's start with our traditional model analysis method: looking at model components. Previously, we looked at convolutional filters in classifiers, neurons in language models; now, it's time to look at a bigger component: attention. But let's take not the vanilla one, but the heads in Transformer's multi-head attention.
+
+**First, why are we doing this?** Multi-head attention is an `inductive bias` (is the set of assumptions that the learner uses to predict outputs of given inputs that it has not encountered) introduced in the Transformer. When creating an inductive bias in a model, we usually have some kind of intuition for why we think this new model component, inductive bias, could be useful. Therefore, it's good to understand how this new thing works - does it learn the things we thought it would? If not, why it helps? If yes, how can we improve it? Hope now you are motivated enough, so let's continue.
+
+## The Most Important Heads are Interpretable
+Here we'll mention some of the results from the ACL 2019 paper [Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned](https://www.aclweb.org/anthology/P19-1580.pdf). The authors look at individual attention heads in encoder's multi-head attention and evaluate how much, on average, different heads "contribute" to generated translations (for the details on how exactly they did this, look in the paper or the [blog post](https://lena-voita.github.io/posts/acl19_heads.html) :zap:). As it turns out,
+
+Only a small number of heads are important for translation,
+these heads play interpretable "roles".
+These roles are:
+
+- **positional**: attend to a token's immediate neighbors, and the model has several such heads (usually 2-3 heads looking at the previous token and 2 heads looking at the next token);
+- **syntactic**: learned to track some major syntactic relations in the sentence (subject-verb, verb-object);
+- **rare tokens**: the most important head on the first layer attends to the least frequent tokens in a sentence (this is true for models trained on different language pairs!).
+
+**Reference:**
+
+- [Analysis and Interpretability of heads - Lena Voita](https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#analysis_interpretability) :zap:
 
 <a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
@@ -825,10 +846,12 @@ Similar to the Transformer encoder block, the Transformer decoder block employs 
 To be specific, at time-step $t$, assume that $x_t$ is the current input, i.e., the `query`. As illustrated in the below figure, the `keys` and `values` of the self-attention layer consist of the current query with all the past queries $x_1 \ldots ,x_{t−1}$.
 
 
-<!-->
+<!--
+
 <center>
 <img src="https://d2l.ai/_images/self-attention-predict.svg" width="400" alt="image">
 </center>
+
 -->
 
 
@@ -844,6 +867,89 @@ During training, the output for the $t$-`query` could observe all the previous `
 <a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
 
 ----
+
+# Subword Segmentation: Byte Pair Encoding
+
+## Dealing with rare words
+
+Character level embeddings aside, the first real breakthrough at addressing the rare words problem was made by the researchers at the University of Edinburgh by applying subword units in Neural Machine Translation using Byte Pair Encoding (BPE). Today, subword tokenization schemes inspired by BPE have become the norm in most advanced models including the very popular family of contextual language models like BERT, GPT-2, RoBERTa, etc.
+
+## The Origins of Byte Pair Encoding
+
+Like many other applications of deep learning being inspired by traditional science, Byte Pair Encoding (BPE) subword tokenization also finds its roots deep within a simple lossless data compression algorithm. BPE was first introduced by Philip Gage in the article “A New Algorithm for Data Compression” in the February 1994 edition of the C Users Journal as a technique for data compression that works by replacing common pairs of consecutive bytes with a byte that does not appear in that data.
+
+![image](https://miro.medium.com/max/700/1*x1Y_n3sXGygUPSdfXTm9pQ.gif)
+
+## Repurposing BPE for Subword Tokenization
+
+As we know, a model has a predefined vocabulary of tokens. Those input tokens, which are not in the vocabulary, will be replaced with a special UNK ("unknown") token. Therefore, if you use the straightforward word-level tokenization (i.e., your tokens are words), you will be able to process a fixed number of words. This is the fixed vocabulary problem : you will be getting lot's of unknown tokens, and your model won't translate them properly.
+
+<center>
+
+<img src="https://lena-voita.github.io/resources/lectures/seq2seq/bpe/tokenization_word_subword-min.png" width="350">
+
+</center>
+
+But how can we represent all words, even those we haven't seen in the training data? 
+
+> :bulb: Well, even if you are not familiar with a word, you are familiar with the parts it consists of - subwords (in the worst case, symbols). 
+
+Then why don't we split the rare and unknown words into smaller parts?
+This is exactly what was proposed in the paper [Neural Machine Translation of Rare Words with Subword Units](https://arxiv.org/pdf/1508.07909.pdf) by Rico Sennrich, Barry Haddow and Alexandra Birch. They introduced the de-facto standard subword segmentation, Byte Pair Encoding (BPE). BPE keeps frequent words intact and splits rare and unknown ones into smaller known parts.
+
+What we refer to as BPE now is an adaptation of this algorithm for word segmentation. Instead of merging frequent pairs of bytes, it merges characters or character sequences.
+
+**BPE algorithm consists of two parts:**
+
+- **training** - learn "BPE rules", i.e., which pairs of symbols to merge;
+- **inference** - apply learned rules to segment a text.
+
+## Training: learn BPE rules
+At this step, the algorithm builds a merge table and a vocabulary of tokens. The initial vocabulary consists of characters and an empty merge table. At this step, each word is segmented as a sequence if characters. After that, the algorithm is as follows:
+
+- count pairs of symbols: how many times each pair occurs together in the training data;
+- find the most frequent pair of symbols;
+- merge this pair - add a merge to the merge table, and the new token to the vocabulary.
+
+In practice, the algorithm first counts how many times each word appeared in the data. Using this information, it can count pairs of symbols more easily. Note also that the tokens do not cross word boundary - everything happens within words.
+
+Look at the illustration. Here I show you a toy example: here we assume that in training data, we met cat 4 times, mat 5 times and mats, mate, ate, eat 2, 3, 3, 2 times, respectively. We also have to set the maximum number of merges we want; usually, it's going to be about 4k-32k depending on the dataset size, but for our toy example, let's set it to 5.
+
+
+<center>
+<img src="https://lena-voita.github.io/resources/lectures/seq2seq/bpe/build_merge_table.gif" alt="image" width="500">
+</center>
+
+When we reached the maximum number of merges, not all words were merged into a single token. For example, mats is segmented as two tokens: `mat@@ s`. Note that after segmentation, we add the special characters `@@` to distinguish between tokens that represent entire words and tokens that represent parts of words. In our example, `mat` and `mat@@` are different tokens.
+
+**Implementation note:** In an implementation, you need to make sure that a new merge adds only one new token to the vocabulary. For this, you can either add a special `end-of-word` symbol to each word (as done in the original BPE paper) or replace spaces with a special symbol (as done in e.g. `Sentencepiece` and `YouTokenToMe`, the fastest implementation), or do something else. In the illustration, I omit this for simplicity.
+
+
+## Inference: segment a text
+After learning BPE rules, you have a merge table - now, we will use it to segment a new text.
+
+<center>
+<img src="https://lena-voita.github.io/resources/lectures/seq2seq/bpe/bpe_apply.gif" alt="image" width="300">
+</center>
+
+
+The algorithm starts with segmenting a word into a sequence of characters. After that, it iteratively makes the following two steps until no merge it possible:
+
+- Among all possible merges at this step, find the highest merge in the table;
+- Apply this merge.
+
+Note that the merge table is ordered - the merges that are higher in the table were more frequent in the data. That's why in the algorithm, merges that are higher have higher priority: at each step, we merge the most frequent merge among all possible.
+
+## What makes BPE the secret sauce?
+BPE brings the perfect balance between character- and word-level hybrid representations which makes it capable of managing large corpora. This behavior also enables the encoding of any rare words in the vocabulary with appropriate subword tokens without introducing any “unknown” tokens. This especially applies to foreign languages like German where the presence of many compound words can make it hard to learn a rich vocabulary otherwise. With this tokenization algorithm, every word can now overcome their fear of being forgotten (athazagoraphobia).
+
+**Reference:**
+
+- [Transformer - Lena Voita](https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro) :zap:
+- [Byte Pair Encoding — The Dark Horse of Modern NLP](https://towardsdatascience.com/byte-pair-encoding-the-dark-horse-of-modern-nlp-eb36c7df4f10)
+
+----
+
 
 # How does Attention Work ?
 
@@ -996,6 +1102,7 @@ The animation below illustrates how we apply the Transformer to machine translat
 - [Important: The Illustrated Transformer by Jay Alammar](https://jalammar.github.io/illustrated-transformer/) 
 
 <a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top"></a>
+
 
 
 ----
