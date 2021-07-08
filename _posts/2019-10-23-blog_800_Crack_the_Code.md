@@ -15,6 +15,8 @@ mathjax: true
 
 ----
 
+- You can access more content on _Crack the Code_ at my other [scribe](https://www.notion.so/Coding-Practices-8e60fcf54e49429abef8c98855449afb) channel.
+
 # Master Theorem
 
 <center>
