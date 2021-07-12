@@ -542,9 +542,9 @@ Commonly, $sigmoid$ and $tanh$ activation functions are problematic (gradient va
 
 ## Tell about different loss function, when to use them?
 
->> Importantly, the choice of loss function is directly related to the activation function used in the output layer of your neural network. These two design elements are connected.
+>> :star: Importantly, the choice of `loss function` is directly related to the `activation function` used in the `output layer` of your neural network. These two design elements are connected.
 
->> The choice of cost function is tightly coupled with the choice of output unit. Most of the time, we simply use the cross-entropy between the data distribution and the model distribution. The choice of how to represent the output then determines the form of the cross-entropy function.
+>> :star: The choice of cost function is tightly coupled with the choice of output unit. Most of the time, we simply use the `cross-entropy` between the `data distribution` and the `model distribution`. The choice of how to represent the output then determines the form of the cross-entropy function.
 
 ## Regression Problem
 
@@ -689,6 +689,84 @@ print("Custom NLL loss: ", NLLLoss(x_log, y))
 
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+# Different loss function and their pros and cons?
+
+## Regression Loss
+
+- **Mean Squared Error Loss**: The Mean Squared Error, or MSE, loss is the default loss to use for `regression problems`.
+Mathematically, it is the preferred loss function under the inference framework of maximum likelihood _if the distribution of the target variable is Gaussian_.
+
+- **Mean Squared Logarithmic Error Loss:** There may be regression problems in which the target value has a spread of values and when predicting a large value, you may not want to punish a model as heavily as mean squared error. Instead, you can first calculate the natural logarithm of each of the predicted values, then calculate the mean squared error. This is called the Mean Squared Logarithmic Error loss, or MSLE for short. It has the effect of relaxing the punishing effect of large differences in large predicted values.
+- **Mean Absolute Error Loss:** On some regression problems, the distribution of the target variable may be mostly Gaussian, but may have outliers, e.g. large or small values far from the mean value. The Mean Absolute Error, or MAE, loss is an appropriate loss function in this case as it is more robust to outliers. It is calculated as the average of the absolute difference between the actual and predicted values.
+
+
+![image](/assets/images/loss_function.png)
+
+[Image Source: From Prof. Mitesh Khapra, Lecture 4, [slide page 95]](https://www.cse.iitm.ac.in/~miteshk/CS7015.html)
+
+## Binary Classification Loss
+
+- **Cross Entropy Loss or Negative Loss Likelihood (NLL):** It is the default loss function to use for binary classification problems. It is intended for use with binary classification where the target values are in the set `{0, 1}`. Mathematically, it is the preferred loss function under the inference framework of maximum likelihood. It is the loss function to be evaluated first and only changed if you have a good reason.
+
+<center>
+
+$CrossEntropyLoss = -(y_i \log (\hat y_i) + (1-y_i) \log (1-\hat y_i))$
+
+</center>
+
+- **Hinge Loss or SVM Loss:** An alternative to cross-entropy for binary classification problems is the hinge loss function, primarily developed for use with **Support Vector Machine** (SVM) models. It is intended for use with binary classification where the target values are in the set {-1, 1}. The hinge loss function encourages examples to have the correct sign, assigning more error when there is a difference in the sign between the actual and predicted class values.
+
+<center>
+
+$HingeLoss = \Sigma_{j \neq y_i} max(0, s_j - s_{y_i}+1)$
+
+</center>
+
+## Multi-Class Classification Loss Functions
+
+- **Categorical Cross Entropy:** It is the default loss function to use for multi-class classification problems. In this case, it is intended for use with multi-class classification where the target values are in the set {0, 1, 3, …, n}, where each class is assigned a unique integer value. Mathematically, it is the preferred loss function under the inference framework of maximum likelihood. It is the loss function to be evaluated first and only changed if you have a good reason.
+
+<center>
+
+$CategoricalCrossEntropyLoss = -y_c \log (\hat y_c)$
+
+</center>
+
+, where `c` is the class.
+
+- **Sparse Categorical Cross Entropy:** A possible cause of frustration when using cross-entropy with classification problems with a large number of labels is the one hot encoding process. For example, predicting words in a vocabulary may have tens or hundreds of thousands of categories, one for each label. This can mean that the target element of each training example may require a one hot encoded vector with tens or hundreds of thousands of zero values, requiring significant memory. Sparse cross-entropy addresses this by performing the same cross-entropy calculation of error, without requiring that the target variable be one hot encoded prior to training.
+- **Kullback Leibler Divergence Loss:** Kullback Leibler Divergence, or KL Divergence for short, is a measure of how one probability distribution differs from a baseline distribution. A KL divergence loss of 0 suggests the distributions are identical. In practice, the behavior of KL Divergence is very similar to cross-entropy. It calculates how much information is lost (in terms of bits) if the predicted probability distribution is used to approximate the desired target probability distribution. As such, the KL divergence loss function is more commonly used when using models that learn to approximate a more complex function than simply multi-class classification, such as in the case of an autoencoder used for learning a dense feature representation under a model that must reconstruct the original input. In this case, KL divergence loss would be preferred. Nevertheless, it can be used for multi-class classification, in which case it is functionally equivalent to multi-class cross-entropy.
+
+**Reference:**
+- [MMM](https://machinelearningmastery.com/how-to-choose-loss-functions-when-training-deep-learning-neural-networks/)
+- [Blog](https://ml-cheatsheet.readthedocs.io/en/latest/loss_functions.html)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+----
+
+## What is the loss function for sequence `classification` task?
+
+![image](/assets/images/image_23_loss_1.png)
+
+Only finaly time step has generated a classification label.
+
+## What is the loss function for sequence `labelling` task?
+
+![image](/assets/images/image_23_loss_2.png)
+
+At each time step there is a label classification, which leads to the double summation.
+
+**Resource:**
+
+- Deep Learning course from PadhAI, topic: Sequence Model, Lecture: Recurrent Neural Network, Loss Function.
+
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
 
 ----
 
@@ -995,82 +1073,8 @@ $\theta_{t+1} = \theta_{t} - \dfrac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
-----
-
-# Different loss function and their pros and cons?
-
-## Regression Loss
-
-- **Mean Squared Error Loss**: The Mean Squared Error, or MSE, loss is the default loss to use for `regression problems`.
-Mathematically, it is the preferred loss function under the inference framework of maximum likelihood _if the distribution of the target variable is Gaussian_.
-
-- **Mean Squared Logarithmic Error Loss:** There may be regression problems in which the target value has a spread of values and when predicting a large value, you may not want to punish a model as heavily as mean squared error. Instead, you can first calculate the natural logarithm of each of the predicted values, then calculate the mean squared error. This is called the Mean Squared Logarithmic Error loss, or MSLE for short. It has the effect of relaxing the punishing effect of large differences in large predicted values.
-- **Mean Absolute Error Loss:** On some regression problems, the distribution of the target variable may be mostly Gaussian, but may have outliers, e.g. large or small values far from the mean value. The Mean Absolute Error, or MAE, loss is an appropriate loss function in this case as it is more robust to outliers. It is calculated as the average of the absolute difference between the actual and predicted values.
 
 
-![image](/assets/images/loss_function.png)
-
-[Image Source: From Prof. Mitesh Khapra, Lecture 4, [slide page 95]](https://www.cse.iitm.ac.in/~miteshk/CS7015.html)
-
-## Binary Classification Loss
-
-- **Cross Entropy Loss or Negative Loss Likelihood (NLL):** It is the default loss function to use for binary classification problems. It is intended for use with binary classification where the target values are in the set `{0, 1}`. Mathematically, it is the preferred loss function under the inference framework of maximum likelihood. It is the loss function to be evaluated first and only changed if you have a good reason.
-
-<center>
-
-$CrossEntropyLoss = -(y_i \log (\hat y_i) + (1-y_i) \log (1-\hat y_i))$
-
-</center>
-
-- **Hinge Loss or SVM Loss:** An alternative to cross-entropy for binary classification problems is the hinge loss function, primarily developed for use with **Support Vector Machine** (SVM) models. It is intended for use with binary classification where the target values are in the set {-1, 1}. The hinge loss function encourages examples to have the correct sign, assigning more error when there is a difference in the sign between the actual and predicted class values.
-
-<center>
-
-$HingeLoss = \Sigma_{j \neq y_i} max(0, s_j - s_{y_i}+1)$
-
-</center>
-
-## Multi-Class Classification Loss Functions
-
-- **Categorical Cross Entropy:** It is the default loss function to use for multi-class classification problems. In this case, it is intended for use with multi-class classification where the target values are in the set {0, 1, 3, …, n}, where each class is assigned a unique integer value. Mathematically, it is the preferred loss function under the inference framework of maximum likelihood. It is the loss function to be evaluated first and only changed if you have a good reason.
-
-<center>
-
-$CategoricalCrossEntropyLoss = -y_c \log (\hat y_c)$
-
-</center>
-
-, where `c` is the class.
-
-- **Sparse Categorical Cross Entropy:** A possible cause of frustration when using cross-entropy with classification problems with a large number of labels is the one hot encoding process. For example, predicting words in a vocabulary may have tens or hundreds of thousands of categories, one for each label. This can mean that the target element of each training example may require a one hot encoded vector with tens or hundreds of thousands of zero values, requiring significant memory. Sparse cross-entropy addresses this by performing the same cross-entropy calculation of error, without requiring that the target variable be one hot encoded prior to training.
-- **Kullback Leibler Divergence Loss:** Kullback Leibler Divergence, or KL Divergence for short, is a measure of how one probability distribution differs from a baseline distribution. A KL divergence loss of 0 suggests the distributions are identical. In practice, the behavior of KL Divergence is very similar to cross-entropy. It calculates how much information is lost (in terms of bits) if the predicted probability distribution is used to approximate the desired target probability distribution. As such, the KL divergence loss function is more commonly used when using models that learn to approximate a more complex function than simply multi-class classification, such as in the case of an autoencoder used for learning a dense feature representation under a model that must reconstruct the original input. In this case, KL divergence loss would be preferred. Nevertheless, it can be used for multi-class classification, in which case it is functionally equivalent to multi-class cross-entropy.
-
-**Reference:**
-- [MMM](https://machinelearningmastery.com/how-to-choose-loss-functions-when-training-deep-learning-neural-networks/)
-- [Blog](https://ml-cheatsheet.readthedocs.io/en/latest/loss_functions.html)
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
-----
-
-# What is the loss function for sequence `classification` task?
-
-![image](/assets/images/image_23_loss_1.png)
-
-Only finaly time step has generated a classification label.
-
-## What is the loss function for sequence `labelling` task?
-
-![image](/assets/images/image_23_loss_2.png)
-
-At each time step there is a label classification, which leads to the double summation.
-
-**Resource:**
-
-- Deep Learning course from PadhAI, topic: Sequence Model, Lecture: Recurrent Neural Network, Loss Function.
-
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 # Autoencoders
