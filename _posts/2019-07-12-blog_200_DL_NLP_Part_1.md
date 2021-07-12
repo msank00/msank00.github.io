@@ -538,7 +538,9 @@ Commonly, $sigmoid$ and $tanh$ activation functions are problematic (gradient va
 
 ----
 
-# Tell about different loss function, when to use them?
+# Loss Functions in Deep learning
+
+## Tell about different loss function, when to use them?
 
 >> Importantly, the choice of loss function is directly related to the activation function used in the output layer of your neural network. These two design elements are connected.
 
@@ -629,7 +631,19 @@ If $M\gt2$ (i.e. multiclass classification), we calculate a separate loss for ea
 
 ----
 
-# NLLLoss implementation `nn.NLLLoss()`
+## What is cross-entropy loss?
+
+![image](/assets/images/image_18_SoftMax_1.png)
+
+**Resource:**
+
+- [cs224n-2019-lecture03-neuralnets](https://web.stanford.edu/class/cs224n/slides/cs224n-2019-lecture03-neuralnets.pdf)
+
+<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
+
+---
+
+## NLLLoss implementation `nn.NLLLoss()`
 
 - The negative log likelihood loss. It is useful to train a classification problem with `C` classes.
 
@@ -1113,16 +1127,6 @@ With negative sampling, we are instead going to randomly select just a small num
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
-----
-# What is cross-entropy loss?
-
-![image](/assets/images/image_18_SoftMax_1.png)
-
-**Resource:**
-
-- [cs224n-2019-lecture03-neuralnets](https://web.stanford.edu/class/cs224n/slides/cs224n-2019-lecture03-neuralnets.pdf)
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
 ----
 
