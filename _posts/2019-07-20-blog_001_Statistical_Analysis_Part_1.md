@@ -13,6 +13,8 @@ comments: true
 
 # What is P Value?
 
+- for part 2 look here at [notion/scribe-stat](https://www.notion.so/Statistical-Distribution-Part-1-25ff5043e00643bf8fcb713611f31240)
+
 <center>
 <figure class="video_container">
   <iframe src="https://www.youtube.com/embed/vemZtEM63GY" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
