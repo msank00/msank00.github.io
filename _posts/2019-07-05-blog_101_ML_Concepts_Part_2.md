@@ -246,6 +246,7 @@ def select_features(X_train, y_train, X_test):
 
 # Different Statistical tests for feature selection
 
+- see 2nd part here at [notion/scribe-stat](https://www.notion.so/Statistical-Distribution-Part-1-25ff5043e00643bf8fcb713611f31240)
 
 <center>
 <figure class="video_container">
