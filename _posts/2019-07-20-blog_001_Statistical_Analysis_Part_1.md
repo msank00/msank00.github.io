@@ -148,6 +148,8 @@ See [here](https://msank00.github.io/blog/2019/07/05/blog_101_ML_Concepts_Part_2
 
 # Difference between `Standard Deviation` and `Standard Error`
 
+- Check here too [notion/scribe-stat](https://www.notion.so/Statistical-Distribution-Part-1-25ff5043e00643bf8fcb713611f31240)
+
 > :bulb: Standard Deviation of the `means` is called Standard Error
 
 - SD quantifies the variation within a set of measurement
