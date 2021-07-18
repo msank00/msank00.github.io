@@ -366,6 +366,8 @@ $P(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$
 
 ## Poisson Distribution
 
+- For more look here at [notion/scribe-stat](https://www.notion.so/Statistical-Distribution-Part-1-25ff5043e00643bf8fcb713611f31240#b1a312a7e91f40bbb85418bb6ec87e34)
+
 **Story:** Suppose you work at a call center, approximately how many calls do you get in a day? It can be any number. Now, the entire number of calls at a call center in a day is modeled by Poisson distribution. Some more examples are
 
 + The number of emergency calls recorded at a hospital in a day.
