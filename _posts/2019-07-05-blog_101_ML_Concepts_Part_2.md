@@ -985,6 +985,8 @@ MARS: Multivariate Adaptive Regression Splines
 
 # Boosting algorithms
 
+- For more on boosting algorithm, check here at [notion/scribe-ml](https://www.notion.so/Machine-Learning-Concepts-Part-3-be52c7a69c78458ea6f3ba822b25b486)
+
 The term `Boosting` refers to a family of algorithms which **boosts** (i.e converts) weak learner to strong learners.
 
 1. :sparkle: **AdaBoost (Adaptive Boosting)**
