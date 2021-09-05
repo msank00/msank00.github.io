@@ -211,6 +211,8 @@ _*Note: here patameter $\beta$ and estimator $\hat \beta$._
 
 ## General Linear Model
 
+- Check summary of models [here](https://www.notion.so/Machine-Learning-Concepts-Part-4-be52c7a69c78458ea6f3ba822b25b486#86b5edda22f441eaa48d77cb3528866d)
+
 Indeed, the general linear model can be seen as an **extension of linear multiple regression for a single dependent variable**. Understanding the multiple regression model is fundamental to understand the general linear model.
 
 ## Single Regression
