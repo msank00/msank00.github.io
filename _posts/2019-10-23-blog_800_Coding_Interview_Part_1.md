@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Crack the Code"
+title:  "Coding Interview (Part 1)"
 date:   2019-10-23 00:11:31 +0530
 categories: jekyll update
 mathjax: true
@@ -9,6 +9,8 @@ mathjax: true
 <link rel="stylesheet" href="/assets/css/mystyle.css">
 
 # Content
+
+- You can find part 2 [here](https://keen-vegetarian-057.notion.site/Coding-Interview-Part-2-3e8f665e07af41dcaf9526ef6913a421)
 
 1. TOC
 {:toc}
