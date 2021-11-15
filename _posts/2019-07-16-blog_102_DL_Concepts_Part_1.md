@@ -290,4 +290,49 @@ The vanishing gradient problem occurs because of the use of chain rule for backp
 
 ----
 
+# How to apply embedding for categorical variable?
+
+
+<center>
+<img src="https://miro.medium.com/max/1793/1*C7z2bk0DSfwr9rMyAbSVWQ.png" width="600" alt="image">
+</center>
+
+
+## Model Architecture
+
+The first layer of the network contains embeddings for each categorical feature. These are initialized randomly, but updated via gradient descent through training. Embeddings are then concatenated and passed through a fully connected layer that fans out to an output layer that is the same size as the number of retailers we have. This is followed by a sigmoid activation due to the nature of the multi-label classification task.
+
+<center>
+<img src="https://miro.medium.com/max/1734/1*AFC0FKwdim42Rb-S3QUR8g.png" height="400" alt="image">
+</center>
+
+
+Unlike most models where we’re interested in the outputs, in this case, we’re interested in the inputs. More precisely, we’re trying to extract the learned representation of the inputs in the embedding layer of the network. We can easily extract these from the weights of the neural network within the `state_dict()` of the trained model.
+
+
+**Results**
+
+One of the most interesting applications of the resulting embeddings is to examine the distance between different categories within this new latent space using a standard similarity score like cosine similarity. Take state for example — since we used retailer prediction as the supervised task to train these embeddings and retailers are sometimes regional, we might expect geographically close states to have similar embeddings. We can confirm this by selecting some example states and looking at their top 5 nearest neighbors by cosine similarity.
+
+
+<center>
+<img src="https://miro.medium.com/max/2775/1*ZS2sr5JIFI3bRlqNZHnfYA.png" width="500" alt="image">
+</center>
+
+:paperclip: **Reference:**
+
+- [Deeplearning with tabular data](https://towardsdatascience.com/deeplearning-with-tabular-data-data-processing-cd2e73908257)
+- [Fast AI: categorical-embeddings](https://www.fast.ai/2018/04/29/categorical-embeddings/) :pushpin:
+- [Youtube: Entity Embeddings for Categorical Variables, Abhishek Thakur](https://www.youtube.com/watch?v=EATAM3BOD_E) :pushpin:
+- [Reg2Vec: Learning Embeddings for High Cardinality Customer Registration Features](https://medium.com/building-ibotta/reg2vec-learning-embeddings-for-high-cardinality-customer-registration-features-faf712f12842) :pushpin:
+- [Paper: Entity Embeddings of Categorical Variables](https://arxiv.org/abs/1604.06737) :pushpin:
+- [Using Embedding Layers to Manage High Cardinality Categorical Data | PyData LA 2019](https://www.youtube.com/watch?v=icmjDyNaj2E)
+
+
+
+
+----
+
+
+
 <a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a>

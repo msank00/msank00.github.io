@@ -413,6 +413,8 @@ _*In case the above link is broken, click [here](https://www.youtube.com/embed/p
 
 In a `z-test`, the sample is `assumed` to be **normally distributed**. 
 
+- `z-test`: Here we try to compare `sample mean` $$x$$ with population mean $$\mu$$
+
 A z-score is calculated with **population parameters** such as **population mean** and **population standard deviation** and is used to validate a hypothesis that the sample drawn belongs to the same population.
 
 - **Null:** Sample mean is same as the population mean
@@ -436,6 +438,8 @@ where
 If the test statistic is lower than the critical value, accept the Alternate Hypothesis or else reject the Alternate hypothesis
 
 :atom_symbol: **t test**
+
+- `t-test`: Here we try to compare 2 `sample mean` $$x_1$$ with $$x_2$$.
 
 A t-test is used to compare the mean of two given samples. Like a z-test, a t-test also assumes a normal distribution of the sample. A t-test is used when the population parameters (mean and standard deviation) are not known.
 
@@ -488,49 +492,6 @@ Kendall’s Tau is a non-parametric measure of relationships between columns of 
 
 - [Blog](https://www.statisticshowto.com/kendalls-tau/)
 
-
-<a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
-
-
-----
-
-# How to apply embedding for categorical variable?
-
-
-<center>
-<img src="https://miro.medium.com/max/1793/1*C7z2bk0DSfwr9rMyAbSVWQ.png" width="600" alt="image">
-</center>
-
-
-## Model Architecture
-
-The first layer of the network contains embeddings for each categorical feature. These are initialized randomly, but updated via gradient descent through training. Embeddings are then concatenated and passed through a fully connected layer that fans out to an output layer that is the same size as the number of retailers we have. This is followed by a sigmoid activation due to the nature of the multi-label classification task.
-
-<center>
-<img src="https://miro.medium.com/max/1734/1*AFC0FKwdim42Rb-S3QUR8g.png" height="400" alt="image">
-</center>
-
-
-Unlike most models where we’re interested in the outputs, in this case, we’re interested in the inputs. More precisely, we’re trying to extract the learned representation of the inputs in the embedding layer of the network. We can easily extract these from the weights of the neural network within the `state_dict()` of the trained model.
-
-
-**Results**
-
-One of the most interesting applications of the resulting embeddings is to examine the distance between different categories within this new latent space using a standard similarity score like cosine similarity. Take state for example — since we used retailer prediction as the supervised task to train these embeddings and retailers are sometimes regional, we might expect geographically close states to have similar embeddings. We can confirm this by selecting some example states and looking at their top 5 nearest neighbors by cosine similarity.
-
-
-<center>
-<img src="https://miro.medium.com/max/2775/1*ZS2sr5JIFI3bRlqNZHnfYA.png" width="500" alt="image">
-</center>
-
-:paperclip: **Reference:**
-
-- [Deeplearning with tabular data](https://towardsdatascience.com/deeplearning-with-tabular-data-data-processing-cd2e73908257)
-- [Fast AI: categorical-embeddings](https://www.fast.ai/2018/04/29/categorical-embeddings/) :pushpin:
-- [Youtube: Entity Embeddings for Categorical Variables, Abhishek Thakur](https://www.youtube.com/watch?v=EATAM3BOD_E) :pushpin:
-- [Reg2Vec: Learning Embeddings for High Cardinality Customer Registration Features](https://medium.com/building-ibotta/reg2vec-learning-embeddings-for-high-cardinality-customer-registration-features-faf712f12842) :pushpin:
-- [Paper: Entity Embeddings of Categorical Variables](https://arxiv.org/abs/1604.06737) :pushpin:
-- [Using Embedding Layers to Manage High Cardinality Categorical Data | PyData LA 2019](https://www.youtube.com/watch?v=icmjDyNaj2E)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
