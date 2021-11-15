@@ -414,7 +414,7 @@ _*In case the above link is broken, click [here](https://www.youtube.com/embed/p
 
 In a `z-test`, the sample is `assumed` to be **normally distributed**. 
 
-- `z-test`: Here we try to compare `sample mean` $$x$$ with population mean $$\mu$$
+- `z-test`: Here we try to compare `sample mean` $x$ with population mean $\mu$
 
 A z-score is calculated with **population parameters** such as **population mean** and **population standard deviation** and is used to validate a hypothesis that the sample drawn belongs to the same population.
 
@@ -440,7 +440,7 @@ If the test statistic is lower than the critical value, accept the Alternate Hyp
 
 :atom_symbol: **t test**
 
-- `t-test`: Here we try to compare 2 `sample mean` $$x_1$$ with $$x_2$$.
+- `t-test`: Here we try to compare 2 `sample mean` $x_1$ with $x_2$.
 
 A t-test is used to compare the mean of two given samples. Like a z-test, a t-test also assumes a normal distribution of the sample. A t-test is used when the population parameters (mean and standard deviation) are not known.
 
