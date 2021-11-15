@@ -474,6 +474,7 @@ There are multiple variations of t-test which are explained in detail [here](htt
 **Reference:**
 
 - [Statistical Tests — When to use Which ?](https://towardsdatascience.com/statistical-tests-when-to-use-which-704557554740) :fire:
+- [notion/scribe/stat](https://www.notion.so/Statistical-Analysis-Part-3-25ff5043e00643bf8fcb713611f31240#ebe7c3b7d5c44b488aa9431b076d3bbf) :rocket:
 
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
