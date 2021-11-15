@@ -371,6 +371,7 @@ $\chi^2 = \Sigma \frac{(O_i - E_i)^2}{E_i}$
 
 - [blog](https://www.spss-tutorials.com/chi-square-independence-test/#what-is-it)
 - [Khan Academy Video](https://www.youtube.com/watch?v=2QeDRsxSF9M)
+- [How to calculate chi square](https://www.cuemath.com/chi-square-formula/)
 
 <a href="#Top" style="color:#2F4F4F;background-color: #c8f7e4;float: right;">Content</a>
 
