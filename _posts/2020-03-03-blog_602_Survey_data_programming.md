@@ -19,7 +19,7 @@ mathjax: true
 
 ## What is Weak Supervision
 
-According to this [bolg](https://hazyresearch.github.io/snorkel/blog/ws_blog_post.html)
+According to this [bolg](http://ai.stanford.edu/blog/weak-supervision/)
 
 >  Noisier or higher-level supervision is used as a more expedient and flexible way to get supervision signal, in particular from subject matter experts (SMEs).
 
