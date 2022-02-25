@@ -1338,8 +1338,8 @@ In **broader sense**, Regularization (as any means to prevent overfit) for Trees
 
 Random forest algorithm comes under the `Bootstrap Algorithm` a.k.a `Bagging` category whose primary objective is to `reduce the variance` of an estimate by averaging many estimates.
 
-- :star: **Sample datasets without replacement**
-  - In bootstarp algorithm `M` decision trees are trained on `M` datasets which are sampled `without replacement` from the original datasets. Hence each of the sampled data will have duplicate data as well as some missing data, which are present in the original data, as all the sampled datasets have same length. Thus, these bootstrap samples will have diversity among themselves, resulting the model to be diverse as well. 
+- :star: **Sample datasets with replacement**
+  - In bootstarp algorithm `M` decision trees are trained on `M` datasets which are sampled `with replacement` from the original datasets. Hence each of the sampled data will have duplicate data as well as some missing data, which are present in the original data, as all the sampled datasets have same length. Thus, these bootstrap samples will have diversity among themselves, resulting the model to be diverse as well. 
 
 Along with the above methods `Random Forest` also does the following:
 
