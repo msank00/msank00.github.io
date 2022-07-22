@@ -881,6 +881,7 @@ Classical `exploration-exploitation` problem:
 
 - [A guide to dynamic pricing algorithms](https://blog.griddynamics.com/dynamic-pricing-algorithms/)
 - [Code-Github](https://github.com/ikatsov/algorithmic-examples)
+- [Constraints - Scaler Topics](https://www.scaler.com/topics/sql/constraints-in-sql/)
 
 
 
