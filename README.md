@@ -1,3 +1,3 @@
-# Repository for sidravi1.github.io
+# Repository for msank00.github.io
 
-- Go to [site](https://sidravi1.github.io/)
+- Go to [site](https://msank00.github.io/)
