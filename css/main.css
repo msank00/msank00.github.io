@@ -381,6 +381,68 @@ th {
   line-height: 1.6;
 }
 
+.publication-section {
+  margin-top: 2.4rem;
+}
+
+.publication-section h2 {
+  margin-bottom: 1rem;
+}
+
+.publication-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.publication-card {
+  padding: 1.15rem 1.25rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.publication-card h3 {
+  margin: 0.25rem 0 0.55rem;
+  font-size: 1.16rem;
+}
+
+.publication-card p {
+  margin-bottom: 0.9rem;
+  color: #475569;
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.publication-meta {
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.publication-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.publication-actions a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.25rem 0.65rem;
+  color: var(--accent-dark);
+  background: #ecfdf5;
+  border: 1px solid #b7e4dc;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.publication-actions a:hover {
+  background: #dff7f2;
+  text-decoration: none;
+}
+
 .post h1 {
   margin-bottom: 0.8rem;
 }
@@ -421,7 +483,8 @@ th {
   }
 
   .section-panel,
-  .post-card {
+  .post-card,
+  .publication-card {
     padding: 1rem;
   }
 }
