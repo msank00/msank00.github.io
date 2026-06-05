@@ -17,6 +17,9 @@
           <a href="{{ "/blog/" | relative_url }}">Blog</a>
           <a href="{{ "/publications.html" | relative_url }}">Publications</a>
           <a href="{{ "/projects.html" | relative_url }}">Projects</a>
+          <button class="theme-toggle" type="button" aria-label="Toggle dark mode" data-theme-toggle>
+            <span data-theme-toggle-text>Theme</span>
+          </button>
         </nav>
       </div>
     </header>
@@ -37,5 +40,29 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      (function () {
+        var toggle = document.querySelector("[data-theme-toggle]");
+        var label = document.querySelector("[data-theme-toggle-text]");
+
+        function setTheme(theme) {
+          document.documentElement.dataset.theme = theme;
+          localStorage.setItem("theme", theme);
+          if (label) {
+            label.textContent = theme === "dark" ? "Light" : "Dark";
+          }
+        }
+
+        setTheme(document.documentElement.dataset.theme || "light");
+
+        if (toggle) {
+          toggle.addEventListener("click", function () {
+            var nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+            setTheme(nextTheme);
+          });
+        }
+      })();
+    </script>
   </body>
 </html>

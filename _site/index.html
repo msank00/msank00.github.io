@@ -3,6 +3,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      var savedTheme = localStorage.getItem("theme");
+      var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.dataset.theme = savedTheme || (prefersDark ? "dark" : "light");
+    })();
+  </script>
 
   <!-- For altair plots -->
   <script src="https://cdn.jsdelivr.net/npm/vega@3"></script>
@@ -23,9 +30,9 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="https://msank00.github.io/">
-  <link rel="alternate" type="application/rss+xml" title="Sankarshan Mridha" href="https://msank00.github.io/feed.xml">
-  <link type="application/atom+xml" rel="alternate" href="https://msank00.github.io/feed.xml" title="Sankarshan Mridha" />
+  <link rel="canonical" href="http://localhost:4000/">
+  <link rel="alternate" type="application/rss+xml" title="Sankarshan Mridha" href="http://localhost:4000/feed.xml">
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Sankarshan Mridha" />
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -42,6 +49,9 @@
           <a href="/blog/">Blog</a>
           <a href="/publications.html">Publications</a>
           <a href="/projects.html">Projects</a>
+          <button class="theme-toggle" type="button" aria-label="Toggle dark mode" data-theme-toggle>
+            <span data-theme-toggle-text>Theme</span>
+          </button>
         </nav>
       </div>
     </header>
@@ -98,5 +108,29 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      (function () {
+        var toggle = document.querySelector("[data-theme-toggle]");
+        var label = document.querySelector("[data-theme-toggle-text]");
+
+        function setTheme(theme) {
+          document.documentElement.dataset.theme = theme;
+          localStorage.setItem("theme", theme);
+          if (label) {
+            label.textContent = theme === "dark" ? "Light" : "Dark";
+          }
+        }
+
+        setTheme(document.documentElement.dataset.theme || "light");
+
+        if (toggle) {
+          toggle.addEventListener("click", function () {
+            var nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+            setTheme(nextTheme);
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
