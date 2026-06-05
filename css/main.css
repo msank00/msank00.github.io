@@ -188,17 +188,17 @@ h4 {
 
 h1 {
   margin: 0 0 1.2rem;
-  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-size: clamp(2rem, 3vw, 2.45rem);
 }
 
 h2 {
-  margin: 3rem 0 1rem;
-  font-size: 1.65rem;
+  margin: 2.6rem 0 0.9rem;
+  font-size: 1.45rem;
 }
 
 h3 {
-  margin: 2.2rem 0 0.7rem;
-  font-size: 1.2rem;
+  margin: 2rem 0 0.65rem;
+  font-size: 1.15rem;
 }
 
 p,
@@ -280,12 +280,16 @@ th {
   padding: 1rem 0 2rem;
 }
 
+.home-hero h1 {
+  font-size: clamp(2.25rem, 4vw, 3rem);
+}
+
 .eyebrow {
   margin: 0 0 0.8rem;
   color: var(--accent);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
@@ -327,7 +331,7 @@ th {
   background: rgba(255, 255, 255, 0.84);
   border: 1px solid var(--border);
   border-radius: 8px;
-  box-shadow: var(--shadow);
+  box-shadow: none;
 }
 
 .section-panel h2,
@@ -377,6 +381,68 @@ th {
   line-height: 1.6;
 }
 
+.publication-section {
+  margin-top: 2.4rem;
+}
+
+.publication-section h2 {
+  margin-bottom: 1rem;
+}
+
+.publication-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.publication-card {
+  padding: 1.15rem 1.25rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.publication-card h3 {
+  margin: 0.25rem 0 0.55rem;
+  font-size: 1.16rem;
+}
+
+.publication-card p {
+  margin-bottom: 0.9rem;
+  color: #475569;
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.publication-meta {
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.publication-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.publication-actions a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.25rem 0.65rem;
+  color: var(--accent-dark);
+  background: #ecfdf5;
+  border: 1px solid #b7e4dc;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.publication-actions a:hover {
+  background: #dff7f2;
+  text-decoration: none;
+}
+
 .post h1 {
   margin-bottom: 0.8rem;
 }
@@ -417,7 +483,8 @@ th {
   }
 
   .section-panel,
-  .post-card {
+  .post-card,
+  .publication-card {
     padding: 1rem;
   }
 }
