@@ -3,25 +3,39 @@ layout: default
 title: Home
 ---
 
-###  :wave: Hi there,
+<section class="home-hero">
+  <p class="eyebrow">Machine learning, NLP, and data science</p>
+  <h1>Sankarshan Mridha</h1>
 
-Thanks for stopping by.
+  <p class="lead">I am a data scientist with a strong interest in machine learning, deep learning, and natural language processing. I currently work in the Bing Core Search and AI team at <a href="https://www.microsoft.com/en-in/">Microsoft</a>, building large-scale NLP models for document retrieval and ranking in <a href="https://www.bing.com/">Bing Search</a>.</p>
 
-:rocket: I am a self-motivated individual with keen interest in **Machine Learning, Deep Learning and Natural Language Processing**. Presently I work as a Data Scientist in _Bing Core Search and AI_ team in [<span style="color:blue">Microsoft</span>](https://www.microsoft.com/en-in/) where I work on building large scale NLP models for documents retrieval/ranking for [<span style="color:blue">Bing Search Engine</span>](https://www.bing.com/) using SOTA deep learning models. Previously I was working as a Data Scientist in the Digital and Smart Analytics (DSA) team in [<span style="color:blue">Swiss Re, India</span>](https://www.swissre.com/).
+  <div class="link-row">
+    <a class="pill-link" href="{{ "/blog/" | relative_url }}">Read the blog</a>
+    <a class="pill-link" href="{{ "/publications.html" | relative_url }}">View publications</a>
+    <a class="pill-link" href="{{ "/projects.html" | relative_url }}">See projects</a>
+    <a class="pill-link" href="https://github.com/msank00">GitHub</a>
+  </div>
+</section>
 
-:dart: Earlier I received my Master of Science (MS by research) degree in **Machine Learning** from the [<span style="color:blue">Department of Computer Science and Engineering</span>](http://cse.iitkgp.ac.in/) at [<span style="color:blue">Indian Institue of Technology, Kharagpur</span>](http://www.iitkgp.ac.in/). There I was working as a Junior Research Fellow (JRF) and was an active member of the Complex Network Research Group ([<span style="color:blue">CNeRG</span>](http://www.cnergres.iitkgp.ac.in/)). My supervisors were [<span style="color:blue">Dr. Sourangshu Bhttacharya</span>](http://cse.iitkgp.ac.in/~sourangshu/) and [<span style="color:blue">Dr. Niloy Ganguly</span>](http://www.facweb.iitkgp.ernet.in/~niloy/). 
+<section class="section-panel">
+  <h2>About</h2>
 
-During my MS, I used to work in the field of _Spatio-Temporal Data Mining and Machine Learning_ and my thesis topic was: **Learning Problems in Transportation Network** [<span style="color:blue">[Thesis]</span>](/docs/papers/2017_thesis_sankarshan.pdf). 
+  <p>Previously, I worked as a Data Scientist in the Digital and Smart Analytics team at <a href="https://www.swissre.com/">Swiss Re, India</a>.</p>
 
-Before pursuing MS degree, I used to work as a Programmer Analyst in [<span style="color:blue">Cognizant Technology Solutions India Pvt. Ltd.</span>](https://www.cognizant.com/), Kolkata, India.
+  <p>I received my Master of Science by research degree in <strong>Machine Learning</strong> from the <a href="http://cse.iitkgp.ac.in/">Department of Computer Science and Engineering</a> at <a href="http://www.iitkgp.ac.in/">Indian Institute of Technology, Kharagpur</a>. I worked as a Junior Research Fellow and was an active member of the Complex Network Research Group (<a href="http://www.cnergres.iitkgp.ac.in/">CNeRG</a>). My supervisors were <a href="http://cse.iitkgp.ac.in/~sourangshu/">Dr. Sourangshu Bhattacharya</a> and <a href="http://www.facweb.iitkgp.ernet.in/~niloy/">Dr. Niloy Ganguly</a>.</p>
 
-:game_die: I received my Bachelor of Engineering (B.E.) degree in [<span style="color:blue">Computer Science and Engineering</span>](http://www.jaduniv.edu.in/view_department.php?deptid=59) from [<span style="color:blue">Jadavpur University</span>](http://www.jaduniv.edu.in/), India in 2013. In my final year project I worked under the guidance of [<span style="color:blue">Prof. Mita Nasipuri</span>](http://www.jaduniv.edu.in/profile.php?uid=651) on the project Skin Lesion Segmentation.
+  <p>During my MS, I worked on <strong>Spatio-Temporal Data Mining and Machine Learning</strong>. My thesis topic was <strong>Learning Problems in Transportation Network</strong> <a href="{{ "/docs/papers/2017_thesis_sankarshan.pdf" | relative_url }}">[Thesis]</a>.</p>
 
+  <p>Before pursuing my MS degree, I worked as a Programmer Analyst at <a href="https://www.cognizant.com/">Cognizant Technology Solutions India Pvt. Ltd.</a> in Kolkata, India.</p>
 
-**Recent Update:**
+  <p>I received my Bachelor of Engineering degree in <a href="http://www.jaduniv.edu.in/view_department.php?deptid=59">Computer Science and Engineering</a> from <a href="http://www.jaduniv.edu.in/">Jadavpur University</a>, India in 2013. In my final year project, I worked under the guidance of <a href="http://www.jaduniv.edu.in/profile.php?uid=651">Prof. Mita Nasipuri</a> on skin lesion segmentation.</p>
+</section>
 
+<section class="section-panel">
+  <h2>Recent Updates</h2>
 
-- 📝 I occasionally write `scribe` on differnt ML, DL, NLP topics. They are available at [github.com/blog](https://msank00.github.io/blog/) or [notion.so/scribe](https://www.notion.so/45244be573394099870f529ebba1cefd?v=a3362ad417594f2b9d08369216122cce). 
-- ⚡ Sometime I love to write `paper summary`. You can find them at [notion.so/papernotes](https://www.notion.so/c472d5aeba9b4effb13a4a3df7aac0b4?v=b7862439954140ec8f9fe5a5a02b2b1e).
-
-
+  <ul>
+    <li>I occasionally write <code>scribe</code> notes on ML, DL, and NLP topics. They are available on the <a href="{{ "/blog/" | relative_url }}">blog</a> and on <a href="https://www.notion.so/45244be573394099870f529ebba1cefd?v=a3362ad417594f2b9d08369216122cce">Notion</a>.</li>
+    <li>I also write paper summaries, collected on <a href="https://www.notion.so/c472d5aeba9b4effb13a4a3df7aac0b4?v=b7862439954140ec8f9fe5a5a02b2b1e">Notion</a>.</li>
+  </ul>
+</section>
