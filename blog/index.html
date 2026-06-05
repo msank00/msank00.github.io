@@ -2,10 +2,18 @@
 layout: default
 title: Blog
 ---
-	<h1>All blog posts</h1>
-	<ul class="posts">
 
-	  {% for post in site.posts %}
-	    <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
-	  {% endfor %}
-	</ul>
+<h1>Blog</h1>
+<p class="lead">Notes, explainers, and paper summaries on machine learning, deep learning, NLP, statistics, and data science systems.</p>
+
+<ul class="post-list">
+  {% for post in site.posts %}
+    <li class="post-card">
+      <div class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</div>
+      <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+      {% if post.excerpt %}
+        <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 28 }}</p>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
