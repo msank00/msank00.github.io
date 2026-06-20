@@ -19,9 +19,15 @@ plugins:
   - jekyll-feed
   - jemoji
 
+collections:
+  interests:
+    output: true
+    permalink: /interests/:name/
+
 header_pages:
   #- resume.md
   - publications.md
   - blog/index.html
   - index.md
+  - interests/index.html
   - projects.md
