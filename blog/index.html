@@ -6,9 +6,15 @@ title: Blog
 <h1>Blog</h1>
 <p class="lead">Notes, explainers, and paper summaries on machine learning, deep learning, NLP, statistics, and data science systems.</p>
 
-<ul class="post-list">
+<div class="blog-search" role="search">
+  <label class="blog-search__label" for="blog-search-input">Search posts</label>
+  <input id="blog-search-input" class="blog-search__input" type="search" placeholder="keyword, topic, title..." autocomplete="off">
+  <p id="blog-search-empty" class="blog-search__empty" hidden>No matching posts.</p>
+</div>
+
+<ul class="post-list" id="blog-post-list">
   {% for post in site.posts %}
-    <li class="post-card">
+    <li class="post-card" data-post-url="{{ post.url | relative_url }}">
       <div class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</div>
       <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
       {% if post.excerpt %}
@@ -17,3 +23,74 @@ title: Blog
     </li>
   {% endfor %}
 </ul>
+
+<script>
+  (function () {
+    var input = document.getElementById("blog-search-input");
+    var list = document.getElementById("blog-post-list");
+    var empty = document.getElementById("blog-search-empty");
+    if (!input || !list) return;
+
+    var posts = Array.prototype.slice.call(list.querySelectorAll(".post-card"));
+    var searchIndex = null;
+    var searchIndexByUrl = {};
+
+    function normalizeQuery(value) {
+      var query = value.trim().toLowerCase();
+      if (query === "shapely") query = "shapley";
+      return query;
+    }
+
+    function ensureSearchIndex() {
+      if (searchIndex) return Promise.resolve(searchIndex);
+
+      return fetch("{{ "/blog/search.json" | relative_url }}")
+        .then(function (response) {
+          if (!response.ok) throw new Error("search index unavailable");
+          return response.json();
+        })
+        .then(function (items) {
+          searchIndex = items;
+          items.forEach(function (item) {
+            searchIndexByUrl[item.url] = [
+              item.title,
+              item.date,
+              item.excerpt,
+              item.content
+            ].join(" ").toLowerCase();
+          });
+          return searchIndex;
+        })
+        .catch(function () {
+          searchIndex = [];
+          return searchIndex;
+        });
+    }
+
+    function filterPosts(query) {
+      var visibleCount = 0;
+
+      posts.forEach(function (post) {
+        var url = post.getAttribute("data-post-url");
+        var text = searchIndexByUrl[url] || post.textContent.toLowerCase();
+        var isMatch = !query || text.indexOf(query) !== -1;
+        post.hidden = !isMatch;
+        if (isMatch) visibleCount += 1;
+      });
+
+      if (empty) empty.hidden = visibleCount !== 0;
+    }
+
+    input.addEventListener("input", function () {
+      var query = normalizeQuery(input.value);
+      if (!query) {
+        filterPosts(query);
+        return;
+      }
+
+      ensureSearchIndex().then(function () {
+        filterPosts(query);
+      });
+    });
+  })();
+</script>
