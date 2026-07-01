@@ -9,12 +9,6 @@ title: Home
 
   <p class="lead">I am a data scientist with a strong interest in machine learning, deep learning, and natural language processing. I currently work in the Bing Core Search and AI team at <a href="https://www.microsoft.com/en-in/">Microsoft</a>, building large-scale NLP models for document retrieval and ranking in <a href="https://www.bing.com/">Bing Search</a>.</p>
 
-  <div class="link-row">
-    <a class="pill-link" href="{{ "/blog/" | relative_url }}">Read the blog</a>
-    <a class="pill-link" href="{{ "/publications.html" | relative_url }}">View publications</a>
-    <a class="pill-link" href="{{ "/projects.html" | relative_url }}">See projects</a>
-    <a class="pill-link" href="https://github.com/msank00">GitHub</a>
-  </div>
 </section>
 
 <section class="section-panel">
