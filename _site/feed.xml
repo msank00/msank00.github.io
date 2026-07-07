@@ -1,4 +1,415 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-06-05T17:55:57+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Sankarshan Mridha</title><subtitle>On machine learning, deep learning, nlp, computer vision, statistics and other areas of data science</subtitle><author><name>Sankarshan Mridha</name></author><entry><title type="html">Responsible AI</title><link href="http://localhost:4000/blog/2021/02/06/blog_responsible_ai_part_1" rel="alternate" type="text/html" title="Responsible AI" /><published>2021-02-06T06:00:10+05:30</published><updated>2021-02-06T06:00:10+05:30</updated><id>http://localhost:4000/blog/2021/02/06/blog_responsible_ai_part_1</id><content type="html" xml:base="http://localhost:4000/blog/2021/02/06/blog_responsible_ai_part_1"><![CDATA[<h1 id="content">Content</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://msank00.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://msank00.github.io/" rel="alternate" type="text/html" /><updated>2026-07-08T00:56:24+05:30</updated><id>https://msank00.github.io/feed.xml</id><title type="html">Sankarshan Mridha</title><subtitle>On machine learning, deep learning, nlp, computer vision, statistics and other areas of data science</subtitle><author><name>Sankarshan Mridha</name></author><entry><title type="html">Flexible BERT: Teaching a Model to Spend the Right Amount of Thought</title><link href="https://msank00.github.io/blog/2026/07/02/blog_flexible_bert" rel="alternate" type="text/html" title="Flexible BERT: Teaching a Model to Spend the Right Amount of Thought" /><published>2026-07-02T01:02:38+05:30</published><updated>2026-07-02T01:02:38+05:30</updated><id>https://msank00.github.io/blog/2026/07/02/blog_flexible_bert</id><content type="html" xml:base="https://msank00.github.io/blog/2026/07/02/blog_flexible_bert"><![CDATA[<h1 id="content">Content</h1>
+
+<ol id="markdown-toc">
+  <li><a href="#content" id="markdown-toc-content">Content</a></li>
+  <li><a href="#the-core-problem" id="markdown-toc-the-core-problem">The Core Problem</a></li>
+  <li><a href="#a-fixed-model-versus-an-adaptive-model" id="markdown-toc-a-fixed-model-versus-an-adaptive-model">A Fixed Model Versus An Adaptive Model</a></li>
+  <li><a href="#what-does-width-mean" id="markdown-toc-what-does-width-mean">What Does Width Mean?</a></li>
+  <li><a href="#how-does-the-gate-learn" id="markdown-toc-how-does-the-gate-learn">How Does The Gate Learn?</a></li>
+  <li><a href="#what-does-depth-mean" id="markdown-toc-what-does-depth-mean">What Does Depth Mean?</a></li>
+  <li><a href="#entropy-the-confidence-meter" id="markdown-toc-entropy-the-confidence-meter">Entropy: The Confidence Meter</a></li>
+  <li><a href="#neural-grafting-do-not-throw-away-weak-parts" id="markdown-toc-neural-grafting-do-not-throw-away-weak-parts">Neural Grafting: Do Not Throw Away Weak Parts</a></li>
+  <li><a href="#the-full-training-story" id="markdown-toc-the-full-training-story">The Full Training Story</a></li>
+  <li><a href="#what-the-paper-reports" id="markdown-toc-what-the-paper-reports">What The Paper Reports</a></li>
+  <li><a href="#why-gpu-speedup-is-harder-than-flop-reduction" id="markdown-toc-why-gpu-speedup-is-harder-than-flop-reduction">Why GPU Speedup Is Harder Than FLOP Reduction</a></li>
+  <li><a href="#how-this-differs-from-related-ideas" id="markdown-toc-how-this-differs-from-related-ideas">How This Differs From Related Ideas</a></li>
+  <li><a href="#a-professors-mental-model" id="markdown-toc-a-professors-mental-model">A Professor’s Mental Model</a></li>
+  <li><a href="#final-takeaway" id="markdown-toc-final-takeaway">Final Takeaway</a></li>
+</ol>
+
+<hr />
+
+<h1 id="the-core-problem">The Core Problem</h1>
+
+<p>Imagine a professor grading a stack of exam answers.</p>
+
+<p>Some answers are obvious. One sentence is enough to know the student understood the idea.
+Some answers are ambiguous. The professor must read carefully, compare details, and think longer.</p>
+
+<p>Now imagine a rule that says:</p>
+
+<blockquote>
+  <p>Spend exactly the same amount of time on every answer.</p>
+</blockquote>
+
+<p>That is wasteful. Easy cases are over-processed. Hard cases may still need all the attention they can get.</p>
+
+<p>Standard BERT behaves like that fixed-rule professor. Every input goes through the same full stack:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Input -&gt; Layer 1 -&gt; Layer 2 -&gt; ... -&gt; Layer 12 -&gt; Prediction
+</code></pre></div></div>
+
+<p>The paper <strong>A Flexible BERT Model Enabling Width- and Depth-Dynamic Inference</strong> asks a better question:</p>
+
+<blockquote>
+  <p>Can BERT learn how much computation each input deserves?</p>
+</blockquote>
+
+<p>The answer is yes. Flexible BERT makes computation adaptive along two axes:</p>
+
+<ol>
+  <li><strong>Width</strong>: how much of each Transformer layer should be active?</li>
+  <li><strong>Depth</strong>: how many layers should the input pass through before prediction?</li>
+</ol>
+
+<p>The mental model is triage. Easy inputs get a quick checkup. Hard inputs get the full diagnostic path.</p>
+
+<figure class="flexi-figure">
+  <img src="/assets/images/flexibert_mental_model.png" alt="Mental model of Flexible BERT dynamic inference" />
+  <figcaption>A useful high-level mental model: each input gets routed through just enough BERT.</figcaption>
+</figure>
+
+<h1 id="a-fixed-model-versus-an-adaptive-model">A Fixed Model Versus An Adaptive Model</h1>
+
+<p>Standard BERT gives every input the same computational budget. Flexible BERT gives every input a route.</p>
+
+<div class="flexi-diagram flexi-two-col">
+  <section>
+    <h3>Standard BERT</h3>
+    <div class="flexi-stack">
+      <span>Input</span>
+      <span>Layer 1: 100%</span>
+      <span>Layer 2: 100%</span>
+      <span>Layer 3: 100%</span>
+      <span>...</span>
+      <span>Layer 12: 100%</span>
+      <span>Prediction</span>
+    </div>
+    <p>Same width. Same depth. Same cost.</p>
+  </section>
+  <section>
+    <h3>Flexible BERT</h3>
+    <div class="flexi-stack">
+      <span>Input</span>
+      <span>Gate: choose 50%</span>
+      <span>Layer 1</span>
+      <span>Gate: choose 25%</span>
+      <span>Layer 2</span>
+      <span>Off-ramp: confident?</span>
+      <span>Exit or continue</span>
+    </div>
+    <p>Different inputs can use different paths.</p>
+  </section>
+</div>
+
+<p>That is the conceptual shift. The model is no longer just a fixed function. It becomes a small decision system wrapped around a Transformer.</p>
+
+<h1 id="what-does-width-mean">What Does Width Mean?</h1>
+
+<p>A BERT layer is not one indivisible block. It contains attention heads and feed-forward network neurons. Width controls how many of those components are active.</p>
+
+<p>Flexible BERT uses width ratios such as:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>25%, 50%, 75%, 100%
+</code></pre></div></div>
+
+<p>At each layer, a small gating module looks at the current <code class="language-plaintext highlighter-rouge">[CLS]</code> representation and predicts which width ratio to use next.</p>
+
+<div class="flexi-diagram">
+  <h3>Width Is Capacity Inside A Layer</h3>
+  <div class="width-grid" aria-label="Width ratios">
+    <div>
+      <strong>25%</strong>
+      <span class="width-bar w25"></span>
+      <p>Use a small slice.</p>
+    </div>
+    <div>
+      <strong>50%</strong>
+      <span class="width-bar w50"></span>
+      <p>Use half the layer.</p>
+    </div>
+    <div>
+      <strong>75%</strong>
+      <span class="width-bar w75"></span>
+      <p>Use most components.</p>
+    </div>
+    <div>
+      <strong>100%</strong>
+      <span class="width-bar w100"></span>
+      <p>Use the full layer.</p>
+    </div>
+  </div>
+</div>
+
+<p>A single input may take a route like this:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Layer 1  -&gt; 50% width
+Layer 2  -&gt; 25% width
+Layer 3  -&gt; 75% width
+Layer 4  -&gt; 50% width
+...
+</code></pre></div></div>
+
+<p>This matters because Flexible BERT does not choose one small model for all future inputs. It chooses width <strong>per input, per layer</strong>.</p>
+
+<h1 id="how-does-the-gate-learn">How Does The Gate Learn?</h1>
+
+<p>This is one of the most elegant parts of the paper.</p>
+
+<p>The gate does not need a human to label examples as easy or hard. The model generates its own supervision by asking:</p>
+
+<blockquote>
+  <p>What is the smallest subnet that gets this example right?</p>
+</blockquote>
+
+<p>For a training example, run the available width subnets:</p>
+
+<div class="flexi-diagram">
+  <h3>Gate Label From The Smallest Correct Subnet</h3>
+  <div class="gate-labels">
+    <span class="bad">25% wrong</span>
+    <span class="bad">50% wrong</span>
+    <span class="good">75% correct</span>
+    <span class="good">100% correct</span>
+  </div>
+  <p class="flexi-callout">Gate target: choose 75%.</p>
+</div>
+
+<p>If 25% already gets the answer right, the gate learns that the input is easy. If only 100% works, the gate learns that the input is hard.</p>
+
+<p>This is a powerful teaching pattern: instead of manually defining input difficulty, let the model discover difficulty through which subnet succeeds.</p>
+
+<h1 id="what-does-depth-mean">What Does Depth Mean?</h1>
+
+<p>Depth is how many Transformer layers the input passes through.</p>
+
+<p>Standard BERT-Base has 12 layers and always uses all of them. Flexible BERT adds intermediate classifiers called <strong>off-ramps</strong>. In the paper, off-ramps are placed after layer 6 and layer 9, with the final classifier after layer 12.</p>
+
+<div class="flexi-diagram">
+  <h3>Depth Is How Long The Input Keeps Thinking</h3>
+  <div class="depth-road">
+    <span>Input</span>
+    <span>Layers 1-6</span>
+    <span class="ramp">Exit?</span>
+    <span>Layers 7-9</span>
+    <span class="ramp">Exit?</span>
+    <span>Layers 10-12</span>
+    <span>Final</span>
+  </div>
+</div>
+
+<p>At each off-ramp, the model asks:</p>
+
+<blockquote>
+  <p>Am I confident enough to stop?</p>
+</blockquote>
+
+<p>If yes, prediction happens early. If no, the input continues to deeper layers.</p>
+
+<h1 id="entropy-the-confidence-meter">Entropy: The Confidence Meter</h1>
+
+<p>For classification tasks, the paper uses entropy as an uncertainty score.</p>
+
+<p>Low entropy means the probability distribution is sharp:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Positive: 0.998
+Negative: 0.002
+</code></pre></div></div>
+
+<p>That is a confident prediction. The input can exit early.</p>
+
+<p>High entropy means the distribution is flat:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Positive: 0.52
+Negative: 0.48
+</code></pre></div></div>
+
+<p>That is uncertain. The input should continue.</p>
+
+<p>The rule is simple:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>low entropy  -&gt; confident -&gt; exit
+high entropy -&gt; uncertain -&gt; continue
+</code></pre></div></div>
+
+<p>For regression tasks such as STS-B, there is no softmax distribution. The paper instead uses prediction stability between layers: if the prediction is no longer changing much, the input can exit.</p>
+
+<h1 id="neural-grafting-do-not-throw-away-weak-parts">Neural Grafting: Do Not Throw Away Weak Parts</h1>
+
+<p>Flexible BERT is not only about routing at inference time. It also has to train many subnetworks inside one shared model.</p>
+
+<p>That creates a problem. Small subnetworks use only a subset of attention heads and FFN neurons. Large subnetworks use more. Some components can become under-trained or inactive.</p>
+
+<p>A pruning mindset would say:</p>
+
+<blockquote>
+  <p>If a component is weak, remove it.</p>
+</blockquote>
+
+<p>Neural grafting says:</p>
+
+<blockquote>
+  <p>If a component is weak, rehabilitate it.</p>
+</blockquote>
+
+<p>The model ranks attention heads and FFN neurons by importance. Then, inside a layer, weaker components receive a small weighted signal from stronger components.</p>
+
+<div class="flexi-diagram">
+  <h3>Neural Grafting As Rehabilitation</h3>
+  <div class="graft-row">
+    <div class="head strong">Strong head</div>
+    <div class="graft-arrow">alpha signal</div>
+    <div class="head weak">Weak head</div>
+    <div class="graft-result">Updated weak head</div>
+  </div>
+  <code>weak_new = alpha * strong + (1 - alpha) * weak</code>
+  <p>In the paper, alpha = 0.1 worked well across tasks.</p>
+</div>
+
+<p>This happens layer by layer. The same idea is applied to attention heads and FFN neurons.</p>
+
+<p>The important intuition is that grafting is not replacement. The weak component keeps most of its identity and receives a small nudge from a stronger peer.</p>
+
+<h1 id="the-full-training-story">The Full Training Story</h1>
+
+<p>Flexible BERT is built in stages.</p>
+
+<div class="flexi-diagram">
+  <h3>Training Pipeline</h3>
+  <ol class="pipeline">
+    <li><strong>Train width subnets:</strong> 25%, 50%, 75%, and 100% width learn from a full BERT teacher.</li>
+    <li><strong>Apply neural grafting:</strong> weak heads and FFN neurons are nudged using stronger components.</li>
+    <li><strong>Train depth subnets:</strong> depth ratios 0.5, 0.75, and 1.0 correspond roughly to 6, 9, and 12 layers.</li>
+    <li><strong>Fine-tune:</strong> all subnetworks are tuned on the downstream task.</li>
+    <li><strong>Train gates and off-ramps:</strong> the model learns width choices and early-exit decisions.</li>
+  </ol>
+</div>
+
+<p>Under the hood, the subnet training uses knowledge distillation. The smaller paths learn from the behavior of larger or full teacher models.</p>
+
+<h1 id="what-the-paper-reports">What The Paper Reports</h1>
+
+<p>The headline result is not merely “smaller BERT is faster.”</p>
+
+<p>The stronger claim is:</p>
+
+<blockquote>
+  <p>Adaptive BERT can improve the performance-cost tradeoff because it spends compute where it is useful.</p>
+</blockquote>
+
+<p>Compared with BERT-Base, the paper reports:</p>
+
+<ul>
+  <li>about <strong>45% fewer computations</strong></li>
+  <li>about <strong>2.3x CPU speedup</strong></li>
+  <li><strong>+1.3 average GLUE points</strong></li>
+  <li><strong>+2.2 SQuAD F1 points</strong></li>
+</ul>
+
+<p>The exact numbers depend on task and budget, but the direction is clear: dynamic routing gives a better Pareto frontier than simply picking one fixed compressed model.</p>
+
+<h1 id="why-gpu-speedup-is-harder-than-flop-reduction">Why GPU Speedup Is Harder Than FLOP Reduction</h1>
+
+<p>One subtle point in the paper is worth remembering.</p>
+
+<p>Width reduction lowers FLOPs, but that does not always translate into proportional GPU latency gains. GPUs are good at dense parallel computation, and irregularly using parts of a layer can be harder to exploit.</p>
+
+<p>Depth reduction is more directly useful for latency because skipping layers removes entire blocks of work.</p>
+
+<p>So a practical serving lesson is:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>width routing -&gt; good for reducing arithmetic
+depth routing -&gt; often more visible for latency
+width + depth -&gt; best conceptual tradeoff
+</code></pre></div></div>
+
+<h1 id="how-this-differs-from-related-ideas">How This Differs From Related Ideas</h1>
+
+<p>Flexible BERT sits at the intersection of several model-efficiency ideas.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Idea</th>
+      <th>Core question</th>
+      <th>Flexible BERT difference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Distillation</td>
+      <td>Can one smaller model imitate a larger teacher?</td>
+      <td>Flexible BERT trains many usable paths inside one model.</td>
+    </tr>
+    <tr>
+      <td>Pruning</td>
+      <td>Which weak components can we delete?</td>
+      <td>Neural grafting strengthens weak components instead.</td>
+    </tr>
+    <tr>
+      <td>Early exit</td>
+      <td>Can easy inputs stop at an intermediate layer?</td>
+      <td>Flexible BERT combines early exit with width routing.</td>
+    </tr>
+    <tr>
+      <td>DynaBERT</td>
+      <td>Can one model support multiple width/depth subnets?</td>
+      <td>Flexible BERT chooses paths dynamically for each input.</td>
+    </tr>
+    <tr>
+      <td>MatFormer</td>
+      <td>Can submodels be nested inside a larger model?</td>
+      <td>Flexible BERT focuses on runtime routing, not only static submodel selection.</td>
+    </tr>
+    <tr>
+      <td>Mixture of Experts</td>
+      <td>Which expert modules should handle this input?</td>
+      <td>Flexible BERT chooses how much of each BERT layer to use.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="a-professors-mental-model">A Professor’s Mental Model</h1>
+
+<p>If I were teaching this in a classroom, I would ask students to remember one image:</p>
+
+<blockquote>
+  <p>Flexible BERT is a hospital triage desk attached to BERT.</p>
+</blockquote>
+
+<p>The patient is the input.</p>
+
+<p>The gate asks:</p>
+
+<blockquote>
+  <p>How much capacity does this patient need at this stage?</p>
+</blockquote>
+
+<p>The off-ramp asks:</p>
+
+<blockquote>
+  <p>Is the diagnosis confident enough to stop?</p>
+</blockquote>
+
+<p>Neural grafting asks:</p>
+
+<blockquote>
+  <p>Are some departments under-trained, and can stronger departments help them recover?</p>
+</blockquote>
+
+<p>This gives us the three central mechanisms:</p>
+
+<ol>
+  <li><strong>Width routing</strong> decides how much of a layer to use.</li>
+  <li><strong>Depth routing</strong> decides when to stop.</li>
+  <li><strong>Neural grafting</strong> keeps the available subnetworks healthy.</li>
+</ol>
+
+<h1 id="final-takeaway">Final Takeaway</h1>
+
+<p>Flexible BERT changes the compression question.</p>
+
+<p>Instead of asking:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>How small can we make BERT?
+</code></pre></div></div>
+
+<p>it asks:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>How much BERT does this input need?
+</code></pre></div></div>
+
+<p>That is the deeper idea. Future efficient models should not only be smaller. They should be adaptive. They should learn when to think more, and just as importantly, when not to.</p>]]></content><author><name>Sankarshan Mridha</name></author><category term="bert" /><category term="efficiency" /><category term="dynamic-inference" /><summary type="html"><![CDATA[A teaching note on Flexible BERT: width routing, early exits, neural grafting, and how adaptive inference lets a model spend compute only where it helps.]]></summary></entry><entry><title type="html">Responsible AI</title><link href="https://msank00.github.io/blog/2021/02/06/blog_responsible_ai_part_1" rel="alternate" type="text/html" title="Responsible AI" /><published>2021-02-06T06:00:10+05:30</published><updated>2021-02-06T06:00:10+05:30</updated><id>https://msank00.github.io/blog/2021/02/06/blog_responsible_ai_part_1</id><content type="html" xml:base="https://msank00.github.io/blog/2021/02/06/blog_responsible_ai_part_1"><![CDATA[<h1 id="content">Content</h1>
 
 <ol id="markdown-toc">
   <li><a href="#content" id="markdown-toc-content">Content</a></li>
@@ -49,7 +460,7 @@
   <li><a href="https://medium.com/walmartglobaltech/bias-fairness-and-explainability-steps-towards-building-responsible-ai-dc735b06279">Blog</a></li>
 </ul>
 
-<hr />]]></content><author><name>Sankarshan Mridha</name></author><category term="responsibleai" /><summary type="html"><![CDATA[Content]]></summary></entry><entry><title type="html">Scalable Machine Learning</title><link href="http://localhost:4000/blog/2020/12/01/blog_206_scalabla_machine_learning" rel="alternate" type="text/html" title="Scalable Machine Learning" /><published>2020-12-01T06:00:10+05:30</published><updated>2020-12-01T06:00:10+05:30</updated><id>http://localhost:4000/blog/2020/12/01/blog_206_scalabla_machine_learning</id><content type="html" xml:base="http://localhost:4000/blog/2020/12/01/blog_206_scalabla_machine_learning"><![CDATA[<h1 id="content">Content</h1>
+<hr />]]></content><author><name>Sankarshan Mridha</name></author><category term="responsibleai" /><summary type="html"><![CDATA[Content]]></summary></entry><entry><title type="html">Scalable Machine Learning</title><link href="https://msank00.github.io/blog/2020/12/01/blog_206_scalabla_machine_learning" rel="alternate" type="text/html" title="Scalable Machine Learning" /><published>2020-12-01T06:00:10+05:30</published><updated>2020-12-01T06:00:10+05:30</updated><id>https://msank00.github.io/blog/2020/12/01/blog_206_scalabla_machine_learning</id><content type="html" xml:base="https://msank00.github.io/blog/2020/12/01/blog_206_scalabla_machine_learning"><![CDATA[<h1 id="content">Content</h1>
 
 <ol id="markdown-toc">
   <li><a href="#content" id="markdown-toc-content">Content</a></li>
@@ -577,7 +988,7 @@ to an entirely separate process and then start it along with your Flask web serv
 
 <hr />
 
-<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>]]></content><author><name>Sankarshan Mridha</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Content]]></summary></entry><entry><title type="html">ML DL Algorithm from scratch</title><link href="http://localhost:4000/blog/2020/11/29/blog_205_MLDL_from_scratch" rel="alternate" type="text/html" title="ML DL Algorithm from scratch" /><published>2020-11-29T06:00:10+05:30</published><updated>2020-11-29T06:00:10+05:30</updated><id>http://localhost:4000/blog/2020/11/29/blog_205_MLDL_from_scratch</id><content type="html" xml:base="http://localhost:4000/blog/2020/11/29/blog_205_MLDL_from_scratch"><![CDATA[<h1 id="content">Content</h1>
+<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>]]></content><author><name>Sankarshan Mridha</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Content]]></summary></entry><entry><title type="html">ML DL Algorithm from scratch</title><link href="https://msank00.github.io/blog/2020/11/29/blog_205_MLDL_from_scratch" rel="alternate" type="text/html" title="ML DL Algorithm from scratch" /><published>2020-11-29T06:00:10+05:30</published><updated>2020-11-29T06:00:10+05:30</updated><id>https://msank00.github.io/blog/2020/11/29/blog_205_MLDL_from_scratch</id><content type="html" xml:base="https://msank00.github.io/blog/2020/11/29/blog_205_MLDL_from_scratch"><![CDATA[<h1 id="content">Content</h1>
 
 <ol id="markdown-toc">
   <li><a href="#content" id="markdown-toc-content">Content</a></li>
@@ -613,7 +1024,7 @@ to an entirely separate process and then start it along with your Flask web serv
 
 <hr />
 
-<p><a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a></p>]]></content><author><name>Sankarshan Mridha</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Content]]></summary></entry><entry><title type="html">Statistical Analysis (Part 2)</title><link href="http://localhost:4000/blog/2020/07/21/blog_002_Statistical_Analysis_Part_2" rel="alternate" type="text/html" title="Statistical Analysis (Part 2)" /><published>2020-07-21T06:00:10+05:30</published><updated>2020-07-21T06:00:10+05:30</updated><id>http://localhost:4000/blog/2020/07/21/blog_002_Statistical_Analysis_Part_2</id><content type="html" xml:base="http://localhost:4000/blog/2020/07/21/blog_002_Statistical_Analysis_Part_2"><![CDATA[<h1 id="content">Content</h1>
+<p><a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a></p>]]></content><author><name>Sankarshan Mridha</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Content]]></summary></entry><entry><title type="html">Statistical Analysis (Part 2)</title><link href="https://msank00.github.io/blog/2020/07/21/blog_002_Statistical_Analysis_Part_2" rel="alternate" type="text/html" title="Statistical Analysis (Part 2)" /><published>2020-07-21T06:00:10+05:30</published><updated>2020-07-21T06:00:10+05:30</updated><id>https://msank00.github.io/blog/2020/07/21/blog_002_Statistical_Analysis_Part_2</id><content type="html" xml:base="https://msank00.github.io/blog/2020/07/21/blog_002_Statistical_Analysis_Part_2"><![CDATA[<h1 id="content">Content</h1>
 
 <ol id="markdown-toc">
   <li><a href="#content" id="markdown-toc-content">Content</a></li>
@@ -1197,7 +1608,7 @@ $
 
 <hr />
 
-<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>]]></content><author><name>Sankarshan Mridha</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Content]]></summary></entry><entry><title type="html">Statistical Analysis (Part 1)</title><link href="http://localhost:4000/blog/2020/07/20/blog_001_Statistical_Analysis_Part_1" rel="alternate" type="text/html" title="Statistical Analysis (Part 1)" /><published>2020-07-20T06:00:10+05:30</published><updated>2020-07-20T06:00:10+05:30</updated><id>http://localhost:4000/blog/2020/07/20/blog_001_Statistical_Analysis_Part_1</id><content type="html" xml:base="http://localhost:4000/blog/2020/07/20/blog_001_Statistical_Analysis_Part_1"><![CDATA[<ol id="markdown-toc">
+<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>]]></content><author><name>Sankarshan Mridha</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Content]]></summary></entry><entry><title type="html">Statistical Analysis (Part 1)</title><link href="https://msank00.github.io/blog/2020/07/20/blog_001_Statistical_Analysis_Part_1" rel="alternate" type="text/html" title="Statistical Analysis (Part 1)" /><published>2020-07-20T06:00:10+05:30</published><updated>2020-07-20T06:00:10+05:30</updated><id>https://msank00.github.io/blog/2020/07/20/blog_001_Statistical_Analysis_Part_1</id><content type="html" xml:base="https://msank00.github.io/blog/2020/07/20/blog_001_Statistical_Analysis_Part_1"><![CDATA[<ol id="markdown-toc">
   <li><a href="#what-is-p-value" id="markdown-toc-what-is-p-value">What is P Value?</a>    <ol>
       <li><a href="#statistical-significance" id="markdown-toc-statistical-significance">Statistical Significance</a></li>
       <li><a href="#what-is-p-values" id="markdown-toc-what-is-p-values">What is p-values?</a></li>
@@ -2264,7 +2675,7 @@ $l(\theta; Z) = \sum_{i=1}^{N}log[(1-\hat\pi)\hat\phi_\theta^1(y_i) + \hat\pi\ha
 
 <hr />
 
-<p><a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a></p>]]></content><author><name>Sankarshan Mridha</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Survey - Natural Language Understanding (NLU - Part 2)</title><link href="http://localhost:4000/blog/2020/05/01/blog_609_Survey_NLU_part_2" rel="alternate" type="text/html" title="Survey - Natural Language Understanding (NLU - Part 2)" /><published>2020-05-01T06:00:10+05:30</published><updated>2020-05-01T06:00:10+05:30</updated><id>http://localhost:4000/blog/2020/05/01/blog_609_Survey_NLU_part_2</id><content type="html" xml:base="http://localhost:4000/blog/2020/05/01/blog_609_Survey_NLU_part_2"><![CDATA[<h1 id="content">Content</h1>
+<p><a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a></p>]]></content><author><name>Sankarshan Mridha</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Survey - Natural Language Understanding (NLU - Part 2)</title><link href="https://msank00.github.io/blog/2020/05/01/blog_609_Survey_NLU_part_2" rel="alternate" type="text/html" title="Survey - Natural Language Understanding (NLU - Part 2)" /><published>2020-05-01T06:00:10+05:30</published><updated>2020-05-01T06:00:10+05:30</updated><id>https://msank00.github.io/blog/2020/05/01/blog_609_Survey_NLU_part_2</id><content type="html" xml:base="https://msank00.github.io/blog/2020/05/01/blog_609_Survey_NLU_part_2"><![CDATA[<h1 id="content">Content</h1>
 
 <ol id="markdown-toc">
   <li><a href="#content" id="markdown-toc-content">Content</a></li>
@@ -2942,7 +3353,7 @@ COMP 790.139 Processing: Grounded Language for Robotics</a></li>
 
 <hr />
 
-<p><a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a></p>]]></content><author><name>Sankarshan Mridha</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Content]]></summary></entry><entry><title type="html">Survey - Natural Language Understanding (NLU - Part 1)</title><link href="http://localhost:4000/blog/2020/04/24/blog_608_Survey_NLU_part_1" rel="alternate" type="text/html" title="Survey - Natural Language Understanding (NLU - Part 1)" /><published>2020-04-24T06:00:10+05:30</published><updated>2020-04-24T06:00:10+05:30</updated><id>http://localhost:4000/blog/2020/04/24/blog_608_Survey_NLU_part_1</id><content type="html" xml:base="http://localhost:4000/blog/2020/04/24/blog_608_Survey_NLU_part_1"><![CDATA[<h1 id="content">Content</h1>
+<p><a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a></p>]]></content><author><name>Sankarshan Mridha</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Content]]></summary></entry><entry><title type="html">Survey - Natural Language Understanding (NLU - Part 1)</title><link href="https://msank00.github.io/blog/2020/04/24/blog_608_Survey_NLU_part_1" rel="alternate" type="text/html" title="Survey - Natural Language Understanding (NLU - Part 1)" /><published>2020-04-24T06:00:10+05:30</published><updated>2020-04-24T06:00:10+05:30</updated><id>https://msank00.github.io/blog/2020/04/24/blog_608_Survey_NLU_part_1</id><content type="html" xml:base="https://msank00.github.io/blog/2020/04/24/blog_608_Survey_NLU_part_1"><![CDATA[<h1 id="content">Content</h1>
 
 <ol id="markdown-toc">
   <li><a href="#content" id="markdown-toc-content">Content</a></li>
@@ -3865,7 +4276,7 @@ noise-contrastive estimation</a></li>
 
 <hr />
 
-<p><a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a></p>]]></content><author><name>Sankarshan Mridha</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Content]]></summary></entry><entry><title type="html">Survey - BERT</title><link href="http://localhost:4000/blog/2020/04/13/blog_607_Survey_BERT" rel="alternate" type="text/html" title="Survey - BERT" /><published>2020-04-13T06:00:10+05:30</published><updated>2020-04-13T06:00:10+05:30</updated><id>http://localhost:4000/blog/2020/04/13/blog_607_Survey_BERT</id><content type="html" xml:base="http://localhost:4000/blog/2020/04/13/blog_607_Survey_BERT"><![CDATA[<link rel="stylesheet" href="/assets/css/markdownstyle.css" />
+<p><a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a></p>]]></content><author><name>Sankarshan Mridha</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Content]]></summary></entry><entry><title type="html">Survey - BERT</title><link href="https://msank00.github.io/blog/2020/04/13/blog_607_Survey_BERT" rel="alternate" type="text/html" title="Survey - BERT" /><published>2020-04-13T06:00:10+05:30</published><updated>2020-04-13T06:00:10+05:30</updated><id>https://msank00.github.io/blog/2020/04/13/blog_607_Survey_BERT</id><content type="html" xml:base="https://msank00.github.io/blog/2020/04/13/blog_607_Survey_BERT"><![CDATA[<link rel="stylesheet" href="/assets/css/markdownstyle.css" />
 
 <p class="olive"><strong>DISCLAIMER:</strong> I am not the original author of these contents. I compile from various sources to understand a concept and for future reference as I believe in DRY (Don’t Repeat Yourself !!). This blog is nothing but a SCRIBE for me. Solely for education purposes. I try my best to put all the due credits in the reference. If you find any content is incorrect or credit is missing, please contact me. I will be happy to add/edit them.</p>
 
@@ -4794,7 +5205,7 @@ The total number of parameters is 110 million.</p>
 
 <hr />
 
-<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>]]></content><author><name>Sankarshan Mridha</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Survey - Residual Network</title><link href="http://localhost:4000/blog/2020/03/17/blog_606_Survey_residual_network" rel="alternate" type="text/html" title="Survey - Residual Network" /><published>2020-03-17T06:00:10+05:30</published><updated>2020-03-17T06:00:10+05:30</updated><id>http://localhost:4000/blog/2020/03/17/blog_606_Survey_residual_network</id><content type="html" xml:base="http://localhost:4000/blog/2020/03/17/blog_606_Survey_residual_network"><![CDATA[<h1 id="content">Content</h1>
+<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>]]></content><author><name>Sankarshan Mridha</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Survey - Residual Network</title><link href="https://msank00.github.io/blog/2020/03/17/blog_606_Survey_residual_network" rel="alternate" type="text/html" title="Survey - Residual Network" /><published>2020-03-17T06:00:10+05:30</published><updated>2020-03-17T06:00:10+05:30</updated><id>https://msank00.github.io/blog/2020/03/17/blog_606_Survey_residual_network</id><content type="html" xml:base="https://msank00.github.io/blog/2020/03/17/blog_606_Survey_residual_network"><![CDATA[<h1 id="content">Content</h1>
 
 <ol id="markdown-toc">
   <li><a href="#content" id="markdown-toc-content">Content</a></li>
@@ -5375,1349 +5786,4 @@ $
 
 <hr />
 
-<p><a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a></p>]]></content><author><name>Sankarshan Mridha</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Content]]></summary></entry><entry><title type="html">Survey - Attention</title><link href="http://localhost:4000/blog/2020/03/15/blog_605_Survey_attention" rel="alternate" type="text/html" title="Survey - Attention" /><published>2020-03-15T06:00:10+05:30</published><updated>2020-03-15T06:00:10+05:30</updated><id>http://localhost:4000/blog/2020/03/15/blog_605_Survey_attention</id><content type="html" xml:base="http://localhost:4000/blog/2020/03/15/blog_605_Survey_attention"><![CDATA[<link rel="stylesheet" href="/assets/css/markdownstyle.css" />
-
-<p class="olive"><strong>DISCLAIMER:</strong> I am not the original author of these contents. I compile from various sources to understand a concept and for future reference as I believe in DRY (Don’t Repeat Yourself !!). This blog is nothing but a SCRIBE for me. Solely for education purposes. I try my best to put all the due credits in the reference. If you find any content is incorrect or credit is missing, please contact me. I will be happy to add/edit them.</p>
-
-<hr />
-
-<h1 id="content">Content</h1>
-
-<ol id="markdown-toc">
-  <li><a href="#content" id="markdown-toc-content">Content</a></li>
-  <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
-  <li><a href="#attention-high-level" id="markdown-toc-attention-high-level">Attention High Level</a>    <ol>
-      <li><a href="#how-to-compute-attention-score" id="markdown-toc-how-to-compute-attention-score">How to Compute Attention Score?</a></li>
-    </ol>
-  </li>
-  <li><a href="#transformer---visual-understanding" id="markdown-toc-transformer---visual-understanding">Transformer - Visual Understanding</a>    <ol>
-      <li><a href="#why-transformer-is-more-suitable-than-rnn-based-model" id="markdown-toc-why-transformer-is-more-suitable-than-rnn-based-model">Why Transformer is more suitable than RNN based model?</a></li>
-      <li><a href="#self-attention-the-look-at-each-other-part" id="markdown-toc-self-attention-the-look-at-each-other-part">Self-Attention: the “Look at Each Other” Part</a></li>
-      <li><a href="#self-attention-in-detail" id="markdown-toc-self-attention-in-detail">Self-Attention in Detail</a></li>
-      <li><a href="#query-key-and-value-in-self-attention" id="markdown-toc-query-key-and-value-in-self-attention">Query, Key, and Value in Self-Attention</a></li>
-      <li><a href="#matrix-calculation-of-self-attention" id="markdown-toc-matrix-calculation-of-self-attention">Matrix Calculation of Self-Attention</a></li>
-      <li><a href="#masked-self-attention-dont-look-ahead-for-the-decoder" id="markdown-toc-masked-self-attention-dont-look-ahead-for-the-decoder">Masked Self-Attention: “Don’t Look Ahead” for the Decoder</a></li>
-      <li><a href="#but-how-can-the-decoder-look-ahead" id="markdown-toc-but-how-can-the-decoder-look-ahead">But how can the decoder look ahead?</a></li>
-      <li><a href="#multi-headed-attention-independently-focus-on-different-things" id="markdown-toc-multi-headed-attention-independently-focus-on-different-things">Multi Headed Attention: Independently Focus on Different Things</a></li>
-      <li><a href="#positional-encoding" id="markdown-toc-positional-encoding">Positional Encoding</a></li>
-      <li><a href="#the-residuals" id="markdown-toc-the-residuals">The Residuals</a></li>
-      <li><a href="#the-decoder-side" id="markdown-toc-the-decoder-side">The Decoder Side</a></li>
-    </ol>
-  </li>
-  <li><a href="#transformer---deeper-understanding" id="markdown-toc-transformer---deeper-understanding">Transformer - Deeper Understanding</a>    <ol>
-      <li><a href="#comapre-transformer-with-seq2seq-model" id="markdown-toc-comapre-transformer-with-seq2seq-model">Comapre Transformer with Seq2Seq model</a></li>
-      <li><a href="#multi-head-attention" id="markdown-toc-multi-head-attention">Multi-Head Attention</a></li>
-      <li><a href="#multi-head-self-attention-what-are-these-heads-doing" id="markdown-toc-multi-head-self-attention-what-are-these-heads-doing">Multi-Head Self-Attention: What are these heads doing?</a></li>
-      <li><a href="#the-most-important-heads-are-interpretable" id="markdown-toc-the-most-important-heads-are-interpretable">The Most Important Heads are Interpretable</a></li>
-      <li><a href="#position-wise-feed-forward-networks" id="markdown-toc-position-wise-feed-forward-networks">Position-wise Feed-Forward Networks</a></li>
-      <li><a href="#add-and-norm" id="markdown-toc-add-and-norm">Add and Norm</a></li>
-      <li><a href="#positional-encoding-1" id="markdown-toc-positional-encoding-1">Positional Encoding</a></li>
-      <li><a href="#what-is-position-wise-ffn" id="markdown-toc-what-is-position-wise-ffn">What is position wise FFN?</a></li>
-      <li><a href="#encoder" id="markdown-toc-encoder">Encoder</a></li>
-      <li><a href="#decoder" id="markdown-toc-decoder">Decoder</a></li>
-    </ol>
-  </li>
-  <li><a href="#subword-segmentation-byte-pair-encoding" id="markdown-toc-subword-segmentation-byte-pair-encoding">Subword Segmentation: Byte Pair Encoding</a>    <ol>
-      <li><a href="#dealing-with-rare-words" id="markdown-toc-dealing-with-rare-words">Dealing with rare words</a></li>
-      <li><a href="#the-origins-of-byte-pair-encoding" id="markdown-toc-the-origins-of-byte-pair-encoding">The Origins of Byte Pair Encoding</a></li>
-      <li><a href="#repurposing-bpe-for-subword-tokenization" id="markdown-toc-repurposing-bpe-for-subword-tokenization">Repurposing BPE for Subword Tokenization</a></li>
-      <li><a href="#training-learn-bpe-rules" id="markdown-toc-training-learn-bpe-rules">Training: learn BPE rules</a></li>
-      <li><a href="#inference-segment-a-text" id="markdown-toc-inference-segment-a-text">Inference: segment a text</a></li>
-      <li><a href="#what-makes-bpe-the-secret-sauce" id="markdown-toc-what-makes-bpe-the-secret-sauce">What makes BPE the secret sauce?</a></li>
-    </ol>
-  </li>
-  <li><a href="#how-does-attention-work-" id="markdown-toc-how-does-attention-work-">How does Attention Work ?</a>    <ol>
-      <li><a href="#attention" id="markdown-toc-attention">Attention</a></li>
-      <li><a href="#encoder-decoder-with-attention" id="markdown-toc-encoder-decoder-with-attention">Encoder-Decoder with Attention</a></li>
-      <li><a href="#more-on-attention" id="markdown-toc-more-on-attention">More on Attention</a></li>
-      <li><a href="#what-is-transformer-and-its-pros-and-cons" id="markdown-toc-what-is-transformer-and-its-pros-and-cons">What is Transformer and it’s pros and cons?</a></li>
-    </ol>
-  </li>
-  <li><a href="#attention-is-all-you-need" id="markdown-toc-attention-is-all-you-need">Attention is All You Need</a>    <ol>
-      <li><a href="#positional-encoding-2" id="markdown-toc-positional-encoding-2">Positional Encoding</a></li>
-      <li><a href="#transformer-machine-translation" id="markdown-toc-transformer-machine-translation">Transformer Machine Translation</a></li>
-      <li><a href="#transformer-language-pre-training" id="markdown-toc-transformer-language-pre-training">Transformer Language Pre-training</a></li>
-      <li><a href="#multi-head-attention-1" id="markdown-toc-multi-head-attention-1">Multi-head attention</a></li>
-    </ol>
-  </li>
-  <li><a href="#machine-translation-seq2seq-model" id="markdown-toc-machine-translation-seq2seq-model">Machine Translation, seq2seq model</a>    <ol>
-      <li><a href="#encoder-decoder-model" id="markdown-toc-encoder-decoder-model">Encoder-Decoder Model</a></li>
-      <li><a href="#neural-machine-translation-nmt" id="markdown-toc-neural-machine-translation-nmt">Neural Machine Translation (NMT)</a></li>
-    </ol>
-  </li>
-</ol>
-
-<hr />
-
-<h1 id="introduction">Introduction</h1>
-
-<blockquote>
-  <p>:bulb: … in classic <code class="language-plaintext highlighter-rouge">seq2seq</code> model, encoder RNN passes the last hidden state as <code class="language-plaintext highlighter-rouge">context_vector</code> to the decoder. But in Attention model, the encoder RNN passes all the hidden states to the decoder and takes linear combination of all the encoder hidden states…</p>
-</blockquote>
-
-<p>From the blog of <a href="https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/">Jay Alammar</a></p>
-
-<p>Sequence-to-sequence models are deep learning models that have achieved a lot of success in tasks like machine translation, text summarization, and image captioning. Google Translate started using such a <a href="https://blog.google/products/translate/found-translation-more-accurate-fluent-sentences-google-translate/">model</a> in production in late 2016. These models are explained in the two pioneering papers (<a href="https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf">Sutskever et al. 2014</a>, <a href="http://emnlp2014.org/papers/pdf/EMNLP2014179.pdf">Cho et al., 2014</a>).</p>
-
-<p>In neural machine translation, a sequence is a series of words, processed one after another. The output is, likewise, a series of words:</p>
-
-<center>
-<figure class="video_container">
-  <iframe src="https://jalammar.github.io/images/seq2seq_2.mp4" frameborder="0" allowfullscreen="true" width="100%" height="150"> </iframe>
-</figure>
-</center>
-
-<p>Under the hood, the model is composed of an <code class="language-plaintext highlighter-rouge">encoder</code> and a <code class="language-plaintext highlighter-rouge">decoder</code>.</p>
-
-<p>The <code class="language-plaintext highlighter-rouge">encoder</code> processes each item in the input sequence, it compiles the information it captures into a vector (called the <code class="language-plaintext highlighter-rouge">context</code>). After processing the entire input sequence, the encoder sends the context over to the <code class="language-plaintext highlighter-rouge">decoder</code>, which begins producing the output sequence item by item.</p>
-
-<center>
-<figure class="video_container">
-  <iframe src="https://jalammar.github.io/images/seq2seq_4.mp4" frameborder="0" allowfullscreen="true" width="100%" height="150"> </iframe>
-</figure>
-</center>
-
-<p>The context is nothing but a <strong>vector of floats</strong>.  It is basically the number of hidden units in the encoder RNN.</p>
-
-<p>The <code class="language-plaintext highlighter-rouge">context</code> vector turned out to be a bottleneck for these types of models. It made it challenging for the models to deal with long sentences. A solution was proposed in <a href="https://arxiv.org/abs/1409.0473">Bahdanau et al., 2014</a> and <a href="https://arxiv.org/abs/1508.04025">Luong et al., 2015</a>. These papers introduced and refined a technique called <strong>Attention</strong>, which highly improved the quality of machine translation systems. Attention allows the model to focus on the relevant parts of the input sequence as needed.</p>
-
-<p>An attention model differs from a classic sequence-to-sequence model in two main ways:</p>
-
-<p>:atom_symbol: First, the <code class="language-plaintext highlighter-rouge">encoder</code> passes a lot more data to the <code class="language-plaintext highlighter-rouge">decoder</code>. Instead of passing the last hidden state of the encoding stage, the encoder <strong>passes all the hidden states to the decoder</strong>:</p>
-
-<center>
-<figure class="video_container">
-  <iframe src="https://jalammar.github.io/images/seq2seq_7.mp4" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
-</figure>
-</center>
-
-<p class="red"><strong>Attention mechanism takes a linear combination of all the encoder hidden states</strong></p>
-
-<p>:atom_symbol: Second, an attention decoder does an extra step before producing its output. In order to focus on the parts of the input that are relevant to this decoding time step, the decoder does the following:</p>
-
-<ul>
-  <li>Look at the set of encoder hidden states it received – each encoder hidden states is most associated with a certain word in the input sentence</li>
-  <li>Give each hidden states a <code class="language-plaintext highlighter-rouge">score</code> (let’s ignore how the scoring is done for now)</li>
-  <li>Multiply each hidden states by its <code class="language-plaintext highlighter-rouge">softmaxed score</code>, thus amplifying hidden states with high scores, and drowning out hidden states with low scores</li>
-</ul>
-
-<center>
-<figure class="video_container">
-  <iframe src="https://jalammar.github.io/images/attention_process.mp4" frameborder="0" allowfullscreen="true" width="100%" height="350"> </iframe>
-</figure>
-</center>
-
-<center>
-<figure class="video_container">
-  <iframe src="https://jalammar.github.io/images/attention_tensor_dance.mp4" frameborder="0" allowfullscreen="true" width="100%" height="350"> </iframe>
-</figure>
-</center>
-
-<blockquote>
-  <p>The attention-mechanism looks at an input sequence and decides at each step which other parts of the sequence are important.</p>
-</blockquote>
-
-<p>Neural networks, in particular recurrent neural networks (RNNs), are now at the core of the leading approaches to language understanding tasks such as <strong>language modeling, machine translation and question answering</strong>.</p>
-
-<p>In <a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a>, the authors introduce the <strong>Transformer</strong>, a novel neural network architecture based on a self-attention mechanism that we believe to be particularly well suited for language understanding.</p>
-
-<p>In the paper, the author shows that the Transformer outperforms both recurrent and convolutional models on academic <code class="language-plaintext highlighter-rouge">English to German</code> and <code class="language-plaintext highlighter-rouge">English to French</code> translation benchmarks. On top of higher translation quality, the Transformer requires <strong>less computation to train</strong> and is a much better fit for modern machine learning hardware, speeding up training by up to an order of magnitude.</p>
-
-<p>The <strong>sequence-to-sequence</strong> neural network models are widely used for NLP. A popular type of these models is an <strong>encoder-decoder</strong>. There, one part of the network — encoder — encodes the input sequence into a fixed-length context vector. This vector is an internal representation of the text. This context vector is then decoded into the output sequence by the decoder. See an example:</p>
-
-<center>
-<img src="https://miro.medium.com/max/900/1*1ui7iDq956eDs-mAZHEdIg.png" width="600" />
-</center>
-
-<p>However, there is a catch with the common encoder-decoder approach: a neural network compresses all the information of an input source sentence into a fixed-length vector. It has been shown that this leads to a decline in performance when dealing with long sentences. The attention mechanism was introduced by Bahdanau in “Neural Machine Translation by Jointly Learning to Align and Translate” to alleviate this problem.</p>
-
-<p>:paperclip: <strong>Reference:</strong></p>
-
-<ul>
-  <li><a href="https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/">Attention Explained by Jay Alammar</a> :fire: :fire: MUST read</li>
-</ul>
-
-<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>
-
-<hr />
-
-<h1 id="attention-high-level">Attention High Level</h1>
-
-<p>An attention mechanism is a part of a neural network. At each decoder step, it decides which source parts are more important. In this setting, the encoder does not have to compress the whole source into a single vector - it gives representations for all source tokens (for example, all RNN states instead of the last one).</p>
-
-<center>
-
-<img src="https://lena-voita.github.io/resources/lectures/seq2seq/attention/general_scheme-min.png" width="600" />
-
-</center>
-
-<p><em>*<a href="https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#attention_idea">image source</a></em></p>
-
-<center>
-
-<img src="https://lena-voita.github.io/resources/lectures/seq2seq/attention/computation_scheme-min.png" width="600" />
-
-</center>
-
-<p><em>*<a href="https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#attention_idea">image source</a></em></p>
-
-<p>Everything is differentiable - learned end-to-end!
-The main idea that a network can learn which input parts are more important at each step. Since everything here is differentiable (attention function, softmax, and all the rest), a model with attention can be trained end-to-end. You don’t need to specifically teach the model to pick the words you want - the model itself will learn to pick important information.</p>
-
-<h2 id="how-to-compute-attention-score">How to Compute Attention Score?</h2>
-
-<p>In the general pipeline above, we haven’t specified how exactly we compute attention scores. You can apply any function you want - even a very complicated one. However, usually you don’t need to - there are several popular and simple variants which work quite well.</p>
-
-<center>
-
-<img src="https://lena-voita.github.io/resources/lectures/seq2seq/attention/attn_score_what_is_here-min.png" width="200" />
-
-</center>
-
-<center>
-
-<img src="https://lena-voita.github.io/resources/lectures/seq2seq/attention/score_functions-min.png" width="600" />
-
-</center>
-
-<p>Most popular is <strong>Bahdanau Model</strong></p>
-
-<ul>
-  <li>encoder: bidirectional</li>
-  <li>To better encoder each source word, the encoder has two RNNs, forward and backward, which read input in the opposite directions. For each token, states of the two RNNs are concatenated.</li>
-  <li>attention score: multi-layer perceptron</li>
-  <li>To get an attention score, apply a multi-layer perceptron (MLP) to an encoder state and a decoder state.
-attention applied: between decoder steps</li>
-  <li>Attention is used between decoder steps: state $h_{t-1}$  is used to compute attention and its output $c^{(t)}$ , and both $h_{t-1}$ and $c^{(t)}$ are passed to the decoder at step $t$ .</li>
-</ul>
-
-<center>
-
-<img src="https://lena-voita.github.io/resources/lectures/seq2seq/attention/bahdanau_model-min.png" width="600" />
-
-</center>
-
-<p><em>observe the color coding for different vectors</em></p>
-
-<p><strong>Reference:</strong></p>
-
-<ul>
-  <li><a href="https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#attention_idea">Attention: A High-Level View - Lena Voita</a> :fire: :zap:</li>
-</ul>
-
-<hr />
-
-<h1 id="transformer---visual-understanding">Transformer - Visual Understanding</h1>
-
-<p>:bulb: The transformer has <strong>no recurrent or convolutional structure</strong>, even with the positional encoding added to the embedding vector, the sequential order is only weakly incorporated. For problems sensitive to the positional dependency like reinforcement learning, this can be a big problem.</p>
-
-<p>:dart: It presented a lot of <strong>improvements</strong> to the <code class="language-plaintext highlighter-rouge">soft attention</code> and make it possible to <strong>do seq2seq modeling without recurrent network units</strong>. The proposed <code class="language-plaintext highlighter-rouge">transformer</code> model is entirely built on the self-attention mechanisms (<strong>scaled dot product attention</strong>) without using sequence-aligned recurrent architecture.</p>
-
-<blockquote>
-  <p>Transformer introduced a new modeling paradigm: in contrast to previous models where processing within encoder and decoder was done with recurrence or convolutions, Transformer operates using only attention.</p>
-</blockquote>
-
-<center>
-
-<img src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/modeling_table-min.png" width="400" />
-
-</center>
-
-<p><strong>MUST READ:</strong></p>
-
-<ul>
-  <li><a href="https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro">Transformer: Attention is All You Need - Lena Voita</a> :zap: :fire: :zap:</li>
-  <li><a href="https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html#a-family-of-attention-mechanisms">Attention Attention !</a>, <a href="https://paperswithcode.com/method/multi-head-attention">Multi_head_attention</a> :fire:</li>
-  <li><a href="https://nlp.seas.harvard.edu/2018/04/03/attention.html">Annotated Transformer</a> :fire:</li>
-  <li><a href="https://theaisummer.com/transformer/">How Transformers work in deep learning and NLP: an intuitive introduction</a> :fire:</li>
-</ul>
-
-<p>Must Watch :fire:</p>
-
-<h2 id="why-transformer-is-more-suitable-than-rnn-based-model">Why Transformer is more suitable than RNN based model?</h2>
-
-<p>When encoding a sentence, RNNs won’t understand what bank means until they read the whole sentence, and this can take a while for long sequences. In contrast, in Transformer’s encoder tokens interact with each other all at once.</p>
-
-<center>
-
-<img src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/rnn_vs_transformer_river-min.png" width="500" />
-
-</center>
-
-<p>Intuitively, Transformer’s encoder can be thought of as a sequence of reasoning steps (layers). At each step, tokens look at each other (this is where we need attention - self-attention), exchange information and try to understand each other better in the context of the whole sentence. This happens in several layers.</p>
-
-<p>In each decoder layer, tokens of the prefix also interact with each other via a self-attention mechanism, but additionally, they look at the encoder states (without this, no translation can happen, right?).</p>
-
-<h2 id="self-attention-the-look-at-each-other-part">Self-Attention: the “Look at Each Other” Part</h2>
-
-<p>Self-attention is one of the key components of the model. The difference between attention and self-attention is that self-attention operates between representations of the same nature: e.g., all encoder states in some layer.</p>
-
-<p>There are 3 types of attention architecture</p>
-
-<ul>
-  <li>Attention inside Encoder block (<strong>self-attention</strong>)
-    <ul>
-      <li><strong>from:</strong> each state from a set of states</li>
-      <li><strong>at:</strong> all other states in the same set.</li>
-    </ul>
-  </li>
-  <li>Attention inside Decoder block
-    <ul>
-      <li><strong>Masked Self-Attention:</strong> “Don’t Look Ahead” for the Decoder</li>
-    </ul>
-  </li>
-  <li>Attention inside Encoder-Decoder communication
-    <ul>
-      <li><strong>From:</strong> one current decoder state</li>
-      <li><strong>At:</strong> all encoder states</li>
-    </ul>
-  </li>
-</ul>
-
-<p>Self-attention is the part of the model where tokens interact with each other. Each token “looks” at other tokens in the sentence with an attention mechanism, gathers context, and updates the previous representation of “self”. Look at the illustration.</p>
-
-<center>
-<figure class="video_container">
-  <iframe src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/encoder_self_attention.mp4" frameborder="0" allowfullscreen="true" width="70%" height="350"> </iframe>
-</figure>
-</center>
-
-<hr />
-
-<center>
-
-<figure class="video_container">
-  <iframe src="https://www.youtube.com/embed/mV8c9dJpxQE" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
-</figure>
-
-</center>
-
-<p><em>*If above link is broken, click <a href="https://www.youtube.com/watch?v=mV8c9dJpxQE">here</a></em></p>
-
-<ul>
-  <li>The Transformer uses attention to boost the speed with which these models can be trained.</li>
-  <li>The biggest benefit, however, comes from how The Transformer lends itself to <strong>parallelization</strong>.</li>
-  <li>At the core of Transformer, there is <code class="language-plaintext highlighter-rouge">encoder-decoder</code> block</li>
-</ul>
-
-<p>The encoding component is a stack of encoders (the paper stacks six of them on top of each other – there’s nothing magical about the number six, one can definitely experiment with other arrangements). The decoding component is a stack of decoders of the same number.</p>
-
-<center>
-<img src="https://jalammar.github.io/images/t/The_transformer_encoder_decoder_stack.png" width="500" alt="image" />
-</center>
-
-<p class="purple"><strong>The encoders are all identical in structure (yet they do not share weights)</strong>.</p>
-
-<ul>
-  <li>Each <code class="language-plaintext highlighter-rouge">encoder</code> block is a combination of a FFNN and Self-Attention</li>
-</ul>
-
-<center>
-<img src="https://jalammar.github.io/images/t/Transformer_encoder.png" width="500" alt="image" />
-</center>
-
-<ul>
-  <li>The encoder’s inputs first flow through a self-attention layer</li>
-</ul>
-
-<p class="orange"><strong>A layer that helps the encoder look at other words in the input sentence as it encodes a specific word.</strong></p>
-
-<ul>
-  <li>The FFNNs are all independent, this helps to run the code in parallel.</li>
-</ul>
-
-<p>As multiple encoders are stacked on top of each other, <strong>ENCODER#0</strong> receives the <code class="language-plaintext highlighter-rouge">regular word embedding</code> which passes through self-attention layer followed by FFNN. The output of these FFNN are form of <code class="language-plaintext highlighter-rouge">enriched word embedding</code> which act as input to the <strong>ENCODER#1</strong>.</p>
-
-<p>The decoder has both those layers, but between them is an attention layer that helps the decoder focus on relevant parts of the input sentence</p>
-
-<center>
-<img src="https://jalammar.github.io/images/t/Transformer_decoder.png" width="500" alt="image" />
-</center>
-
-<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>
-
-<hr />
-
-<h2 id="self-attention-in-detail">Self-Attention in Detail</h2>
-
-<h2 id="query-key-and-value-in-self-attention">Query, Key, and Value in Self-Attention</h2>
-
-<p>Formally, this intuition is implemented with a <code class="language-plaintext highlighter-rouge">query-key-value</code> attention. Each input token in self-attention receives three representations corresponding to the roles it can play:</p>
-
-<ul>
-  <li>query - asking for information;</li>
-  <li>key - saying that it has some information;</li>
-  <li>value - giving the information.</li>
-</ul>
-
-<p>The query is used when a token looks at others - it’s seeking the information to understand itself better. The key is responding to a query’s request: it is used to compute attention weights. The value is used to compute attention output: it gives information to the tokens which “say” they need it (i.e. assigned large weights to this token).</p>
-
-<center>
-<img src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/qkv_explained-min.png" width="400" alt="image" />
-</center>
-
-<p>The formula for computing attention output is as follows:</p>
-
-<center>
-<img src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/qkv_attention_formula-min.png" width="250" alt="image" />
-</center>
-
-<p><em>*<a href="https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro">image source</a></em></p>
-
-<p>Must Watch :fire:</p>
-
-<center>
-
-<figure class="video_container">
-  <iframe src="https://www.youtube.com/embed/flHtAUGB0PU" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
-</figure>
-
-</center>
-
-<p><em>*If above link is broken, click <a href="https://www.youtube.com/watch?v=flHtAUGB0PU&amp;t=1s">here</a></em></p>
-
-<p><strong>TL;DR:</strong></p>
-
-<ul>
-  <li>
-    <p>The major component in the transformer is the unit of <strong>multi-head self-attention mechanism</strong>. The transformer views the encoded representation of the input as a set of <strong>key-value</strong> pairs, ($\mathbf{K},\mathbf{V}$), both of dimension $n$ (input sequence length); in the context of NMT, both the keys and values are the encoder hidden states. In the decoder, the previous output is compressed into a <strong>query</strong> ($\mathbf{Q}$ of dimension $m$) and the next output is produced by mapping this query and the set of keys and values.</p>
-  </li>
-  <li>
-    <p>The transformer adopts the <code class="language-plaintext highlighter-rouge">scaled dot-product attention</code>: the output is a weighted sum of the values, where the weight assigned to each value is determined by the dot-product of the query with all the keys:</p>
-  </li>
-</ul>
-
-<center>
-
-$
-\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}(\frac{\mathbf{Q}\mathbf{K}^\top}{\sqrt{n}})\mathbf{V}
-$
-
-</center>
-
-<p>:atom_symbol: <strong>Details:</strong></p>
-
-<p>The <strong>first step</strong> in calculating self-attention is to create three vectors from each of the encoder’s input vectors (in this case, the embedding of each word). So for each word, we create a <code class="language-plaintext highlighter-rouge">Query vector</code>, a <code class="language-plaintext highlighter-rouge">Key vector</code>, and a <code class="language-plaintext highlighter-rouge">Value vector</code>. These vectors are created by multiplying the embedding by three matrices that we trained during the training process.</p>
-
-<center>
-<img src="https://jalammar.github.io/images/t/transformer_self_attention_vectors.png" width="500" />
-</center>
-
-<ul>
-  <li>Multiplying $x_1$ by the $W^Q$ weight matrix produces $q_1$, the <code class="language-plaintext highlighter-rouge">query</code> vector associated with that word. We end up creating a <code class="language-plaintext highlighter-rouge">query</code>, a <code class="language-plaintext highlighter-rouge">key</code>, and a <code class="language-plaintext highlighter-rouge">value</code> projection of each word in the input sentence.</li>
-</ul>
-
-<p class="red"><strong>What are the “query”, “key”, and “value” vectors?</strong></p>
-
-<ul>
-  <li>They’re abstractions that are useful for calculating and thinking about attention.</li>
-</ul>
-
-<p>The <strong>second step</strong> in calculating self-attention is to calculate a <code class="language-plaintext highlighter-rouge">score</code>. Say we’re calculating the self-attention for the first word in this example, <code class="language-plaintext highlighter-rouge">Thinking</code>. We need to <strong>score each word of the input sentence against this word</strong>. The score determines how much focus to place on other parts of the input sentence as we encode a word at a certain position.</p>
-
-<p>The <strong>third and forth steps</strong> are to divide the scores by 8 (the square root of the dimension of the key vectors used in the paper – 64. This leads to having more stable gradients and then normalize them by taking Softmax of these scores.</p>
-
-<p>This softmax score determines how much each word will be expressed at this position.</p>
-
-<p>The <strong>fifth step</strong> is to multiply each value vector by the softmax score (in preparation to sum them up). The intuition here is to <code class="language-plaintext highlighter-rouge">keep intact the values</code> of the word(s) we want to focus on, and <code class="language-plaintext highlighter-rouge">drown-out irrelevant words</code> (by multiplying them by tiny numbers like $0.001$, for example).</p>
-
-<p>The <strong>sixth step</strong> is to sum up the weighted value vectors. This produces the output of the self-attention layer at <strong>this position (for the first word)</strong>.</p>
-
-<center>
-<img src="https://jalammar.github.io/images/t/self-attention-output.png" width="500" alt="image" />
-</center>
-
-<p>The resulting vector is one we can send along to the feed-forward neural network. In the actual implementation, however, this calculation is done in matrix form for faster processing.</p>
-
-<h2 id="matrix-calculation-of-self-attention">Matrix Calculation of Self-Attention</h2>
-
-<p>The first step is to calculate the <code class="language-plaintext highlighter-rouge">Query</code>, <code class="language-plaintext highlighter-rouge">Key</code>, and <code class="language-plaintext highlighter-rouge">Value</code> matrices. We do that by packing our embeddings into a matrix $X$, and multiplying it by the weight matrices we’ve trained ($W^Q$, $W^K$, $W^V$).</p>
-
-<center>
-<img src="https://jalammar.github.io/images/t/self-attention-matrix-calculation.png" width="300" alt="image" />
-</center>
-
-<ul>
-  <li>Every row in the X matrix corresponds to a word in the input sentence.</li>
-</ul>
-
-<p>Finally, since we’re dealing with matrices, we can condense <strong>steps two</strong> through <strong>six</strong> in one formula to calculate the outputs of the self-attention layer.</p>
-
-<center>
-<img src="https://jalammar.github.io/images/t/self-attention-matrix-calculation-2.png" width="500" alt="image" />
-</center>
-
-<center>
-
-<figure class="video_container">
-  <iframe src="https://www.youtube.com/embed/VvKRZXvDzM4" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
-</figure>
-
-</center>
-
-<p><em>*self attention: CMU Neural Nets for NLP 2021 - 
-Graham Neubig</em></p>
-
-<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>
-
-<hr />
-
-<h2 id="masked-self-attention-dont-look-ahead-for-the-decoder">Masked Self-Attention: “Don’t Look Ahead” for the Decoder</h2>
-
-<p>In the decoder, there’s also a self-attention mechanism: it is the one performing the “look at the previous tokens” function.</p>
-
-<p>In the decoder, self-attention is a bit different from the one in the encoder. While the encoder receives all tokens at once and the tokens can look at all tokens in the input sentence, in the decoder, we generate one token at a time: during generation, we don’t know which tokens we’ll generate in future.</p>
-
-<p>To forbid the decoder to look ahead, the model uses masked self-attention: future tokens are masked out. Look at the illustration.</p>
-
-<center>
-<figure class="video_container">
-  <iframe src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/masked_self_attn.mp4" frameborder="0" allowfullscreen="true" width="70%" height="350"> </iframe>
-</figure>
-</center>
-
-<h2 id="but-how-can-the-decoder-look-ahead">But how can the decoder look ahead?</h2>
-<p>During generation, it can’t - we don’t know what comes next. But in training, we use reference translations (which we know). Therefore, in training, we feed the whole target sentence to the decoder - without masks, the tokens would “see future”, and this is not what we want.</p>
-
-<p>This is done for computational efficiency: the Transformer does not have a recurrence, so all tokens can be processed at once. This is one of the reasons it has become so popular for machine translation - it’s much faster to train than the once dominant recurrent models. For recurrent models, one training step requires O(len(source) + len(target)) steps, but for Transformer, it’s O(1), i.e. constant.</p>
-
-<h2 id="multi-headed-attention-independently-focus-on-different-things">Multi Headed Attention: Independently Focus on Different Things</h2>
-
-<blockquote>
-  <p>:bulb: The idea behind it is that whenever you are translating a word, you may pay <code class="language-plaintext highlighter-rouge">different attention</code> to each word based on the type of <code class="language-plaintext highlighter-rouge">queries</code> that you are asking. The images below show what that means.</p>
-</blockquote>
-
-<p><strong>Input:</strong> <code class="language-plaintext highlighter-rouge">Bob kicked the ball.</code></p>
-
-<ul>
-  <li>Query 1: <code class="language-plaintext highlighter-rouge">Who kicked?</code> $\rightarrow$ Value 1: <code class="language-plaintext highlighter-rouge">Bob</code></li>
-  <li>Query 2: <code class="language-plaintext highlighter-rouge">What kicked?</code> $\rightarrow$ Value 2: <code class="language-plaintext highlighter-rouge">Ball</code></li>
-  <li>Query 3: <code class="language-plaintext highlighter-rouge">Did what?</code> $\rightarrow$ Value 3: <code class="language-plaintext highlighter-rouge">Kicked</code></li>
-</ul>
-
-<p>Depending on the answer, the translation of the word to another language can change. Or ask other questions. [pay attention to this, for <strong>Multi Head Attention</strong> later]</p>
-
-<p><img src="/assets/images/image_20_Attention_10.png" alt="image" />
-<img src="/assets/images/image_20_Attention_11.png" alt="image" /></p>
-
-<p><em>must read: <a href="https://web.stanford.edu/class/cs224n/slides/cs224n-2019-lecture14-transformers.pdf">slide</a>, <a href="https://towardsdatascience.com/transformers-141e32e69591">blog</a></em></p>
-
-<p>Must Watch :fire:</p>
-
-<center>
-
-<figure class="video_container">
-  <iframe src="https://www.youtube.com/embed/N9AGY-Z6tbM" frameborder="0" allowfullscreen="true" width="100%" height="300"> </iframe>
-</figure>
-
-</center>
-
-<p><em>*If above link is broken, click <a href="https://www.youtube.com/watch?v=N9AGY-Z6tbM&amp;t=1s">here</a></em></p>
-
-<p>:atom_symbol: <strong>TL;DR:</strong></p>
-
-<blockquote>
-  <p>:bulb: Rather than only computing the attention once, the multi-head mechanism runs through the scaled dot-product attention multiple times in parallel.</p>
-</blockquote>
-
-<blockquote>
-  <p>:dart: The independent attention outputs are simply <strong>concatenated and linearly transformed into the expected dimensions</strong>. I assume the motivation is because ensembling always helps? ;) According to the paper, “multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. With a single attention head, averaging inhibits this.”</p>
-</blockquote>
-
-<center>
-
-$
-\text{MultiHead}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = [\text{head}_1; \dots; \text{head}_h]\mathbf{W}^O
-$
-
-</center>
-
-<center>
-
-$
-\text{where head}_i = \text{Attention}(\mathbf{Q}\mathbf{W}^Q_i, \mathbf{K}\mathbf{W}^K_i, \mathbf{V}\mathbf{W}^V_i)
-$
-
-</center>
-
-<p>where $\mathbf{W}^Q_i$, $\mathbf{W}^K_i$ , $\mathbf{W}^V_i$, and $\mathbf{W}^O$ are parameter matrices to be learned.</p>
-
-<center>
-<figure class="video_container">
-  <iframe src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/multi_head.mp4" frameborder="0" allowfullscreen="true" width="70%" height="350"> </iframe>
-</figure>
-</center>
-
-<p>Usually, understanding the role of a word in a sentence requires understanding how it is related to different parts of the sentence. This is important not only in processing source sentence but also in generating target. For example, in some languages, subjects define verb inflection (e.g., gender agreement), verbs define the case of their objects, and many more. What I’m trying to say is: each word is part of many relations.</p>
-
-<p>Therefore, we have to let the model focus on different things: this is the motivation behind Multi-Head Attention. Instead of having one attention mechanism, multi-head attention has several “heads” which work independently.</p>
-
-<p>Formally, this is implemented as several attention mechanisms whose results are combined:</p>
-
-<p><strong>ENCODER:</strong></p>
-
-<center>
-
-<img src="https://lilianweng.github.io/lil-log/assets/images/transformer-encoder.png" width="300" />
-
-</center>
-
-<p><strong>DECODER:</strong></p>
-
-<center>
-
-<img src="https://lilianweng.github.io/lil-log/assets/images/transformer-decoder.png" width="300" />
-
-</center>
-
-<p><strong>FULL ARCHITECTURE</strong></p>
-
-<center>
-
-<img src="https://lilianweng.github.io/lil-log/assets/images/transformer.png" width="600" />
-
-</center>
-
-<p><em><a href="https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html#a-family-of-attention-mechanisms">MUST READ</a></em> :rocket:</p>
-
-<p>:atom_symbol: <strong>Details:</strong></p>
-
-<p>The paper further refined the self-attention layer by adding a mechanism called “multi-headed” attention. This improves the performance of the attention layer in two ways:</p>
-
-<ol>
-  <li>It <strong>expands</strong> the model’s ability to <code class="language-plaintext highlighter-rouge">focus on different positions</code>. In the example above, $z_1$ contains a little bit of every other encoding, but it could be <strong>dominated by</strong> the the <strong>actual word itself</strong>.</li>
-  <li>It gives the attention layer multiple <code class="language-plaintext highlighter-rouge">representation subspaces</code>.
-    <ol>
-      <li>With multi-headed attention, we maintain <strong>separate</strong> $Q_i/K_i/V_i$ weight matrices for <strong>each head</strong> resulting in different $Q_i/K_i/V_i$ matrices. As we did before, we multiply $X$ by the $W_i^Q/W_i^K/W_i^V$ matrices to produce $Q/K/V$ matrices. Here $i$ represents the $i^{th}$ head.</li>
-      <li>In the original paper they used $8$ heads.</li>
-    </ol>
-  </li>
-</ol>
-
-<blockquote>
-  <p>:bulb: Multiple Head is asking as if <strong>multiple queries to the same sentence</strong>, to highlight (attend) multiple values (words/tokens).</p>
-</blockquote>
-
-<p>All the different heads give different $z_i$ matrices. Concat them and multiply with weight matrix $W^O$ (trained jointly with the model) to get the final $z$ matrix that captures information from all the attention heads. This final $z$ can be sent to the FFNN.</p>
-
-<p>Summarizing all here it is:</p>
-
-<center>
-<img src="https://jalammar.github.io/images/t/transformer_multi-headed_self-attention-recap.png" width="800" alt="image" />
-</center>
-
-<h2 id="positional-encoding">Positional Encoding</h2>
-
-<p>One thing that’s missing from the model as we have described it so far is a way <strong>to account for the order of the words</strong> in the input sequence.</p>
-
-<p>To address this, the transformer <strong>adds a vector</strong> to each input embedding. These positional encoding vectors are also <strong>learnt</strong>. These vectors follow a specific pattern that the model learns, which helps it determine the position of each word, or the distance between different words in the sequence.</p>
-
-<center>
-<img src="https://jalammar.github.io/images/t/transformer_positional_encoding_vectors.png" width="600" alt="image" />
-</center>
-
-<h2 id="the-residuals">The Residuals</h2>
-
-<p>One detail in the architecture of the encoder that we need to mention before moving on, is that each sub-layer (self-attention, ffnn) in each encoder has a residual connection around it, and is followed by a <a href="https://arxiv.org/abs/1607.06450">layer-normalization</a> step.</p>
-
-<p>If we’re to visualize the vectors and the layer-norm operation associated with self attention, it would look like this:</p>
-
-<center>
-<img src="https://jalammar.github.io/images/t/transformer_resideual_layer_norm_2.png" width="400" alt="image" />
-</center>
-
-<p>This goes for the sub-layers of the decoder as well. If we’re to think of a Transformer of 2 stacked encoders and decoders, it would look something like this:</p>
-
-<h2 id="the-decoder-side">The Decoder Side</h2>
-
-<p>Now that we’ve covered most of the concepts on the encoder side, we basically know how the components of decoders work as well. But let’s take a look at how they work together.</p>
-
-<p><img src="https://jalammar.github.io/images/t/transformer_decoding_1.gif" alt="image" /></p>
-
-<p>:paperclip: <strong>Reference:</strong></p>
-
-<ul>
-  <li><a href="https://jalammar.github.io/illustrated-transformer/">The Illustrated Transformer by Jay Alammar</a> :fire: :fire:</li>
-  <li><a href="http://nlp.seas.harvard.edu/2018/04/03/attention.html">The Annotated Transformer</a> :fire: :fire:</li>
-  <li><a href="https://towardsdatascience.com/transformers-141e32e69591">How Transformers Work</a> :fire: :fire: :fire:</li>
-</ul>
-
-<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>
-
-<hr />
-
-<h1 id="transformer---deeper-understanding">Transformer - Deeper Understanding</h1>
-
-<p>The following content has been borrowed from
-<a href="https://d2l.ai/chapter_attention-mechanisms/transformer.html">D2L: Alex Smola, Transformer</a> for educational purpose.</p>
-
-<p>Let’s recap the pros and cons of CNN and RNN:</p>
-
-<ul>
-  <li><strong>CNNs</strong> are <strong>easy to parallelize</strong> at a layer but cannot capture the variable-length sequential dependency very well.</li>
-  <li><strong>RNNs</strong> are able to capture the long-range, variable-length sequential information, but suffer from inability to parallelize within a sequence.</li>
-</ul>
-
-<p>To combine the advantages from both CNNs and RNNs, <a href="https://d2l.ai/chapter_references/zreferences.html#vaswani-shazeer-parmar-ea-2017">Vaswani et al., 2017</a> designed a novel architecture using the <code class="language-plaintext highlighter-rouge">attention mechanism</code>. This architecture, which is called as <strong>Transformer</strong>, achieves</p>
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">Parallelization</code> by capturing recurrence sequence with <code class="language-plaintext highlighter-rouge">attention</code></li>
-  <li>At the same time <code class="language-plaintext highlighter-rouge">encodes</code> each item’s <code class="language-plaintext highlighter-rouge">position</code> in the sequence.</li>
-</ol>
-
-<p>As a result, Transformer leads to a compatible model with significantly shorter training time.</p>
-
-<p>Similar to the <code class="language-plaintext highlighter-rouge">seq2seq</code> model, Transformer is also based on the <code class="language-plaintext highlighter-rouge">encoder-decoder</code> architecture. However, Transformer differs to the former as follows:</p>
-
-<p>:taurus: <strong>Salient features of transformers:</strong></p>
-
-<ol>
-  <li><strong>Replacing the recurrent layers</strong> in seq2seq with <strong>multi-head attention layers</strong></li>
-  <li>Incorporating the <code class="language-plaintext highlighter-rouge">position-wise</code> information through <strong>position encoding</strong></li>
-  <li>Applying <strong>layer normalization</strong>.</li>
-</ol>
-
-<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>
-
-<hr />
-
-<h2 id="comapre-transformer-with-seq2seq-model">Comapre Transformer with Seq2Seq model</h2>
-
-<p>We compare Transformer and seq2seq side-by-side in the below figure</p>
-
-<center>
-<img src="https://d2l.ai/_images/transformer.svg" width="400" alt="image" />
-</center>
-
-<p>:gemini: <strong>Similarity:</strong></p>
-
-<ul>
-  <li>The source sequence embeddings are fed into $n$ repeated blocks. The <strong>outputs of the last block</strong> are then used as <strong>attention memory</strong> for the decoder.</li>
-  <li>The target sequence embeddings are similarly fed into $n$ repeated blocks in the decoder, and the final outputs are obtained by applying a dense layer with vocabulary size to the last block’s outputs.</li>
-</ul>
-
-<p>:gemini: <strong>Dissimilarity</strong></p>
-
-<ul>
-  <li><strong>Transformer block:</strong> a recurrent layer in seq2seq is replaced by a Transformer block. This block contains
-    <ul>
-      <li>a <code class="language-plaintext highlighter-rouge">multi-head attention layer</code></li>
-      <li>a network with two <code class="language-plaintext highlighter-rouge">position-wise</code> feed-forward network layers for the <strong>encoder</strong>.</li>
-      <li>For the <strong>decoder</strong>, another <code class="language-plaintext highlighter-rouge">multi-head attention</code> layer is used to take the encoder state.</li>
-    </ul>
-  </li>
-  <li><strong>Add and norm:</strong> the inputs and outputs of both the multi-head attention layer or the position-wise feed-forward network, are processed by two <code class="language-plaintext highlighter-rouge">add and norm</code> layer that contains a <strong>residual structure</strong> and a <code class="language-plaintext highlighter-rouge">layer normalization</code> layer.</li>
-  <li><strong>Position encoding:</strong> Since the self-attention layer does not distinguish the item order in a sequence, a <code class="language-plaintext highlighter-rouge">positional encoding</code> layer is used to add sequential information into each sequence item.</li>
-</ul>
-
-<hr />
-
-<h2 id="multi-head-attention">Multi-Head Attention</h2>
-
-<p>Before the discussion of the multi-head attention layer, let’s quick express the <code class="language-plaintext highlighter-rouge">self-attention</code> architecture. The self-attention model is a normal attention model, with its <code class="language-plaintext highlighter-rouge">query</code>, its <code class="language-plaintext highlighter-rouge">key</code>, and its <code class="language-plaintext highlighter-rouge">value</code> being copied exactly the same from each item of the sequential inputs. As we illustrate in the below figure, self-attention outputs a same-length sequential output for each input item. Compared with a recurrent layer, output items of a self-attention layer can be <strong>computed in parallel</strong> and, therefore, it is easy to obtain a highly-efficient implementation.</p>
-
-<!--
-<center>
-<img src="https://d2l.ai/_images/self-attention.svg" alt="image" width="400">
-</center>
--->
-
-<p>The <code class="language-plaintext highlighter-rouge">multi-head attention</code> layer consists of $h$ <strong>parallel self-attention layers</strong>, each one is called a <code class="language-plaintext highlighter-rouge">head</code>. For each head, before feeding into the attention layer, we project the <code class="language-plaintext highlighter-rouge">queries</code>, <code class="language-plaintext highlighter-rouge">keys</code>, and <code class="language-plaintext highlighter-rouge">values</code> with three dense layers with hidden sizes $p_q$, $p_k$, and $p_v$, respectively. The outputs of these $h$ attention heads are concatenated and then processed by a final dense layer.</p>
-
-<p><img src="https://d2l.ai/_images/multi-head-attention.svg" alt="image" /></p>
-
-<p>Assume that the dimension for a <code class="language-plaintext highlighter-rouge">query</code>, a <code class="language-plaintext highlighter-rouge">key</code>, and a <code class="language-plaintext highlighter-rouge">value</code> are $d_q$, $d_k$, and $d_v$, respectively. Then, for each head $i=1, \dots ,h$, we can train learnable parameters $W^{(i)}_q \in \mathbb{R}^{p_q \times d_q}$, $W^{(i)}_k \in \mathbb{R}^{p_k \times d_k}$ , and $W^{(i)}_v \in \mathbb{R}^{p_v \times d_v}$. Therefore, the output for each head is</p>
-
-<center>
-
-$
-o^{(i)} = attention(W^{(i)}_q q,W^{(i)}_k k, W^{(i)}_v v )
-$
-
-</center>
-
-<p>where <strong>attention</strong> can be any attention layer, such as the <code class="language-plaintext highlighter-rouge">DotProductAttention</code> and <code class="language-plaintext highlighter-rouge">MLPAttention</code>.</p>
-
-<p>After that, the output with length $p_v$ from each of the $h$ attention heads are concatenated to be an output of length $h p_v$, which is then passed the final dense layer with $d_o$ hidden units. The weights of this dense layer can be denoted by $W_o \in \mathbf{R}^{d_o \times hp_v}$. As a result, the multi-head attention output will be</p>
-
-<center>
-
-$
-\mathbf o = \mathbf W_o 
-\begin{bmatrix}
-\mathbf o^{(1)}\\\vdots\\\mathbf o^{(h)}
-\end{bmatrix}
-$
-
-</center>
-
-<h2 id="multi-head-self-attention-what-are-these-heads-doing">Multi-Head Self-Attention: What are these heads doing?</h2>
-
-<p>First, let’s start with our traditional model analysis method: looking at model components. Previously, we looked at convolutional filters in classifiers, neurons in language models; now, it’s time to look at a bigger component: attention. But let’s take not the vanilla one, but the heads in Transformer’s multi-head attention.</p>
-
-<p><strong>First, why are we doing this?</strong> Multi-head attention is an <code class="language-plaintext highlighter-rouge">inductive bias</code> (is the set of assumptions that the learner uses to predict outputs of given inputs that it has not encountered) introduced in the Transformer. When creating an inductive bias in a model, we usually have some kind of intuition for why we think this new model component, inductive bias, could be useful. Therefore, it’s good to understand how this new thing works - does it learn the things we thought it would? If not, why it helps? If yes, how can we improve it? Hope now you are motivated enough, so let’s continue.</p>
-
-<h2 id="the-most-important-heads-are-interpretable">The Most Important Heads are Interpretable</h2>
-<p>Here we’ll mention some of the results from the ACL 2019 paper <a href="https://www.aclweb.org/anthology/P19-1580.pdf">Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned</a>. The authors look at individual attention heads in encoder’s multi-head attention and evaluate how much, on average, different heads “contribute” to generated translations (for the details on how exactly they did this, look in the paper or the <a href="https://lena-voita.github.io/posts/acl19_heads.html">blog post</a> :zap:). As it turns out,</p>
-
-<p>Only a small number of heads are important for translation,
-these heads play interpretable “roles”.
-These roles are:</p>
-
-<ul>
-  <li><strong>positional</strong>: attend to a token’s immediate neighbors, and the model has several such heads (usually 2-3 heads looking at the previous token and 2 heads looking at the next token);</li>
-  <li><strong>syntactic</strong>: learned to track some major syntactic relations in the sentence (subject-verb, verb-object);</li>
-  <li><strong>rare tokens</strong>: the most important head on the first layer attends to the least frequent tokens in a sentence (this is true for models trained on different language pairs!).</li>
-</ul>
-
-<p><strong>Reference:</strong></p>
-
-<ul>
-  <li><a href="https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#analysis_interpretability">Analysis and Interpretability of heads - Lena Voita</a> :zap:</li>
-</ul>
-
-<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>
-
-<hr />
-<h2 id="position-wise-feed-forward-networks">Position-wise Feed-Forward Networks</h2>
-
-<ul>
-  <li>Another key component in the Transformer block is called position-wise feed-forward network (FFN). It accepts a $3$-dimensional input with shape (<code class="language-plaintext highlighter-rouge">batch size</code>, <code class="language-plaintext highlighter-rouge">sequence length</code>, <code class="language-plaintext highlighter-rouge">feature size</code>).</li>
-  <li>The position-wise FFN consists of two dense layers that applies to the last dimension. Since the same two dense layers are used for each position item in the sequence, we referred to it as position-wise. Indeed, it is <strong>equivalent to applying two</strong> $1 \times 1$ convolution layers.</li>
-</ul>
-
-<h2 id="add-and-norm">Add and Norm</h2>
-
-<p>:dart: Besides the above two components in the Transformer block, the <code class="language-plaintext highlighter-rouge">add and norm</code> within the block also plays a key role to <strong>connect</strong> the <code class="language-plaintext highlighter-rouge">inputs</code> and <code class="language-plaintext highlighter-rouge">outputs</code> of other layers <code class="language-plaintext highlighter-rouge">smoothly</code>. To explain, we add a layer that contains a <strong>residual structure</strong> and a <strong>layer normalization</strong> after both the multi-head attention layer and the position-wise FFN network.</p>
-
-<p>:dart: Layer normalization is similar to batch normalization. One difference is that the mean and variances for the layer normalization are calculated along the <strong>last dimension</strong>, e.g <code class="language-plaintext highlighter-rouge">X.mean(axis=-1)</code> instead of the first batch dimension, e.g., <code class="language-plaintext highlighter-rouge">X.mean(axis=0)</code>.</p>
-
-<p>Layer normalization prevents the range of values in the layers from changing too much, which means that <strong>faster training</strong> and <strong>better generalization</strong> ability.</p>
-
-<h2 id="positional-encoding-1">Positional Encoding</h2>
-
-<p>Unlike the recurrent layer, both the multi-head attention layer and the position-wise feed-forward network compute the output of each item in the sequence <code class="language-plaintext highlighter-rouge">independently</code>. This feature enables us <strong>to parallelize the computation</strong>, but it <strong>fails to model the sequential information</strong> for a given sequence.</p>
-
-<p>To better capture the sequential information, the Transformer model uses the <strong>positional encoding to maintain the positional information</strong> of the input sequence.</p>
-
-<p>To explain, assume that $X \in \mathbb{R}^{l×d}$
-is the embedding of an example, where $l$ is the <code class="language-plaintext highlighter-rouge">sequence length</code> and $d$ is the <code class="language-plaintext highlighter-rouge">embedding size</code>. This positional encoding layer encodes $X$’s position $P \in \mathbb{R}^{l \times d}$ and outputs $P+X$.</p>
-
-<p>The position $P$ is a $2$-D matrix, where</p>
-<ul>
-  <li>$i$ refers to the <strong>order in the sentence</strong></li>
-  <li>$j$ refers to the <strong>position along the embedding vector dimension</strong>.</li>
-</ul>
-
-<p>In this way, each value in the original sequence is then maintained using the equations below:</p>
-
-<center>
-
-$
-P_{i, 2j} = \sin(i/10000^{2j/d})
-$
-
-</center>
-
-<center>
-
-$
-P_{i, 2j+1} = \cos(i/10000^{2j/d})
-$
-
-</center>
-
-<p>for $i=0,\ldots, l-1$ and $j=0,\ldots,\lfloor(d-1)/2\rfloor$.</p>
-
-<center>
-<img src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/positional_encoding-min.png" alt="image" width="300" />
-</center>
-
-<p class="red"><strong>Why do we need it in the first place?</strong></p>
-
-<p>Transformer architecture ditched the recurrence mechanism in favor of multi-head self-attention mechanism. Avoiding the RNNs’ method of recurrence will result in massive speed-up in the training time. And theoretically, it can capture longer dependencies in a sentence.</p>
-
-<p>The model itself doesn’t have any sense of position/order for each word. Consequently, there’s still the need for a way to incorporate the order of the words into our model. One possible solution to give the model some sense of order is to add a piece of information to each word about its position in the sentence. We call this “piece of information”, the positional encoding.</p>
-
-<p>Ideally, the following criteria should be satisfied:</p>
-
-<ul>
-  <li><strong>Unique Positional Encoding</strong> It should output a unique encoding for each time-step (word’s position in a sentence)</li>
-  <li><strong>Consistent Distance:</strong> Distance between any two time-steps should be consistent across sentences with different lengths.</li>
-  <li>Model should generalize to longer sentences without any efforts. Its values should be bounded.</li>
-  <li>It must be deterministic.</li>
-</ul>
-
-<p><strong>Intuition of</strong> $\sin$ and $\cos$ <strong>in positional encoding</strong>:</p>
-
-<blockquote>
-  <p>:bulb: A more intuitive explanation of positional embedding is to think about it as a clock (as cos and sin are just concept from unit circle). Every two dimension of the positional embedding just specifies one of the clock’s hand (the hour hand, the minute hand, the second hand, for example). Then moving from one position to the next position is just rotating those hands at different frequencies. Thus, without formal proof, it immediately tells you why a rotation matrix exist.</p>
-</blockquote>
-
-<p><strong>Reference:</strong></p>
-
-<ul>
-  <li><a href="https://kazemnejad.com/blog/transformer_architecture_positional_encoding/">Transformer Architecture: The Positional Encoding</a> :fire: [read comment section]</li>
-  <li><a href="https://timodenk.com/blog/linear-relationships-in-the-transformers-positional-encoding/">proof</a></li>
-</ul>
-
-<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>
-
-<hr />
-
-<h2 id="what-is-position-wise-ffn">What is position wise FFN?</h2>
-
-<p>From the author of “Attention is all you need” by Vaswani et al.</p>
-
-<blockquote>
-  <p>:bulb: In addition to attention sub-layers, each of the layers in our encoder and decoder contains a fully connected feed-forward network, which is applied to each position separately and identically. This consists of two linear transformations with a ReLU activation in between.</p>
-</blockquote>
-
-<center>
-
-$
-FFN(𝑥)=max(0,𝑥×𝑊_1+𝑏_1)×𝑊_2+𝑏_2
-$
-
-</center>
-
-<blockquote>
-  <p>While the <strong>linear transformations are the same across different positions</strong>, they use different parameters from layer to layer. Another way of describing this is as <strong>two convolutions with kernel size 1</strong>. The dimensionality of input and output is $𝑑_{model}=512$, and the inner-layer has dimensionality $𝑑_{𝑓𝑓}=2048$.</p>
-</blockquote>
-
-<p><strong>Reference:</strong></p>
-
-<ul>
-  <li><a href="https://ai.stackexchange.com/questions/15524/why-would-you-implement-the-position-wise-feed-forward-network-of-the-transforme">stackexchange</a></li>
-</ul>
-
-<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>
-
-<hr />
-
-<h2 id="encoder">Encoder</h2>
-
-<p>Armed with all the essential components of Transformer, let’s first build a Transformer encoder block. This encoder contains a</p>
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">Multi-head attention</code> layer</li>
-  <li>A <code class="language-plaintext highlighter-rouge">position-wise</code> feed-forward network</li>
-  <li>Two <code class="language-plaintext highlighter-rouge">add and norm</code> connection blocks.</li>
-</ol>
-
-<p>As shown in the <a href="https://d2l.ai/chapter_attention-mechanisms/transformer.html">code (section 10.3.5)</a>, for both of the attention model and the positional FFN model in the <code class="language-plaintext highlighter-rouge">EncoderBlock</code>, their outputs’ dimension are equal to the <code class="language-plaintext highlighter-rouge">num_hiddens</code>.</p>
-
-<p>This is due to the nature of the residual block, as we need to add these outputs back to the original value during <code class="language-plaintext highlighter-rouge">add and norm</code>.</p>
-
-<h2 id="decoder">Decoder</h2>
-
-<p>The Transformer <strong>decoder</strong> block looks similar to the Transformer encoder block. However, besides the two sub-layers (1. the <code class="language-plaintext highlighter-rouge">multi-head attention</code> layer and 2. the <code class="language-plaintext highlighter-rouge">positional encoding</code> network), the decoder Transformer block contains a <strong>third sub-layer</strong>, which applies <strong>multi-head attention on the output of the encoder stack</strong>.</p>
-
-<p>Similar to the Transformer encoder block, the Transformer decoder block employs <code class="language-plaintext highlighter-rouge">add and norm</code>, i.e., the residual connections and the layer normalization to connect each of the sub-layers.</p>
-
-<p>To be specific, at time-step $t$, assume that $x_t$ is the current input, i.e., the <code class="language-plaintext highlighter-rouge">query</code>. As illustrated in the below figure, the <code class="language-plaintext highlighter-rouge">keys</code> and <code class="language-plaintext highlighter-rouge">values</code> of the self-attention layer consist of the current query with all the past queries $x_1 \ldots ,x_{t−1}$.</p>
-
-<!--
-
-<center>
-<img src="https://d2l.ai/_images/self-attention-predict.svg" width="400" alt="image">
-</center>
-
--->
-
-<p>During training, the output for the $t$-<code class="language-plaintext highlighter-rouge">query</code> could observe all the previous <code class="language-plaintext highlighter-rouge">key-value</code> pairs. It results in an different behavior from prediction. Thus, during prediction we can <strong>eliminate the unnecessary information by specifying</strong> the valid length to be $t$ for the $t^{th}$ query.</p>
-
-<p><strong>Reference:</strong></p>
-
-<ul>
-  <li><a href="https://d2l.ai/chapter_attention-mechanisms/transformer.html">D2L: Alex Smola, Transformer</a></li>
-  <li><a href="https://nlp.seas.harvard.edu/2018/04/03/attention.html">IMP: The Annotated Transformer</a></li>
-</ul>
-
-<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>
-
-<hr />
-
-<h1 id="subword-segmentation-byte-pair-encoding">Subword Segmentation: Byte Pair Encoding</h1>
-
-<h2 id="dealing-with-rare-words">Dealing with rare words</h2>
-
-<p>Character level embeddings aside, the first real breakthrough at addressing the rare words problem was made by the researchers at the University of Edinburgh by applying subword units in Neural Machine Translation using Byte Pair Encoding (BPE). Today, subword tokenization schemes inspired by BPE have become the norm in most advanced models including the very popular family of contextual language models like BERT, GPT-2, RoBERTa, etc.</p>
-
-<h2 id="the-origins-of-byte-pair-encoding">The Origins of Byte Pair Encoding</h2>
-
-<p>Like many other applications of deep learning being inspired by traditional science, Byte Pair Encoding (BPE) subword tokenization also finds its roots deep within a simple lossless data compression algorithm. BPE was first introduced by Philip Gage in the article “A New Algorithm for Data Compression” in the February 1994 edition of the C Users Journal as a technique for data compression that works by replacing common pairs of consecutive bytes with a byte that does not appear in that data.</p>
-
-<p><img src="https://miro.medium.com/max/700/1*x1Y_n3sXGygUPSdfXTm9pQ.gif" alt="image" /></p>
-
-<h2 id="repurposing-bpe-for-subword-tokenization">Repurposing BPE for Subword Tokenization</h2>
-
-<p>As we know, a model has a predefined vocabulary of tokens. Those input tokens, which are not in the vocabulary, will be replaced with a special UNK (“unknown”) token. Therefore, if you use the straightforward word-level tokenization (i.e., your tokens are words), you will be able to process a fixed number of words. This is the fixed vocabulary problem : you will be getting lot’s of unknown tokens, and your model won’t translate them properly.</p>
-
-<center>
-
-<img src="https://lena-voita.github.io/resources/lectures/seq2seq/bpe/tokenization_word_subword-min.png" width="350" />
-
-</center>
-
-<p>But how can we represent all words, even those we haven’t seen in the training data?</p>
-
-<blockquote>
-  <p>:bulb: Well, even if you are not familiar with a word, you are familiar with the parts it consists of - subwords (in the worst case, symbols).</p>
-</blockquote>
-
-<p>Then why don’t we split the rare and unknown words into smaller parts?
-This is exactly what was proposed in the paper <a href="https://arxiv.org/pdf/1508.07909.pdf">Neural Machine Translation of Rare Words with Subword Units</a> by Rico Sennrich, Barry Haddow and Alexandra Birch. They introduced the de-facto standard subword segmentation, Byte Pair Encoding (BPE). BPE keeps frequent words intact and splits rare and unknown ones into smaller known parts.</p>
-
-<p>What we refer to as BPE now is an adaptation of this algorithm for word segmentation. Instead of merging frequent pairs of bytes, it merges characters or character sequences.</p>
-
-<p><strong>BPE algorithm consists of two parts:</strong></p>
-
-<ul>
-  <li><strong>training</strong> - learn “BPE rules”, i.e., which pairs of symbols to merge;</li>
-  <li><strong>inference</strong> - apply learned rules to segment a text.</li>
-</ul>
-
-<h2 id="training-learn-bpe-rules">Training: learn BPE rules</h2>
-<p>At this step, the algorithm builds a merge table and a vocabulary of tokens. The initial vocabulary consists of characters and an empty merge table. At this step, each word is segmented as a sequence if characters. After that, the algorithm is as follows:</p>
-
-<ul>
-  <li>count pairs of symbols: how many times each pair occurs together in the training data;</li>
-  <li>find the most frequent pair of symbols;</li>
-  <li>merge this pair - add a merge to the merge table, and the new token to the vocabulary.</li>
-</ul>
-
-<p>In practice, the algorithm first counts how many times each word appeared in the data. Using this information, it can count pairs of symbols more easily. Note also that the tokens do not cross word boundary - everything happens within words.</p>
-
-<p>Look at the illustration. Here I show you a toy example: here we assume that in training data, we met cat 4 times, mat 5 times and mats, mate, ate, eat 2, 3, 3, 2 times, respectively. We also have to set the maximum number of merges we want; usually, it’s going to be about 4k-32k depending on the dataset size, but for our toy example, let’s set it to 5.</p>
-
-<center>
-<img src="https://lena-voita.github.io/resources/lectures/seq2seq/bpe/build_merge_table.gif" alt="image" width="500" />
-</center>
-
-<p>When we reached the maximum number of merges, not all words were merged into a single token. For example, mats is segmented as two tokens: <code class="language-plaintext highlighter-rouge">mat@@ s</code>. Note that after segmentation, we add the special characters <code class="language-plaintext highlighter-rouge">@@</code> to distinguish between tokens that represent entire words and tokens that represent parts of words. In our example, <code class="language-plaintext highlighter-rouge">mat</code> and <code class="language-plaintext highlighter-rouge">mat@@</code> are different tokens.</p>
-
-<p><strong>Implementation note:</strong> In an implementation, you need to make sure that a new merge adds only one new token to the vocabulary. For this, you can either add a special <code class="language-plaintext highlighter-rouge">end-of-word</code> symbol to each word (as done in the original BPE paper) or replace spaces with a special symbol (as done in e.g. <code class="language-plaintext highlighter-rouge">Sentencepiece</code> and <code class="language-plaintext highlighter-rouge">YouTokenToMe</code>, the fastest implementation), or do something else. In the illustration, I omit this for simplicity.</p>
-
-<h2 id="inference-segment-a-text">Inference: segment a text</h2>
-<p>After learning BPE rules, you have a merge table - now, we will use it to segment a new text.</p>
-
-<center>
-<img src="https://lena-voita.github.io/resources/lectures/seq2seq/bpe/bpe_apply.gif" alt="image" width="300" />
-</center>
-
-<p>The algorithm starts with segmenting a word into a sequence of characters. After that, it iteratively makes the following two steps until no merge it possible:</p>
-
-<ul>
-  <li>Among all possible merges at this step, find the highest merge in the table;</li>
-  <li>Apply this merge.</li>
-</ul>
-
-<p>Note that the merge table is ordered - the merges that are higher in the table were more frequent in the data. That’s why in the algorithm, merges that are higher have higher priority: at each step, we merge the most frequent merge among all possible.</p>
-
-<h2 id="what-makes-bpe-the-secret-sauce">What makes BPE the secret sauce?</h2>
-<p>BPE brings the perfect balance between character- and word-level hybrid representations which makes it capable of managing large corpora. This behavior also enables the encoding of any rare words in the vocabulary with appropriate subword tokens without introducing any “unknown” tokens. This especially applies to foreign languages like German where the presence of many compound words can make it hard to learn a rich vocabulary otherwise. With this tokenization algorithm, every word can now overcome their fear of being forgotten (athazagoraphobia).</p>
-
-<p><strong>Reference:</strong></p>
-
-<ul>
-  <li><a href="https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro">Transformer - Lena Voita</a> :zap:</li>
-  <li><a href="https://towardsdatascience.com/byte-pair-encoding-the-dark-horse-of-modern-nlp-eb36c7df4f10">Byte Pair Encoding — The Dark Horse of Modern NLP</a></li>
-</ul>
-
-<hr />
-
-<h1 id="how-does-attention-work-">How does Attention Work ?</h1>
-
-<center>
-<img src="/assets/images/image_20_Attention_7.png" alt="image" width="500" />
-</center>
-
-<ul>
-  <li>
-    <p>At each time step we come up with a distribution on the input words.</p>
-  </li>
-  <li>In the above image at time $t_3$, input <code class="language-plaintext highlighter-rouge">ja raha</code> gets the attention and it’s corresponding distributoin is $[0,0,0.5, 0.5, 0]$. This helps in modelling because now input <code class="language-plaintext highlighter-rouge">jaa raha</code> is linked to output <code class="language-plaintext highlighter-rouge">going</code> with more attention as in the attention vector other words got $0$.</li>
-  <li>This distribution tells us how much <strong>attention</strong> to pay to some part of the input but not all parts.</li>
-  <li>At each time step we should feed this relevant information (i.e. encoding of relevant words in the form of attention distribution) to the decoder.</li>
-</ul>
-
-<p>In reality this distribution is not available beforehand and is <strong>learnt</strong> through the model.</p>
-
-<p>[<em>reference: Prof. Mikesh, Padhai Lecture, Encoder-Decoder</em>]</p>
-
-<blockquote>
-  <blockquote>
-    <p>The attention-mechanism looks at an input sequence and decides at each step which other parts of the sequence are important.</p>
-  </blockquote>
-</blockquote>
-
-<p>When reading a text, you always focus on the word you read but at the same time your mind still holds the important keywords of the text in memory in order to provide context.</p>
-
-<p>An attention-mechanism works similarly for a given sequence. For our example with the human Encoder and Decoder, imagine that instead of only writing down the translation of the sentence in the imaginary language, the Encoder also writes down keywords that are important to the semantics of the sentence, and gives them to the Decoder in addition to the regular translation. Those new keywords make the translation much easier for the Decoder because it knows what parts of the sentence are important and which key terms give the sentence context.</p>
-
-<h2 id="attention">Attention</h2>
-
-<p>The basic idea: each time the model predicts an output word, it only uses parts of an input where the most relevant <strong>information is concentrated</strong> instead of an entire sentence. In other words, it only pays <strong>attention to some input words</strong>. Let’s investigate how this is implemented.</p>
-
-<center>
-<img src="https://miro.medium.com/max/710/1*9Lcq9ni9aujScFYyyHRhhA.png" width="600" />
-</center>
-
-<blockquote>
-  <p>An illustration of the attention mechanism (RNNSearch) proposed by [Bahdanau, 2014]. Instead of converting the entire input sequence into a single context vector, we create a separate context vector for each output (target) word. These vectors consist of the weighted sums of encoder’s hidden states.</p>
-</blockquote>
-
-<p>Encoder works as usual, and the difference is only on the decoder’s part. As you can see from a picture, the <strong>decoder’s hidden state is computed with a context vector</strong>, the previous output and the previous hidden state. But now we use not a single context vector $c$, but a <strong>separate context vector</strong> $c_i$ for <strong>each target word</strong>.</p>
-
-<p><strong>References:</strong></p>
-
-<ul>
-  <li><a href="https://nlp.stanford.edu/pubs/emnlp15_attn.pdf">Paper: Effective Approaches to Attention-based Neural Machine Translation</a></li>
-  <li><a href="https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/">Visualizing A Neural Machine Translation Model by Jay Alammar</a></li>
-  <li><a href="https://medium.com/inside-machine-learning/what-is-a-transformer-d07dd1fbec04">Important Blog</a></li>
-  <li><a href="https://medium.com/@joealato/attention-in-nlp-734c6fa9d983">Imp: Attention in NLP</a></li>
-  <li><a href="http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/">Imp: Attention and Memory in NLP</a></li>
-</ul>
-
-<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>
-
-<hr />
-
-<h2 id="encoder-decoder-with-attention">Encoder-Decoder with Attention</h2>
-
-<center>
-<img src="/assets/images/image_20_Attention_8.png" alt="image" width="500" />
-</center>
-
-<center>
-<img src="/assets/images/image_20_Attention_9.png" alt="image" width="500" />
-</center>
-
-<p>In the Decoder equation their is a correction for $e_{jt}$. Instead of $W_{attn}s_t$, it will be $W_{attn}s_{t-1}$</p>
-
-<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>
-
-<hr />
-
-<h2 id="more-on-attention">More on Attention</h2>
-
-<center>
-<img src="/assets/images/image_20_Attention_1.png" alt="image" width="500" />
-</center>
-
-<ul>
-  <li>Attention provides a solution to the <code class="language-plaintext highlighter-rouge">bottleneck problem</code>.</li>
-  <li><code class="language-plaintext highlighter-rouge">Core idea</code>: on each step of the decoder, use direct connection to the encoderto focus on a particular part of the source sequence</li>
-</ul>
-
-<center>
-<img src="/assets/images/image_20_Attention_2.png" alt="image" width="500" />
-</center>
-
-<center>
-<img src="/assets/images/image_20_Attention_3.png" alt="image" width="500" />
-</center>
-
-<center>
-<img src="/assets/images/image_20_Attention_4.png" alt="image" width="500" />
-</center>
-
-<center>
-<img src="/assets/images/image_20_Attention_5.png" alt="image" width="500" />
-</center>
-
-<center>
-<img src="/assets/images/image_20_Attention_6.png" alt="image" width="500" />
-</center>
-
-<p><strong>Resource:</strong></p>
-
-<ul>
-  <li><a href="https://web.stanford.edu/class/cs224n/slides/cs224n-2019-lecture08-nmt.pdf">cs224n-2019-lecture08-nmt</a></li>
-</ul>
-
-<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>
-
-<hr />
-
-<h2 id="what-is-transformer-and-its-pros-and-cons">What is Transformer and it’s pros and cons?</h2>
-
-<p>From the Author:</p>
-
-<blockquote>
-  <blockquote>
-    <p>In paper “Attention Is All You Need”, we introduce the Transformer, a novel neural network architecture based on a self-attention mechanism that we believe to be particularly well suited for language understanding.</p>
-  </blockquote>
-</blockquote>
-
-<p>Natural Language Understanding (NLU):  language modeling, machine translation and question answering</p>
-
-<ul>
-  <li>Transformer outperforms both recurrent and convolutional models on academic English to German and English to French translation benchmarks.</li>
-  <li>On top of higher translation quality, the Transformer requires less computation to train and is a much better fit for modern machine learning hardware, speeding up training by up to an order of magnitude.</li>
-</ul>
-
-<p>The paper ‘Attention Is All You Need’ describes transformers and what is called a sequence-to-sequence architecture. Sequence-to-Sequence (or Seq2Seq) is a neural net that transforms a given sequence of elements, such as the sequence of words in a sentence, into another sequence.</p>
-
-<center>
-<img src="https://lena-voita.github.io/resources/lectures/seq2seq/transformer/model-min.png" width="500" />
-</center>
-
-<ul>
-  <li>One interesting point is, even if it’s used for <strong>seq2seq generation</strong>, <strong>but there is no</strong> <code class="language-plaintext highlighter-rouge">recurrence</code> part inside the model like the  <code class="language-plaintext highlighter-rouge">vanilla rnn</code> or <code class="language-plaintext highlighter-rouge">lstm</code>.</li>
-  <li>So one slight but important part of the model is the <strong>positional encoding</strong> of the different words. Since we have no recurrent networks that can remember how sequences are fed into a model, we need to somehow give every word/part in our sequence a relative position since a sequence depends on the order of its elements. These positions are added to the embedded representation (n-dimensional vector) of each word.</li>
-</ul>
-
-<p><strong>Pros:</strong></p>
-
-<ul>
-  <li>Faster learning. More GPU efficient unlike the <code class="language-plaintext highlighter-rouge">vanilla rnn</code></li>
-</ul>
-
-<p>The animation below illustrates how we apply the Transformer to machine translation. Neural networks for machine translation typically contain an encoder reading the input sentence and generating a representation of it. A decoder then generates the output sentence word by word while consulting the representation generated by the encoder.</p>
-
-<center>
-<img src="https://3.bp.blogspot.com/-aZ3zvPiCoXM/WaiKQO7KRnI/AAAAAAAAB_8/7a1CYjp40nUg4lKpW7covGZJQAySxlg8QCLcBGAs/s640/transform20fps.gif" width="600" />
-</center>
-
-<p><strong>References:</strong></p>
-
-<ul>
-  <li><a href="https://arxiv.org/abs/1706.03762">Paper: Attention is all you need</a></li>
-  <li><a href="https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html">Google AI Blog</a></li>
-  <li><a href="https://medium.com/inside-machine-learning/what-is-a-transformer-d07dd1fbec04">Important Blog</a></li>
-  <li><a href="https://jalammar.github.io/illustrated-transformer/">Important: The Illustrated Transformer by Jay Alammar</a></li>
-</ul>
-
-<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>
-
-<hr />
-
-<h1 id="attention-is-all-you-need">Attention is All You Need</h1>
-
-<center>
-<img src="/assets/images/image_38_attention_1.png" alt="image" width="500" />
-</center>
-
-<center>
-<img src="/assets/images/image_38_attention_2.png" alt="image" width="500" />
-</center>
-
-<center>
-<img src="/assets/images/image_38_attention_3.png" alt="image" width="500" />
-</center>
-
-<center>
-<img src="/assets/images/image_38_attention_4.png" alt="image" width="500" />
-</center>
-
-<h2 id="positional-encoding-2">Positional Encoding</h2>
-
-<center>
-<img src="/assets/images/image_38_attention_5.png" alt="image" width="500" />
-</center>
-
-<h2 id="transformer-machine-translation">Transformer Machine Translation</h2>
-
-<center>
-<img src="/assets/images/image_38_attention_6.png" alt="image" width="500" />
-</center>
-
-<center>
-<img src="/assets/images/image_38_attention_7.png" alt="image" width="500" />
-</center>
-
-<h2 id="transformer-language-pre-training">Transformer Language Pre-training</h2>
-
-<center>
-<img src="/assets/images/image_38_attention_8.png" alt="image" width="500" />
-</center>
-
-<center>
-<img src="/assets/images/image_38_attention_9.png" alt="image" width="500" />
-</center>
-
-<h2 id="multi-head-attention-1">Multi-head attention</h2>
-
-<center>
-<img src="/assets/images/image_38_attention_10.png" alt="image" width="500" />
-</center>
-
-<center>
-<img src="/assets/images/image_38_attention_11.png" alt="image" width="500" />
-</center>
-
-<p><em>Read the excellent slides from the below reference</em></p>
-
-<p><strong>Reference:</strong></p>
-
-<ul>
-  <li><a href="http://www.cs.toronto.edu/~rgrosse/courses/csc421_2019/slides/lec16.pdf">CS.Toronto.Lecture16</a></li>
-  <li><a href="https://icml.cc/media/Slides/icml/2019/halla(10-09-15)-10-15-45-4343-a_tutorial_on.pdf">Excellent Slide by Alex Smola</a></li>
-  <li><a href="https://www.student.cs.uwaterloo.ca/~mjksmith/DSC_Transformer_Presentation.pdf">Good summery (even UMLFit)</a></li>
-  <li><a href="https://www.slideshare.net/DaikiTanaka7/attention-is-all-you-need-127742932">Imp slides on Transformer</a></li>
-</ul>
-
-<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>
-
-<hr />
-
-<h1 id="machine-translation-seq2seq-model">Machine Translation, seq2seq model</h1>
-
-<h2 id="encoder-decoder-model">Encoder-Decoder Model</h2>
-
-<p><strong>Approach 1:</strong></p>
-
-<p>$h_T$ passed to the $s_0$ of the decoder only.</p>
-
-<center>
-<img src="/assets/images/image_10_seq2seq_1.png" alt="image" width="500" />
-</center>
-
-<p><strong>Approach 2:</strong></p>
-
-<p>$h_T$ passed to the every state $s_i$ of decoder.</p>
-
-<center>
-<img src="/assets/images/image_10_seq2seq_2.png" alt="image" width="500" />
-</center>
-
-<ul>
-  <li>Padhai, DL course, Prof. Mikesh, IIT M, Lecture: Encoder Decoder</li>
-</ul>
-
-<h2 id="neural-machine-translation-nmt">Neural Machine Translation (NMT)</h2>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">Neural Machine Translation</code> (NMT)is a way to do Machine Translation with a <code class="language-plaintext highlighter-rouge">single neural network</code>.</li>
-  <li>The neural network architecture is called sequence-to-sequence(aka <code class="language-plaintext highlighter-rouge">seq2seq</code>) and it involves two RNNs.</li>
-</ul>
-
-<center>
-<img src="/assets/images/image_19_NMT_1.png" alt="image" width="500" />
-</center>
-
-<center>
-<img src="/assets/images/image_19_NMT_2.png" alt="image" width="500" />
-</center>
-
-<center>
-<img src="/assets/images/image_19_NMT_3.png" alt="image" width="500" />
-</center>
-
-<center>
-<img src="/assets/images/image_19_NMT_4.png" alt="image" width="500" />
-</center>
-
-<center>
-<img src="/assets/images/image_19_NMT_5.png" alt="image" width="500" />
-</center>
-
-<p><strong>Resource:</strong></p>
-
-<ul>
-  <li><a href="https://web.stanford.edu/class/cs224n/slides/cs224n-2019-lecture08-nmt.pdf">cs224n-2019-lecture08-nmt</a></li>
-</ul>
-
-<hr />
-
-<p><a href="#Top"><img align="right" width="28" height="28" src="/assets/images/icon/arrow_circle_up-24px.svg" alt="Top" /></a></p>]]></content><author><name>Sankarshan Mridha</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[]]></summary></entry></feed>
+<p><a href="#Top" style="color:#023628;background-color: #f7d06a;float: right;">Back to Top</a></p>]]></content><author><name>Sankarshan Mridha</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Content]]></summary></entry></feed>
